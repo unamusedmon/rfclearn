@@ -2198,7 +2198,60 @@ Full Copyright Statement
 
 
 Deering &amp; Hinden            Standards Track                    [Page 39]
-</pre></article><aside class="toc-panel"><details class="header-reference-panel" open>
+</pre></article><aside class="toc-panel"><details class="threat-panel" open>
+  <summary><span>Hunting context</span><strong>Threat Indicators</strong></summary>
+  <div class="threat-list">
+    
+    <div class="threat-item" id="threat-1">
+      <div class="threat-header">
+        <span class="threat-name">Extension Header Abuse</span>
+        <span class="threat-severity sev-high">high</span>
+      </div>
+      <div class="threat-details">
+        <div class="threat-box threat-normal">
+          <span class="threat-box-label">Normal behavior</span>
+          0-1 simple extension headers.
+        </div>
+        <div class="threat-box threat-malicious">
+          <span class="threat-box-label">Malicious indicator</span>
+          Long chains of headers to hide payload from shallow inspection.
+        </div>
+      </div>
+    </div>
+    <div class="threat-item" id="threat-2">
+      <div class="threat-header">
+        <span class="threat-name">Tunneling Indicators</span>
+        <span class="threat-severity sev-medium">medium</span>
+      </div>
+      <div class="threat-details">
+        <div class="threat-box threat-normal">
+          <span class="threat-box-label">Normal behavior</span>
+          Standard IPv6 traffic.
+        </div>
+        <div class="threat-box threat-malicious">
+          <span class="threat-box-label">Malicious indicator</span>
+          IPv6-in-IPv4 (6to4/Teredo) used to bypass IPv4-only filters.
+        </div>
+      </div>
+    </div>
+    <div class="threat-item" id="threat-3">
+      <div class="threat-header">
+        <span class="threat-name">Unexpected ICMPv6</span>
+        <span class="threat-severity sev-high">high</span>
+      </div>
+      <div class="threat-details">
+        <div class="threat-box threat-normal">
+          <span class="threat-box-label">Normal behavior</span>
+          Essential ND and error messages.
+        </div>
+        <div class="threat-box threat-malicious">
+          <span class="threat-box-label">Malicious indicator</span>
+          Flood of Redirects or RA to perform MitM or DoS.
+        </div>
+      </div>
+    </div>
+  </div>
+</details><details class="header-reference-panel" open>
   <summary><span>Header field quick-reference</span><strong>RFC 2460 IPv6 Header</strong></summary>
   <p class="header-note">IPv6 fixed headers plus extension chains expose tunneling, routing, fragmentation, and evasion patterns.</p>
   <div class="bit-axis">Bit positions 0-31</div>

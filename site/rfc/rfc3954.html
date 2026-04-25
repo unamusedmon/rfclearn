@@ -1862,7 +1862,60 @@ Acknowledgement
 
 
 Claise                       Informational                     [Page 33]
-</pre></article><aside class="toc-panel"><h2>On this RFC</h2><div id="toc-links"></div></aside></section>
+</pre></article><aside class="toc-panel"><details class="threat-panel" open>
+  <summary><span>Hunting context</span><strong>Threat Indicators</strong></summary>
+  <div class="threat-list">
+    
+    <div class="threat-item" id="threat-1">
+      <div class="threat-header">
+        <span class="threat-name">Flow Record Anomalies</span>
+        <span class="threat-severity sev-medium">medium</span>
+      </div>
+      <div class="threat-details">
+        <div class="threat-box threat-normal">
+          <span class="threat-box-label">Normal behavior</span>
+          Flows match expected service patterns.
+        </div>
+        <div class="threat-box threat-malicious">
+          <span class="threat-box-label">Malicious indicator</span>
+          Unidirectional flows, many tiny flows (scanning/DDoS).
+        </div>
+      </div>
+    </div>
+    <div class="threat-item" id="threat-2">
+      <div class="threat-header">
+        <span class="threat-name">Exporter Spoofing</span>
+        <span class="threat-severity sev-high">high</span>
+      </div>
+      <div class="threat-details">
+        <div class="threat-box threat-normal">
+          <span class="threat-box-label">Normal behavior</span>
+          NetFlow from known gateway/switch IPs.
+        </div>
+        <div class="threat-box threat-malicious">
+          <span class="threat-box-label">Malicious indicator</span>
+          Flow data from unauthorized IPs to poison telemetry.
+        </div>
+      </div>
+    </div>
+    <div class="threat-item" id="threat-3">
+      <div class="threat-header">
+        <span class="threat-name">Unusual Template IDs</span>
+        <span class="threat-severity sev-low">low</span>
+      </div>
+      <div class="threat-details">
+        <div class="threat-box threat-normal">
+          <span class="threat-box-label">Normal behavior</span>
+          Static or slowly changing templates.
+        </div>
+        <div class="threat-box threat-malicious">
+          <span class="threat-box-label">Malicious indicator</span>
+          Rapid template rotation or template exhaustion attacks.
+        </div>
+      </div>
+    </div>
+  </div>
+</details><h2>On this RFC</h2><div id="toc-links"></div></aside></section>
 </main>
 <script src="../assets/doc.js"></script>
 

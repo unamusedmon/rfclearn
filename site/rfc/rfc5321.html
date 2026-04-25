@@ -5334,7 +5334,76 @@ Intellectual Property
 
 
 Klensin                     Standards Track                    [Page 95]
-</pre></article><aside class="toc-panel"><details class="header-reference-panel" open>
+</pre></article><aside class="toc-panel"><details class="threat-panel" open>
+  <summary><span>Hunting context</span><strong>Threat Indicators</strong></summary>
+  <div class="threat-list">
+    
+    <div class="threat-item" id="threat-1">
+      <div class="threat-header">
+        <span class="threat-name">Open Relay Indicators</span>
+        <span class="threat-severity sev-high">high</span>
+      </div>
+      <div class="threat-details">
+        <div class="threat-box threat-normal">
+          <span class="threat-box-label">Normal behavior</span>
+          Rejects mail for external domains.
+        </div>
+        <div class="threat-box threat-malicious">
+          <span class="threat-box-label">Malicious indicator</span>
+          Accepts mail from any source for any destination (spam).
+        </div>
+      </div>
+    </div>
+    <div class="threat-item" id="threat-2">
+      <div class="threat-header">
+        <span class="threat-name">Header Injection</span>
+        <span class="threat-severity sev-high">high</span>
+      </div>
+      <div class="threat-details">
+        <div class="threat-box threat-normal">
+          <span class="threat-box-label">Normal behavior</span>
+          CRLF only used to terminate lines.
+        </div>
+        <div class="threat-box threat-malicious">
+          <span class="threat-box-label">Malicious indicator</span>
+          Encoded CRLF in fields to inject &#x27;Bcc&#x27; or &#x27;Subject&#x27; headers.
+        </div>
+      </div>
+    </div>
+    <div class="threat-item" id="threat-3">
+      <div class="threat-header">
+        <span class="threat-name">Unusual EHLO Values</span>
+        <span class="threat-severity sev-low">low</span>
+      </div>
+      <div class="threat-details">
+        <div class="threat-box threat-normal">
+          <span class="threat-box-label">Normal behavior</span>
+          FQDN of the sending mail server.
+        </div>
+        <div class="threat-box threat-malicious">
+          <span class="threat-box-label">Malicious indicator</span>
+          Internal IPs, &#x27;localhost&#x27;, or random strings in EHLO.
+        </div>
+      </div>
+    </div>
+    <div class="threat-item" id="threat-4">
+      <div class="threat-header">
+        <span class="threat-name">Bounce Flooding</span>
+        <span class="threat-severity sev-medium">medium</span>
+      </div>
+      <div class="threat-details">
+        <div class="threat-box threat-normal">
+          <span class="threat-box-label">Normal behavior</span>
+          Occasional NDNs for valid delivery errors.
+        </div>
+        <div class="threat-box threat-malicious">
+          <span class="threat-box-label">Malicious indicator</span>
+          Massive volume of bounces to a spoofed &#x27;From&#x27; address.
+        </div>
+      </div>
+    </div>
+  </div>
+</details><details class="header-reference-panel" open>
   <summary><span>Header field quick-reference</span><strong>RFC 5321 SMTP Command/Reply Fields</strong></summary>
   <p class="header-note">SMTP is line-oriented rather than a fixed binary header; this panel maps the primary command/reply fields analysts hunt in mail logs.</p>
   <div class="bit-axis">Bit positions 0-31</div>
