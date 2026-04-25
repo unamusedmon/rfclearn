@@ -226,6 +226,71 @@ HEADER_REFERENCES: dict[int, dict[str, object]] = {
     },
 }
 
+THREAT_INDICATORS: dict[int, list[dict[str, str]]] = {
+    768: [
+        {"name": "Amplification Attacks", "normal": "Payload size roughly matches query size.", "malicious": "Small query triggers massive response (e.g. DNS/NTP reflection).", "sev": "high"},
+        {"name": "Port 0 Usage", "normal": "Ports range from 1-65535.", "malicious": "Source or destination port is 0, often used in fingerprinting or bypass.", "sev": "medium"},
+        {"name": "Unusual Length Values", "normal": "Length field matches actual payload size.", "malicious": "Length field is larger than packet or impossibly small.", "sev": "high"},
+    ],
+    791: [
+        {"name": "TTL Anomalies", "normal": "Consistent TTL values from a single host.", "malicious": "Abrupt TTL changes suggest spoofing or traceroute probing.", "sev": "medium"},
+        {"name": "Fragmentation Abuse", "normal": "Standard fragmentation for large MTUs.", "malicious": "Overlapping or tiny fragments designed to bypass IDS/firewalls.", "sev": "high"},
+        {"name": "Reserved Bit Set", "normal": "Reserved bit is always 0.", "malicious": "Evil bit (RFC 3514) or non-zero reserved bits in crafted traffic.", "sev": "low"},
+        {"name": "Source Routing Options", "normal": "IP options are rare; routing is hop-by-hop.", "malicious": "Strict or loose source routing to bypass topology constraints.", "sev": "high"},
+    ],
+    793: [
+        {"name": "Illegal Flag Combinions", "normal": "Valid state transitions (SYN, SYN-ACK, etc).", "malicious": "NULL, Xmas, or SYN-FIN scans; flags that shouldn't exist together.", "sev": "high"},
+        {"name": "SYN Flood Patterns", "normal": "Balanced SYN and ACK packets.", "malicious": "Massive burst of SYNs without corresponding ACKs from many IPs.", "sev": "high"},
+        {"name": "RST Injection", "normal": "RST sent on connection close or error.", "malicious": "Unsolicited RSTs designed to kill active legitimate sessions.", "sev": "medium"},
+        {"name": "Window Size Anomalies", "normal": "Dynamic window scaling based on congestion.", "malicious": "Stuck at tiny values or zero-window probes to hang servers.", "sev": "medium"},
+        {"name": "Urgent Pointer Abuse", "normal": "Rarely used in modern protocols.", "malicious": "Non-zero urgent pointer in data-less packets to trigger parser bugs.", "sev": "low"},
+    ],
+    1035: [
+        {"name": "Long Subdomain Chains", "normal": "2-3 levels of subdomains (e.g. mail.google.com).", "malicious": "Many layers of encoded data in subdomains (DNS tunneling).", "sev": "high"},
+        {"name": "High Entropy Labels", "normal": "Human-readable or dictionary-based names.", "malicious": "Random-looking strings (DGA or encoded exfiltration).", "sev": "high"},
+        {"name": "TXT Record Abuse", "normal": "Brief descriptive text or SPF records.", "malicious": "Large payloads or encoded scripts stored in TXT records.", "sev": "medium"},
+        {"name": "Zone Transfer Attempts", "normal": "AXFR restricted to authorized secondaries.", "malicious": "Unsolicited AXFR requests to map internal network domains.", "sev": "medium"},
+        {"name": "Fast Flux Patterns", "normal": "IPs change occasionally for load balancing.", "malicious": "IPs change every few seconds to hide malicious infrastructure.", "sev": "high"},
+    ],
+    2131: [
+        {"name": "Rogue Server Indicators", "normal": "DHCP offers from known, authorized servers.", "malicious": "Offers from unknown IPs providing malicious DNS/Gateway.", "sev": "high"},
+        {"name": "Starvation Attacks", "normal": "Normal pool depletion over time.", "malicious": "Rapid pool exhaustion using many spoofed MAC addresses.", "sev": "medium"},
+        {"name": "Unusual Option Fields", "normal": "Standard options (1, 3, 6, 15, 51).", "malicious": "Excessive or malformed options used for fingerprinting/overflow.", "sev": "low"},
+    ],
+    2328: [
+        {"name": "Unexpected LSA Flooding", "normal": "Periodic LSA updates on topology change.", "malicious": "Storm of LSAs designed to consume router CPU/memory.", "sev": "high"},
+        {"name": "Neighbor Spoofing", "normal": "Adjacencies with trusted local routers.", "malicious": "Spoofed HELLOs to trigger adjacency and route injection.", "sev": "high"},
+        {"name": "Max Age Poisoning", "normal": "LSAs age out normally after 3600s.", "malicious": "Prematurely aging legitimate routes to cause reachability loss.", "sev": "medium"},
+    ],
+    2460: [
+        {"name": "Extension Header Abuse", "normal": "0-1 simple extension headers.", "malicious": "Long chains of headers to hide payload from shallow inspection.", "sev": "high"},
+        {"name": "Tunneling Indicators", "normal": "Standard IPv6 traffic.", "malicious": "IPv6-in-IPv4 (6to4/Teredo) used to bypass IPv4-only filters.", "sev": "medium"},
+        {"name": "Unexpected ICMPv6", "normal": "Essential ND and error messages.", "malicious": "Flood of Redirects or RA to perform MitM or DoS.", "sev": "high"},
+    ],
+    4271: [
+        {"name": "AS_PATH Anomalies", "normal": "Paths consistent with historical peering.", "malicious": "Impossibly short or circular paths; unauthorized AS inclusion.", "sev": "high"},
+        {"name": "Prefix Hijacking Patterns", "normal": "Origins match authorized IRR/RPKI records.", "malicious": "Unauthorized AS announcing a more-specific or new prefix.", "sev": "high"},
+        {"name": "Unusual COMMUNITY Values", "normal": "Used for standard traffic engineering.", "malicious": "Proprietary or 'blackhole' communities used to redirect traffic.", "sev": "medium"},
+        {"name": "Route Leaks", "normal": "Routes stay within intended peering boundaries.", "malicious": "Propagating private peering routes to the global internet.", "sev": "medium"},
+    ],
+    5321: [
+        {"name": "Open Relay Indicators", "normal": "Rejects mail for external domains.", "malicious": "Accepts mail from any source for any destination (spam).", "sev": "high"},
+        {"name": "Header Injection", "normal": "CRLF only used to terminate lines.", "malicious": "Encoded CRLF in fields to inject 'Bcc' or 'Subject' headers.", "sev": "high"},
+        {"name": "Unusual EHLO Values", "normal": "FQDN of the sending mail server.", "malicious": "Internal IPs, 'localhost', or random strings in EHLO.", "sev": "low"},
+        {"name": "Bounce Flooding", "normal": "Occasional NDNs for valid delivery errors.", "malicious": "Massive volume of bounces to a spoofed 'From' address.", "sev": "medium"},
+    ],
+    3954: [
+        {"name": "Flow Record Anomalies", "normal": "Flows match expected service patterns.", "malicious": "Unidirectional flows, many tiny flows (scanning/DDoS).", "sev": "medium"},
+        {"name": "Exporter Spoofing", "normal": "NetFlow from known gateway/switch IPs.", "malicious": "Flow data from unauthorized IPs to poison telemetry.", "sev": "high"},
+        {"name": "Unusual Template IDs", "normal": "Static or slowly changing templates.", "malicious": "Rapid template rotation or template exhaustion attacks.", "sev": "low"},
+    ],
+    7011: [
+        {"name": "Flow Record Anomalies", "normal": "Flows match expected service patterns.", "malicious": "Unidirectional flows, many tiny flows (scanning/DDoS).", "sev": "medium"},
+        {"name": "Exporter Spoofing", "normal": "IPFIX from known gateway/switch IPs.", "malicious": "Flow data from unauthorized IPs to poison telemetry.", "sev": "high"},
+        {"name": "Unusual Template IDs", "normal": "Static or slowly changing templates.", "malicious": "Rapid template rotation or template exhaustion attacks.", "sev": "low"},
+    ],
+}
+
 RELATION_RE = re.compile(r"\b(Updated by|Obsoletes|Obsoleted by):(?P<body>.*?)(?=<br\s*/?>|\n|</span>|$)", re.I | re.S)
 RFC_NUM_RE = re.compile(r"\b(?:RFCs?\s*)?(\d{3,5})\b", re.I)
 
@@ -679,6 +744,39 @@ def localize_rfc_links(markup: str, local_nums: set[int], local_prefix: str = ""
     return rewrite_anchor_links(markup, local_nums, local_prefix, local_ext)
 
 
+def render_threat_indicators(rfc_num: int) -> str:
+    indicators = THREAT_INDICATORS.get(rfc_num)
+    if not indicators:
+        return ""
+    
+    items = []
+    for index, ind in enumerate(indicators):
+        items.append(f"""
+    <div class="threat-item" id="threat-{index + 1}">
+      <div class="threat-header">
+        <span class="threat-name">{html.escape(ind["name"])}</span>
+        <span class="threat-severity sev-{ind["sev"]}">{html.escape(ind["sev"])}</span>
+      </div>
+      <div class="threat-details">
+        <div class="threat-box threat-normal">
+          <span class="threat-box-label">Normal behavior</span>
+          {html.escape(ind["normal"])}
+        </div>
+        <div class="threat-box threat-malicious">
+          <span class="threat-box-label">Malicious indicator</span>
+          {html.escape(ind["malicious"])}
+        </div>
+      </div>
+    </div>""")
+    
+    return f"""<details class="threat-panel" open>
+  <summary><span>Hunting context</span><strong>Threat Indicators</strong></summary>
+  <div class="threat-list">
+    {''.join(items)}
+  </div>
+</details>"""
+
+
 def build_site(builds: list[RFCBuild]) -> None:
     if SITE_DIR.exists():
         shutil.rmtree(SITE_DIR)
@@ -741,6 +839,7 @@ def build_site(builds: list[RFCBuild]) -> None:
         else:
             body = "<pre>RFC source could not be fetched.</pre>"
         header_reference = render_header_reference_panel(meta.num)
+        threat_indicators = render_threat_indicators(meta.num)
         content = f"""
 <div class=\"progress\"></div>
 <main class=\"doc-layout\">
@@ -752,7 +851,7 @@ def build_site(builds: list[RFCBuild]) -> None:
     <div class=\"note\"><strong>Threat hunting relevance:</strong> {html.escape(meta.relevance)}</div>
   </section>
   <section class=\"reader-tools\"><div class=\"group\"><button class=\"reader-btn\" data-action=\"focus\">Focus width</button><button class=\"reader-btn\" data-action=\"comfy\">Comfy text</button></div><button class=\"reader-btn\" data-action=\"top\">Back to top</button></section>
-  <section class=\"reader-grid\"><article class=\"doc-body\">{body}</article><aside class=\"toc-panel\">{header_reference}<h2>On this RFC</h2><div id=\"toc-links\"></div></aside></section>
+  <section class=\"reader-grid\"><article class=\"doc-body\">{body}</article><aside class=\"toc-panel\">{threat_indicators}{header_reference}<h2>On this RFC</h2><div id=\"toc-links\"></div></aside></section>
 </main>
 <script src=\"../assets/doc.js\"></script>
 """

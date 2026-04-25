@@ -1,4 +1,3 @@
-
 :root { color-scheme: dark; --bg:#070912; --panel:#0e1424; --panel2:#111a2d; --text:#eef5ff; --muted:#9fb0c9; --line:rgba(255,255,255,.11); --cyan:#65e4ff; --violet:#b89cff; --pink:#ff70b8; --green:#7dffa8; --amber:#ffd36a; }
 * { box-sizing: border-box; }
 body { margin: 0; min-height: 100vh; background: radial-gradient(circle at 12% -10%, rgba(101,228,255,.22), transparent 32rem), radial-gradient(circle at 88% 8%, rgba(184,156,255,.2), transparent 31rem), linear-gradient(135deg, #050711 0%, #09111e 48%, #100b1f 100%); color: var(--text); font: 16px/1.6 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
@@ -169,3 +168,35 @@ h1:hover .anno-toggle, h2:hover .anno-toggle, h3:hover .anno-toggle { opacity: 1
 .notes-empty { color: var(--muted); text-align: center; padding: 60px 0; }
 
 .toolbar-actions { display: flex; align-items: center; gap: 15px; }
+
+/* Threat Indicators Panel */
+.threat-panel { margin: 0 0 18px; border: 1px solid rgba(255, 112, 184, 0.3); border-radius: 20px; background: linear-gradient(145deg, rgba(255, 112, 184, 0.1), rgba(101, 228, 255, 0.05)); overflow: hidden; }
+.threat-panel summary { cursor: pointer; list-style: none; padding: 14px 15px; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+.threat-panel summary::-webkit-details-marker { display: none; }
+.threat-panel summary span { display: block; color: var(--pink); text-transform: uppercase; letter-spacing: .13em; font-size: .66rem; font-weight: 900; }
+.threat-panel summary strong { display: block; margin-top: 4px; color: var(--text); font-size: .94rem; line-height: 1.2; }
+.threat-panel summary:after { content: "▾"; float: right; margin-top: -28px; color: var(--pink); font-weight: 900; }
+.threat-panel:not([open]) summary { border-bottom: 0; }
+.threat-panel:not([open]) summary:after { content: "▸"; }
+
+.threat-list { padding: 12px; }
+.threat-item { margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.threat-item:last-child { border-bottom: 0; margin-bottom: 0; padding-bottom: 0; }
+.threat-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+.threat-name { font-weight: 800; color: var(--text); font-size: 0.9rem; }
+.threat-severity { font-size: 0.65rem; font-weight: 900; padding: 2px 8px; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.05em; }
+.sev-high { background: rgba(255, 112, 184, 0.2); color: #ff70b8; border: 1px solid rgba(255, 112, 184, 0.4); }
+.sev-medium { background: rgba(255, 211, 106, 0.2); color: #ffd36a; border: 1px solid rgba(255, 211, 106, 0.4); }
+.sev-low { background: rgba(101, 228, 255, 0.2); color: #65e4ff; border: 1px solid rgba(101, 228, 255, 0.4); }
+
+.threat-details { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 0.8rem; }
+.threat-box { padding: 8px 10px; border-radius: 8px; }
+.threat-normal { background: rgba(125, 255, 168, 0.05); border: 1px solid rgba(125, 255, 168, 0.15); }
+.threat-malicious { background: rgba(255, 112, 184, 0.05); border: 1px solid rgba(255, 112, 184, 0.15); }
+.threat-box-label { display: block; font-size: 0.6rem; text-transform: uppercase; font-weight: 900; margin-bottom: 4px; opacity: 0.7; }
+
+/* My Notes Filter */
+.notes-filter { display: flex; gap: 10px; margin-bottom: 20px; }
+.notes-filter-btn { cursor: pointer; background: var(--line); border: 1px solid transparent; color: var(--muted); padding: 6px 14px; border-radius: 999px; font-size: 0.8rem; font-weight: 800; transition: all 0.2s; }
+.notes-filter-btn:hover { background: rgba(255,255,255,0.15); }
+.notes-filter-btn.active { background: var(--cyan); color: var(--bg); }

@@ -5172,7 +5172,92 @@ September 1981
 
 
                                                                [Page 85]
-</pre></article><aside class="toc-panel"><details class="header-reference-panel" open>
+</pre></article><aside class="toc-panel"><details class="threat-panel" open>
+  <summary><span>Hunting context</span><strong>Threat Indicators</strong></summary>
+  <div class="threat-list">
+    <div class="threat-item" id="threat-1">
+      <div class="threat-header">
+        <span class="threat-name">Illegal Flag Combinations</span>
+        <span class="threat-severity sev-high">high</span>
+      </div>
+      <div class="threat-details">
+        <div class="threat-box threat-normal">
+          <span class="threat-box-label">Normal behavior</span>
+          Valid state transitions (SYN, SYN-ACK, etc).
+        </div>
+        <div class="threat-box threat-malicious">
+          <span class="threat-box-label">Malicious indicator</span>
+          NULL, Xmas, or SYN-FIN scans; flags that shouldn't exist together.
+        </div>
+      </div>
+    </div>
+    <div class="threat-item" id="threat-2">
+      <div class="threat-header">
+        <span class="threat-name">SYN Flood Patterns</span>
+        <span class="threat-severity sev-high">high</span>
+      </div>
+      <div class="threat-details">
+        <div class="threat-box threat-normal">
+          <span class="threat-box-label">Normal behavior</span>
+          Balanced SYN and ACK packets.
+        </div>
+        <div class="threat-box threat-malicious">
+          <span class="threat-box-label">Malicious indicator</span>
+          Massive burst of SYNs without corresponding ACKs from many IPs.
+        </div>
+      </div>
+    </div>
+    <div class="threat-item" id="threat-3">
+      <div class="threat-header">
+        <span class="threat-name">RST Injection</span>
+        <span class="threat-severity sev-medium">medium</span>
+      </div>
+      <div class="threat-details">
+        <div class="threat-box threat-normal">
+          <span class="threat-box-label">Normal behavior</span>
+          RST sent on connection close or error.
+        </div>
+        <div class="threat-box threat-malicious">
+          <span class="threat-box-label">Malicious indicator</span>
+          Unsolicited RSTs designed to kill active legitimate sessions.
+        </div>
+      </div>
+    </div>
+    <div class="threat-item" id="threat-4">
+      <div class="threat-header">
+        <span class="threat-name">Window Size Anomalies</span>
+        <span class="threat-severity sev-medium">medium</span>
+      </div>
+      <div class="threat-details">
+        <div class="threat-box threat-normal">
+          <span class="threat-box-label">Normal behavior</span>
+          Dynamic window scaling based on congestion.
+        </div>
+        <div class="threat-box threat-malicious">
+          <span class="threat-box-label">Malicious indicator</span>
+          Stuck at tiny values or zero-window probes to hang servers.
+        </div>
+      </div>
+    </div>
+    <div class="threat-item" id="threat-5">
+      <div class="threat-header">
+        <span class="threat-name">Urgent Pointer Abuse</span>
+        <span class="threat-severity sev-low">low</span>
+      </div>
+      <div class="threat-details">
+        <div class="threat-box threat-normal">
+          <span class="threat-box-label">Normal behavior</span>
+          Rarely used in modern protocols.
+        </div>
+        <div class="threat-box threat-malicious">
+          <span class="threat-box-label">Malicious indicator</span>
+          Non-zero urgent pointer in data-less packets to trigger parser bugs.
+        </div>
+      </div>
+    </div>
+  </div>
+</details>
+<details class="header-reference-panel" open>
   <summary><span>Header field quick-reference</span><strong>RFC 793 TCP Header</strong></summary>
   <p class="header-note">TCP fields drive flow reconstruction, scan detection, injection analysis, and session-state validation.</p>
   <div class="bit-axis">Bit positions 0-31</div>

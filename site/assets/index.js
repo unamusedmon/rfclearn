@@ -12,8 +12,10 @@ const notesContainer = document.querySelector('#notes-container');
 const exportBtn = document.querySelector('#export-notes');
 const importBtn = document.querySelector('#import-notes-btn');
 const importFile = document.querySelector('#import-notes-file');
+const noteFilterBtns = [...document.querySelectorAll('.notes-filter-btn')];
 
 let activeTag = 'all';
+let activeNoteFilter = 'all';
 
 function applyFilters() {
   const term = q.value.trim().toLowerCase();
@@ -34,16 +36,23 @@ function renderNotes() {
   
   const rfcNums = Object.keys(allNotes).sort((a, b) => parseInt(a) - parseInt(b));
   
-  if (rfcNums.length === 0) {
-    notesContainer.innerHTML = '<div class="notes-empty">You haven\'t added any notes yet. Go to an RFC page and click the "Note" button on any section.</div>';
-    return;
-  }
-  
+  let hasVisibleNotes = false;
+
   rfcNums.forEach(num => {
+    const sectionIds = Object.keys(allNotes[num]).sort();
+    const filteredSids = sectionIds.filter(sid => {
+        if (activeNoteFilter === 'all') return true;
+        const note = allNotes[num][sid];
+        return note.type === activeNoteFilter;
+    });
+
+    if (filteredSids.length === 0) return;
+    hasVisibleNotes = true;
+
     const rfcGroup = document.createElement('div');
     rfcGroup.className = 'notes-rfc-group';
     
-    const firstNoteId = Object.keys(allNotes[num])[0];
+    const firstNoteId = sectionIds[0];
     const rfcTitle = allNotes[num][firstNoteId].rfcTitle || `RFC ${num}`;
     
     const header = document.createElement('div');
@@ -51,8 +60,7 @@ function renderNotes() {
     header.innerHTML = `<span>RFC ${num}: ${rfcTitle}</span> <a href="rfc/rfc${num}.html">View RFC</a>`;
     rfcGroup.appendChild(header);
     
-    const sectionIds = Object.keys(allNotes[num]).sort();
-    sectionIds.forEach(sid => {
+    filteredSids.forEach(sid => {
       const note = allNotes[num][sid];
       const item = document.createElement('div');
       item.className = 'note-item';
@@ -73,15 +81,27 @@ function renderNotes() {
     
     notesContainer.appendChild(rfcGroup);
   });
+
+  if (!hasVisibleNotes) {
+    if (rfcNums.length === 0) {
+        notesContainer.innerHTML = '<div class="notes-empty">You haven\'t added any notes yet. Go to an RFC page and click the "Note" button on any section or threat indicator.</div>';
+    } else {
+        notesContainer.innerHTML = `<div class="notes-empty">No notes match the "${activeNoteFilter}" filter.</div>`;
+    }
+  }
 }
 
 function toggleNotesView(show) {
   if (show) {
     mainGrid.style.display = 'none';
+    document.querySelector('.hero').style.display = 'none';
+    document.querySelector('.toolbar').style.display = 'none';
     notesView.classList.add('active');
     renderNotes();
   } else {
     mainGrid.style.display = 'block';
+    document.querySelector('.hero').style.display = 'block';
+    document.querySelector('.toolbar').style.display = 'block';
     notesView.classList.remove('active');
   }
 }
@@ -93,6 +113,14 @@ for (const button of filters) {
     filters.forEach((item) => item.classList.toggle('active', item === button));
     applyFilters();
   });
+}
+
+for (const btn of noteFilterBtns) {
+    btn.addEventListener('click', () => {
+        activeNoteFilter = btn.dataset.filter;
+        noteFilterBtns.forEach(b => b.classList.toggle('active', b === btn));
+        renderNotes();
+    });
 }
 
 viewNotesBtn.addEventListener('click', () => toggleNotesView(true));
