@@ -13,7 +13,7 @@
   <h1>RFCs for network threat hunting.</h1>
   <p><strong>228 specifications</strong> covering transport, routing, monitoring, security, application-layer behavior, and two-hop update-chain context. Built as a fully local dark-mode reference library with no runtime network dependencies.</p>
 </header>
-<div class="toolbar"><div class="shell"><div class="toolbar-row"><label class="searchbox"><span>⌕</span><input id="q" autocomplete="off" placeholder="Filter by RFC number, title, tag, or keyword..."></label><div id="count" class="view-count"></div></div><div class="filters"><button class="filter active" data-tag="all">All</button><button class="filter" data-tag="application">application</button><button class="filter" data-tag="monitoring">monitoring</button><button class="filter" data-tag="routing">routing</button><button class="filter" data-tag="security">security</button><button class="filter" data-tag="transport">transport</button><button class="filter" data-tag="update-chain">update-chain</button></div></div></div>
+<div class="toolbar"><div class="shell"><div class="toolbar-row"><label class="searchbox"><span>⌕</span><input id="q" autocomplete="off" placeholder="Filter by RFC number, title, tag, or keyword..."></label><div class="toolbar-actions"><button id="view-notes" class="reader-btn">My Notes</button><div id="count" class="view-count"></div></div></div><div class="filters"><button class="filter active" data-tag="all">All</button><button class="filter" data-tag="application">application</button><button class="filter" data-tag="monitoring">monitoring</button><button class="filter" data-tag="routing">routing</button><button class="filter" data-tag="security">security</button><button class="filter" data-tag="transport">transport</button><button class="filter" data-tag="update-chain">update-chain</button></div></div></div>
 <main class="shell">
   <section class="stats"><div class="stat"><b>117</b><span>application<br>Application-layer behavior, service discovery, mail, web, and naming protocols.</span></div><div class="stat"><b>11</b><span>monitoring<br>Telemetry sources and high-signal data structures used during hunting.</span></div><div class="stat"><b>75</b><span>routing<br>Addressing, forwarding, route exchange, path selection, and local resolution.</span></div><div class="stat"><b>50</b><span>security<br>Security architecture, abuse primitives, evasions, and protocol risks.</span></div><div class="stat"><b>24</b><span>transport<br>Transport semantics, ports, flags, sessions, framing, and encapsulation.</span></div><div class="stat"><b>207</b><span>update-chain<br>RFCs pulled in because they update, obsolete, or are obsoleted by the seed collection.</span></div></section>
   <section class="grid"><a class="card" href="rfc/rfc768.html" data-search="768 user datagram protocol defines udp, the lightweight transport behind dns, telemetry, scanning, and many amplification patterns. transport udp datagram port" data-tags="transport">
@@ -1387,6 +1387,15 @@
 </a></section>
   <p class="empty">No matching RFCs. Try a protocol name, tag, or RFC number.</p>
 </main>
+<section id="notes-view" class="shell notes-view">
+  <div class="notes-actions">
+    <button id="back-to-grid" class="reader-btn">← Back to RFCs</button>
+    <button id="export-notes" class="reader-btn">Export Notes (JSON)</button>
+    <button id="import-notes-btn" class="reader-btn">Import Notes (JSON)</button>
+    <input type="file" id="import-notes-file" style="display:none" accept=".json">
+  </div>
+  <div id="notes-container"></div>
+</section>
 <footer><div class="shell">Generated locally from rfc-editor.org sources. Open an RFC card to read the cached HTML source or styled plaintext fallback.</div></footer>
 <script src="assets/index.js"></script>
 
