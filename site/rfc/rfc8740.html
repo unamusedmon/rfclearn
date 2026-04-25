@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RFC 8740: Using TLS 1.3 with HTTP/2</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<div class="progress"></div>
+<main class="doc-layout">
+  <a class="toplink" href="../index.html">← Back to index</a>
+  <section class="doc-hero">
+    <div class="eyebrow">RFC 8740</div>
+    <h1>Using TLS 1.3 with HTTP/2</h1>
+    <div class="meta-tags"><span class="tag tag-application">application</span><span class="tag tag-update-chain">update-chain</span></div>
+    <div class="note"><strong>Threat hunting relevance:</strong> Pulled in through the RFC update chain; review &#x27;Using TLS 1.3 with HTTP/2&#x27; to understand protocol changes that may affect detection, parsing, or investigation context.</div>
+  </section>
+  <section class="reader-tools"><div class="group"><button class="reader-btn" data-action="focus">Focus width</button><button class="reader-btn" data-action="comfy">Comfy text</button></div><button class="reader-btn" data-action="top">Back to top</button></section>
+  <section class="reader-grid"><article class="doc-body"><table>
+<thead><tr>
+<td>RFC 8740</td>
+<td>Using TLS 1.3 with HTTP/2</td>
+<td>February 2020</td>
+</tr></thead>
+<tfoot><tr>
+<td>Benjamin</td>
+<td>Standards Track</td>
+<td>[Page]</td>
+</tr></tfoot>
+</table>
+<div></div>
+<div>
+<dl>
+<dt>Stream:</dt>
+<dd>Internet Engineering Task Force (IETF)</dd>
+<dt>RFC:</dt>
+<dd><a>8740</a></dd>
+<dt>Updates:</dt>
+<dd>
+<a>7540</a> </dd>
+<dt>Category:</dt>
+<dd>Standards Track</dd>
+<dt>Published:</dt>
+<dd>
+<time datetime="2020-02">February 2020</time>
+    </dd>
+<dt>ISSN:</dt>
+<dd>2070-1721</dd>
+<dt>Author:</dt>
+<dd>
+<div>
+      <div>D. Benjamin</div>
+<div>Google LLC</div>
+</div>
+</dd>
+</dl>
+</div>
+<h1>RFC 8740</h1>
+<h1>Using TLS 1.3 with HTTP/2</h1>
+<section>
+      <h2><a href="#abstract">Abstract</a></h2>
+<p>This document updates RFC 7540 by forbidding TLS 1.3 post-handshake
+authentication, as an analog to the existing TLS 1.2 renegotiation restriction.<a href="#section-abstract-1">¶</a></p>
+</section>
+<div>
+<section>
+        <h2>
+<a href="#name-status-of-this-memo">Status of This Memo</a>
+        </h2>
+<p>
+            This is an Internet Standards Track document.<a href="#section-boilerplate.1-1">¶</a></p>
+<p>
+            This document is a product of the Internet Engineering Task Force
+            (IETF).  It represents the consensus of the IETF community.  It has
+            received public review and has been approved for publication by
+            the Internet Engineering Steering Group (IESG).  Further
+            information on Internet Standards is available in Section 2 of 
+            RFC 7841.<a href="#section-boilerplate.1-2">¶</a></p>
+<p>
+            Information about the current status of this document, any
+            errata, and how to provide feedback on it may be obtained at
+            <span><a>https://www.rfc-editor.org/info/rfc8740</a></span>.<a href="#section-boilerplate.1-3">¶</a></p>
+</section>
+</div>
+<div>
+<section>
+        <h2>
+<a href="#name-copyright-notice">Copyright Notice</a>
+        </h2>
+<p>
+            Copyright (c) 2020 IETF Trust and the persons identified as the
+            document authors. All rights reserved.<a href="#section-boilerplate.2-1">¶</a></p>
+<p>
+            This document is subject to BCP 78 and the IETF Trust's Legal
+            Provisions Relating to IETF Documents
+            (<span><a>https://trustee.ietf.org/license-info</a></span>) in effect on the date of
+            publication of this document. Please review these documents
+            carefully, as they describe your rights and restrictions with
+            respect to this document. Code Components extracted from this
+            document must include Simplified BSD License text as described in
+            Section 4.e of the Trust Legal Provisions and are provided without
+            warranty as described in the Simplified BSD License.<a href="#section-boilerplate.2-2">¶</a></p>
+</section>
+</div>
+<div>
+<section>
+        <a href="#" onclick="scroll(0,0)">▲</a><h2>
+<a href="#name-table-of-contents">Table of Contents</a>
+        </h2>
+<nav><ul>
+<li>
+            <p><a href="#section-1">1</a>.  <a href="#name-introduction">Introduction</a><a href="#section-toc.1-1.1.1">¶</a></p>
+</li>
+<li>
+            <p><a href="#section-2">2</a>.  <a href="#name-requirements-language">Requirements Language</a><a href="#section-toc.1-1.2.1">¶</a></p>
+</li>
+<li>
+            <p><a href="#section-3">3</a>.  <a href="#name-post-handshake-authenticati">Post-Handshake Authentication in HTTP/2</a><a href="#section-toc.1-1.3.1">¶</a></p>
+</li>
+<li>
+            <p><a href="#section-4">4</a>.  <a href="#name-other-post-handshake-tls-me">Other Post-Handshake TLS Messages in HTTP/2</a><a href="#section-toc.1-1.4.1">¶</a></p>
+</li>
+<li>
+            <p><a href="#section-5">5</a>.  <a href="#name-security-considerations">Security Considerations</a><a href="#section-toc.1-1.5.1">¶</a></p>
+</li>
+<li>
+            <p><a href="#section-6">6</a>.  <a href="#name-iana-considerations">IANA Considerations</a><a href="#section-toc.1-1.6.1">¶</a></p>
+</li>
+<li>
+            <p><a href="#section-7">7</a>.  <a href="#name-references">References</a><a href="#section-toc.1-1.7.1">¶</a></p>
+<ul>
+<li>
+                <p><a href="#section-7.1">7.1</a>.  <a href="#name-normative-references">Normative References</a><a href="#section-toc.1-1.7.2.1.1">¶</a></p>
+</li>
+<li>
+                <p><a href="#section-7.2">7.2</a>.  <a href="#name-informative-references">Informative References</a><a href="#section-toc.1-1.7.2.2.1">¶</a></p>
+</li>
+</ul>
+</li>
+<li>
+            <p><a href="#section-appendix.a"></a><a href="#name-authors-address">Author's Address</a><a href="#section-toc.1-1.8.1">¶</a></p>
+</li>
+</ul>
+</nav>
+</section>
+</div>
+<div>
+<section>
+      <h2>
+<a href="#section-1">1. </a><a href="#name-introduction">Introduction</a>
+      </h2>
+<p>TLS 1.2 <span>[<a href="#RFC5246">RFC5246</a>]</span> and earlier
+      versions of TLS support renegotiation, a mechanism for changing
+      parameters and keys partway through a connection. This was sometimes
+      used to implement reactive client authentication in HTTP/1.1 <span>[<a href="#RFC7230">RFC7230</a>]</span>, where the server decides whether or
+      not to request a client certificate based on the HTTP request.<a href="#section-1-1">¶</a></p>
+<p>HTTP/2 <span>[<a href="#RFC7540">RFC7540</a>]</span> multiplexes multiple
+      HTTP requests over a single connection, which is incompatible with the
+      mechanism above. Clients cannot correlate the certificate request with
+      the HTTP request that triggered it. Thus, <span><a>Section 9.2.1</a> of [<a href="#RFC7540">RFC7540</a>]</span> forbids renegotiation.<a href="#section-1-2">¶</a></p>
+<p>TLS 1.3 <span>[<a href="#RFC8446">RFC8446</a>]</span> removes
+      renegotiation and replaces it with separate post-handshake
+      authentication and key update mechanisms. Post-handshake authentication
+      has the same problems with multiplexed protocols as TLS 1.2
+      renegotiation, but the prohibition in <span>[<a href="#RFC7540">RFC7540</a>]</span> only applies to renegotiation.<a href="#section-1-3">¶</a></p>
+<p>This document updates HTTP/2 <span>[<a href="#RFC7540">RFC7540</a>]</span> to similarly forbid TLS 1.3 post-handshake
+authentication.<a href="#section-1-4">¶</a></p>
+</section>
+</div>
+<div>
+<section>
+      <h2>
+<a href="#section-2">2. </a><a href="#name-requirements-language">Requirements Language</a>
+      </h2>
+<p>
+    The key words "<span>MUST</span>", "<span>MUST NOT</span>",
+    "<span>REQUIRED</span>", "<span>SHALL</span>", "<span>SHALL NOT</span>", "<span>SHOULD</span>", "<span>SHOULD NOT</span>",
+    "<span>RECOMMENDED</span>", "<span>NOT RECOMMENDED</span>",
+    "<span>MAY</span>", and "<span>OPTIONAL</span>" in this document are
+    to be interpreted as described in BCP 14 <span>[<a href="#RFC2119">RFC2119</a>]</span>
+        <span>[<a href="#RFC8174">RFC8174</a>]</span> when, and only when, they appear in all capitals,
+    as shown here.<a href="#section-2-1">¶</a></p>
+</section>
+</div>
+<div>
+<section>
+      <h2>
+<a href="#section-3">3. </a><a href="#name-post-handshake-authenticati">Post-Handshake Authentication in HTTP/2</a>
+      </h2>
+<p>HTTP/2 servers <span>MUST NOT</span> send post-handshake TLS 1.3 CertificateRequest messages.
+HTTP/2 clients <span>MUST</span> treat such messages as connection errors (see <span><a>Section 5.4.1</a> of [<a href="#RFC7540">RFC7540</a>]</span>) of type PROTOCOL_ERROR.<a href="#section-3-1">¶</a></p>
+<p><span>[<a href="#RFC7540">RFC7540</a>]</span> permitted renegotiation before the HTTP/2 connection preface to
+provide confidentiality of the client certificate. TLS 1.3 encrypts the client
+certificate in the initial handshake, so this is no longer necessary. HTTP/2
+servers <span>MUST NOT</span> send post-handshake TLS 1.3 CertificateRequest messages before
+the connection preface.<a href="#section-3-2">¶</a></p>
+<p>The above applies even if the client offered the
+      <code>post_handshake_auth</code> TLS extension. This extension is advertised
+      independently of the selected Application-Layer Protocol Negotiation
+      (ALPN) protocol <span>[<a href="#RFC7301">RFC7301</a>]</span>, so it is not
+      sufficient to resolve the conflict with HTTP/2. HTTP/2 clients that also
+      offer other ALPN protocols, notably HTTP/1.1, in a TLS ClientHello
+      <span>MAY</span> include the <code>post_handshake_auth</code> extension to
+      support those other protocols. This does not indicate support in
+      HTTP/2.<a href="#section-3-3">¶</a></p>
+</section>
+</div>
+<div>
+<section>
+      <h2>
+<a href="#section-4">4. </a><a href="#name-other-post-handshake-tls-me">Other Post-Handshake TLS Messages in HTTP/2</a>
+      </h2>
+<p><span>[<a href="#RFC8446">RFC8446</a>]</span> defines two other messages that are exchanged after the handshake is
+complete: KeyUpdate and NewSessionTicket.<a href="#section-4-1">¶</a></p>
+<p>KeyUpdate messages only affect TLS itself and do not require any interaction
+with the application protocol. HTTP/2 implementations <span>MUST</span> support key updates
+when TLS 1.3 is negotiated.<a href="#section-4-2">¶</a></p>
+<p>NewSessionTicket messages are also permitted. Though these interact
+      with HTTP when early data is enabled, these interactions are defined in
+      <span>[<a href="#RFC8470">RFC8470</a>]</span> and are allowed for in the
+      design of HTTP/2.<a href="#section-4-3">¶</a></p>
+<p>Unless the use of a new type of TLS message depends on an interaction
+      with the application-layer protocol, that TLS message can be sent after
+      the handshake completes.<a href="#section-4-4">¶</a></p>
+</section>
+</div>
+<div>
+<section>
+      <h2>
+<a href="#section-5">5. </a><a href="#name-security-considerations">Security Considerations</a>
+      </h2>
+<p>This document resolves a compatibility concern between HTTP/2 and TLS 1.3 when
+supporting post-handshake authentication with HTTP/1.1. This lowers the barrier
+for deploying TLS 1.3, a major security improvement over TLS 1.2.<a href="#section-5-1">¶</a></p>
+</section>
+</div>
+<div>
+<section>
+      <h2>
+<a href="#section-6">6. </a><a href="#name-iana-considerations">IANA Considerations</a>
+      </h2>
+<p>This document has no IANA actions.<a href="#section-6-1">¶</a></p>
+</section>
+</div>
+<section>
+      <h2>
+<a href="#section-7">7. </a><a href="#name-references">References</a>
+      </h2>
+<section>
+        <h3>
+<a href="#section-7.1">7.1. </a><a href="#name-normative-references">Normative References</a>
+        </h3>
+<dl>
+<dt>[RFC2119]</dt>
+<dd>
+<span>Bradner, S.</span>, <span>"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span>BCP 14</span>, <span>RFC 2119</span>, <span>DOI 10.17487/RFC2119</span>, <time datetime="1997-03">March 1997</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc2119</a>&gt;</span>. </dd>
+<dt>[RFC5246]</dt>
+<dd>
+<span>Dierks, T.</span><span> and E. Rescorla</span>, <span>"The Transport Layer Security (TLS) Protocol Version 1.2"</span>, <span>RFC 5246</span>, <span>DOI 10.17487/RFC5246</span>, <time datetime="2008-08">August 2008</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc5246</a>&gt;</span>. </dd>
+<dt>[RFC7230]</dt>
+<dd>
+<span>Fielding, R., Ed.</span><span> and J. Reschke, Ed.</span>, <span>"Hypertext Transfer Protocol (HTTP/1.1): Message Syntax and Routing"</span>, <span>RFC 7230</span>, <span>DOI 10.17487/RFC7230</span>, <time datetime="2014-06">June 2014</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc7230</a>&gt;</span>. </dd>
+<dt>[RFC7301]</dt>
+<dd>
+<span>Friedl, S.</span><span>, Popov, A.</span><span>, Langley, A.</span><span>, and E. Stephan</span>, <span>"Transport Layer Security (TLS) Application-Layer Protocol Negotiation Extension"</span>, <span>RFC 7301</span>, <span>DOI 10.17487/RFC7301</span>, <time datetime="2014-07">July 2014</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc7301</a>&gt;</span>. </dd>
+<dt>[RFC7540]</dt>
+<dd>
+<span>Belshe, M.</span><span>, Peon, R.</span><span>, and M. Thomson, Ed.</span>, <span>"Hypertext Transfer Protocol Version 2 (HTTP/2)"</span>, <span>RFC 7540</span>, <span>DOI 10.17487/RFC7540</span>, <time datetime="2015-05">May 2015</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc7540</a>&gt;</span>. </dd>
+<dt>[RFC8174]</dt>
+<dd>
+<span>Leiba, B.</span>, <span>"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span>BCP 14</span>, <span>RFC 8174</span>, <span>DOI 10.17487/RFC8174</span>, <time datetime="2017-05">May 2017</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc8174</a>&gt;</span>. </dd>
+<dt>[RFC8446]</dt>
+<dd>
+<span>Rescorla, E.</span>, <span>"The Transport Layer Security (TLS) Protocol Version 1.3"</span>, <span>RFC 8446</span>, <span>DOI 10.17487/RFC8446</span>, <time datetime="2018-08">August 2018</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc8446</a>&gt;</span>. </dd>
+</dl>
+</section>
+<section>
+        <h3>
+<a href="#section-7.2">7.2. </a><a href="#name-informative-references">Informative References</a>
+        </h3>
+<dl>
+<dt>[RFC8470]</dt>
+<dd>
+<span>Thomson, M.</span><span>, Nottingham, M.</span><span>, and W. Tarreau</span>, <span>"Using Early Data in HTTP"</span>, <span>RFC 8470</span>, <span>DOI 10.17487/RFC8470</span>, <time datetime="2018-09">September 2018</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc8470</a>&gt;</span>. </dd>
+</dl>
+</section>
+</section>
+<div>
+<section>
+      <h2>
+<a href="#name-authors-address">Author's Address</a>
+      </h2>
+<address>
+        <div dir="auto"><span>David Benjamin</span></div>
+<div dir="auto"><span>Google LLC</span></div>
+<div>
+<span>Email:</span>
+<a href="mailto:davidben@google.com">davidben@google.com</a>
+</div>
+</address>
+</section>
+</div></article><aside class="toc-panel"><h2>On this RFC</h2><div id="toc-links"></div></aside></section>
+</main>
+<script src="../assets/doc.js"></script>
+
+</body>
+</html>

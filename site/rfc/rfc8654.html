@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RFC 8654: Extended Message Support for BGP</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<div class="progress"></div>
+<main class="doc-layout">
+  <a class="toplink" href="../index.html">← Back to index</a>
+  <section class="doc-hero">
+    <div class="eyebrow">RFC 8654</div>
+    <h1>Extended Message Support for BGP</h1>
+    <div class="meta-tags"><span class="tag tag-routing">routing</span><span class="tag tag-update-chain">update-chain</span></div>
+    <div class="note"><strong>Threat hunting relevance:</strong> Pulled in through the RFC update chain; review &#x27;Extended Message Support for BGP&#x27; to understand protocol changes that may affect detection, parsing, or investigation context.</div>
+  </section>
+  <section class="reader-tools"><div class="group"><button class="reader-btn" data-action="focus">Focus width</button><button class="reader-btn" data-action="comfy">Comfy text</button></div><button class="reader-btn" data-action="top">Back to top</button></section>
+  <section class="reader-grid"><article class="doc-body"><table>
+<thead><tr>
+<td>RFC 8654</td>
+<td>Extended Message Support for BGP</td>
+<td>October 2019</td>
+</tr></thead>
+<tfoot><tr>
+<td>Bush, et al.</td>
+<td>Standards Track</td>
+<td>[Page]</td>
+</tr></tfoot>
+</table>
+<div></div>
+<div>
+<dl>
+<dt>Stream:</dt>
+<dd>Internet Engineering Task Force (IETF)</dd>
+<dt>RFC:</dt>
+<dd><a>8654</a></dd>
+<dt>Updates:</dt>
+<dd>
+<a>4271</a> </dd>
+<dt>Category:</dt>
+<dd>Standards Track</dd>
+<dt>Published:</dt>
+<dd>
+<time datetime="2019-10">October 2019</time>
+    </dd>
+<dt>ISSN:</dt>
+<dd>2070-1721</dd>
+<dt>Authors:</dt>
+<dd>
+<div>
+      <div>R. Bush</div>
+<div>Arrcus &amp; IIJ</div>
+</div>
+<div>
+      <div>K. Patel</div>
+<div>Arrcus, Inc.</div>
+</div>
+<div>
+      <div>D. Ward</div>
+<div>Cisco Systems</div>
+</div>
+</dd>
+</dl>
+</div>
+<h1>RFC 8654</h1>
+<h1>Extended Message Support for BGP</h1>
+<section>
+      <h2><a href="#abstract">Abstract</a></h2>
+<p>The BGP specification (RFC 4271) mandates a maximum BGP message size of 4,096
+    octets.  As BGP is extended to support new Address Family Identifiers
+    (AFIs), Subsequent AFIs (SAFIs), and other
+    features, there is a need to extend the maximum message size beyond
+    4,096 octets.  This document updates the BGP specification by
+    extending the maximum message size from 4,096 octets to 65,535 octets
+    for all messages except for OPEN and KEEPALIVE messages.<a href="#section-abstract-1">¶</a></p>
+</section>
+<div>
+<section>
+        <h2>
+<a href="#name-status-of-this-memo">Status of This Memo</a>
+        </h2>
+<p>
+            This is an Internet Standards Track document.<a href="#section-boilerplate.1-1">¶</a></p>
+<p>
+            This document is a product of the Internet Engineering Task Force
+            (IETF).  It represents the consensus of the IETF community.  It has
+            received public review and has been approved for publication by
+            the Internet Engineering Steering Group (IESG).  Further
+            information on Internet Standards is available in Section 2 of 
+            RFC 7841.<a href="#section-boilerplate.1-2">¶</a></p>
+<p>
+            Information about the current status of this document, any
+            errata, and how to provide feedback on it may be obtained at
+            <span><a>https://www.rfc-editor.org/info/rfc8654</a></span>.<a href="#section-boilerplate.1-3">¶</a></p>
+</section>
+</div>
+<div>
+<section>
+        <h2>
+<a href="#name-copyright-notice">Copyright Notice</a>
+        </h2>
+<p>
+            Copyright (c) 2019 IETF Trust and the persons identified as the
+            document authors. All rights reserved.<a href="#section-boilerplate.2-1">¶</a></p>
+<p>
+            This document is subject to BCP 78 and the IETF Trust's Legal
+            Provisions Relating to IETF Documents
+            (<span><a>https://trustee.ietf.org/license-info</a></span>) in effect on the date of
+            publication of this document. Please review these documents
+            carefully, as they describe your rights and restrictions with
+            respect to this document. Code Components extracted from this
+            document must include Simplified BSD License text as described in
+            Section 4.e of the Trust Legal Provisions and are provided without
+            warranty as described in the Simplified BSD License.<a href="#section-boilerplate.2-2">¶</a></p>
+</section>
+</div>
+<div>
+<section>
+        <a href="#" onclick="scroll(0,0)">▲</a><h2>
+<a href="#name-table-of-contents">Table of Contents</a>
+        </h2>
+<nav><ul>
+<li>
+            <p><a href="#section-1">1</a>.  <a href="#name-introduction">Introduction</a><a href="#section-boilerplate.3-1.1.1">¶</a></p>
+<ul>
+<li>
+                <p><a href="#section-1.1">1.1</a>.  <a href="#name-requirements-language">Requirements Language</a><a href="#section-boilerplate.3-1.1.2.1.1">¶</a></p>
+</li>
+            </ul>
+</li>
+          <li>
+            <p><a href="#section-2">2</a>.  <a href="#name-bgp-extended-message">BGP Extended Message</a><a href="#section-boilerplate.3-1.2.1">¶</a></p>
+</li>
+          <li>
+            <p><a href="#section-3">3</a>.  <a href="#name-bgp-extended-message-capabi">BGP Extended Message Capability</a><a href="#section-boilerplate.3-1.3.1">¶</a></p>
+</li>
+          <li>
+            <p><a href="#section-4">4</a>.  <a href="#name-operation">Operation</a><a href="#section-boilerplate.3-1.4.1">¶</a></p>
+</li>
+          <li>
+            <p><a href="#section-5">5</a>.  <a href="#name-error-handling">Error Handling</a><a href="#section-boilerplate.3-1.5.1">¶</a></p>
+</li>
+          <li>
+            <p><a href="#section-6">6</a>.  <a href="#name-changes-to-rfc-4271">Changes to RFC 4271</a><a href="#section-boilerplate.3-1.6.1">¶</a></p>
+</li>
+          <li>
+            <p><a href="#section-7">7</a>.  <a href="#name-iana-considerations">IANA Considerations</a><a href="#section-boilerplate.3-1.7.1">¶</a></p>
+</li>
+          <li>
+            <p><a href="#section-8">8</a>.  <a href="#name-security-considerations">Security Considerations</a><a href="#section-boilerplate.3-1.8.1">¶</a></p>
+</li>
+          <li>
+            <p><a href="#section-9">9</a>.  <a href="#name-references">References</a><a href="#section-boilerplate.3-1.9.1">¶</a></p>
+<ul>
+<li>
+                <p><a href="#section-9.1">9.1</a>.  <a href="#name-normative-references">Normative References</a><a href="#section-boilerplate.3-1.9.2.1.1">¶</a></p>
+</li>
+              <li>
+                <p><a href="#section-9.2">9.2</a>.  <a href="#name-informative-references">Informative References</a><a href="#section-boilerplate.3-1.9.2.2.1">¶</a></p>
+</li>
+            </ul>
+</li>
+          <li>
+            <p><a href="#section-appendix.a"></a><a href="#name-acknowledgments">Acknowledgments</a><a href="#section-boilerplate.3-1.10.1">¶</a></p>
+</li>
+          <li>
+            <p><a href="#section-appendix.b"></a><a href="#name-authors-addresses">Authors' Addresses</a><a href="#section-boilerplate.3-1.11.1">¶</a></p>
+</li>
+        </ul>
+</nav>
+</section>
+</div>
+<div>
+<section>
+      <h2>
+<a href="#section-1">1. </a><a href="#name-introduction">Introduction</a>
+      </h2>
+<p>The BGP specification <span>[<a href="#RFC4271">RFC4271</a>]</span> mandates a maximum
+    BGP message size of 4,096 octets.  As BGP is extended to support
+    new AFIs, SAFIs, and other capabilities (e.g., BGPsec <span>[<a href="#RFC8205">RFC8205</a>]</span> and BGP - Link
+    State (BGP-LS) <span>[<a href="#RFC7752">RFC7752</a>]</span>), there is a
+    need to extend the maximum message size beyond 4,096 octets. This
+    document provides an extension to BGP to extend the message size limit
+    from 4,096 octets to 65,535 octets for all messages except for OPEN and
+    KEEPALIVE messages.<a href="#section-1-1">¶</a></p>
+<div>
+<section>
+        <h3>
+<a href="#section-1.1">1.1. </a><a href="#name-requirements-language">Requirements Language</a>
+        </h3>
+<p>
+    The key words "<span>MUST</span>", "<span>MUST NOT</span>", "<span>REQUIRED</span>", "<span>SHALL</span>", "<span>SHALL NOT</span>", "<span>SHOULD</span>", "<span>SHOULD NOT</span>", "<span>RECOMMENDED</span>", "<span>NOT RECOMMENDED</span>",
+    "<span>MAY</span>", and "<span>OPTIONAL</span>" in this document are to be interpreted as
+    described in BCP 14 <span>[<a href="#RFC2119">RFC2119</a>]</span> <span>[<a href="#RFC8174">RFC8174</a>]</span> 
+    when, and only when, they appear in all capitals, as shown here.<a href="#section-1.1-1">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div>
+<section>
+      <h2>
+<a href="#section-2">2. </a><a href="#name-bgp-extended-message">BGP Extended Message</a>
+      </h2>
+<p>A BGP message over 4,096 octets in length is a BGP Extended
+    Message.<a href="#section-2-1">¶</a></p>
+<p>BGP Extended Messages have a maximum message size of 65,535
+    octets.  The smallest message that may be sent is a BGP
+    KEEPALIVE, which consists of 19 octets.<a href="#section-2-2">¶</a></p>
+</section>
+</div>
+<section>
+      <h2>
+<a href="#section-3">3. </a><a href="#name-bgp-extended-message-capabi">BGP Extended Message Capability</a>
+      </h2>
+<p>The BGP Extended Message Capability is a new BGP capability <span>[<a href="#RFC5492">RFC5492</a>]</span> defined with Capability Code 6 and
+      Capability Length 0.<a href="#section-3-1">¶</a></p>
+<p>To advertise the BGP Extended Message Capability to a peer, a BGP
+      speaker uses BGP Capabilities Advertisement <span>[<a href="#RFC5492">RFC5492</a>]</span>.  By advertising the BGP Extended Message Capability
+      to a peer, a BGP speaker conveys that it is able to receive and properly
+      handle BGP Extended Messages (see <a href="#opns">Section 4</a>).<a href="#section-3-2">¶</a></p>
+<p>Peers that wish to use the BGP Extended Message Capability <span>MUST</span>
+    support error handling for BGP UPDATE messages per <span>[<a href="#RFC7606">RFC7606</a>]</span>.<a href="#section-3-3">¶</a></p>
+</section>
+<div>
+<section>
+      <h2>
+<a href="#section-4">4. </a><a href="#name-operation">Operation</a>
+      </h2>
+<p>The BGP Extended Message Capability applies to all messages except
+    for OPEN and KEEPALIVE messages.  These exceptions 
+    reduce the complexity of providing backward compatibility.<a href="#section-4-1">¶</a></p>
+<p>A BGP speaker that is capable of receiving BGP
+    Extended Messages <span>SHOULD</span> advertise the BGP Extended Message
+    Capability to its peers using BGP Capabilities Advertisement <span>[<a href="#RFC5492">RFC5492</a>]</span>.  A BGP speaker <span>MAY</span>
+    send BGP Extended Messages to a
+    peer only if the BGP Extended Message Capability was received from that
+    peer.<a href="#section-4-2">¶</a></p>
+<p>An implementation that advertises the BGP Extended Message
+    Capability <span>MUST</span> be capable of receiving a message with a length up
+    to and including 65,535 octets.<a href="#section-4-3">¶</a></p>
+<p>Applications generating information that might be encapsulated
+    within BGP messages <span>MUST</span> limit the size of their payload to take the
+    maximum message size into account.<a href="#section-4-4">¶</a></p>
+<p>If a BGP message with a length greater than 4,096 octets is
+    received by a BGP listener who has not advertised the BGP Extended
+    Message Capability, the listener will generate a NOTIFICATION with
+    the Error Subcode set to Bad Message Length (<span>[<a href="#RFC4271">RFC4271</a>], <a>Section 6.1</a></span>).<a href="#section-4-5">¶</a></p>
+<p>A BGP UPDATE will (if allowed by policy, best path, etc.) typically
+    propagate throughout the BGP-speaking Internet and hence to BGP
+    speakers that may not support BGP Extended Messages.  Therefore, an
+    announcement in a BGP Extended Message where the size of the attribute
+    set plus the NLRI is larger than 4,096 octets may cause lack of
+    reachability.<a href="#section-4-6">¶</a></p>
+<p>A BGP speaker that has advertised the BGP Extended Message
+    Capability to its peers may receive an UPDATE from one of its peers
+    that produces an ongoing announcement that is larger than 4,096
+    octets.  When propagating that UPDATE onward to a neighbor that has
+    not advertised the BGP Extended Message Capability, the speaker
+    <span>SHOULD</span> try to reduce the outgoing message size by removing
+    attributes eligible under the "attribute discard" approach of <span>[<a href="#RFC7606">RFC7606</a>]</span>.  If the message is still too big, then it must
+    not be sent to the neighbor (<span>[<a href="#RFC4271">RFC4271</a>], <a>Section 9.2</a></span>).
+
+    Additionally, if the NLRI was previously advertised to that peer, it
+    must be withdrawn from service (<span>[<a href="#RFC4271">RFC4271</a>], <a>Section 9.1.3</a></span>).<a href="#section-4-7">¶</a></p>
+<p>If an Autonomous System (AS) has multiple internal BGP speakers
+    and also has multiple external BGP neighbors, care must be taken to ensure a consistent view within the
+    AS in order to present a consistent
+    external view. In the context of BGP Extended Messages, a
+    consistent view can only be guaranteed if all the Internal BGP (iBGP) speakers
+    advertise the BGP Extended Message Capability.  If that is not the
+    case, then the operator should consider whether or not the BGP Extended
+    Message Capability should be advertised to external peers.<a href="#section-4-8">¶</a></p>
+<p>During the incremental deployment of BGP Extended Messages and
+    use of the "attribute discard" approach of <span>[<a href="#RFC7606">RFC7606</a>]</span> in an iBGP mesh or with
+    External BGP (eBGP) peers, the
+    operator should monitor any routes dropped and any discarded
+    attributes.<a href="#section-4-9">¶</a></p>
+</section>
+</div>
+<div>
+<section>
+      <h2>
+<a href="#section-5">5. </a><a href="#name-error-handling">Error Handling</a>
+      </h2>
+<p>A BGP speaker that has the ability to use BGP Extended Messages but
+    has not advertised the BGP Extended Message Capability, presumably
+    due to configuration, <span>MUST NOT</span> accept a BGP Extended Message.  A
+    speaker <span>MUST NOT</span> implement a more liberal policy accepting BGP
+    Extended Messages.<a href="#section-5-1">¶</a></p>
+<p>A BGP speaker that does not advertise the BGP Extended Message
+    Capability might also genuinely not support BGP Extended Messages.  Such
+    a speaker will follow the error-handling procedures of <span>[<a href="#RFC4271">RFC4271</a>]</span> if it receives a BGP Extended Message.  Similarly,
+    any speaker that treats an improper BGP Extended Message as a fatal
+    error <span>MUST</span> follow the error-handling procedures of <span>[<a href="#RFC4271">RFC4271</a>]</span>.<a href="#section-5-2">¶</a></p>
+<p>Error handling for UPDATE messages, as specified in 
+    <span><a>Section 6.3</a> of [<a href="#RFC4271">RFC4271</a>]</span>, is unchanged.  However, if a
+    NOTIFICATION is to be sent to a BGP speaker that has not advertised
+    the BGP Extended Message Capability, the size of the message <span>MUST NOT</span> exceed 4,096 octets.<a href="#section-5-3">¶</a></p>
+<p>It is <span>RECOMMENDED</span> that BGP protocol developers and implementers
+    are conservative in their application and use of BGP Extended Messages.
+    Future protocol specifications <span>MUST</span> describe how to handle peers
+    that can only accommodate 4,096 octet messages.<a href="#section-5-4">¶</a></p>
+</section>
+</div>
+<div>
+<section>
+      <h2>
+<a href="#section-6">6. </a><a href="#name-changes-to-rfc-4271">Changes to RFC 4271</a>
+      </h2>
+<p><span>[<a href="#RFC4271">RFC4271</a>]</span> states "The value of the Length field
+    <span>MUST</span> always be at least 19 and no greater than 4096."  This document
+    changes the latter number to 65,535 for all messages except for OPEN and
+    KEEPALIVE messages.<a href="#section-6-1">¶</a></p>
+<p><span><a>Section 6.1</a> of [<a href="#RFC4271">RFC4271</a>]</span> specifies
+      raising an error if the length of a message is over 4,096 octets.  For
+      all messages except for OPEN and KEEPALIVE messages, if the receiver has advertised the
+      BGP Extended Message Capability, this document raises that limit to
+      65,535.<a href="#section-6-2">¶</a></p>
+</section>
+</div>
+<div>
+<section>
+      <h2>
+<a href="#section-7">7. </a><a href="#name-iana-considerations">IANA Considerations</a>
+      </h2>
+<p>IANA has made the following allocation in the "Capability Codes"
+      registry:<a href="#section-7-1">¶</a></p>
+<span></span><div>
+<table>
+        <caption>
+<a href="#table-1">Table 1</a>:
+<a href="#name-addition-to-capability-code">Addition to "Capability Codes" Registry</a>
+        </caption>
+<thead>
+          <tr>
+            <th rowspan="1" colspan="1">Value</th>
+            <th rowspan="1" colspan="1">Description</th>
+            <th rowspan="1" colspan="1">Reference</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td rowspan="1" colspan="1">6</td>
+            <td rowspan="1" colspan="1">BGP Extended Message</td>
+            <td rowspan="1" colspan="1">RFC 8654</td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+</section>
+</div>
+<div>
+<section>
+      <h2>
+<a href="#section-8">8. </a><a href="#name-security-considerations">Security Considerations</a>
+      </h2>
+<p>This extension to BGP does not change BGP's underlying security
+    issues <span>[<a href="#RFC4272">RFC4272</a>]</span>.<a href="#section-8-1">¶</a></p>
+<p>Due to increased memory requirements for buffering, there may be
+    increased exposure to resource exhaustion, intentional or
+    unintentional.<a href="#section-8-2">¶</a></p>
+<p>If a remote speaker is able to craft a large BGP Extended Message
+    to send on a path where one or more peers do not support BGP
+    Extended Messages, peers that support BGP Extended Messages may:<a href="#section-8-3">¶</a></p>
+<ul>
+<li>act to reduce the outgoing message (see <a href="#opns">Section 4</a>) and, in doing so, cause an attack by discarding
+    attributes one or more of its peers may be expecting.  The attributes eligible under the
+    "attribute discard" approach must have no effect on route selection or
+    installation <span>[<a href="#RFC7606">RFC7606</a>]</span>.<a href="#section-8-4.1">¶</a>
+</li>
+        <li>act to reduce the outgoing message (see <a href="#opns">Section 4</a>) and, in doing so, allow a downgrade attack.  This
+      would only affect the attacker's message, where 'downgrade' has
+      questionable meaning.<a href="#section-8-4.2">¶</a>
+</li>
+        <li>incur resource load (processing, message resizing, etc.)
+    when reformatting the large messages.<a href="#section-8-4.3">¶</a>
+</li>
+      </ul>
+</section>
+</div>
+<section>
+      <h2>
+<a href="#section-9">9. </a><a href="#name-references">References</a>
+      </h2>
+<section>
+        <h3>
+<a href="#section-9.1">9.1. </a><a href="#name-normative-references">Normative References</a>
+        </h3>
+<dl>
+<dt>[RFC2119]</dt>
+        <dd>
+<span>Bradner, S.</span>, <span>"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span>BCP 14</span>, <span>RFC 2119</span>, <span>DOI 10.17487/RFC2119</span>, <time datetime="1997-03">March 1997</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc2119</a>&gt;</span>. </dd>
+<dt>[RFC4271]</dt>
+        <dd>
+<span>Rekhter, Y., Ed.</span><span>, Li, T., Ed.</span><span>, and S. Hares, Ed.</span>, <span>"A Border Gateway Protocol 4 (BGP-4)"</span>, <span>RFC 4271</span>, <span>DOI 10.17487/RFC4271</span>, <time datetime="2006-01">January 2006</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc4271</a>&gt;</span>. </dd>
+<dt>[RFC5492]</dt>
+        <dd>
+<span>Scudder, J.</span><span> and R. Chandra</span>, <span>"Capabilities Advertisement with BGP-4"</span>, <span>RFC 5492</span>, <span>DOI 10.17487/RFC5492</span>, <time datetime="2009-02">February 2009</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc5492</a>&gt;</span>. </dd>
+<dt>[RFC7606]</dt>
+        <dd>
+<span>Chen, E., Ed.</span><span>, Scudder, J., Ed.</span><span>, Mohapatra, P.</span><span>, and K. Patel</span>, <span>"Revised Error Handling for BGP UPDATE Messages"</span>, <span>RFC 7606</span>, <span>DOI 10.17487/RFC7606</span>, <time datetime="2015-08">August 2015</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc7606</a>&gt;</span>. </dd>
+<dt>[RFC8174]</dt>
+      <dd>
+<span>Leiba, B.</span>, <span>"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span>BCP 14</span>, <span>RFC 8174</span>, <span>DOI 10.17487/RFC8174</span>, <time datetime="2017-05">May 2017</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc8174</a>&gt;</span>. </dd>
+</dl>
+</section>
+<section>
+        <h3>
+<a href="#section-9.2">9.2. </a><a href="#name-informative-references">Informative References</a>
+        </h3>
+<dl>
+<dt>[RFC4272]</dt>
+        <dd>
+<span>Murphy, S.</span>, <span>"BGP Security Vulnerabilities Analysis"</span>, <span>RFC 4272</span>, <span>DOI 10.17487/RFC4272</span>, <time datetime="2006-01">January 2006</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc4272</a>&gt;</span>. </dd>
+<dt>[RFC7752]</dt>
+        <dd>
+<span>Gredler, H., Ed.</span><span>, Medved, J.</span><span>, Previdi, S.</span><span>, Farrel, A.</span><span>, and S. Ray</span>, <span>"North-Bound Distribution of Link-State and Traffic Engineering (TE) Information Using BGP"</span>, <span>RFC 7752</span>, <span>DOI 10.17487/RFC7752</span>, <time datetime="2016-03">March 2016</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc7752</a>&gt;</span>. </dd>
+<dt>[RFC8205]</dt>
+      <dd>
+<span>Lepinski, M., Ed.</span><span> and K. Sriram, Ed.</span>, <span>"BGPsec Protocol Specification"</span>, <span>RFC 8205</span>, <span>DOI 10.17487/RFC8205</span>, <time datetime="2017-09">September 2017</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc8205</a>&gt;</span>. </dd>
+</dl>
+</section>
+</section>
+<div>
+<section>
+      <h2>
+<a href="#name-acknowledgments">Acknowledgments</a>
+      </h2>
+<p>The authors thank Alvaro Retana for an amazing review; Enke Chen,
+     Susan Hares, John Scudder, John Levine, and Job Snijders for their
+     input; and Oliver Borchert and Kyehwan Lee for their implementations
+     and testing.<a href="#section-appendix.a-1">¶</a></p>
+</section>
+</div>
+<div>
+<section>
+      <h2>
+<a href="#name-authors-addresses">Authors' Addresses</a>
+      </h2>
+<address>
+        <div dir="auto"><span>Randy Bush</span></div>
+<div dir="auto"><span>Arrcus &amp; IIJ</span></div>
+<div dir="auto"><span>5147 Crystal Springs</span></div>
+<div dir="auto">
+<span>Bainbridge Island</span>, <span>WA</span> <span>98110</span>
+</div>
+<div dir="auto"><span>United States of America</span></div>
+<div>
+<span>Email:</span>
+<a href="mailto:randy@psg.com">randy@psg.com</a>
+</div>
+</address>
+<address>
+        <div dir="auto"><span>Keyur Patel</span></div>
+<div dir="auto"><span>Arrcus, Inc.</span></div>
+<div>
+<span>Email:</span>
+<a href="mailto:keyur@arrcus.com">keyur@arrcus.com</a>
+</div>
+</address>
+<address>
+        <div dir="auto"><span>Dave Ward</span></div>
+<div dir="auto"><span>Cisco Systems</span></div>
+<div dir="auto"><span>170 W. Tasman Drive</span></div>
+<div dir="auto">
+<span>San Jose</span>, <span>CA</span> <span>95134</span>
+</div>
+<div dir="auto"><span>United States of America</span></div>
+<div>
+<span>Email:</span>
+<a href="mailto:dward@cisco.com">dward@cisco.com</a>
+</div>
+</address>
+</section>
+</div></article><aside class="toc-panel"><h2>On this RFC</h2><div id="toc-links"></div></aside></section>
+</main>
+<script src="../assets/doc.js"></script>
+
+</body>
+</html>

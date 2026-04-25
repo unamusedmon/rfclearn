@@ -1,0 +1,1220 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RFC 9601: Propagating Explicit Congestion Notification across IP Tunnel Headers Separated by a Shim</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<div class="progress"></div>
+<main class="doc-layout">
+  <a class="toplink" href="../index.html">← Back to index</a>
+  <section class="doc-hero">
+    <div class="eyebrow">RFC 9601</div>
+    <h1>Propagating Explicit Congestion Notification across IP Tunnel Headers Separated by a Shim</h1>
+    <div class="meta-tags"><span class="tag tag-routing">routing</span><span class="tag tag-update-chain">update-chain</span></div>
+    <div class="note"><strong>Threat hunting relevance:</strong> Pulled in through the RFC update chain; review &#x27;Propagating Explicit Congestion Notification across IP Tunnel Headers Separated by a Shim&#x27; to understand protocol changes that may affect detection, parsing, or investigation context.</div>
+  </section>
+  <section class="reader-tools"><div class="group"><button class="reader-btn" data-action="focus">Focus width</button><button class="reader-btn" data-action="comfy">Comfy text</button></div><button class="reader-btn" data-action="top">Back to top</button></section>
+  <section class="reader-grid"><article class="doc-body"><table>
+<thead><tr>
+<td>RFC 9601</td>
+<td>ECN over IP-shim-(L2)-IP Tunnels</td>
+<td>August 2024</td>
+</tr></thead>
+<tfoot><tr>
+<td>Briscoe</td>
+<td>Standards Track</td>
+<td>[Page]</td>
+</tr></tfoot>
+</table>
+<div></div>
+<div>
+<dl>
+<dt>Stream:</dt>
+<dd>Internet Engineering Task Force (IETF)</dd>
+<dt>RFC:</dt>
+<dd><a>9601</a></dd>
+<dt>Updates:</dt>
+<dd>
+<a>2661</a>, <a>2784</a>, <a>3931</a>, <a>4380</a>, <a>6040</a>, <a>7450</a> </dd>
+<dt>Category:</dt>
+<dd>Standards Track</dd>
+<dt>Published:</dt>
+<dd>
+<time datetime="2024-08">August 2024</time>
+    </dd>
+<dt>ISSN:</dt>
+<dd>2070-1721</dd>
+<dt>Author:</dt>
+<dd>
+<div>
+      <div>B. Briscoe</div>
+<div>Independent</div>
+</div>
+</dd>
+</dl>
+</div>
+<h1>RFC 9601</h1>
+<h1>Propagating Explicit Congestion Notification across IP Tunnel Headers Separated by a Shim</h1>
+<section>
+      <h2><a href="#abstract">Abstract</a></h2>
+<p>RFC 6040 on "Tunnelling of Explicit Congestion Notification" made the
+      rules for propagation of Explicit Congestion Notification (ECN) consistent for all forms of IP-in-IP
+      tunnel. This specification updates RFC 6040 to clarify that its scope
+      includes tunnels where two IP headers are separated by at least one shim
+      header that is not sufficient on its own for wide-area packet
+      forwarding. It surveys widely deployed IP tunnelling protocols that use
+      such shim headers and updates the specifications of those that do not
+      mention ECN propagation (including RFCs 2661, 3931, 2784, 4380
+      and 7450, which specify L2TPv2, L2TPv3, Generic Routing Encapsulation (GRE), Teredo, and
+      Automatic Multicast Tunneling (AMT), respectively). This specification also updates RFC 6040 with configuration
+      requirements needed to make any legacy tunnel ingress safe.<a href="#section-abstract-1">¶</a></p>
+</section>
+<div>
+<section>
+        <h2>
+<a href="#name-status-of-this-memo">Status of This Memo</a>
+        </h2>
+<p>
+            This is an Internet Standards Track document.<a href="#section-boilerplate.1-1">¶</a></p>
+<p>
+            This document is a product of the Internet Engineering Task Force
+            (IETF).  It represents the consensus of the IETF community.  It has
+            received public review and has been approved for publication by
+            the Internet Engineering Steering Group (IESG).  Further
+            information on Internet Standards is available in Section 2 of 
+            RFC 7841.<a href="#section-boilerplate.1-2">¶</a></p>
+<p>
+            Information about the current status of this document, any
+            errata, and how to provide feedback on it may be obtained at
+            <span><a>https://www.rfc-editor.org/info/rfc9601</a></span>.<a href="#section-boilerplate.1-3">¶</a></p>
+</section>
+</div>
+<div>
+<section>
+        <h2>
+<a href="#name-copyright-notice">Copyright Notice</a>
+        </h2>
+<p>
+            Copyright (c) 2024 IETF Trust and the persons identified as the
+            document authors. All rights reserved.<a href="#section-boilerplate.2-1">¶</a></p>
+<p>
+            This document is subject to BCP 78 and the IETF Trust's Legal
+            Provisions Relating to IETF Documents
+            (<span><a>https://trustee.ietf.org/license-info</a></span>) in effect on the date of
+            publication of this document. Please review these documents
+            carefully, as they describe your rights and restrictions with
+            respect to this document. Code Components extracted from this
+            document must include Revised BSD License text as described in
+            Section 4.e of the Trust Legal Provisions and are provided without
+            warranty as described in the Revised BSD License.<a href="#section-boilerplate.2-2">¶</a></p>
+<p>
+            This document may contain material from IETF Documents or IETF
+            Contributions published or made publicly available before November
+            10, 2008. The person(s) controlling the copyright in some of this
+            material may not have granted the IETF Trust the right to allow
+            modifications of such material outside the IETF Standards Process.
+            Without obtaining an adequate license from the person(s)
+            controlling the copyright in such materials, this document may not
+            be modified outside the IETF Standards Process, and derivative
+            works of it may not be created outside the IETF Standards Process,
+            except to format it for publication as an RFC or to translate it
+            into languages other than English.<a href="#section-boilerplate.2-3">¶</a></p>
+</section>
+</div>
+<div>
+<section>
+        <a href="#" onclick="scroll(0,0)">▲</a><h2>
+<a href="#name-table-of-contents">Table of Contents</a>
+        </h2>
+<nav><ul>
+<li>
+            <p><a href="#section-1">1</a>.  <a href="#name-introduction">Introduction</a></p>
+</li>
+          <li>
+            <p><a href="#section-2">2</a>.  <a href="#name-terminology">Terminology</a></p>
+</li>
+          <li>
+            <p><a href="#section-3">3</a>.  <a href="#name-scope-of-rfc-6040">Scope of RFC 6040</a></p>
+<ul>
+<li>
+                <p><a href="#section-3.1">3.1</a>.  <a href="#name-feasibility-of-ecn-propagat">Feasibility of ECN Propagation between Tunnel Headers</a></p>
+</li>
+              <li>
+                <p><a href="#section-3.2">3.2</a>.  <a href="#name-desirability-of-ecn-propaga">Desirability of ECN Propagation between Tunnel Headers</a></p>
+</li>
+            </ul>
+</li>
+          <li>
+            <p><a href="#section-4">4</a>.  <a href="#name-making-a-non-ecn-tunnel-ing">Making a Non-ECN Tunnel Ingress Safe by Configuration</a></p>
+</li>
+          <li>
+            <p><a href="#section-5">5</a>.  <a href="#name-ecn-propagation-and-fragmen">ECN Propagation and Fragmentation/Reassembly</a></p>
+</li>
+          <li>
+            <p><a href="#section-6">6</a>.  <a href="#name-ip-in-ip-tunnels-with-tight">IP-in-IP Tunnels with Tightly Coupled Shim Headers</a></p>
+<ul>
+<li>
+                <p><a href="#section-6.1">6.1</a>.  <a href="#name-specific-updates-to-protoco">Specific Updates to Protocols under IETF Change Control</a></p>
+<ul>
+<li>
+                    <p><a href="#section-6.1.1">6.1.1</a>.  <a href="#name-l2tp-v2-and-v3-ecn-extensio">L2TP (v2 and v3) ECN Extension</a></p>
+</li>
+                  <li>
+                    <p><a href="#section-6.1.2">6.1.2</a>.  <a href="#name-gre">GRE</a></p>
+</li>
+                  <li>
+                    <p><a href="#section-6.1.3">6.1.3</a>.  <a href="#name-teredo">Teredo</a></p>
+</li>
+                  <li>
+                    <p><a href="#section-6.1.4">6.1.4</a>.  <a href="#name-amt">AMT</a></p>
+</li>
+                </ul>
+</li>
+            </ul>
+</li>
+          <li>
+            <p><a href="#section-7">7</a>.  <a href="#name-iana-considerations">IANA Considerations</a></p>
+</li>
+          <li>
+            <p><a href="#section-8">8</a>.  <a href="#name-security-considerations">Security Considerations</a></p>
+</li>
+          <li>
+            <p><a href="#section-9">9</a>.  <a href="#name-references">References</a></p>
+<ul>
+<li>
+                <p><a href="#section-9.1">9.1</a>.  <a href="#name-normative-references">Normative References</a></p>
+</li>
+              <li>
+                <p><a href="#section-9.2">9.2</a>.  <a href="#name-informative-references">Informative References</a></p>
+</li>
+            </ul>
+</li>
+          <li>
+            <p><a href="#appendix-A"></a><a href="#name-acknowledgements">Acknowledgements</a></p>
+</li>
+          <li>
+            <p><a href="#appendix-B"></a><a href="#name-authors-address">Author's Address</a></p>
+</li>
+        </ul>
+</nav>
+</section>
+</div>
+<div>
+<section>
+      <h2>
+<a href="#section-1">1. </a><a href="#name-introduction">Introduction</a>
+      </h2>
+<p><span>[<a href="#RFC6040">RFC6040</a>]</span> on "Tunnelling of Explicit Congestion Notification" made the rules for propagation of Explicit Congestion
+      Notification (ECN) <span>[<a href="#RFC3168">RFC3168</a>]</span> consistent for all forms of
+      IP-in-IP tunnel.<a href="#section-1-1">¶</a></p>
+<p>A common pattern for many tunnelling protocols is to encapsulate an
+      inner IP header (v4 or v6) with one or more shim headers then an outer IP header
+      (v4 or v6). Some of these shim headers are designed as generic
+      encapsulations, so they do not necessarily directly encapsulate an inner
+      IP header. Instead, they can encapsulate headers such as link-layer (L2) protocols that, in
+turn, often encapsulate IP. Thus, the abbreviation 'IP-shim-(L2)-IP' can be used
+      for tunnels that are in scope of this document.<a href="#section-1-2">¶</a></p>
+<p>To clear up confusion, this specification clarifies that the scope of
+      <span>[<a href="#RFC6040">RFC6040</a>]</span> includes any IP-in-IP tunnel, including those with one or more shim
+      headers and other encapsulations between the IP headers. Where
+      necessary, it updates the specifications of the relevant encapsulation
+      protocols with the specific text necessary to comply with <span>[<a href="#RFC6040">RFC6040</a>]</span>.<a href="#section-1-3">¶</a></p>
+<p>This specification also updates <span>[<a href="#RFC6040">RFC6040</a>]</span> to state how operators ought
+      to configure a legacy tunnel ingress to avoid unsafe system
+      configurations.<a href="#section-1-4">¶</a></p>
+</section>
+</div>
+<div>
+<section>
+      <h2>
+<a href="#section-2">2. </a><a href="#name-terminology">Terminology</a>
+      </h2>
+<p>The key words "<span>MUST</span>", "<span>MUST NOT</span>", "<span>REQUIRED</span>", "<span>SHALL</span>", "<span>SHALL NOT</span>",
+      "<span>SHOULD</span>", "<span>SHOULD NOT</span>", "<span>RECOMMENDED</span>", "<span>NOT RECOMMENDED</span>", "<span>MAY</span>", and
+      "<span>OPTIONAL</span>" in this document are to be interpreted as described in
+      BCP 14 <span>[<a href="#RFC2119">RFC2119</a>]</span> <span>[<a href="#RFC8174">RFC8174</a>]</span> when, and
+      only when, they appear in all capitals, as shown here.<a href="#section-2-1">¶</a></p>
+<p>This specification uses the terminology defined in <span>[<a href="#RFC6040">RFC6040</a>]</span>.<a href="#section-2-2">¶</a></p>
+</section>
+</div>
+<div>
+<section>
+      <h2>
+<a href="#section-3">3. </a><a href="#name-scope-of-rfc-6040">Scope of RFC 6040</a>
+      </h2>
+<p>In <span><a>Section 1.1</a> of [<a href="#RFC6040">RFC6040</a>]</span>, its scope is defined as:<a href="#section-3-1">¶</a></p>
+<blockquote>
+          ...ECN field processing at encapsulation and decapsulation for
+          any IP-in-IP tunnelling, whether IPsec or non-IPsec tunnels. It
+          applies irrespective of whether IPv4 or IPv6 is used for either the
+          inner or outer headers.<a href="#section-3-2">¶</a>
+</blockquote>
+<p>There are two problems with the above scoping statement:<a href="#section-3-3">¶</a></p>
+<p>Problem 1: It was intended to include cases where one or more shim headers sit between
+      the IP headers. Many tunnelling implementers have interpreted the scope
+      of <span>[<a href="#RFC6040">RFC6040</a>]</span> as it was intended, but it is ambiguous. Therefore, this
+      specification updates <span>[<a href="#RFC6040">RFC6040</a>]</span> by adding the following scoping text
+      after the sentences quoted above:<a href="#section-3-4">¶</a></p>
+<blockquote>
+          It applies in cases where an outer IP header encapsulates an
+          inner IP header either directly or indirectly by encapsulating other
+          headers that in turn encapsulate (or might encapsulate) an inner IP
+          header.<a href="#section-3-5">¶</a>
+</blockquote>
+<p>Problem 2: Like many IETF
+      specifications, <span>[<a href="#RFC6040">RFC6040</a>]</span> is written as a specification that
+      implementations can choose to claim compliance with. This means it does
+      not cover two important situations:<a href="#section-3-6">¶</a></p>
+<ol start="1" type="1">
+<li>
+          <p>Cases where it is infeasible for an implementation to
+          access an inner IP header when adding or removing an outer IP
+          header<a href="#section-3-7.1.1">¶</a></p>
+</li>
+        <li>
+          <p>Cases where implementations choose not to propagate ECN between IP
+          headers<a href="#section-3-7.2.1">¶</a></p>
+</li>
+      </ol>
+<p>However, the ECN field is a non-optional part of the IP header (v4
+      and v6), so any implementation that creates an outer IP header has to
+      give the ECN field some value. There is only one safe value a tunnel
+      ingress can use if it does not know whether the egress supports
+      propagation of the ECN field; it has to clear the ECN field in any outer
+      IP header to 0b00.<a href="#section-3-8">¶</a></p>
+<p>However, an RFC has no jurisdiction over implementations that choose
+      not to comply or cannot comply with the RFC, including all
+      implementations that predated it. Therefore, it would have been
+      unreasonable to add such a requirement to <span>[<a href="#RFC6040">RFC6040</a>]</span>. Nonetheless, to
+      ensure safe propagation of the ECN field over tunnels, it is reasonable
+      to add requirements on operators to ensure they configure their tunnels
+      safely (where possible). Before resolving 'Problem 2' by stating these configuration requirements
+      (in <a href="#rfc6040up_sec_safe">Section 4</a>), the factors that determine
+      whether propagating ECN is feasible or desirable will be briefly
+      introduced.<a href="#section-3-9">¶</a></p>
+<div>
+<section>
+        <h3>
+<a href="#section-3.1">3.1. </a><a href="#name-feasibility-of-ecn-propagat">Feasibility of ECN Propagation between Tunnel Headers</a>
+        </h3>
+<p>In many cases, one or more shim headers and an outer IP header are
+        always added to (or removed from) an inner IP packet as part of the
+        same procedure. We call these tightly coupled shim headers.
+        Processing a shim and outer header together is often necessary because
+        a shim is not sufficient for packet forwarding in its own right; not
+        unless complemented by an outer header. In these cases, it will often
+        be feasible for an implementation to propagate the ECN field between
+        the IP headers.<a href="#section-3.1-1">¶</a></p>
+<p>In some cases, a tunnel adds an outer IP header and a tightly
+        coupled shim header to an inner header that is not an IP header, but
+        that, in turn, encapsulates an IP header (or might encapsulate an IP
+        header). For instance, an inner Ethernet (or other link-layer) header
+        might encapsulate an inner IP header as its payload. We call this a
+        tightly coupled shim over an encapsulating header.<a href="#section-3.1-2">¶</a></p>
+<p>Digging to arbitrary depths to find an inner IP header within an
+        encapsulation is strictly a layering violation, so it cannot be a
+        required behaviour. 
+
+Nonetheless, some tunnel endpoints already look
+        within a Layer 2 (L2) header for an IP header, for instance, to map the Diffserv
+        codepoint between an encapsulated IP header and an outer IP header
+        <span>[<a href="#RFC2983">RFC2983</a>]</span>. In such cases at least, it should be
+        feasible to also (independently) propagate the ECN field between the
+        same IP headers. Thus, access to the ECN field within an encapsulating
+        header can be a useful and benign optimization. The guidelines in
+        <span><a>Section 5</a> of [<a href="#RFC9599">RFC9599</a>]</span> give
+        the conditions for this layering violation to be benign.<a href="#section-3.1-3">¶</a></p>
+</section>
+</div>
+<div>
+<section>
+        <h3>
+<a href="#section-3.2">3.2. </a><a href="#name-desirability-of-ecn-propaga">Desirability of ECN Propagation between Tunnel Headers</a>
+        </h3>
+<p>Developers and network operators are encouraged to implement and
+        deploy tunnel endpoints compliant with <span>[<a href="#RFC6040">RFC6040</a>]</span> (as updated by the
+        present specification) in order to provide the benefits of wider ECN
+        deployment <span>[<a href="#RFC8087">RFC8087</a>]</span>. Nonetheless, propagation of ECN
+        between IP headers, whether separated by shim headers or not, has to
+        be optional to implement and to use, because:<a href="#section-3.2-1">¶</a></p>
+<ul>
+<li>
+            <p>legacy implementations of tunnels without any ECN support
+            already exist;<a href="#section-3.2-2.1.1">¶</a></p>
+</li>
+          <li>
+            <p>a network might be designed so that there is usually no
+            bottleneck within the tunnel; and<a href="#section-3.2-2.2.1">¶</a></p>
+</li>
+          <li>
+            <p>if the tunnel endpoints would have to search within an L2
+            header to find an encapsulated IP header, it might not be worth
+            the potential performance hit.<a href="#section-3.2-2.3.1">¶</a></p>
+</li>
+        </ul>
+</section>
+</div>
+</section>
+</div>
+<div>
+<section>
+      <h2>
+<a href="#section-4">4. </a><a href="#name-making-a-non-ecn-tunnel-ing">Making a Non-ECN Tunnel Ingress Safe by Configuration</a>
+      </h2>
+<p>Even when no specific attempt has been made to implement propagation
+      of the ECN field at a tunnel ingress, it ought to be possible for the
+      operator to render a tunnel ingress safe by configuration. The main
+      safety concern is to disable (clear to zero) the ECN capability in the
+      outer IP header at the ingress if the egress of the tunnel does not
+      implement ECN logic to propagate any ECN markings into the packet
+      forwarded beyond the tunnel. Otherwise, the non-ECN egress could discard
+      any ECN marking introduced within the tunnel, which would break all the
+      ECN-based control loops that regulate the traffic load over the
+      tunnel.<a href="#section-4-1">¶</a></p>
+<p>Therefore, this specification updates <span><a>Section 4.3</a> of [<a href="#RFC6040">RFC6040</a>]</span> by inserting the
+      following text at the end of the section:<a href="#section-4-2">¶</a></p>
+<blockquote>
+        <p>Whether or not an ingress implementation
+          claims compliance with <span>[<a href="#RFC6040">RFC6040</a>]</span>, <span>[<a href="#RFC4301">RFC4301</a>]</span>, or <span>[<a href="#RFC3168">RFC3168</a>]</span>, when the outer
+          tunnel header is IP (v4 or v6), if possible, the ingress <span>MUST</span> be
+          configured to zero the outer ECN field in all of the following
+          cases:<a href="#section-4-3.1">¶</a></p>
+<ul>
+<li>
+            <p>if it is known that the tunnel egress does not support any of
+              the RFCs that define propagation of the ECN field (<span>[<a href="#RFC6040">RFC6040</a>]</span>, <span>[<a href="#RFC4301">RFC4301</a>]</span>, or the full functionality mode of <span>[<a href="#RFC3168">RFC3168</a>]</span>);<a href="#section-4-3.2.1.1">¶</a></p>
+</li>
+          <li>
+            <p>if the behaviour of the egress is not known or an egress
+              with unknown behaviour might be dynamically paired with the
+              ingress (one way for an operator of a tunnel ingress to
+              determine the behaviour of an otherwise unknown egress is
+              described in <span>[<a href="#decap-test">decap-test</a>]</span>);<a href="#section-4-3.2.2.1">¶</a></p>
+</li>
+          <li>
+            <p>if an IP header might be encapsulated within a non-IP
+              header that the tunnel ingress is encapsulating, but the ingress
+              does not inspect within the encapsulation.<a href="#section-4-3.2.3.1">¶</a></p>
+</li>
+        </ul>
+<p>For the avoidance of doubt, the above only concerns the
+          outer IP header. The ingress <span>MUST NOT</span> alter the ECN field of the
+          arriving IP header that will become the inner IP header.<a href="#section-4-3.3">¶</a></p>
+<p>In order that the network operator can comply with the above
+          safety rules, an implementation of a tunnel ingress:<a href="#section-4-3.4">¶</a></p>
+<ul>
+<li>
+            <p><span>MUST NOT</span> treat the former Type of Service (ToS) octet (IPv4) or the former
+              Traffic Class octet (IPv6) as a single 8-bit field. This is because the
+              resulting linkage of ECN and Diffserv field propagation between
+              inner and outer headers is not consistent with the definition of the
+              6-bit Diffserv field in <span>[<a href="#RFC2474">RFC2474</a>]</span> and <span>[<a href="#RFC3260">RFC3260</a>]</span>.<a href="#section-4-3.5.1.1">¶</a></p>
+</li>
+          <li>
+            <p><span>SHOULD</span> be able to be configured to zero the ECN field of
+              the outer header.<a href="#section-4-3.5.2.1">¶</a></p>
+</li>
+        </ul>
+<p>These last two rules apply even if an implementation of a tunnel ingress does not
+          claim to support <span>[<a href="#RFC6040">RFC6040</a>]</span>, <span>[<a href="#RFC4301">RFC4301</a>]</span>, or the full functionality mode
+          of <span>[<a href="#RFC3168">RFC3168</a>]</span><a href="#section-4-3.6">¶</a></p>
+</blockquote>
+<p>For instance, if a tunnel ingress with no ECN-specific logic had a
+      configuration capability to refer to the last 2 bits of the old ToS Byte
+      of the outer (e.g., with a 0x3 mask) and set them to zero, while
+      also being able to allow the DSCP to be re-mapped independently, that
+      would be sufficient to satisfy both implementation
+      requirements above.<a href="#section-4-4">¶</a></p>
+<p>There might be concern that the above "<span>MUST NOT</span>" makes compliant
+      implementations non-compliant at a stroke. However, by definition, it
+      solely applies to equipment that provides Diffserv configuration. Any
+      such Diffserv equipment that is configuring treatment of the former ToS
+      octet (IPv4) or the former Traffic Class octet (IPv6) as a single 8-bit
+      field must have always been non-compliant with the definition of the
+      6-bit Diffserv field in <span>[<a href="#RFC2474">RFC2474</a>]</span> and <span>[<a href="#RFC3260">RFC3260</a>]</span>. If a tunnel ingress does not have any ECN logic,
+      copying the ECN field as a side effect of copying the DSCP is a
+      seriously unsafe bug that risks breaking the feedback loops that
+      regulate load on a tunnel, because it omits to check the ECN capability of the tunnel egress.<a href="#section-4-5">¶</a></p>
+<p>Zeroing the outer ECN field of all packets in all circumstances would
+      be safe, but it would not be sufficient to claim compliance with <span>[<a href="#RFC6040">RFC6040</a>]</span> because it would not meet the aim of introducing ECN support to
+      tunnels (see <span><a>Section 4.3</a> of [<a href="#RFC6040">RFC6040</a>]</span>).<a href="#section-4-6">¶</a></p>
+</section>
+</div>
+<section>
+      <h2>
+<a href="#section-5">5. </a><a href="#name-ecn-propagation-and-fragmen">ECN Propagation and Fragmentation/Reassembly</a>
+      </h2>
+<p>The following requirements update <span>[<a href="#RFC6040">RFC6040</a>]</span>, which omitted handling of
+      the ECN field during fragmentation or reassembly. These changes might
+      alter how many ECN-marked packets are propagated by a tunnel that
+      fragments packets, but this would not raise any backward compatibility
+      issues.<a href="#section-5-1">¶</a></p>
+<p>If a tunnel ingress fragments a packet, it <span>MUST</span> set the outer ECN
+      field of all the fragments to the same value as it would have set if it
+      had not fragmented the packet.<a href="#section-5-2">¶</a></p>
+<p><span><a>Section 5.3</a> of [<a href="#RFC3168">RFC3168</a>]</span> specifies ECN requirements
+      for reassembly of sets of 'outer fragments' into packets (in 'outer
+      fragmentation', the fragmentation is visible in the outer header so that
+      the tunnel egress can reassemble the fragments <span>[<a href="#I-D.ietf-intarea-tunnels">INTAREA-TUNNELS</a>]</span>). Additionally, the following 
+      requirements apply at a tunnel egress:<a href="#section-5-3">¶</a></p>
+<ul>
+<li>
+          During reassembly of outer fragments, the packet <span>MUST</span> be discarded if the ECN fields of the
+          outer headers being reassembled into a single packet consist of a
+          mixture of Not ECN-Capable Transport (Not-ECT) and other ECN codepoints.<a href="#section-5-4.1">¶</a>
+</li>
+        <li>
+          If there is mix of ECT(0) and ECT(1) outer fragments, then the
+          reassembled packet <span>MUST</span> be set to ECT(1).<a href="#section-5-4.2">¶</a>
+</li>
+      </ul>
+<p>Reasoning: <span>[<a href="#RFC3168">RFC3168</a>]</span>
+          originally defined ECT(0) and ECT(1) as equivalent, but <span>[<a href="#RFC3168">RFC3168</a>]</span> has been
+          updated by <span>[<a href="#RFC8311">RFC8311</a>]</span> to make ECT(1) available for
+          congestion marking differences. The rule is independent of the
+          current experimental use of ECT(1) for Low Latency, Low Loss, and Scalable throughput (L4S) <span>[<a href="#RFC9331">RFC9331</a>]</span>.
+          The rule is compatible with Pre-Congestion Notification (PCN) <span>[<a href="#RFC6660">RFC6660</a>]</span>, which uses
+          2 levels of congestion severity, with the ranking of severity from
+          highest to lowest being Congestion Experienced (CE), ECT(1), ECT(0). The decapsulation rules
+          in <span>[<a href="#RFC6040">RFC6040</a>]</span> take a similar approach.<a href="#section-5-5">¶</a></p>
+</section>
+<div>
+<section>
+      <h2>
+<a href="#section-6">6. </a><a href="#name-ip-in-ip-tunnels-with-tight">IP-in-IP Tunnels with Tightly Coupled Shim Headers</a>
+      </h2>
+<p>Below is a list of specifications of encapsulations with tightly coupled
+shim header(s) in rough chronological order. This list is confined to
+Standards Track or widely deployed protocols. So, for the avoidance of doubt,
+the updated scope of <span>[<a href="#RFC6040">RFC6040</a>]</span> is defined in <a href="#rfc6040up_scope">Section 3</a> and is not limited to this list.<a href="#section-6-1">¶</a></p>
+<ul>
+<li>
+          <p>Point-to-Point Tunneling Protocol (PPTP) <span>[<a href="#RFC2637">RFC2637</a>]</span><a href="#section-6-2.1.1">¶</a></p>
+</li>
+        <li>
+          <p>Layer Two Tunneling Protocol (L2TP), specifically L2TPv2 <span>[<a href="#RFC2661">RFC2661</a>]</span> and L2TPv3 <span>[<a href="#RFC3931">RFC3931</a>]</span>, which not
+          only includes all the L2-specific specializations of L2TP, but also
+          derivatives such as the Keyed IPv6 Tunnel <span>[<a href="#RFC8159">RFC8159</a>]</span><a href="#section-6-2.2.1">¶</a></p>
+</li>
+        <li>
+          <p>Generic Routing Encapsulation (GRE) <span>[<a href="#RFC2784">RFC2784</a>]</span> and Network Virtualization using GRE (NVGRE) <span>[<a href="#RFC7637">RFC7637</a>]</span><a href="#section-6-2.3.1">¶</a></p>
+</li>
+        <li>
+          <p>GPRS Tunnelling Protocol (GTP), specifically GTPv1 <span>[<a href="#GTPv1">GTPv1</a>]</span>, GTP v1 User Plane <span>[<a href="#GTPv1-U">GTPv1-U</a>]</span>, and GTP v2
+          Control Plane <span>[<a href="#GTPv2-C">GTPv2-C</a>]</span><a href="#section-6-2.4.1">¶</a></p>
+</li>
+        <li>
+          <p>Teredo <span>[<a href="#RFC4380">RFC4380</a>]</span><a href="#section-6-2.5.1">¶</a></p>
+</li>
+        <li>
+          <p>Control And Provisioning of Wireless Access Points (CAPWAP) <span>[<a href="#RFC5415">RFC5415</a>]</span><a href="#section-6-2.6.1">¶</a></p>
+</li>
+        <li>
+          <p>Locator/Identifier Separation Protocol (LISP) <span>[<a href="#RFC9300">RFC9300</a>]</span><a href="#section-6-2.7.1">¶</a></p>
+</li>
+        <li>
+          <p>Automatic Multicast Tunneling (AMT) <span>[<a href="#RFC7450">RFC7450</a>]</span><a href="#section-6-2.8.1">¶</a></p>
+</li>
+        <li>
+          <p>Virtual eXtensible Local Area Network (VXLAN) <span>[<a href="#RFC7348">RFC7348</a>]</span> and Generic Protocol Extensions for VXLAN (VXLAN-GPE) <span>[<a href="#I-D.ietf-nvo3-vxlan-gpe">NVO3-VXLAN-GPE</a>]</span><a href="#section-6-2.9.1">¶</a></p>
+</li>
+        <li>
+          <p>The Network Service Header (NSH) <span>[<a href="#RFC8300">RFC8300</a>]</span> for
+          Service Function Chaining (SFC)<a href="#section-6-2.10.1">¶</a></p>
+</li>
+        <li>
+          <p>Geneve <span>[<a href="#RFC8926">RFC8926</a>]</span><a href="#section-6-2.11.1">¶</a></p>
+</li>
+        <li>
+          <p>Direct tunnelling of an IP packet within a UDP/IP datagram (see <span><a>Section 3.1.11</a> of [<a href="#RFC8085">RFC8085</a>]</span>)<a href="#section-6-2.12.1">¶</a></p>
+</li>
+        <li>
+          <p>TCP Encapsulation of Internet Key Exchange Protocol (IKE) and IPsec Packets (see <span><a>Section 9.5</a> of [<a href="#RFC9329">RFC9329</a>]</span>)<a href="#section-6-2.13.1">¶</a></p>
+</li>
+      </ul>
+<p>Some of the listed protocols enable encapsulation of a variety of
+      network layer protocols as inner and/or outer. This specification
+      applies to the cases where there is an inner and outer IP header as
+      described in <a href="#rfc6040up_scope">Section 3</a>. Otherwise, <span>[<a href="#RFC9599">RFC9599</a>]</span> gives guidance on how to
+      design propagation of ECN into other protocols that might encapsulate
+      IP.<a href="#section-6-3">¶</a></p>
+<p>Where protocols in the above list need to be updated to specify ECN
+      propagation and are under IETF change control, update text is given
+      in the following subsections. For those not under IETF control, it is
+      <span>RECOMMENDED</span> that implementations of encapsulation and decapsulation
+      comply with <span>[<a href="#RFC6040">RFC6040</a>]</span>. It is also <span>RECOMMENDED</span> that their specifications
+      are updated to add a requirement to comply with <span>[<a href="#RFC6040">RFC6040</a>]</span> (as updated by
+      the present document).<a href="#section-6-4">¶</a></p>
+<p>PPTP is not under the change control of the IETF, but it has been
+      documented in an Informational RFC <span>[<a href="#RFC2637">RFC2637</a>]</span>. However,
+      there is no need for the present specification to update PPTP because
+      L2TP has been developed as a standardized replacement.<a href="#section-6-5">¶</a></p>
+<p>NVGRE is not under the change control of the IETF, but it has been
+      documented in an Informational RFC <span>[<a href="#RFC7637">RFC7637</a>]</span>. NVGRE is a
+      specific use case of GRE (it re-purposes the key field from the initial
+      specification of GRE <span>[<a href="#RFC1701">RFC1701</a>]</span> as a Virtual Subnet ID).
+      Therefore, the text that updates GRE in <a href="#rfc6040up_GRE">Section 6.1.2</a>
+      below is also intended to update NVGRE.<a href="#section-6-6">¶</a></p>
+<p>Although the definition of the various GTP shim headers is under the
+      control of the Third Generation Partnership Project (3GPP), it is hard to
+      determine whether the 3GPP or the IETF controls standardization of the
+      <em>process</em> of adding both a GTP and an IP
+      header to an inner IP header. Nonetheless, the present specification is
+      provided so that the 3GPP can refer to it from any of its own
+      specifications of GTP and IP header processing.<a href="#section-6-7">¶</a></p>
+<p>The specification of CAPWAP already specifies <span>[<a href="#RFC3168">RFC3168</a>]</span> ECN
+      propagation and ECN capability negotiation. Without modification, the
+      CAPWAP specification already interworks with the backward-compatible
+      updates to <span>[<a href="#RFC3168">RFC3168</a>]</span> in <span>[<a href="#RFC6040">RFC6040</a>]</span>.<a href="#section-6-8">¶</a></p>
+<p>LISP made the ECN propagation procedures in <span>[<a href="#RFC3168">RFC3168</a>]</span> mandatory from
+      the start. <span>[<a href="#RFC3168">RFC3168</a>]</span> has since been updated by <span>[<a href="#RFC6040">RFC6040</a>]</span>, but the changes
+      are backwards compatible, so there is still no need for LISP tunnel
+      endpoints to negotiate their ECN capabilities.<a href="#section-6-9">¶</a></p>
+<p>VXLAN is not under the change control of the IETF, but it has been
+      documented in an Informational RFC. It is
+      <span>RECOMMENDED</span> that VXLAN implementations comply with <span>[<a href="#RFC6040">RFC6040</a>]</span>
+      when the VXLAN header is inserted between (or removed from between)
+      IP headers. The authors of any future update of the VXLAN spec are also 
+      encouraged to add a requirement to comply with <span>[<a href="#RFC6040">RFC6040</a>]</span> as updated by
+      the present specification. In contrast,
+      VXLAN-GPE is being documented under IETF change control and it does
+      require compliance with <span>[<a href="#RFC6040">RFC6040</a>]</span>.<a href="#section-6-10">¶</a></p>
+<p>The Network Service Header (NSH) <span>[<a href="#RFC8300">RFC8300</a>]</span> has been
+      defined as a shim-based encapsulation to identify the Service Function
+      Path (SFP) in the Service Function Chaining (SFC) architecture <span>[<a href="#RFC7665">RFC7665</a>]</span>. A proposal has been made for the processing of ECN
+      when handling transport encapsulation <span>[<a href="#I-D.ietf-sfc-nsh-ecn-support">SFC-NSH-ECN</a>]</span>.<a href="#section-6-11">¶</a></p>
+<p>The specification of Geneve already refers to <span>[<a href="#RFC6040">RFC6040</a>]</span> for ECN
+      encapsulation.<a href="#section-6-12">¶</a></p>
+<p><span><a>Section 3.1.11</a> of [<a href="#RFC8085">RFC8085</a>]</span> already explains that a tunnel that
+      encapsulates an IP header within a UDP/IP datagram needs to follow <span>[<a href="#RFC6040">RFC6040</a>]</span> when propagating the ECN field between inner and outer IP headers.
+      <a href="#rfc6040up_scope">Section 3</a> of the present specification updates
+      <span>[<a href="#RFC6040">RFC6040</a>]</span> to clarify that its scope includes cases with a shim header
+      between the IP headers. So it indirectly updates the scope of <span>[<a href="#RFC8085">RFC8085</a>]</span>
+      to include cases with a shim header as well as a UDP header between the
+      IP headers.<a href="#section-6-13">¶</a></p>
+<p>The requirements in <a href="#rfc6040up_sec_safe">Section 4</a> update <span>[<a href="#RFC6040">RFC6040</a>]</span>, and hence also indirectly update the UDP usage guidelines in <span>[<a href="#RFC8085">RFC8085</a>]</span>
+      to add the important but previously unstated requirement that, if the
+      UDP tunnel egress does not, or might not, support ECN propagation, a UDP
+      tunnel ingress has to clear the outer IP ECN field to 0b00, e.g., by
+      configuration.<a href="#section-6-14">¶</a></p>
+<p><span><a>Section 9.5</a> of [<a href="#RFC9329">RFC9329</a>]</span> already recommends the compatibility mode of <span>[<a href="#RFC6040">RFC6040</a>]</span>
+      in this case because there is not a one-to-one mapping between inner
+      and outer packets when TCP encapsulates IKE or IPsec.<a href="#section-6-15">¶</a></p>
+<div>
+<section>
+        <h3>
+<a href="#section-6.1">6.1. </a><a href="#name-specific-updates-to-protoco">Specific Updates to Protocols under IETF Change Control</a>
+        </h3>
+<div>
+<section>
+          <h4>
+<a href="#section-6.1.1">6.1.1. </a><a href="#name-l2tp-v2-and-v3-ecn-extensio">L2TP (v2 and v3) ECN Extension</a>
+          </h4>
+<p>The L2TP terminology used here is defined in <span>[<a href="#RFC2661">RFC2661</a>]</span> and <span>[<a href="#RFC3931">RFC3931</a>]</span>.<a href="#section-6.1.1-1">¶</a></p>
+<p>L2TPv3 <span>[<a href="#RFC3931">RFC3931</a>]</span> is used as a
+          shim header between any packet-switched network (PSN) header (e.g.,
+          IPv4, IPv6, and MPLS) and many types of L2 headers. The L2TPv3 shim
+          header encapsulates an L2-specific sub-layer, then an L2 header that
+          is likely to contain an inner IP header (v4 or v6). 
+Then this whole stack of headers can be encapsulated within an optional
+outer UDP header and an outer PSN header that is typically IP (v4 or v6).<a href="#section-6.1.1-2">¶</a></p>
+<p>L2TPv2 is used as a shim header between any PSN header and a PPP
+          header, which is in turn likely to encapsulate an IP header.<a href="#section-6.1.1-3">¶</a></p>
+<p>Even though these shims are rather fat (particularly in the case
+          of L2TPv3), they still fit the definition of a tightly coupled shim
+          header over an encapsulating header (<a href="#rfc6040up_feasibility">Section 3.1</a>) because all the headers
+          encapsulating the L2 header are added (or removed) together. L2TPv2
+          and L2TPv3 are therefore within the scope of <span>[<a href="#RFC6040">RFC6040</a>]</span>, as updated by
+          <a href="#rfc6040up_scope">Section 3</a>.<a href="#section-6.1.1-4">¶</a></p>
+<p>Implementation of the ECN extension to L2TPv2 and L2TPv3 defined
+          in <a href="#rfc6040up_L2TP_ECN">Section 6.1.1.2</a> is <span>RECOMMENDED</span> in
+          order to provide the benefits of ECN <span>[<a href="#RFC8087">RFC8087</a>]</span>
+          whenever a node within an L2TP tunnel becomes the bottleneck for an
+          end-to-end traffic flow.<a href="#section-6.1.1-5">¶</a></p>
+<div>
+<section>
+            <h5>
+<a href="#section-6.1.1.1">6.1.1.1. </a><a href="#name-safe-configuration-of-a-non">Safe Configuration of a "Non-ECN" Ingress LCCE</a>
+            </h5>
+<p>The following text is appended to both <span><a>Section 5.3</a> of [<a href="#RFC2661">RFC2661</a>]</span> and <span><a>Section 4.5</a> of [<a href="#RFC3931">RFC3931</a>]</span> as
+            an update to the base L2TPv2 and L2TPv3 specifications:<a href="#section-6.1.1.1-1">¶</a></p>
+<blockquote>The operator of an LCCE that does not support the ECN extension in
+<a href="#rfc6040up_L2TP_ECN">Section 6.1.1.2</a> of RFC 9601
+<span>MUST</span> follow the configuration requirements in <a href="#rfc6040up_sec_safe">Section 4</a> of RFC 9601 to ensure it
+clears the outer IP ECN field to 0b00 when the outer PSN header is IP (v4 or
+v6).<a href="#section-6.1.1.1-2">¶</a>
+</blockquote>
+<p>In particular, for an L2TP Control Connection Endpoint (LCCE)
+            implementation that does not support the ECN extension, this means
+            that configuration of how it propagates the ECN field between
+            inner and outer IP headers <span>MUST</span> be independent of any
+            configuration of the Diffserv extension of L2TP <span>[<a href="#RFC3308">RFC3308</a>]</span>.<a href="#section-6.1.1.1-3">¶</a></p>
+</section>
+</div>
+<div>
+<section>
+            <h5>
+<a href="#section-6.1.1.2">6.1.1.2. </a><a href="#name-ecn-extension-for-l2tp-v2-o">ECN Extension for L2TP (v2 or v3)</a>
+            </h5>
+<p>When the outer PSN header and the payload inside the L2 header
+            are both IP (v4 or v6), an LCCE will propagate
+            the ECN field at ingress and egress by following the rules in
+            <span><a>Section 4</a> of [<a href="#RFC6040">RFC6040</a>]</span>.<a href="#section-6.1.1.2-1">¶</a></p>
+<p>Before encapsulating any data packets, <span>[<a href="#RFC6040">RFC6040</a>]</span>
+            requires an ingress LCCE to check that the egress LCCE supports
+            ECN propagation as defined in <span>[<a href="#RFC6040">RFC6040</a>]</span> or one of
+            its compatible predecessors (<span>[<a href="#RFC4301">RFC4301</a>]</span> or the full functionality mode of <span>[<a href="#RFC3168">RFC3168</a>]</span>). 
+If the egress supports ECN
+            propagation, the ingress LCCE can use the normal mode of
+            encapsulation (copying the ECN field from inner to outer).
+            Otherwise, the ingress LCCE has to use compatibility mode <span>[<a href="#RFC6040">RFC6040</a>]</span> (clearing the outer IP ECN
+            field to 0b00).<a href="#section-6.1.1.2-2">¶</a></p>
+<p>An LCCE can determine the remote LCCE's support for ECN either
+            statically (by configuration) or by dynamic discovery during setup
+            of each control connection between the LCCEs using the ECN
+            Capability Attribute-Value Pair (AVP) defined in <a href="#rfc6040up_L2TP_ECN_Capability_AVP">Section 6.1.1.2.1</a>.<a href="#section-6.1.1.2-3">¶</a></p>
+<p>Where the outer PSN header is some protocol other than IP that
+            supports ECN, the appropriate ECN propagation specification will
+            need to be followed, e.g., <span>[<a href="#RFC5129">RFC5129</a>]</span> for MPLS. Where no specification exists for
+            ECN propagation by a particular PSN, <span>[<a href="#RFC9599">RFC9599</a>]</span> gives general
+            guidance on how to design ECN propagation into a protocol that
+            encapsulates IP.<a href="#section-6.1.1.2-4">¶</a></p>
+<div>
+<section>
+              <h6>
+<a href="#section-6.1.1.2.1">6.1.1.2.1. </a><a href="#name-ecn-capability-avp-for-nego">ECN Capability AVP for Negotiation between LCCEs</a>
+              </h6>
+<p>The ECN Capability AVP defined here
+              has Attribute Type 103. The AVP has the following format:<a href="#section-6.1.1.2.1-1">¶</a></p>
+<span></span><div>
+<figure>
+                <div>
+<pre>
+ 0                   1                   2                   3
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|M|H|0|0|0|0|      Length       |          Vendor ID            |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|             103               |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+</pre>
+</div>
+<figcaption><a href="#figure-1">Figure 1</a>:
+<a href="#name-ecn-capability-avp-for-l2tp">ECN Capability AVP for L2TP (v2 or v3)</a>
+                </figcaption></figure>
+</div>
+<p>This AVP <span>MAY</span> be present in the Start-Control-Connection-Request (SCCRQ) and Start-Control-Connection-Reply (SCCRP) message types. This AVP <span>MAY</span> be hidden (the
+              H-bit is set to 0 or 1) and is optional (the M-bit is not set). The length
+              (before hiding) of this AVP is 6 octets. The Vendor ID is the
+              IETF Vendor ID of 0.<a href="#section-6.1.1.2.1-3">¶</a></p>
+<p>When an LCCE sends an ECN Capability AVP, it indicates that
+              it supports ECN propagation. When no ECN Capability AVP is
+              present, it indicates that the sender does not support ECN
+              propagation.<a href="#section-6.1.1.2.1-4">¶</a></p>
+<p>If an LCCE initiating a control connection supports ECN
+              propagation, it will send an SCCRQ containing an ECN Capability AVP. If the tunnel
+              terminator supports ECN, it will return an
+              SCCRP that also includes an ECN
+              Capability AVP. 
+Then, for any sessions created by that control
+              connection, both ends of the tunnel can use the normal mode of
+              <span>[<a href="#RFC6040">RFC6040</a>]</span>; i.e., they can copy the IP ECN field from inner to
+              outer when encapsulating data packets.<a href="#section-6.1.1.2.1-5">¶</a></p>
+<p>On the other hand, if the tunnel terminator does not support
+              ECN, it will ignore the ECN Capability AVP and send an SCCRP to
+              the tunnel initiator without an ECN Capability AVP. The tunnel
+              initiator interprets the absence of the ECN Capability flag in
+              the SCCRP as an indication that the tunnel terminator is
+              incapable of supporting ECN. When encapsulating data packets for
+              any sessions created by that control connection, the tunnel
+              initiator will then use the compatibility mode of <span>[<a href="#RFC6040">RFC6040</a>]</span> to
+              clear the ECN field of the outer IP header to 0b00.<a href="#section-6.1.1.2.1-6">¶</a></p>
+<p>If the tunnel terminator does not support this ECN extension,
+              the network operator is still expected to configure it to comply
+              with the safety provisions set out in <a href="#rfc6040up_L2TP_Safe">Section 6.1.1.1</a> when it acts as an ingress
+              LCCE.<a href="#section-6.1.1.2.1-7">¶</a></p>
+<p>If ECN support by the ingress and egress LCCEs is configured
+              statically, as allowed in <a href="#rfc6040up_L2TP_ECN">Section 6.1.1.2</a>,
+              they both ignore the presence or absence of any ECN capability AVP.<a href="#section-6.1.1.2.1-8">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+</section>
+</div>
+<div>
+<section>
+          <h4>
+<a href="#section-6.1.2">6.1.2. </a><a href="#name-gre">GRE</a>
+          </h4>
+<p>The GRE terminology used here is defined in <span>[<a href="#RFC2784">RFC2784</a>]</span>. GRE is often used as a tightly coupled shim
+          header between IP headers. Sometimes, the GRE shim header
+          encapsulates an L2 header, which might in turn encapsulate an IP
+          header. Therefore, GRE is within the scope of <span>[<a href="#RFC6040">RFC6040</a>]</span> as updated by
+          <a href="#rfc6040up_scope">Section 3</a>.<a href="#section-6.1.2-1">¶</a></p>
+<p>Implementation of support for <span>[<a href="#RFC6040">RFC6040</a>]</span> as updated
+          by the present specification is <span>RECOMMENDED</span> for GRE tunnel
+          endpoints in order to provide the benefits of ECN <span>[<a href="#RFC8087">RFC8087</a>]</span> whenever a node within a GRE tunnel becomes the
+          bottleneck for an end-to-end IP traffic flow tunnelled over GRE
+          using IP as the delivery protocol (outer header).<a href="#section-6.1.2-2">¶</a></p>
+<p>GRE itself does not support dynamic setup and configuration of
+          tunnels. However, control plane protocols, such as Next Hop
+          Resolution Protocol (NHRP) <span>[<a href="#RFC2332">RFC2332</a>]</span>, Mobile IPv4
+          (MIP4) <span>[<a href="#RFC5944">RFC5944</a>]</span>, Mobile IPv6 (MIP6) <span>[<a href="#RFC6275">RFC6275</a>]</span>, Proxy Mobile IP (PMIP) <span>[<a href="#RFC5845">RFC5845</a>]</span>,
+          and IKEv2 <span>[<a href="#RFC7296">RFC7296</a>]</span>, are sometimes used to set up GRE
+          tunnels dynamically.<a href="#section-6.1.2-3">¶</a></p>
+<p>When these control protocols set up IP-in-IP or IPsec tunnels, it
+          is likely that the resulting tunnels will propagate the ECN field as
+          defined in <span>[<a href="#RFC6040">RFC6040</a>]</span> or one of its compatible predecessors (<span>[<a href="#RFC4301">RFC4301</a>]</span>
+          or the full functionality mode of <span>[<a href="#RFC3168">RFC3168</a>]</span>). However, if they use a
+          GRE encapsulation, this presumption is less sound.<a href="#section-6.1.2-4">¶</a></p>
+<p>Therefore, if the outer delivery protocol is IP (v4 or v6), the
+          operator is obliged to follow the safe configuration requirements in
+          <a href="#rfc6040up_sec_safe">Section 4</a>. <a href="#rfc6040up_GRE_Safe">Section 6.1.2.1</a> updates the base GRE
+          specification with this requirement to emphasize its
+          importance.<a href="#section-6.1.2-5">¶</a></p>
+<p>Where the delivery protocol is some protocol other than IP that
+          supports ECN, the appropriate ECN propagation specification will
+          need to be followed, e.g., <span>[<a href="#RFC5129">RFC5129</a>]</span> for MPLS. Where no specification exists for ECN
+          propagation by a particular PSN, <span>[<a href="#RFC9599">RFC9599</a>]</span> gives more general
+          guidance on how to propagate ECN to and from protocols that
+          encapsulate IP.<a href="#section-6.1.2-6">¶</a></p>
+<div>
+<section>
+            <h5>
+<a href="#section-6.1.2.1">6.1.2.1. </a><a href="#name-safe-configuration-of-a-non-">Safe Configuration of a "Non-ECN" GRE Ingress</a>
+            </h5>
+<p>The following text is appended to <span><a>Section 3</a> of [<a href="#RFC2784">RFC2784</a>]</span> as an update to the base GRE
+            specification:<a href="#section-6.1.2.1-1">¶</a></p>
+<blockquote>     
+The operator of a GRE tunnel ingress <span>MUST</span> follow the configuration requirements in <a href="#rfc6040up_sec_safe">Section 4</a> of RFC 9601 when the outer delivery protocol is IP (v4 or v6).<a href="#section-6.1.2.1-2">¶</a>
+</blockquote>
+</section>
+</div>
+</section>
+</div>
+<section>
+          <h4>
+<a href="#section-6.1.3">6.1.3. </a><a href="#name-teredo">Teredo</a>
+          </h4>
+<p>Teredo <span>[<a href="#RFC4380">RFC4380</a>]</span> provides a way to tunnel IPv6
+          over an IPv4 network with a UDP-based shim header between the
+          two.<a href="#section-6.1.3-1">¶</a></p>
+<p>For Teredo tunnel endpoints to provide the benefits of ECN, the
+          Teredo specification would have to be updated to include negotiation
+          of the ECN capability between Teredo tunnel endpoints. Otherwise, it
+          would be unsafe for a Teredo tunnel ingress to copy the ECN field to
+          the IPv6 outer.<a href="#section-6.1.3-2">¶</a></p>
+<p>Those implementations known to the authors at the time of writing
+          do not support propagation of ECN, but they do safely zero the
+          ECN field in the outer IPv6 header. However, the specification does
+          not mention anything about this.<a href="#section-6.1.3-3">¶</a></p>
+<p>To make existing Teredo deployments safe, it would be possible to
+          add ECN capability negotiation to those that are subject to remote
+          OS update. However, for those implementations not subject to remote
+          OS update, it will not be feasible to require them to be configured
+          correctly because Teredo tunnel endpoints are generally deployed on
+          hosts.<a href="#section-6.1.3-4">¶</a></p>
+<p>Therefore, until ECN support is added to the specification of
+          Teredo, the only feasible further safety precaution available here
+          is to update the specification of Teredo implementations with the
+          following text as a new section:<a href="#section-6.1.3-5">¶</a></p>
+<blockquote>
+            <p>5.1.3.  Safe "Non-ECN" Teredo Encapsulation<a href="#section-6.1.3-6.1">¶</a></p>
+<p>A Teredo tunnel ingress implementation that does
+              not support ECN propagation as defined in <span>[<a href="#RFC6040">RFC6040</a>]</span> or one of its
+              compatible predecessors (<span>[<a href="#RFC4301">RFC4301</a>]</span> or the full functionality mode
+              of <span>[<a href="#RFC3168">RFC3168</a>]</span>) <span>MUST</span> zero the ECN field in the outer IPv6
+              header.<a href="#section-6.1.3-6.2">¶</a></p>
+</blockquote>
+</section>
+<div>
+<section>
+          <h4>
+<a href="#section-6.1.4">6.1.4. </a><a href="#name-amt">AMT</a>
+          </h4>
+<p>AMT <span>[<a href="#RFC7450">RFC7450</a>]</span> is a
+          tightly coupled shim header that encapsulates an IP packet and is
+          encapsulated within a UDP/IP datagram. Therefore, AMT is
+          within the scope of <span>[<a href="#RFC6040">RFC6040</a>]</span> as updated by <a href="#rfc6040up_scope">Section 3</a>.<a href="#section-6.1.4-1">¶</a></p>
+<p>Implementation of support for <span>[<a href="#RFC6040">RFC6040</a>]</span> as updated
+          by the present specification is <span>RECOMMENDED</span> for AMT tunnel
+          endpoints in order to provide the benefits of ECN <span>[<a href="#RFC8087">RFC8087</a>]</span> whenever a node within an AMT tunnel becomes the
+          bottleneck for an IP traffic flow tunnelled over AMT.<a href="#section-6.1.4-2">¶</a></p>
+<p>To comply with <span>[<a href="#RFC6040">RFC6040</a>]</span>, an AMT relay and gateway will follow the
+          rules for propagation of the ECN field at ingress and egress,
+          respectively, as described in <span><a>Section 4</a> of [<a href="#RFC6040">RFC6040</a>]</span>.<a href="#section-6.1.4-3">¶</a></p>
+<p>Before encapsulating any data packets, <span>[<a href="#RFC6040">RFC6040</a>]</span> requires an
+          ingress AMT relay to check that the egress AMT gateway supports ECN
+          propagation as defined in <span>[<a href="#RFC6040">RFC6040</a>]</span> or one of its compatible
+          predecessors (<span>[<a href="#RFC4301">RFC4301</a>]</span> or the full functionality mode of <span>[<a href="#RFC3168">RFC3168</a>]</span>).
+          If the egress gateway supports ECN, the ingress relay can use the
+          normal mode of encapsulation (copying the IP ECN field from inner to
+          outer). Otherwise, the ingress relay has to use compatibility mode,
+          which means it has to clear the outer ECN field to zero <span>[<a href="#RFC6040">RFC6040</a>]</span>.<a href="#section-6.1.4-4">¶</a></p>
+<p>An AMT tunnel is created dynamically (not manually), so the relay
+          will need to determine the remote gateway's support for ECN using
+          the ECN capability declaration defined in <a href="#rfc6040up_AMT_ECN_Capability">Section 6.1.4.2</a>.<a href="#section-6.1.4-5">¶</a></p>
+<div>
+<section>
+            <h5>
+<a href="#section-6.1.4.1">6.1.4.1. </a><a href="#name-safe-configuration-of-a-non-e">Safe Configuration of a "Non-ECN" Ingress AMT Relay</a>
+            </h5>
+<p>The following text is appended to <span><a>Section 4.2.2</a> of [<a href="#RFC7450">RFC7450</a>]</span> as an update to the AMT specification:<a href="#section-6.1.4.1-1">¶</a></p>
+<blockquote>       
+                The operator of an AMT relay that does not support <span>[<a href="#RFC6040">RFC6040</a>]</span>
+                or one of its compatible predecessors (<span>[<a href="#RFC4301">RFC4301</a>]</span> or the full
+                functionality mode of <span>[<a href="#RFC3168">RFC3168</a>]</span>) <span>MUST</span> follow the configuration
+                requirements in <a href="#rfc6040up_sec_safe">Section 4</a> of RFC 9601 to ensure it clears the outer IP ECN field to
+                zero.<a href="#section-6.1.4.1-2">¶</a>
+</blockquote>
+</section>
+</div>
+<div>
+<section>
+            <h5>
+<a href="#section-6.1.4.2">6.1.4.2. </a><a href="#name-ecn-capability-declaration-">ECN Capability Declaration of an AMT Gateway</a>
+            </h5>
+<span></span><div>
+<figure>
+              <div>
+<pre>
+ 0                   1                   2                   3
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|  V=0  |Type=3 |  Reserved |E|P|            Reserved           |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                         Request Nonce                         |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+</pre>
+</div>
+<figcaption><a href="#figure-2">Figure 2</a>:
+<a href="#name-updated-amt-request-message">Updated AMT Request Message Format</a>
+              </figcaption></figure>
+</div>
+<p>Bit 14 of the AMT Request Message counting from 0 (or bit 7 of
+            the Reserved field counting from 1) is defined here as the AMT
+            Gateway ECN Capability flag (E) as shown in <a href="#Fig_rfc6040up_AMT_ECN_Capability_Declaration">Figure 2</a>. The
+            definitions of all other fields in the AMT Request Message are
+            unchanged from <span>[<a href="#RFC7450">RFC7450</a>]</span>.<a href="#section-6.1.4.2-2">¶</a></p>
+<p>When the E flag is set to 1, it indicates that the sender of
+            the message supports <span>[<a href="#RFC6040">RFC6040</a>]</span> ECN propagation. When it is cleared
+            to zero, it indicates the sender of the message does not support
+            <span>[<a href="#RFC6040">RFC6040</a>]</span> ECN propagation. An AMT gateway "that supports <span>[<a href="#RFC6040">RFC6040</a>]</span>
+            ECN propagation" means one that propagates the ECN field to the
+            forwarded data packet based on the combination of arriving inner
+            and outer ECN fields as defined in <span><a>Section 4</a> of [<a href="#RFC6040">RFC6040</a>]</span>.<a href="#section-6.1.4.2-3">¶</a></p>
+<p>The other bits of the Reserved field remain reserved. They will
+            continue to be cleared to zero when sent and ignored when either
+            received or forwarded as specified in <span><a>Section 5.1.3.3</a> of [<a href="#RFC7450">RFC7450</a>]</span>.<a href="#section-6.1.4.2-4">¶</a></p>
+<p>An AMT gateway that does not support <span>[<a href="#RFC6040">RFC6040</a>]</span> <span>MUST NOT</span> set the
+            E flag of its Request Message to 1.<a href="#section-6.1.4.2-5">¶</a></p>
+<p>An AMT gateway that supports <span>[<a href="#RFC6040">RFC6040</a>]</span> ECN propagation <span>MUST</span> set
+            the E flag of its Relay Discovery Message to 1.<a href="#section-6.1.4.2-6">¶</a></p>
+<p>The action of the corresponding AMT relay that receives a
+            Request message with the E flag set to 1 depends on whether the
+            relay itself supports <span>[<a href="#RFC6040">RFC6040</a>]</span> ECN propagation:<a href="#section-6.1.4.2-7">¶</a></p>
+<ul>
+<li>
+                <p>If the relay supports <span>[<a href="#RFC6040">RFC6040</a>]</span> ECN propagation, it will
+                store the ECN capability of the gateway along with its
+                address. Then, whenever it tunnels datagrams towards this
+                gateway, it <span>MUST</span> use the normal mode of <span>[<a href="#RFC6040">RFC6040</a>]</span> to propagate
+                the ECN field when encapsulating datagrams (i.e., it
+                copies the IP ECN field from inner to outer header).<a href="#section-6.1.4.2-8.1.1">¶</a></p>
+</li>
+              <li>
+                <p>If the discovered AMT relay does not support <span>[<a href="#RFC6040">RFC6040</a>]</span> ECN
+                propagation, it will ignore the E flag in the Reserved field
+                as per <span><a>Section 5.1.3.3</a> of [<a href="#RFC7450">RFC7450</a>]</span>.<a href="#section-6.1.4.2-8.2.1">¶</a></p>
+<p>If the AMT relay does not support <span>[<a href="#RFC6040">RFC6040</a>]</span> ECN
+                propagation, the network operator is still expected to
+                configure it to comply with the safety provisions set out in
+                <a href="#rfc6040up_AMT_Safe">Section 6.1.4.1</a>.<a href="#section-6.1.4.2-8.2.2">¶</a></p>
+</li>
+            </ul>
+</section>
+</div>
+</section>
+</div>
+</section>
+</div>
+</section>
+</div>
+<div>
+<section>
+      <h2>
+<a href="#section-7">7. </a><a href="#name-iana-considerations">IANA Considerations</a>
+      </h2>
+<p>IANA has assigned the following AVP in the L2TP "Control Message Attribute Value Pairs" registry:<a href="#section-7-1">¶</a></p>
+<table>
+        <caption><a href="#table-1">Table 1</a></caption>
+<thead>
+          <tr>
+            <th rowspan="1" colspan="1">Attribute Type</th>
+            <th rowspan="1" colspan="1">Description</th>
+            <th rowspan="1" colspan="1">Reference</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td rowspan="1" colspan="1">103</td>
+            <td rowspan="1" colspan="1">ECN Capability</td>
+            <td rowspan="1" colspan="1">RFC 9601</td>
+          </tr>
+        </tbody>
+      </table>
+</section>
+</div>
+<div>
+<section>
+      <h2>
+<a href="#section-8">8. </a><a href="#name-security-considerations">Security Considerations</a>
+      </h2>
+<p>The Security Considerations in <span>[<a href="#RFC6040">RFC6040</a>]</span> and <span>[<a href="#RFC9599">RFC9599</a>]</span> apply equally to the
+      scope defined for the present specification.<a href="#section-8-1">¶</a></p>
+</section>
+</div>
+<section>
+      <h2>
+<a href="#section-9">9. </a><a href="#name-references">References</a>
+      </h2>
+<section>
+        <h3>
+<a href="#section-9.1">9.1. </a><a href="#name-normative-references">Normative References</a>
+        </h3>
+<dl>
+<dt>[RFC2119]</dt>
+        <dd>
+<span>Bradner, S.</span>, <span>"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span>BCP 14</span>, <span>RFC 2119</span>, <span>DOI 10.17487/RFC2119</span>, <time datetime="1997-03">March 1997</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc2119</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC2474]</dt>
+        <dd>
+<span>Nichols, K.</span>, <span>Blake, S.</span>, <span>Baker, F.</span>, and <span>D. Black</span>, <span>"Definition of the Differentiated Services Field (DS Field) in the IPv4 and IPv6 Headers"</span>, <span>RFC 2474</span>, <span>DOI 10.17487/RFC2474</span>, <time datetime="1998-12">December 1998</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc2474</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC2661]</dt>
+        <dd>
+<span>Townsley, W.</span>, <span>Valencia, A.</span>, <span>Rubens, A.</span>, <span>Pall, G.</span>, <span>Zorn, G.</span>, and <span>B. Palter</span>, <span>"Layer Two Tunneling Protocol "L2TP""</span>, <span>RFC 2661</span>, <span>DOI 10.17487/RFC2661</span>, <time datetime="1999-08">August 1999</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc2661</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC2784]</dt>
+        <dd>
+<span>Farinacci, D.</span>, <span>Li, T.</span>, <span>Hanks, S.</span>, <span>Meyer, D.</span>, and <span>P. Traina</span>, <span>"Generic Routing Encapsulation (GRE)"</span>, <span>RFC 2784</span>, <span>DOI 10.17487/RFC2784</span>, <time datetime="2000-03">March 2000</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc2784</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC3168]</dt>
+        <dd>
+<span>Ramakrishnan, K.</span>, <span>Floyd, S.</span>, and <span>D. Black</span>, <span>"The Addition of Explicit Congestion Notification (ECN) to IP"</span>, <span>RFC 3168</span>, <span>DOI 10.17487/RFC3168</span>, <time datetime="2001-09">September 2001</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc3168</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC3931]</dt>
+        <dd>
+<span>Lau, J., Ed.</span>, <span>Townsley, M., Ed.</span>, and <span>I. Goyret, Ed.</span>, <span>"Layer Two Tunneling Protocol - Version 3 (L2TPv3)"</span>, <span>RFC 3931</span>, <span>DOI 10.17487/RFC3931</span>, <time datetime="2005-03">March 2005</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc3931</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC4301]</dt>
+        <dd>
+<span>Kent, S.</span> and <span>K. Seo</span>, <span>"Security Architecture for the Internet Protocol"</span>, <span>RFC 4301</span>, <span>DOI 10.17487/RFC4301</span>, <time datetime="2005-12">December 2005</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc4301</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC4380]</dt>
+        <dd>
+<span>Huitema, C.</span>, <span>"Teredo: Tunneling IPv6 over UDP through Network Address Translations (NATs)"</span>, <span>RFC 4380</span>, <span>DOI 10.17487/RFC4380</span>, <time datetime="2006-02">February 2006</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc4380</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC5129]</dt>
+        <dd>
+<span>Davie, B.</span>, <span>Briscoe, B.</span>, and <span>J. Tay</span>, <span>"Explicit Congestion Marking in MPLS"</span>, <span>RFC 5129</span>, <span>DOI 10.17487/RFC5129</span>, <time datetime="2008-01">January 2008</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc5129</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC6040]</dt>
+        <dd>
+<span>Briscoe, B.</span>, <span>"Tunnelling of Explicit Congestion Notification"</span>, <span>RFC 6040</span>, <span>DOI 10.17487/RFC6040</span>, <time datetime="2010-11">November 2010</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc6040</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC6660]</dt>
+        <dd>
+<span>Briscoe, B.</span>, <span>Moncaster, T.</span>, and <span>M. Menth</span>, <span>"Encoding Three Pre-Congestion Notification (PCN) States in the IP Header Using a Single Diffserv Codepoint (DSCP)"</span>, <span>RFC 6660</span>, <span>DOI 10.17487/RFC6660</span>, <time datetime="2012-07">July 2012</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc6660</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC7450]</dt>
+        <dd>
+<span>Bumgardner, G.</span>, <span>"Automatic Multicast Tunneling"</span>, <span>RFC 7450</span>, <span>DOI 10.17487/RFC7450</span>, <time datetime="2015-02">February 2015</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc7450</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC9599]</dt>
+      <dd>
+<span>Briscoe, B.</span> and <span>J. Kaippallimalil</span>, <span>"Guidelines for Adding Congestion Notification to Protocols that Encapsulate IP"</span>, <span>RFC 9599</span>, <span>DOI 10.17487/RFC9599</span>, <time datetime="2024-08">August 2024</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc9599</a>&gt;</span>. </dd>
+<dd></dd>
+</dl>
+</section>
+<section>
+        <h3>
+<a href="#section-9.2">9.2. </a><a href="#name-informative-references">Informative References</a>
+        </h3>
+<dl>
+<dt>[decap-test]</dt>
+        <dd>
+<span>Briscoe, B.</span>, <span>"A Test for IP-ECN Propagation by a Remote Tunnel Endpoint"</span>, <span>Technical Report, TR-BB-2023-003</span>, <span>DOI 10.48550/arXiv.2311.16825</span>, <time datetime="2023-11">November 2023</time>, <span>&lt;<a>https://arxiv.org/abs/2311.16825</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[GTPv1]</dt>
+        <dd>
+<span>3GPP</span>, <span>"General Packet Radio Service (GPRS); GPRS Tunnelling Protocol (GTP) across the Gn and Gp interface"</span>, <span>Technical Specification 29.060</span>. </dd>
+<dd></dd>
+<dt>[GTPv1-U]</dt>
+        <dd>
+<span>3GPP</span>, <span>"General Packet Radio System (GPRS) Tunnelling Protocol User Plane (GTPv1-U)"</span>, <span>Technical Specification 29.281</span>. </dd>
+<dd></dd>
+<dt>[GTPv2-C]</dt>
+        <dd>
+<span>3GPP</span>, <span>"3GPP Evolved Packet System (EPS); Evolved General Packet Radio Service (GPRS) Tunnelling Protocol for Control plane (GTPv2-C); Stage 3"</span>, <span>Technical Specification 29.274</span>. </dd>
+<dd></dd>
+<dt>[INTAREA-TUNNELS]</dt>
+        <dd>
+<span>Touch, J. D.</span> and <span>M. Townsley</span>, <span>"IP Tunnels in the Internet Architecture"</span>, <span>Work in Progress</span>, <span>Internet-Draft, draft-ietf-intarea-tunnels-13</span>, <time datetime="2023-03-26">26 March 2023</time>, <span>&lt;<a>https://datatracker.ietf.org/doc/html/draft-ietf-intarea-tunnels-13</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[NVO3-VXLAN-GPE]</dt>
+        <dd>
+<span>Maino, F.</span>, <span>Kreeger, L.</span>, and <span>U. Elzur</span>, <span>"Generic Protocol Extension for VXLAN (VXLAN-GPE)"</span>, <span>Work in Progress</span>, <span>Internet-Draft, draft-ietf-nvo3-vxlan-gpe-13</span>, <time datetime="2023-11-04">4 November 2023</time>, <span>&lt;<a>https://datatracker.ietf.org/doc/html/draft-ietf-nvo3-vxlan-gpe-13</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC1701]</dt>
+        <dd>
+<span>Hanks, S.</span>, <span>Li, T.</span>, <span>Farinacci, D.</span>, and <span>P. Traina</span>, <span>"Generic Routing Encapsulation (GRE)"</span>, <span>RFC 1701</span>, <span>DOI 10.17487/RFC1701</span>, <time datetime="1994-10">October 1994</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc1701</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC2332]</dt>
+        <dd>
+<span>Luciani, J.</span>, <span>Katz, D.</span>, <span>Piscitello, D.</span>, <span>Cole, B.</span>, and <span>N. Doraswamy</span>, <span>"NBMA Next Hop Resolution Protocol (NHRP)"</span>, <span>RFC 2332</span>, <span>DOI 10.17487/RFC2332</span>, <time datetime="1998-04">April 1998</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc2332</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC2637]</dt>
+        <dd>
+<span>Hamzeh, K.</span>, <span>Pall, G.</span>, <span>Verthein, W.</span>, <span>Taarud, J.</span>, <span>Little, W.</span>, and <span>G. Zorn</span>, <span>"Point-to-Point Tunneling Protocol (PPTP)"</span>, <span>RFC 2637</span>, <span>DOI 10.17487/RFC2637</span>, <time datetime="1999-07">July 1999</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc2637</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC2983]</dt>
+        <dd>
+<span>Black, D.</span>, <span>"Differentiated Services and Tunnels"</span>, <span>RFC 2983</span>, <span>DOI 10.17487/RFC2983</span>, <time datetime="2000-10">October 2000</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc2983</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC3260]</dt>
+        <dd>
+<span>Grossman, D.</span>, <span>"New Terminology and Clarifications for Diffserv"</span>, <span>RFC 3260</span>, <span>DOI 10.17487/RFC3260</span>, <time datetime="2002-04">April 2002</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc3260</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC3308]</dt>
+        <dd>
+<span>Calhoun, P.</span>, <span>Luo, W.</span>, <span>McPherson, D.</span>, and <span>K. Peirce</span>, <span>"Layer Two Tunneling Protocol (L2TP) Differentiated Services Extension"</span>, <span>RFC 3308</span>, <span>DOI 10.17487/RFC3308</span>, <time datetime="2002-11">November 2002</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc3308</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC5415]</dt>
+        <dd>
+<span>Calhoun, P., Ed.</span>, <span>Montemurro, M., Ed.</span>, and <span>D. Stanley, Ed.</span>, <span>"Control And Provisioning of Wireless Access Points (CAPWAP) Protocol Specification"</span>, <span>RFC 5415</span>, <span>DOI 10.17487/RFC5415</span>, <time datetime="2009-03">March 2009</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc5415</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC5845]</dt>
+        <dd>
+<span>Muhanna, A.</span>, <span>Khalil, M.</span>, <span>Gundavelli, S.</span>, and <span>K. Leung</span>, <span>"Generic Routing Encapsulation (GRE) Key Option for Proxy Mobile IPv6"</span>, <span>RFC 5845</span>, <span>DOI 10.17487/RFC5845</span>, <time datetime="2010-06">June 2010</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc5845</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC5944]</dt>
+        <dd>
+<span>Perkins, C., Ed.</span>, <span>"IP Mobility Support for IPv4, Revised"</span>, <span>RFC 5944</span>, <span>DOI 10.17487/RFC5944</span>, <time datetime="2010-11">November 2010</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc5944</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC6275]</dt>
+        <dd>
+<span>Perkins, C., Ed.</span>, <span>Johnson, D.</span>, and <span>J. Arkko</span>, <span>"Mobility Support in IPv6"</span>, <span>RFC 6275</span>, <span>DOI 10.17487/RFC6275</span>, <time datetime="2011-07">July 2011</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc6275</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC7059]</dt>
+        <dd>
+<span>Steffann, S.</span>, <span>van Beijnum, I.</span>, and <span>R. van Rein</span>, <span>"A Comparison of IPv6-over-IPv4 Tunnel Mechanisms"</span>, <span>RFC 7059</span>, <span>DOI 10.17487/RFC7059</span>, <time datetime="2013-11">November 2013</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc7059</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC7296]</dt>
+        <dd>
+<span>Kaufman, C.</span>, <span>Hoffman, P.</span>, <span>Nir, Y.</span>, <span>Eronen, P.</span>, and <span>T. Kivinen</span>, <span>"Internet Key Exchange Protocol Version 2 (IKEv2)"</span>, <span>STD 79</span>, <span>RFC 7296</span>, <span>DOI 10.17487/RFC7296</span>, <time datetime="2014-10">October 2014</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc7296</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC7348]</dt>
+        <dd>
+<span>Mahalingam, M.</span>, <span>Dutt, D.</span>, <span>Duda, K.</span>, <span>Agarwal, P.</span>, <span>Kreeger, L.</span>, <span>Sridhar, T.</span>, <span>Bursell, M.</span>, and <span>C. Wright</span>, <span>"Virtual eXtensible Local Area Network (VXLAN): A Framework for Overlaying Virtualized Layer 2 Networks over Layer 3 Networks"</span>, <span>RFC 7348</span>, <span>DOI 10.17487/RFC7348</span>, <time datetime="2014-08">August 2014</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc7348</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC7637]</dt>
+        <dd>
+<span>Garg, P., Ed.</span> and <span>Y. Wang, Ed.</span>, <span>"NVGRE: Network Virtualization Using Generic Routing Encapsulation"</span>, <span>RFC 7637</span>, <span>DOI 10.17487/RFC7637</span>, <time datetime="2015-09">September 2015</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc7637</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC7665]</dt>
+        <dd>
+<span>Halpern, J., Ed.</span> and <span>C. Pignataro, Ed.</span>, <span>"Service Function Chaining (SFC) Architecture"</span>, <span>RFC 7665</span>, <span>DOI 10.17487/RFC7665</span>, <time datetime="2015-10">October 2015</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc7665</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC8085]</dt>
+        <dd>
+<span>Eggert, L.</span>, <span>Fairhurst, G.</span>, and <span>G. Shepherd</span>, <span>"UDP Usage Guidelines"</span>, <span>BCP 145</span>, <span>RFC 8085</span>, <span>DOI 10.17487/RFC8085</span>, <time datetime="2017-03">March 2017</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc8085</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC8087]</dt>
+        <dd>
+<span>Fairhurst, G.</span> and <span>M. Welzl</span>, <span>"The Benefits of Using Explicit Congestion Notification (ECN)"</span>, <span>RFC 8087</span>, <span>DOI 10.17487/RFC8087</span>, <time datetime="2017-03">March 2017</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc8087</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC8159]</dt>
+        <dd>
+<span>Konstantynowicz, M., Ed.</span>, <span>Heron, G., Ed.</span>, <span>Schatzmayr, R.</span>, and <span>W. Henderickx</span>, <span>"Keyed IPv6 Tunnel"</span>, <span>RFC 8159</span>, <span>DOI 10.17487/RFC8159</span>, <time datetime="2017-05">May 2017</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc8159</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC8174]</dt>
+        <dd>
+<span>Leiba, B.</span>, <span>"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span>BCP 14</span>, <span>RFC 8174</span>, <span>DOI 10.17487/RFC8174</span>, <time datetime="2017-05">May 2017</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc8174</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC8300]</dt>
+        <dd>
+<span>Quinn, P., Ed.</span>, <span>Elzur, U., Ed.</span>, and <span>C. Pignataro, Ed.</span>, <span>"Network Service Header (NSH)"</span>, <span>RFC 8300</span>, <span>DOI 10.17487/RFC8300</span>, <time datetime="2018-01">January 2018</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc8300</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC8311]</dt>
+        <dd>
+<span>Black, D.</span>, <span>"Relaxing Restrictions on Explicit Congestion Notification (ECN) Experimentation"</span>, <span>RFC 8311</span>, <span>DOI 10.17487/RFC8311</span>, <time datetime="2018-01">January 2018</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc8311</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC8926]</dt>
+        <dd>
+<span>Gross, J., Ed.</span>, <span>Ganga, I., Ed.</span>, and <span>T. Sridhar, Ed.</span>, <span>"Geneve: Generic Network Virtualization Encapsulation"</span>, <span>RFC 8926</span>, <span>DOI 10.17487/RFC8926</span>, <time datetime="2020-11">November 2020</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc8926</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC9300]</dt>
+        <dd>
+<span>Farinacci, D.</span>, <span>Fuller, V.</span>, <span>Meyer, D.</span>, <span>Lewis, D.</span>, and <span>A. Cabellos, Ed.</span>, <span>"The Locator/ID Separation Protocol (LISP)"</span>, <span>RFC 9300</span>, <span>DOI 10.17487/RFC9300</span>, <time datetime="2022-10">October 2022</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc9300</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC9329]</dt>
+        <dd>
+<span>Pauly, T.</span> and <span>V. Smyslov</span>, <span>"TCP Encapsulation of Internet Key Exchange Protocol (IKE) and IPsec Packets"</span>, <span>RFC 9329</span>, <span>DOI 10.17487/RFC9329</span>, <time datetime="2022-11">November 2022</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc9329</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC9331]</dt>
+        <dd>
+<span>De Schepper, K.</span> and <span>B. Briscoe, Ed.</span>, <span>"The Explicit Congestion Notification (ECN) Protocol for Low Latency, Low Loss, and Scalable Throughput (L4S)"</span>, <span>RFC 9331</span>, <span>DOI 10.17487/RFC9331</span>, <time datetime="2023-01">January 2023</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc9331</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[SFC-NSH-ECN]</dt>
+      <dd>
+<span>Eastlake 3rd, D.</span>, <span>Briscoe, B.</span>, <span>Zhuang, S.</span>, <span>Malis, A.</span>, and <span>X. Wei</span>, <span>"Explicit Congestion Notification (ECN) and Congestion Feedback Using the Network Service Header (NSH) and IPFIX"</span>, <span>Work in Progress</span>, <span>Internet-Draft, draft-ietf-sfc-nsh-ecn-support-13</span>, <time datetime="2024-04-15">15 April 2024</time>, <span>&lt;<a>https://datatracker.ietf.org/doc/html/draft-ietf-sfc-nsh-ecn-support-13</a>&gt;</span>. </dd>
+<dd></dd>
+</dl>
+</section>
+</section>
+<section>
+      <h2>
+<a href="#name-acknowledgements">Acknowledgements</a>
+      </h2>
+<p>Thanks to <span>Ing-jyh (Inton) Tsang</span> for initial
+      discussions on the need for ECN propagation in L2TP and its
+      applicability. Thanks also to <span>Carlos Pignataro</span>,
+      <span>Tom Herbert</span>, <span>Ignacio Goyret</span>,
+      <span>Alia Atlas</span>, <span>Praveen       Balasubramanian</span>, <span>Joe Touch</span>, <span>Mohamed Boucadair</span>, <span>David Black</span>,
+      <span>Jake Holland</span>, <span>Sri       Gundavelli</span>, <span>Gorry Fairhurst</span>, and <span>Martin Duke</span> for helpful advice and comments. <span>[<a href="#RFC7059">RFC7059</a>]</span> helped to identify a number of
+      tunnelling protocols to include within the scope of this document.<a href="#appendix-A-1">¶</a></p>
+<p><span>Bob Briscoe</span>    was part-funded by the Research Council of Norway through                                 
+   the TimeIn project for early drafts, and he was funded by Apple Inc. for later draft versions (from -17). The views expressed here are solely those of
+      the authors.<a href="#appendix-A-2">¶</a></p>
+</section>
+<div>
+<section>
+      <h2>
+<a href="#name-authors-address">Author's Address</a>
+      </h2>
+<address>
+        <div dir="auto"><span>Bob Briscoe</span></div>
+<div dir="auto"><span>Independent</span></div>
+<div dir="auto"><span>United Kingdom</span></div>
+<div>
+<span>Email:</span>
+<a href="mailto:ietf@bobbriscoe.net">ietf@bobbriscoe.net</a>
+</div>
+<div>
+<span>URI:</span>
+<a>https://bobbriscoe.net/</a>
+</div>
+</address>
+</section>
+</div></article><aside class="toc-panel"><h2>On this RFC</h2><div id="toc-links"></div></aside></section>
+</main>
+<script src="../assets/doc.js"></script>
+
+</body>
+</html>

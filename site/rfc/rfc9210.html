@@ -1,0 +1,1925 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RFC 9210: DNS Transport over TCP - Operational Requirements</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<div class="progress"></div>
+<main class="doc-layout">
+  <a class="toplink" href="../index.html">← Back to index</a>
+  <section class="doc-hero">
+    <div class="eyebrow">RFC 9210</div>
+    <h1>DNS Transport over TCP - Operational Requirements</h1>
+    <div class="meta-tags"><span class="tag tag-transport">transport</span><span class="tag tag-application">application</span><span class="tag tag-update-chain">update-chain</span></div>
+    <div class="note"><strong>Threat hunting relevance:</strong> Pulled in through the RFC update chain; review &#x27;DNS Transport over TCP - Operational Requirements&#x27; to understand protocol changes that may affect detection, parsing, or investigation context.</div>
+  </section>
+  <section class="reader-tools"><div class="group"><button class="reader-btn" data-action="focus">Focus width</button><button class="reader-btn" data-action="comfy">Comfy text</button></div><button class="reader-btn" data-action="top">Back to top</button></section>
+  <section class="reader-grid"><article class="doc-body"><table>
+<thead><tr>
+<td>RFC 9210</td>
+<td>DNS Transport over TCP</td>
+<td>March 2022</td>
+</tr></thead>
+<tfoot><tr>
+<td>Kristoff &amp; Wessels</td>
+<td>Best Current Practice</td>
+<td>[Page]</td>
+</tr></tfoot>
+</table>
+<div></div>
+<div>
+<dl>
+<dt>Stream:</dt>
+<dd>Internet Engineering Task Force (IETF)</dd>
+<dt>RFC:</dt>
+<dd><a>9210</a></dd>
+<dt>BCP:</dt>
+<dd>235</dd>
+<dt>Updates:</dt>
+<dd>
+<a>1123</a>, <a>1536</a> </dd>
+<dt>Category:</dt>
+<dd>Best Current Practice</dd>
+<dt>Published:</dt>
+<dd>
+<time datetime="2022-03">March 2022</time>
+    </dd>
+<dt>ISSN:</dt>
+<dd>2070-1721</dd>
+<dt>Authors:</dt>
+<dd>
+<div>
+      <div>J. Kristoff</div>
+<div>Dataplane.org</div>
+</div>
+<div>
+      <div>D. Wessels</div>
+<div>Verisign</div>
+</div>
+</dd>
+</dl>
+</div>
+<h1>RFC 9210</h1>
+<h1>DNS Transport over TCP - Operational Requirements</h1>
+<section>
+      <h2><a href="#abstract">Abstract</a></h2>
+<p>This document updates RFCs 1123 and 1536.  This
+     document requires the operational practice of permitting
+     DNS messages to be carried over TCP on the Internet as a Best
+     Current Practice.  This operational requirement is aligned with the
+     implementation requirements in RFC 7766.  The use of TCP includes
+     both DNS over unencrypted TCP as well as over an encrypted TLS
+     session.  The document also considers the consequences of this
+     form of DNS communication and the potential operational issues that
+     can arise when this Best Current Practice is not upheld.<a href="#section-abstract-1">¶</a></p>
+</section>
+<div>
+<section>
+        <h2>
+<a href="#name-status-of-this-memo">Status of This Memo</a>
+        </h2>
+<p>
+            This memo documents an Internet Best Current Practice.<a href="#section-boilerplate.1-1">¶</a></p>
+<p>
+            This document is a product of the Internet Engineering Task Force
+            (IETF).  It represents the consensus of the IETF community.  It has
+            received public review and has been approved for publication by
+            the Internet Engineering Steering Group (IESG).  Further information
+            on BCPs is available in Section 2 of RFC 7841.<a href="#section-boilerplate.1-2">¶</a></p>
+<p>
+            Information about the current status of this document, any
+            errata, and how to provide feedback on it may be obtained at
+            <span><a>https://www.rfc-editor.org/info/rfc9210</a></span>.<a href="#section-boilerplate.1-3">¶</a></p>
+</section>
+</div>
+<div>
+<section>
+        <h2>
+<a href="#name-copyright-notice">Copyright Notice</a>
+        </h2>
+<p>
+            Copyright (c) 2022 IETF Trust and the persons identified as the
+            document authors. All rights reserved.<a href="#section-boilerplate.2-1">¶</a></p>
+<p>
+            This document is subject to BCP 78 and the IETF Trust's Legal
+            Provisions Relating to IETF Documents
+            (<span><a>https://trustee.ietf.org/license-info</a></span>) in effect on the date of
+            publication of this document. Please review these documents
+            carefully, as they describe your rights and restrictions with
+            respect to this document. Code Components extracted from this
+            document must include Revised BSD License text as described in
+            Section 4.e of the Trust Legal Provisions and are provided without
+            warranty as described in the Revised BSD License.<a href="#section-boilerplate.2-2">¶</a></p>
+</section>
+</div>
+<div>
+<section>
+        <a href="#" onclick="scroll(0,0)">▲</a><h2>
+<a href="#name-table-of-contents">Table of Contents</a>
+        </h2>
+<nav><ul>
+<li>
+            <p><a href="#section-1">1</a>.  <a href="#name-introduction">Introduction</a></p>
+<ul>
+<li>
+                <p><a href="#section-1.1">1.1</a>.  <a href="#name-requirements-language">Requirements Language</a></p>
+</li>
+            </ul>
+</li>
+          <li>
+            <p><a href="#section-2">2</a>.  <a href="#name-history-of-dns-over-tcp">History of DNS over TCP</a></p>
+<ul>
+<li>
+                <p><a href="#section-2.1">2.1</a>.  <a href="#name-uneven-transport-usage-and-">Uneven Transport Usage and Preference</a></p>
+</li>
+              <li>
+                <p><a href="#section-2.2">2.2</a>.  <a href="#name-waiting-for-large-messages-">Waiting for Large Messages and Reliability</a></p>
+</li>
+              <li>
+                <p><a href="#section-2.3">2.3</a>.  <a href="#name-edns0">EDNS(0)</a></p>
+</li>
+              <li>
+                <p><a href="#section-2.4">2.4</a>.  <a href="#name-fragmentation-and-truncatio">Fragmentation and Truncation</a></p>
+</li>
+              <li>
+                <p><a href="#section-2.5">2.5</a>.  <a href="#name-only-zone-transfers-use-tcp">"Only Zone Transfers Use TCP"</a></p>
+</li>
+              <li>
+                <p><a href="#section-2.6">2.6</a>.  <a href="#name-reuse-pipelining-and-out-of">Reuse, Pipelining, and Out-of-Order Processing</a></p>
+</li>
+            </ul>
+</li>
+          <li>
+            <p><a href="#section-3">3</a>.  <a href="#name-dns-over-tcp-requirements">DNS-over-TCP Requirements</a></p>
+</li>
+          <li>
+            <p><a href="#section-4">4</a>.  <a href="#name-network-and-system-consider">Network and System Considerations</a></p>
+<ul>
+<li>
+                <p><a href="#section-4.1">4.1</a>.  <a href="#name-connection-establishment-an">Connection Establishment and Admission</a></p>
+</li>
+              <li>
+                <p><a href="#section-4.2">4.2</a>.  <a href="#name-connection-management">Connection Management</a></p>
+</li>
+              <li>
+                <p><a href="#section-4.3">4.3</a>.  <a href="#name-connection-termination">Connection Termination</a></p>
+</li>
+              <li>
+                <p><a href="#section-4.4">4.4</a>.  <a href="#name-dns-over-tls">DNS over TLS</a></p>
+</li>
+              <li>
+                <p><a href="#section-4.5">4.5</a>.  <a href="#name-defaults-and-recommended-li">Defaults and Recommended Limits</a></p>
+</li>
+            </ul>
+</li>
+          <li>
+            <p><a href="#section-5">5</a>.  <a href="#name-dns-over-tcp-filtering-risk">DNS-over-TCP Filtering Risks</a></p>
+<ul>
+<li>
+                <p><a href="#section-5.1">5.1</a>.  <a href="#name-truncation-retries-and-time">Truncation, Retries, and Timeouts</a></p>
+</li>
+              <li>
+                <p><a href="#section-5.2">5.2</a>.  <a href="#name-dns-root-zone-ksk-rollover">DNS Root Zone KSK Rollover</a></p>
+</li>
+            </ul>
+</li>
+          <li>
+            <p><a href="#section-6">6</a>.  <a href="#name-logging-and-monitoring">Logging and Monitoring</a></p>
+</li>
+          <li>
+            <p><a href="#section-7">7</a>.  <a href="#name-iana-considerations">IANA Considerations</a></p>
+</li>
+          <li>
+            <p><a href="#section-8">8</a>.  <a href="#name-security-considerations">Security Considerations</a></p>
+</li>
+          <li>
+            <p><a href="#section-9">9</a>.  <a href="#name-privacy-considerations">Privacy Considerations</a></p>
+</li>
+          <li>
+            <p><a href="#section-10">10</a>. <a href="#name-references">References</a></p>
+<ul>
+<li>
+                <p><a href="#section-10.1">10.1</a>.  <a href="#name-normative-references">Normative References</a></p>
+</li>
+              <li>
+                <p><a href="#section-10.2">10.2</a>.  <a href="#name-informative-references">Informative References</a></p>
+</li>
+            </ul>
+</li>
+          <li>
+            <p><a href="#appendix-A">Appendix A</a>.  <a href="#name-rfcs-related-to-dns-transpo">RFCs Related to DNS Transport over TCP</a></p>
+<ul>
+<li>
+                <p><a href="#appendix-A.1">A.1</a>.  <a href="#name-rfc-1035-domain-names-imple">RFC 1035 - DOMAIN NAMES - IMPLEMENTATION AND SPECIFICATION</a></p>
+</li>
+              <li>
+                <p><a href="#appendix-A.2">A.2</a>.  <a href="#name-rfc-1536-common-dns-impleme">RFC 1536 - Common DNS Implementation Errors and Suggested Fixes</a></p>
+</li>
+              <li>
+                <p><a href="#appendix-A.3">A.3</a>.  <a href="#name-rfc-1995-incremental-zone-t">RFC 1995 - Incremental Zone Transfer in DNS</a></p>
+</li>
+              <li>
+                <p><a href="#appendix-A.4">A.4</a>.  <a href="#name-rfc-1996-a-mechanism-for-pr">RFC 1996 - A Mechanism for Prompt Notification of Zone Changes (DNS NOTIFY)</a></p>
+</li>
+              <li>
+                <p><a href="#appendix-A.5">A.5</a>.  <a href="#name-rfc-2181-clarifications-to-">RFC 2181 - Clarifications to the DNS Specification</a></p>
+</li>
+              <li>
+                <p><a href="#appendix-A.6">A.6</a>.  <a href="#name-rfc-2694-dns-extensions-to-">RFC 2694 - DNS extensions to Network Address Translators (DNS_ALG)</a></p>
+</li>
+              <li>
+                <p><a href="#appendix-A.7">A.7</a>.  <a href="#name-rfc-3225-indicating-resolve">RFC 3225 - Indicating Resolver Support of DNSSEC</a></p>
+</li>
+              <li>
+                <p><a href="#appendix-A.8">A.8</a>.  <a href="#name-rfc-3226-dnssec-and-ipv6-a6">RFC 3226 - DNSSEC and IPv6 A6 aware server/resolver message size requirements</a></p>
+</li>
+              <li>
+                <p><a href="#appendix-A.9">A.9</a>.  <a href="#name-rfc-4472-operational-consid">RFC 4472 - Operational Considerations and Issues with IPv6 DNS</a></p>
+</li>
+              <li>
+                <p><a href="#appendix-A.10">A.10</a>. <a href="#name-rfc-5452-measures-for-makin">RFC 5452 - Measures for Making DNS More Resilient against Forged Answers</a></p>
+</li>
+              <li>
+                <p><a href="#appendix-A.11">A.11</a>. <a href="#name-rfc-5507-design-choices-whe">RFC 5507 - Design Choices When Expanding the DNS</a></p>
+</li>
+              <li>
+                <p><a href="#appendix-A.12">A.12</a>. <a href="#name-rfc-5625-dns-proxy-implemen">RFC 5625 - DNS Proxy Implementation Guidelines</a></p>
+</li>
+              <li>
+                <p><a href="#appendix-A.13">A.13</a>. <a href="#name-rfc-5936-dns-zone-transfer-">RFC 5936 - DNS Zone Transfer Protocol (AXFR)</a></p>
+</li>
+              <li>
+                <p><a href="#appendix-A.14">A.14</a>. <a href="#name-rfc-7534-as112-nameserver-o">RFC 7534 - AS112 Nameserver Operations</a></p>
+</li>
+              <li>
+                <p><a href="#appendix-A.15">A.15</a>. <a href="#name-rfc-6762-multicast-dns">RFC 6762 - Multicast DNS</a></p>
+</li>
+              <li>
+                <p><a href="#appendix-A.16">A.16</a>. <a href="#name-rfc-6891-extension-mechanis">RFC 6891 - Extension Mechanisms for DNS (EDNS(0))</a></p>
+</li>
+              <li>
+                <p><a href="#appendix-A.17">A.17</a>. <a href="#name-iab-rfc-6950-architectural-">IAB RFC 6950 - Architectural Considerations on Application Features in the DNS</a></p>
+</li>
+              <li>
+                <p><a href="#appendix-A.18">A.18</a>. <a href="#name-rfc-7477-child-to-parent-sy">RFC 7477 - Child-to-Parent Synchronization in DNS</a></p>
+</li>
+              <li>
+                <p><a href="#appendix-A.19">A.19</a>. <a href="#name-rfc-7720-dns-root-name-serv">RFC 7720 - DNS Root Name Service Protocol and Deployment Requirements</a></p>
+</li>
+              <li>
+                <p><a href="#appendix-A.20">A.20</a>. <a href="#name-rfc-7766-dns-transport-over">RFC 7766 - DNS Transport over TCP - Implementation Requirements</a></p>
+</li>
+              <li>
+                <p><a href="#appendix-A.21">A.21</a>. <a href="#name-rfc-7828-the-edns-tcp-keepa">RFC 7828 - The edns-tcp-keepalive EDNS(0) Option</a></p>
+</li>
+              <li>
+                <p><a href="#appendix-A.22">A.22</a>. <a href="#name-rfc-7858-specification-for-">RFC 7858 - Specification for DNS over Transport Layer Security (TLS)</a></p>
+</li>
+              <li>
+                <p><a href="#appendix-A.23">A.23</a>. <a href="#name-rfc-7873-domain-name-system">RFC 7873 - Domain Name System (DNS) Cookies</a></p>
+</li>
+              <li>
+                <p><a href="#appendix-A.24">A.24</a>. <a href="#name-rfc-7901-chain-query-reques">RFC 7901 - CHAIN Query Requests in DNS</a></p>
+</li>
+              <li>
+                <p><a href="#appendix-A.25">A.25</a>. <a href="#name-rfc-8027-dnssec-roadblock-a">RFC 8027 - DNSSEC Roadblock Avoidance</a></p>
+</li>
+              <li>
+                <p><a href="#appendix-A.26">A.26</a>. <a href="#name-rfc-8094-dns-over-datagram-">RFC 8094 - DNS over Datagram Transport Layer Security (DTLS)</a></p>
+</li>
+              <li>
+                <p><a href="#appendix-A.27">A.27</a>. <a href="#name-rfc-8162-using-secure-dns-t">RFC 8162 - Using Secure DNS to Associate Certificates with Domain Names for S/MIME</a></p>
+</li>
+              <li>
+                <p><a href="#appendix-A.28">A.28</a>. <a href="#name-rfc-8324-dns-privacy-author">RFC 8324 - DNS Privacy, Authorization, Special Uses, Encoding, Characters, Matching, and Root Structure: Time for Another Look?</a></p>
+</li>
+              <li>
+                <p><a href="#appendix-A.29">A.29</a>. <a href="#name-rfc-8467-padding-policies-f">RFC 8467 - Padding Policies for Extension Mechanisms for DNS (EDNS(0))</a></p>
+</li>
+              <li>
+                <p><a href="#appendix-A.30">A.30</a>. <a href="#name-rfc-8482-providing-minimal-">RFC 8482 - Providing Minimal-Sized Responses to DNS Queries That Have QTYPE=ANY</a></p>
+</li>
+              <li>
+                <p><a href="#appendix-A.31">A.31</a>. <a href="#name-rfc-8483-yeti-dns-testbed">RFC 8483 - Yeti DNS Testbed</a></p>
+</li>
+              <li>
+                <p><a href="#appendix-A.32">A.32</a>. <a href="#name-rfc-8484-dns-queries-over-h">RFC 8484 - DNS Queries over HTTPS (DoH)</a></p>
+</li>
+              <li>
+                <p><a href="#appendix-A.33">A.33</a>. <a href="#name-rfc-8490-dns-stateful-opera">RFC 8490 - DNS Stateful Operations</a></p>
+</li>
+              <li>
+                <p><a href="#appendix-A.34">A.34</a>. <a href="#name-rfc-8501-reverse-dns-in-ipv">RFC 8501 - Reverse DNS in IPv6 for Internet Service Providers</a></p>
+</li>
+              <li>
+                <p><a href="#appendix-A.35">A.35</a>. <a href="#name-rfc-8806-running-a-root-ser">RFC 8806 - Running a Root Server Local to a Resolver</a></p>
+</li>
+              <li>
+                <p><a href="#appendix-A.36">A.36</a>. <a href="#name-rfc-8906-a-common-operation">RFC 8906 - A Common Operational Problem in DNS Servers: Failure to Communicate</a></p>
+</li>
+              <li>
+                <p><a href="#appendix-A.37">A.37</a>. <a href="#name-rfc-8932-recommendations-fo">RFC 8932 - Recommendations for DNS Privacy Service Operators</a></p>
+</li>
+              <li>
+                <p><a href="#appendix-A.38">A.38</a>. <a href="#name-rfc-8945-secret-key-transac">RFC 8945 - Secret Key Transaction Authentication for DNS (TSIG)</a></p>
+</li>
+            </ul>
+</li>
+          <li>
+            <p><a href="#appendix-B"></a><a href="#name-acknowledgments">Acknowledgments</a></p>
+</li>
+          <li>
+            <p><a href="#appendix-C"></a><a href="#name-authors-addresses">Authors' Addresses</a></p>
+</li>
+        </ul>
+</nav>
+</section>
+</div>
+<section>
+      <h2>
+<a href="#section-1">1. </a><a href="#name-introduction">Introduction</a>
+      </h2>
+<p>DNS messages are delivered using UDP or TCP communications.
+     While most DNS transactions are carried over UDP, some operators
+     have been led to believe that any DNS-over-TCP traffic is unwanted
+     or unnecessary for general DNS operation.  When DNS over TCP has
+     been restricted, a variety of communication failures and debugging
+     challenges often arise.  As DNS and new naming system features have
+     evolved, TCP as a transport has become increasingly important for
+     the correct and safe operation of an Internet DNS.  Reflecting
+     modern usage, the DNS standards declare that
+     support for TCP is a required part of the DNS implementation
+     specifications <span>[<a href="#RFC7766">RFC7766</a>]</span>.  This document is the
+     equivalent of formal requirements for the operational community,
+     encouraging system administrators, network engineers, and security
+     staff to ensure DNS-over-TCP communications support is on par with
+     DNS-over-UDP communications. It updates <span>[<a href="#RFC1123">RFC1123</a>], <a>Section 6.1.3.2</a></span> to clarify that all DNS resolvers and recursive
+     servers
+     <span>MUST</span> support and service both TCP and UDP queries and also
+     updates <span>[<a href="#RFC1536">RFC1536</a>]</span> to remove the misconception
+     that TCP is only useful for zone transfers.<a href="#section-1-1">¶</a></p>
+<section>
+        <h3>
+<a href="#section-1.1">1.1. </a><a href="#name-requirements-language">Requirements Language</a>
+        </h3>
+<p>
+    The key words "<span>MUST</span>", "<span>MUST NOT</span>", "<span>REQUIRED</span>", "<span>SHALL</span>", "<span>SHALL NOT</span>", "<span>SHOULD</span>", "<span>SHOULD NOT</span>", "<span>RECOMMENDED</span>", "<span>NOT RECOMMENDED</span>",
+    "<span>MAY</span>", and "<span>OPTIONAL</span>" in this document are to be interpreted as
+    described in BCP 14 <span>[<a href="#RFC2119">RFC2119</a>]</span> <span>[<a href="#RFC8174">RFC8174</a>]</span> 
+    when, and only when, they appear in all capitals, as shown here.<a href="#section-1.1-1">¶</a></p>
+</section>
+</section>
+<section>
+      <h2>
+<a href="#section-2">2. </a><a href="#name-history-of-dns-over-tcp">History of DNS over TCP</a>
+      </h2>
+<p>The curious state of disagreement between operational best practices
+     and guidance for DNS transport protocols derives from conflicting
+     messages operators have received from other operators, implementors,
+     and even the IETF.  Sometimes these mixed signals have been
+     explicit; on other occasions, conflicting messages have been implicit.  This
+     section presents an interpretation of the storied and conflicting
+     history that led to this document.  This section is included for
+     informational purposes only.<a href="#section-2-1">¶</a></p>
+<section>
+        <h3>
+<a href="#section-2.1">2.1. </a><a href="#name-uneven-transport-usage-and-">Uneven Transport Usage and Preference</a>
+        </h3>
+<p>In the original suite of DNS specifications, <span>[<a href="#RFC1034">RFC1034</a>]</span> and <span>[<a href="#RFC1035">RFC1035</a>]</span> clearly specify
+       that DNS messages could be carried in either
+       UDP or TCP, but they also state that there is a preference for UDP as the
+       best transport for queries in the general case.  As stated in
+       <span>[<a href="#RFC1035">RFC1035</a>]</span>:<a href="#section-2.1-1">¶</a></p>
+<blockquote>
+          While virtual circuits can be used for any DNS activity,
+         datagrams are preferred for queries due to their lower overhead
+         and better performance.<a href="#section-2.1-2">¶</a>
+</blockquote>
+<p>Another early, important, and influential document, <span>[<a href="#RFC1123">RFC1123</a>]</span>, marks the preference for a transport protocol more explicitly:<a href="#section-2.1-3">¶</a></p>
+<blockquote>
+DNS resolvers and recursive servers <span>MUST</span> support UDP, and
+         <span>SHOULD</span> support TCP, for sending (non-zone-transfer) queries.<a href="#section-2.1-4">¶</a>
+</blockquote>
+<p>
+       and it further stipulates that:<a href="#section-2.1-5">¶</a></p>
+<blockquote>
+A name server <span>MAY</span> limit the resources it devotes to TCP
+         queries, but it <span>SHOULD NOT</span> refuse to service a TCP query just
+         because it would have succeeded with UDP.<a href="#section-2.1-6">¶</a>
+</blockquote>
+<p>Culminating in <span>[<a href="#RFC1536">RFC1536</a>]</span>, DNS over TCP
+       came to be associated primarily with the zone transfer mechanism,
+       while most DNS queries and responses were seen as the dominion of
+       UDP.<a href="#section-2.1-7">¶</a></p>
+</section>
+<section>
+        <h3>
+<a href="#section-2.2">2.2. </a><a href="#name-waiting-for-large-messages-">Waiting for Large Messages and Reliability</a>
+        </h3>
+<p>In the original specifications, the maximum DNS-over-UDP
+       message size was enshrined at 512 bytes.  However, even while
+        <span>[<a href="#RFC1123">RFC1123</a>]</span> prefers UDP for non-zone transfer
+       queries, it foresaw that DNS over TCP would become more popular in the future to overcome this limitation:<a href="#section-2.2-1">¶</a></p>
+<blockquote>
+[...] it is also clear that some new DNS record types
+         defined in the future will contain information exceeding the
+         512 byte limit that applies to UDP, and hence will require
+         TCP.<a href="#section-2.2-2">¶</a>
+</blockquote>
+<p>At least two new, widely anticipated developments were set to
+ elevate the need for DNS-over-TCP transactions. The first was
+       dynamic updates defined in <span>[<a href="#RFC2136">RFC2136</a>]</span>, and the
+       second was the set of extensions collectively known as "DNSSEC",
+       whose operational considerations were originally given in <span>[<a href="#RFC2541">RFC2541</a>]</span>
+       (note that <span>[<a href="#RFC2541">RFC2541</a>]</span> has been obsoleted by <span>[<a href="#RFC6781">RFC6781</a>]</span>).  The
+       former suggests that<a href="#section-2.2-3">¶</a></p>
+<blockquote>
+       ...requestors who require an accurate response
+code must use TCP.<a href="#section-2.2-4">¶</a>
+</blockquote>
+<p>
+       while the latter warns that<a href="#section-2.2-5">¶</a></p>
+<blockquote>... larger keys
+       increase the size of the KEY and SIG RRs.  This increases the chance
+       of DNS UDP packet overflow and the possible necessity for using
+       higher overhead TCP in responses.<a href="#section-2.2-6">¶</a>
+</blockquote>
+<p>Yet, defying some expectations, DNS over TCP remained little used
+       in real traffic across the Internet in the late 1990s.  Dynamic updates saw
+       little deployment between autonomous networks.  Around the time
+       DNSSEC was first defined, another new feature helped solidify
+       UDP transport dominance for message transactions.<a href="#section-2.2-7">¶</a></p>
+</section>
+<section>
+        <h3>
+<a href="#section-2.3">2.3. </a><a href="#name-edns0">EDNS(0)</a>
+        </h3>
+<p>In 1999, the IETF published the Extension Mechanisms for DNS (EDNS(0)) in <span>[<a href="#RFC2671">RFC2671</a>]</span> (which was obsoleted by <span>[<a href="#RFC6891">RFC6891</a>]</span> in 2013).  That document
+       standardized a way for communicating DNS nodes to perform
+       rudimentary capabilities negotiation.  One such capability
+       written into the base specification and present in every EDNS(0)-compatible
+       message is the value of the maximum UDP payload size
+       the sender can support.  This unsigned 16-bit field specifies,
+       in bytes, the maximum (possibly fragmented) DNS message size a
+       node is capable of receiving over UDP.  In practice, typical values are
+       a subset of the 512- to 4096-byte range.  EDNS(0) became
+       widely deployed over the next several years, and numerous surveys
+       (see <span>[<a href="#CASTRO2010">CASTRO2010</a>]</span> and <span>[<a href="#NETALYZR">NETALYZR</a>]</span>)
+       have shown that many systems support larger UDP MTUs
+       with EDNS(0).<a href="#section-2.3-1">¶</a></p>
+<p>The natural effect of EDNS(0) deployment meant DNS messages
+       larger than 512 bytes would be less reliant on TCP than they
+       might otherwise have been.  While a non-negligible population of
+       DNS systems lacked EDNS(0) or fell back to TCP when necessary,
+       DNS clients still strongly prefer UDP to TCP.
+       For example, as of 2014,
+       DNS-over-TCP transactions remained a very small fraction of
+       overall DNS traffic received by root name servers <span>[<a href="#VERISIGN">VERISIGN</a>]</span>.<a href="#section-2.3-2">¶</a></p>
+</section>
+<section>
+        <h3>
+<a href="#section-2.4">2.4. </a><a href="#name-fragmentation-and-truncatio">Fragmentation and Truncation</a>
+        </h3>
+<p>Although EDNS(0) provides a way for endpoints to signal support for
+       DNS messages exceeding 512 bytes, the realities of a diverse and
+       inconsistently deployed Internet may result in some large messages
+       being unable to reach their destination.  Any IP datagram whose size
+       exceeds the MTU of a link it transits will be fragmented and then
+       reassembled by the receiving host.  Unfortunately, it is not uncommon
+       for middleboxes and firewalls to block IP fragments.  If one or more
+       fragments do not arrive, the application does not receive the message,
+       and the request times out.<a href="#section-2.4-1">¶</a></p>
+<p>For IPv4-connected hosts, the MTU is often an Ethernet
+       payload size of 1500 bytes.  This means that the largest unfragmented
+       UDP DNS message that can be sent over IPv4 is likely 1472 bytes,
+       although tunnel encapsulation may reduce that maximum message
+       size in some cases.<a href="#section-2.4-2">¶</a></p>
+<p>For
+       IPv6, the situation is a little more complicated.  First, IPv6 headers
+       are 40 bytes (versus 20 without options in IPv4).  Second, approximately
+       one-third of DNS recursive resolvers
+       use the minimum MTU of 1280 bytes <span>[<a href="#APNIC">APNIC</a>]</span>.
+       Third, fragmentation in IPv6 can only be
+       done by the host originating the datagram.  The need to fragment is
+       conveyed in an ICMPv6 "Packet Too Big" message.  The originating host
+       indicates a fragmented datagram with IPv6 extension headers.
+       Unfortunately, it is quite common for both ICMPv6 and IPv6 extension
+       headers to be blocked by middleboxes.  According to
+       <span>[<a href="#HUSTON">HUSTON</a>]</span>, some 35% of IPv6-capable
+       recursive resolvers were unable to receive a fragmented IPv6 packet.
+       When the originating host receives a signal that
+       fragmentation is required, it is expected to populate its path
+       MTU cache for that destination.  The application will then retry
+       the query after a timeout since the host does not generally retain
+       copies of messages sent over UDP for potential retransmission.<a href="#section-2.4-3">¶</a></p>
+<p>The practical consequence of all this is that DNS requestors
+       must be prepared to retry queries with different EDNS(0) maximum
+       message size values. Administrators of <span>[<a href="#BIND">BIND</a>]</span> are likely to be 
+       familiar with seeing the following message in their system logs: "success resolving ... after reducing the
+       advertised EDNS(0) UDP packet size to 512 octets".<a href="#section-2.4-4">¶</a></p>
+<p>Often, reducing the EDNS(0) UDP packet size leads to a
+       successful response.  That is, the necessary data fits within the
+       smaller message size.  However, when the data does not fit, the
+       server sets the truncated flag in its response, indicating the
+       client should retry over TCP to receive the whole response.  This
+       is undesirable from the client's point of view because it adds
+       more latency and is potentially undesirable from the server's point
+       of view due to the increased resource requirements of TCP.<a href="#section-2.4-5">¶</a></p>
+<p>Note that a receiver is unable to differentiate between packets
+       lost due to congestion and packets (fragments) intentionally
+       dropped by firewalls or middleboxes.  Over network paths with
+       non-trivial amounts of packet loss, larger, fragmented DNS responses
+       are more likely to never arrive and time out compared to smaller,
+       unfragmented responses.  Clients might be misled into retrying
+       queries with different EDNS(0) UDP packet size values for the
+       wrong reason.<a href="#section-2.4-6">¶</a></p>
+<p>The issues around fragmentation, truncation, and TCP are
+       driving certain implementation and policy decisions in the DNS.
+       Notably, Cloudflare implemented a technique that minimizes the number of DNSSEC denial-of-existence records (for its online signing platform)
+       <span>[<a href="#CLOUDFLARE">CLOUDFLARE</a>]</span> and uses an Elliptic Curve Digital
+       Signature Algorithm (ECDSA) such that
+       its signed responses fit easily in 512 bytes.  The Key Signing Key (KSK) Rollover
+       Design Team <span>[<a href="#DESIGNTEAM">DESIGNTEAM</a>]</span> spent a lot of time
+       thinking and worrying about response sizes.  There is growing
+       sentiment in the DNSSEC community that RSA key sizes beyond
+       2048 bits are impractical and that critical infrastructure zones
+       should transition to elliptic curve algorithms to keep response
+       sizes manageable <span>[<a href="#ECDSA">ECDSA</a>]</span>.<a href="#section-2.4-7">¶</a></p>
+<p>More recently, renewed security concerns about fragmented DNS
+       messages (see <span>[<a href="#I-D.ietf-dnsop-avoid-fragmentation">AVOID_FRAGS</a>]</span> and <span>[<a href="#FRAG_POISON">FRAG_POISON</a>]</span>)
+       are leading implementors to consider smaller responses and lower
+       default EDNS(0) UDP payload size values for both queriers and
+       responders <span>[<a href="#FLAGDAY2020">FLAGDAY2020</a>]</span>.<a href="#section-2.4-8">¶</a></p>
+</section>
+<section>
+        <h3>
+<a href="#section-2.5">2.5. </a><a href="#name-only-zone-transfers-use-tcp">"Only Zone Transfers Use TCP"</a>
+        </h3>
+<p>Today, the majority of the DNS community expects, or at least
+       has a desire, to see DNS-over-TCP transactions occur without
+       interference <span>[<a href="#FLAGDAY2020">FLAGDAY2020</a>]</span>.  However, there has also been a long-held belief by
+       some operators, particularly for security-related reasons, that
+       DNS-over-TCP services should be purposely limited or not provided
+       at all <span>[<a href="#CHES94">CHES94</a>]</span> <span>[<a href="#DJBDNS">DJBDNS</a>]</span>.  A popular meme is
+       that DNS over TCP is only ever used for zone
+       transfers and is generally unnecessary otherwise, with filtering
+       all DNS-over-TCP traffic even described as a best practice.<a href="#section-2.5-1">¶</a></p>
+<p>The position on restricting DNS over TCP had some
+       justification given that historical implementations of DNS
+       name servers provided very little in the way of TCP connection
+       management (for example, see <span><a>Section 6.1.2</a> of [<a href="#RFC7766">RFC7766</a>]</span> for more details).  However, modern
+       standards and implementations are nearing parity with the more
+       sophisticated TCP management techniques employed by, for example,
+       HTTP(S) servers and load balancers.<a href="#section-2.5-2">¶</a></p>
+</section>
+<section>
+        <h3>
+<a href="#section-2.6">2.6. </a><a href="#name-reuse-pipelining-and-out-of">Reuse, Pipelining, and Out-of-Order Processing</a>
+        </h3>
+<p>The idea that a TCP connection can support multiple transactions
+       goes back as far as <span>[<a href="#RFC0883">RFC0883</a>]</span>, which states:
+       "Multiple messages may be sent over a virtual circuit." Although
+       <span>[<a href="#RFC1035">RFC1035</a>]</span>, which updates the former, omits this
+       particular detail, it has been generally accepted that a TCP connection
+       can be used for more than one query and response.<a href="#section-2.6-1">¶</a></p>
+<p><span>[<a href="#RFC5966">RFC5966</a>]</span> clarifies that servers are not
+       required to preserve the order of queries and responses over
+       any transport.
+       <span>[<a href="#RFC7766">RFC7766</a>]</span>, which updates the former, further
+       encourages query pipelining over TCP to achieve performance on
+       par with UDP.
+       A server that sends out-of-order responses to pipelined queries
+       avoids head-of-line blocking when the response for a later
+       query is ready before the response to an earlier query.<a href="#section-2.6-2">¶</a></p>
+<p>However, TCP can potentially suffer from a different
+       head-of-line blocking problem due to packet loss.
+       Since TCP itself enforces ordering, a single lost segment
+       delays delivery of data in any following segments until
+       the lost segment is retransmitted and successfully received.<a href="#section-2.6-3">¶</a></p>
+</section>
+</section>
+<section>
+      <h2>
+<a href="#section-3">3. </a><a href="#name-dns-over-tcp-requirements">DNS-over-TCP Requirements</a>
+      </h2>
+<p>An average increase in DNS message size (e.g., due to DNSSEC),
+     the continued development of new DNS features (<a href="#dnsrfcs">Appendix A</a>), and a denial-of-service mitigation
+     technique (<a href="#Security">Section 8</a>) all show that
+     DNS-over-TCP transactions are as important to the correct and safe
+     operation of the Internet DNS as ever, if not more so.
+     Furthermore, there has been research that argues
+     connection-oriented DNS transactions may provide security and
+     privacy advantages over UDP transport <span>[<a href="#TDNS">TDNS</a>]</span>.
+     In fact, the standard for DNS over TLS <span>[<a href="#RFC7858">RFC7858</a>]</span>
+     is just this sort of specification.  Therefore, this document makes
+     explicit that it is undesirable for network operators to
+      artificially inhibit DNS-over-TCP transport.<a href="#section-3-1">¶</a></p>
+<p><span><a>Section 6.1.3.2</a> of [<a href="#RFC1123">RFC1123</a>]</span> is updated as follows:<a href="#section-3-2">¶</a></p>
+<p>OLD:<a href="#section-3-3">¶</a></p>
+<blockquote>
+        DNS resolvers and recursive servers <span>MUST</span> support UDP, and
+        <span>SHOULD</span> support TCP, for sending (non-zone-transfer) queries.<a href="#section-3-4">¶</a>
+</blockquote>
+<p>NEW:<a href="#section-3-5">¶</a></p>
+<blockquote>
+          All DNS resolvers and servers <span>MUST</span> support and service 
+          both UDP and TCP queries.<a href="#section-3-6">¶</a>
+</blockquote>
+<p>Note that:<a href="#section-3-7">¶</a></p>
+<ul>
+<li>DNS servers (including forwarders) <span>MUST</span> support and service
+         TCP for receiving queries so that clients can reliably receive
+         responses that are larger than what either side considers too large
+         for UDP.<a href="#section-3-8.1">¶</a>
+</li>
+        <li>DNS clients <span>MUST</span> support TCP for sending
+         queries so that they can retry truncated UDP responses as necessary.<a href="#section-3-8.2">¶</a>
+</li>
+      </ul>
+<p>
+     Furthermore, the requirement in <span><a>Section 6.1.3.2</a> of [<a href="#RFC1123">RFC1123</a>]</span> around limiting the resources a server devotes
+     to queries is hereby updated:<a href="#section-3-9">¶</a></p>
+<p>OLD:<a href="#section-3-10">¶</a></p>
+<blockquote>
+          A name server <span>MAY</span> limit the resources it devotes to TCP queries,
+          but it <span>SHOULD NOT</span> refuse to service a TCP query just
+          because it would have succeeded with UDP.<a href="#section-3-11">¶</a>
+</blockquote>
+<p>
+
+     NEW:<a href="#section-3-12">¶</a></p>
+<blockquote>
+           A name server <span>MAY</span> limit the resources it devotes to queries, but
+           it <span>MUST NOT</span> refuse to service a query just because it would have
+           succeeded with another transport protocol.<a href="#section-3-13">¶</a>
+</blockquote>
+<p>Lastly, <span><a>Section 1</a> of [<a href="#RFC1536">RFC1536</a>]</span> is updated to eliminate
+     the misconception that TCP is only useful for zone transfers:<a href="#section-3-14">¶</a></p>
+<p>OLD:<a href="#section-3-15">¶</a></p>
+<blockquote>
+         DNS implements the classic request-response scheme of
+         client-server interaction. UDP is, therefore, the chosen protocol
+         for communication though TCP is used for zone transfers.<a href="#section-3-16">¶</a>
+</blockquote>
+<p>
+
+     NEW:<a href="#section-3-17">¶</a></p>
+<blockquote>
+          DNS implements the classic request-response scheme of
+          client-server interaction.<a href="#section-3-18">¶</a>
+</blockquote>
+<p>The filtering of DNS over TCP is harmful in the general
+     case.  DNS resolver and server operators <span>MUST</span> support and provide
+     DNS service over both UDP and TCP transports.  Likewise, network
+     operators <span>MUST</span> allow DNS service over both UDP and TCP transports.
+     It is acknowledged that DNS-over-TCP service can pose operational
+     challenges that are not present when running DNS over UDP alone,
+     and vice versa.  However,
+     the potential damage incurred by prohibiting DNS-over-TCP
+     service is more detrimental to the continued utility and success of
+     the DNS than when its usage is allowed.<a href="#section-3-19">¶</a></p>
+</section>
+<section>
+      <h2>
+<a href="#section-4">4. </a><a href="#name-network-and-system-consider">Network and System Considerations</a>
+      </h2>
+<p>This section describes measures that systems and applications
+   can take to optimize performance over TCP and to protect themselves
+   from TCP-based resource exhaustion and attacks.<a href="#section-4-1">¶</a></p>
+<section>
+        <h3>
+<a href="#section-4.1">4.1. </a><a href="#name-connection-establishment-an">Connection Establishment and Admission</a>
+        </h3>
+<p>Resolvers and other DNS clients should be aware that some
+       servers might not be reachable over TCP.  For this reason, clients
+       <span>MAY</span> track and limit the number of TCP connections and
+       connection attempts to a single server.  Reachability problems
+       can be caused by network elements close to the server, close
+       to the client, or anywhere along the path between them.  Mobile
+       clients that cache connection failures <span>MAY</span> do so on a per-network
+       basis or <span>MAY</span> clear such a cache upon change of network.<a href="#section-4.1-1">¶</a></p>
+<p>Additionally, DNS clients
+       <span>MAY</span> enforce a short timeout on unestablished connections
+       rather than rely on the host operating system's TCP connection
+       timeout, which is often around 60-120 seconds (i.e., due to an
+       initial retransmission timeout of 1 second, the exponential
+       back-off rules of <span>[<a href="#RFC6298">RFC6298</a>]</span>, and a limit of six
+       retries as is the default in Linux).<a href="#section-4.1-2">¶</a></p>
+<p>The SYN flooding attack is a denial-of-service method
+       affecting hosts that run TCP server processes <span>[<a href="#RFC4987">RFC4987</a>]</span>.  This attack can be very effective if
+       not mitigated.  One of the most effective mitigation techniques
+       is SYN cookies, described in <span><a>Section 3.6</a> of [<a href="#RFC4987">RFC4987</a>]</span>, which allows the server to avoid allocating
+       any state until the successful completion of the three-way
+       handshake.<a href="#section-4.1-3">¶</a></p>
+<p>Services not intended for use by the public Internet,
+       such as most recursive name servers, <span>SHOULD</span> be protected
+       with access controls.  Ideally, these controls are placed in
+       the network, well before any unwanted TCP packets can
+       reach the DNS server host or application.  If this is not
+       possible, the controls can be placed in the application
+       itself.  In some situations (e.g., attacks), it may be necessary
+       to deploy access controls for DNS services that should
+       otherwise be globally reachable.  See also <span>[<a href="#RFC5358">RFC5358</a>]</span>.<a href="#section-4.1-4">¶</a></p>
+<p>The FreeBSD and NetBSD operating systems have an "accept filter" feature
+       (<span>[<a href="#accept_filter">accept_filter</a>]</span>)
+       that postpones delivery of TCP connections to applications
+       until a complete, valid request has been received.  The
+       dns_accf(9) filter ensures that a valid DNS message is
+       received.  If not, the bogus connection never reaches the
+       application.
+       The Linux TCP_DEFER_ACCEPT feature, while more limited in scope,
+       can provide some of the same benefits as the BSD accept filter
+       feature.
+       These features are implemented as low-level socket options
+       and are not activated automatically. If applications wish to
+       use these features, they need to make specific calls to set the
+       right options, and administrators may also need to configure the
+       applications to appropriately use the features.<a href="#section-4.1-5">¶</a></p>
+<p>Per <span>[<a href="#RFC7766">RFC7766</a>]</span>, applications and administrators
+       are advised to remember that TCP <span>MAY</span> be used before sending
+       any UDP queries.  Networks and applications <span>MUST NOT</span> be configured
+       to refuse TCP queries that were not preceded by a UDP query.<a href="#section-4.1-6">¶</a></p>
+<p>TCP Fast Open (TFO) <span>[<a href="#RFC7413">RFC7413</a>]</span> allows TCP
+       clients to shorten the handshake for subsequent connections
+       to the same server.  TFO saves one round-trip time in the
+       connection setup.  DNS servers <span>SHOULD</span> enable TFO when possible.
+       Furthermore, DNS servers clustered behind a single service
+       address (e.g., anycast or load balancing) <span>SHOULD</span> either use the
+       same TFO server key on all instances or disable TFO for all members of the cluster.<a href="#section-4.1-7">¶</a></p>
+<p>DNS clients <span>MAY</span> also enable TFO.  At the time of this writing, it is not implemented or is disabled by default on some operating systems.
+       <span>[<a href="#WIKIPEDIA_TFO">WIKIPEDIA_TFO</a>]</span> describes applications and operating systems
+       that support TFO.<a href="#section-4.1-8">¶</a></p>
+</section>
+<section>
+        <h3>
+<a href="#section-4.2">4.2. </a><a href="#name-connection-management">Connection Management</a>
+        </h3>
+<p>Since host memory for TCP state is a finite resource, DNS
+       clients and
+       servers <span>SHOULD</span> actively manage their connections.  Applications
+       that do not actively manage their connections
+       can encounter resource exhaustion leading to denial of
+       service.  For DNS, as in other protocols, there is a trade-off
+       between keeping connections open for potential future use and
+       the need to free up resources for new connections that will arrive.<a href="#section-4.2-1">¶</a></p>
+<p>Operators of DNS server software <span>SHOULD</span> be aware that operating
+       system and application vendors <span>MAY</span> impose a limit on the total
+       number of established connections.  These limits may be designed
+       to protect against DDoS attacks or performance degradation.
+       Operators <span>SHOULD</span> understand how to increase these limits if
+       necessary and the consequences of doing so.  Limits imposed by
+       the application <span>SHOULD</span> be lower than limits imposed by the
+       operating system so that the application can apply its own
+       policy to connection management, such as closing the oldest
+       idle connections first.<a href="#section-4.2-2">¶</a></p>
+<p>DNS server software <span>MAY</span> provide a configurable limit on
+       the number of established connections per source IP address
+       or subnet.  This can be used to ensure that a single or small
+       set of users cannot consume all TCP resources and deny
+       service to other users.  Note, however, that if this limit
+       is enabled, it possibly limits client performance while leaving
+       some TCP resources unutilized. Operators <span>SHOULD</span> be aware of
+       these trade-offs and ensure this limit, if configured, 
+       is set appropriately based on the number and diversity
+       of their users and  whether users connect from unique IP addresses or
+       through a shared Network Address Translator (NAT) <span>[<a href="#RFC3022">RFC3022</a>]</span>.<a href="#section-4.2-3">¶</a></p>
+<p>DNS server software <span>SHOULD</span> provide a configurable timeout
+       for idle TCP connections.  This can be used to free up resources
+       for new connections and to ensure that idle
+       connections are eventually closed.  At the same time, it possibly
+       limits client performance while leaving some TCP resources unutilized.
+       For very busy name servers, this
+       might be set to a low value, such as a few seconds.  For
+       less busy servers, it might be set to a higher value, such
+       as tens of seconds. DNS clients and servers <span>SHOULD</span> signal
+       their timeout values using the edns-tcp-keepalive EDNS(0)
+       option <span>[<a href="#RFC7828">RFC7828</a>]</span>.<a href="#section-4.2-4">¶</a></p>
+<p>DNS server software <span>MAY</span> provide a configurable limit on
+       the number of transactions per TCP connection.
+       This can help protect against unfair connection use (e.g., not releasing
+       connection slots to other clients) and network evasion attacks.<a href="#section-4.2-5">¶</a></p>
+<p>Similarly, DNS server software <span>MAY</span> provide a configurable
+       limit on the total duration of a TCP connection.
+       This can help protect against unfair connection use, slow read attacks, 
+       and network evasion attacks.<a href="#section-4.2-6">¶</a></p>
+<p>Since clients may not be aware of server-imposed limits,
+       clients utilizing TCP for DNS need to always be prepared to
+       re-establish connections or otherwise retry outstanding
+       queries.<a href="#section-4.2-7">¶</a></p>
+</section>
+<section>
+        <h3>
+<a href="#section-4.3">4.3. </a><a href="#name-connection-termination">Connection Termination</a>
+        </h3>
+<p>The TCP peer that initiates a
+       connection close retains the socket in the TIME_WAIT state
+       for some amount of time, possibly a few minutes. 
+       It is generally preferable for clients to initiate the
+       close of a TCP connection so that busy servers do not 
+       accumulate many sockets in the TIME_WAIT state, which can
+       cause performance problems or even denial of service.
+       The edns-tcp-keepalive EDNS(0) option <span>[<a href="#RFC7828">RFC7828</a>]</span>
+       can be used to encourage clients to close connections.<a href="#section-4.3-1">¶</a></p>
+<p>On systems where large numbers of sockets in TIME_WAIT
+       are observed (as either a client or a server) and are affecting
+       an application's performance, it may be tempting to tune local TCP
+       parameters.  For example, the Linux kernel has
+       a "sysctl" parameter named net.ipv4.tcp_tw_reuse, which allows
+       connections in the TIME_WAIT state to be reused in specific
+       circumstances.  Note, however, that this affects only outgoing (client)
+       connections and has no impact on servers.  In most cases, it is <span>NOT RECOMMENDED</span> to change parameters related to the TIME_WAIT state.
+       It should only be done by those with detailed knowledge of both TCP
+       and the affected application.<a href="#section-4.3-2">¶</a></p>
+</section>
+<section>
+        <h3>
+<a href="#section-4.4">4.4. </a><a href="#name-dns-over-tls">DNS over TLS</a>
+        </h3>
+<p>DNS messages may be sent over TLS to provide privacy
+       between stubs and recursive resolvers. <span>[<a href="#RFC7858">RFC7858</a>]</span>
+       is a Standards Track document describing how this works.
+       Although DNS over TLS utilizes TCP port 853 instead of port 53, this
+       document applies equally well to DNS over TLS.  Note, however,
+       that DNS over TLS is only defined between stubs and
+       recursives at the time of this writing.<a href="#section-4.4-1">¶</a></p>
+<p>The use of TLS places even stronger operational burdens
+       on DNS clients and servers.  Cryptographic functions for
+       authentication and encryption require additional processing.
+       Unoptimized connection setup with TLS 1.3 <span>[<a href="#RFC8446">RFC8446</a>]</span>
+       takes one additional round trip compared to TCP.
+       Connection setup
+       times can be reduced with TCP Fast Open and TLS False Start <span>[<a href="#RFC7918">RFC7918</a>]</span> for TLS 1.2.  TLS 1.3 session resumption does not
+       reduce round-trip latency because no application profile for use of
+       TLS 0-RTT data with DNS has been published at the time of this
+       writing.  However, TLS session resumption can reduce the number of
+       cryptographic operations, and in TLS 1.2, session resumption does
+       reduce the number of additional round trips from two to one.<a href="#section-4.4-2">¶</a></p>
+</section>
+<section>
+        <h3>
+<a href="#section-4.5">4.5. </a><a href="#name-defaults-and-recommended-li">Defaults and Recommended Limits</a>
+        </h3>
+<p>A survey of features and defaults was conducted for popular
+       open-source DNS server implementations at the time of writing.
+       This section documents those defaults and makes recommendations
+       for configurable limits that can be used in the absence of any
+       other information.  Any recommended values in this document are
+       only intended as a starting point for administrators that are
+       unsure of what sorts of limits might be reasonable. Operators <span>SHOULD</span>
+       use application-specific monitoring, system logs, and system
+       monitoring tools to gauge whether their service is operating
+       within or exceeding these limits and adjust accordingly.<a href="#section-4.5-1">¶</a></p>
+<p>Most open-source DNS server implementations provide a
+       configurable limit on the total number of established connections.
+       Default values range from 20 to 150.  In most cases, where the
+       majority of queries take place over UDP, 150 is a reasonable limit.
+       For services or environments where most queries take place over
+       TCP or TLS, 5000 is a more appropriate limit.<a href="#section-4.5-2">¶</a></p>
+<p>Only some open-source implementations provide a way to limit
+       the number of connections per source IP address or subnet, but
+       the default is to have no limit.  For environments or situations
+       where it may be necessary to enable this limit, 25 connections
+       per source IP address is a reasonable starting point.  The limit
+       should be increased when aggregated by subnet or for services
+       where most queries take place over TCP or TLS.<a href="#section-4.5-3">¶</a></p>
+<p>Most open-source implementations provide a configurable idle
+       timeout on connections.  Default values range from 2 to 30 seconds.
+       In most cases, 10 seconds is a reasonable default for this limit.
+       Longer timeouts improve connection reuse, but busy servers may
+       need to use a lower limit.<a href="#section-4.5-4">¶</a></p>
+<p>Only some open-source implementations provide a way to limit
+       the number of transactions per connection, but the default is to
+       have no limit.  This document does not offer advice on particular
+       values for such a limit.<a href="#section-4.5-5">¶</a></p>
+<p>Only some open-source implementations provide a way to limit
+       the duration of connection, but the default is to have no limit.
+       This document does not offer advice on particular values for such
+       a limit.<a href="#section-4.5-6">¶</a></p>
+</section>
+</section>
+<section>
+      <h2>
+<a href="#section-5">5. </a><a href="#name-dns-over-tcp-filtering-risk">DNS-over-TCP Filtering Risks</a>
+      </h2>
+<p>Networks that filter DNS over TCP risk losing access to
+     significant or important pieces of the DNS namespace.  For a
+     variety of reasons, a DNS answer may require a DNS-over-TCP query.
+     This may include large message sizes, lack of EDNS(0) support, or DDoS
+     mitigation techniques (including Response Rate Limiting <span>[<a href="#RRL">RRL</a>]</span>); additionally, perhaps some future capability that is as
+     yet unforeseen will also demand TCP transport.<a href="#section-5-1">¶</a></p>
+<p>For example, <span>[<a href="#RFC7901">RFC7901</a>]</span> describes a latency-avoiding
+     technique that sends extra data in DNS responses.  This makes
+     responses larger and potentially increases the effectiveness of DDoS reflection
+     attacks.  The specification mandates the use of TCP or DNS
+     cookies <span>[<a href="#RFC7873">RFC7873</a>]</span>.<a href="#section-5-2">¶</a></p>
+<p>Even if any or all particular answers have consistently been
+     returned successfully with UDP in the past, this continued behavior
+     cannot be guaranteed when DNS messages are exchanged between
+     autonomous systems.  Therefore, filtering of DNS over TCP is
+     considered harmful and contrary to the safe and successful operation
+     of the Internet.  This section enumerates some of the known risks
+     at the time of this writing when networks filter DNS over
+     TCP.<a href="#section-5-3">¶</a></p>
+<section>
+        <h3>
+<a href="#section-5.1">5.1. </a><a href="#name-truncation-retries-and-time">Truncation, Retries, and Timeouts</a>
+        </h3>
+<p>Networks that filter DNS over TCP may inadvertently cause
+       problems for third-party resolvers as experienced by <span>[<a href="#TOYAMA">TOYAMA</a>]</span>.  For example, a resolver receives queries
+       for a moderately popular domain.  The resolver forwards the queries
+       to the domain's authoritative name servers, but those servers
+       respond with the TC bit set.  The resolver retries over TCP,
+       but the authoritative server blocks DNS over TCP.  The pending
+       connections consume resources on the resolver until they time out.
+       If the number
+       and frequency of these truncated-and-then-blocked queries are sufficiently high,
+       the resolver wastes valuable resources on queries that can never be answered.
+       This condition is generally not easily or completely mitigated by the
+       affected DNS resolver operator.<a href="#section-5.1-1">¶</a></p>
+</section>
+<section>
+        <h3>
+<a href="#section-5.2">5.2. </a><a href="#name-dns-root-zone-ksk-rollover">DNS Root Zone KSK Rollover</a>
+        </h3>
+<p>The plans for deploying DNSSEC KSK for the root zone highlighted
+       a potential problem in retrieving the root zone key set <span>[<a href="#LEWIS">LEWIS</a>]</span>.  During some phases of the KSK rollover process,
+       root zone DNSKEY responses were
+       larger than 1280 bytes, the IPv6 minimum MTU for links
+       carrying IPv6 traffic <span>[<a href="#RFC8200">RFC8200</a>]</span>.
+       There was some concern
+       that any DNS server unable to receive large
+       DNS messages over UDP, or any DNS message over TCP, would experience
+       disruption while performing DNSSEC validation <span>[<a href="#KSK_ROLLOVER_ARCHIVES">KSK_ROLLOVER_ARCHIVES</a>]</span>.<a href="#section-5.2-1">¶</a></p>
+<p>However, during the
+       year-long postponement of the KSK rollover, there were no reported problems
+       that could be attributed to the 1414 octet DNSKEY response when both
+       the old and new keys were published in the zone.  Additionally, there
+       were no reported problems during the two-month period when the old key was
+       published as revoked and the DNSKEY response was 1425 octets in size <span>[<a href="#ROLL_YOUR_ROOT">ROLL_YOUR_ROOT</a>]</span>.<a href="#section-5.2-2">¶</a></p>
+</section>
+</section>
+<div>
+<section>
+      <h2>
+<a href="#section-6">6. </a><a href="#name-logging-and-monitoring">Logging and Monitoring</a>
+      </h2>
+<p>Developers of applications that log or monitor DNS
+     <span>SHOULD NOT</span> ignore TCP due to the perception that it is rarely used or
+     is hard to process.  Operators <span>SHOULD</span> ensure that
+     their monitoring and logging applications properly capture
+     DNS messages over TCP.  Otherwise, attacks, exfiltration
+     attempts, and normal traffic may go undetected.<a href="#section-6-1">¶</a></p>
+<p>DNS messages over TCP are in no way guaranteed to arrive
+     in single segments.  In fact, a clever attacker might attempt
+     to hide certain messages by forcing them over very small TCP
+     segments.  Applications that capture network packets (e.g.,
+     with libpcap <span>[<a href="#libpcap">libpcap</a>]</span>) <span>SHOULD</span> implement and perform full
+     TCP stream reassembly and analyze the reassembled stream instead of the individual packets.
+     Otherwise, they are vulnerable to network evasion attacks <span>[<a href="#phrack">phrack</a>]</span>.
+     
+     Furthermore, such applications need to protect
+     themselves from resource exhaustion attacks by limiting the amount
+     of memory allocated to tracking unacknowledged connection state data.
+     dnscap <span>[<a href="#dnscap">dnscap</a>]</span> is an
+     open-source example of a DNS logging program that implements
+     TCP stream reassembly.<a href="#section-6-2">¶</a></p>
+<p>Developers <span>SHOULD</span> also keep in mind connection reuse,
+     query pipelining, and out-of-order responses when building and testing
+     DNS monitoring applications.<a href="#section-6-3">¶</a></p>
+<p>As an alternative to packet capture, some DNS server software
+     supports dnstap <span>[<a href="#dnstap">dnstap</a>]</span> as an integrated monitoring
+     protocol intended to facilitate wide-scale DNS monitoring.<a href="#section-6-4">¶</a></p>
+</section>
+</div>
+<div>
+<section>
+      <h2>
+<a href="#section-7">7. </a><a href="#name-iana-considerations">IANA Considerations</a>
+      </h2>
+<p>This document has no IANA actions.<a href="#section-7-1">¶</a></p>
+</section>
+</div>
+<div>
+<section>
+      <h2>
+<a href="#section-8">8. </a><a href="#name-security-considerations">Security Considerations</a>
+      </h2>
+<p>This document, providing operational requirements, is the
+     companion to the implementation requirements of DNS over TCP
+     provided in <span>[<a href="#RFC7766">RFC7766</a>]</span>.  The security considerations
+     from <span>[<a href="#RFC7766">RFC7766</a>]</span> still apply.<a href="#section-8-1">¶</a></p>
+<p>Ironically, returning truncated DNS-over-UDP answers in order
+     to induce a client query to switch to DNS over TCP has become
+     a common response to source-address-spoofed, DNS denial-of-service
+     attacks <span>[<a href="#RRL">RRL</a>]</span>.  Historically, operators have
+     been wary of TCP-based attacks, but in recent years, UDP-based
+     flooding attacks have proven to be the most common protocol attack
+     on the DNS.  Nevertheless, a high rate of short-lived DNS
+     transactions over TCP may pose challenges.  In fact, <span>[<a href="#DAI21">DAI21</a>]</span> details a class of IP fragmentation attacks
+     on DNS transactions if the IP Identifier field (16 bits in IPv4 and 32 bits in IPv6) can be predicted and a
+     system is coerced to fragment rather than retransmit messages.
+     While many operators have provided DNS-over-TCP service for many
+     years without duress, past experience is no guarantee of future
+     success.<a href="#section-8-2">¶</a></p>
+<p>DNS over TCP is similar to many other Internet TCP services.
+     TCP threats and many mitigation strategies have been
+     well documented in a series of documents such as <span>[<a href="#RFC4953">RFC4953</a>]</span>, <span>[<a href="#RFC4987">RFC4987</a>]</span>, <span>[<a href="#RFC5927">RFC5927</a>]</span>, and <span>[<a href="#RFC5961">RFC5961</a>]</span>.<a href="#section-8-3">¶</a></p>
+<p>As mentioned in <a href="#logging-monitoring">Section 6</a>, applications
+     that implement TCP stream reassembly need to limit the amount of
+     memory allocated to connection tracking.  A failure to do so could
+     lead to a total failure of the logging or monitoring application.
+     Imposition of resource limits creates a trade-off between allowing
+     some stream reassembly to continue and allowing some evasion attacks
+     to succeed.<a href="#section-8-4">¶</a></p>
+<p>This document recommends that DNS servers enable TFO when possible.  <span>[<a href="#RFC7413">RFC7413</a>]</span>
+     recommends that a pool of servers behind a load balancer with a shared
+     server IP address also share the key used to generate Fast Open cookies
+     to prevent inordinate fallback to the three-way handshake (3WHS).  This guidance remains
+     accurate but comes with a caveat: compromise of one server would reveal
+     this group-shared key and allow for attacks involving the other servers
+     in the pool by forging invalid Fast Open cookies.<a href="#section-8-5">¶</a></p>
+</section>
+</div>
+<div>
+<section>
+      <h2>
+<a href="#section-9">9. </a><a href="#name-privacy-considerations">Privacy Considerations</a>
+      </h2>
+<p>Since DNS over both UDP and TCP uses the same underlying message
+     format, the use of one transport instead of the other does not change
+     the privacy characteristics of the message content (i.e., the name
+     being queried). A number of protocols have recently been developed to 
+     provide DNS privacy, including DNS over TLS <span>[<a href="#RFC7858">RFC7858</a>]</span>,
+     DNS over DTLS <span>[<a href="#RFC8094">RFC8094</a>]</span>, DNS over HTTPS
+     <span>[<a href="#RFC8484">RFC8484</a>]</span>, with even more on the way.<a href="#section-9-1">¶</a></p>
+<p>Because TCP is somewhat more complex than UDP, some
+     characteristics of a TCP conversation may enable DNS client fingerprinting and
+     tracking that is not possible with UDP.  For example, the choice of
+     initial sequence numbers, window size, and options might be able
+     to identify a particular TCP implementation or even individual
+     hosts behind shared resources such as NATs.<a href="#section-9-2">¶</a></p>
+</section>
+</div>
+<section>
+      <h2>
+<a href="#section-10">10. </a><a href="#name-references">References</a>
+      </h2>
+<section>
+        <h3>
+<a href="#section-10.1">10.1. </a><a href="#name-normative-references">Normative References</a>
+        </h3>
+<dl>
+<dt>[RFC1035]</dt>
+        <dd>
+<span>Mockapetris, P.</span>, <span>"Domain names - implementation and specification"</span>, <span>STD 13</span>, <span>RFC 1035</span>, <span>DOI 10.17487/RFC1035</span>, <time datetime="1987-11">November 1987</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc1035</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC2119]</dt>
+        <dd>
+<span>Bradner, S.</span>, <span>"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span>BCP 14</span>, <span>RFC 2119</span>, <span>DOI 10.17487/RFC2119</span>, <time datetime="1997-03">March 1997</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc2119</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC2181]</dt>
+        <dd>
+<span>Elz, R.</span> and <span>R. Bush</span>, <span>"Clarifications to the DNS Specification"</span>, <span>RFC 2181</span>, <span>DOI 10.17487/RFC2181</span>, <time datetime="1997-07">July 1997</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc2181</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC6891]</dt>
+        <dd>
+<span>Damas, J.</span>, <span>Graff, M.</span>, and <span>P. Vixie</span>, <span>"Extension Mechanisms for DNS (EDNS(0))"</span>, <span>STD 75</span>, <span>RFC 6891</span>, <span>DOI 10.17487/RFC6891</span>, <time datetime="2013-04">April 2013</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc6891</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC7766]</dt>
+        <dd>
+<span>Dickinson, J.</span>, <span>Dickinson, S.</span>, <span>Bellis, R.</span>, <span>Mankin, A.</span>, and <span>D. Wessels</span>, <span>"DNS Transport over TCP - Implementation Requirements"</span>, <span>RFC 7766</span>, <span>DOI 10.17487/RFC7766</span>, <time datetime="2016-03">March 2016</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc7766</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC7828]</dt>
+        <dd>
+<span>Wouters, P.</span>, <span>Abley, J.</span>, <span>Dickinson, S.</span>, and <span>R. Bellis</span>, <span>"The edns-tcp-keepalive EDNS0 Option"</span>, <span>RFC 7828</span>, <span>DOI 10.17487/RFC7828</span>, <time datetime="2016-04">April 2016</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc7828</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC7873]</dt>
+        <dd>
+<span>Eastlake 3rd, D.</span> and <span>M. Andrews</span>, <span>"Domain Name System (DNS) Cookies"</span>, <span>RFC 7873</span>, <span>DOI 10.17487/RFC7873</span>, <time datetime="2016-05">May 2016</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc7873</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC8174]</dt>
+      <dd>
+<span>Leiba, B.</span>, <span>"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span>BCP 14</span>, <span>RFC 8174</span>, <span>DOI 10.17487/RFC8174</span>, <time datetime="2017-05">May 2017</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc8174</a>&gt;</span>. </dd>
+<dd></dd>
+</dl>
+</section>
+<section>
+        <h3>
+<a href="#section-10.2">10.2. </a><a href="#name-informative-references">Informative References</a>
+        </h3>
+<dl>
+<dt>[accept_filter]</dt>
+        <dd>
+<span>FreeBSD</span>, <span>"FreeBSD accept_filter(9)"</span>, <time datetime="2000-06">June 2000</time>, <span>&lt;<a>https://www.freebsd.org/cgi/man.cgi?query=accept_filter</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[APNIC]</dt>
+        <dd>
+<span>Huston, G.</span>, <span>"DNS XL"</span>, <time datetime="2020-10">October 2020</time>, <span>&lt;<a>https://labs.apnic.net/?p=1380</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[AVOID_FRAGS]</dt>
+        <dd>
+<span>Fujiwara, K.</span> and <span>P. Vixie</span>, <span>"Fragmentation Avoidance in DNS"</span>, <span>Work in Progress</span>, <span>Internet-Draft, draft-ietf-dnsop-avoid-fragmentation-06</span>, <time datetime="2021-12-23">23 December 2021</time>, <span>&lt;<a>https://datatracker.ietf.org/doc/html/draft-ietf-dnsop-avoid-fragmentation-06</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[BIND]</dt>
+        <dd>
+<span>Internet Systems Consortium</span>, <span>"BIND 9"</span>, <span>&lt;<a>https://www.isc.org/bind/</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[CASTRO2010]</dt>
+        <dd>
+<span>Castro, S.</span>, <span>Zhang, M.</span>, <span>John, W.</span>, <span>Wessels, D.</span>, and <span>K. claffy</span>, <span>"Understanding and Preparing for DNS Evolution"</span>, <span>DOI 10.1007/978-3-642-12365-8_1</span>, <time datetime="2010-04">April 2010</time>, <span>&lt;<a>https://doi.org/10.1007/978-3-642-12365-8_1</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[CHES94]</dt>
+        <dd>
+<span>Cheswick, W.</span> and <span>S. Bellovin</span>, <span>"Firewalls and Internet Security: Repelling the Wily Hacker"</span>, <span>First Edition</span>, <time datetime="1994">1994</time>. </dd>
+<dd></dd>
+<dt>[CLOUDFLARE]</dt>
+        <dd>
+<span>Grant, D.</span>, <span>"Economical With The Truth: Making DNSSEC Answers Cheap"</span>, <time datetime="2016-06">June 2016</time>, <span>&lt;<a>https://blog.cloudflare.com/black-lies/</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[DAI21]</dt>
+        <dd>
+<span>Dai, T.</span>, <span>Shulman, H.</span>, and <span>M. Waidner</span>, <span>"DNS-over-TCP Considered Vulnerable"</span>, <span>DOI 10.1145/3472305.3472884</span>, <time datetime="2021-07">July 2021</time>, <span>&lt;<a>https://doi.org/10.1145/3472305.3472884</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[DESIGNTEAM]</dt>
+        <dd>
+<span>ICANN</span>, <span>"Root Zone KSK Rollover Plan"</span>, <time datetime="2016-03">March 2016</time>, <span>&lt;<a>https://www.iana.org/reports/2016/root-ksk-rollover-design-20160307.pdf</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[DJBDNS]</dt>
+        <dd>
+<span>Bernstein, D.</span>, <span>"When are TCP queries sent?"</span>, <time datetime="2002-11">November 2002</time>, <span>&lt;<a>https://cr.yp.to/djbdns/tcp.html#why</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[dnscap]</dt>
+        <dd>
+<span>DNS-OARC</span>, <span>"DNSCAP"</span>, <time datetime="2014-02">February 2014</time>, <span>&lt;<a>https://www.dns-oarc.net/tools/dnscap</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[dnstap]</dt>
+        <dd>
+<span>"dnstap"</span>, <span>&lt;<a>https://dnstap.info</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[ECDSA]</dt>
+        <dd>
+<span>van Rijswijk-Deij, R.</span>, <span>Sperotto, A.</span>, and <span>A. Pras</span>, <span>"Making the Case for Elliptic Curves in DNSSEC"</span>, <span>DOI 10.1145/2831347.2831350</span>, <time datetime="2015-10">October 2015</time>, <span>&lt;<a>https://dl.acm.org/doi/10.1145/2831347.2831350</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[FLAGDAY2020]</dt>
+        <dd>
+<span>DNS Software and Service Providers</span>, <span>"DNS Flag Day 2020"</span>, <time datetime="2020-10">October 2020</time>, <span>&lt;<a>https://dnsflagday.net/2020/</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[FRAG_POISON]</dt>
+        <dd>
+<span>Herzberg, A.</span> and <span>H. Shulman</span>, <span>"Fragmentation Considered Poisonous"</span>, <time datetime="2012-05">May 2012</time>, <span>&lt;<a>https://arxiv.org/pdf/1205.4011.pdf</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[HUSTON]</dt>
+        <dd>
+<span>Huston, G.</span>, <span>"Dealing with IPv6 fragmentation in the DNS"</span>, <time datetime="2017-08">August 2017</time>, <span>&lt;<a>https://blog.apnic.net/2017/08/22/dealing-ipv6-fragmentation-dns/</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[KSK_ROLLOVER_ARCHIVES]</dt>
+        <dd>
+<span>ICANN</span>, <span>"KSK Rollover List Archives"</span>, <time datetime="2019-01">January 2019</time>, <span>&lt;<a>https://mm.icann.org/pipermail/ksk-rollover/2019-January/date.html</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[LEWIS]</dt>
+        <dd>
+<span>Lewis, E.</span>, <span>"2017 DNSSEC KSK Rollover"</span>, <span>RIPE 74</span>, <time datetime="2017-05">May 2017</time>, <span>&lt;<a>https://ripe74.ripe.net/presentations/25-RIPE74-lewis-submission.pdf</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[libpcap]</dt>
+        <dd>
+<span>The Tcpdump Group</span>, <span>"Tcpdump and Libpcap"</span>, <span>&lt;<a>https://www.tcpdump.org</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[NETALYZR]</dt>
+        <dd>
+<span>Kreibich, C.</span>, <span>Weaver, N.</span>, <span>Nechaev, B.</span>, and <span>V. Paxson</span>, <span>"Netalyzr: Illuminating The Edge Network"</span>, <span>DOI 10.1145/1879141.1879173</span>, <time datetime="2010-11">November 2010</time>, <span>&lt;<a>https://doi.org/10.1145/1879141.1879173</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[phrack]</dt>
+        <dd>
+<span>horizon</span>, <span>"Defeating Sniffers and Intrusion Detection Systems"</span>, <span>Phrack Magazine</span>, <time datetime="1998-12">December 1998</time>, <span>&lt;<a>http://phrack.org/issues/54/10.html</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC0768]</dt>
+        <dd>
+<span>Postel, J.</span>, <span>"User Datagram Protocol"</span>, <span>STD 6</span>, <span>RFC 768</span>, <span>DOI 10.17487/RFC0768</span>, <time datetime="1980-08">August 1980</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc768</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC0793]</dt>
+        <dd>
+<span>Postel, J.</span>, <span>"Transmission Control Protocol"</span>, <span>STD 7</span>, <span>RFC 793</span>, <span>DOI 10.17487/RFC0793</span>, <time datetime="1981-09">September 1981</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc793</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC0883]</dt>
+        <dd>
+<span>Mockapetris, P.</span>, <span>"Domain names: Implementation specification"</span>, <span>RFC 883</span>, <span>DOI 10.17487/RFC0883</span>, <time datetime="1983-11">November 1983</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc883</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC1034]</dt>
+        <dd>
+<span>Mockapetris, P.</span>, <span>"Domain names - concepts and facilities"</span>, <span>STD 13</span>, <span>RFC 1034</span>, <span>DOI 10.17487/RFC1034</span>, <time datetime="1987-11">November 1987</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc1034</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC1123]</dt>
+        <dd>
+<span>Braden, R., Ed.</span>, <span>"Requirements for Internet Hosts - Application and Support"</span>, <span>STD 3</span>, <span>RFC 1123</span>, <span>DOI 10.17487/RFC1123</span>, <time datetime="1989-10">October 1989</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc1123</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC1536]</dt>
+        <dd>
+<span>Kumar, A.</span>, <span>Postel, J.</span>, <span>Neuman, C.</span>, <span>Danzig, P.</span>, and <span>S. Miller</span>, <span>"Common DNS Implementation Errors and Suggested Fixes"</span>, <span>RFC 1536</span>, <span>DOI 10.17487/RFC1536</span>, <time datetime="1993-10">October 1993</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc1536</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC1995]</dt>
+        <dd>
+<span>Ohta, M.</span>, <span>"Incremental Zone Transfer in DNS"</span>, <span>RFC 1995</span>, <span>DOI 10.17487/RFC1995</span>, <time datetime="1996-08">August 1996</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc1995</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC1996]</dt>
+        <dd>
+<span>Vixie, P.</span>, <span>"A Mechanism for Prompt Notification of Zone Changes (DNS NOTIFY)"</span>, <span>RFC 1996</span>, <span>DOI 10.17487/RFC1996</span>, <time datetime="1996-08">August 1996</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc1996</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC2136]</dt>
+        <dd>
+<span>Vixie, P., Ed.</span>, <span>Thomson, S.</span>, <span>Rekhter, Y.</span>, and <span>J. Bound</span>, <span>"Dynamic Updates in the Domain Name System (DNS UPDATE)"</span>, <span>RFC 2136</span>, <span>DOI 10.17487/RFC2136</span>, <time datetime="1997-04">April 1997</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc2136</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC2541]</dt>
+        <dd>
+<span>Eastlake 3rd, D.</span>, <span>"DNS Security Operational Considerations"</span>, <span>RFC 2541</span>, <span>DOI 10.17487/RFC2541</span>, <time datetime="1999-03">March 1999</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc2541</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC2671]</dt>
+        <dd>
+<span>Vixie, P.</span>, <span>"Extension Mechanisms for DNS (EDNS0)"</span>, <span>RFC 2671</span>, <span>DOI 10.17487/RFC2671</span>, <time datetime="1999-08">August 1999</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc2671</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC2694]</dt>
+        <dd>
+<span>Srisuresh, P.</span>, <span>Tsirtsis, G.</span>, <span>Akkiraju, P.</span>, and <span>A. Heffernan</span>, <span>"DNS extensions to Network Address Translators (DNS_ALG)"</span>, <span>RFC 2694</span>, <span>DOI 10.17487/RFC2694</span>, <time datetime="1999-09">September 1999</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc2694</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC3022]</dt>
+        <dd>
+<span>Srisuresh, P.</span> and <span>K. Egevang</span>, <span>"Traditional IP Network Address Translator (Traditional NAT)"</span>, <span>RFC 3022</span>, <span>DOI 10.17487/RFC3022</span>, <time datetime="2001-01">January 2001</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc3022</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC3225]</dt>
+        <dd>
+<span>Conrad, D.</span>, <span>"Indicating Resolver Support of DNSSEC"</span>, <span>RFC 3225</span>, <span>DOI 10.17487/RFC3225</span>, <time datetime="2001-12">December 2001</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc3225</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC3226]</dt>
+        <dd>
+<span>Gudmundsson, O.</span>, <span>"DNSSEC and IPv6 A6 aware server/resolver message size requirements"</span>, <span>RFC 3226</span>, <span>DOI 10.17487/RFC3226</span>, <time datetime="2001-12">December 2001</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc3226</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC4472]</dt>
+        <dd>
+<span>Durand, A.</span>, <span>Ihren, J.</span>, and <span>P. Savola</span>, <span>"Operational Considerations and Issues with IPv6 DNS"</span>, <span>RFC 4472</span>, <span>DOI 10.17487/RFC4472</span>, <time datetime="2006-04">April 2006</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc4472</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC4953]</dt>
+        <dd>
+<span>Touch, J.</span>, <span>"Defending TCP Against Spoofing Attacks"</span>, <span>RFC 4953</span>, <span>DOI 10.17487/RFC4953</span>, <time datetime="2007-07">July 2007</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc4953</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC4987]</dt>
+        <dd>
+<span>Eddy, W.</span>, <span>"TCP SYN Flooding Attacks and Common Mitigations"</span>, <span>RFC 4987</span>, <span>DOI 10.17487/RFC4987</span>, <time datetime="2007-08">August 2007</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc4987</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC5358]</dt>
+        <dd>
+<span>Damas, J.</span> and <span>F. Neves</span>, <span>"Preventing Use of Recursive Nameservers in Reflector Attacks"</span>, <span>BCP 140</span>, <span>RFC 5358</span>, <span>DOI 10.17487/RFC5358</span>, <time datetime="2008-10">October 2008</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc5358</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC5452]</dt>
+        <dd>
+<span>Hubert, A.</span> and <span>R. van Mook</span>, <span>"Measures for Making DNS More Resilient against Forged Answers"</span>, <span>RFC 5452</span>, <span>DOI 10.17487/RFC5452</span>, <time datetime="2009-01">January 2009</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc5452</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC5507]</dt>
+        <dd>
+<span>IAB</span>, <span>Faltstrom, P., Ed.</span>, <span>Austein, R., Ed.</span>, and <span>P. Koch, Ed.</span>, <span>"Design Choices When Expanding the DNS"</span>, <span>RFC 5507</span>, <span>DOI 10.17487/RFC5507</span>, <time datetime="2009-04">April 2009</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc5507</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC5625]</dt>
+        <dd>
+<span>Bellis, R.</span>, <span>"DNS Proxy Implementation Guidelines"</span>, <span>BCP 152</span>, <span>RFC 5625</span>, <span>DOI 10.17487/RFC5625</span>, <time datetime="2009-08">August 2009</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc5625</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC5927]</dt>
+        <dd>
+<span>Gont, F.</span>, <span>"ICMP Attacks against TCP"</span>, <span>RFC 5927</span>, <span>DOI 10.17487/RFC5927</span>, <time datetime="2010-07">July 2010</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc5927</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC5936]</dt>
+        <dd>
+<span>Lewis, E.</span> and <span>A. Hoenes, Ed.</span>, <span>"DNS Zone Transfer Protocol (AXFR)"</span>, <span>RFC 5936</span>, <span>DOI 10.17487/RFC5936</span>, <time datetime="2010-06">June 2010</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc5936</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC5961]</dt>
+        <dd>
+<span>Ramaiah, A.</span>, <span>Stewart, R.</span>, and <span>M. Dalal</span>, <span>"Improving TCP's Robustness to Blind In-Window Attacks"</span>, <span>RFC 5961</span>, <span>DOI 10.17487/RFC5961</span>, <time datetime="2010-08">August 2010</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc5961</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC5966]</dt>
+        <dd>
+<span>Bellis, R.</span>, <span>"DNS Transport over TCP - Implementation Requirements"</span>, <span>RFC 5966</span>, <span>DOI 10.17487/RFC5966</span>, <time datetime="2010-08">August 2010</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc5966</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC6298]</dt>
+        <dd>
+<span>Paxson, V.</span>, <span>Allman, M.</span>, <span>Chu, J.</span>, and <span>M. Sargent</span>, <span>"Computing TCP's Retransmission Timer"</span>, <span>RFC 6298</span>, <span>DOI 10.17487/RFC6298</span>, <time datetime="2011-06">June 2011</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc6298</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC6762]</dt>
+        <dd>
+<span>Cheshire, S.</span> and <span>M. Krochmal</span>, <span>"Multicast DNS"</span>, <span>RFC 6762</span>, <span>DOI 10.17487/RFC6762</span>, <time datetime="2013-02">February 2013</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc6762</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC6781]</dt>
+        <dd>
+<span>Kolkman, O.</span>, <span>Mekking, W.</span>, and <span>R. Gieben</span>, <span>"DNSSEC Operational Practices, Version 2"</span>, <span>RFC 6781</span>, <span>DOI 10.17487/RFC6781</span>, <time datetime="2012-12">December 2012</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc6781</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC6950]</dt>
+        <dd>
+<span>Peterson, J.</span>, <span>Kolkman, O.</span>, <span>Tschofenig, H.</span>, and <span>B. Aboba</span>, <span>"Architectural Considerations on Application Features in the DNS"</span>, <span>RFC 6950</span>, <span>DOI 10.17487/RFC6950</span>, <time datetime="2013-10">October 2013</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc6950</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC7413]</dt>
+        <dd>
+<span>Cheng, Y.</span>, <span>Chu, J.</span>, <span>Radhakrishnan, S.</span>, and <span>A. Jain</span>, <span>"TCP Fast Open"</span>, <span>RFC 7413</span>, <span>DOI 10.17487/RFC7413</span>, <time datetime="2014-12">December 2014</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc7413</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC7477]</dt>
+        <dd>
+<span>Hardaker, W.</span>, <span>"Child-to-Parent Synchronization in DNS"</span>, <span>RFC 7477</span>, <span>DOI 10.17487/RFC7477</span>, <time datetime="2015-03">March 2015</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc7477</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC7534]</dt>
+        <dd>
+<span>Abley, J.</span> and <span>W. Sotomayor</span>, <span>"AS112 Nameserver Operations"</span>, <span>RFC 7534</span>, <span>DOI 10.17487/RFC7534</span>, <time datetime="2015-05">May 2015</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc7534</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC7720]</dt>
+        <dd>
+<span>Blanchet, M.</span> and <span>L-J. Liman</span>, <span>"DNS Root Name Service Protocol and Deployment Requirements"</span>, <span>BCP 40</span>, <span>RFC 7720</span>, <span>DOI 10.17487/RFC7720</span>, <time datetime="2015-12">December 2015</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc7720</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC7858]</dt>
+        <dd>
+<span>Hu, Z.</span>, <span>Zhu, L.</span>, <span>Heidemann, J.</span>, <span>Mankin, A.</span>, <span>Wessels, D.</span>, and <span>P. Hoffman</span>, <span>"Specification for DNS over Transport Layer Security (TLS)"</span>, <span>RFC 7858</span>, <span>DOI 10.17487/RFC7858</span>, <time datetime="2016-05">May 2016</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc7858</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC7901]</dt>
+        <dd>
+<span>Wouters, P.</span>, <span>"CHAIN Query Requests in DNS"</span>, <span>RFC 7901</span>, <span>DOI 10.17487/RFC7901</span>, <time datetime="2016-06">June 2016</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc7901</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC7918]</dt>
+        <dd>
+<span>Langley, A.</span>, <span>Modadugu, N.</span>, and <span>B. Moeller</span>, <span>"Transport Layer Security (TLS) False Start"</span>, <span>RFC 7918</span>, <span>DOI 10.17487/RFC7918</span>, <time datetime="2016-08">August 2016</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc7918</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC8027]</dt>
+        <dd>
+<span>Hardaker, W.</span>, <span>Gudmundsson, O.</span>, and <span>S. Krishnaswamy</span>, <span>"DNSSEC Roadblock Avoidance"</span>, <span>BCP 207</span>, <span>RFC 8027</span>, <span>DOI 10.17487/RFC8027</span>, <time datetime="2016-11">November 2016</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc8027</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC8094]</dt>
+        <dd>
+<span>Reddy, T.</span>, <span>Wing, D.</span>, and <span>P. Patil</span>, <span>"DNS over Datagram Transport Layer Security (DTLS)"</span>, <span>RFC 8094</span>, <span>DOI 10.17487/RFC8094</span>, <time datetime="2017-02">February 2017</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc8094</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC8162]</dt>
+        <dd>
+<span>Hoffman, P.</span> and <span>J. Schlyter</span>, <span>"Using Secure DNS to Associate Certificates with Domain Names for S/MIME"</span>, <span>RFC 8162</span>, <span>DOI 10.17487/RFC8162</span>, <time datetime="2017-05">May 2017</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc8162</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC8200]</dt>
+        <dd>
+<span>Deering, S.</span> and <span>R. Hinden</span>, <span>"Internet Protocol, Version 6 (IPv6) Specification"</span>, <span>STD 86</span>, <span>RFC 8200</span>, <span>DOI 10.17487/RFC8200</span>, <time datetime="2017-07">July 2017</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc8200</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC8324]</dt>
+        <dd>
+<span>Klensin, J.</span>, <span>"DNS Privacy, Authorization, Special Uses, Encoding, Characters, Matching, and Root Structure: Time for Another Look?"</span>, <span>RFC 8324</span>, <span>DOI 10.17487/RFC8324</span>, <time datetime="2018-02">February 2018</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc8324</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC8446]</dt>
+        <dd>
+<span>Rescorla, E.</span>, <span>"The Transport Layer Security (TLS) Protocol Version 1.3"</span>, <span>RFC 8446</span>, <span>DOI 10.17487/RFC8446</span>, <time datetime="2018-08">August 2018</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc8446</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC8467]</dt>
+        <dd>
+<span>Mayrhofer, A.</span>, <span>"Padding Policies for Extension Mechanisms for DNS (EDNS(0))"</span>, <span>RFC 8467</span>, <span>DOI 10.17487/RFC8467</span>, <time datetime="2018-10">October 2018</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc8467</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC8482]</dt>
+        <dd>
+<span>Abley, J.</span>, <span>Gudmundsson, O.</span>, <span>Majkowski, M.</span>, and <span>E. Hunt</span>, <span>"Providing Minimal-Sized Responses to DNS Queries That Have QTYPE=ANY"</span>, <span>RFC 8482</span>, <span>DOI 10.17487/RFC8482</span>, <time datetime="2019-01">January 2019</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc8482</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC8483]</dt>
+        <dd>
+<span>Song, L., Ed.</span>, <span>Liu, D.</span>, <span>Vixie, P.</span>, <span>Kato, A.</span>, and <span>S. Kerr</span>, <span>"Yeti DNS Testbed"</span>, <span>RFC 8483</span>, <span>DOI 10.17487/RFC8483</span>, <time datetime="2018-10">October 2018</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc8483</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC8484]</dt>
+        <dd>
+<span>Hoffman, P.</span> and <span>P. McManus</span>, <span>"DNS Queries over HTTPS (DoH)"</span>, <span>RFC 8484</span>, <span>DOI 10.17487/RFC8484</span>, <time datetime="2018-10">October 2018</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc8484</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC8490]</dt>
+        <dd>
+<span>Bellis, R.</span>, <span>Cheshire, S.</span>, <span>Dickinson, J.</span>, <span>Dickinson, S.</span>, <span>Lemon, T.</span>, and <span>T. Pusateri</span>, <span>"DNS Stateful Operations"</span>, <span>RFC 8490</span>, <span>DOI 10.17487/RFC8490</span>, <time datetime="2019-03">March 2019</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc8490</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC8501]</dt>
+        <dd>
+<span>Howard, L.</span>, <span>"Reverse DNS in IPv6 for Internet Service Providers"</span>, <span>RFC 8501</span>, <span>DOI 10.17487/RFC8501</span>, <time datetime="2018-11">November 2018</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc8501</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC8806]</dt>
+        <dd>
+<span>Kumari, W.</span> and <span>P. Hoffman</span>, <span>"Running a Root Server Local to a Resolver"</span>, <span>RFC 8806</span>, <span>DOI 10.17487/RFC8806</span>, <time datetime="2020-06">June 2020</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc8806</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC8906]</dt>
+        <dd>
+<span>Andrews, M.</span> and <span>R. Bellis</span>, <span>"A Common Operational Problem in DNS Servers: Failure to Communicate"</span>, <span>BCP 231</span>, <span>RFC 8906</span>, <span>DOI 10.17487/RFC8906</span>, <time datetime="2020-09">September 2020</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc8906</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC8932]</dt>
+        <dd>
+<span>Dickinson, S.</span>, <span>Overeinder, B.</span>, <span>van Rijswijk-Deij, R.</span>, and <span>A. Mankin</span>, <span>"Recommendations for DNS Privacy Service Operators"</span>, <span>BCP 232</span>, <span>RFC 8932</span>, <span>DOI 10.17487/RFC8932</span>, <time datetime="2020-10">October 2020</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc8932</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC8945]</dt>
+        <dd>
+<span>Dupont, F.</span>, <span>Morris, S.</span>, <span>Vixie, P.</span>, <span>Eastlake 3rd, D.</span>, <span>Gudmundsson, O.</span>, and <span>B. Wellington</span>, <span>"Secret Key Transaction Authentication for DNS (TSIG)"</span>, <span>STD 93</span>, <span>RFC 8945</span>, <span>DOI 10.17487/RFC8945</span>, <time datetime="2020-11">November 2020</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc8945</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[ROLL_YOUR_ROOT]</dt>
+        <dd>
+<span>Müller, M.</span>, <span>Thomas, M.</span>, <span>Wessels, D.</span>, <span>Hardaker, W.</span>, <span>Chung, T.</span>, <span>Toorop, W.</span>, and <span>R. van Rijswijk-Deij</span>, <span>"Roll, Roll, Roll Your Root: A Comprehensive Analysis of the First Ever DNSSEC Root KSK Rollover"</span>, <span>DOI 10.1145/3355369.3355570</span>, <time datetime="2019-10">October 2019</time>, <span>&lt;<a>https://dl.acm.org/doi/10.1145/3355369.3355570</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RRL]</dt>
+        <dd>
+<span>Vixie, P.</span> and <span>V. Schryver</span>, <span>"DNS Response Rate Limiting (DNS RRL)"</span>, <span>ISC-TN-2012-1-Draft1</span>, <time datetime="2012-04">April 2012</time>. </dd>
+<dd></dd>
+<dt>[TDNS]</dt>
+        <dd>
+<span>Zhu, L.</span>, <span>Heidemann, J.</span>, <span>Wessels, D.</span>, <span>Mankin, A.</span>, and <span>N. Somaiya</span>, <span>"Connection-Oriented DNS to Improve Privacy and Security"</span>, <span>DOI 10.1109/SP.2015.18</span>, <time datetime="2015-05">May 2015</time>, <span>&lt;<a>https://doi.org/10.1109/SP.2015.18</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[TOYAMA]</dt>
+        <dd>
+<span>Toyama, K.</span>, <span>Ishibashi, K.</span>, <span>Toyono, T.</span>, <span>Ishino, M.</span>, <span>Yoshimura, C.</span>, and <span>K. Fujiwara</span>, <span>"DNS Anomalies and Their Impacts on DNS Cache Servers"</span>, <span>NANOG 32</span>, <time datetime="2004-10">October 2004</time>. </dd>
+<dd></dd>
+<dt>[VERISIGN]</dt>
+        <dd>
+<span>Thomas, M.</span> and <span>D. Wessels</span>, <span>"An Analysis of TCP Traffic in Root Server DITL Data"</span>, <span>DNS-OARC 2014 Fall Workshop</span>, <time datetime="2014-10">October 2014</time>. </dd>
+<dd></dd>
+<dt>[WIKIPEDIA_TFO]</dt>
+      <dd>
+<span>Wikipedia</span>, <span>"TCP Fast Open"</span>, <time datetime="2022-02">February 2022</time>, <span>&lt;<a>https://en.wikipedia.org/w/index.php?title=TCP_Fast_Open&amp;oldid=1071397204</a>&gt;</span>. </dd>
+<dd></dd>
+</dl>
+</section>
+</section>
+<div>
+<section>
+      <h2>
+<a href="#appendix-A">Appendix A. </a><a href="#name-rfcs-related-to-dns-transpo">RFCs Related to DNS Transport over TCP</a>
+      </h2>
+<p>This section enumerates all known RFCs with a status of
+     Internet Standard, Proposed Standard,
+     Informational, Best Current Practice,
+     or Experimental that either implicitly or explicitly make
+     assumptions or statements about the use of TCP as a transport for
+     the DNS germane to this document.<a href="#appendix-A-1">¶</a></p>
+<section>
+        <h3>
+<a href="#appendix-A.1">A.1. </a><a href="#name-rfc-1035-domain-names-imple">RFC 1035 - DOMAIN NAMES - IMPLEMENTATION AND SPECIFICATION</a>
+        </h3>
+<p>The Internet Standard <span>[<a href="#RFC1035">RFC1035</a>]</span> is the
+       base DNS specification that explicitly defines support for DNS
+       over TCP.<a href="#appendix-A.1-1">¶</a></p>
+</section>
+<section>
+        <h3>
+<a href="#appendix-A.2">A.2. </a><a href="#name-rfc-1536-common-dns-impleme">RFC 1536 - Common DNS Implementation Errors and Suggested Fixes</a>
+        </h3>
+<p>The Informational document <span>[<a href="#RFC1536">RFC1536</a>]</span>
+       states that UDP is "the chosen protocol for communication though TCP
+       is used for zone transfers."  That statement should now be
+       considered in its historical context and is no longer a proper
+       reflection of modern expectations.<a href="#appendix-A.2-1">¶</a></p>
+</section>
+<section>
+        <h3>
+<a href="#appendix-A.3">A.3. </a><a href="#name-rfc-1995-incremental-zone-t">RFC 1995 - Incremental Zone Transfer in DNS</a>
+        </h3>
+<p>The Proposed Standard <span>[<a href="#RFC1995">RFC1995</a>]</span>
+       documents the use of TCP as the fallback transport when Incremental Zone Transfer (IXFR)
+       responses do not fit into a single UDP response.  As with Authoritative Transfer (AXFR),
+       IXFR messages are typically delivered over TCP by default in
+       practice.<a href="#appendix-A.3-1">¶</a></p>
+</section>
+<section>
+        <h3>
+<a href="#appendix-A.4">A.4. </a><a href="#name-rfc-1996-a-mechanism-for-pr">RFC 1996 - A Mechanism for Prompt Notification of Zone Changes (DNS NOTIFY)</a>
+        </h3>
+<p>The Proposed Standard <span>[<a href="#RFC1996">RFC1996</a>]</span>
+       suggests that a primary server may decide to issue NOTIFY messages over
+       TCP.  In practice, NOTIFY messages are generally sent over UDP,
+       but this specification leaves open the possibility that the
+       choice of transport protocol is up to the primary server; therefore,
+       a secondary server ought to be able to operate over both UDP and TCP.<a href="#appendix-A.4-1">¶</a></p>
+</section>
+<section>
+        <h3>
+<a href="#appendix-A.5">A.5. </a><a href="#name-rfc-2181-clarifications-to-">RFC 2181 - Clarifications to the DNS Specification</a>
+        </h3>
+<p>The Proposed Standard <span>[<a href="#RFC2181">RFC2181</a>]</span>
+       includes clarifying text on how a client should react to the TC
+       bit set on responses.  It is advised that the response be
+       discarded and the query resent using TCP.<a href="#appendix-A.5-1">¶</a></p>
+</section>
+<section>
+        <h3>
+<a href="#appendix-A.6">A.6. </a><a href="#name-rfc-2694-dns-extensions-to-">RFC 2694 - DNS extensions to Network Address Translators (DNS_ALG)</a>
+        </h3>
+<p>The Informational document <span>[<a href="#RFC2694">RFC2694</a>]</span>
+       enumerates considerations for NAT
+       devices to properly handle DNS traffic.  This document is
+       noteworthy in its suggestion that
+       "[t]ypically, TCP is used for AXFR requests,"
+       as further evidence that helps
+       explain why DNS over TCP may have often been treated very
+       differently than DNS over UDP in operational networks.<a href="#appendix-A.6-1">¶</a></p>
+</section>
+<section>
+        <h3>
+<a href="#appendix-A.7">A.7. </a><a href="#name-rfc-3225-indicating-resolve">RFC 3225 - Indicating Resolver Support of DNSSEC</a>
+        </h3>
+<p>The Proposed Standard <span>[<a href="#RFC3225">RFC3225</a>]</span>
+       makes statements indicating that DNS over TCP is "detrimental" as a
+       result of increased traffic, latency, and server load.  This
+       document is a companion to the next document in the RFC
+       Series that describes the requirement for EDNS(0) support for DNSSEC.<a href="#appendix-A.7-1">¶</a></p>
+</section>
+<section>
+        <h3>
+<a href="#appendix-A.8">A.8. </a><a href="#name-rfc-3226-dnssec-and-ipv6-a6">RFC 3226 - DNSSEC and IPv6 A6 aware server/resolver message size requirements</a>
+        </h3>
+<p>Although updated by later DNSSEC RFCs,
+       the Proposed Standard <span>[<a href="#RFC3226">RFC3226</a>]</span>
+       strongly argues in favor of
+       UDP messages instead of TCP, largely for performance reasons.
+       The document declares EDNS(0) a requirement for DNSSEC servers and
+       advocates that packet fragmentation may be preferable to TCP in
+       certain situations.<a href="#appendix-A.8-1">¶</a></p>
+</section>
+<section>
+        <h3>
+<a href="#appendix-A.9">A.9. </a><a href="#name-rfc-4472-operational-consid">RFC 4472 - Operational Considerations and Issues with IPv6 DNS</a>
+        </h3>
+<p>The Informational document <span>[<a href="#RFC4472">RFC4472</a>]</span> notes
+       that IPv6 data may increase DNS responses beyond what would fit in
+       a UDP message.  What is particularly noteworthy, but perhaps less common today
+       than when this document was written, is that it refers to implementations that
+       truncate data without setting the TC bit to encourage the client to
+       resend the query using TCP.<a href="#appendix-A.9-1">¶</a></p>
+</section>
+<section>
+        <h3>
+<a href="#appendix-A.10">A.10. </a><a href="#name-rfc-5452-measures-for-makin">RFC 5452 - Measures for Making DNS More Resilient against Forged Answers</a>
+        </h3>
+<p>The Proposed Standard <span>[<a href="#RFC5452">RFC5452</a>]</span> arose
+       as public DNS systems began to experience widespread abuse from spoofed
+       queries, resulting in amplification and reflection attacks against
+       unwitting victims.  One of the leading justifications for supporting
+       DNS over TCP to thwart these attacks is briefly described in <span><a>Section 9.3</a> of [<a href="#RFC5452">RFC5452</a>]</span> ("Spoof Detection and Countermeasure").<a href="#appendix-A.10-1">¶</a></p>
+</section>
+<section>
+        <h3>
+<a href="#appendix-A.11">A.11. </a><a href="#name-rfc-5507-design-choices-whe">RFC 5507 - Design Choices When Expanding the DNS</a>
+        </h3>
+<p>The Informational document <span>[<a href="#RFC5507">RFC5507</a>]</span> was
+       largely an attempt to dissuade new DNS data types from overloading the
+       TXT resource record type.  In so doing, it summarizes the conventional
+       wisdom of DNS design and implementation practices.  The authors
+       suggest TCP overhead and stateful properties pose challenges compared
+       to UDP and imply that UDP is generally preferred for performance and
+       robustness.<a href="#appendix-A.11-1">¶</a></p>
+</section>
+<section>
+        <h3>
+<a href="#appendix-A.12">A.12. </a><a href="#name-rfc-5625-dns-proxy-implemen">RFC 5625 - DNS Proxy Implementation Guidelines</a>
+        </h3>
+<p>The Best Current Practice document <span>[<a href="#RFC5625">RFC5625</a>]</span>
+       provides DNS proxy implementation guidance including the mandate that a
+       proxy "<span>MUST</span> [...] be prepared to receive and forward queries over TCP"
+       even though it suggests that, historically, TCP transport has not been strictly
+       mandatory in stub resolvers or recursive servers.<a href="#appendix-A.12-1">¶</a></p>
+</section>
+<section>
+        <h3>
+<a href="#appendix-A.13">A.13. </a><a href="#name-rfc-5936-dns-zone-transfer-">RFC 5936 - DNS Zone Transfer Protocol (AXFR)</a>
+        </h3>
+<p>The Proposed Standard <span>[<a href="#RFC5936">RFC5936</a>]</span>
+       provides a detailed specification for the zone transfer protocol,
+       as originally outlined in the early DNS standards.  AXFR operation
+       is limited to TCP and not specified for UDP.  This document
+       discusses TCP usage at length.<a href="#appendix-A.13-1">¶</a></p>
+</section>
+<section>
+        <h3>
+<a href="#appendix-A.14">A.14. </a><a href="#name-rfc-7534-as112-nameserver-o">RFC 7534 - AS112 Nameserver Operations</a>
+        </h3>
+<p>The Informational document <span>[<a href="#RFC7534">RFC7534</a>]</span>
+       enumerates the requirements for operation of AS112 project DNS
+       servers.  New AS112 nodes are tested for their ability to provide
+       service on both UDP and TCP transports, with the implication that
+       TCP service is an expected part of normal operations.<a href="#appendix-A.14-1">¶</a></p>
+</section>
+<section>
+        <h3>
+<a href="#appendix-A.15">A.15. </a><a href="#name-rfc-6762-multicast-dns">RFC 6762 - Multicast DNS</a>
+        </h3>
+<p>In the Proposed Standard <span>[<a href="#RFC6762">RFC6762</a>]</span>, the
+       TC bit is deemed to have essentially the same meaning as described
+       in the original DNS specifications.  That is, if a response with the
+       TC bit set is received, "[...] the querier <span>SHOULD</span> reissue its query
+       using TCP in order to receive the larger response."<a href="#appendix-A.15-1">¶</a></p>
+</section>
+<section>
+        <h3>
+<a href="#appendix-A.16">A.16. </a><a href="#name-rfc-6891-extension-mechanis">RFC 6891 - Extension Mechanisms for DNS (EDNS(0))</a>
+        </h3>
+<p>The Internet Standard <span>[<a href="#RFC6891">RFC6891</a>]</span>
+       helped slow the use of and need for DNS-over-TCP messages.  This
+       document highlights concerns over server load and scalability in
+       widespread use of DNS over TCP.<a href="#appendix-A.16-1">¶</a></p>
+</section>
+<section>
+        <h3>
+<a href="#appendix-A.17">A.17. </a><a href="#name-iab-rfc-6950-architectural-">IAB RFC 6950 - Architectural Considerations on Application Features in the DNS</a>
+        </h3>
+<p>The Informational document <span>[<a href="#RFC6950">RFC6950</a>]</span> draws
+       attention to large data in the DNS.  TCP is referenced in the
+       context as a common fallback mechanism and counter to some spoofing
+       attacks.<a href="#appendix-A.17-1">¶</a></p>
+</section>
+<section>
+        <h3>
+<a href="#appendix-A.18">A.18. </a><a href="#name-rfc-7477-child-to-parent-sy">RFC 7477 - Child-to-Parent Synchronization in DNS</a>
+        </h3>
+<p>The Proposed Standard <span>[<a href="#RFC7477">RFC7477</a>]</span>
+ specifies an RRType and a protocol to signal and synchronize NS, A,
+       and AAAA resource record changes from a child-to-parent zone.
+       Since this protocol may require multiple requests and responses,
+       it recommends utilizing DNS over TCP to ensure the conversation
+       takes place between a consistent pair of end nodes.<a href="#appendix-A.18-1">¶</a></p>
+</section>
+<section>
+        <h3>
+<a href="#appendix-A.19">A.19. </a><a href="#name-rfc-7720-dns-root-name-serv">RFC 7720 - DNS Root Name Service Protocol and Deployment Requirements</a>
+        </h3>
+<p>The Best Current Practice document <span>[<a href="#RFC7720">RFC7720</a>]</span>
+       declares that root name service "<span>MUST</span> support UDP <span>[<a href="#RFC0768">RFC0768</a>]</span> and TCP <span>[<a href="#RFC0793">RFC0793</a>]</span>
+       transport of DNS queries and responses."<a href="#appendix-A.19-1">¶</a></p>
+</section>
+<div>
+<section>
+        <h3>
+<a href="#appendix-A.20">A.20. </a><a href="#name-rfc-7766-dns-transport-over">RFC 7766 - DNS Transport over TCP - Implementation Requirements</a>
+        </h3>
+<p>The Proposed Standard <span>[<a href="#RFC7766">RFC7766</a>]</span>
+       instructs DNS implementors to provide support for carrying DNS-over-TCP messages in their software and 
+       might be considered the direct ancestor of this operational
+       requirements document.
+       The implementation requirements document
+       codifies mandatory support for DNS-over-TCP in compliant DNS
+       software but
+       makes no recommendations to operators, which we seek to address
+       here.<a href="#appendix-A.20-1">¶</a></p>
+</section>
+</div>
+<section>
+        <h3>
+<a href="#appendix-A.21">A.21. </a><a href="#name-rfc-7828-the-edns-tcp-keepa">RFC 7828 - The edns-tcp-keepalive EDNS(0) Option</a>
+        </h3>
+<p>The Proposed Standard <span>[<a href="#RFC7828">RFC7828</a>]</span>
+       defines an EDNS(0) option to negotiate an idle timeout value for
+       long-lived DNS-over-TCP connections.  Consequently, this document
+       is only applicable and relevant to DNS-over-TCP sessions and
+       between implementations that support this option.<a href="#appendix-A.21-1">¶</a></p>
+</section>
+<section>
+        <h3>
+<a href="#appendix-A.22">A.22. </a><a href="#name-rfc-7858-specification-for-">RFC 7858 - Specification for DNS over Transport Layer Security (TLS)</a>
+        </h3>
+<p>The Proposed Standard <span>[<a href="#RFC7858">RFC7858</a>]</span>
+       defines a method for putting DNS messages into a TCP-based
+       encrypted channel using TLS.  This specification is noteworthy
+       for explicitly targeting the stub-to-recursive traffic but
+       does not preclude its application from recursive-to-authoritative
+       traffic.<a href="#appendix-A.22-1">¶</a></p>
+</section>
+<section>
+        <h3>
+<a href="#appendix-A.23">A.23. </a><a href="#name-rfc-7873-domain-name-system">RFC 7873 - Domain Name System (DNS) Cookies</a>
+        </h3>
+<p>The Proposed Standard <span>[<a href="#RFC7873">RFC7873</a>]</span>
+       describes an EDNS(0) option to provide additional protection
+       against query and answer forgery.  This specification mentions
+       DNS over TCP as an alternative mechanism when DNS cookies
+       are not available.  The specification does make mention of DNS-over-TCP processing in two specific situations.  In one, when a
+       server receives only a client cookie in a request, the server
+       should consider whether the request arrived over TCP, and if so,
+       it should consider accepting TCP as sufficient to authenticate
+       the request and respond accordingly.  In another, when a client
+       receives a BADCOOKIE reply using a fresh server cookie, the
+       client should retry using TCP as the transport.<a href="#appendix-A.23-1">¶</a></p>
+</section>
+<section>
+        <h3>
+<a href="#appendix-A.24">A.24. </a><a href="#name-rfc-7901-chain-query-reques">RFC 7901 - CHAIN Query Requests in DNS</a>
+        </h3>
+<p>The Experimental specification <span>[<a href="#RFC7901">RFC7901</a>]</span>
+       describes an EDNS(0) option that can be used by a security-aware
+       validating resolver to request and obtain a complete DNSSEC
+       validation path for any single query.  This document requires the
+       use of DNS over TCP or a transport
+       mechanism verified by a source IP address such as EDNS-COOKIE <span>[<a href="#RFC7873">RFC7873</a>]</span>.<a href="#appendix-A.24-1">¶</a></p>
+</section>
+<section>
+        <h3>
+<a href="#appendix-A.25">A.25. </a><a href="#name-rfc-8027-dnssec-roadblock-a">RFC 8027 - DNSSEC Roadblock Avoidance</a>
+        </h3>
+<p>The Best Current Practice document <span>[<a href="#RFC8027">RFC8027</a>]</span> details observed
+       problems with DNSSEC deployment and mitigation techniques.
+       Network traffic blocking and restrictions, including DNS-over-TCP
+       messages, are highlighted as one reason for DNSSEC deployment
+       issues.  While this document suggests these sorts of problems are
+       due to "non-compliant infrastructure", the
+       scope of the document is limited to detection and mitigation
+       techniques to avoid so-called DNSSEC roadblocks.<a href="#appendix-A.25-1">¶</a></p>
+</section>
+<section>
+        <h3>
+<a href="#appendix-A.26">A.26. </a><a href="#name-rfc-8094-dns-over-datagram-">RFC 8094 - DNS over Datagram Transport Layer Security (DTLS)</a>
+        </h3>
+<p>The Experimental specification <span>[<a href="#RFC8094">RFC8094</a>]</span>
+       details a protocol that uses a datagram transport (UDP) but
+       stipulates that "DNS clients and servers that implement DNS over
+       DTLS <span>MUST</span> also implement DNS over TLS in order to provide privacy
+       for clients that desire Strict Privacy [...]."  This requirement
+       implies DNS over TCP must be supported in case the message size
+       is larger than the path MTU.<a href="#appendix-A.26-1">¶</a></p>
+</section>
+<section>
+        <h3>
+<a href="#appendix-A.27">A.27. </a><a href="#name-rfc-8162-using-secure-dns-t">RFC 8162 - Using Secure DNS to Associate Certificates with Domain Names for S/MIME</a>
+        </h3>
+<p>The Experimental specification <span>[<a href="#RFC8162">RFC8162</a>]</span>
+       describes a technique to authenticate user X.509 certificates
+       in an S/MIME system via the DNS.  The document points out that
+       the new experimental resource record types are expected to carry
+       large payloads, resulting in the suggestion that "applications
+       <span>SHOULD</span> use TCP -- not UDP -- to perform queries for the SMIMEA
+       resource record."<a href="#appendix-A.27-1">¶</a></p>
+</section>
+<section>
+        <h3>
+<a href="#appendix-A.28">A.28. </a><a href="#name-rfc-8324-dns-privacy-author">RFC 8324 - DNS Privacy, Authorization, Special Uses, Encoding, Characters, Matching, and Root Structure: Time for Another Look?</a>
+        </h3>
+<p> The Informational document <span>[<a href="#RFC8324">RFC8324</a>]</span>
+       briefly discusses the common role and challenges of DNS over TCP
+       throughout the history of DNS.<a href="#appendix-A.28-1">¶</a></p>
+</section>
+<section>
+        <h3>
+<a href="#appendix-A.29">A.29. </a><a href="#name-rfc-8467-padding-policies-f">RFC 8467 - Padding Policies for Extension Mechanisms for DNS (EDNS(0))</a>
+        </h3>
+<p>The Experimental document <span>[<a href="#RFC8467">RFC8467</a>]</span>
+       reminds implementors to consider the underlying transport
+       protocol (e.g., TCP) when calculating the padding length when
+       artificially increasing the DNS message size with an EDNS(0)
+       padding option.<a href="#appendix-A.29-1">¶</a></p>
+</section>
+<section>
+        <h3>
+<a href="#appendix-A.30">A.30. </a><a href="#name-rfc-8482-providing-minimal-">RFC 8482 - Providing Minimal-Sized Responses to DNS Queries That Have QTYPE=ANY</a>
+        </h3>
+<p>The Proposed Standard <span>[<a href="#RFC8482">RFC8482</a>]</span>
+       describes alternative ways that DNS servers can respond to queries
+       of type ANY, which are sometimes used to provide amplification
+       in DDoS attacks.  The specification notes that responders may
+       behave differently, depending on the transport.  For example,
+       minimal-sized responses may be used over UDP transport, while
+       full responses may be given over TCP.<a href="#appendix-A.30-1">¶</a></p>
+</section>
+<section>
+        <h3>
+<a href="#appendix-A.31">A.31. </a><a href="#name-rfc-8483-yeti-dns-testbed">RFC 8483 - Yeti DNS Testbed</a>
+        </h3>
+<p>The Informational document <span>[<a href="#RFC8483">RFC8483</a>]</span>
+       describes a testbed environment that highlights some DNS-over-TCP
+       behaviors, including issues involving packet fragmentation and
+       operational requirements for TCP stream assembly in order to
+       conduct DNS measurement and analysis.<a href="#appendix-A.31-1">¶</a></p>
+</section>
+<section>
+        <h3>
+<a href="#appendix-A.32">A.32. </a><a href="#name-rfc-8484-dns-queries-over-h">RFC 8484 - DNS Queries over HTTPS (DoH)</a>
+        </h3>
+<p>The Proposed Standard <span>[<a href="#RFC8484">RFC8484</a>]</span>
+       defines a protocol for sending DNS queries and responses over
+       HTTPS.  This specification assumes TLS and TCP for the underlying
+       security and transport layers, respectively.  Self-described as a
+       technique that more closely resembles a tunneling mechanism,
+       DoH nevertheless likely implies DNS over TCP in some sense, if not
+       directly.<a href="#appendix-A.32-1">¶</a></p>
+</section>
+<section>
+        <h3>
+<a href="#appendix-A.33">A.33. </a><a href="#name-rfc-8490-dns-stateful-opera">RFC 8490 - DNS Stateful Operations</a>
+        </h3>
+<p>The Proposed Standard <span>[<a href="#RFC8490">RFC8490</a>]</span>
+       updates the base protocol specification with a new OPCODE to
+       help manage stateful operations in persistent sessions, such
+       as those that might be used by DNS over TCP.<a href="#appendix-A.33-1">¶</a></p>
+</section>
+<section>
+        <h3>
+<a href="#appendix-A.34">A.34. </a><a href="#name-rfc-8501-reverse-dns-in-ipv">RFC 8501 - Reverse DNS in IPv6 for Internet Service Providers</a>
+        </h3>
+<p>The Informational document <span>[<a href="#RFC8501">RFC8501</a>]</span>
+       identifies potential operational challenges with dynamic DNS,
+       including denial-of-service threats.  The document suggests TCP
+       may provide some advantages but that updating hosts would need
+       to be explicitly configured to use TCP instead of UDP.<a href="#appendix-A.34-1">¶</a></p>
+</section>
+<section>
+        <h3>
+<a href="#appendix-A.35">A.35. </a><a href="#name-rfc-8806-running-a-root-ser">RFC 8806 - Running a Root Server Local to a Resolver</a>
+        </h3>
+<p>The Informational document <span>[<a href="#RFC8806">RFC8806</a>]</span>
+       describes how to obtain and operate a local copy of the root zone
+       with examples showing how to pull from authoritative sources using
+       a DNS-over-TCP zone transfer.<a href="#appendix-A.35-1">¶</a></p>
+</section>
+<section>
+        <h3>
+<a href="#appendix-A.36">A.36. </a><a href="#name-rfc-8906-a-common-operation">RFC 8906 - A Common Operational Problem in DNS Servers: Failure to Communicate</a>
+        </h3>
+<p>The Best Current Practice document <span>[<a href="#RFC8906">RFC8906</a>]</span>
+       discusses a number of DNS operational failure scenarios and how to
+       avoid them.  This includes discussions involving DNS-over-TCP queries,
+       EDNS over TCP, and a testing methodology that includes a section on
+       verifying DNS-over-TCP functionality.<a href="#appendix-A.36-1">¶</a></p>
+</section>
+<section>
+        <h3>
+<a href="#appendix-A.37">A.37. </a><a href="#name-rfc-8932-recommendations-fo">RFC 8932 - Recommendations for DNS Privacy Service Operators</a>
+        </h3>
+<p>The Best Current Practice document <span>[<a href="#RFC8932">RFC8932</a>]</span>
+       presents privacy considerations to DNS privacy service operators.
+       These mechanisms sometimes include the use of TCP and are therefore
+       susceptible to information leakage such as TCP-based fingerprinting.
+       This document also references an earlier draft version of this document.<a href="#appendix-A.37-1">¶</a></p>
+</section>
+<section>
+        <h3>
+<a href="#appendix-A.38">A.38. </a><a href="#name-rfc-8945-secret-key-transac">RFC 8945 - Secret Key Transaction Authentication for DNS (TSIG)</a>
+        </h3>
+<p>The Internet Standard <span>[<a href="#RFC8945">RFC8945</a>]</span>
+       recommends that a client use TCP if truncated TSIG messages are
+       received.<a href="#appendix-A.38-1">¶</a></p>
+</section>
+</section>
+</div>
+<div>
+<section>
+      <h2>
+<a href="#name-acknowledgments">Acknowledgments</a>
+      </h2>
+<p>This document was initially motivated by feedback from students
+     who pointed out that they were hearing contradictory information
+     about filtering DNS-over-TCP messages. Thanks in particular to a
+     teaching colleague, JPL, who perhaps unknowingly encouraged the
+     initial research into the differences between what the community has
+     historically said and did.  Thanks to all the NANOG 63 attendees
+     who provided feedback for an early talk on this subject.<a href="#appendix-B-1">¶</a></p>
+<p>The following individuals provided an array of feedback to help
+     improve this document: <span>Joe Abley</span>, <span>Piet Barber</span>, <span>Sara Dickinson</span>, <span>Tony Finch</span>, <span>Bob Harold</span>, <span>Paul Hoffman</span>, <span>Geoff Huston</span>, <span>Tatuya Jinmei</span>,
+     <span>Puneet Sood</span>, and <span>Richard Wilhelm</span>.  The authors are also indebted to the contributions
+     stemming from discussion in the TCPM Working Group meeting at
+     IETF 104.  Any remaining errors or imperfections are the sole
+     responsibility of the document authors.<a href="#appendix-B-2">¶</a></p>
+</section>
+</div>
+<div>
+<section>
+      <h2>
+<a href="#name-authors-addresses">Authors' Addresses</a>
+      </h2>
+<address>
+        <div dir="auto"><span>John Kristoff</span></div>
+<div dir="auto"><span>Dataplane.org</span></div>
+<div dir="auto">
+<span>Chicago</span>, <span>IL</span> <span>60605</span>
+</div>
+<div dir="auto"><span>United States of America</span></div>
+<div>
+<span>Phone:</span>
+<a href="tel:+1%20312%20493%200305">+1 312 493 0305</a>
+</div>
+<div>
+<span>Email:</span>
+<a href="mailto:jtk@dataplane.org">jtk@dataplane.org</a>
+</div>
+<div>
+<span>URI:</span>
+<a>https://dataplane.org/jtk/</a>
+</div>
+</address>
+<address>
+        <div dir="auto"><span>Duane Wessels</span></div>
+<div dir="auto"><span>Verisign</span></div>
+<div dir="auto"><span>12061 Bluemont Way</span></div>
+<div dir="auto">
+<span>Reston</span>, <span>VA</span> <span>20190</span>
+</div>
+<div dir="auto"><span>United States of America</span></div>
+<div>
+<span>Phone:</span>
+<a href="tel:+1%20703%20948%203200">+1 703 948 3200</a>
+</div>
+<div>
+<span>Email:</span>
+<a href="mailto:dwessels@verisign.com">dwessels@verisign.com</a>
+</div>
+<div>
+<span>URI:</span>
+<a>https://verisign.com</a>
+</div>
+</address>
+</section>
+</div></article><aside class="toc-panel"><h2>On this RFC</h2><div id="toc-links"></div></aside></section>
+</main>
+<script src="../assets/doc.js"></script>
+
+</body>
+</html>

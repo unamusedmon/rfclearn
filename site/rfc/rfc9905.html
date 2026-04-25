@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RFC 9905: Deprecating the Use of SHA-1 in DNSSEC Signature Algorithms</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<div class="progress"></div>
+<main class="doc-layout">
+  <a class="toplink" href="../index.html">← Back to index</a>
+  <section class="doc-hero">
+    <div class="eyebrow">RFC 9905</div>
+    <h1>Deprecating the Use of SHA-1 in DNSSEC Signature Algorithms</h1>
+    <div class="meta-tags"><span class="tag tag-application">application</span><span class="tag tag-security">security</span><span class="tag tag-update-chain">update-chain</span></div>
+    <div class="note"><strong>Threat hunting relevance:</strong> Pulled in through the RFC update chain; review &#x27;Deprecating the Use of SHA-1 in DNSSEC Signature Algorithms&#x27; to understand protocol changes that may affect detection, parsing, or investigation context.</div>
+  </section>
+  <section class="reader-tools"><div class="group"><button class="reader-btn" data-action="focus">Focus width</button><button class="reader-btn" data-action="comfy">Comfy text</button></div><button class="reader-btn" data-action="top">Back to top</button></section>
+  <section class="reader-grid"><article class="doc-body"><table>
+<thead><tr>
+<td>RFC 9905</td>
+<td>Deprecating SHA-1 in DNSSEC Signature Al</td>
+<td>November 2025</td>
+</tr></thead>
+<tfoot><tr>
+<td>Hardaker &amp; Kumari</td>
+<td>Standards Track</td>
+<td>[Page]</td>
+</tr></tfoot>
+</table>
+<div></div>
+<div>
+<dl>
+<dt>Stream:</dt>
+<dd>Internet Engineering Task Force (IETF)</dd>
+<dt>RFC:</dt>
+<dd><a>9905</a></dd>
+<dt>Updates:</dt>
+<dd>
+<a>4034</a>, <a>5155</a> </dd>
+<dt>Category:</dt>
+<dd>Standards Track</dd>
+<dt>Published:</dt>
+<dd>
+<time datetime="2025-11">November 2025</time>
+    </dd>
+<dt>ISSN:</dt>
+<dd>2070-1721</dd>
+<dt>Authors:</dt>
+<dd>
+<div>
+      <div>W. Hardaker</div>
+<div>USC/ISI</div>
+</div>
+<div>
+      <div>W. Kumari</div>
+<div>Google</div>
+</div>
+</dd>
+</dl>
+</div>
+<h1>RFC 9905</h1>
+<h1>Deprecating the Use of SHA-1 in DNSSEC Signature Algorithms</h1>
+<section>
+      <h2><a href="#abstract">Abstract</a></h2>
+<p>This document deprecates the use of the RSASHA1 and RSASHA1-NSEC3-SHA1
+algorithms for the creation of DNS Public Key (DNSKEY) and Resource
+Record Signature (RRSIG) records.<a href="#section-abstract-1">¶</a></p>
+<p>It updates RFCs 4034 and 5155 as it deprecates the use of these algorithms.<a href="#section-abstract-2">¶</a></p>
+</section>
+<div>
+<section>
+        <h2>
+<a href="#name-status-of-this-memo">Status of This Memo</a>
+        </h2>
+<p>
+            This is an Internet Standards Track document.<a href="#section-boilerplate.1-1">¶</a></p>
+<p>
+            This document is a product of the Internet Engineering Task Force
+            (IETF).  It represents the consensus of the IETF community.  It has
+            received public review and has been approved for publication by
+            the Internet Engineering Steering Group (IESG).  Further
+            information on Internet Standards is available in Section 2 of 
+            RFC 7841.<a href="#section-boilerplate.1-2">¶</a></p>
+<p>
+            Information about the current status of this document, any
+            errata, and how to provide feedback on it may be obtained at
+            <span><a>https://www.rfc-editor.org/info/rfc9905</a></span>.<a href="#section-boilerplate.1-3">¶</a></p>
+</section>
+</div>
+<div>
+<section>
+        <h2>
+<a href="#name-copyright-notice">Copyright Notice</a>
+        </h2>
+<p>
+            Copyright (c) 2025 IETF Trust and the persons identified as the
+            document authors. All rights reserved.<a href="#section-boilerplate.2-1">¶</a></p>
+<p>
+            This document is subject to BCP 78 and the IETF Trust's Legal
+            Provisions Relating to IETF Documents
+            (<span><a>https://trustee.ietf.org/license-info</a></span>) in effect on the date of
+            publication of this document. Please review these documents
+            carefully, as they describe your rights and restrictions with
+            respect to this document. Code Components extracted from this
+            document must include Revised BSD License text as described in
+            Section 4.e of the Trust Legal Provisions and are provided without
+            warranty as described in the Revised BSD License.<a href="#section-boilerplate.2-2">¶</a></p>
+</section>
+</div>
+<div>
+<section>
+        <a href="#" onclick="scroll(0,0)">▲</a><h2>
+<a href="#name-table-of-contents">Table of Contents</a>
+        </h2>
+<nav><ul>
+<li>
+            <p><a href="#section-1">1</a>.  <a href="#name-introduction">Introduction</a></p>
+<ul>
+<li>
+                <p><a href="#section-1.1">1.1</a>.  <a href="#name-requirements-notation">Requirements Notation</a></p>
+</li>
+            </ul>
+</li>
+          <li>
+            <p><a href="#section-2">2</a>.  <a href="#name-deprecating-sha-1-from-dnss">Deprecating SHA-1 from DNSSEC Signatures and Delegation RRs</a></p>
+</li>
+          <li>
+            <p><a href="#section-3">3</a>.  <a href="#name-security-considerations">Security Considerations</a></p>
+</li>
+          <li>
+            <p><a href="#section-4">4</a>.  <a href="#name-operational-considerations">Operational Considerations</a></p>
+</li>
+          <li>
+            <p><a href="#section-5">5</a>.  <a href="#name-iana-considerations">IANA Considerations</a></p>
+</li>
+          <li>
+            <p><a href="#section-6">6</a>.  <a href="#name-normative-references">Normative References</a></p>
+</li>
+          <li>
+            <p><a href="#appendix-A"></a><a href="#name-acknowledgments">Acknowledgments</a></p>
+</li>
+          <li>
+            <p><a href="#appendix-B"></a><a href="#name-authors-addresses">Authors' Addresses</a></p>
+</li>
+        </ul>
+</nav>
+</section>
+</div>
+<div>
+<section>
+      <h2>
+<a href="#section-1">1. </a><a href="#name-introduction">Introduction</a>
+      </h2>
+<p>The security of the protection provided by the SHA-1 algorithm <span>[<a href="#RFC3174">RFC3174</a>]</span> has been slowly diminishing
+over time as various forms of attacks have weakened its cryptographic
+underpinning.  DNSSEC <span>[<a href="#RFC9364">RFC9364</a>]</span> (originally defined in <span>[<a href="#RFC3110">RFC3110</a>]</span>) made extensive use
+of SHA-1, for example, as a
+cryptographic hash algorithm in Resource Record Signature (RRSIG) and Delegation Signer (DS)
+records. Since then, multiple other algorithms with
+stronger cryptographic strength have become widely available for DS records 
+and for RRSIG and DNS Public Key (DNSKEY) records <span>[<a href="#RFC4034">RFC4034</a>]</span>.
+Operators are encouraged to consider switching to one of the recommended algorithms 
+listed in the "DNS Security Algorithm
+   Numbers" <span>[<a href="#DNSKEY-IANA">DNSKEY-IANA</a>]</span> and "DNS Security Algorithm
+   Numbers" <span>[<a href="#DS-IANA">DS-IANA</a>]</span> registries, respectively.
+Further, support for validating SHA-1-based signatures has been
+removed from some systems. As a result, SHA-1 as part of a signature algorithm 
+is no longer fully interoperable
+in the context of DNSSEC. As adequate alternatives exist, the use of SHA-1 is
+no longer advisable.<a href="#section-1-1">¶</a></p>
+<p>This document thus deprecates the use of RSASHA1 and
+RSASHA1-NSEC3-SHA1 for DNS Security Algorithms.<a href="#section-1-2">¶</a></p>
+<div>
+<section>
+        <h3>
+<a href="#section-1.1">1.1. </a><a href="#name-requirements-notation">Requirements Notation</a>
+        </h3>
+<p>
+    The key words "<span>MUST</span>", "<span>MUST NOT</span>", "<span>REQUIRED</span>", "<span>SHALL</span>", "<span>SHALL NOT</span>", "<span>SHOULD</span>", "<span>SHOULD NOT</span>", "<span>RECOMMENDED</span>", "<span>NOT RECOMMENDED</span>",
+    "<span>MAY</span>", and "<span>OPTIONAL</span>" in this document are to be interpreted as
+    described in BCP 14 <span>[<a href="#RFC2119">RFC2119</a>]</span> <span>[<a href="#RFC8174">RFC8174</a>]</span> 
+    when, and only when, they appear in all capitals, as shown here.<a href="#section-1.1-1">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div>
+<section>
+      <h2>
+<a href="#section-2">2. </a><a href="#name-deprecating-sha-1-from-dnss">Deprecating SHA-1 from DNSSEC Signatures and Delegation RRs</a>
+      </h2>
+<p>The RSASHA1 <span>[<a href="#RFC4034">RFC4034</a>]</span> and RSASHA1-NSEC3-SHA1 <span>[<a href="#RFC5155">RFC5155</a>]</span> algorithms <span>MUST NOT</span>
+be used when creating DS records.  Operators of validating resolvers <span>MUST</span> treat RSASHA1
+and RSASHA1-NSEC3-SHA1 DS records as insecure.  If no other DS records of
+accepted cryptographic algorithms are available, the DNS records below the
+delegation point <span>MUST</span> be treated as insecure.<a href="#section-2-1">¶</a></p>
+<p>The RSASHA1 <span>[<a href="#RFC4034">RFC4034</a>]</span> and RSASHA1-NSEC3-SHA1 <span>[<a href="#RFC5155">RFC5155</a>]</span> algorithms <span>MUST NOT</span> be
+used when creating DNSKEY and RRSIG records.  Validating resolver implementations
+(<span>[<a href="#RFC9499">RFC9499</a>], <a>Section 10</a></span>) <span>MUST</span> continue to support validation using these
+algorithms as they are diminishing in use but still actively in use for some
+domains as of this publication. Operators of validating resolvers <span>MUST</span> treat DNSSEC signing algorithms RSASHA1 and RSASHA1-NSEC3-SHA1 as unsupported, rendering responses insecure if they cannot be validated by other supported signing algorithms.<a href="#section-2-2">¶</a></p>
+</section>
+</div>
+<div>
+<section>
+      <h2>
+<a href="#section-3">3. </a><a href="#name-security-considerations">Security Considerations</a>
+      </h2>
+<p>This document deprecates the use of RSASHA1 and RSASHA1-NSEC3-SHA1 for
+DNSSEC delegation and DNSSEC signing since these algorithms are no
+longer considered to be secure.<a href="#section-3-1">¶</a></p>
+</section>
+</div>
+<div>
+<section>
+      <h2>
+<a href="#section-4">4. </a><a href="#name-operational-considerations">Operational Considerations</a>
+      </h2>
+<p>Zone owners currently making use of SHA-1-based algorithms should
+immediately switch to algorithms with stronger cryptographic algorithms,
+such as the recommended algorithms in the IANA registries <span>[<a href="#DNSKEY-IANA">DNSKEY-IANA</a>]</span> <span>[<a href="#DS-IANA">DS-IANA</a>]</span>.<a href="#section-4-1">¶</a></p>
+<p>Operators should take care when deploying software packages and
+operating systems that may have already removed support for the SHA-1
+algorithm.  In these situations, software may need to be manually built
+and deployed by an operator to continue supporting the required levels
+indicated by the "Use for DNSSEC Validation" and "Implement for DNSSEC
+Validation" columns, which this document is not changing.<a href="#section-4-2">¶</a></p>
+</section>
+</div>
+<div>
+<section>
+      <h2>
+<a href="#section-5">5. </a><a href="#name-iana-considerations">IANA Considerations</a>
+      </h2>
+<p>IANA has updated the SHA-1 (1) entry in the "Digest Algorithms" registry <span>[<a href="#DS-IANA">DS-IANA</a>]</span> <span>[<a href="#RFC9904">RFC9904</a>]</span> as follows and has added this document as a reference for the entry:<a href="#section-5-1">¶</a></p>
+<span></span><dl>
+        <dt>Value:</dt>
+        <dd> 1<a href="#section-5-2.2">¶</a>
+</dd>
+        <dd></dd>
+<dt> Description:</dt>
+        <dd> SHA-1<a href="#section-5-2.4">¶</a>
+</dd>
+        <dd></dd>
+<dt> Use for DNSSEC Delegation:</dt>
+        <dd>
+          <span>MUST NOT</span><a href="#section-5-2.6">¶</a>
+</dd>
+        <dd></dd>
+<dt> Use for DNSSEC Validation:</dt>
+        <dd>
+          <span>RECOMMENDED</span><a href="#section-5-2.8">¶</a>
+</dd>
+        <dd></dd>
+<dt> Implement for DNSSEC Delegation:</dt>
+        <dd>
+          <span>MUST NOT</span><a href="#section-5-2.10">¶</a>
+</dd>
+        <dd></dd>
+<dt> Implement for DNSSEC Validation:</dt>
+        <dd>
+          <span>MUST</span><a href="#section-5-2.12">¶</a>
+</dd>
+      <dd></dd>
+</dl>
+<p>  IANA has updated the RSASHA1 (5) and RSASHA1-NSEC3-SHA1 (7)
+  algorithm entries in the "DNS Security Algorithm Numbers" registry
+  <span>[<a href="#DNSKEY-IANA">DNSKEY-IANA</a>]</span> <span>[<a href="#RFC9904">RFC9904</a>]</span> as follows and has added this document as a
+  reference for the entries:<a href="#section-5-3">¶</a></p>
+<span></span><dl>
+        <dt> Number:</dt>
+        <dd> 5<a href="#section-5-4.2">¶</a>
+</dd>
+        <dd></dd>
+<dt>Description:</dt>
+        <dd> RSA/SHA-1<a href="#section-5-4.4">¶</a>
+</dd>
+        <dd></dd>
+<dt>Mnemonic:</dt>
+        <dd> RSASHA1<a href="#section-5-4.6">¶</a>
+</dd>
+        <dd></dd>
+<dt>Zone Signing:</dt>
+        <dd> Y<a href="#section-5-4.8">¶</a>
+</dd>
+        <dd></dd>
+<dt>Trans. Sec.:</dt>
+        <dd> Y<a href="#section-5-4.10">¶</a>
+</dd>
+        <dd></dd>
+<dt>Use for DNSSEC Signing:</dt>
+        <dd>
+          <span>MUST NOT</span><a href="#section-5-4.12">¶</a>
+</dd>
+        <dd></dd>
+<dt>Use for DNSSEC Validation:</dt>
+        <dd>
+          <span>RECOMMENDED</span><a href="#section-5-4.14">¶</a>
+</dd>
+        <dd></dd>
+<dt>Implement for DNSSEC Signing:</dt>
+        <dd>
+          <span>NOT RECOMMENDED</span><a href="#section-5-4.16">¶</a>
+</dd>
+        <dd></dd>
+<dt>Implement for DNSSEC Validation:</dt>
+        <dd>
+          <span>MUST</span><a href="#section-5-4.18">¶</a>
+</dd>
+      <dd></dd>
+</dl>
+<span></span><dl>
+        <dt>Number:</dt>
+        <dd> 7<a href="#section-5-5.2">¶</a>
+</dd>
+        <dd></dd>
+<dt> Description:</dt>
+        <dd> RSASHA1-NSEC3-SHA1<a href="#section-5-5.4">¶</a>
+</dd>
+        <dd></dd>
+<dt>Mnemonic:</dt>
+        <dd> RSASHA1-NSEC3-SHA1<a href="#section-5-5.6">¶</a>
+</dd>
+        <dd></dd>
+<dt>Zone Signing: </dt>
+        <dd>Y<a href="#section-5-5.8">¶</a>
+</dd>
+        <dd></dd>
+<dt>Trans. Sec.:</dt>
+        <dd> Y<a href="#section-5-5.10">¶</a>
+</dd>
+        <dd></dd>
+<dt>Use for DNSSEC Signing:</dt>
+        <dd>
+          <span>MUST NOT</span><a href="#section-5-5.12">¶</a>
+</dd>
+        <dd></dd>
+<dt>Use for DNSSEC Validation:</dt>
+        <dd>
+          <span>RECOMMENDED</span><a href="#section-5-5.14">¶</a>
+</dd>
+        <dd></dd>
+<dt>Implement for DNSSEC Signing:</dt>
+        <dd>
+          <span>NOT RECOMMENDED</span><a href="#section-5-5.16">¶</a>
+</dd>
+        <dd></dd>
+<dt>Implement for DNSSEC Validation:</dt>
+        <dd>
+          <span>MUST</span><a href="#section-5-5.18">¶</a>
+</dd>
+      <dd></dd>
+</dl>
+</section>
+</div>
+<div>
+<section>
+      <h2>
+<a href="#section-6">6. </a><a href="#name-normative-references">Normative References</a>
+      </h2>
+<dl>
+<dt>[DNSKEY-IANA]</dt>
+      <dd>
+<span>IANA</span>, <span>"DNS Security Algorithm Numbers"</span>, <span>&lt;<a>https://www.iana.org/assignments/dns-sec-alg-numbers</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[DS-IANA]</dt>
+      <dd>
+<span>IANA</span>, <span>"Digest Algorithms"</span>, <span>&lt;<a>http://www.iana.org/assignments/ds-rr-types</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC2119]</dt>
+      <dd>
+<span>Bradner, S.</span>, <span>"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span>BCP 14</span>, <span>RFC 2119</span>, <span>DOI 10.17487/RFC2119</span>, <time datetime="1997-03">March 1997</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc2119</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC3110]</dt>
+      <dd>
+<span>Eastlake 3rd, D.</span>, <span>"RSA/SHA-1 SIGs and RSA KEYs in the Domain Name System (DNS)"</span>, <span>RFC 3110</span>, <span>DOI 10.17487/RFC3110</span>, <time datetime="2001-05">May 2001</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc3110</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC3174]</dt>
+      <dd>
+<span>Eastlake 3rd, D.</span> and <span>P. Jones</span>, <span>"US Secure Hash Algorithm 1 (SHA1)"</span>, <span>RFC 3174</span>, <span>DOI 10.17487/RFC3174</span>, <time datetime="2001-09">September 2001</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc3174</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC4034]</dt>
+      <dd>
+<span>Arends, R.</span>, <span>Austein, R.</span>, <span>Larson, M.</span>, <span>Massey, D.</span>, and <span>S. Rose</span>, <span>"Resource Records for the DNS Security Extensions"</span>, <span>RFC 4034</span>, <span>DOI 10.17487/RFC4034</span>, <time datetime="2005-03">March 2005</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc4034</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC5155]</dt>
+      <dd>
+<span>Laurie, B.</span>, <span>Sisson, G.</span>, <span>Arends, R.</span>, and <span>D. Blacka</span>, <span>"DNS Security (DNSSEC) Hashed Authenticated Denial of Existence"</span>, <span>RFC 5155</span>, <span>DOI 10.17487/RFC5155</span>, <time datetime="2008-03">March 2008</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc5155</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC8174]</dt>
+      <dd>
+<span>Leiba, B.</span>, <span>"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span>BCP 14</span>, <span>RFC 8174</span>, <span>DOI 10.17487/RFC8174</span>, <time datetime="2017-05">May 2017</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc8174</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC9364]</dt>
+      <dd>
+<span>Hoffman, P.</span>, <span>"DNS Security Extensions (DNSSEC)"</span>, <span>BCP 237</span>, <span>RFC 9364</span>, <span>DOI 10.17487/RFC9364</span>, <time datetime="2023-02">February 2023</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc9364</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC9499]</dt>
+      <dd>
+<span>Hoffman, P.</span> and <span>K. Fujiwara</span>, <span>"DNS Terminology"</span>, <span>BCP 219</span>, <span>RFC 9499</span>, <span>DOI 10.17487/RFC9499</span>, <time datetime="2024-03">March 2024</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc9499</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC9904]</dt>
+    <dd>
+<span>Hardaker, W.</span> and <span>W. Kumari</span>, <span>"DNSSEC Cryptographic Algorithm Recommendation Update Process"</span>, <span>RFC 9904</span>, <span>DOI 10.17487/RFC9904</span>, <time datetime="2025-11">November 2025</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc9904</a>&gt;</span>. </dd>
+<dd></dd>
+</dl>
+</section>
+</div>
+<div>
+<section>
+      <h2>
+<a href="#name-acknowledgments">Acknowledgments</a>
+      </h2>
+<p>The authors appreciate the comments and suggestions from the
+      following IETF participants in helping produce this document: <span>Mark Andrews</span>, <span>Steve Crocker</span>, <span>Peter Dickson</span>, <span>Thomas Graf</span>, <span>Paul Hoffman</span>, <span>Russ Housley</span>, <span>Shumon Huque</span>, <span>Barry Leiba</span>, <span>S. Moonesamy</span>, <span>Yoav Nir</span>, <span>Florian Obser</span>, <span>Peter Thomassen</span>,
+      <span>Stefan Ubbink</span>, <span>Paul Wouters</span>,
+      <span>Tim Wicinski</span>, and the many members of the DNSOP
+      Working Group that discussed this specification.<a href="#appendix-A-1">¶</a></p>
+</section>
+</div>
+<div>
+<section>
+      <h2>
+<a href="#name-authors-addresses">Authors' Addresses</a>
+      </h2>
+<address>
+        <div dir="auto"><span>Wes Hardaker</span></div>
+<div dir="auto"><span>USC/ISI</span></div>
+<div>
+<span>Email:</span>
+<a href="mailto:ietf@hardakers.net">ietf@hardakers.net</a>
+</div>
+</address>
+<address>
+        <div dir="auto"><span>Warren Kumari</span></div>
+<div dir="auto"><span>Google</span></div>
+<div>
+<span>Email:</span>
+<a href="mailto:warren@kumari.net">warren@kumari.net</a>
+</div>
+</address>
+</section>
+</div></article><aside class="toc-panel"><h2>On this RFC</h2><div id="toc-links"></div></aside></section>
+</main>
+<script src="../assets/doc.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RFC 9072: Extended Optional Parameters Length for BGP OPEN Message</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<div class="progress"></div>
+<main class="doc-layout">
+  <a class="toplink" href="../index.html">← Back to index</a>
+  <section class="doc-hero">
+    <div class="eyebrow">RFC 9072</div>
+    <h1>Extended Optional Parameters Length for BGP OPEN Message</h1>
+    <div class="meta-tags"><span class="tag tag-routing">routing</span><span class="tag tag-update-chain">update-chain</span></div>
+    <div class="note"><strong>Threat hunting relevance:</strong> Pulled in through the RFC update chain; review &#x27;Extended Optional Parameters Length for BGP OPEN Message&#x27; to understand protocol changes that may affect detection, parsing, or investigation context.</div>
+  </section>
+  <section class="reader-tools"><div class="group"><button class="reader-btn" data-action="focus">Focus width</button><button class="reader-btn" data-action="comfy">Comfy text</button></div><button class="reader-btn" data-action="top">Back to top</button></section>
+  <section class="reader-grid"><article class="doc-body"><table>
+<thead><tr>
+<td>RFC 9072</td>
+<td>Extended Optional Parameters Length</td>
+<td>July 2021</td>
+</tr></thead>
+<tfoot><tr>
+<td>Chen &amp; Scudder</td>
+<td>Standards Track</td>
+<td>[Page]</td>
+</tr></tfoot>
+</table>
+<div></div>
+<div>
+<dl>
+<dt>Stream:</dt>
+<dd>Internet Engineering Task Force (IETF)</dd>
+<dt>RFC:</dt>
+<dd><a>9072</a></dd>
+<dt>Updates:</dt>
+<dd>
+<a>4271</a> </dd>
+<dt>Category:</dt>
+<dd>Standards Track</dd>
+<dt>Published:</dt>
+<dd>
+<time datetime="2021-07">July 2021</time>
+    </dd>
+<dt>ISSN:</dt>
+<dd>2070-1721</dd>
+<dt>Authors:</dt>
+<dd>
+<div>
+      <div>E. Chen</div>
+<div>Palo Alto Networks</div>
+</div>
+<div>
+      <div>J. Scudder</div>
+<div>Juniper Networks</div>
+</div>
+</dd>
+</dl>
+</div>
+<h1>RFC 9072</h1>
+<h1>Extended Optional Parameters Length for BGP OPEN Message</h1>
+<section>
+      <h2><a href="#abstract">Abstract</a></h2>
+<p>
+The Optional Parameters in the BGP OPEN message as defined in the base
+BGP specification are limited to 255 octets due to a one-octet length
+field.
+
+BGP capabilities are carried in this field and may foreseeably
+exceed 255 octets in the future, leading to concerns about this
+limitation.<a href="#section-abstract-1">¶</a></p>
+<p>
+This document updates RFC 4271 by extending, in a backward-compatible manner, the length of the Optional Parameters in a BGP OPEN message. The Parameter Length field of individual Optional Parameters is also extended.<a href="#section-abstract-2">¶</a></p>
+</section>
+<div>
+<section>
+        <h2>
+<a href="#name-status-of-this-memo">Status of This Memo</a>
+        </h2>
+<p>
+            This is an Internet Standards Track document.<a href="#section-boilerplate.1-1">¶</a></p>
+<p>
+            This document is a product of the Internet Engineering Task Force
+            (IETF).  It represents the consensus of the IETF community.  It has
+            received public review and has been approved for publication by
+            the Internet Engineering Steering Group (IESG).  Further
+            information on Internet Standards is available in Section 2 of 
+            RFC 7841.<a href="#section-boilerplate.1-2">¶</a></p>
+<p>
+            Information about the current status of this document, any
+            errata, and how to provide feedback on it may be obtained at
+            <span><a>https://www.rfc-editor.org/info/rfc9072</a></span>.<a href="#section-boilerplate.1-3">¶</a></p>
+</section>
+</div>
+<div>
+<section>
+        <h2>
+<a href="#name-copyright-notice">Copyright Notice</a>
+        </h2>
+<p>
+            Copyright (c) 2021 IETF Trust and the persons identified as the
+            document authors. All rights reserved.<a href="#section-boilerplate.2-1">¶</a></p>
+<p>
+            This document is subject to BCP 78 and the IETF Trust's Legal
+            Provisions Relating to IETF Documents
+            (<span><a>https://trustee.ietf.org/license-info</a></span>) in effect on the date of
+            publication of this document. Please review these documents
+            carefully, as they describe your rights and restrictions with
+            respect to this document. Code Components extracted from this
+            document must include Simplified BSD License text as described in
+            Section 4.e of the Trust Legal Provisions and are provided without
+            warranty as described in the Simplified BSD License.<a href="#section-boilerplate.2-2">¶</a></p>
+</section>
+</div>
+<div>
+<section>
+        <a href="#" onclick="scroll(0,0)">▲</a><h2>
+<a href="#name-table-of-contents">Table of Contents</a>
+        </h2>
+<nav><ul>
+<li>
+            <p><a href="#section-1">1</a>.  <a href="#name-introduction">Introduction</a></p>
+<ul>
+<li>
+                <p><a href="#section-1.1">1.1</a>.  <a href="#name-requirements-language">Requirements Language</a></p>
+</li>
+            </ul>
+</li>
+          <li>
+            <p><a href="#section-2">2</a>.  <a href="#name-update-to-rfc-4271">Update to RFC 4271</a></p>
+</li>
+          <li>
+            <p><a href="#section-3">3</a>.  <a href="#name-backward-compatibility">Backward Compatibility</a></p>
+</li>
+          <li>
+            <p><a href="#section-4">4</a>.  <a href="#name-iana-considerations">IANA Considerations</a></p>
+</li>
+          <li>
+            <p><a href="#section-5">5</a>.  <a href="#name-security-considerations">Security Considerations</a></p>
+</li>
+          <li>
+            <p><a href="#section-6">6</a>.  <a href="#name-references">References</a></p>
+<ul>
+<li>
+                <p><a href="#section-6.1">6.1</a>.  <a href="#name-normative-references">Normative References</a></p>
+</li>
+              <li>
+                <p><a href="#section-6.2">6.2</a>.  <a href="#name-informative-references">Informative References</a></p>
+</li>
+            </ul>
+</li>
+          <li>
+            <p><a href="#appendix-A"></a><a href="#name-acknowledgements">Acknowledgements</a></p>
+</li>
+          <li>
+            <p><a href="#appendix-B"></a><a href="#name-authors-addresses">Authors' Addresses</a></p>
+</li>
+        </ul>
+</nav>
+</section>
+</div>
+<section>
+      <h2>
+<a href="#section-1">1. </a><a href="#name-introduction">Introduction</a>
+      </h2>
+<p>
+The Optional Parameters Length field in the BGP OPEN message is defined
+in <span><a href="#RFC4271">the base BGP specification</a> [<a href="#RFC4271">RFC4271</a>]</span> as one
+octet, thus limiting the Optional Parameters field in the OPEN message
+to 255 octets.  Since BGP capabilities <span>[<a href="#RFC5492">RFC5492</a>]</span> are
+carried in the Optional Parameters field, and new BGP capabilities
+continue to be introduced, the limitation is a concern for BGP
+development.<a href="#section-1-1">¶</a></p>
+<p>
+This document updates <span>[<a href="#RFC4271">RFC4271</a>]</span> by extending the length of the Optional Parameters in BGP
+OPEN in a
+backward-compatible manner. This is done by using Optional Parameter type code 255 as a
+distinguished value, which indicates an extended Optional Parameters
+Length field follows and that the parsing of the BGP OPEN should be
+modified according to these procedures.  In this case, the Parameter Length 
+field of the individual Optional Parameters in the BGP OPEN message is 
+also extended.<a href="#section-1-2">¶</a></p>
+<section>
+        <h3>
+<a href="#section-1.1">1.1. </a><a href="#name-requirements-language">Requirements Language</a>
+        </h3>
+<p>
+    The key words "<span>MUST</span>", "<span>MUST NOT</span>", "<span>REQUIRED</span>", "<span>SHALL</span>", "<span>SHALL NOT</span>", "<span>SHOULD</span>", "<span>SHOULD NOT</span>", "<span>RECOMMENDED</span>", "<span>NOT RECOMMENDED</span>",
+    "<span>MAY</span>", and "<span>OPTIONAL</span>" in this document are to be interpreted as
+    described in BCP 14 <span>[<a href="#RFC2119">RFC2119</a>]</span> <span>[<a href="#RFC8174">RFC8174</a>]</span> 
+    when, and only when, they appear in all capitals, as shown here.<a href="#section-1.1-1">¶</a></p>
+</section>
+</section>
+<div>
+<section>
+      <h2>
+<a href="#section-2">2. </a><a href="#name-update-to-rfc-4271">Update to RFC 4271</a>
+      </h2>
+<p>
+This document reserves Optional Parameter type code 255 as the "Extended
+Length".<a href="#section-2-1">¶</a></p>
+<p>
+In the event that the length of the Optional Parameters in the BGP OPEN
+message does not exceed 255, the encodings of <span><a href="#RFC4271">the
+base BGP specification</a> [<a href="#RFC4271">RFC4271</a>]</span> <span>SHOULD</span> be used without alteration.
+Configuration <span>MAY</span> override this to force the extended format to be used
+in all cases; this might be used, for example, to test that a peer
+supports this specification. (In any case, an implementation <span>MUST</span> accept
+an OPEN message that uses the encoding of this specification even if the
+length of the Optional Parameters is 255 or less.)<a href="#section-2-2">¶</a></p>
+<p>
+However, if the length of the Optional Parameters in the BGP OPEN message 
+does exceed 255, the OPEN message <span>MUST</span> be encoded according to the 
+procedure below.<a href="#section-2-3">¶</a></p>
+<span></span><div>
+<figure>
+        <div>
+<pre>
+        0                   1                   2                   3
+        0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+       +-+-+-+-+-+-+-+-+
+       |    Version    |
+       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+       |     My Autonomous System      |
+       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+       |           Hold Time           |
+       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+       |                         BGP Identifier                        |
+       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+       |Non-Ext OP Len.|Non-Ext OP Type|  Extended Opt. Parm. Length   |
+       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+       |                                                               |
+       |             Optional Parameters (variable)                    |
+       |                                                               |
+       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+</pre>
+</div>
+<figcaption><a href="#figure-1">Figure 1</a>:
+<a href="#name-extended-encoding-open-form">Extended Encoding OPEN Format</a>
+        </figcaption></figure>
+</div>
+<p>
+The Non-Extended Optional Parameters Length field (Non-Ext OP Len.)
+<span>SHOULD</span> be set to 255 on transmission and, in any event, <span>MUST NOT</span> be set to
+0; it <span>MUST</span> be ignored on receipt once the use of the extended format is
+determined positively by inspection of the Non-Extended Optional
+Parameters Type (Non-Ext OP Type) field.<a href="#section-2-5">¶</a></p>
+<p>
+The subsequent one-octet field (which would be the first Optional
+Parameter Type field in the non-extended format and is called "Non-Ext
+OP Type" in the <a href="#open_fmt">figure above</a>) <span>MUST</span> be set to 255 on transmission. On
+receipt, a value of 255 for this field is the indication that the
+extended format is in use.<a href="#section-2-6">¶</a></p>
+<p>
+In this extended encoding, the subsequent two-octet field, termed
+the "Extended Optional Parameters Length field", is an unsigned
+integer indicating the total length of the Optional Parameters field
+in octets.  If the value of this field is zero, no Optional
+Parameters are present.<a href="#section-2-7">¶</a></p>
+<p>
+Likewise, in that situation, the Optional Parameters encoding is modified
+to be the following:<a href="#section-2-8">¶</a></p>
+<span></span><div>
+<figure>
+        <div>
+<pre>
+     0                   1                   2
+     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |  Parm. Type   |        Parameter Length       |
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    ~            Parameter Value (variable)         ~
+    |                                               |
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+</pre>
+</div>
+<figcaption><a href="#figure-2">Figure 2</a>:
+<a href="#name-extended-parameters-format">Extended Parameters Format</a>
+        </figcaption></figure>
+</div>
+<p>
+The rules for encoding Optional Parameters are unchanged with respect
+to those given in <span>[<a href="#RFC4271">RFC4271</a>]</span>, except that the Parameter Length field is extended to be a two-octet unsigned integer.<a href="#section-2-10">¶</a></p>
+<p>
+In parsing an OPEN message, if the one-octet Optional Parameters
+Length field (labeled "Non-Ext OP Len." in <a href="#open_fmt">Figure 1</a>) is non-zero, a BGP speaker
+<span>MUST</span> use the value of the octet following the one-octet Optional
+Parameters Length field (labeled "Non-Ext OP Type" in <a href="#open_fmt">Figure 1</a>) to determine both the encoding of the Optional
+Parameters length and the size of the Parameter Length field of
+individual Optional Parameters.  If the value of the "Non-Ext OP Type"
+field is 255, then the encoding described above is used for the Optional
+Parameters length. Otherwise, the encoding defined in <span>[<a href="#RFC4271">RFC4271</a>]</span> is used.<a href="#section-2-11">¶</a></p>
+</section>
+</div>
+<section>
+      <h2>
+<a href="#section-3">3. </a><a href="#name-backward-compatibility">Backward Compatibility</a>
+      </h2>
+<p>
+If a BGP speaker supporting this specification (a "new speaker") is
+peering with one that does not (an "old speaker"), no interoperability
+issues arise unless the new speaker needs to encode Optional Parameters
+whose length exceeds 255.  In that case, it will transmit an OPEN
+message that the old speaker will interpret as containing an Optional
+Parameter with type code 255.  Since the old speaker will
+not recognize that type code by definition, the old speaker is expected to close
+the connection with a NOTIFICATION with an error code of "OPEN Message
+Error" and an error subcode of "Unsupported Optional Parameters", according
+to <span><a>Section 6.2</a> of [<a href="#RFC4271">RFC4271</a>]</span>.<a href="#section-3-1">¶</a></p>
+<p>
+Although the Optional Parameter type code 255 is used in this
+specification as the indication that the extended encoding is in use, it
+is not a bona fide Optional Parameter type code in the usual sense and <span>MUST NOT</span> be used other than as described above.
+
+If encountered other than as the Non-Ext OP Type, it <span>MUST</span> be
+treated as an unrecognized Optional Parameter and handled according to
+<span>[<a href="#RFC4271">RFC4271</a>], <a>Section 6.2</a></span>.<a href="#section-3-2">¶</a></p>
+<p>
+It is not considered an error to receive an OPEN message whose Extended
+Optional Parameters Length value is less than or equal to 255. It is not
+considered a fatal error to receive an OPEN message whose (non-extended)
+Optional Parameters Length value is not 255 and whose first Optional
+Parameter type code is 255 -- in this case, the encoding of this
+specification <span>MUST</span> be used for decoding the message.<a href="#section-3-3">¶</a></p>
+</section>
+<section>
+      <h2>
+<a href="#section-4">4. </a><a href="#name-iana-considerations">IANA Considerations</a>
+      </h2>
+<p>
+IANA has assigned value 255 as the Extended Length type code in the "BGP OPEN Optional
+Parameter Types" registry.<a href="#section-4-1">¶</a></p>
+</section>
+<section>
+      <h2>
+<a href="#section-5">5. </a><a href="#name-security-considerations">Security Considerations</a>
+      </h2>
+<p>
+This extension to BGP does not change the underlying security or
+confidentiality issues
+inherent in the existing BGP <span>[<a href="#RFC4272">RFC4272</a>]</span>.<a href="#section-5-1">¶</a></p>
+</section>
+<section>
+      <h2>
+<a href="#section-6">6. </a><a href="#name-references">References</a>
+      </h2>
+<section>
+        <h3>
+<a href="#section-6.1">6.1. </a><a href="#name-normative-references">Normative References</a>
+        </h3>
+<dl>
+<dt>[RFC2119]</dt>
+        <dd>
+<span>Bradner, S.</span>, <span>"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span>BCP 14</span>, <span>RFC 2119</span>, <span>DOI 10.17487/RFC2119</span>, <time datetime="1997-03">March 1997</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc2119</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC4271]</dt>
+        <dd>
+<span>Rekhter, Y., Ed.</span>, <span>Li, T., Ed.</span>, and <span>S. Hares, Ed.</span>, <span>"A Border Gateway Protocol 4 (BGP-4)"</span>, <span>RFC 4271</span>, <span>DOI 10.17487/RFC4271</span>, <time datetime="2006-01">January 2006</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc4271</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC8174]</dt>
+      <dd>
+<span>Leiba, B.</span>, <span>"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span>BCP 14</span>, <span>RFC 8174</span>, <span>DOI 10.17487/RFC8174</span>, <time datetime="2017-05">May 2017</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc8174</a>&gt;</span>. </dd>
+<dd></dd>
+</dl>
+</section>
+<section>
+        <h3>
+<a href="#section-6.2">6.2. </a><a href="#name-informative-references">Informative References</a>
+        </h3>
+<dl>
+<dt>[RFC4272]</dt>
+        <dd>
+<span>Murphy, S.</span>, <span>"BGP Security Vulnerabilities Analysis"</span>, <span>RFC 4272</span>, <span>DOI 10.17487/RFC4272</span>, <time datetime="2006-01">January 2006</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc4272</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC5492]</dt>
+      <dd>
+<span>Scudder, J.</span> and <span>R. Chandra</span>, <span>"Capabilities Advertisement with BGP-4"</span>, <span>RFC 5492</span>, <span>DOI 10.17487/RFC5492</span>, <time datetime="2009-02">February 2009</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc5492</a>&gt;</span>. </dd>
+<dd></dd>
+</dl>
+</section>
+</section>
+<section>
+      <h2>
+<a href="#name-acknowledgements">Acknowledgements</a>
+      </h2>
+<p>
+The authors would like to thank <span>Yakov Rekhter</span> and <span>Srihari Sangli</span> for
+discussing various options to enlarge the Optional Parameters field. We
+would also like to thank <span>Matthew Bocci</span>, <span>Bruno Decraene</span>, <span>John Heasley</span>,
+<span>Jakob Heitz</span>, <span>Christer Holmberg</span>, <span>Pradosh Mohapatra</span>, <span>Keyur Patel</span>, and <span>Hannes Gredler</span> for their
+valuable comments.<a href="#appendix-A-1">¶</a></p>
+</section>
+<div>
+<section>
+      <h2>
+<a href="#name-authors-addresses">Authors' Addresses</a>
+      </h2>
+<address>
+        <div dir="auto"><span>Enke Chen</span></div>
+<div dir="auto"><span>Palo Alto Networks</span></div>
+<div>
+<span>Email:</span>
+<a href="mailto:enchen@paloaltonetworks.com">enchen@paloaltonetworks.com</a>
+</div>
+</address>
+<address>
+        <div dir="auto"><span>John Scudder</span></div>
+<div dir="auto"><span>Juniper Networks</span></div>
+<div>
+<span>Email:</span>
+<a href="mailto:jgs@juniper.net">jgs@juniper.net</a>
+</div>
+</address>
+</section>
+</div></article><aside class="toc-panel"><h2>On this RFC</h2><div id="toc-links"></div></aside></section>
+</main>
+<script src="../assets/doc.js"></script>
+
+</body>
+</html>

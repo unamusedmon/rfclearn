@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RFC 768: User Datagram Protocol</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<div class="progress"></div>
+<main class="doc-layout">
+  <a class="toplink" href="../index.html">← Back to index</a>
+  <section class="doc-hero">
+    <div class="eyebrow">RFC 768</div>
+    <h1>User Datagram Protocol</h1>
+    <div class="meta-tags"><span class="tag tag-transport">transport</span></div>
+    <div class="note"><strong>Threat hunting relevance:</strong> Defines UDP, the lightweight transport behind DNS, telemetry, scanning, and many amplification patterns.</div>
+  </section>
+  <section class="reader-tools"><div class="group"><button class="reader-btn" data-action="focus">Focus width</button><button class="reader-btn" data-action="comfy">Comfy text</button></div><button class="reader-btn" data-action="top">Back to top</button></section>
+  <section class="reader-grid"><article class="doc-body"><span>[<a title="RFC Editor">RFC Home</a>] [<a href="/rfc/rfc768.txt">TEXT</a>|<a href="/rfc/pdfrfc/rfc768.txt.pdf">PDF</a>|<a href="/rfc/rfc768.html">HTML</a>] [<a title='IETF Datatracker information for this document'>Tracker</a>] [<a title="IPR disclosures related to this document">IPR</a>] [<a title='Info page'>Info page</a>]                  </span><br/><span>                                                                        </span><br /><span>                                                       INTERNET STANDARD</span><br /><span>Updated by: <a href="rfc9868.html" class="rfc-local">9868</a>                                                        </span><pre>RFC 768                                                        J. Postel
+                                                                     ISI
+                                                          28 August 1980
+
+
+
+                         <span>User Datagram Protocol</span>
+                         <span>----------------------</span>
+
+Introduction
+------------
+
+This User Datagram  Protocol  (UDP)  is  defined  to  make  available  a
+datagram   mode  of  packet-switched   computer   communication  in  the
+environment  of  an  interconnected  set  of  computer  networks.   This
+protocol  assumes  that the Internet  Protocol  (IP)  [<a href="#ref-1" title="&quot;Internet Protocol,&quot;">1</a>] is used as the
+underlying protocol.
+
+This protocol  provides  a procedure  for application  programs  to send
+messages  to other programs  with a minimum  of protocol mechanism.  The
+protocol  is transaction oriented, and delivery and duplicate protection
+are not guaranteed.  Applications requiring ordered reliable delivery of
+streams of data should use the Transmission Control Protocol (TCP) [<a href="#ref-2" title="&quot;Transmission Control Protocol,&quot;">2</a>].
+
+Format
+------
+
+
+                  0      7 8     15 16    23 24    31
+                 +--------+--------+--------+--------+
+                 |     Source      |   Destination   |
+                 |      Port       |      Port       |
+                 +--------+--------+--------+--------+
+                 |                 |                 |
+                 |     Length      |    Checksum     |
+                 +--------+--------+--------+--------+
+                 |
+                 |          data octets ...
+                 +---------------- ...
+
+                      User Datagram Header Format
+
+Fields
+------
+
+Source Port is an optional field, when meaningful, it indicates the port
+of the sending  process,  and may be assumed  to be the port  to which a
+reply should  be addressed  in the absence of any other information.  If
+not used, a value of zero is inserted.
+
+
+
+
+
+Postel                                                          [page 1]</pre>
+<hr/><!--NewPage--><pre><span ></span>
+                                                             28 Aug 1980
+User Datagram Protocol                                           <a href="./rfc768">RFC 768</a>
+Fields
+
+
+
+Destination  Port has a meaning  within  the  context  of  a  particular
+internet destination address.
+
+Length  is the length  in octets  of this user datagram  including  this
+header  and the data.   (This  means  the minimum value of the length is
+eight.)
+
+Checksum is the 16-bit one's complement of the one's complement sum of a
+pseudo header of information from the IP header, the UDP header, and the
+data,  padded  with zero octets  at the end (if  necessary)  to  make  a
+multiple of two octets.
+
+The pseudo  header  conceptually prefixed to the UDP header contains the
+source  address,  the destination  address,  the protocol,  and the  UDP
+length.   This information gives protection against misrouted datagrams.
+This checksum procedure is the same as is used in TCP.
+
+                  0      7 8     15 16    23 24    31
+                 +--------+--------+--------+--------+
+                 |          source address           |
+                 +--------+--------+--------+--------+
+                 |        destination address        |
+                 +--------+--------+--------+--------+
+                 |  zero  |protocol|   UDP length    |
+                 +--------+--------+--------+--------+
+
+If the computed  checksum  is zero,  it is transmitted  as all ones (the
+equivalent  in one's complement  arithmetic).   An all zero  transmitted
+checksum  value means that the transmitter  generated  no checksum  (for
+debugging or for higher level protocols that don't care).
+
+User Interface
+--------------
+
+A user interface should allow
+
+  the creation of new receive ports,
+
+  receive  operations  on the receive  ports that return the data octets
+  and an indication of source port and source address,
+
+  and an operation  that allows  a datagram  to be sent,  specifying the
+  data, source and destination ports and addresses to be sent.
+
+
+
+
+
+
+[page 2]                                                          Postel</pre>
+<hr/><!--NewPage--><pre><span ></span>
+<span><a href="#section-28">28</a> Aug 1980</span>
+<a href="./rfc768">RFC 768</a>                                           User Datagram Protocol
+                                                            IP Interface
+
+
+
+IP Interface
+-------------
+
+The UDP module  must be able to determine  the  source  and  destination
+internet addresses and the protocol field from the internet header.  One
+possible  UDP/IP  interface  would return  the whole  internet  datagram
+including all of the internet header in response to a receive operation.
+Such an interface  would  also allow  the UDP to pass  a  full  internet
+datagram  complete  with header  to the IP to send.  The IP would verify
+certain fields for consistency and compute the internet header checksum.
+
+Protocol Application
+--------------------
+
+The major uses of this protocol is the Internet Name Server [<a href="#ref-3" title="&quot;Internet Name Server,&quot;">3</a>], and the
+Trivial File Transfer [<a href="#ref-4" title="&quot;The TFTP Protocol,&quot;">4</a>].
+
+Protocol Number
+---------------
+
+This is protocol  17 (21 octal)  when used  in  the  Internet  Protocol.
+Other protocol numbers are listed in [<a href="#ref-5" title="&quot;Assigned Numbers,&quot;">5</a>].
+
+References
+----------
+
+[<a>1</a>]     Postel,   J.,   "Internet  Protocol,"  <a href="./rfc760">RFC 760</a>,  USC/Information
+        Sciences Institute, January 1980.
+
+[<a>2</a>]     Postel,    J.,   "Transmission   Control   Protocol,"   <a href="./rfc761">RFC 761</a>,
+        USC/Information Sciences Institute, January 1980.
+
+[<a>3</a>]     Postel,  J.,  "Internet  Name Server,"  USC/Information Sciences
+        Institute, IEN 116, August 1979.
+
+[<a>4</a>]     Sollins,  K.,  "The TFTP Protocol,"  Massachusetts  Institute of
+        Technology, IEN 133, January 1980.
+
+[<a>5</a>]     Postel,   J.,   "Assigned   Numbers,"  USC/Information  Sciences
+        Institute, <a href="./rfc762">RFC 762</a>, January 1980.
+
+
+
+
+
+
+
+
+
+Postel                                                          [page 3]
+</pre></article><aside class="toc-panel"><details class="header-reference-panel" open>
+  <summary><span>Header field quick-reference</span><strong>RFC 768 UDP Header</strong></summary>
+  <p class="header-note">UDP is compact and often abused for reflection, tunneling, and scanning because there is no session state in the header.</p>
+  <div class="bit-axis">Bit positions 0-31</div>
+  <div class="header-diagram-wrap"><svg class="header-bit-layout" viewBox="0 0 320 106" role="img" aria-label="0-31 bit layout diagram" xmlns="http://www.w3.org/2000/svg"><desc>0-31 bit positions across each row; fields are drawn as blocks spanning their bit widths.</desc><text x="0" y="14" class="bit-label">0</text><text x="40" y="14" class="bit-label">4</text><text x="80" y="14" class="bit-label">8</text><text x="120" y="14" class="bit-label">12</text><text x="160" y="14" class="bit-label">16</text><text x="200" y="14" class="bit-label">20</text><text x="240" y="14" class="bit-label">24</text><text x="280" y="14" class="bit-label">28</text><text x="320" y="14" text-anchor="end" class="bit-label">31</text><line x1="0" y1="22" x2="0" y2="98" class="bit-grid" /><line x1="40" y1="22" x2="40" y2="98" class="bit-grid" /><line x1="80" y1="22" x2="80" y2="98" class="bit-grid" /><line x1="120" y1="22" x2="120" y2="98" class="bit-grid" /><line x1="160" y1="22" x2="160" y2="98" class="bit-grid" /><line x1="200" y1="22" x2="200" y2="98" class="bit-grid" /><line x1="240" y1="22" x2="240" y2="98" class="bit-grid" /><line x1="280" y1="22" x2="280" y2="98" class="bit-grid" /><line x1="320" y1="22" x2="320" y2="98" class="bit-grid" /><g><rect x="0" y="22" width="160" height="34" rx="7" class="field-block field-0" /><text x="80.0" y="44" text-anchor="middle" class="field-label">Source Port</text><title>Source Port: bits 0-15 in row 1</title></g><g><rect x="160" y="22" width="160" height="34" rx="7" class="field-block field-1" /><text x="240.0" y="44" text-anchor="middle" class="field-label">Destination Port</text><title>Destination Port: bits 16-31 in row 1</title></g><g><rect x="0" y="60" width="160" height="34" rx="7" class="field-block field-2" /><text x="80.0" y="82" text-anchor="middle" class="field-label">Length</text><title>Length: bits 0-15 in row 2</title></g><g><rect x="160" y="60" width="160" height="34" rx="7" class="field-block field-3" /><text x="240.0" y="82" text-anchor="middle" class="field-label">Checksum</text><title>Checksum: bits 16-31 in row 2</title></g></svg></div>
+  <table class="header-field-table">
+    <thead><tr><th>Field</th><th>Bits</th><th>Hunting meaning / abnormal</th></tr></thead>
+    <tbody><tr><td>Source Port</td><td>16</td><td>Originating service or ephemeral port; zero, unusual, or impossible pairings can signal spoofing or crafted traffic.</td></tr><tr><td>Destination Port</td><td>16</td><td>Target service port; watch for amplification services, unexpected high-value services, and scan fan-out.</td></tr><tr><td>Length</td><td>16</td><td>UDP header plus payload length; mismatches or tiny/oversized lengths indicate malformed packets or evasion.</td></tr><tr><td>Checksum</td><td>16</td><td>Integrity check over pseudo-header and payload; zero in IPv4 or invalid values can reveal crafted packets.</td></tr></tbody>
+  </table>
+</details><h2>On this RFC</h2><div id="toc-links"></div></aside></section>
+</main>
+<script src="../assets/doc.js"></script>
+
+</body>
+</html>

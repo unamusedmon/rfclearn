@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RFC 9454: Update to OSPF Terminology</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<div class="progress"></div>
+<main class="doc-layout">
+  <a class="toplink" href="../index.html">← Back to index</a>
+  <section class="doc-hero">
+    <div class="eyebrow">RFC 9454</div>
+    <h1>Update to OSPF Terminology</h1>
+    <div class="meta-tags"><span class="tag tag-routing">routing</span><span class="tag tag-update-chain">update-chain</span></div>
+    <div class="note"><strong>Threat hunting relevance:</strong> Pulled in through the RFC update chain; review &#x27;Update to OSPF Terminology&#x27; to understand protocol changes that may affect detection, parsing, or investigation context.</div>
+  </section>
+  <section class="reader-tools"><div class="group"><button class="reader-btn" data-action="focus">Focus width</button><button class="reader-btn" data-action="comfy">Comfy text</button></div><button class="reader-btn" data-action="top">Back to top</button></section>
+  <section class="reader-grid"><article class="doc-body"><table>
+<thead><tr>
+<td>RFC 9454</td>
+<td>OSPF Terminology</td>
+<td>August 2023</td>
+</tr></thead>
+<tfoot><tr>
+<td>Fox, et al.</td>
+<td>Standards Track</td>
+<td>[Page]</td>
+</tr></tfoot>
+</table>
+<div></div>
+<div>
+<dl>
+<dt>Stream:</dt>
+<dd>Internet Engineering Task Force (IETF)</dd>
+<dt>RFC:</dt>
+<dd><a>9454</a></dd>
+<dt>Updates:</dt>
+<dd>
+<a>2328</a>, <a>4222</a>, <a>4811</a>, <a>5243</a>, <a>5340</a>, <a>5614</a>, <a>5838</a> </dd>
+<dt>Category:</dt>
+<dd>Standards Track</dd>
+<dt>Published:</dt>
+<dd>
+<time datetime="2023-08">August 2023</time>
+    </dd>
+<dt>ISSN:</dt>
+<dd>2070-1721</dd>
+<dt>Authors:</dt>
+<dd>
+<div>
+      <div>M. Fox</div>
+<div>IBM</div>
+</div>
+<div>
+      <div>A. Lindem</div>
+<div>LabN Consulting, L.L.C.</div>
+</div>
+<div>
+      <div>A. Retana</div>
+<div>Futurewei Technologies, Inc.</div>
+</div>
+</dd>
+</dl>
+</div>
+<h1>RFC 9454</h1>
+<h1>Update to OSPF Terminology</h1>
+<section>
+      <h2><a href="#abstract">Abstract</a></h2>
+<p>
+        This document updates some OSPF terminology to be in line with inclusive language used in the industry.
+        The IETF has designated "Guidance for NIST Staff on Using
+        Inclusive Language in Documentary Standards" by the US National Institute of Standards and Technology (NIST) 
+        for its inclusive language guidelines. It is intended that all
+        future OSPF documents use this revised terminology even when they reference the RFCs updated by this
+        document.<a href="#section-abstract-1">¶</a></p>
+<p>
+        This document updates RFCs 2328, 4222, 4811, 5243, 5340, 5614, and 5838.<a href="#section-abstract-2">¶</a></p>
+</section>
+<div>
+<section>
+        <h2>
+<a href="#name-status-of-this-memo">Status of This Memo</a>
+        </h2>
+<p>
+            This is an Internet Standards Track document.<a href="#section-boilerplate.1-1">¶</a></p>
+<p>
+            This document is a product of the Internet Engineering Task Force
+            (IETF).  It represents the consensus of the IETF community.  It has
+            received public review and has been approved for publication by
+            the Internet Engineering Steering Group (IESG).  Further
+            information on Internet Standards is available in Section 2 of 
+            RFC 7841.<a href="#section-boilerplate.1-2">¶</a></p>
+<p>
+            Information about the current status of this document, any
+            errata, and how to provide feedback on it may be obtained at
+            <span><a>https://www.rfc-editor.org/info/rfc9454</a></span>.<a href="#section-boilerplate.1-3">¶</a></p>
+</section>
+</div>
+<div>
+<section>
+        <h2>
+<a href="#name-copyright-notice">Copyright Notice</a>
+        </h2>
+<p>
+            Copyright (c) 2023 IETF Trust and the persons identified as the
+            document authors. All rights reserved.<a href="#section-boilerplate.2-1">¶</a></p>
+<p>
+            This document is subject to BCP 78 and the IETF Trust's Legal
+            Provisions Relating to IETF Documents
+            (<span><a>https://trustee.ietf.org/license-info</a></span>) in effect on the date of
+            publication of this document. Please review these documents
+            carefully, as they describe your rights and restrictions with
+            respect to this document. Code Components extracted from this
+            document must include Revised BSD License text as described in
+            Section 4.e of the Trust Legal Provisions and are provided without
+            warranty as described in the Revised BSD License.<a href="#section-boilerplate.2-2">¶</a></p>
+</section>
+</div>
+<div>
+<section>
+        <a href="#" onclick="scroll(0,0)">▲</a><h2>
+<a href="#name-table-of-contents">Table of Contents</a>
+        </h2>
+<nav><ul>
+<li>
+            <p><a href="#section-1">1</a>.  <a href="#name-introduction">Introduction</a></p>
+</li>
+          <li>
+            <p><a href="#section-2">2</a>.  <a href="#name-update-to-rfc-2328">Update to RFC 2328</a></p>
+</li>
+          <li>
+            <p><a href="#section-3">3</a>.  <a href="#name-update-to-rfc-4222">Update to RFC 4222</a></p>
+</li>
+          <li>
+            <p><a href="#section-4">4</a>.  <a href="#name-update-to-rfc-4811">Update to RFC 4811</a></p>
+</li>
+          <li>
+            <p><a href="#section-5">5</a>.  <a href="#name-update-to-rfc-5243">Update to RFC 5243</a></p>
+</li>
+          <li>
+            <p><a href="#section-6">6</a>.  <a href="#name-update-to-rfc-5340">Update to RFC 5340</a></p>
+</li>
+          <li>
+            <p><a href="#section-7">7</a>.  <a href="#name-update-to-rfc-5614">Update to RFC 5614</a></p>
+</li>
+          <li>
+            <p><a href="#section-8">8</a>.  <a href="#name-update-to-rfc-5838">Update to RFC 5838</a></p>
+</li>
+          <li>
+            <p><a href="#section-9">9</a>.  <a href="#name-iana-considerations">IANA Considerations</a></p>
+</li>
+          <li>
+            <p><a href="#section-10">10</a>. <a href="#name-security-considerations">Security Considerations</a></p>
+</li>
+          <li>
+            <p><a href="#section-11">11</a>. <a href="#name-references">References</a></p>
+<ul>
+<li>
+                <p><a href="#section-11.1">11.1</a>.  <a href="#name-normative-references">Normative References</a></p>
+</li>
+              <li>
+                <p><a href="#section-11.2">11.2</a>.  <a href="#name-informative-references">Informative References</a></p>
+</li>
+            </ul>
+</li>
+          <li>
+            <p><a href="#appendix-A"></a><a href="#name-acknowledgements">Acknowledgements</a></p>
+</li>
+          <li>
+            <p><a href="#appendix-B"></a><a href="#name-authors-addresses">Authors' Addresses</a></p>
+</li>
+        </ul>
+</nav>
+</section>
+</div>
+<section>
+      <h2>
+<a href="#section-1">1. </a><a href="#name-introduction">Introduction</a>
+      </h2>
+<p>
+        This document updates some OSPF terminology to be in line with inclusive language used in the industry.
+        The IETF has designated "Guidance for NIST Staff on Using
+        Inclusive Language in Documentary Standards" by the US National Institute of Standards and Technology (NIST) <span>[<a href="#NISTIR8366">NISTIR8366</a>]</span> for its inclusive language guidelines.
+        It is intended that all future OSPF documents use this revised terminology even when they reference the RFCs
+        updated by this document.<a href="#section-1-1">¶</a></p>
+<p>
+        This document updates <span>[<a href="#RFC2328">RFC2328</a>]</span>, <span>[<a href="#RFC4222">RFC4222</a>]</span>,
+        <span>[<a href="#RFC4811">RFC4811</a>]</span>, <span>[<a href="#RFC5243">RFC5243</a>]</span>, <span>[<a href="#RFC5340">RFC5340</a>]</span>, <span>[<a href="#RFC5614">RFC5614</a>]</span>,
+        and <span>[<a href="#RFC5838">RFC5838</a>]</span>.<a href="#section-1-2">¶</a></p>
+</section>
+<div>
+<section>
+      <h2>
+<a href="#section-2">2. </a><a href="#name-update-to-rfc-2328">Update to RFC 2328</a>
+      </h2>
+<p>
+        The base OSPFv2 specification "OSPF Version 2" <span>[<a href="#RFC2328">RFC2328</a>]</span> defines the synchronization of
+        databases as two routers forming a "master/slave" relationship.  All instances of these terms
+        are replaced by "Leader/Follower", respectively.<a href="#section-2-1">¶</a></p>
+<p>
+ In the Database Description packet, the "master (MS) bit" is renamed the "Leader (L) bit".<a href="#section-2-2">¶</a></p>
+<p>
+        The operation of OSPFv2 is not modified. The Leader/Follower terminology and Leader (L) bit definition
+        changes impact the following sections: "The Synchronization of Databases" (Section <a>7.2</a>), "The Neighbor Data Structure" (Section <a>10</a>), "Neighbor states" (Section <a>10.1</a>), "Events causing neighbor state changes" (Section <a>10.2</a>), "The Neighbor state machine" (Section <a>10.3</a>), "Receiving Database Description Packets" (Section <a>10.6</a>), "Sending Database Description Packets" (Section <a>10.8</a>), "An Example" (Section <a>10.10</a>), and "The Database Description packet" (Appendix <a>A.3.3</a>).<a href="#section-2-3">¶</a></p>
+</section>
+</div>
+<div>
+<section>
+      <h2>
+<a href="#section-3">3. </a><a href="#name-update-to-rfc-4222">Update to RFC 4222</a>
+      </h2>
+<p>
+        "Prioritized Treatment of Specific OSPF Version 2 Packets and
+        Congestion Avoidance" <span>[<a href="#RFC4222">RFC4222</a>]</span> is a Best Current Practice (BCP) document.  In Appendix <a>C</a>, Item (2), there is an example OSFPv2 packet sequence that refers to the "slave" in a database exchange; this reference is renamed to "Follower".<a href="#section-3-1">¶</a></p>
+</section>
+</div>
+<div>
+<section>
+      <h2>
+<a href="#section-4">4. </a><a href="#name-update-to-rfc-4811">Update to RFC 4811</a>
+      </h2>
+<p>
+        "OSPF Out-of-Band Link State Database (LSDB) Resynchronization" <span>[<a href="#RFC4811">RFC4811</a>]</span> is an Informational document.
+        Section <a>2.4</a> includes a Database Description packet (Figure 2) and a description of the attendant encoding
+        changes for Out-of-Band Resynchronization. In the figure and the description, all instances of "MS" (when
+        referring to the Database Description packet bit) are renamed to "L". There is also a reference to "Master" in
+        this section that is renamed to "Leader".<a href="#section-4-1">¶</a></p>
+</section>
+</div>
+<div>
+<section>
+      <h2>
+<a href="#section-5">5. </a><a href="#name-update-to-rfc-5243">Update to RFC 5243</a>
+      </h2>
+<p>
+         "OSPF Database Exchange Summary List Optimization" <span>[<a href="#RFC5243">RFC5243</a>]</span> is an Informational document.
+        The Introduction (Section <a>1</a>) references "Master or Slave"; this is replaced by "Leader or Follower".
+        Section <a>3</a> includes an example of the optimized database exchange. In this example, all instances of
+        "Master" and "Slave" are renamed to "Leader" and "Follower", respectively.<a href="#section-5-1">¶</a></p>
+</section>
+</div>
+<div>
+<section>
+      <h2>
+<a href="#section-6">6. </a><a href="#name-update-to-rfc-5340">Update to RFC 5340</a>
+      </h2>
+<p>
+        The base OSPFv3 specification "OSPF for IPv6" <span>[<a href="#RFC5340">RFC5340</a>]</span> defines the Database Description process
+        between two routers as one being "designated to be the master and the other is the slave".  All instances of these
+        terms are replaced by "Leader/Follower", respectively.<a href="#section-6-1">¶</a></p>
+<p>
+ In the Database Description packet, the "Master/Slave (MS) bit" is renamed the "Leader (L) bit".<a href="#section-6-2">¶</a></p>
+<p>
+        The operation of OSPFv3 is not modified. The Leader/Follower terminology and Leader (L) bit definition
+        changes impact "The Database Description Packet" (Appendix <a>A.3.3</a>).<a href="#section-6-3">¶</a></p>
+</section>
+</div>
+<div>
+<section>
+      <h2>
+<a href="#section-7">7. </a><a href="#name-update-to-rfc-5614">Update to RFC 5614</a>
+      </h2>
+<p>
+        "Mobile Ad Hoc Network (MANET) Extension of OSPF
+        Using Connected Dominating Set (CDS) Flooding" <span>[<a href="#RFC5614">RFC5614</a>]</span> is an Experimental document.
+        "Changes to the Neighbor State Machine" (Section <a>7.1</a>) contains modifications to the neighbor
+        state machine that were updated from <span>[<a href="#RFC2328">RFC2328</a>]</span>. In the neighbor state machine modifications, all
+        instances of "Master" and "Slave" are renamed to "Leader" and "Follower", respectively.
+        Additionally, all instances of "MS" (when referring to the Database Description packet
+        bit) are renamed to "L". And in "Receiving Database Description Packets" (Section <a>7.5</a>), "master or slave" is replaced by "Leader or Follower" in the parenthetical.<a href="#section-7-1">¶</a></p>
+</section>
+</div>
+<div>
+<section>
+      <h2>
+<a href="#section-8">8. </a><a href="#name-update-to-rfc-5838">Update to RFC 5838</a>
+      </h2>
+<p>
+         "Support of Address Families in OSPFv3" <span>[<a href="#RFC5838">RFC5838</a>]</span> is a Standards Track document.
+        "Database Description Maximum Transmission Unit (MTU)
+        Specification for Non-IPv6 AFs" (Section <a>2.7</a>) contains a Database Description
+        packet change figure that includes the MS bit. In this figure, the "MS" field is
+        renamed the "L" field.<a href="#section-8-1">¶</a></p>
+<p>
+        Additionally, in the first paragraph of "Changes to the Hello Packet Processing" (Section <a>2.4</a>),
+        the text is updated to remove the non-inclusive terms pertaining to
+        unreachability handling as follows:<a href="#section-8-2">¶</a></p>
+<blockquote>
+   When an OSPFv3 router does not support this specification and an
+   interface is configured with the Instance ID corresponding to an
+   IPv4 AF, packets could be routed toward this interface and
+   dropped. This could happen due to misconfiguration or a router
+   software downgrade. For example, an IPv4 packet
+   could be received on an interface not supporting IPv4 since
+   a router that doesn't support this specification can still
+   include the interface in an SPF-calculated path as long as it
+   establishes adjacencies using the Instance ID corresponding
+   to the IPv4 AF. Note that OSPFv3 Router-LSAs and Network-LSAs are
+   AF-agnostic.<a href="#section-8-3">¶</a>
+</blockquote>
+</section>
+</div>
+<div>
+<section>
+      <h2>
+<a href="#section-9">9. </a><a href="#name-iana-considerations">IANA Considerations</a>
+      </h2>
+<p>In the "Database Description (DD) Packet Flags"
+      registry, IANA has updated the description for value 0x01 to "Leader (L-bit)" and has added this document as a reference, as shown below.<a href="#section-9-1">¶</a></p>
+<span></span><dl>
+        <dt>Value:</dt>
+        <dd>0x01<a href="#section-9-2.2">¶</a>
+</dd>
+        <dd></dd>
+<dt>Description:</dt>
+        <dd>Leader (L-bit)<a href="#section-9-2.4">¶</a>
+</dd>
+        <dd></dd>
+<dt>Reference:</dt>
+        <dd>
+          <span>[<a href="#RFC2328">RFC2328</a>]</span> [RFC9454]<a href="#section-9-2.6">¶</a>
+</dd>
+      <dd></dd>
+</dl>
+</section>
+</div>
+<div>
+<section>
+      <h2>
+<a href="#section-10">10. </a><a href="#name-security-considerations">Security Considerations</a>
+      </h2>
+<p>
+        This document updates the terminology used in OSPF RFCs without any modification to the specifications of the protocol.
+        As such, the security characteristics of OSPF do not change.<a href="#section-10-1">¶</a></p>
+</section>
+</div>
+<section>
+      <h2>
+<a href="#section-11">11. </a><a href="#name-references">References</a>
+      </h2>
+<section>
+        <h3>
+<a href="#section-11.1">11.1. </a><a href="#name-normative-references">Normative References</a>
+        </h3>
+<dl>
+<dt>[RFC2328]</dt>
+        <dd>
+<span>Moy, J.</span>, <span>"OSPF Version 2"</span>, <span>STD 54</span>, <span>RFC 2328</span>, <span>DOI 10.17487/RFC2328</span>, <time datetime="1998-04">April 1998</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc2328</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC4222]</dt>
+        <dd>
+<span>Choudhury, G., Ed.</span>, <span>"Prioritized Treatment of Specific OSPF Version 2 Packets and Congestion Avoidance"</span>, <span>BCP 112</span>, <span>RFC 4222</span>, <span>DOI 10.17487/RFC4222</span>, <time datetime="2005-10">October 2005</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc4222</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC4811]</dt>
+        <dd>
+<span>Nguyen, L.</span>, <span>Roy, A.</span>, and <span>A. Zinin</span>, <span>"OSPF Out-of-Band Link State Database (LSDB) Resynchronization"</span>, <span>RFC 4811</span>, <span>DOI 10.17487/RFC4811</span>, <time datetime="2007-03">March 2007</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc4811</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC5243]</dt>
+        <dd>
+<span>Ogier, R.</span>, <span>"OSPF Database Exchange Summary List Optimization"</span>, <span>RFC 5243</span>, <span>DOI 10.17487/RFC5243</span>, <time datetime="2008-05">May 2008</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc5243</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC5340]</dt>
+        <dd>
+<span>Coltun, R.</span>, <span>Ferguson, D.</span>, <span>Moy, J.</span>, and <span>A. Lindem</span>, <span>"OSPF for IPv6"</span>, <span>RFC 5340</span>, <span>DOI 10.17487/RFC5340</span>, <time datetime="2008-07">July 2008</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc5340</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC5614]</dt>
+        <dd>
+<span>Ogier, R.</span> and <span>P. Spagnolo</span>, <span>"Mobile Ad Hoc Network (MANET) Extension of OSPF Using Connected Dominating Set (CDS) Flooding"</span>, <span>RFC 5614</span>, <span>DOI 10.17487/RFC5614</span>, <time datetime="2009-08">August 2009</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc5614</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC5838]</dt>
+      <dd>
+<span>Lindem, A., Ed.</span>, <span>Mirtorabi, S.</span>, <span>Roy, A.</span>, <span>Barnes, M.</span>, and <span>R. Aggarwal</span>, <span>"Support of Address Families in OSPFv3"</span>, <span>RFC 5838</span>, <span>DOI 10.17487/RFC5838</span>, <time datetime="2010-04">April 2010</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc5838</a>&gt;</span>. </dd>
+<dd></dd>
+</dl>
+</section>
+<section>
+        <h3>
+<a href="#section-11.2">11.2. </a><a href="#name-informative-references">Informative References</a>
+        </h3>
+<dl>
+<dt>[NISTIR8366]</dt>
+      <dd>
+<span>National Institute of Standards and Technology (NIST)</span>, <span>"Guidance for NIST Staff on Using Inclusive Language in Documentary Standards"</span>, <span>NIST Interagency/Internal Report (NISTIR) 8366</span>, <time datetime="2021-04">April 2021</time>, <span>&lt;<a>https://doi.org/10.6028/NIST.IR.8366</a>&gt;</span>. </dd>
+<dd></dd>
+</dl>
+</section>
+</section>
+<div>
+<section>
+      <h2>
+<a href="#name-acknowledgements">Acknowledgements</a>
+      </h2>
+<p>Thanks to <span>Dhruv Dhody</span>,  <span>Adrian Farrel</span>, <span>Erik Kline</span>, and <span>Barry Leiba</span> for their reviews and comments.<a href="#appendix-A-1">¶</a></p>
+</section>
+</div>
+<div>
+<section>
+      <h2>
+<a href="#name-authors-addresses">Authors' Addresses</a>
+      </h2>
+<address>
+        <div dir="auto"><span>Mike Fox</span></div>
+<div dir="auto"><span>IBM</span></div>
+<div dir="auto"><span>3039 E Cornwallis Rd.</span></div>
+<div dir="auto">
+<span>Research Triangle Park</span>, <span>NC</span> <span>27709</span>
+</div>
+<div dir="auto"><span>United States of America</span></div>
+<div>
+<span>Email:</span>
+<a href="mailto:mjfox@us.ibm.com">mjfox@us.ibm.com</a>
+</div>
+</address>
+<address>
+        <div dir="auto"><span>Acee Lindem</span></div>
+<div dir="auto"><span>LabN Consulting, L.L.C.</span></div>
+<div dir="auto"><span>301 Midenhall Way</span></div>
+<div dir="auto">
+<span>Cary</span>, <span>NC</span> <span>27513</span>
+</div>
+<div dir="auto"><span>United States of America</span></div>
+<div>
+<span>Email:</span>
+<a href="mailto:acee.ietf@gmail.com">acee.ietf@gmail.com</a>
+</div>
+</address>
+<address>
+        <div dir="auto"><span>Alvaro Retana</span></div>
+<div dir="auto"><span>Futurewei Technologies, Inc.</span></div>
+<div dir="auto"><span>2330 Central Expressway</span></div>
+<div dir="auto">
+<span>Santa Clara</span>, <span>CA</span> <span>95050</span>
+</div>
+<div dir="auto"><span>United States of America</span></div>
+<div>
+<span>Email:</span>
+<a href="mailto:aretana@futurewei.com">aretana@futurewei.com</a>
+</div>
+</address>
+</section>
+</div></article><aside class="toc-panel"><h2>On this RFC</h2><div id="toc-links"></div></aside></section>
+</main>
+<script src="../assets/doc.js"></script>
+
+</body>
+</html>

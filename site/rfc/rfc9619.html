@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RFC 9619: In the DNS, QDCOUNT Is (Usually) One</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<div class="progress"></div>
+<main class="doc-layout">
+  <a class="toplink" href="../index.html">← Back to index</a>
+  <section class="doc-hero">
+    <div class="eyebrow">RFC 9619</div>
+    <h1>In the DNS, QDCOUNT Is (Usually) One</h1>
+    <div class="meta-tags"><span class="tag tag-application">application</span><span class="tag tag-update-chain">update-chain</span></div>
+    <div class="note"><strong>Threat hunting relevance:</strong> Pulled in through the RFC update chain; review &#x27;In the DNS, QDCOUNT Is (Usually) One&#x27; to understand protocol changes that may affect detection, parsing, or investigation context.</div>
+  </section>
+  <section class="reader-tools"><div class="group"><button class="reader-btn" data-action="focus">Focus width</button><button class="reader-btn" data-action="comfy">Comfy text</button></div><button class="reader-btn" data-action="top">Back to top</button></section>
+  <section class="reader-grid"><article class="doc-body"><table>
+<thead><tr>
+<td>RFC 9619</td>
+<td>In the DNS, QDCOUNT Is (Usually) One</td>
+<td>July 2024</td>
+</tr></thead>
+<tfoot><tr>
+<td>Bellis &amp; Abley</td>
+<td>Standards Track</td>
+<td>[Page]</td>
+</tr></tfoot>
+</table>
+<div></div>
+<div>
+<dl>
+<dt>Stream:</dt>
+<dd>Internet Engineering Task Force (IETF)</dd>
+<dt>RFC:</dt>
+<dd><a>9619</a></dd>
+<dt>Updates:</dt>
+<dd>
+<a>1035</a> </dd>
+<dt>Category:</dt>
+<dd>Standards Track</dd>
+<dt>Published:</dt>
+<dd>
+<time datetime="2024-07">July 2024</time>
+    </dd>
+<dt>ISSN:</dt>
+<dd>2070-1721</dd>
+<dt>Authors:</dt>
+<dd>
+<div>
+      <div>R. Bellis</div>
+<div>ISC</div>
+</div>
+<div>
+      <div>J. Abley</div>
+<div>Cloudflare</div>
+</div>
+</dd>
+</dl>
+</div>
+<h1>RFC 9619</h1>
+<h1>In the DNS, QDCOUNT Is (Usually) One</h1>
+<section>
+      <h2><a href="#abstract">Abstract</a></h2>
+<p>This document updates RFC 1035 by constraining the allowed value of the
+QDCOUNT parameter in DNS messages with OPCODE = 0 (QUERY) to a maximum
+of one, and it specifies the required behavior when values that are not
+allowed are encountered.<a href="#section-abstract-1">¶</a></p>
+</section>
+<div>
+<section>
+        <h2>
+<a href="#name-status-of-this-memo">Status of This Memo</a>
+        </h2>
+<p>
+            This is an Internet Standards Track document.<a href="#section-boilerplate.1-1">¶</a></p>
+<p>
+            This document is a product of the Internet Engineering Task Force
+            (IETF).  It represents the consensus of the IETF community.  It has
+            received public review and has been approved for publication by
+            the Internet Engineering Steering Group (IESG).  Further
+            information on Internet Standards is available in Section 2 of 
+            RFC 7841.<a href="#section-boilerplate.1-2">¶</a></p>
+<p>
+            Information about the current status of this document, any
+            errata, and how to provide feedback on it may be obtained at
+            <span><a>https://www.rfc-editor.org/info/rfc9619</a></span>.<a href="#section-boilerplate.1-3">¶</a></p>
+</section>
+</div>
+<div>
+<section>
+        <h2>
+<a href="#name-copyright-notice">Copyright Notice</a>
+        </h2>
+<p>
+            Copyright (c) 2024 IETF Trust and the persons identified as the
+            document authors. All rights reserved.<a href="#section-boilerplate.2-1">¶</a></p>
+<p>
+            This document is subject to BCP 78 and the IETF Trust's Legal
+            Provisions Relating to IETF Documents
+            (<span><a>https://trustee.ietf.org/license-info</a></span>) in effect on the date of
+            publication of this document. Please review these documents
+            carefully, as they describe your rights and restrictions with
+            respect to this document. Code Components extracted from this
+            document must include Revised BSD License text as described in
+            Section 4.e of the Trust Legal Provisions and are provided without
+            warranty as described in the Revised BSD License.<a href="#section-boilerplate.2-2">¶</a></p>
+</section>
+</div>
+<div>
+<section>
+        <a href="#" onclick="scroll(0,0)">▲</a><h2>
+<a href="#name-table-of-contents">Table of Contents</a>
+        </h2>
+<nav><ul>
+<li>
+            <p><a href="#section-1">1</a>.  <a href="#name-introduction">Introduction</a></p>
+</li>
+          <li>
+            <p><a href="#section-2">2</a>.  <a href="#name-terminology-used-in-this-do">Terminology Used in This Document</a></p>
+</li>
+          <li>
+            <p><a href="#section-3">3</a>.  <a href="#name-qdcount-is-usually-one">QDCOUNT Is (Usually) One</a></p>
+</li>
+          <li>
+            <p><a href="#section-4">4</a>.  <a href="#name-updates-to-rfc-1035">Updates to RFC 1035</a></p>
+</li>
+          <li>
+            <p><a href="#section-5">5</a>.  <a href="#name-security-considerations">Security Considerations</a></p>
+</li>
+          <li>
+            <p><a href="#section-6">6</a>.  <a href="#name-iana-considerations">IANA Considerations</a></p>
+</li>
+          <li>
+            <p><a href="#section-7">7</a>.  <a href="#name-references">References</a></p>
+<ul>
+<li>
+                <p><a href="#section-7.1">7.1</a>.  <a href="#name-normative-references">Normative References</a></p>
+</li>
+              <li>
+                <p><a href="#section-7.2">7.2</a>.  <a href="#name-informative-references">Informative References</a></p>
+</li>
+            </ul>
+</li>
+          <li>
+            <p><a href="#appendix-A">Appendix A</a>.  <a href="#name-guidance-for-the-use-of-qdc">Guidance for the Use of QDCOUNT in the DNS Specification</a></p>
+<ul>
+<li>
+                <p><a href="#appendix-A.1">A.1</a>.  <a href="#name-opcode-0-query-and-1-iquery">OPCODE = 0 (QUERY) and 1 (IQUERY)</a></p>
+</li>
+              <li>
+                <p><a href="#appendix-A.2">A.2</a>.  <a href="#name-opcode-4-notify">OPCODE = 4 (NOTIFY)</a></p>
+</li>
+              <li>
+                <p><a href="#appendix-A.3">A.3</a>.  <a href="#name-opcode-5-update">OPCODE = 5 (UPDATE)</a></p>
+</li>
+              <li>
+                <p><a href="#appendix-A.4">A.4</a>.  <a href="#name-opcode-6-dns-stateful-opera">OPCODE = 6 (DNS Stateful Operations, DSO)</a></p>
+</li>
+              <li>
+                <p><a href="#appendix-A.5">A.5</a>.  <a href="#name-conclusion">Conclusion</a></p>
+</li>
+            </ul>
+</li>
+          <li>
+            <p><a href="#appendix-B"></a><a href="#name-acknowledgements">Acknowledgements</a></p>
+</li>
+          <li>
+            <p><a href="#appendix-C"></a><a href="#name-authors-addresses">Authors' Addresses</a></p>
+</li>
+        </ul>
+</nav>
+</section>
+</div>
+<div>
+<section>
+      <h2>
+<a href="#section-1">1. </a><a href="#name-introduction">Introduction</a>
+      </h2>
+<p>The DNS protocol <span>[<a href="#RFC1034">RFC1034</a>]</span> <span>[<a href="#RFC1035">RFC1035</a>]</span> includes a parameter
+QDCOUNT in the DNS message header whose value is specified to mean
+the number of questions in the Question section of a DNS message.<a href="#section-1-1">¶</a></p>
+<p>In a general sense, it seems perfectly plausible for the QDCOUNT
+parameter, an unsigned 16-bit value, to take a considerable range
+of values. However, in the specific case of messages that encode
+DNS queries and responses (messages with OPCODE = 0), there are other
+limitations inherent in the protocol that constrain values of QDCOUNT
+to be either 0 or 1. In particular, several parameters specified
+for DNS response messages such as AA and RCODE have no defined
+meaning when the message contains multiple queries as there is
+no way to signal which question those parameters relate to.<a href="#section-1-2">¶</a></p>
+<p>In this document, we briefly survey the existing written DNS
+specification; provide a description of the semantic and practical
+requirements for DNS queries that naturally constrain the allowable
+values of QDCOUNT; and update the DNS base specification to
+clarify the allowable values of the QDCODE parameter in the specific
+case of DNS messages with OPCODE = 0.<a href="#section-1-3">¶</a></p>
+</section>
+</div>
+<div>
+<section>
+      <h2>
+<a href="#section-2">2. </a><a href="#name-terminology-used-in-this-do">Terminology Used in This Document</a>
+      </h2>
+<p>
+    The key words "<span>MUST</span>", "<span>MUST NOT</span>",
+    "<span>REQUIRED</span>", "<span>SHALL</span>", "<span>SHALL NOT</span>",
+    "<span>SHOULD</span>", "<span>SHOULD NOT</span>",
+    "<span>RECOMMENDED</span>", "<span>NOT RECOMMENDED</span>",
+    "<span>MAY</span>", and "<span>OPTIONAL</span>" in this document are to be
+    interpreted as described in BCP 14 <span>[<a href="#RFC2119">RFC2119</a>]</span> <span>[<a href="#RFC8174">RFC8174</a>]</span> when, and only when, they appear in all capitals, as
+    shown here.<a href="#section-2-1">¶</a></p>
+</section>
+</div>
+<div>
+<section>
+      <h2>
+<a href="#section-3">3. </a><a href="#name-qdcount-is-usually-one">QDCOUNT Is (Usually) One</a>
+      </h2>
+<p>A brief summary of the guidance provided in the existing DNS
+specification (<span>[<a href="#RFC1035">RFC1035</a>]</span> and many other documents) for the use of QDCOUNT can be found in <a href="#Survey">Appendix A</a>.
+While the specification is clear in many cases, there is some ambiguity in the specific case of OPCODE = 0, which this
+document aims to eliminate.<a href="#section-3-1">¶</a></p>
+</section>
+</div>
+<div>
+<section>
+      <h2>
+<a href="#section-4">4. </a><a href="#name-updates-to-rfc-1035">Updates to RFC 1035</a>
+      </h2>
+<p>A DNS message with OPCODE = 0 <span>MUST NOT</span> include a QDCOUNT
+parameter whose value is greater than 1. It follows that the Question
+section of a DNS message with OPCODE = 0 <span>MUST NOT</span> contain more than
+one question.<a href="#section-4-1">¶</a></p>
+<p>A DNS message with OPCODE = 0 and QDCOUNT &gt; 1 <span>MUST</span> be treated
+as an incorrectly formatted message.  The value of the RCODE parameter
+in the response message <span>MUST</span> be set to 1 (FORMERR).<a href="#section-4-2">¶</a></p>
+<p>Middleboxes (e.g., firewalls) that process DNS messages in order to eliminate unwanted
+traffic <span>SHOULD</span> treat messages with OPCODE = 0 and QDCOUNT &gt; 1 as
+malformed traffic and return a FORMERR response as described above.
+Such firewalls <span>MUST NOT</span> treat messages with OPCODE = 0 and QDCOUNT = 0
+as malformed.  See <span><a>Section 4</a> of [<a href="#RFC8906">RFC8906</a>]</span> for further guidance.<a href="#section-4-3">¶</a></p>
+</section>
+</div>
+<div>
+<section>
+      <h2>
+<a href="#section-5">5. </a><a href="#name-security-considerations">Security Considerations</a>
+      </h2>
+<p>This document clarifies the DNS specification <span>[<a href="#RFC1035">RFC1035</a>]</span> and aims to improve
+interoperability between different DNS implementations. In general, the elimination of ambiguity seems well-aligned with security
+hygiene.<a href="#section-5-1">¶</a></p>
+</section>
+</div>
+<div>
+<section>
+      <h2>
+<a href="#section-6">6. </a><a href="#name-iana-considerations">IANA Considerations</a>
+      </h2>
+<p>This document has no IANA actions.<a href="#section-6-1">¶</a></p>
+</section>
+</div>
+<section>
+      <h2>
+<a href="#section-7">7. </a><a href="#name-references">References</a>
+      </h2>
+<div>
+<section>
+        <h3>
+<a href="#section-7.1">7.1. </a><a href="#name-normative-references">Normative References</a>
+        </h3>
+<dl>
+<dt>[RFC1034]</dt>
+        <dd>
+<span>Mockapetris, P.</span>, <span>"Domain names - concepts and facilities"</span>, <span>STD 13</span>, <span>RFC 1034</span>, <span>DOI 10.17487/RFC1034</span>, <time datetime="1987-11">November 1987</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc1034</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC1035]</dt>
+        <dd>
+<span>Mockapetris, P.</span>, <span>"Domain names - implementation and specification"</span>, <span>STD 13</span>, <span>RFC 1035</span>, <span>DOI 10.17487/RFC1035</span>, <time datetime="1987-11">November 1987</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc1035</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC2119]</dt>
+        <dd>
+<span>Bradner, S.</span>, <span>"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span>BCP 14</span>, <span>RFC 2119</span>, <span>DOI 10.17487/RFC2119</span>, <time datetime="1997-03">March 1997</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc2119</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC3425]</dt>
+        <dd>
+<span>Lawrence, D.</span>, <span>"Obsoleting IQUERY"</span>, <span>RFC 3425</span>, <span>DOI 10.17487/RFC3425</span>, <time datetime="2002-11">November 2002</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc3425</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC8174]</dt>
+      <dd>
+<span>Leiba, B.</span>, <span>"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span>BCP 14</span>, <span>RFC 8174</span>, <span>DOI 10.17487/RFC8174</span>, <time datetime="2017-05">May 2017</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc8174</a>&gt;</span>. </dd>
+<dd></dd>
+</dl>
+</section>
+</div>
+<div>
+<section>
+        <h3>
+<a href="#section-7.2">7.2. </a><a href="#name-informative-references">Informative References</a>
+        </h3>
+<dl>
+<dt>[RFC1996]</dt>
+        <dd>
+<span>Vixie, P.</span>, <span>"A Mechanism for Prompt Notification of Zone Changes (DNS NOTIFY)"</span>, <span>RFC 1996</span>, <span>DOI 10.17487/RFC1996</span>, <time datetime="1996-08">August 1996</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc1996</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC2136]</dt>
+        <dd>
+<span>Vixie, P., Ed.</span>, <span>Thomson, S.</span>, <span>Rekhter, Y.</span>, and <span>J. Bound</span>, <span>"Dynamic Updates in the Domain Name System (DNS UPDATE)"</span>, <span>RFC 2136</span>, <span>DOI 10.17487/RFC2136</span>, <time datetime="1997-04">April 1997</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc2136</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC5936]</dt>
+        <dd>
+<span>Lewis, E.</span> and <span>A. Hoenes, Ed.</span>, <span>"DNS Zone Transfer Protocol (AXFR)"</span>, <span>RFC 5936</span>, <span>DOI 10.17487/RFC5936</span>, <time datetime="2010-06">June 2010</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc5936</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC7873]</dt>
+        <dd>
+<span>Eastlake 3rd, D.</span> and <span>M. Andrews</span>, <span>"Domain Name System (DNS) Cookies"</span>, <span>RFC 7873</span>, <span>DOI 10.17487/RFC7873</span>, <time datetime="2016-05">May 2016</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc7873</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC8490]</dt>
+        <dd>
+<span>Bellis, R.</span>, <span>Cheshire, S.</span>, <span>Dickinson, J.</span>, <span>Dickinson, S.</span>, <span>Lemon, T.</span>, and <span>T. Pusateri</span>, <span>"DNS Stateful Operations"</span>, <span>RFC 8490</span>, <span>DOI 10.17487/RFC8490</span>, <time datetime="2019-03">March 2019</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc8490</a>&gt;</span>. </dd>
+<dd></dd>
+<dt>[RFC8906]</dt>
+      <dd>
+<span>Andrews, M.</span> and <span>R. Bellis</span>, <span>"A Common Operational Problem in DNS Servers: Failure to Communicate"</span>, <span>BCP 231</span>, <span>RFC 8906</span>, <span>DOI 10.17487/RFC8906</span>, <time datetime="2020-09">September 2020</time>, <span>&lt;<a>https://www.rfc-editor.org/info/rfc8906</a>&gt;</span>. </dd>
+<dd></dd>
+</dl>
+</section>
+</div>
+</section>
+<div>
+<section>
+      <h2>
+<a href="#appendix-A">Appendix A. </a><a href="#name-guidance-for-the-use-of-qdc">Guidance for the Use of QDCOUNT in the DNS Specification</a>
+      </h2>
+<p>The DNS specification <span>[<a href="#RFC1035">RFC1035</a>]</span> provides some guidance about the values of
+QDCOUNT that are appropriate in various situations. A brief summary
+of this guidance is collated below.<a href="#appendix-A-1">¶</a></p>
+<div>
+<section>
+        <h3>
+<a href="#appendix-A.1">A.1. </a><a href="#name-opcode-0-query-and-1-iquery">OPCODE = 0 (QUERY) and 1 (IQUERY)</a>
+        </h3>
+<p><span>[<a href="#RFC1035">RFC1035</a>]</span> significantly predates the use of the normative requirement
+key words specified in BCP 14 <span>[<a href="#RFC2119">RFC2119</a>]</span> <span>[<a href="#RFC8174">RFC8174</a>]</span>, and parts of it are consequently somewhat open to interpretation.<a href="#appendix-A.1-1">¶</a></p>
+<p>Section <span><a>4.1.2</a> (<a>"Question section format"</a>)</span> of <span>[<a href="#RFC1035">RFC1035</a>]</span> states the following about QDCOUNT:<a href="#appendix-A.1-2">¶</a></p>
+<ul>
+<li>
+            <p>"The section contains QDCOUNT (usually 1) entries"<a href="#appendix-A.1-3.1.1">¶</a></p>
+</li>
+        </ul>
+<p>The only documented exceptions within <span>[<a href="#RFC1035">RFC1035</a>]</span> relate to the IQuery
+OpCode, where the request has "an empty question section" (QDCOUNT = 0),
+and the response has "zero, one, or multiple domain names for the
+specified resource as QNAMEs in the question section". The IQuery OpCode
+was obsoleted by <span>[<a href="#RFC3425">RFC3425</a>]</span>.<a href="#appendix-A.1-4">¶</a></p>
+<p>In the absence of clearly expressed normative requirements, we rely on other text in <span>[<a href="#RFC1035">RFC1035</a>]</span> that makes use of the definite article or that implies a singular question and, by implication, QDCOUNT = 1.<a href="#appendix-A.1-5">¶</a></p>
+<p>For example, <span><a>Section 4.1</a> of [<a href="#RFC1035">RFC1035</a>]</span> states the following:<a href="#appendix-A.1-6">¶</a></p>
+<ul>
+<li>
+            <p>"the question for the name server"<a href="#appendix-A.1-7.1.1">¶</a></p>
+</li>
+        </ul>
+<p>and<a href="#appendix-A.1-8">¶</a></p>
+<ul>
+<li>
+            <p>"The question section contains fields that describe a question to a
+name server."<a href="#appendix-A.1-9.1.1">¶</a></p>
+</li>
+        </ul>
+<p>And per Section <span><a>4.1.1</a> (<a>"Header section format"</a>)</span> of <span>[<a href="#RFC1035">RFC1035</a>]</span>:<a href="#appendix-A.1-10">¶</a></p>
+<ul>
+<li>
+            <p>"AA:  Authoritative Answer - this bit is valid in responses,
+   and specifies that the responding name server is an
+   authority for the domain name in question section."<a href="#appendix-A.1-11.1.1">¶</a></p>
+</li>
+        </ul>
+<p>DNS Cookies (<span><a>Section 5.4</a> of [<a href="#RFC7873">RFC7873</a>]</span>) allow a client to receive a valid Server Cookie without sending a specific question by sending
+a request (QR = 0) with OPCODE = 0 and QDCOUNT = 0, with the resulting
+ response also containing no question.<a href="#appendix-A.1-12">¶</a></p>
+<p>The DNS Zone Transfer Protocol (<span><a>Section 2.2</a> of [<a href="#RFC5936">RFC5936</a>]</span>) allows an authoritative server to optionally send a response message
+(QR = 1) to a standard Authoritative Transfer (AXFR) query (OPCODE = 0, QTYPE=252) with
+QDCOUNT = 0 in the second or subsequent message of a multi-message
+response.<a href="#appendix-A.1-13">¶</a></p>
+</section>
+</div>
+<div>
+<section>
+        <h3>
+<a href="#appendix-A.2">A.2. </a><a href="#name-opcode-4-notify">OPCODE = 4 (NOTIFY)</a>
+        </h3>
+<p>DNS Notify <span>[<a href="#RFC1996">RFC1996</a>]</span> also lacks a clearly defined range of values
+ for QDCOUNT.  Section <a>3.7</a> states that:<a href="#appendix-A.2-1">¶</a></p>
+<ul>
+<li>
+            <p>"A NOTIFY request has QDCOUNT&gt;0"<a href="#appendix-A.2-2.1.1">¶</a></p>
+</li>
+        </ul>
+<p>However, all other text in the RFC discusses the &lt;QNAME, QCLASS, QTYPE&gt;
+tuple in the singular form.<a href="#appendix-A.2-3">¶</a></p>
+</section>
+</div>
+<div>
+<section>
+        <h3>
+<a href="#appendix-A.3">A.3. </a><a href="#name-opcode-5-update">OPCODE = 5 (UPDATE)</a>
+        </h3>
+<p>DNS Update <span>[<a href="#RFC2136">RFC2136</a>]</span> renames the QDCOUNT field to ZOCOUNT, but
+the value is constrained to be one by Section <span><a>2.3</a> (<a>"Zone Section"</a>)</span>:<a href="#appendix-A.3-1">¶</a></p>
+<ul>
+<li>
+            <p>"All records to be updated must be in the same zone, and therefore the
+Zone Section is allowed to contain exactly one record."<a href="#appendix-A.3-2.1.1">¶</a></p>
+</li>
+        </ul>
+</section>
+</div>
+<div>
+<section>
+        <h3>
+<a href="#appendix-A.4">A.4. </a><a href="#name-opcode-6-dns-stateful-opera">OPCODE = 6 (DNS Stateful Operations, DSO)</a>
+        </h3>
+<p>DNS Stateful Operations (DSO) (OpCode 6) <span>[<a href="#RFC8490">RFC8490</a>]</span>
+preserves compatibility with the standard DNS 12-octet header by requiring all four of the section count values to be set to zero.<a href="#appendix-A.4-1">¶</a></p>
+</section>
+</div>
+<div>
+<section>
+        <h3>
+<a href="#appendix-A.5">A.5. </a><a href="#name-conclusion">Conclusion</a>
+        </h3>
+<p>There is no text in <span>[<a href="#RFC1035">RFC1035</a>]</span> that describes how other parameters
+in the DNS message, such as AA and RCODE, should be interpreted in the
+case where a message includes more than one question. An originator
+of a query with QDCOUNT &gt; 1 can have no expectations of how it will
+be processed, and the receiver of a response with QDCOUNT &gt; 1 has
+ no guidance for how it should be interpreted.<a href="#appendix-A.5-1">¶</a></p>
+<p>The allowable values of QDCOUNT seem to be clearly specified for
+OPCODE = 4 (NOTIFY), OPCODE = 5 (UPDATE), and OPCODE = 6 (DNS Stateful
+Operations, DSO). OPCODE = 1 (IQUERY) is obsolete and OPCODE = 2
+(STATUS) is not specified. OPCODE = 3 is reserved.<a href="#appendix-A.5-2">¶</a></p>
+<p>However, the allowable values of QDCOUNT for OPCODE = 0 (QUERY) are
+specified in <span>[<a href="#RFC1035">RFC1035</a>]</span> without the clarity of normative language,
+and this looseness of language results in some ambiguity.<a href="#appendix-A.5-3">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div>
+<section>
+      <h2>
+<a href="#name-acknowledgements">Acknowledgements</a>
+      </h2>
+<p>The clarifications in this document were prompted by questions posed
+by <span>Ted Lemon</span>, which reminded the authors of earlier, similar questions
+and motivated them to pick up their pens. <span>Ondrej Sury</span>, <span>Warren Kumari</span>, <span>Peter Thomassen</span>, <span>Mark Andrews</span>, <span>Lars-Johan Liman</span>, <span>Jim Reid</span>, and <span>Niall O'Reilly</span> provided useful feedback.<a href="#appendix-B-1">¶</a></p>
+</section>
+</div>
+<div>
+<section>
+      <h2>
+<a href="#name-authors-addresses">Authors' Addresses</a>
+      </h2>
+<address>
+        <div dir="auto"><span>Ray Bellis</span></div>
+<div dir="auto"><span>Internet Systems Consortium, Inc.</span></div>
+<div dir="auto"><span>PO Box 360</span></div>
+<div dir="auto">
+<span>Newmarket</span>, <span>NH</span> <span>03857</span>
+</div>
+<div dir="auto"><span>United States of America</span></div>
+<div>
+<span>Phone:</span>
+<a href="tel:+1%20650%20423%201300">+1 650 423 1300</a>
+</div>
+<div>
+<span>Email:</span>
+<a href="mailto:ray@isc.org">ray@isc.org</a>
+</div>
+</address>
+<address>
+        <div dir="auto"><span>Joe Abley</span></div>
+<div dir="auto"><span>Cloudflare</span></div>
+<div dir="auto"><span>Amsterdam</span></div>
+<div dir="auto"><span>Netherlands</span></div>
+<div>
+<span>Phone:</span>
+<a href="tel:+31%206%2045%2056%2036%2034">+31 6 45 56 36 34</a>
+</div>
+<div>
+<span>Email:</span>
+<a href="mailto:jabley@cloudflare.com">jabley@cloudflare.com</a>
+</div>
+</address>
+</section>
+</div></article><aside class="toc-panel"><h2>On this RFC</h2><div id="toc-links"></div></aside></section>
+</main>
+<script src="../assets/doc.js"></script>
+
+</body>
+</html>

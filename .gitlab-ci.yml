@@ -1,0 +1,43 @@
+stages:
+  - build
+  - deploy
+
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+
+cache:
+  paths:
+    - .cache/pip
+
+build:rfc-library:
+  stage: build
+  image: python:3.12-slim
+  before_script:
+    - python -m pip install --upgrade pip
+    - python -m pip install -r requirements.txt
+  script:
+    - python -m py_compile build_rfc_collection.py
+    - python -m unittest discover -s tests -v
+    - python build_rfc_collection.py
+  artifacts:
+    expire_in: 30 days
+    paths:
+      - site/
+      - epub/
+
+pages:
+  stage: deploy
+  image: python:3.12-slim
+  before_script:
+    - python -m pip install --upgrade pip
+    - python -m pip install -r requirements.txt
+  script:
+    - python build_rfc_collection.py
+    - rm -rf public
+    - cp -r site public
+  artifacts:
+    paths:
+      - public
+      - epub/
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
