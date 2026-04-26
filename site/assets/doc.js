@@ -1,3 +1,4 @@
+
 const progress = document.querySelector('.progress');
 const body = document.querySelector('.doc-body');
 const toc = document.querySelector('#toc-links');

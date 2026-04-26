@@ -1,3 +1,4 @@
+
 const q = document.querySelector('#q');
 const cards = [...document.querySelectorAll('.card')];
 const empty = document.querySelector('.empty');
@@ -132,8 +133,8 @@ document.querySelector('#restart-study').addEventListener('click', () => initStu
 if (startStudyBtn) startStudyBtn.addEventListener('click', () => initStudySession(false));
 if (studyAllBtn) studyAllBtn.addEventListener('click', () => initStudySession(true));
 
-const resetSrsBtn = document.querySelector("#reset-srs");
-if (resetSrsBtn) resetSrsBtn.addEventListener("click", () => { if(confirm("Wipe all FSRS progress?")) { localStorage.removeItem("rfc_srs_state_fsrs"); location.reload(); } });
+const resetSrsBtn = document.querySelector(\"#reset-srs\");
+if (resetSrsBtn) resetSrsBtn.addEventListener(\"click\", () => { if(confirm(\"Wipe all FSRS progress?\")) { localStorage.removeItem(\"rfc_srs_state_fsrs\"); location.reload(); } });
 
 window.addEventListener('keydown', (e) => {
   if (!studyOverlay || !studyOverlay.classList.contains('active')) return;
@@ -159,88 +160,83 @@ const GRAPH_DATA = {
     }));
   },
   links: [
-    { source: "793", target: "791", type: "dependency" }, { source: "768", target: "791", type: "dependency" },
-    { source: "1035", target: "768", type: "dependency" }, { source: "1035", target: "793", type: "dependency" },
-    { source: "4271", target: "793", type: "dependency" }, { source: "2131", target: "768", type: "dependency" },
-    { source: "5321", target: "793", type: "dependency" }, { source: "3954", target: "768", type: "dependency" },
-    { source: "7011", target: "768", type: "dependency" }, { source: "2616", target: "793", type: "dependency" },
-    { source: "7230", target: "793", type: "dependency" }, { source: "7540", target: "793", type: "dependency" },
-    { source: "2328", target: "791", type: "dependency" }, { source: "826", target: "791", type: "dependency" },
-    { source: "2460", target: "791", type: "update-chain" }, { source: "7230", target: "2616", type: "update-chain" },
-    { source: "1035", target: "5321", type: "threat" }, { source: "1035", target: "768", type: "threat" },
-    { source: "4271", target: "2328", type: "threat" }, { source: "791", target: "2460", type: "threat" },
-    { source: "793", target: "7540", type: "threat" },
+    { source: \"793\", target: \"791\", type: \"dependency\" }, { source: \"768\", target: \"791\", type: \"dependency\" },
+    { source: \"1035\", target: \"768\", type: \"dependency\" }, { source: \"1035\", target: \"793\", type: \"dependency\" },
+    { source: \"4271\", target: \"793\", type: \"dependency\" }, { source: \"2131\", target: \"768\", type: \"dependency\" },
+    { source: \"5321\", target: \"793\", type: \"dependency\" }, { source: \"3954\", target: \"768\", type: \"dependency\" },
+    { source: \"7011\", target: \"768\", type: \"dependency\" }, { source: \"2616\", target: \"793\", type: \"dependency\" },
+    { source: \"7230\", target: \"793\", type: \"dependency\" }, { source: \"7540\", target: \"793\", type: \"dependency\" },
+    { source: \"2328\", target: \"791\", type: \"dependency\" }, { source: \"826\", target: \"791\", type: \"dependency\" },
+    { source: \"2460\", target: \"791\", type: \"update-chain\" }, { source: \"7230\", target: \"2616\", type: \"update-chain\" },
+    { source: \"1035\", target: \"5321\", type: \"threat\" }, { source: \"1035\", target: \"768\", type: \"threat\" },
+    { source: \"4271\", target: \"2328\", type: \"threat\" }, { source: \"791\", target: \"2460\", type: \"threat\" },
+    { source: \"793\", target: \"7540\", type: \"threat\" },
   ]
 };
 
 function initMap() {
-  if (!window.d3) { console.error("D3 not loaded"); return; }
-  if (!mapContainer) { console.error("Map container not found"); return; }
-  const nodes = GRAPH_DATA.nodes; if (!nodes.length) { console.warn("No nodes found"); return; }
+  if (!window.d3) { console.error(\"D3 not loaded\"); return; }
+  const nodes = GRAPH_DATA.nodes; if (!nodes.length) { console.warn(\"No nodes found\"); return; }
   const nodeIds = new Set(nodes.map(n => n.id));
   const links = GRAPH_DATA.links.filter(l => nodeIds.has(l.source) && nodeIds.has(l.target)).map(l => ({...l}));
-  const bounds = mapContainer.getBoundingClientRect();
-  const width = bounds.width || window.innerWidth;
-  const height = bounds.height || window.innerHeight;
+  
+  const width = mapContainer.clientWidth || window.innerWidth;
+  const height = mapContainer.clientHeight || window.innerHeight;
+  
+  d3.select(\"#map-container svg\").remove();
+  const svg = d3.select(\"#map-container\").append(\"svg\")
+    .attr(\"width\", \"100%\").attr(\"height\", \"100%\").attr(\"viewBox\", [0, 0, width, height]);
+  const g = svg.append(\"g\");
 
-  d3.select(mapContainer).select("svg").remove();
-  const svg = d3.select(mapContainer).append("svg")
-    .attr("class", "protocol-map-svg")
-    .attr("width", "100%").attr("height", "100%").attr("viewBox", [0, 0, width, height]);
-  const g = svg.append("g");
-
-  svg.call(d3.zoom().extent([[0, 0], [width, height]]).scaleExtent([0.1, 8]).on("zoom", ({transform}) => g.attr("transform", transform)));
+  svg.call(d3.zoom().extent([[0, 0], [width, height]]).scaleExtent([0.1, 8]).on(\"zoom\", ({transform}) => g.attr(\"transform\", transform)));
 
   const simulation = d3.forceSimulation(nodes)
-    .force("link", d3.forceLink(links).id(d => d.id).distance(150))
-    .force("charge", d3.forceManyBody().strength(-400))
-    .force("center", d3.forceCenter(width / 2, height / 2))
-    .force("collision", d3.forceCollide().radius(70));
+    .force(\"link\", d3.forceLink(links).id(d => d.id).distance(150))
+    .force(\"charge\", d3.forceManyBody().strength(-400))
+    .force(\"center\", d3.forceCenter(width / 2, height / 2))
+    .force(\"collision\", d3.forceCollide().radius(70));
 
-  const link = g.append("g").selectAll("path").data(links).join("path").attr("class", d => `link ${d.type}`);
-  const node = g.append("g").selectAll(".node").data(nodes).join("g").attr("class", d => `node node-${d.layer}`)
-    .call(d3.drag().on("start", (e) => { if (!e.active) simulation.alphaTarget(0.3).restart(); e.subject.fx = e.subject.x; e.subject.fy = e.subject.y; })
-      .on("drag", (e) => { e.subject.fx = e.x; e.subject.fy = e.y; })
-      .on("end", (e) => { if (!e.active) simulation.alphaTarget(0); e.subject.fx = null; e.subject.fy = null; }))
-    .on("click", (e, d) => { if (e.defaultPrevented) return; window.location.href = `rfc/rfc${d.num}.html`; })
-    .on("mouseover", (e, d) => {
+  const link = g.append(\"g\").selectAll(\"path\").data(links).join(\"path\").attr(\"class\", d => `link ${d.type}`);
+  const node = g.append(\"g\").selectAll(\".node\").data(nodes).join(\"g\").attr(\"class\", d => `node node-${d.layer}`)
+    .call(d3.drag().on(\"start\", (e) => { if (!e.active) simulation.alphaTarget(0.3).restart(); e.subject.fx = e.subject.x; e.subject.fy = e.subject.y; })
+      .on(\"drag\", (e) => { e.subject.fx = e.x; e.subject.fy = e.y; })
+      .on(\"end\", (e) => { if (!e.active) simulation.alphaTarget(0); e.subject.fx = null; e.subject.fy = null; }))
+    .on(\"click\", (e, d) => { if (e.defaultPrevented) return; window.location.href = `rfc/rfc${d.num}.html`; })
+    .on(\"mouseover\", (e, d) => {
       const neighbors = new Set([d.id]);
       links.forEach(l => { 
         const s = typeof l.source === 'object' ? l.source.id : l.source;
         const t = typeof l.target === 'object' ? l.target.id : l.target;
         if (s === d.id) neighbors.add(t); if (t === d.id) neighbors.add(s);
       });
-      node.classed("dimmed", n => !neighbors.has(n.id));
-      link.classed("dimmed", l => {
+      node.classed(\"dimmed\", n => !neighbors.has(n.id));
+      link.classed(\"dimmed\", l => {
         const s = typeof l.source === 'object' ? l.source.id : l.source;
         const t = typeof l.target === 'object' ? l.target.id : l.target;
         return s !== d.id && t !== d.id;
       });
-      link.classed("highlight", l => {
+      link.classed(\"highlight\", l => {
         const s = typeof l.source === 'object' ? l.source.id : l.source;
         const t = typeof l.target === 'object' ? l.target.id : l.target;
         return s === d.id || t === d.id;
       });
-    }).on("mouseout", () => { node.classed("dimmed", false); link.classed("dimmed", false); link.classed("highlight", false); });
+    }).on(\"mouseout\", () => { node.classed(\"dimmed\", false); link.classed(\"dimmed\", false); link.classed(\"highlight\", false); });
 
-  node.append("rect").attr("width", 100).attr("height", 45).attr("x", -50).attr("y", -22);
-  node.append("text").attr("dy", "-2").text(d => d.name.length > 15 ? d.name.substring(0, 13) + '...' : d.name);
-  node.append("text").attr("class", "node-rfc").attr("dy", "12").text(d => `RFC ${d.num}`);
+  node.append(\"rect\").attr(\"width\", 100).attr(\"height\", 45).attr(\"x\", -50).attr(\"y\", -22);
+  node.append(\"text\").attr(\"dy\", \"-2\").text(d => d.name.length > 15 ? d.name.substring(0, 13) + '...' : d.name);
+  node.append(\"text\").attr(\"class\", \"node-rfc\").attr(\"dy\", \"12\").text(d => `RFC ${d.num}`);
 
-  simulation.on("tick", () => {
-    link.attr("d", d => {
+  simulation.on(\"tick\", () => {
+    link.attr(\"d\", d => {
       const dx = d.target.x - d.source.x, dy = d.target.y - d.source.y;
       const dr = Math.sqrt(dx * dx + dy * dy);
       return `M${d.source.x},${d.source.y}A${dr},${dr} 0 0,1 ${d.target.x},${d.target.y}`;
     });
-    node.attr("transform", d => `translate(${d.x},${d.y})`);
+    node.attr(\"transform\", d => `translate(${d.x},${d.y})`);
   });
 }
 
-if (openMapBtn) openMapBtn.addEventListener('click', () => {
-  mapOverlay.classList.add('active');
-  requestAnimationFrame(() => requestAnimationFrame(initMap));
-});
+if (openMapBtn) openMapBtn.addEventListener('click', () => { mapOverlay.classList.add('active'); setTimeout(initMap, 100); });
 if (closeMapBtn) closeMapBtn.addEventListener('click', () => mapOverlay.classList.remove('active'));
 
 window.addEventListener('keydown', (e) => {
