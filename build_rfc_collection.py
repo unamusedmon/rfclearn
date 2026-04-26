@@ -542,7 +542,10 @@ footer { color: var(--muted); border-top: 1px solid var(--line); padding: 28px 0
 .study-progress-card {
   background: linear-gradient(145deg, rgba(101,228,255,0.1), rgba(184,156,255,0.05));
   border: 1px solid rgba(101,228,255,0.2);
+  grid-column: span 2;
 }
+.study-progress-card .btn-group { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+.study-progress-card .reader-btn { flex: 1; min-width: fit-content; white-space: nowrap; }
 .study-hint {
   position: absolute;
   bottom: 20px;
@@ -873,6 +876,169 @@ importFile.addEventListener('change', (e) => {
 
 updateDueCounts();
 applyFilters();
+
+// Relationship Map Logic
+const mapOverlay = document.querySelector('#map-overlay');
+const openMapBtn = document.querySelector('#open-map');
+const closeMapBtn = document.querySelector('#close-map');
+const mapContainer = document.querySelector('#map-container');
+
+const GRAPH_DATA = {
+  nodes: (window.FLASHCARDS || []).filter(c => c.id.endsWith('-fundamental')).map(c => ({
+    id: c.rfc,
+    num: c.rfc,
+    name: c.prompt.match(/RFC \d+ \((.*?)\)/)?.[1] || `RFC ${c.rfc}`,
+    layer: c.answer.match(/Layer: (.*?)\n/)?.[1].split(',')[0].trim().toLowerCase() || 'application'
+  })),
+  links: [
+    // Dependencies (runs over)
+    { source: "793", target: "791", type: "dependency" }, // TCP over IP
+    { source: "768", target: "791", type: "dependency" }, // UDP over IP
+    { source: "1035", target: "768", type: "dependency" }, // DNS over UDP
+    { source: "1035", target: "793", type: "dependency" }, // DNS over TCP
+    { source: "4271", target: "793", type: "dependency" }, // BGP over TCP
+    { source: "2131", target: "768", type: "dependency" }, // DHCP over UDP
+    { source: "5321", target: "793", type: "dependency" }, // SMTP over TCP
+    { source: "3954", target: "768", type: "dependency" }, // NetFlow over UDP
+    { source: "7011", target: "768", type: "dependency" }, // IPFIX over UDP
+    { source: "2616", target: "793", type: "dependency" }, // HTTP over TCP
+    { source: "7230", target: "793", type: "dependency" }, // HTTP over TCP
+    { source: "7540", target: "793", type: "dependency" }, // HTTP/2 over TCP
+    { source: "2328", target: "791", type: "dependency" }, // OSPF over IP
+    { source: "826", target: "791", type: "dependency" }, // ARP relates to IP
+    
+    // Update Chains
+    { source: "2460", target: "791", type: "update-chain" }, // IPv6 / IPv4
+    { source: "7230", target: "2616", type: "update-chain" }, // HTTP updates
+    
+    // Threat Relationships (Shared vectors)
+    { source: "1035", target: "5321", type: "threat" }, // DNS/SMTP Amplification
+    { source: "1035", target: "768", type: "threat" }, // DNS/UDP Reflection
+    { source: "4271", target: "2328", type: "threat" }, // BGP/OSPF Spoofing
+    { source: "791", target: "2460", type: "threat" }, // IP/IPv6 Fragmentation
+    { source: "793", target: "7540", type: "threat" }, // TCP/HTTP2 Flooding
+  ]
+};
+
+function initMap() {
+  if (!window.d3) return;
+  
+  const width = mapContainer.clientWidth;
+  const height = mapContainer.clientHeight;
+  
+  mapContainer.innerHTML = mapContainer.querySelector('.map-legend').outerHTML; // Keep legend
+  
+  const svg = d3.select("#map-container").append("svg")
+    .attr("width", "100%")
+    .attr("height", "100%")
+    .attr("viewBox", [0, 0, width, height]);
+
+  const g = svg.append("g");
+
+  // Zoom
+  svg.call(d3.zoom()
+    .extent([[0, 0], [width, height]])
+    .scaleExtent([0.1, 8])
+    .on("zoom", ({transform}) => g.attr("transform", transform)));
+
+  const simulation = d3.forceSimulation(GRAPH_DATA.nodes)
+    .force("link", d3.forceLink(GRAPH_DATA.links).id(d => d.id).distance(150))
+    .force("charge", d3.forceManyBody().strength(-300))
+    .force("center", d3.forceCenter(width / 2, height / 2))
+    .force("collision", d3.forceCollide().radius(60));
+
+  const link = g.append("g")
+    .selectAll("path")
+    .data(GRAPH_DATA.links)
+    .join("path")
+    .attr("class", d => `link ${d.type}`);
+
+  const node = g.append("g")
+    .selectAll(".node")
+    .data(GRAPH_DATA.nodes)
+    .join("g")
+    .attr("class", d => `node node-${d.layer}`)
+    .call(drag(simulation))
+    .on("click", (e, d) => {
+      if (e.defaultPrevented) return;
+      window.location.href = `rfc/rfc${d.num}.html`;
+    })
+    .on("mouseover", (e, d) => {
+      const neighbors = new Set();
+      neighbors.add(d.id);
+      GRAPH_DATA.links.forEach(l => {
+        if (l.source.id === d.id) neighbors.add(l.target.id);
+        if (l.target.id === d.id) neighbors.add(l.source.id);
+      });
+      
+      node.classed("dimmed", n => !neighbors.has(n.id));
+      link.classed("dimmed", l => l.source.id !== d.id && l.target.id !== d.id);
+      link.classed("highlight", l => l.source.id === d.id || l.target.id === d.id);
+    })
+    .on("mouseout", () => {
+      node.classed("dimmed", false);
+      link.classed("dimmed", false);
+      link.classed("highlight", false);
+    });
+
+  node.append("rect")
+    .attr("width", 100)
+    .attr("height", 45)
+    .attr("x", -50)
+    .attr("y", -22);
+
+  node.append("text")
+    .attr("dy", "-2")
+    .text(d => d.name.length > 15 ? d.name.substring(0, 13) + '...' : d.name);
+
+  node.append("text")
+    .attr("class", "node-rfc")
+    .attr("dy", "12")
+    .text(d => `RFC ${d.num}`);
+
+  simulation.on("tick", () => {
+    link.attr("d", d => {
+      const dx = d.target.x - d.source.x;
+      const dy = d.target.y - d.source.y;
+      const dr = Math.sqrt(dx * dx + dy * dy);
+      return `M${d.source.x},${d.source.y}A${dr},${dr} 0 0,1 ${d.target.x},${d.target.y}`;
+    });
+
+    node.attr("transform", d => `translate(${d.x},${d.y})`);
+  });
+
+  function drag(sim) {
+    return d3.drag()
+      .on("start", (e) => {
+        if (!e.active) sim.alphaTarget(0.3).restart();
+        e.subject.fx = e.subject.x;
+        e.subject.fy = e.subject.y;
+      })
+      .on("drag", (e) => {
+        e.subject.fx = e.x;
+        e.subject.fy = e.y;
+      })
+      .on("end", (e) => {
+        if (!e.active) sim.alphaTarget(0);
+        e.subject.fx = null;
+        e.subject.fy = null;
+      });
+  }
+}
+
+if (openMapBtn) {
+    openMapBtn.addEventListener('click', () => {
+      mapOverlay.classList.add('active');
+      initMap();
+    });
+}
+if (closeMapBtn) closeMapBtn.addEventListener('click', () => mapOverlay.classList.remove('active'));
+
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && mapOverlay.classList.contains('active')) {
+    mapOverlay.classList.remove('active');
+  }
+});
 """
 
 
@@ -1557,6 +1723,37 @@ def render_study_overlay() -> str:
 </div>"""
 
 
+def render_map_overlay() -> str:
+    return """
+<div id="map-overlay" class="map-overlay">
+  <div class="map-header">
+    <div class="eyebrow">Interactive RFC Graph</div>
+    <div style="display:flex; gap:10px;">
+      <button id="close-map" class="reader-btn">Exit Map (Esc)</button>
+    </div>
+  </div>
+  <div id="map-container" class="map-container">
+    <div class="map-legend">
+      <div class="legend-group">
+        <h4>Layers</h4>
+        <div class="legend-item"><div class="legend-color" style="background:var(--violet)"></div> Link</div>
+        <div class="legend-item"><div class="legend-color" style="background:var(--cyan)"></div> Network/Routing</div>
+        <div class="legend-item"><div class="legend-color" style="background:var(--amber)"></div> Transport</div>
+        <div class="legend-item"><div class="legend-color" style="background:var(--pink)"></div> Application</div>
+        <div class="legend-item"><div class="legend-color" style="background:var(--green)"></div> Monitoring</div>
+      </div>
+      <div class="legend-group">
+        <h4>Relationships</h4>
+        <div class="legend-item"><div class="legend-line" style="background:var(--text)"></div> Dependency</div>
+        <div class="legend-item"><div class="legend-line" style="border-top:2px dashed var(--amber)"></div> Update Chain</div>
+        <div class="legend-item"><div class="legend-line" style="border-top:2px dotted var(--pink)"></div> Threat Link</div>
+      </div>
+    </div>
+  </div>
+</div>
+"""
+
+
 def build_site(builds: list[RFCBuild]) -> None:
     if SITE_DIR.exists():
         shutil.rmtree(SITE_DIR)
@@ -1571,6 +1768,7 @@ def build_site(builds: list[RFCBuild]) -> None:
     flashcards = generate_flashcards(builds)
     
     study_overlay = render_study_overlay()
+    map_overlay = render_map_overlay()
     
     filters = ["<button class=\"filter active\" data-tag=\"all\">All</button>"]
     filters.extend(f"<button class=\"filter\" data-tag=\"{html.escape(tag)}\">{html.escape(tag)}</button>" for tag in all_tags)
@@ -1583,9 +1781,10 @@ def build_site(builds: list[RFCBuild]) -> None:
     stats += """<div class="stat study-progress-card">
       <b id="srs-due-count">0</b>
       <span>Due Today<br>Cards ready for spaced repetition review.</span>
-      <div style="margin-top:10px; display:flex; gap:8px;">
+      <div class="btn-group">
         <button id="start-study" class="reader-btn">Study Due</button>
         <button id="study-all" class="reader-btn">Study All</button>
+        <button id="open-map" class="reader-btn" style="border-color:var(--pink); color:var(--pink);">Protocol Map</button>
       </div>
     </div>"""
 
@@ -1607,7 +1806,9 @@ def build_site(builds: list[RFCBuild]) -> None:
         )
 
     index_content = f"""
+<script src=\"https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js\"></script>
 {study_overlay}
+{map_overlay}
 <script>window.FLASHCARDS = {flashcards};</script>
 <header class=\"hero shell\">
   <div class=\"eyebrow\">Curated protocol intelligence</div>

@@ -245,10 +245,84 @@ footer { color: var(--muted); border-top: 1px solid var(--line); padding: 28px 0
 .study-progress-card {
   background: linear-gradient(145deg, rgba(101,228,255,0.1), rgba(184,156,255,0.05));
   border: 1px solid rgba(101,228,255,0.2);
+  grid-column: span 2;
 }
+.study-progress-card .btn-group { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+.study-progress-card .reader-btn { flex: 1; min-width: fit-content; white-space: nowrap; }
 .study-hint {
   position: absolute;
   bottom: 20px;
   color: var(--muted);
   font-size: 0.8rem;
 }
+
+/* Protocol Map Overlay */
+.map-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: var(--bg);
+  z-index: 9999;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+}
+.map-overlay.active { display: flex; }
+.map-header {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0,0,0,0.3);
+  border-bottom: 1px solid var(--line);
+}
+.map-container {
+  flex: 1;
+  position: relative;
+  cursor: grab;
+}
+.map-container:active { cursor: grabbing; }
+
+/* D3 Graph Elements */
+.node rect { stroke-width: 2px; rx: 12; ry: 12; }
+.node text { fill: var(--text); font-size: 10px; font-weight: 800; pointer-events: none; text-anchor: middle; }
+.node-rfc { font-size: 8px; opacity: 0.8; }
+
+.link { fill: none; stroke-opacity: 0.4; transition: stroke-opacity 0.2s; }
+.link.dependency { stroke: var(--text); stroke-width: 2px; }
+.link.update-chain { stroke: var(--amber); stroke-width: 2px; stroke-dasharray: 5,5; }
+.link.threat { stroke: var(--pink); stroke-width: 1.5px; stroke-dasharray: 2,2; }
+
+/* Node Colors by Layer */
+.node-link rect { fill: var(--violet); stroke: #d4c4ff; }
+.node-routing rect, .node-network rect { fill: var(--cyan); stroke: #a3f1ff; }
+.node-transport rect { fill: var(--amber); stroke: #ffe1a1; }
+.node-application rect { fill: var(--pink); stroke: #ffaddb; }
+.node-monitoring rect { fill: var(--green); stroke: #b3ffd4; }
+
+.map-legend {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background: rgba(14,20,36,0.9);
+  padding: 15px;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  font-size: 0.75rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  pointer-events: none;
+  z-index: 10;
+}
+.legend-group h4 { margin: 0 0 8px; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+.legend-item { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; color: var(--text); }
+.legend-color { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
+.legend-line { width: 20px; height: 2px; flex-shrink: 0; }
+
+.node.dimmed { opacity: 0.1; }
+.link.dimmed { stroke-opacity: 0.05; }
+.node.highlight { opacity: 1; }
+.link.highlight { stroke-opacity: 1; }

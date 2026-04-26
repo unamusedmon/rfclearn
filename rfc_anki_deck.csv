@@ -1,0 +1,601 @@
+What is the title/topic of <b>RFC 768</b>?	User Datagram Protocol	rfc_number_to_title transport
+What is the RFC number for <b>User Datagram Protocol</b>?	RFC 768	rfc_title_to_number transport
+RFC 768 (User Datagram Protocol): Why is this RFC relevant for <b>threat hunting</b>?	Defines UDP, the lightweight transport behind DNS, telemetry, scanning, and many amplification patterns.	relevance transport
+What is the title/topic of <b>RFC 791</b>?	Internet Protocol	rfc_number_to_title routing security
+What is the RFC number for <b>Internet Protocol</b>?	RFC 791	rfc_title_to_number routing security
+RFC 791 (Internet Protocol): Why is this RFC relevant for <b>threat hunting</b>?	Establishes IPv4 fields that hunters inspect for fragmentation, spoofing, tunneling, and routing anomalies.	relevance routing security
+What is the title/topic of <b>RFC 792</b>?	Internet Control Message Protocol	rfc_number_to_title routing security
+What is the RFC number for <b>Internet Control Message Protocol</b>?	RFC 792	rfc_title_to_number routing security
+RFC 792 (Internet Control Message Protocol): Why is this RFC relevant for <b>threat hunting</b>?	Documents ICMP behavior used in reconnaissance, diagnostics, covert channels, and denial-of-service activity.	relevance routing security
+What is the title/topic of <b>RFC 793</b>?	Transmission Control Protocol	rfc_number_to_title transport
+What is the RFC number for <b>Transmission Control Protocol</b>?	RFC 793	rfc_title_to_number transport
+RFC 793 (Transmission Control Protocol): Why is this RFC relevant for <b>threat hunting</b>?	Defines TCP state, flags, sequencing, and connection semantics central to flow analysis and intrusion detection.	relevance transport
+What is the title/topic of <b>RFC 826</b>?	An Ethernet Address Resolution Protocol	rfc_number_to_title routing security
+What is the RFC number for <b>An Ethernet Address Resolution Protocol</b>?	RFC 826	rfc_title_to_number routing security
+RFC 826 (An Ethernet Address Resolution Protocol): Why is this RFC relevant for <b>threat hunting</b>?	Explains ARP resolution, a core source of local-network spoofing, poisoning, and lateral movement signals.	relevance routing security
+What is the title/topic of <b>RFC 1035</b>?	Domain Names - Implementation and Specification	rfc_number_to_title application monitoring
+What is the RFC number for <b>Domain Names - Implementation and Specification</b>?	RFC 1035	rfc_title_to_number application monitoring
+RFC 1035 (Domain Names - Implementation and Specification): Why is this RFC relevant for <b>threat hunting</b>?	Defines DNS messages and resource records that drive domain hunting, tunneling detection, and infrastructure analysis.	relevance application monitoring
+What is the title/topic of <b>RFC 1122</b>?	Requirements for Internet Hosts - Communication Layers	rfc_number_to_title transport routing security
+What is the RFC number for <b>Requirements for Internet Hosts - Communication Layers</b>?	RFC 1122	rfc_title_to_number transport routing security
+RFC 1122 (Requirements for Internet Hosts - Communication Layers): Why is this RFC relevant for <b>threat hunting</b>?	Clarifies host-layer protocol requirements useful when spotting malformed stacks and evasive implementations.	relevance transport routing security
+What is the title/topic of <b>RFC 1123</b>?	Requirements for Internet Hosts - Application and Support	rfc_number_to_title application
+What is the RFC number for <b>Requirements for Internet Hosts - Application and Support</b>?	RFC 1123	rfc_title_to_number application
+RFC 1123 (Requirements for Internet Hosts - Application and Support): Why is this RFC relevant for <b>threat hunting</b>?	Covers host application requirements that help contextualize DNS, SMTP, and service behavior in investigations.	relevance application
+What is the title/topic of <b>RFC 2131</b>?	Dynamic Host Configuration Protocol	rfc_number_to_title application monitoring
+What is the RFC number for <b>Dynamic Host Configuration Protocol</b>?	RFC 2131	rfc_title_to_number application monitoring
+RFC 2131 (Dynamic Host Configuration Protocol): Why is this RFC relevant for <b>threat hunting</b>?	Defines DHCP exchanges used to investigate rogue servers, device identity, and network access patterns.	relevance application monitoring
+What is the title/topic of <b>RFC 2460</b>?	Internet Protocol, Version 6 (IPv6) Specification	rfc_number_to_title routing security
+What is the RFC number for <b>Internet Protocol, Version 6 (IPv6) Specification</b>?	RFC 2460	rfc_title_to_number routing security
+RFC 2460 (Internet Protocol, Version 6 (IPv6) Specification): Why is this RFC relevant for <b>threat hunting</b>?	Defines IPv6 headers and extension behavior relevant to modern routing, filtering, and evasion analysis.	relevance routing security
+What is the title/topic of <b>RFC 2616</b>?	Hypertext Transfer Protocol -- HTTP/1.1	rfc_number_to_title application monitoring
+What is the RFC number for <b>Hypertext Transfer Protocol -- HTTP/1.1</b>?	RFC 2616	rfc_title_to_number application monitoring
+RFC 2616 (Hypertext Transfer Protocol -- HTTP/1.1): Why is this RFC relevant for <b>threat hunting</b>?	Historical HTTP/1.1 baseline for understanding legacy web traffic, proxy behavior, and suspicious request patterns.	relevance application monitoring
+What is the title/topic of <b>RFC 2782</b>?	A DNS RR for specifying the location of services (DNS SRV)	rfc_number_to_title application monitoring
+What is the RFC number for <b>A DNS RR for specifying the location of services (DNS SRV)</b>?	RFC 2782	rfc_title_to_number application monitoring
+RFC 2782 (A DNS RR for specifying the location of services (DNS SRV)): Why is this RFC relevant for <b>threat hunting</b>?	Defines SRV records often used to discover services, domain infrastructure, and enterprise authentication targets.	relevance application monitoring
+What is the title/topic of <b>RFC 2328</b>?	OSPF Version 2	rfc_number_to_title routing
+What is the RFC number for <b>OSPF Version 2</b>?	RFC 2328	rfc_title_to_number routing
+RFC 2328 (OSPF Version 2): Why is this RFC relevant for <b>threat hunting</b>?	Documents OSPF routing behavior important for detecting route manipulation and internal network reconnaissance.	relevance routing
+What is the title/topic of <b>RFC 3954</b>?	Cisco Systems NetFlow Services Export Version 9	rfc_number_to_title monitoring
+What is the RFC number for <b>Cisco Systems NetFlow Services Export Version 9</b>?	RFC 3954	rfc_title_to_number monitoring
+RFC 3954 (Cisco Systems NetFlow Services Export Version 9): Why is this RFC relevant for <b>threat hunting</b>?	Defines NetFlow v9 export data, a major telemetry source for network threat hunting.	relevance monitoring
+What is the title/topic of <b>RFC 4271</b>?	A Border Gateway Protocol 4 (BGP-4)	rfc_number_to_title routing security
+What is the RFC number for <b>A Border Gateway Protocol 4 (BGP-4)</b>?	RFC 4271	rfc_title_to_number routing security
+RFC 4271 (A Border Gateway Protocol 4 (BGP-4)): Why is this RFC relevant for <b>threat hunting</b>?	Defines BGP behavior behind route leaks, hijacks, suspicious peering, and internet-scale traffic shifts.	relevance routing security
+What is the title/topic of <b>RFC 4301</b>?	Security Architecture for the Internet Protocol	rfc_number_to_title security
+What is the RFC number for <b>Security Architecture for the Internet Protocol</b>?	RFC 4301	rfc_title_to_number security
+RFC 4301 (Security Architecture for the Internet Protocol): Why is this RFC relevant for <b>threat hunting</b>?	Describes IPsec architecture for identifying expected encrypted tunnels and policy anomalies.	relevance security
+What is the title/topic of <b>RFC 4303</b>?	IP Encapsulating Security Payload (ESP)	rfc_number_to_title security transport
+What is the RFC number for <b>IP Encapsulating Security Payload (ESP)</b>?	RFC 4303	rfc_title_to_number security transport
+RFC 4303 (IP Encapsulating Security Payload (ESP)): Why is this RFC relevant for <b>threat hunting</b>?	Defines ESP packet protection, useful for recognizing IPsec traffic and tunnel encapsulation artifacts.	relevance security transport
+What is the title/topic of <b>RFC 5321</b>?	Simple Mail Transfer Protocol	rfc_number_to_title application monitoring
+What is the RFC number for <b>Simple Mail Transfer Protocol</b>?	RFC 5321	rfc_title_to_number application monitoring
+RFC 5321 (Simple Mail Transfer Protocol): Why is this RFC relevant for <b>threat hunting</b>?	Defines SMTP behavior used in phishing infrastructure analysis, mail relay abuse, and command-level investigations.	relevance application monitoring
+What is the title/topic of <b>RFC 7011</b>?	Specification of the IP Flow Information Export (IPFIX) Protocol	rfc_number_to_title monitoring
+What is the RFC number for <b>Specification of the IP Flow Information Export (IPFIX) Protocol</b>?	RFC 7011	rfc_title_to_number monitoring
+RFC 7011 (Specification of the IP Flow Information Export (IPFIX) Protocol): Why is this RFC relevant for <b>threat hunting</b>?	Defines IPFIX, the standards-based flow telemetry protocol used for large-scale hunting and detection.	relevance monitoring
+What is the title/topic of <b>RFC 7230</b>?	Hypertext Transfer Protocol (HTTP/1.1): Message Syntax and Routing	rfc_number_to_title application monitoring
+What is the RFC number for <b>Hypertext Transfer Protocol (HTTP/1.1): Message Syntax and Routing</b>?	RFC 7230	rfc_title_to_number application monitoring
+RFC 7230 (Hypertext Transfer Protocol (HTTP/1.1): Message Syntax and Routing): Why is this RFC relevant for <b>threat hunting</b>?	Modernizes HTTP/1.1 message parsing and routing rules relevant to web attack and proxy investigations.	relevance application monitoring
+What is the title/topic of <b>RFC 7540</b>?	Hypertext Transfer Protocol Version 2 (HTTP/2)	rfc_number_to_title application transport
+What is the RFC number for <b>Hypertext Transfer Protocol Version 2 (HTTP/2)</b>?	RFC 7540	rfc_title_to_number application transport
+RFC 7540 (Hypertext Transfer Protocol Version 2 (HTTP/2)): Why is this RFC relevant for <b>threat hunting</b>?	Defines HTTP/2 framing and streams used to analyze modern web traffic, proxies, and protocol abuse.	relevance application transport
+What is the title/topic of <b>RFC 9868</b>?	Internet Engineering Task Force (IETF)                          J. Touch	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                          J. Touch</b>?	RFC 9868	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 1349</b>?	1123, 1122, 1060, 791	rfc_number_to_title update-chain
+What is the RFC number for <b>1123, 1122, 1060, 791</b>?	RFC 1349	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 2474</b>?	Cisco Systems	rfc_number_to_title update-chain
+What is the RFC number for <b>Cisco Systems</b>?	RFC 2474	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 6864</b>?	Internet Engineering Task Force (IETF)                          J. Touch	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                          J. Touch</b>?	RFC 6864	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 950</b>?	August 1985	rfc_number_to_title update-chain
+What is the RFC number for <b>August 1985</b>?	RFC 950	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 4884</b>?	D. Tappan	rfc_number_to_title update-chain
+What is the RFC number for <b>D. Tappan</b>?	RFC 4884	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 6633</b>?	Internet Engineering Task Force (IETF)                           F. Gont	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                           F. Gont</b>?	RFC 6633	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 6918</b>?	Internet Engineering Task Force (IETF)                           F. Gont	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                           F. Gont</b>?	RFC 6918	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 3168</b>?	September 2001	rfc_number_to_title update-chain
+What is the RFC number for <b>September 2001</b>?	RFC 3168	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 6093</b>?	Internet Engineering Task Force (IETF)                           F. Gont	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                           F. Gont</b>?	RFC 6093	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 6528</b>?	Internet Engineering Task Force (IETF)                           F. Gont	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                           F. Gont</b>?	RFC 6528	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 9293</b>?	Internet Engineering Task Force (IETF)                      W. Eddy, Ed.	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                      W. Eddy, Ed.</b>?	RFC 9293	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 5227</b>?	IPv4 Address Conflict Detection	rfc_number_to_title routing update-chain
+What is the RFC number for <b>IPv4 Address Conflict Detection</b>?	RFC 5227	rfc_title_to_number routing update-chain
+What is the title/topic of <b>RFC 5494</b>?	2132, 2176, 2225, 2834, 2835,                     Cisco Systems	rfc_number_to_title update-chain
+What is the RFC number for <b>2132, 2176, 2225, 2834, 2835,                     Cisco Systems</b>?	RFC 5494	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 882</b>?	November 1983	rfc_number_to_title update-chain
+What is the RFC number for <b>November 1983</b>?	RFC 882	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 883</b>?	November 1983	rfc_number_to_title update-chain
+What is the RFC number for <b>November 1983</b>?	RFC 883	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 973</b>?	January 1986	rfc_number_to_title update-chain
+What is the RFC number for <b>January 1986</b>?	RFC 973	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 1101</b>?	DNS Encoding of Network Names and Other Types	rfc_number_to_title application update-chain
+What is the RFC number for <b>DNS Encoding of Network Names and Other Types</b>?	RFC 1101	rfc_title_to_number application update-chain
+What is the title/topic of <b>RFC 1183</b>?	University of Maryland	rfc_number_to_title update-chain
+What is the RFC number for <b>University of Maryland</b>?	RFC 1183	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 1348</b>?	DNS NSAP RRs	rfc_number_to_title application update-chain
+What is the RFC number for <b>DNS NSAP RRs</b>?	RFC 1348	rfc_title_to_number application update-chain
+What is the title/topic of <b>RFC 1876</b>?	T. Goodwin	rfc_number_to_title update-chain
+What is the RFC number for <b>T. Goodwin</b>?	RFC 1876	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 1982</b>?	August 1996	rfc_number_to_title update-chain
+What is the RFC number for <b>August 1996</b>?	RFC 1982	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 1995</b>?	Incremental Zone Transfer in DNS	rfc_number_to_title application update-chain
+What is the RFC number for <b>Incremental Zone Transfer in DNS</b>?	RFC 1995	rfc_title_to_number application update-chain
+What is the title/topic of <b>RFC 1996</b>?	A Mechanism for Prompt Notification of Zone Changes (DNS NOTIFY)	rfc_number_to_title application update-chain
+What is the RFC number for <b>A Mechanism for Prompt Notification of Zone Changes (DNS NOTIFY)</b>?	RFC 1996	rfc_title_to_number application update-chain
+What is the title/topic of <b>RFC 2065</b>?	January 1997	rfc_number_to_title update-chain
+What is the RFC number for <b>January 1997</b>?	RFC 2065	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 2136</b>?	Y. Rekhter	rfc_number_to_title update-chain
+What is the RFC number for <b>Y. Rekhter</b>?	RFC 2136	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 2137</b>?	Secure Domain Name System Dynamic Update	rfc_number_to_title application security update-chain
+What is the RFC number for <b>Secure Domain Name System Dynamic Update</b>?	RFC 2137	rfc_title_to_number application security update-chain
+What is the title/topic of <b>RFC 2181</b>?	July 1997	rfc_number_to_title update-chain
+What is the RFC number for <b>July 1997</b>?	RFC 2181	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 2308</b>?	Negative Caching of DNS Queries (DNS NCACHE)	rfc_number_to_title application update-chain
+What is the RFC number for <b>Negative Caching of DNS Queries (DNS NCACHE)</b>?	RFC 2308	rfc_title_to_number application update-chain
+What is the title/topic of <b>RFC 2535</b>?	Domain Name System Security Extensions	rfc_number_to_title application security update-chain
+What is the RFC number for <b>Domain Name System Security Extensions</b>?	RFC 2535	rfc_title_to_number application security update-chain
+What is the title/topic of <b>RFC 2673</b>?	Binary Labels in the Domain Name System	rfc_number_to_title application update-chain
+What is the RFC number for <b>Binary Labels in the Domain Name System</b>?	RFC 2673	rfc_title_to_number application update-chain
+What is the title/topic of <b>RFC 2845</b>?	D. Eastlake 3rd	rfc_number_to_title update-chain
+What is the RFC number for <b>D. Eastlake 3rd</b>?	RFC 2845	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 3425</b>?	Obsoleting IQUERY	rfc_number_to_title update-chain
+What is the RFC number for <b>Obsoleting IQUERY</b>?	RFC 3425	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 3658</b>?	Delegation Signer (DS) Resource Record (RR)	rfc_number_to_title update-chain
+What is the RFC number for <b>Delegation Signer (DS) Resource Record (RR)</b>?	RFC 3658	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 4033</b>?	3755, 3757, 3845                                          ISC	rfc_number_to_title update-chain
+What is the RFC number for <b>3755, 3757, 3845                                          ISC</b>?	RFC 4033	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 4034</b>?	3755, 3757, 3845                                          ISC	rfc_number_to_title update-chain
+What is the RFC number for <b>3755, 3757, 3845                                          ISC</b>?	RFC 4034	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 4035</b>?	3755, 3757, 3845                                          ISC	rfc_number_to_title update-chain
+What is the RFC number for <b>3755, 3757, 3845                                          ISC</b>?	RFC 4035	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 4343</b>?	Domain Name System (DNS) Case Insensitivity Clarification	rfc_number_to_title application update-chain
+What is the RFC number for <b>Domain Name System (DNS) Case Insensitivity Clarification</b>?	RFC 4343	rfc_title_to_number application update-chain
+What is the title/topic of <b>RFC 5936</b>?	Internet Engineering Task Force (IETF)                          E. Lewis	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                          E. Lewis</b>?	RFC 5936	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 5966</b>?	Internet Engineering Task Force (IETF)                         R. Bellis	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                         R. Bellis</b>?	RFC 5966	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 6604</b>?	Internet Engineering Task Force (IETF)                   D. Eastlake 3rd	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                   D. Eastlake 3rd</b>?	RFC 6604	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 7766</b>?	Internet Engineering Task Force (IETF)                      J. Dickinson	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                      J. Dickinson</b>?	RFC 7766	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 8482</b>?	Internet Engineering Task Force (IETF)                          J. Abley	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                          J. Abley</b>?	RFC 8482	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 8490</b>?	Internet Engineering Task Force (IETF)                         R. Bellis	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                         R. Bellis</b>?	RFC 8490	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 8767</b>?	Internet Engineering Task Force (IETF)                       D. Lawrence	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                       D. Lawrence</b>?	RFC 8767	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 9619</b>?	Internet Engineering Task Force (IETF)                         R. Bellis	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                         R. Bellis</b>?	RFC 9619	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 4379</b>?	February 2006	rfc_number_to_title update-chain
+What is the RFC number for <b>February 2006</b>?	RFC 4379	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 5884</b>?	Internet Engineering Task Force (IETF)                       R. Aggarwal	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                       R. Aggarwal</b>?	RFC 5884	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 6298</b>?	Internet Engineering Task Force (IETF)                         V. Paxson	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                         V. Paxson</b>?	RFC 6298	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 8029</b>?	Internet Engineering Task Force (IETF)                       K. Kompella	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                       K. Kompella</b>?	RFC 8029	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 9210</b>?	Internet Engineering Task Force (IETF)                       J. Kristoff	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                       J. Kristoff</b>?	RFC 9210	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 1541</b>?	Dynamic Host Configuration Protocol	rfc_number_to_title update-chain
+What is the RFC number for <b>Dynamic Host Configuration Protocol</b>?	RFC 1541	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 3396</b>?	November 2002	rfc_number_to_title update-chain
+What is the RFC number for <b>November 2002</b>?	RFC 3396	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 4361</b>?	February 2006	rfc_number_to_title update-chain
+What is the RFC number for <b>February 2006</b>?	RFC 4361	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 6842</b>?	Internet Engineering Task Force (IETF)                          N. Swamy	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                          N. Swamy</b>?	RFC 6842	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 1883</b>?	Internet Protocol, Version 6 (IPv6)	rfc_number_to_title routing update-chain
+What is the RFC number for <b>Internet Protocol, Version 6 (IPv6)</b>?	RFC 1883	rfc_title_to_number routing update-chain
+What is the title/topic of <b>RFC 5095</b>?	G. Neville-Neil	rfc_number_to_title update-chain
+What is the RFC number for <b>G. Neville-Neil</b>?	RFC 5095	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 5722</b>?	Handling of Overlapping IPv6 Fragments	rfc_number_to_title routing update-chain
+What is the RFC number for <b>Handling of Overlapping IPv6 Fragments</b>?	RFC 5722	rfc_title_to_number routing update-chain
+What is the title/topic of <b>RFC 5871</b>?	Internet Engineering Task Force (IETF)                          J. Arkko	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                          J. Arkko</b>?	RFC 5871	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 6437</b>?	Internet Engineering Task Force (IETF)                         S. Amante	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                         S. Amante</b>?	RFC 6437	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 6564</b>?	Internet Engineering Task Force (IETF)                       S. Krishnan	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                       S. Krishnan</b>?	RFC 6564	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 6935</b>?	Internet Engineering Task Force (IETF)                        M. Eubanks	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                        M. Eubanks</b>?	RFC 6935	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 6946</b>?	Internet Engineering Task Force (IETF)                           F. Gont	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                           F. Gont</b>?	RFC 6946	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 7045</b>?	Internet Engineering Task Force (IETF)                      B. Carpenter	rfc_number_to_title routing update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                      B. Carpenter</b>?	RFC 7045	rfc_title_to_number routing update-chain
+What is the title/topic of <b>RFC 7112</b>?	Internet Engineering Task Force (IETF)                           F. Gont	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                           F. Gont</b>?	RFC 7112	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 8200</b>?	Internet Engineering Task Force (IETF)                        S. Deering	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                        S. Deering</b>?	RFC 8200	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 2068</b>?	H. Frystyk	rfc_number_to_title update-chain
+What is the RFC number for <b>H. Frystyk</b>?	RFC 2068	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 2817</b>?	Upgrading to TLS Within HTTP/1.1	rfc_number_to_title application update-chain
+What is the RFC number for <b>Upgrading to TLS Within HTTP/1.1</b>?	RFC 2817	rfc_title_to_number application update-chain
+What is the title/topic of <b>RFC 5785</b>?	Internet Engineering Task Force (IETF)                     M. Nottingham	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                     M. Nottingham</b>?	RFC 5785	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 6266</b>?	Internet Engineering Task Force (IETF)                        J. Reschke	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                        J. Reschke</b>?	RFC 6266	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 6585</b>?	Internet Engineering Task Force (IETF)                     M. Nottingham	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                     M. Nottingham</b>?	RFC 6585	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 7231</b>?	Internet Engineering Task Force (IETF)                  R. Fielding, Ed.	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                  R. Fielding, Ed.</b>?	RFC 7231	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 7232</b>?	Internet Engineering Task Force (IETF)                  R. Fielding, Ed.	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                  R. Fielding, Ed.</b>?	RFC 7232	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 7233</b>?	Internet Engineering Task Force (IETF)                  R. Fielding, Ed.	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                  R. Fielding, Ed.</b>?	RFC 7233	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 7234</b>?	Internet Engineering Task Force (IETF)                  R. Fielding, Ed.	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                  R. Fielding, Ed.</b>?	RFC 7234	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 7235</b>?	Internet Engineering Task Force (IETF)                  R. Fielding, Ed.	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                  R. Fielding, Ed.</b>?	RFC 7235	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 2052</b>?	October 1996	rfc_number_to_title update-chain
+What is the RFC number for <b>October 1996</b>?	RFC 2052	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 6335</b>?	Internet Engineering Task Force (IETF)                         M. Cotton	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                         M. Cotton</b>?	RFC 6335	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 8553</b>?	Internet Engineering Task Force (IETF)                        D. Crocker	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                        D. Crocker</b>?	RFC 8553	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 2178</b>?	OSPF Version 2	rfc_number_to_title routing update-chain
+What is the RFC number for <b>OSPF Version 2</b>?	RFC 2178	rfc_title_to_number routing update-chain
+What is the title/topic of <b>RFC 5709</b>?	Aegis Data Security	rfc_number_to_title application security update-chain
+What is the RFC number for <b>Aegis Data Security</b>?	RFC 5709	rfc_title_to_number application security update-chain
+What is the title/topic of <b>RFC 6549</b>?	Internet Engineering Task Force (IETF)                         A. Lindem	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                         A. Lindem</b>?	RFC 6549	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 6845</b>?	Internet Engineering Task Force (IETF)                          N. Sheth	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                          N. Sheth</b>?	RFC 6845	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 6860</b>?	Internet Engineering Task Force (IETF)                           Y. Yang	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                           Y. Yang</b>?	RFC 6860	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 7474</b>?	Internet Engineering Task Force (IETF)                         M. Bhatia	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                         M. Bhatia</b>?	RFC 7474	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 8042</b>?	Internet Engineering Task Force (IETF)                          Z. Zhang	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                          Z. Zhang</b>?	RFC 8042	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 9355</b>?	Internet Engineering Task Force (IETF)                K. Talaulikar, Ed.	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                K. Talaulikar, Ed.</b>?	RFC 9355	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 9454</b>?	Internet Engineering Task Force (IETF)                            M. Fox	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                            M. Fox</b>?	RFC 9454	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 1771</b>?	March 1995	rfc_number_to_title update-chain
+What is the RFC number for <b>March 1995</b>?	RFC 1771	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 4724</b>?	R. Fernando	rfc_number_to_title update-chain
+What is the RFC number for <b>R. Fernando</b>?	RFC 4724	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 6286</b>?	Internet Engineering Task Force (IETF)                           E. Chen	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                           E. Chen</b>?	RFC 6286	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 6608</b>?	Internet Engineering Task Force (IETF)                           J. Dong	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                           J. Dong</b>?	RFC 6608	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 6793</b>?	Internet Engineering Task Force (IETF)                          Q. Vohra	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                          Q. Vohra</b>?	RFC 6793	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 7606</b>?	Internet Engineering Task Force (IETF)                      E. Chen, Ed.	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                      E. Chen, Ed.</b>?	RFC 7606	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 7607</b>?	Internet Engineering Task Force (IETF)                         W. Kumari	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                         W. Kumari</b>?	RFC 7607	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 7705</b>?	Internet Engineering Task Force (IETF)                         W. George	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                         W. George</b>?	RFC 7705	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 8212</b>?	Internet Engineering Task Force (IETF)                          J. Mauch	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                          J. Mauch</b>?	RFC 8212	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 8654</b>?	Internet Engineering Task Force (IETF)                           R. Bush	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                           R. Bush</b>?	RFC 8654	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 9072</b>?	Internet Engineering Task Force (IETF)                           E. Chen	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                           E. Chen</b>?	RFC 9072	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 9687</b>?	Internet Engineering Task Force (IETF)                       J. Snijders	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                       J. Snijders</b>?	RFC 9687	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 9774</b>?	Internet Engineering Task Force (IETF)                         W. Kumari	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                         W. Kumari</b>?	RFC 9774	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 2401</b>?	November 1998	rfc_number_to_title update-chain
+What is the RFC number for <b>November 1998</b>?	RFC 2401	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 6040</b>?	Internet Engineering Task Force (IETF)                        B. Briscoe	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                        B. Briscoe</b>?	RFC 6040	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 7619</b>?	Internet Engineering Task Force (IETF)                        V. Smyslov	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                        V. Smyslov</b>?	RFC 7619	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 2406</b>?	November 1998	rfc_number_to_title update-chain
+What is the RFC number for <b>November 1998</b>?	RFC 2406	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 2821</b>?	Simple Mail Transfer Protocol	rfc_number_to_title application update-chain
+What is the RFC number for <b>Simple Mail Transfer Protocol</b>?	RFC 2821	rfc_title_to_number application update-chain
+What is the title/topic of <b>RFC 7504</b>?	Internet Engineering Task Force (IETF)                        J. Klensin	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                        J. Klensin</b>?	RFC 7504	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 5101</b>?	Specification of the IP Flow Information Export (IPFIX) Protocol	rfc_number_to_title routing monitoring update-chain
+What is the RFC number for <b>Specification of the IP Flow Information Export (IPFIX) Protocol</b>?	RFC 5101	rfc_title_to_number routing monitoring update-chain
+What is the title/topic of <b>RFC 2145</b>?	UC Irvine	rfc_number_to_title update-chain
+What is the RFC number for <b>UC Irvine</b>?	RFC 2145	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 2818</b>?	HTTP Over TLS	rfc_number_to_title application update-chain
+What is the RFC number for <b>HTTP Over TLS</b>?	RFC 2818	rfc_title_to_number application update-chain
+What is the title/topic of <b>RFC 8615</b>?	Internet Engineering Task Force (IETF)                     M. Nottingham	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                     M. Nottingham</b>?	RFC 8615	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 9110</b>?	Internet Engineering Task Force (IETF)                  R. Fielding, Ed.	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                  R. Fielding, Ed.</b>?	RFC 9110	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 9112</b>?	Internet Engineering Task Force (IETF)                  R. Fielding, Ed.	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                  R. Fielding, Ed.</b>?	RFC 9112	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 8740</b>?	Internet Engineering Task Force (IETF)                       D. Benjamin	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                       D. Benjamin</b>?	RFC 8740	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 9113</b>?	Internet Engineering Task Force (IETF)                   M. Thomson, Ed.	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                   M. Thomson, Ed.</b>?	RFC 9113	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 1455</b>?	Physical Link Security Type of Service	rfc_number_to_title application security update-chain
+What is the RFC number for <b>Physical Link Security Type of Service</b>?	RFC 1455	rfc_title_to_number application security update-chain
+What is the title/topic of <b>RFC 3260</b>?	New Terminology and Clarifications for Diffserv	rfc_number_to_title update-chain
+What is the RFC number for <b>New Terminology and Clarifications for Diffserv</b>?	RFC 3260	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 8436</b>?	Internet Engineering Task Force (IETF)                      G. Fairhurst	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                      G. Fairhurst</b>?	RFC 8436	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 8335</b>?	Internet Engineering Task Force (IETF)                         R. Bonica	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                         R. Bonica</b>?	RFC 8335	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 1788</b>?	ICMP Domain Name Messages	rfc_number_to_title application routing update-chain
+What is the RFC number for <b>ICMP Domain Name Messages</b>?	RFC 1788	rfc_title_to_number application routing update-chain
+What is the title/topic of <b>RFC 2481</b>?	January 1999	rfc_number_to_title update-chain
+What is the RFC number for <b>January 1999</b>?	RFC 2481	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 8311</b>?	Internet Engineering Task Force (IETF)                          D. Black	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                          D. Black</b>?	RFC 8311	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 9768</b>?	Internet Engineering Task Force (IETF)                        B. Briscoe	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                        B. Briscoe</b>?	RFC 9768	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 1948</b>?	Defending Against Sequence Number Attacks	rfc_number_to_title security update-chain
+What is the RFC number for <b>Defending Against Sequence Number Attacks</b>?	RFC 1948	rfc_title_to_number security update-chain
+What is the title/topic of <b>RFC 879</b>?	November 1983	rfc_number_to_title update-chain
+What is the RFC number for <b>November 1983</b>?	RFC 879	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 1011</b>?	OFFICIAL INTERNET PROTOCOLS	rfc_number_to_title update-chain
+What is the RFC number for <b>OFFICIAL INTERNET PROTOCOLS</b>?	RFC 1011	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 2873</b>?	V. Paxson	rfc_number_to_title update-chain
+What is the RFC number for <b>V. Paxson</b>?	RFC 2873	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 5961</b>?	Internet Engineering Task Force (IETF)                        A. Ramaiah	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                        A. Ramaiah</b>?	RFC 5961	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 6429</b>?	Internet Engineering Task Force (IETF)                        M. Bashyam	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                        M. Bashyam</b>?	RFC 6429	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 6691</b>?	Internet Engineering Task Force (IETF)                         D. Borman	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                         D. Borman</b>?	RFC 6691	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 1034</b>?	DOMAIN NAMES - CONCEPTS AND FACILITIES	rfc_number_to_title application update-chain
+What is the RFC number for <b>DOMAIN NAMES - CONCEPTS AND FACILITIES</b>?	RFC 1034	rfc_title_to_number application update-chain
+What is the title/topic of <b>RFC 5395</b>?	BCP: 42                                                    November 2008	rfc_number_to_title update-chain
+What is the RFC number for <b>BCP: 42                                                    November 2008</b>?	RFC 5395	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 5864</b>?	Internet Engineering Task Force (IETF)                        R. Allbery	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                        R. Allbery</b>?	RFC 5864	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 6195</b>?	Internet Engineering Task Force (IETF)                   D. Eastlake 3rd	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                   D. Eastlake 3rd</b>?	RFC 6195	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 6895</b>?	Internet Engineering Task Force (IETF)                   D. Eastlake 3rd	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                   D. Eastlake 3rd</b>?	RFC 6895	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 1637</b>?	June 1994	rfc_number_to_title update-chain
+What is the RFC number for <b>June 1994</b>?	RFC 1637	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 9103</b>?	Internet Engineering Task Force (IETF)                         W. Toorop	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                         W. Toorop</b>?	RFC 9103	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 3007</b>?	Secure Domain Name System (DNS) Dynamic Update	rfc_number_to_title application security update-chain
+What is the RFC number for <b>Secure Domain Name System (DNS) Dynamic Update</b>?	RFC 3007	rfc_title_to_number application security update-chain
+What is the title/topic of <b>RFC 5452</b>?	January 2009	rfc_number_to_title update-chain
+What is the RFC number for <b>January 2009</b>?	RFC 5452	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 8020</b>?	Internet Engineering Task Force (IETF)                     S. Bortzmeyer	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                     S. Bortzmeyer</b>?	RFC 8020	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 8499</b>?	Internet Engineering Task Force (IETF)                        P. Hoffman	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                        P. Hoffman</b>?	RFC 8499	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 9499</b>?	Internet Engineering Task Force (IETF)                        P. Hoffman	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                        P. Hoffman</b>?	RFC 9499	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 9520</b>?	Internet Engineering Task Force (IETF)                        D. Wessels	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                        D. Wessels</b>?	RFC 9520	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 2931</b>?	DNS Request and Transaction Signatures ( SIG(0)s )	rfc_number_to_title application update-chain
+What is the RFC number for <b>DNS Request and Transaction Signatures ( SIG(0)s )</b>?	RFC 2931	rfc_title_to_number application update-chain
+What is the title/topic of <b>RFC 3008</b>?	Domain Name System Security (DNSSEC) Signing Authority	rfc_number_to_title application security update-chain
+What is the RFC number for <b>Domain Name System Security (DNSSEC) Signing Authority</b>?	RFC 3008	rfc_title_to_number application security update-chain
+What is the title/topic of <b>RFC 3090</b>?	DNS Security Extension Clarification on Zone Status	rfc_number_to_title application security update-chain
+What is the RFC number for <b>DNS Security Extension Clarification on Zone Status</b>?	RFC 3090	rfc_title_to_number application security update-chain
+What is the title/topic of <b>RFC 3226</b>?	DNSSEC and IPv6 A6 aware server/resolver message size requirements	rfc_number_to_title application routing security update-chain
+What is the RFC number for <b>DNSSEC and IPv6 A6 aware server/resolver message size requirements</b>?	RFC 3226	rfc_title_to_number application routing security update-chain
+What is the title/topic of <b>RFC 3445</b>?	December 2002	rfc_number_to_title update-chain
+What is the RFC number for <b>December 2002</b>?	RFC 3445	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 3597</b>?	Handling of Unknown DNS Resource Record (RR) Types	rfc_number_to_title application update-chain
+What is the RFC number for <b>Handling of Unknown DNS Resource Record (RR) Types</b>?	RFC 3597	rfc_title_to_number application update-chain
+What is the title/topic of <b>RFC 3655</b>?	Redefinition of DNS Authenticated Data (AD) bit	rfc_number_to_title application security update-chain
+What is the RFC number for <b>Redefinition of DNS Authenticated Data (AD) bit</b>?	RFC 3655	rfc_title_to_number application security update-chain
+What is the title/topic of <b>RFC 3755</b>?	Legacy Resolver Compatibility for Delegation Signer (DS)	rfc_number_to_title update-chain
+What is the RFC number for <b>Legacy Resolver Compatibility for Delegation Signer (DS)</b>?	RFC 3755	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 3757</b>?	April 2004	rfc_number_to_title update-chain
+What is the RFC number for <b>April 2004</b>?	RFC 3757	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 3845</b>?	DNS Security (DNSSEC) NextSECure (NSEC) RDATA Format	rfc_number_to_title application security update-chain
+What is the RFC number for <b>DNS Security (DNSSEC) NextSECure (NSEC) RDATA Format</b>?	RFC 3845	rfc_title_to_number application security update-chain
+What is the title/topic of <b>RFC 3363</b>?	August 2002	rfc_number_to_title update-chain
+What is the RFC number for <b>August 2002</b>?	RFC 3363	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 3364</b>?	Tradeoffs in Domain Name System (DNS) Support	rfc_number_to_title application update-chain
+What is the RFC number for <b>Tradeoffs in Domain Name System (DNS) Support</b>?	RFC 3364	rfc_title_to_number application update-chain
+What is the title/topic of <b>RFC 6891</b>?	Internet Engineering Task Force (IETF)                          J. Damas	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                          J. Damas</b>?	RFC 6891	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 3645</b>?	J. Westhead	rfc_number_to_title update-chain
+What is the RFC number for <b>J. Westhead</b>?	RFC 3645	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 4635</b>?	HMAC SHA TSIG Algorithm Identifiers	rfc_number_to_title update-chain
+What is the RFC number for <b>HMAC SHA TSIG Algorithm Identifiers</b>?	RFC 4635	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 8945</b>?	Internet Engineering Task Force (IETF)                         F. Dupont	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                         F. Dupont</b>?	RFC 8945	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 3225</b>?	Indicating Resolver Support of DNSSEC	rfc_number_to_title application security update-chain
+What is the RFC number for <b>Indicating Resolver Support of DNSSEC</b>?	RFC 3225	rfc_title_to_number application security update-chain
+What is the title/topic of <b>RFC 6014</b>?	Internet Engineering Task Force (IETF)                        P. Hoffman	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                        P. Hoffman</b>?	RFC 6014	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 6840</b>?	Internet Engineering Task Force (IETF)                    S. Weiler, Ed.	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                    S. Weiler, Ed.</b>?	RFC 6840	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 4470</b>?	April 2006	rfc_number_to_title update-chain
+What is the RFC number for <b>April 2006</b>?	RFC 4470	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 6944</b>?	Internet Engineering Task Force (IETF)                           S. Rose	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                           S. Rose</b>?	RFC 6944	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 9077</b>?	Internet Engineering Task Force (IETF)                       P. van Dijk	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                       P. van Dijk</b>?	RFC 9077	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 9824</b>?	Internet Engineering Task Force (IETF)                          S. Huque	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                          S. Huque</b>?	RFC 9824	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 9905</b>?	Internet Engineering Task Force (IETF)                       W. Hardaker	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                       W. Hardaker</b>?	RFC 9905	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 8198</b>?	Internet Engineering Task Force (IETF)                       K. Fujiwara	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                       K. Fujiwara</b>?	RFC 8198	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 5890</b>?	Internet Engineering Task Force (IETF)                        J. Klensin	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                        J. Klensin</b>?	RFC 5890	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 5462</b>?	3564, 3985, 4182, 4364, 4379,                     Cisco Systems	rfc_number_to_title update-chain
+What is the RFC number for <b>3564, 3985, 4182, 4364, 4379,                     Cisco Systems</b>?	RFC 5462	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 6424</b>?	Internet Engineering Task Force (IETF)                        N. Bahadur	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                        N. Bahadur</b>?	RFC 6424	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 6425</b>?	Internet Engineering Task Force (IETF)                    S. Saxena, Ed.	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                    S. Saxena, Ed.</b>?	RFC 6425	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 6426</b>?	Internet Engineering Task Force (IETF)                           E. Gray	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                           E. Gray</b>?	RFC 6426	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 6829</b>?	Internet Engineering Task Force (IETF)                           M. Chen	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                           M. Chen</b>?	RFC 6829	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 7506</b>?	Internet Engineering Task Force (IETF)                           K. Raza	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                           K. Raza</b>?	RFC 7506	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 7537</b>?	Internet Engineering Task Force (IETF)                       B. Decraene	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                       B. Decraene</b>?	RFC 7537	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 7743</b>?	Internet Engineering Task Force (IETF)                       J. Luo, Ed.	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                       J. Luo, Ed.</b>?	RFC 7743	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 7726</b>?	Internet Engineering Task Force (IETF)                       V. Govindan	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                       V. Govindan</b>?	RFC 7726	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 2988</b>?	NASA GRC/BBN	rfc_number_to_title update-chain
+What is the RFC number for <b>NASA GRC/BBN</b>?	RFC 2988	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 8611</b>?	Internet Engineering Task Force (IETF)                          N. Akiya	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                          N. Akiya</b>?	RFC 8611	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 9041</b>?	Internet Engineering Task Force (IETF)                      L. Andersson	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                      L. Andersson</b>?	RFC 9041	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 9570</b>?	Internet Engineering Task Force (IETF)                       K. Kompella	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                       K. Kompella</b>?	RFC 9570	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 1531</b>?	Dynamic Host Configuration Protocol	rfc_number_to_title update-chain
+What is the RFC number for <b>Dynamic Host Configuration Protocol</b>?	RFC 1531	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 2205</b>?	S. Berson	rfc_number_to_title update-chain
+What is the RFC number for <b>S. Berson</b>?	RFC 2205	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 3697</b>?	Transwitch	rfc_number_to_title update-chain
+What is the RFC number for <b>Transwitch</b>?	RFC 3697	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 9673</b>?	Internet Engineering Task Force (IETF)                         R. Hinden	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                         R. Hinden</b>?	RFC 9673	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 9111</b>?	Internet Engineering Task Force (IETF)                  R. Fielding, Ed.	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                  R. Fielding, Ed.</b>?	RFC 9111	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 2617</b>?	J. Hostetler	rfc_number_to_title update-chain
+What is the RFC number for <b>J. Hostetler</b>?	RFC 2617	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 1583</b>?	OSPF Version 2	rfc_number_to_title routing update-chain
+What is the RFC number for <b>OSPF Version 2</b>?	RFC 1583	rfc_title_to_number routing update-chain
+What is the title/topic of <b>RFC 1654</b>?	cisco Systems	rfc_number_to_title update-chain
+What is the RFC number for <b>cisco Systems</b>?	RFC 1654	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 8538</b>?	Internet Engineering Task Force (IETF)                          K. Patel	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                          K. Patel</b>?	RFC 8538	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 4893</b>?	Cisco Systems	rfc_number_to_title update-chain
+What is the RFC number for <b>Cisco Systems</b>?	RFC 4893	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 5065</b>?	J. Scudder	rfc_number_to_title update-chain
+What is the RFC number for <b>J. Scudder</b>?	RFC 5065	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 6472</b>?	Internet Engineering Task Force (IETF)                         W. Kumari	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                         W. Kumari</b>?	RFC 6472	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 1825</b>?	Security Architecture for the Internet Protocol	rfc_number_to_title application security update-chain
+What is the RFC number for <b>Security Architecture for the Internet Protocol</b>?	RFC 1825	rfc_title_to_number application security update-chain
+What is the title/topic of <b>RFC 9601</b>?	Internet Engineering Task Force (IETF)                        B. Briscoe	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                        B. Briscoe</b>?	RFC 9601	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 1827</b>?	IP Encapsulating Security Payload (ESP)	rfc_number_to_title transport application routing security update-chain
+What is the RFC number for <b>IP Encapsulating Security Payload (ESP)</b>?	RFC 1827	rfc_title_to_number transport application routing security update-chain
+What is the title/topic of <b>RFC 4305</b>?	Cryptographic Algorithm Implementation Requirements for	rfc_number_to_title update-chain
+What is the RFC number for <b>Cryptographic Algorithm Implementation Requirements for</b>?	RFC 4305	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 821</b>?	SIMPLE MAIL TRANSFER PROTOCOL	rfc_number_to_title application update-chain
+What is the RFC number for <b>SIMPLE MAIL TRANSFER PROTOCOL</b>?	RFC 821	rfc_title_to_number application update-chain
+What is the title/topic of <b>RFC 974</b>?	January 1986	rfc_number_to_title update-chain
+What is the RFC number for <b>January 1986</b>?	RFC 974	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 1869</b>?	STD: 10                                                 N. Freed, Editor	rfc_number_to_title update-chain
+What is the RFC number for <b>STD: 10                                                 N. Freed, Editor</b>?	RFC 1869	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 5336</b>?	SMTP Extension for Internationalized Email Addresses	rfc_number_to_title application routing update-chain
+What is the RFC number for <b>SMTP Extension for Internationalized Email Addresses</b>?	RFC 5336	rfc_title_to_number application routing update-chain
+What is the title/topic of <b>RFC 7595</b>?	Internet Engineering Task Force (IETF)                    D. Thaler, Ed.	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                    D. Thaler, Ed.</b>?	RFC 7595	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 3864</b>?	BCP: 90                                                    M. Nottingham	rfc_number_to_title update-chain
+What is the RFC number for <b>BCP: 90                                                    M. Nottingham</b>?	RFC 3864	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 7538</b>?	Internet Engineering Task Force (IETF)                        J. Reschke	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                        J. Reschke</b>?	RFC 7538	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 7615</b>?	Internet Engineering Task Force (IETF)                        J. Reschke	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                        J. Reschke</b>?	RFC 7615	rfc_title_to_number update-chain
+What is the title/topic of <b>RFC 7694</b>?	Internet Engineering Task Force (IETF)                        J. Reschke	rfc_number_to_title update-chain
+What is the RFC number for <b>Internet Engineering Task Force (IETF)                        J. Reschke</b>?	RFC 7694	rfc_title_to_number update-chain
+RFC 768 UDP Header: What is the purpose of the <b>Source Port</b> field (16 bits)?	Originating service or ephemeral port; zero, unusual, or impossible pairings can signal spoofing or crafted traffic.	header_field source_port 768
+RFC 768 UDP Header: What is the purpose of the <b>Destination Port</b> field (16 bits)?	Target service port; watch for amplification services, unexpected high-value services, and scan fan-out.	header_field destination_port 768
+RFC 768 UDP Header: What is the purpose of the <b>Length</b> field (16 bits)?	UDP header plus payload length; mismatches or tiny/oversized lengths indicate malformed packets or evasion.	header_field length 768
+RFC 768 UDP Header: What is the purpose of the <b>Checksum</b> field (16 bits)?	Integrity check over pseudo-header and payload; zero in IPv4 or invalid values can reveal crafted packets.	header_field checksum 768
+RFC 791 IPv4 Header: What is the purpose of the <b>Version</b> field (4 bits)?	Should be 4 for IPv4; any other value indicates misclassification or malformed traffic.	header_field version 791
+RFC 791 IPv4 Header: What is the purpose of the <b>IHL</b> field (4 bits)?	Header length; unusually large values imply IP options, while invalid short values are malformed.	header_field ihl 791
+RFC 791 IPv4 Header: What is the purpose of the <b>Type of Service</b> field (8 bits)?	QoS/precedence byte; odd markings can indicate tunneling, policy abuse, or legacy stack artifacts.	header_field type_of_service 791
+RFC 791 IPv4 Header: What is the purpose of the <b>Total Length</b> field (16 bits)?	Full packet length; mismatches with capture length can indicate truncation, evasion, or malformed packets.	header_field total_length 791
+RFC 791 IPv4 Header: What is the purpose of the <b>Identification</b> field (16 bits)?	Fragment correlation value; predictable or repeated IDs help fingerprint hosts and spot fragmentation abuse.	header_field identification 791
+RFC 791 IPv4 Header: What is the purpose of the <b>Flags</b> field (3 bits)?	DF/MF fragmentation controls; watch illegal reserved-bit use and suspicious fragmentation patterns.	header_field flags 791
+RFC 791 IPv4 Header: What is the purpose of the <b>Fragment Offset</b> field (13 bits)?	Fragment position; tiny, overlapping, or excessive fragments are classic IDS evasion signals.	header_field fragment_offset 791
+RFC 791 IPv4 Header: What is the purpose of the <b>TTL</b> field (8 bits)?	Decrements each hop; unusually low or inconsistent TTL can indicate spoofing or traceroute probing.	header_field ttl 791
+RFC 791 IPv4 Header: What is the purpose of the <b>Protocol</b> field (8 bits)?	Next-layer protocol number; unexpected values may indicate tunneling, scanning, or parser confusion.	header_field protocol 791
+RFC 791 IPv4 Header: What is the purpose of the <b>Header Checksum</b> field (16 bits)?	IPv4 header integrity; invalid values suggest corruption, offload artifacts, or crafted packets.	header_field header_checksum 791
+RFC 791 IPv4 Header: What is the purpose of the <b>Source Address</b> field (32 bits)?	Origin IPv4 address; private, bogon, or impossible sources on external links suggest spoofing.	header_field source_address 791
+RFC 791 IPv4 Header: What is the purpose of the <b>Destination Address</b> field (32 bits)?	Target IPv4 address; unexpected internal, multicast, or broadcast destinations deserve review.	header_field destination_address 791
+RFC 791 IPv4 Header: What is the purpose of the <b>Options/Padding</b> field (32 bits)?	Optional and variable; rare on normal traffic, so source route/record route options are high-signal.	header_field options/padding 791
+RFC 793 TCP Header: What is the purpose of the <b>Source Port</b> field (16 bits)?	Client or service port; suspicious reuse, impossible services, or odd pairings can reveal scans or spoofing.	header_field source_port 793
+RFC 793 TCP Header: What is the purpose of the <b>Destination Port</b> field (16 bits)?	Target service port; hunt for unauthorized services, fan-out scans, or policy bypass attempts.	header_field destination_port 793
+RFC 793 TCP Header: What is the purpose of the <b>Sequence Number</b> field (32 bits)?	Byte-stream position; repeated, predictable, or out-of-window values may indicate injection or spoofing.	header_field sequence_number 793
+RFC 793 TCP Header: What is the purpose of the <b>Acknowledgment Number</b> field (32 bits)?	Next expected byte when ACK is set; impossible ACKs reveal scans, desync, or spoofed packets.	header_field acknowledgment_number 793
+RFC 793 TCP Header: What is the purpose of the <b>Data Offset</b> field (4 bits)?	TCP header length; large values mean options, while invalid small values are malformed.	header_field data_offset 793
+RFC 793 TCP Header: What is the purpose of the <b>Reserved</b> field (6 bits)?	Should be zero in RFC 793; non-zero reserved bits often indicate crafted or evasive traffic.	header_field reserved 793
+RFC 793 TCP Header: What is the purpose of the <b>TCP Flags</b> field (6 bits)?	SYN/ACK/RST/FIN combinations; watch for illegal flag combos, SYN floods, or RST injection.	header_field tcp_flags 793
+RFC 793 TCP Header: What is the purpose of the <b>Window</b> field (16 bits)?	Advertised receive window; zero-window abuse, odd scaling, or fingerprintable values can stand out.	header_field window 793
+RFC 793 TCP Header: What is the purpose of the <b>Checksum</b> field (16 bits)?	TCP integrity check; invalid values can be offload artifacts or crafted packet evidence.	header_field checksum 793
+RFC 793 TCP Header: What is the purpose of the <b>Urgent Pointer</b> field (16 bits)?	Only meaningful with URG; unexpected use is rare and can indicate evasion or legacy attacks.	header_field urgent_pointer 793
+RFC 793 TCP Header: What is the purpose of the <b>Options/Padding</b> field (32 bits)?	Variable options such as MSS, SACK, timestamps; odd combinations can fingerprint tools or evasions.	header_field options/padding 793
+RFC 1035 DNS Message Header: What is the purpose of the <b>ID</b> field (16 bits)?	Transaction identifier; repeated, predictable, or mismatched IDs can indicate spoofing or cache-poisoning attempts.	header_field id 1035
+RFC 1035 DNS Message Header: What is the purpose of the <b>QR</b> field (1 bits)?	Query/response bit; responses without queries or queries marked as responses are suspicious.	header_field qr 1035
+RFC 1035 DNS Message Header: What is the purpose of the <b>Opcode</b> field (4 bits)?	Operation code; non-standard opcodes are rare and high-signal.	header_field opcode 1035
+RFC 1035 DNS Message Header: What is the purpose of the <b>AA</b> field (1 bits)?	Authoritative answer; unexpected authority can indicate spoofing or rogue infrastructure.	header_field aa 1035
+RFC 1035 DNS Message Header: What is the purpose of the <b>TC</b> field (1 bits)?	Truncation flag; frequent truncation can force TCP fallback or indicate oversized abuse.	header_field tc 1035
+RFC 1035 DNS Message Header: What is the purpose of the <b>RD</b> field (1 bits)?	Recursion desired; unexpected recursion from restricted networks can show resolver misuse.	header_field rd 1035
+RFC 1035 DNS Message Header: What is the purpose of the <b>RA</b> field (1 bits)?	Recursion available; rogue or exposed recursive resolvers often reveal themselves here.	header_field ra 1035
+RFC 1035 DNS Message Header: What is the purpose of the <b>Z</b> field (3 bits)?	Reserved bits; non-zero values are abnormal except negotiated extensions.	header_field z 1035
+RFC 1035 DNS Message Header: What is the purpose of the <b>RCODE</b> field (4 bits)?	Response code; spikes in NXDOMAIN, SERVFAIL, or REFUSED can reveal DGA, outages, or probing.	header_field rcode 1035
+RFC 1035 DNS Message Header: What is the purpose of the <b>QDCOUNT</b> field (16 bits)?	Question count; values other than one are uncommon and may be malformed or evasive.	header_field qdcount 1035
+RFC 1035 DNS Message Header: What is the purpose of the <b>ANCOUNT</b> field (16 bits)?	Answer count; unusual cardinality can indicate amplification, fast-flux, or malformed responses.	header_field ancount 1035
+RFC 1035 DNS Message Header: What is the purpose of the <b>NSCOUNT</b> field (16 bits)?	Authority count; unexpected delegations or large counts can expose suspicious DNS infrastructure.	header_field nscount 1035
+RFC 1035 DNS Message Header: What is the purpose of the <b>ARCOUNT</b> field (16 bits)?	Additional count; EDNS, glue, and oversized additional data are useful abuse indicators.	header_field arcount 1035
+RFC 2131 DHCP Message Header: What is the purpose of the <b>op</b> field (8 bits)?	Message op code; BOOTREQUEST/BOOTREPLY direction mismatches can reveal spoofing or relay issues.	header_field op 2131
+RFC 2131 DHCP Message Header: What is the purpose of the <b>htype</b> field (8 bits)?	Hardware type; unexpected values on Ethernet networks can indicate crafted clients.	header_field htype 2131
+RFC 2131 DHCP Message Header: What is the purpose of the <b>hlen</b> field (8 bits)?	Hardware address length; invalid lengths break client identity and indicate malformed traffic.	header_field hlen 2131
+RFC 2131 DHCP Message Header: What is the purpose of the <b>hops</b> field (8 bits)?	Relay hop count; high or unexpected values suggest relay loops or unusual topology.	header_field hops 2131
+RFC 2131 DHCP Message Header: What is the purpose of the <b>xid</b> field (32 bits)?	Transaction ID; collisions, repeats, or mismatches help spot spoofed offers and rogue servers.	header_field xid 2131
+RFC 2131 DHCP Message Header: What is the purpose of the <b>secs</b> field (16 bits)?	Elapsed seconds; high values can signal client distress or lease acquisition problems.	header_field secs 2131
+RFC 2131 DHCP Message Header: What is the purpose of the <b>flags</b> field (16 bits)?	Broadcast flag and reserved bits; abnormal reserved use may indicate crafted clients.	header_field flags 2131
+RFC 2131 DHCP Message Header: What is the purpose of the <b>ciaddr</b> field (32 bits)?	Client IP address; unexpected preconfigured values can reveal conflicts or spoofing.	header_field ciaddr 2131
+RFC 2131 DHCP Message Header: What is the purpose of the <b>yiaddr</b> field (32 bits)?	Your/client IP address offered by server; watch unauthorized ranges or duplicate offers.	header_field yiaddr 2131
+RFC 2131 DHCP Message Header: What is the purpose of the <b>siaddr</b> field (32 bits)?	Next server address; unexpected boot servers can indicate rogue provisioning.	header_field siaddr 2131
+RFC 2131 DHCP Message Header: What is the purpose of the <b>giaddr</b> field (32 bits)?	Relay agent address; unexpected relays may show rogue infrastructure or segmentation errors.	header_field giaddr 2131
+RFC 2131 DHCP Message Header: What is the purpose of the <b>chaddr</b> field (128 bits)?	Client hardware address; mismatches with L2 source indicate spoofing or relay oddities.	header_field chaddr 2131
+RFC 2131 DHCP Message Header: What is the purpose of the <b>Magic Cookie</b> field (32 bits)?	DHCP option marker; missing or wrong value indicates non-DHCP BOOTP or malformed packets.	header_field magic_cookie 2131
+RFC 2131 DHCP Message Header: What is the purpose of the <b>Options</b> field (32 bits)?	Variable options; hunt rogue DNS/router options, odd vendor classes, and lease manipulation.	header_field options 2131
+RFC 2328 OSPFv2 Packet Header: What is the purpose of the <b>Version</b> field (8 bits)?	Should be 2 for OSPFv2; mismatches indicate malformed or wrong-protocol traffic.	header_field version 2328
+RFC 2328 OSPFv2 Packet Header: What is the purpose of the <b>Type</b> field (8 bits)?	Hello, DB Description, LS Request, LS Update, or LS Ack; unusual type bursts can show adjacency attacks.	header_field type 2328
+RFC 2328 OSPFv2 Packet Header: What is the purpose of the <b>Packet Length</b> field (16 bits)?	Full OSPF packet length; mismatches suggest malformed packets or capture corruption.	header_field packet_length 2328
+RFC 2328 OSPFv2 Packet Header: What is the purpose of the <b>Router ID</b> field (32 bits)?	Originating router identity; duplicate or unexpected IDs indicate spoofing or misconfiguration.	header_field router_id 2328
+RFC 2328 OSPFv2 Packet Header: What is the purpose of the <b>Area ID</b> field (32 bits)?	OSPF area; wrong-area packets are high-signal for rogue routers or topology leaks.	header_field area_id 2328
+RFC 2328 OSPFv2 Packet Header: What is the purpose of the <b>Checksum</b> field (16 bits)?	OSPF packet integrity; invalid checksums indicate corruption or crafted traffic.	header_field checksum 2328
+RFC 2328 OSPFv2 Packet Header: What is the purpose of the <b>AuType</b> field (16 bits)?	Authentication type; none or unexpected auth mode can expose insecure adjacencies.	header_field autype 2328
+RFC 2328 OSPFv2 Packet Header: What is the purpose of the <b>Authentication</b> field (64 bits)?	Authentication data; failures or mismatches can reveal adjacency hijack attempts.	header_field authentication 2328
+RFC 2460 IPv6 Header: What is the purpose of the <b>Version</b> field (4 bits)?	Should be 6 for IPv6; other values indicate malformed traffic or parser confusion.	header_field version 2460
+RFC 2460 IPv6 Header: What is the purpose of the <b>Traffic Class</b> field (8 bits)?	QoS markings; unusual values can indicate tunneling, covert marking, or policy abuse.	header_field traffic_class 2460
+RFC 2460 IPv6 Header: What is the purpose of the <b>Flow Label</b> field (20 bits)?	Flow identifier; unexpected non-zero or inconsistent labels can fingerprint hosts or tools.	header_field flow_label 2460
+RFC 2460 IPv6 Header: What is the purpose of the <b>Payload Length</b> field (16 bits)?	Length after fixed header; zero jumbo payloads or mismatches deserve scrutiny.	header_field payload_length 2460
+RFC 2460 IPv6 Header: What is the purpose of the <b>Next Header</b> field (8 bits)?	Upper-layer or extension header; long or unusual chains can bypass filters or hide payloads.	header_field next_header 2460
+RFC 2460 IPv6 Header: What is the purpose of the <b>Hop Limit</b> field (8 bits)?	IPv6 TTL equivalent; unusually low or inconsistent values suggest spoofing or probing.	header_field hop_limit 2460
+RFC 2460 IPv6 Header: What is the purpose of the <b>Source Address</b> field (128 bits)?	Origin IPv6 address; link-local, ULA, multicast, or spoofed sources in wrong zones are suspicious.	header_field source_address 2460
+RFC 2460 IPv6 Header: What is the purpose of the <b>Destination Address</b> field (128 bits)?	Target IPv6 address; unexpected multicast, link-local, or routed destinations aid hunting.	header_field destination_address 2460
+RFC 4271 BGP Message Header: What is the purpose of the <b>Marker</b> field (128 bits)?	All ones unless authentication is used; wrong marker values indicate malformed or non-BGP traffic.	header_field marker 4271
+RFC 4271 BGP Message Header: What is the purpose of the <b>Length</b> field (16 bits)?	Total BGP message length; abnormal sizes can indicate malformed messages or UPDATE floods.	header_field length 4271
+RFC 4271 BGP Message Header: What is the purpose of the <b>Type</b> field (8 bits)?	OPEN, UPDATE, NOTIFICATION, or KEEPALIVE; unexpected type sequences reveal session abuse or resets.	header_field type 4271
+RFC 4271 BGP Message Header: What is the purpose of the <b>UPDATE Withdrawn Routes Length</b> field (16 bits)?	Withdrawn prefix block size; spikes can reveal route leaks, flaps, or attacks.	header_field update_withdrawn_routes_length 4271
+RFC 4271 BGP Message Header: What is the purpose of the <b>Withdrawn Routes</b> field (32 bits)?	Variable list of withdrawn prefixes; unexpected critical-prefix withdrawal is high-signal.	header_field withdrawn_routes 4271
+RFC 4271 BGP Message Header: What is the purpose of the <b>Path Attributes Length</b> field (16 bits)?	Size of path attributes; malformed values can trigger parser bugs or session resets.	header_field path_attributes_length 4271
+RFC 4271 BGP Message Header: What is the purpose of the <b>Path Attributes</b> field (32 bits)?	AS_PATH manipulation is the primary vector for route hijacking; watch origin, next-hop, and community anomalies.	header_field path_attributes 4271
+RFC 4271 BGP Message Header: What is the purpose of the <b>NLRI</b> field (32 bits)?	Advertised prefixes; more-specific or unauthorized announcements indicate leaks or hijacks.	header_field nlri 4271
+RFC 5321 SMTP Command/Reply Fields: What is the purpose of the <b>Command Verb</b> field (32 bits)?	HELO/EHLO, MAIL, RCPT, DATA, AUTH, STARTTLS; odd ordering or unsupported verbs indicate probing or abuse.	header_field command_verb 5321
+RFC 5321 SMTP Command/Reply Fields: What is the purpose of the <b>Reply Code</b> field (24 bits)?	Three-digit server response; 5xx/4xx spikes can show credential attacks, relay probing, or delivery failures.	header_field reply_code 5321
+RFC 5321 SMTP Command/Reply Fields: What is the purpose of the <b>Enhanced Status</b> field (32 bits)?	Optional x.y.z status; abnormal failures help separate policy blocks, auth problems, and reputation issues.	header_field enhanced_status 5321
+RFC 5321 SMTP Command/Reply Fields: What is the purpose of the <b>Mailbox Path</b> field (32 bits)?	MAIL FROM/RCPT TO identity; null senders, lookalikes, and relay targets are hunting pivots.	header_field mailbox_path 5321
+RFC 5321 SMTP Command/Reply Fields: What is the purpose of the <b>Extension Args</b> field (32 bits)?	ESMTP parameters such as SIZE, AUTH, STARTTLS; downgrades or suspicious auth use deserve review.	header_field extension_args 5321
+RFC 768 (User Datagram Protocol) - Threat Indicator: <b>Amplification Attacks</b><br><br>What is the <b>malicious indicator</b> compared to normal behavior?	<b>Normal:</b> Payload size roughly matches query size.<br><br><b>Malicious:</b> Small query triggers massive response (e.g. DNS/NTP reflection).<br><br><b>Severity:</b> HIGH	threat_indicator high 768
+RFC 768 (User Datagram Protocol) - Threat Indicator: <b>Port 0 Usage</b><br><br>What is the <b>malicious indicator</b> compared to normal behavior?	<b>Normal:</b> Ports range from 1-65535.<br><br><b>Malicious:</b> Source or destination port is 0, often used in fingerprinting or bypass.<br><br><b>Severity:</b> MEDIUM	threat_indicator medium 768
+RFC 768 (User Datagram Protocol) - Threat Indicator: <b>Unusual Length Values</b><br><br>What is the <b>malicious indicator</b> compared to normal behavior?	<b>Normal:</b> Length field matches actual payload size.<br><br><b>Malicious:</b> Length field is larger than packet or impossibly small.<br><br><b>Severity:</b> HIGH	threat_indicator high 768
+RFC 791 (Internet Protocol) - Threat Indicator: <b>TTL Anomalies</b><br><br>What is the <b>malicious indicator</b> compared to normal behavior?	<b>Normal:</b> Consistent TTL values from a single host.<br><br><b>Malicious:</b> Abrupt TTL changes suggest spoofing or traceroute probing.<br><br><b>Severity:</b> MEDIUM	threat_indicator medium 791
+RFC 791 (Internet Protocol) - Threat Indicator: <b>Fragmentation Abuse</b><br><br>What is the <b>malicious indicator</b> compared to normal behavior?	<b>Normal:</b> Standard fragmentation for large MTUs.<br><br><b>Malicious:</b> Overlapping or tiny fragments designed to bypass IDS/firewalls.<br><br><b>Severity:</b> HIGH	threat_indicator high 791
+RFC 791 (Internet Protocol) - Threat Indicator: <b>Reserved Bit Set</b><br><br>What is the <b>malicious indicator</b> compared to normal behavior?	<b>Normal:</b> Reserved bit is always 0.<br><br><b>Malicious:</b> Evil bit (RFC 3514) or non-zero reserved bits in crafted traffic.<br><br><b>Severity:</b> LOW	threat_indicator low 791
+RFC 791 (Internet Protocol) - Threat Indicator: <b>Source Routing Options</b><br><br>What is the <b>malicious indicator</b> compared to normal behavior?	<b>Normal:</b> IP options are rare; routing is hop-by-hop.<br><br><b>Malicious:</b> Strict or loose source routing to bypass topology constraints.<br><br><b>Severity:</b> HIGH	threat_indicator high 791
+RFC 793 (Transmission Control Protocol) - Threat Indicator: <b>Illegal Flag Combinions</b><br><br>What is the <b>malicious indicator</b> compared to normal behavior?	<b>Normal:</b> Valid state transitions (SYN, SYN-ACK, etc).<br><br><b>Malicious:</b> NULL, Xmas, or SYN-FIN scans; flags that shouldn't exist together.<br><br><b>Severity:</b> HIGH	threat_indicator high 793
+RFC 793 (Transmission Control Protocol) - Threat Indicator: <b>SYN Flood Patterns</b><br><br>What is the <b>malicious indicator</b> compared to normal behavior?	<b>Normal:</b> Balanced SYN and ACK packets.<br><br><b>Malicious:</b> Massive burst of SYNs without corresponding ACKs from many IPs.<br><br><b>Severity:</b> HIGH	threat_indicator high 793
+RFC 793 (Transmission Control Protocol) - Threat Indicator: <b>RST Injection</b><br><br>What is the <b>malicious indicator</b> compared to normal behavior?	<b>Normal:</b> RST sent on connection close or error.<br><br><b>Malicious:</b> Unsolicited RSTs designed to kill active legitimate sessions.<br><br><b>Severity:</b> MEDIUM	threat_indicator medium 793
+RFC 793 (Transmission Control Protocol) - Threat Indicator: <b>Window Size Anomalies</b><br><br>What is the <b>malicious indicator</b> compared to normal behavior?	<b>Normal:</b> Dynamic window scaling based on congestion.<br><br><b>Malicious:</b> Stuck at tiny values or zero-window probes to hang servers.<br><br><b>Severity:</b> MEDIUM	threat_indicator medium 793
+RFC 793 (Transmission Control Protocol) - Threat Indicator: <b>Urgent Pointer Abuse</b><br><br>What is the <b>malicious indicator</b> compared to normal behavior?	<b>Normal:</b> Rarely used in modern protocols.<br><br><b>Malicious:</b> Non-zero urgent pointer in data-less packets to trigger parser bugs.<br><br><b>Severity:</b> LOW	threat_indicator low 793
+RFC 1035 (Domain Names - Implementation and Specification) - Threat Indicator: <b>Long Subdomain Chains</b><br><br>What is the <b>malicious indicator</b> compared to normal behavior?	<b>Normal:</b> 2-3 levels of subdomains (e.g. mail.google.com).<br><br><b>Malicious:</b> Many layers of encoded data in subdomains (DNS tunneling).<br><br><b>Severity:</b> HIGH	threat_indicator high 1035
+RFC 1035 (Domain Names - Implementation and Specification) - Threat Indicator: <b>High Entropy Labels</b><br><br>What is the <b>malicious indicator</b> compared to normal behavior?	<b>Normal:</b> Human-readable or dictionary-based names.<br><br><b>Malicious:</b> Random-looking strings (DGA or encoded exfiltration).<br><br><b>Severity:</b> HIGH	threat_indicator high 1035
+RFC 1035 (Domain Names - Implementation and Specification) - Threat Indicator: <b>TXT Record Abuse</b><br><br>What is the <b>malicious indicator</b> compared to normal behavior?	<b>Normal:</b> Brief descriptive text or SPF records.<br><br><b>Malicious:</b> Large payloads or encoded scripts stored in TXT records.<br><br><b>Severity:</b> MEDIUM	threat_indicator medium 1035
+RFC 1035 (Domain Names - Implementation and Specification) - Threat Indicator: <b>Zone Transfer Attempts</b><br><br>What is the <b>malicious indicator</b> compared to normal behavior?	<b>Normal:</b> AXFR restricted to authorized secondaries.<br><br><b>Malicious:</b> Unsolicited AXFR requests to map internal network domains.<br><br><b>Severity:</b> MEDIUM	threat_indicator medium 1035
+RFC 1035 (Domain Names - Implementation and Specification) - Threat Indicator: <b>Fast Flux Patterns</b><br><br>What is the <b>malicious indicator</b> compared to normal behavior?	<b>Normal:</b> IPs change occasionally for load balancing.<br><br><b>Malicious:</b> IPs change every few seconds to hide malicious infrastructure.<br><br><b>Severity:</b> HIGH	threat_indicator high 1035
+RFC 2131 (Dynamic Host Configuration Protocol) - Threat Indicator: <b>Rogue Server Indicators</b><br><br>What is the <b>malicious indicator</b> compared to normal behavior?	<b>Normal:</b> DHCP offers from known, authorized servers.<br><br><b>Malicious:</b> Offers from unknown IPs providing malicious DNS/Gateway.<br><br><b>Severity:</b> HIGH	threat_indicator high 2131
+RFC 2131 (Dynamic Host Configuration Protocol) - Threat Indicator: <b>Starvation Attacks</b><br><br>What is the <b>malicious indicator</b> compared to normal behavior?	<b>Normal:</b> Normal pool depletion over time.<br><br><b>Malicious:</b> Rapid pool exhaustion using many spoofed MAC addresses.<br><br><b>Severity:</b> MEDIUM	threat_indicator medium 2131
+RFC 2131 (Dynamic Host Configuration Protocol) - Threat Indicator: <b>Unusual Option Fields</b><br><br>What is the <b>malicious indicator</b> compared to normal behavior?	<b>Normal:</b> Standard options (1, 3, 6, 15, 51).<br><br><b>Malicious:</b> Excessive or malformed options used for fingerprinting/overflow.<br><br><b>Severity:</b> LOW	threat_indicator low 2131
+RFC 2328 (OSPF Version 2) - Threat Indicator: <b>Unexpected LSA Flooding</b><br><br>What is the <b>malicious indicator</b> compared to normal behavior?	<b>Normal:</b> Periodic LSA updates on topology change.<br><br><b>Malicious:</b> Storm of LSAs designed to consume router CPU/memory.<br><br><b>Severity:</b> HIGH	threat_indicator high 2328
+RFC 2328 (OSPF Version 2) - Threat Indicator: <b>Neighbor Spoofing</b><br><br>What is the <b>malicious indicator</b> compared to normal behavior?	<b>Normal:</b> Adjacencies with trusted local routers.<br><br><b>Malicious:</b> Spoofed HELLOs to trigger adjacency and route injection.<br><br><b>Severity:</b> HIGH	threat_indicator high 2328
+RFC 2328 (OSPF Version 2) - Threat Indicator: <b>Max Age Poisoning</b><br><br>What is the <b>malicious indicator</b> compared to normal behavior?	<b>Normal:</b> LSAs age out normally after 3600s.<br><br><b>Malicious:</b> Prematurely aging legitimate routes to cause reachability loss.<br><br><b>Severity:</b> MEDIUM	threat_indicator medium 2328
+RFC 2460 (Internet Protocol, Version 6 (IPv6) Specification) - Threat Indicator: <b>Extension Header Abuse</b><br><br>What is the <b>malicious indicator</b> compared to normal behavior?	<b>Normal:</b> 0-1 simple extension headers.<br><br><b>Malicious:</b> Long chains of headers to hide payload from shallow inspection.<br><br><b>Severity:</b> HIGH	threat_indicator high 2460
+RFC 2460 (Internet Protocol, Version 6 (IPv6) Specification) - Threat Indicator: <b>Tunneling Indicators</b><br><br>What is the <b>malicious indicator</b> compared to normal behavior?	<b>Normal:</b> Standard IPv6 traffic.<br><br><b>Malicious:</b> IPv6-in-IPv4 (6to4/Teredo) used to bypass IPv4-only filters.<br><br><b>Severity:</b> MEDIUM	threat_indicator medium 2460
+RFC 2460 (Internet Protocol, Version 6 (IPv6) Specification) - Threat Indicator: <b>Unexpected ICMPv6</b><br><br>What is the <b>malicious indicator</b> compared to normal behavior?	<b>Normal:</b> Essential ND and error messages.<br><br><b>Malicious:</b> Flood of Redirects or RA to perform MitM or DoS.<br><br><b>Severity:</b> HIGH	threat_indicator high 2460
+RFC 4271 (A Border Gateway Protocol 4 (BGP-4)) - Threat Indicator: <b>AS_PATH Anomalies</b><br><br>What is the <b>malicious indicator</b> compared to normal behavior?	<b>Normal:</b> Paths consistent with historical peering.<br><br><b>Malicious:</b> Impossibly short or circular paths; unauthorized AS inclusion.<br><br><b>Severity:</b> HIGH	threat_indicator high 4271
+RFC 4271 (A Border Gateway Protocol 4 (BGP-4)) - Threat Indicator: <b>Prefix Hijacking Patterns</b><br><br>What is the <b>malicious indicator</b> compared to normal behavior?	<b>Normal:</b> Origins match authorized IRR/RPKI records.<br><br><b>Malicious:</b> Unauthorized AS announcing a more-specific or new prefix.<br><br><b>Severity:</b> HIGH	threat_indicator high 4271
+RFC 4271 (A Border Gateway Protocol 4 (BGP-4)) - Threat Indicator: <b>Unusual COMMUNITY Values</b><br><br>What is the <b>malicious indicator</b> compared to normal behavior?	<b>Normal:</b> Used for standard traffic engineering.<br><br><b>Malicious:</b> Proprietary or 'blackhole' communities used to redirect traffic.<br><br><b>Severity:</b> MEDIUM	threat_indicator medium 4271
+RFC 4271 (A Border Gateway Protocol 4 (BGP-4)) - Threat Indicator: <b>Route Leaks</b><br><br>What is the <b>malicious indicator</b> compared to normal behavior?	<b>Normal:</b> Routes stay within intended peering boundaries.<br><br><b>Malicious:</b> Propagating private peering routes to the global internet.<br><br><b>Severity:</b> MEDIUM	threat_indicator medium 4271
+RFC 5321 (Simple Mail Transfer Protocol) - Threat Indicator: <b>Open Relay Indicators</b><br><br>What is the <b>malicious indicator</b> compared to normal behavior?	<b>Normal:</b> Rejects mail for external domains.<br><br><b>Malicious:</b> Accepts mail from any source for any destination (spam).<br><br><b>Severity:</b> HIGH	threat_indicator high 5321
+RFC 5321 (Simple Mail Transfer Protocol) - Threat Indicator: <b>Header Injection</b><br><br>What is the <b>malicious indicator</b> compared to normal behavior?	<b>Normal:</b> CRLF only used to terminate lines.<br><br><b>Malicious:</b> Encoded CRLF in fields to inject 'Bcc' or 'Subject' headers.<br><br><b>Severity:</b> HIGH	threat_indicator high 5321
+RFC 5321 (Simple Mail Transfer Protocol) - Threat Indicator: <b>Unusual EHLO Values</b><br><br>What is the <b>malicious indicator</b> compared to normal behavior?	<b>Normal:</b> FQDN of the sending mail server.<br><br><b>Malicious:</b> Internal IPs, 'localhost', or random strings in EHLO.<br><br><b>Severity:</b> LOW	threat_indicator low 5321
+RFC 5321 (Simple Mail Transfer Protocol) - Threat Indicator: <b>Bounce Flooding</b><br><br>What is the <b>malicious indicator</b> compared to normal behavior?	<b>Normal:</b> Occasional NDNs for valid delivery errors.<br><br><b>Malicious:</b> Massive volume of bounces to a spoofed 'From' address.<br><br><b>Severity:</b> MEDIUM	threat_indicator medium 5321
+RFC 3954 (Cisco Systems NetFlow Services Export Version 9) - Threat Indicator: <b>Flow Record Anomalies</b><br><br>What is the <b>malicious indicator</b> compared to normal behavior?	<b>Normal:</b> Flows match expected service patterns.<br><br><b>Malicious:</b> Unidirectional flows, many tiny flows (scanning/DDoS).<br><br><b>Severity:</b> MEDIUM	threat_indicator medium 3954
+RFC 3954 (Cisco Systems NetFlow Services Export Version 9) - Threat Indicator: <b>Exporter Spoofing</b><br><br>What is the <b>malicious indicator</b> compared to normal behavior?	<b>Normal:</b> NetFlow from known gateway/switch IPs.<br><br><b>Malicious:</b> Flow data from unauthorized IPs to poison telemetry.<br><br><b>Severity:</b> HIGH	threat_indicator high 3954
+RFC 3954 (Cisco Systems NetFlow Services Export Version 9) - Threat Indicator: <b>Unusual Template IDs</b><br><br>What is the <b>malicious indicator</b> compared to normal behavior?	<b>Normal:</b> Static or slowly changing templates.<br><br><b>Malicious:</b> Rapid template rotation or template exhaustion attacks.<br><br><b>Severity:</b> LOW	threat_indicator low 3954
+RFC 7011 (Specification of the IP Flow Information Export (IPFIX) Protocol) - Threat Indicator: <b>Flow Record Anomalies</b><br><br>What is the <b>malicious indicator</b> compared to normal behavior?	<b>Normal:</b> Flows match expected service patterns.<br><br><b>Malicious:</b> Unidirectional flows, many tiny flows (scanning/DDoS).<br><br><b>Severity:</b> MEDIUM	threat_indicator medium 7011
+RFC 7011 (Specification of the IP Flow Information Export (IPFIX) Protocol) - Threat Indicator: <b>Exporter Spoofing</b><br><br>What is the <b>malicious indicator</b> compared to normal behavior?	<b>Normal:</b> IPFIX from known gateway/switch IPs.<br><br><b>Malicious:</b> Flow data from unauthorized IPs to poison telemetry.<br><br><b>Severity:</b> HIGH	threat_indicator high 7011
+RFC 7011 (Specification of the IP Flow Information Export (IPFIX) Protocol) - Threat Indicator: <b>Unusual Template IDs</b><br><br>What is the <b>malicious indicator</b> compared to normal behavior?	<b>Normal:</b> Static or slowly changing templates.<br><br><b>Malicious:</b> Rapid template rotation or template exhaustion attacks.<br><br><b>Severity:</b> LOW	threat_indicator low 7011
