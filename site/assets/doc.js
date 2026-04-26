@@ -1,4 +1,3 @@
-
 const progress = document.querySelector('.progress');
 const body = document.querySelector('.doc-body');
 const toc = document.querySelector('#toc-links');
@@ -43,18 +42,13 @@ function getRetrievability(state, now) {
 
 function fsrs_update(grade, state, now) {
   let { S, D, last_date, repetitions } = state || { S: 0, D: 0, last_date: 0, repetitions: 0 };
-  const t = last_date ? Math.max(0, (now - last_date) / (24 * 60 * 60 * 1000)) : 0;
-  const R = last_date ? getRetrievability(state, now) : 0;
   if (repetitions === 0) {
-    S = w[grade - 1];
-    D = w[4] - (grade - 3) * w[5];
+    S = w[grade - 1]; D = w[4] - (grade - 3) * w[5];
   } else {
     D = Math.min(Math.max(D - w[6] * (grade - 3), 1), 10);
-    if (grade === 1) {
-      S = w[7] * Math.exp(-w[8] * D) * (Math.pow(S + 1, w[9]) - 1) * Math.exp(w[10] * (1 - R));
-    } else {
-      S = S * (1 + Math.exp(w[11]) * (11 - D) * Math.pow(S, -w[12]) * (Math.exp(w[13] * (1 - R)) - 1));
-    }
+    const R = getRetrievability(state, now);
+    if (grade === 1) { S = w[7] * Math.exp(-w[8] * D) * (Math.pow(S + 1, w[9]) - 1) * Math.exp(w[10] * (1 - R)); }
+    else { S = S * (1 + Math.exp(w[11]) * (11 - D) * Math.pow(S, -w[12]) * (Math.exp(w[13] * (1 - R)) - 1)); }
   }
   repetitions++;
   return { S, D, last_date: now, repetitions };
@@ -62,12 +56,10 @@ function fsrs_update(grade, state, now) {
 
 function updateDueBadge() {
   if (!studyBadge || !rfcNumber) return;
-  const srs = getSRSData();
-  const now = Date.now();
+  const srs = getSRSData(); const now = Date.now();
   const due = (window.FLASHCARDS || []).filter(c => {
     if (c.rfc !== rfcNumber) return false;
-    const state = srs[c.id];
-    if (!state) return true;
+    const state = srs[c.id]; if (!state) return true;
     return getRetrievability(state, now) <= 0.9;
   });
   studyBadge.textContent = due.length || '';
@@ -75,13 +67,11 @@ function updateDueBadge() {
 }
 
 function initStudySession(all = false) {
-  const srs = getSRSData();
-  const now = Date.now();
+  const srs = getSRSData(); const now = Date.now();
   currentSession = (window.FLASHCARDS || []).filter(c => {
     if (c.rfc !== rfcNumber) return false;
     if (all) return true;
-    const state = srs[c.id];
-    if (!state) return true;
+    const state = srs[c.id]; if (!state) return true;
     return getRetrievability(state, now) <= 0.9;
   });
   if (currentSession.length === 0 && !all) {
@@ -90,21 +80,16 @@ function initStudySession(all = false) {
     return;
   }
   currentSession.sort(() => Math.random() - 0.5);
-  sessionIdx = 0;
-  sessionStats = { reviewed: 0, mastered: 0, dueTomorrow: 0 };
-  studyOverlay.classList.add('active');
-  studySummary.classList.remove('active');
-  cardContainer.style.display = 'block';
-  showCard();
+  sessionIdx = 0; sessionStats = { reviewed: 0, mastered: 0, dueTomorrow: 0 };
+  studyOverlay.classList.add('active'); studySummary.classList.remove('active');
+  cardContainer.style.display = 'block'; showCard();
 }
 
 function showCard() {
   if (sessionIdx >= currentSession.length) { showSummary(); return; }
-  const card = currentSession[sessionIdx];
-  const state = getSRSData()[card.id];
+  const card = currentSession[sessionIdx]; const state = getSRSData()[card.id];
   const R = state ? Math.round(getRetrievability(state, Date.now()) * 100) : 0;
-  cardContainer.classList.remove('flipped');
-  studyActions.classList.remove('visible');
+  cardContainer.classList.remove('flipped'); studyActions.classList.remove('visible');
   document.querySelector('#card-category').textContent = card.category;
   document.querySelector('#card-category-back').textContent = card.category;
   document.querySelector('#card-prompt').textContent = card.prompt;
@@ -115,36 +100,26 @@ function showCard() {
 }
 
 function showSummary() {
-  cardContainer.style.display = 'none';
-  studyActions.classList.remove('visible');
-  studySummary.classList.add('active');
+  cardContainer.style.display = 'none'; studyActions.classList.remove('visible'); studySummary.classList.add('active');
   progressBar.style.width = '100%';
   document.querySelector('#sum-reviewed').textContent = sessionStats.reviewed;
   document.querySelector('#sum-mastered').textContent = sessionStats.mastered;
-  const srs = getSRSData();
-  const tomorrow = Date.now() + 24 * 60 * 60 * 1000;
+  const srs = getSRSData(); const tomorrow = Date.now() + 24*60*60*1000;
   const dueTomorrow = Object.values(srs).filter(s => getRetrievability(s, tomorrow) <= 0.9).length;
   document.querySelector('#sum-due').textContent = dueTomorrow;
 }
 
 function handleAnswer(grade) {
-  const card = currentSession[sessionIdx];
-  const srs = getSRSData();
+  const card = currentSession[sessionIdx]; const srs = getSRSData();
   const newState = fsrs_update(grade, srs[card.id], Date.now());
-  srs[card.id] = newState;
-  saveSRSData(srs);
-  sessionStats.reviewed++;
-  if (newState.S > 30) sessionStats.mastered++;
-  sessionIdx++;
-  showCard();
+  srs[card.id] = newState; saveSRSData(srs);
+  sessionStats.reviewed++; if (newState.S > 30) sessionStats.mastered++;
+  sessionIdx++; showCard();
 }
 
 if (cardContainer) {
     cardContainer.addEventListener('click', () => {
-      if (!cardContainer.classList.contains('flipped')) {
-        cardContainer.classList.add('flipped');
-        studyActions.classList.add('visible');
-      }
+      if (!cardContainer.classList.contains('flipped')) { cardContainer.classList.add('flipped'); studyActions.classList.add('visible'); }
     });
 }
 
@@ -168,12 +143,15 @@ window.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') studyOverlay.classList.remove('active');
   if (e.key === ' ') { if (!cardContainer.classList.contains('flipped')) cardContainer.click(); }
   if (cardContainer.classList.contains('flipped')) {
-    if (e.key === '1') handleAnswer(1);
-    if (e.key === '2') handleAnswer(2);
-    if (e.key === '3') handleAnswer(3);
-    if (e.key === '4') handleAnswer(4);
+    if (e.key === '1') handleAnswer(1); if (e.key === '2') handleAnswer(2); if (e.key === '3') handleAnswer(3); if (e.key === '4') handleAnswer(4);
   }
 });
+
+// Relationship Map Logic (minimal to avoid issues)
+const mapOverlay = document.querySelector('#map-overlay');
+const openMapBtn = document.querySelector('#open-map');
+const closeMapBtn = document.querySelector('#close-map');
+const mapContainer = document.querySelector('#map-container');
 
 function updateProgress() {
   const max = document.documentElement.scrollHeight - innerHeight;
