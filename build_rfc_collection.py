@@ -392,6 +392,163 @@ input::placeholder { color: #71819b; }
 footer { color: var(--muted); border-top: 1px solid var(--line); padding: 28px 0 50px; }
 @media (max-width: 980px) { .reader-grid { grid-template-columns: 1fr; } .toc-panel { position:relative; top:auto; max-height:none; order:-1; } }
 @media (max-width: 780px) { .toolbar-row { grid-template-columns: 1fr; } .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } .hero { padding-top: 46px; } .doc-body, .doc-hero { padding: 20px; border-radius: 22px; } .reader-tools { border-radius: 22px; } .header-field-table { font-size:.72rem; } }
+
+/* Flashcard SRS Overlay */
+.study-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: var(--bg);
+  z-index: 9999;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.study-overlay.active { display: flex; }
+.study-header {
+  position: absolute;
+  top: 20px;
+  width: min(800px, 100%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.study-progress-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 4px;
+  background: var(--cyan);
+  transition: width 0.3s;
+}
+.card-container {
+  width: min(600px, 100%);
+  height: 400px;
+  perspective: 1000px;
+  cursor: pointer;
+}
+.flashcard {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+.card-container.flipped .flashcard { transform: rotateY(180deg); }
+.card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  border-radius: 32px;
+  border: 2px solid var(--line);
+  background: var(--panel);
+  box-shadow: 0 30px 100px rgba(0,0,0,0.5);
+}
+.card-back {
+  transform: rotateY(180deg);
+  border-color: var(--cyan);
+}
+.card-category {
+  position: absolute;
+  top: 30px;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--cyan);
+  font-weight: 800;
+}
+.card-prompt {
+  font-size: 1.8rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 20px 0;
+}
+.card-answer {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--text);
+  max-width: 100%;
+  overflow-y: auto;
+}
+.card-meta {
+  position: absolute;
+  bottom: 30px;
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+.study-actions {
+  margin-top: 40px;
+  display: none;
+  gap: 15px;
+}
+.study-actions.visible { display: flex; }
+.srs-btn {
+  padding: 12px 24px;
+  border-radius: 999px;
+  border: none;
+  font-weight: 900;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: transform 0.2s;
+}
+.srs-btn:hover { transform: translateY(-2px); }
+.btn-again { background: var(--pink); color: var(--bg); }
+.btn-hard { background: var(--amber); color: var(--bg); }
+.btn-good { background: var(--cyan); color: var(--bg); }
+.btn-easy { background: var(--green); color: var(--bg); }
+
+.study-summary {
+  text-align: center;
+  display: none;
+}
+.study-summary.active { display: block; }
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin: 30px 0;
+}
+.summary-stat {
+  padding: 20px;
+  background: var(--panel2);
+  border-radius: 20px;
+  border: 1px solid var(--line);
+}
+.summary-stat b { display: block; font-size: 2rem; color: var(--cyan); }
+
+.badge {
+  background: var(--pink);
+  color: var(--bg);
+  font-size: 0.65rem;
+  font-weight: 900;
+  padding: 2px 6px;
+  border-radius: 6px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+.study-progress-card {
+  background: linear-gradient(145deg, rgba(101,228,255,0.1), rgba(184,156,255,0.05));
+  border: 1px solid rgba(101,228,255,0.2);
+}
+.study-hint {
+  position: absolute;
+  bottom: 20px;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
 """
 
 
@@ -401,7 +558,191 @@ const cards = [...document.querySelectorAll('.card')];
 const empty = document.querySelector('.empty');
 const count = document.querySelector('#count');
 const filters = [...document.querySelectorAll('.filter')];
+const viewNotesBtn = document.querySelector('#view-notes');
+const backToGridBtn = document.querySelector('#back-to-grid');
+const notesView = document.querySelector('#notes-view');
+const mainGrid = document.querySelector('main');
+const notesContainer = document.querySelector('#notes-container');
+const exportBtn = document.querySelector('#export-notes');
+const importBtn = document.querySelector('#import-notes-btn');
+const importFile = document.querySelector('#import-notes-file');
+const noteFilterBtns = [...document.querySelectorAll('.notes-filter-btn')];
+
+// FSRS Study Mode
+const studyOverlay = document.querySelector('#study-overlay');
+const startStudyBtn = document.querySelector('#start-study');
+const studyAllBtn = document.querySelector('#study-all');
+const closeStudyBtn = document.querySelector('#close-study');
+const cardContainer = document.querySelector('#card-container');
+const studyActions = document.querySelector('#study-actions');
+const studySummary = document.querySelector('#study-summary');
+const progressBar = document.querySelector('#study-progress-bar');
+const srsDueBadge = document.querySelector('#srs-due-count');
+
 let activeTag = 'all';
+let activeNoteFilter = 'all';
+let currentSession = [];
+let sessionIdx = 0;
+let sessionStats = { reviewed: 0, mastered: 0, dueTomorrow: 0 };
+
+// FSRS-4.5 Weights
+const w = [0.4, 0.6, 2.4, 5.8, 4.93, 0.94, 0.86, 0.01, 1.49, 0.14, 0.94, 2.18, 0.05, 0.34, 1.26, 0.29, 2.61];
+
+function getSRSData() {
+  return JSON.parse(localStorage.getItem('rfc_srs_state_fsrs') || '{}');
+}
+
+function saveSRSData(state) {
+  localStorage.setItem('rfc_srs_state_fsrs', JSON.stringify(state));
+  updateDueCounts();
+}
+
+function getRetrievability(state, now) {
+  if (!state || !state.last_date) return 0;
+  const t = Math.max(0, (now - state.last_date) / (24 * 60 * 60 * 1000));
+  return Math.pow(1 + t / (9 * state.S), -1);
+}
+
+function fsrs_update(grade, state, now) {
+  let { S, D, last_date, repetitions } = state || { S: 0, D: 0, last_date: 0, repetitions: 0 };
+  const t = last_date ? Math.max(0, (now - last_date) / (24 * 60 * 60 * 1000)) : 0;
+  const R = last_date ? getRetrievability(state, now) : 0;
+
+  if (repetitions === 0) {
+    S = w[grade - 1];
+    D = w[4] - (grade - 3) * w[5];
+  } else {
+    // Difficulty update
+    D = D - w[6] * (grade - 3);
+    D = Math.min(Math.max(D, 1), 10);
+    
+    // Stability update
+    if (grade === 1) {
+      S = w[7] * Math.exp(-w[8] * D) * (Math.pow(S + 1, w[9]) - 1) * Math.exp(w[10] * (1 - R));
+    } else {
+      S = S * (1 + Math.exp(w[11]) * (11 - D) * Math.pow(S, -w[12]) * (Math.exp(w[13] * (1 - R)) - 1));
+    }
+  }
+
+  repetitions++;
+  return { S, D, last_date: now, repetitions };
+}
+
+function updateDueCounts() {
+  const srs = getSRSData();
+  const now = Date.now();
+  const due = (window.FLASHCARDS || []).filter(c => {
+    const state = srs[c.id];
+    if (!state) return true;
+    return getRetrievability(state, now) <= 0.9;
+  });
+  if (srsDueBadge) srsDueBadge.textContent = due.length;
+}
+
+function initStudySession(all = false) {
+  const srs = getSRSData();
+  const now = Date.now();
+  currentSession = (window.FLASHCARDS || []).filter(c => {
+    if (all) return true;
+    const state = srs[c.id];
+    if (!state) return true;
+    return getRetrievability(state, now) <= 0.9;
+  });
+
+  if (currentSession.length === 0 && !all) {
+    alert("No cards due! Use 'Study All' to practice anyway.");
+    return;
+  }
+
+  currentSession.sort(() => Math.random() - 0.5);
+  sessionIdx = 0;
+  sessionStats = { reviewed: 0, mastered: 0, dueTomorrow: 0 };
+  studyOverlay.classList.add('active');
+  studySummary.classList.remove('active');
+  cardContainer.style.display = 'block';
+  showCard();
+}
+
+function showCard() {
+  if (sessionIdx >= currentSession.length) { showSummary(); return; }
+  const card = currentSession[sessionIdx];
+  const state = getSRSData()[card.id];
+  const R = state ? Math.round(getRetrievability(state, Date.now()) * 100) : 0;
+  
+  cardContainer.classList.remove('flipped');
+  studyActions.classList.remove('visible');
+  document.querySelector('#card-category').textContent = card.category;
+  document.querySelector('#card-category-back').textContent = card.category;
+  document.querySelector('#card-prompt').textContent = card.prompt;
+  document.querySelector('#card-answer').textContent = card.answer;
+  document.querySelector('#card-meta').textContent = state ? `S: ${state.S.toFixed(1)} | D: ${state.D.toFixed(1)} | R: ${R}%` : 'New Card';
+  document.querySelector('#study-count').textContent = `Card ${sessionIdx + 1} of ${currentSession.length}`;
+  progressBar.style.width = `${(sessionIdx / currentSession.length) * 100}%`;
+}
+
+function showSummary() {
+  cardContainer.style.display = 'none';
+  studyActions.classList.remove('visible');
+  studySummary.classList.add('active');
+  progressBar.style.width = '100%';
+  document.querySelector('#sum-reviewed').textContent = sessionStats.reviewed;
+  document.querySelector('#sum-mastered').textContent = sessionStats.mastered;
+  
+  const srs = getSRSData();
+  const tomorrow = Date.now() + 24 * 60 * 60 * 1000;
+  const dueTomorrow = Object.values(srs).filter(s => getRetrievability(s, tomorrow) <= 0.9).length;
+  document.querySelector('#sum-due').textContent = dueTomorrow;
+}
+
+function handleAnswer(grade) {
+  const card = currentSession[sessionIdx];
+  const srs = getSRSData();
+  const newState = fsrs_update(grade, srs[card.id], Date.now());
+  srs[card.id] = newState;
+  saveSRSData(srs);
+  sessionStats.reviewed++;
+  if (newState.S > 30) sessionStats.mastered++;
+  sessionIdx++;
+  showCard();
+}
+
+if (cardContainer) {
+    cardContainer.addEventListener('click', () => {
+      if (!cardContainer.classList.contains('flipped')) {
+        cardContainer.classList.add('flipped');
+        studyActions.classList.add('visible');
+      }
+    });
+}
+
+document.querySelectorAll('.srs-btn').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    handleAnswer(parseInt(btn.dataset.quality));
+  });
+});
+
+if (closeStudyBtn) closeStudyBtn.addEventListener('click', () => studyOverlay.classList.remove('active'));
+document.querySelector('#finish-study').addEventListener('click', () => studyOverlay.classList.remove('active'));
+document.querySelector('#restart-study').addEventListener('click', () => initStudySession());
+
+if (startStudyBtn) startStudyBtn.addEventListener('click', () => initStudySession(false));
+if (studyAllBtn) studyAllBtn.addEventListener('click', () => initStudySession(true));
+
+const resetSrsBtn = document.querySelector("#reset-srs");
+if (resetSrsBtn) resetSrsBtn.addEventListener("click", () => { if(confirm("Wipe all FSRS progress?")) { localStorage.removeItem("rfc_srs_state_fsrs"); location.reload(); } });
+
+window.addEventListener('keydown', (e) => {
+  if (!studyOverlay || !studyOverlay.classList.contains('active')) return;
+  if (e.key === 'Escape') studyOverlay.classList.remove('active');
+  if (e.key === ' ') { if (!cardContainer.classList.contains('flipped')) cardContainer.click(); }
+  if (cardContainer.classList.contains('flipped')) {
+    if (e.key === '1') handleAnswer(1);
+    if (e.key === '2') handleAnswer(2);
+    if (e.key === '3') handleAnswer(3);
+    if (e.key === '4') handleAnswer(4);
+  }
+});
 
 function applyFilters() {
   const term = q.value.trim().toLowerCase();
@@ -416,6 +757,68 @@ function applyFilters() {
   empty.style.display = visible ? 'none' : 'block';
 }
 
+function renderNotes() {
+  const allNotes = JSON.parse(localStorage.getItem('rfc_notes') || '{}');
+  notesContainer.innerHTML = '';
+  const rfcNums = Object.keys(allNotes).sort((a, b) => parseInt(a) - parseInt(b));
+  let hasVisibleNotes = false;
+  rfcNums.forEach(num => {
+    const sectionIds = Object.keys(allNotes[num]).sort();
+    const filteredSids = sectionIds.filter(sid => {
+        if (activeNoteFilter === 'all') return true;
+        return allNotes[num][sid].type === activeNoteFilter;
+    });
+    if (filteredSids.length === 0) return;
+    hasVisibleNotes = true;
+    const rfcGroup = document.createElement('div');
+    rfcGroup.className = 'notes-rfc-group';
+    const firstNoteId = sectionIds[0];
+    const rfcTitle = allNotes[num][firstNoteId].rfcTitle || `RFC ${num}`;
+    const header = document.createElement('div');
+    header.className = 'notes-rfc-header';
+    header.innerHTML = `<span>RFC ${num}: ${rfcTitle}</span> <a href=\"rfc/rfc${num}.html\">View RFC</a>`;
+    rfcGroup.appendChild(header);
+    filteredSids.forEach(sid => {
+      const note = allNotes[num][sid];
+      const item = document.createElement('div');
+      item.className = 'note-item';
+      const link = document.createElement('a');
+      link.className = 'note-item-link';
+      link.href = `rfc/rfc${num}.html#${sid}`;
+      link.textContent = note.title || `Section ${sid}`;
+      const content = document.createElement('div');
+      content.className = 'note-item-content';
+      content.textContent = note.content;
+      item.appendChild(link);
+      item.appendChild(content);
+      rfcGroup.appendChild(item);
+    });
+    notesContainer.appendChild(rfcGroup);
+  });
+  if (!hasVisibleNotes) {
+    if (rfcNums.length === 0) {
+        notesContainer.innerHTML = '<div class=\"notes-empty\">You haven\'t added any notes yet. Go to an RFC page and click the \"Note\" button on any section or threat indicator.</div>';
+    } else {
+        notesContainer.innerHTML = `<div class=\"notes-empty\">No notes match the \"${activeNoteFilter}\" filter.</div>`;
+    }
+  }
+}
+
+function toggleNotesView(show) {
+  if (show) {
+    mainGrid.style.display = 'none';
+    document.querySelector('.hero').style.display = 'none';
+    document.querySelector('.toolbar').style.display = 'none';
+    notesView.classList.add('active');
+    renderNotes();
+  } else {
+    mainGrid.style.display = 'block';
+    document.querySelector('.hero').style.display = 'block';
+    document.querySelector('.toolbar').style.display = 'block';
+    notesView.classList.remove('active');
+  }
+}
+
 q.addEventListener('input', applyFilters);
 for (const button of filters) {
   button.addEventListener('click', () => {
@@ -424,6 +827,51 @@ for (const button of filters) {
     applyFilters();
   });
 }
+
+for (const btn of noteFilterBtns) {
+    btn.addEventListener('click', () => {
+        activeNoteFilter = btn.dataset.filter;
+        noteFilterBtns.forEach(b => b.classList.toggle('active', b === btn));
+        renderNotes();
+    });
+}
+
+viewNotesBtn.addEventListener('click', () => toggleNotesView(true));
+backToGridBtn.addEventListener('click', () => toggleNotesView(false));
+
+exportBtn.addEventListener('click', () => {
+  const allNotes = localStorage.getItem('rfc_notes') || '{}';
+  const blob = new Blob([allNotes], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `rfc-annotations-${new Date().toISOString().split('T')[0]}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+});
+
+importBtn.addEventListener('click', () => importFile.click());
+importFile.addEventListener('change', (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (event) => {
+    try {
+      const imported = JSON.parse(event.target.result);
+      const current = JSON.parse(localStorage.getItem('rfc_notes') || '{}');
+      for (const rfcNum in imported) {
+        if (!current[rfcNum]) { current[rfcNum] = imported[rfcNum]; }
+        else { current[rfcNum] = { ...current[rfcNum], ...imported[rfcNum] }; }
+      }
+      localStorage.setItem('rfc_notes', JSON.stringify(current));
+      renderNotes();
+      alert('Notes imported and merged successfully!');
+    } catch (err) { alert('Error importing notes: Invalid JSON file'); }
+  };
+  reader.readAsText(file);
+});
+
+updateDueCounts();
 applyFilters();
 """
 
@@ -437,25 +885,267 @@ const comfyBtn = document.querySelector('[data-action="comfy"]');
 const topBtn = document.querySelector('[data-action="top"]');
 const headerPanel = document.querySelector('.header-reference-panel');
 
+const rfcMatch = document.querySelector('.eyebrow')?.textContent.match(/RFC (\d+)/);
+const rfcNumber = rfcMatch ? rfcMatch[1] : null;
+
+// FSRS Study Mode
+const studyOverlay = document.querySelector('#study-overlay');
+const studyRfcBtn = document.querySelector('#study-rfc');
+const studyBadge = document.querySelector('#study-badge');
+const closeStudyBtn = document.querySelector('#close-study');
+const cardContainer = document.querySelector('#card-container');
+const studyActions = document.querySelector('#study-actions');
+const studySummary = document.querySelector('#study-summary');
+const progressBar = document.querySelector('#study-progress-bar');
+
+let currentSession = [];
+let sessionIdx = 0;
+let sessionStats = { reviewed: 0, mastered: 0, dueTomorrow: 0 };
+
+const w = [0.4, 0.6, 2.4, 5.8, 4.93, 0.94, 0.86, 0.01, 1.49, 0.14, 0.94, 2.18, 0.05, 0.34, 1.26, 0.29, 2.61];
+
+function getSRSData() {
+  return JSON.parse(localStorage.getItem('rfc_srs_state_fsrs') || '{}');
+}
+
+function saveSRSData(state) {
+  localStorage.setItem('rfc_srs_state_fsrs', JSON.stringify(state));
+  updateDueBadge();
+}
+
+function getRetrievability(state, now) {
+  if (!state || !state.last_date) return 0;
+  const t = Math.max(0, (now - state.last_date) / (24 * 60 * 60 * 1000));
+  return Math.pow(1 + t / (9 * state.S), -1);
+}
+
+function fsrs_update(grade, state, now) {
+  let { S, D, last_date, repetitions } = state || { S: 0, D: 0, last_date: 0, repetitions: 0 };
+  const t = last_date ? Math.max(0, (now - last_date) / (24 * 60 * 60 * 1000)) : 0;
+  const R = last_date ? getRetrievability(state, now) : 0;
+  if (repetitions === 0) {
+    S = w[grade - 1];
+    D = w[4] - (grade - 3) * w[5];
+  } else {
+    D = Math.min(Math.max(D - w[6] * (grade - 3), 1), 10);
+    if (grade === 1) {
+      S = w[7] * Math.exp(-w[8] * D) * (Math.pow(S + 1, w[9]) - 1) * Math.exp(w[10] * (1 - R));
+    } else {
+      S = S * (1 + Math.exp(w[11]) * (11 - D) * Math.pow(S, -w[12]) * (Math.exp(w[13] * (1 - R)) - 1));
+    }
+  }
+  repetitions++;
+  return { S, D, last_date: now, repetitions };
+}
+
+function updateDueBadge() {
+  if (!studyBadge || !rfcNumber) return;
+  const srs = getSRSData();
+  const now = Date.now();
+  const due = (window.FLASHCARDS || []).filter(c => {
+    if (c.rfc !== rfcNumber) return false;
+    const state = srs[c.id];
+    if (!state) return true;
+    return getRetrievability(state, now) <= 0.9;
+  });
+  studyBadge.textContent = due.length || '';
+  studyBadge.style.display = due.length ? 'inline-block' : 'none';
+}
+
+function initStudySession(all = false) {
+  const srs = getSRSData();
+  const now = Date.now();
+  currentSession = (window.FLASHCARDS || []).filter(c => {
+    if (c.rfc !== rfcNumber) return false;
+    if (all) return true;
+    const state = srs[c.id];
+    if (!state) return true;
+    return getRetrievability(state, now) <= 0.9;
+  });
+  if (currentSession.length === 0 && !all) {
+    alert("No cards due for this RFC! Click again to study all cards for this RFC.");
+    studyRfcBtn.onclick = () => initStudySession(true);
+    return;
+  }
+  currentSession.sort(() => Math.random() - 0.5);
+  sessionIdx = 0;
+  sessionStats = { reviewed: 0, mastered: 0, dueTomorrow: 0 };
+  studyOverlay.classList.add('active');
+  studySummary.classList.remove('active');
+  cardContainer.style.display = 'block';
+  showCard();
+}
+
+function showCard() {
+  if (sessionIdx >= currentSession.length) { showSummary(); return; }
+  const card = currentSession[sessionIdx];
+  const state = getSRSData()[card.id];
+  const R = state ? Math.round(getRetrievability(state, Date.now()) * 100) : 0;
+  cardContainer.classList.remove('flipped');
+  studyActions.classList.remove('visible');
+  document.querySelector('#card-category').textContent = card.category;
+  document.querySelector('#card-category-back').textContent = card.category;
+  document.querySelector('#card-prompt').textContent = card.prompt;
+  document.querySelector('#card-answer').textContent = card.answer;
+  document.querySelector('#card-meta').textContent = state ? `S: ${state.S.toFixed(1)} | D: ${state.D.toFixed(1)} | R: ${R}%` : 'New Card';
+  document.querySelector('#study-count').textContent = `Card ${sessionIdx + 1} of ${currentSession.length}`;
+  progressBar.style.width = `${(sessionIdx / currentSession.length) * 100}%`;
+}
+
+function showSummary() {
+  cardContainer.style.display = 'none';
+  studyActions.classList.remove('visible');
+  studySummary.classList.add('active');
+  progressBar.style.width = '100%';
+  document.querySelector('#sum-reviewed').textContent = sessionStats.reviewed;
+  document.querySelector('#sum-mastered').textContent = sessionStats.mastered;
+  const srs = getSRSData();
+  const tomorrow = Date.now() + 24 * 60 * 60 * 1000;
+  const dueTomorrow = Object.values(srs).filter(s => getRetrievability(s, tomorrow) <= 0.9).length;
+  document.querySelector('#sum-due').textContent = dueTomorrow;
+}
+
+function handleAnswer(grade) {
+  const card = currentSession[sessionIdx];
+  const srs = getSRSData();
+  const newState = fsrs_update(grade, srs[card.id], Date.now());
+  srs[card.id] = newState;
+  saveSRSData(srs);
+  sessionStats.reviewed++;
+  if (newState.S > 30) sessionStats.mastered++;
+  sessionIdx++;
+  showCard();
+}
+
+if (cardContainer) {
+    cardContainer.addEventListener('click', () => {
+      if (!cardContainer.classList.contains('flipped')) {
+        cardContainer.classList.add('flipped');
+        studyActions.classList.add('visible');
+      }
+    });
+}
+
+document.querySelectorAll('.srs-btn').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    handleAnswer(parseInt(btn.dataset.quality));
+  });
+});
+
+if (closeStudyBtn) closeStudyBtn.addEventListener('click', () => studyOverlay.classList.remove('active'));
+document.querySelector('#finish-study').addEventListener('click', () => studyOverlay.classList.remove('active'));
+document.querySelector('#restart-study').addEventListener('click', () => initStudySession());
+if (studyRfcBtn) studyRfcBtn.addEventListener('click', () => initStudySession(false));
+
+const resetSrsBtn = document.querySelector("#reset-srs");
+if (resetSrsBtn) resetSrsBtn.addEventListener("click", () => { if(confirm("Wipe all FSRS progress?")) { localStorage.removeItem("rfc_srs_state_fsrs"); location.reload(); } });
+
+window.addEventListener('keydown', (e) => {
+  if (!studyOverlay || !studyOverlay.classList.contains('active')) return;
+  if (e.key === 'Escape') studyOverlay.classList.remove('active');
+  if (e.key === ' ') { if (!cardContainer.classList.contains('flipped')) cardContainer.click(); }
+  if (cardContainer.classList.contains('flipped')) {
+    if (e.key === '1') handleAnswer(1);
+    if (e.key === '2') handleAnswer(2);
+    if (e.key === '3') handleAnswer(3);
+    if (e.key === '4') handleAnswer(4);
+  }
+});
+
 function updateProgress() {
   const max = document.documentElement.scrollHeight - innerHeight;
   progress.style.width = max > 0 ? `${(scrollY / max) * 100}%` : '0%';
 }
 
 function makeToc() {
-  const headings = [...body.querySelectorAll('h1, h2, h3')].slice(0, 80);
-  if (!headings.length) {
+  let headingNodes = [...document.querySelectorAll('h1, h2, h3, .doc-body span > a[href^="#section-"], .threat-item')].slice(0, 100);
+  if (!headingNodes.length) {
     toc.innerHTML = '<p class="muted">This RFC source is mostly preformatted text, so use browser find for section jumps.</p>';
-    return;
+    return [];
   }
+  headingNodes = headingNodes.filter(el => !el.closest('.doc-hero'));
+  const headings = headingNodes.map(el => {
+    if (el.tagName === 'A' && el.parentElement && el.parentElement.tagName === 'SPAN') return el.parentElement;
+    return el;
+  });
   toc.innerHTML = '';
   headings.forEach((heading, index) => {
-    const id = `section-${index + 1}`;
-    heading.id = id;
+    if (heading.classList.contains('threat-item')) return;
+    if (!heading.id) { heading.id = `section-${index + 1}`; }
+    const id = heading.id;
     const link = document.createElement('a');
     link.href = `#${id}`;
-    link.textContent = heading.textContent.trim().slice(0, 96) || `Section ${index + 1}`;
+    link.textContent = heading.textContent.replace('Note', '').trim().slice(0, 96) || `Section ${index + 1}`;
     toc.appendChild(link);
+  });
+  return headings;
+}
+
+function initAnnotations(headings) {
+  if (!rfcNumber || !headings || !headings.length) return;
+  const allNotes = JSON.parse(localStorage.getItem('rfc_notes') || '{}');
+  const rfcNotes = allNotes[rfcNumber] || {};
+  headings.forEach((heading) => {
+    const sectionId = heading.id;
+    const isThreatItem = heading.classList.contains('threat-item');
+    const existingNote = rfcNotes[sectionId]?.content || '';
+    const toggle = document.createElement('button');
+    toggle.className = 'anno-toggle';
+    toggle.textContent = 'Note';
+    toggle.title = 'Toggle annotation';
+    if (isThreatItem) { heading.querySelector('.threat-header').appendChild(toggle); }
+    else { heading.appendChild(toggle); }
+    const indicator = document.createElement('span');
+    indicator.className = 'anno-indicator';
+    indicator.style.display = existingNote ? 'inline-block' : 'none';
+    if (isThreatItem) { heading.querySelector('.threat-header').appendChild(indicator); }
+    else { heading.appendChild(indicator); }
+    const wrap = document.createElement('div');
+    wrap.className = 'anno-editor-wrap';
+    if (existingNote) { toggle.classList.add('active'); }
+    const editor = document.createElement('textarea');
+    editor.className = 'anno-editor';
+    editor.placeholder = 'Add your notes for this ' + (isThreatItem ? 'indicator' : 'section') + '...';
+    editor.value = existingNote;
+    const status = document.createElement('div');
+    status.className = 'anno-status';
+    status.textContent = 'Saved';
+    wrap.appendChild(editor);
+    wrap.appendChild(status);
+    if (isThreatItem) { heading.appendChild(wrap); }
+    else { heading.insertAdjacentElement('afterend', wrap); }
+    toggle.addEventListener('click', (e) => {
+      e.preventDefault(); e.stopPropagation();
+      const isVisible = wrap.classList.toggle('visible');
+      toggle.classList.toggle('active', isVisible || editor.value.trim() !== '');
+      if (isVisible) editor.focus();
+    });
+    editor.addEventListener('blur', () => {
+      const content = editor.value.trim();
+      const allNotes = JSON.parse(localStorage.getItem('rfc_notes') || '{}');
+      if (!allNotes[rfcNumber]) allNotes[rfcNumber] = {};
+      if (content) {
+        let title = '';
+        if (isThreatItem) { title = 'Threat: ' + heading.querySelector('.threat-name').textContent; }
+        else { title = heading.textContent.replace('Note', '').trim(); }
+        allNotes[rfcNumber][sectionId] = {
+          content: content, title: title,
+          rfcTitle: document.title.split(':')[1]?.trim() || `RFC ${rfcNumber}`,
+          timestamp: Date.now(), type: isThreatItem ? 'threat' : 'section'
+        };
+        indicator.style.display = 'inline-block';
+        toggle.classList.add('active');
+      } else {
+        delete allNotes[rfcNumber][sectionId];
+        if (Object.keys(allNotes[rfcNumber]).length === 0) { delete allNotes[rfcNumber]; }
+        indicator.style.display = 'none';
+        toggle.classList.remove('active');
+      }
+      localStorage.setItem('rfc_notes', JSON.stringify(allNotes));
+      status.classList.add('visible');
+      setTimeout(() => status.classList.remove('visible'), 2000);
+    });
   });
 }
 
@@ -465,12 +1155,14 @@ function setHeaderPanelDefault() {
 }
 
 addEventListener('scroll', updateProgress, { passive: true });
-focusBtn.addEventListener('click', () => body.classList.toggle('focus'));
-comfyBtn.addEventListener('click', () => body.classList.toggle('comfy'));
-topBtn.addEventListener('click', () => scrollTo({ top: 0, behavior: 'smooth' }));
+if (focusBtn) focusBtn.addEventListener('click', () => body.classList.toggle('focus'));
+if (comfyBtn) comfyBtn.addEventListener('click', () => body.classList.toggle('comfy'));
+if (topBtn) topBtn.addEventListener('click', () => scrollTo({ top: 0, behavior: 'smooth' }));
 setHeaderPanelDefault();
-makeToc();
+const headings = makeToc();
+initAnnotations(headings);
 updateProgress();
+updateDueBadge();
 """
 
 
@@ -777,6 +1469,94 @@ def render_threat_indicators(rfc_num: int) -> str:
 </details>"""
 
 
+def generate_flashcards(builds: list[RFCBuild]) -> list[dict[str, str]]:
+    cards = []
+    for build in builds:
+        num = build.meta.num
+        # Fundamentals
+        cards.append({
+            "id": f"rfc-{num}-fundamental",
+            "rfc": str(num),
+            "category": "Protocol Fundamentals",
+            "prompt": f"What is the primary function and layer of RFC {num} ({build.meta.title})?",
+            "answer": f"Layer: {', '.join(build.meta.tags)}\n\nFunction: {build.meta.relevance}"
+        })
+        
+        # Header Fields
+        header = HEADER_REFERENCES.get(num)
+        if header:
+            for field_name, bit_width, purpose in header["fields"]:
+                cards.append({
+                    "id": f"rfc-{num}-header-{field_name.lower().replace(' ', '-')}",
+                    "rfc": str(num),
+                    "category": f"Header Field: {field_name}",
+                    "prompt": f"In RFC {num} ({header['title']}), what is the purpose and bit-width of the '{field_name}' field?",
+                    "answer": f"Bit-width: {bit_width} bits\n\nPurpose: {purpose}"
+                })
+        
+        # Threat Indicators
+        threats = THREAT_INDICATORS.get(num)
+        if threats:
+            for i, ind in enumerate(threats):
+                cards.append({
+                    "id": f"rfc-{num}-threat-{i}",
+                    "rfc": str(num),
+                    "category": "Threat Indicator",
+                    "prompt": f"RFC {num}: What are the malicious indicators for '{ind['name']}'?",
+                    "answer": f"Severity: {ind['sev'].upper()}\n\nNormal: {ind['normal']}\n\nMalicious: {ind['malicious']}"
+                })
+    return cards
+
+
+def render_study_overlay() -> str:
+    return """<div id="study-overlay" class="study-overlay">
+  <div class="study-progress-bar" id="study-progress-bar"></div>
+  <div class="study-header">
+    <span id="study-count">Card 1 of 10</span>
+    <span id="study-timer">00:00</span>
+    <div style="display:flex; gap:10px;">
+      <button id="reset-srs" class="reader-btn" style="border-color:var(--pink); color:var(--pink);">Reset Progress</button>
+      <button id="close-study" class="reader-btn">Exit (Esc)</button>
+    </div>
+  </div>
+  
+  <div id="card-container" class="card-container">
+    <div class="flashcard">
+      <div class="card-face card-front">
+        <div class="card-category" id="card-category">CATEGORY</div>
+        <div class="card-prompt" id="card-prompt">Prompt text?</div>
+        <div class="study-hint">Click or Space to flip</div>
+      </div>
+      <div class="card-face card-back">
+        <div class="card-category" id="card-category-back">CATEGORY</div>
+        <div class="card-answer" id="card-answer">Answer text.</div>
+        <div class="card-meta" id="card-meta">S: 0 | D: 0 | R: 0%</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="study-actions" class="study-actions">
+    <button class="srs-btn btn-again" data-quality="1">Again (1)</button>
+    <button class="srs-btn btn-hard" data-quality="2">Hard (2)</button>
+    <button class="srs-btn btn-good" data-quality="3">Good (3)</button>
+    <button class="srs-btn btn-easy" data-quality="4">Easy (4)</button>
+  </div>
+
+  <div id="study-summary" class="study-summary">
+    <h1>Session Complete!</h1>
+    <div class="summary-grid">
+      <div class="summary-stat"><b id="sum-reviewed">0</b>Reviewed</div>
+      <div class="summary-stat"><b id="sum-mastered">0</b>Mastered</div>
+      <div class="summary-stat"><b id="sum-due">0</b>Due Tomorrow</div>
+    </div>
+    <div style="display:flex; gap:15px; justify-content:center;">
+      <button id="restart-study" class="reader-btn">Study Again</button>
+      <button id="finish-study" class="reader-btn">Finish</button>
+    </div>
+  </div>
+</div>"""
+
+
 def build_site(builds: list[RFCBuild]) -> None:
     if SITE_DIR.exists():
         shutil.rmtree(SITE_DIR)
@@ -788,12 +1568,27 @@ def build_site(builds: list[RFCBuild]) -> None:
 
     local_nums = {build.meta.num for build in builds}
     all_tags = sorted({tag for build in builds for tag in build.meta.tags})
+    flashcards = generate_flashcards(builds)
+    
+    study_overlay = render_study_overlay()
+    
     filters = ["<button class=\"filter active\" data-tag=\"all\">All</button>"]
     filters.extend(f"<button class=\"filter\" data-tag=\"{html.escape(tag)}\">{html.escape(tag)}</button>" for tag in all_tags)
+    
     stats = "".join(
         f"<div class=\"stat\"><b>{sum(tag in build.meta.tags for build in builds)}</b><span>{html.escape(tag)}<br>{html.escape(TAG_DESCRIPTIONS[tag])}</span></div>"
         for tag in all_tags
     )
+    # Add SRS progress card
+    stats += """<div class="stat study-progress-card">
+      <b id="srs-due-count">0</b>
+      <span>Due Today<br>Cards ready for spaced repetition review.</span>
+      <div style="margin-top:10px; display:flex; gap:8px;">
+        <button id="start-study" class="reader-btn">Study Due</button>
+        <button id="study-all" class="reader-btn">Study All</button>
+      </div>
+    </div>"""
+
     cards = []
     for build in builds:
         meta = build.meta
@@ -812,6 +1607,8 @@ def build_site(builds: list[RFCBuild]) -> None:
         )
 
     index_content = f"""
+{study_overlay}
+<script>window.FLASHCARDS = {flashcards};</script>
 <header class=\"hero shell\">
   <div class=\"eyebrow\">Curated protocol intelligence</div>
   <h1>RFCs for network threat hunting.</h1>
@@ -842,6 +1639,8 @@ def build_site(builds: list[RFCBuild]) -> None:
         threat_indicators = render_threat_indicators(meta.num)
         content = f"""
 <div class=\"progress\"></div>
+{study_overlay}
+<script>window.FLASHCARDS = {flashcards};</script>
 <main class=\"doc-layout\">
   <a class=\"toplink\" href=\"../index.html\">← Back to index</a>
   <section class=\"doc-hero\">
@@ -850,7 +1649,14 @@ def build_site(builds: list[RFCBuild]) -> None:
     <div class=\"meta-tags\">{tags}</div>
     <div class=\"note\"><strong>Threat hunting relevance:</strong> {html.escape(meta.relevance)}</div>
   </section>
-  <section class=\"reader-tools\"><div class=\"group\"><button class=\"reader-btn\" data-action=\"focus\">Focus width</button><button class=\"reader-btn\" data-action=\"comfy\">Comfy text</button></div><button class=\"reader-btn\" data-action=\"top\">Back to top</button></section>
+  <section class=\"reader-tools\">
+    <div class=\"group\">
+        <button class=\"reader-btn\" data-action=\"focus\">Focus width</button>
+        <button class=\"reader-btn\" data-action=\"comfy\">Comfy text</button>
+        <button id=\"study-rfc\" class=\"reader-btn\">Study this RFC <span id=\"study-badge\" class=\"badge\"></span></button>
+    </div>
+    <button class=\"reader-btn\" data-action=\"top\">Back to top</button>
+  </section>
   <section class=\"reader-grid\"><article class=\"doc-body\">{body}</article><aside class=\"toc-panel\">{threat_indicators}{header_reference}<h2>On this RFC</h2><div id=\"toc-links\"></div></aside></section>
 </main>
 <script src=\"../assets/doc.js\"></script>
