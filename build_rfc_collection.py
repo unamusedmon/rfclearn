@@ -85,6 +85,92 @@ TAG_DESCRIPTIONS = {
 }
 
 
+STUDY_TRACKS: tuple[dict[str, object], ...] = (
+    {
+        "id": "foundation",
+        "eyebrow": "Sprint 1",
+        "title": "Packet Skeleton Crew",
+        "summary": "Start with the headers every other protocol has to live inside. Once these feel familiar, the rest of the library stops looking like packet-shaped tax law.",
+        "rfcs": (768, 791, 792, 793, 826),
+    },
+    {
+        "id": "naming",
+        "eyebrow": "Sprint 2",
+        "title": "Boot, Name, Find",
+        "summary": "Learn how hosts get addresses, resolve names, and discover services. This is the part where infrastructure either behaves politely or becomes a haunted forest of TXT records.",
+        "rfcs": (1035, 1123, 2131, 2782),
+    },
+    {
+        "id": "routing",
+        "eyebrow": "Sprint 3",
+        "title": "Routes, Lies, and Routers",
+        "summary": "Move from local path logic to internet-scale route drama. Ideal for hunters who enjoy phrases like 'that ASN absolutely should not be there.'",
+        "rfcs": (1122, 2328, 2460, 4271),
+    },
+    {
+        "id": "security",
+        "eyebrow": "Sprint 4",
+        "title": "Tunnels and Trust Issues",
+        "summary": "Focus on IPsec architecture and ESP so encrypted traffic stops being a mysterious blob and starts becoming something you can reason about.",
+        "rfcs": (4301, 4303),
+    },
+    {
+        "id": "app",
+        "eyebrow": "Sprint 5",
+        "title": "Web and Mail Drama Desk",
+        "summary": "HTTP and SMTP are where user intent, parser ambiguity, and attacker creativity all meet for lunch and make your day worse.",
+        "rfcs": (2616, 5321, 7230, 7540),
+    },
+    {
+        "id": "telemetry",
+        "eyebrow": "Sprint 6",
+        "title": "Logs, Flows, and Receipts",
+        "summary": "Close with the telemetry RFCs so your protocol knowledge turns into evidence instead of vibes. This is the 'show me the packets and the flow records' phase.",
+        "rfcs": (3954, 7011),
+    },
+)
+
+
+SCIENCE_NOTES: tuple[dict[str, str], ...] = (
+    {
+        "title": "Spacing beats cramming for long-term retention",
+        "summary": "Distributed practice reliably improves later memory compared with massed review, so the plan uses short repeat visits instead of one heroic weekend binge.",
+        "url": "https://doi.org/10.1037/0033-2909.132.3.354",
+        "source": "Cepeda et al. (2006)",
+    },
+    {
+        "title": "Retrieval practice outperforms passive restudy",
+        "summary": "Low-stakes recall and quizzing help learning stick better than rereading, which is why each session ends with a brief memory dump and due-card review.",
+        "url": "https://doi.org/10.3102/0034654316689306",
+        "source": "Adesope et al. (2017)",
+    },
+    {
+        "title": "Classroom quizzing boosts learning, especially with feedback",
+        "summary": "Practice tests improve achievement across levels and formats, and feedback makes the payoff bigger, so the site leans on repeated review rather than one-and-done reading.",
+        "url": "https://doi.org/10.1037/bul0000309",
+        "source": "Yang et al. (2021)",
+    },
+    {
+        "title": "Motivation improves when autonomy and relevance are supported",
+        "summary": "Learners persist more when they have choice, a manageable path, and a clear reason to care. That is why the library now offers tracks instead of a giant undifferentiated RFC buffet.",
+        "url": "https://doi.org/10.1016/j.lmot.2024.102015",
+        "source": "Wang et al. (2024)",
+    },
+    {
+        "title": "Interest-triggering reading interventions work best",
+        "summary": "Reading motivation improves most when content feels interesting and meaningful, so each sprint is framed like a hunting mission rather than mandatory vegetables.",
+        "url": "https://doi.org/10.1007/s10648-023-09719-3",
+        "source": "de Nooijer et al. (2024)",
+    },
+    {
+        "title": "If-then plans make starting more likely",
+        "summary": "Specific implementation intentions help translate good intentions into action, so the homepage includes a tiny cue-and-response pact you can save locally.",
+        "url": "https://doi.org/10.1016/S0065-2601(06)38002-1",
+        "source": "Gollwitzer & Sheeran (2006)",
+    },
+)
+
+
 HEADER_REFERENCES: dict[int, dict[str, object]] = {
     768: {
         "title": "RFC 768 UDP Header",
@@ -115,113 +201,140 @@ HEADER_REFERENCES: dict[int, dict[str, object]] = {
             ("Options/Padding", 32, "Optional and variable; rare on normal traffic, so source route/record route options are high-signal."),
         ],
     },
+    792: {
+        "title": "RFC 792 ICMP Message Header",
+        "note": "ICMP control messages expose reachability, reconnaissance, covert-channel, redirect, and denial-of-service behavior that often precedes or accompanies attacks.",
+        "fields": [
+            ("Type", 8, "Message class (e.g., Echo, Unreachable); unexpected type distribution reveals scans, floods, tunnels, or route manipulation."),
+            ("Code", 8, "Type-specific reason; impossible or rare type/code pairings identify malformed tools, policy bypass, or covert signaling."),
+            ("Checksum", 16, "Message integrity; invalid values can be offload artifacts, corruption, or deliberately crafted traffic."),
+            ("Identifier", 16, "Used to match request/reply pairs; high entropy or reused IDs can indicate tunneling tools or spoofing."),
+            ("Sequence Number", 16, "Monotonic bursts, gaps, or encoded patterns help detect ping sweeps and covert payload channels."),
+            ("Gateway Address", 32, "Redirect gateway; unexpected values can reveal route injection or man-in-the-middle attempts."),
+            ("Original IP Header", 32, "Quoted packet in errors; MUST be inspected to find spoofed or reconnaissance-induced errors."),
+            ("Original Data", 32, "First 64 bits of original payload; for TCP/UDP, this includes ports - critical for correlating errors to flows."),
+        ],
+    },
     793: {
         "title": "RFC 793 TCP Header",
-        "note": "TCP fields drive flow reconstruction, scan detection, injection analysis, and session-state validation.",
+        "note": "TCP fields drive flow reconstruction, scan detection, and session validation; ICMP errors quoting TCP headers are high-signal for reconnaissance.",
         "fields": [
-            ("Source Port", 16, "Client or service port; suspicious reuse, impossible services, or odd pairings can reveal scans or spoofing."),
-            ("Destination Port", 16, "Target service port; hunt for unauthorized services, fan-out scans, or policy bypass attempts."),
-            ("Sequence Number", 32, "Byte-stream position; repeated, predictable, or out-of-window values may indicate injection or spoofing."),
-            ("Acknowledgment Number", 32, "Next expected byte when ACK is set; impossible ACKs reveal scans, desync, or spoofed packets."),
-            ("Data Offset", 4, "TCP header length; large values mean options, while invalid small values are malformed."),
-            ("Reserved", 6, "Should be zero in RFC 793; non-zero reserved bits often indicate crafted or evasive traffic."),
-            ("TCP Flags", 6, "SYN/ACK/RST/FIN combinations; watch for illegal flag combos, SYN floods, or RST injection."),
-            ("Window", 16, "Advertised receive window; zero-window abuse, odd scaling, or fingerprintable values can stand out."),
-            ("Checksum", 16, "TCP integrity check; invalid values can be offload artifacts or crafted packet evidence."),
-            ("Urgent Pointer", 16, "Only meaningful with URG; unexpected use is rare and can indicate evasion or legacy attacks."),
-            ("Options/Padding", 32, "Variable options such as MSS, SACK, timestamps; odd combinations can fingerprint tools or evasions."),
+            ("Source Port", 16, "Client or service port; suspicious reuse or odd pairings can reveal scans or spoofing."),
+            ("Destination Port", 16, "Target service; hunt for unauthorized services, fan-out scans, or policy bypass."),
+            ("Sequence Number", 32, "Byte-stream position; repeated or out-of-window values may indicate injection or spoofing."),
+            ("Acknowledgment Number", 32, "Next expected byte; impossible ACKs reveal scans, desync, or spoofed packets."),
+            ("Data Offset", 4, "Header length; large values mean options, while invalid small values are malformed."),
+            ("Reserved", 6, "Should be zero; non-zero reserved bits often indicate crafted or evasive traffic."),
+            ("TCP Flags", 6, "SYN/ACK/RST/FIN combinations; watch for illegal flag combos, floods, and RST injection."),
+            ("Window", 16, "Advertised receive window; zero-window abuse or odd scaling can stand out."),
+            ("Checksum", 16, "Integrity check; invalid values can be offload artifacts or crafted packet evidence."),
+            ("Urgent Pointer", 16, "Only meaningful with URG; unexpected use can indicate evasion or legacy attacks."),
+            ("Options/Padding", 32, "MSS, SACK, timestamps; odd combinations can fingerprint tools or evasions."),
+        ],
+    },
+    826: {
+        "title": "RFC 826 ARP over Ethernet Frame",
+        "note": "ARP binds protocol addresses to MACs; this layout turns prose into fields hunters can scan for spoofing and poisoning.",
+        "fields": [
+            ("Hardware Type", 16, "Ethernet should be 1; unexpected values are high-signal for crafted traffic."),
+            ("Protocol Type", 16, "IPv4 should be 0x0800; unusual protocols may indicate legacy or suspicious use."),
+            ("HLEN", 8, "Hardware address length; Ethernet should be 6 bytes."),
+            ("PLEN", 8, "Protocol address length; IPv4 should be 4 bytes."),
+            ("Operation", 16, "Request=1, Reply=2; rare opcodes or byte-order mistakes are hunt-worthy."),
+            ("Sender MAC", 48, "Compare with L2 source to catch forged ARP payloads or bridge oddities."),
+            ("Sender IP", 32, "Conflicts or protected gateway IPs mapped to new MACs are critical poisoning signals."),
+            ("Target MAC", 48, "Blank/zero in requests is normal; odd target MACs reveal crafted or proxy behavior."),
+            ("Target IP", 32, "Repeated sweeps or gateway targeting can expose reconnaissance."),
         ],
     },
     1035: {
         "title": "RFC 1035 DNS Message Header",
-        "note": "DNS header bits summarize query intent, recursion behavior, response state, and section counts used in tunneling and abuse hunts.",
+        "note": "DNS header bits summarize query intent and response state used in tunneling and abuse hunts.",
         "fields": [
-            ("ID", 16, "Transaction identifier; repeated, predictable, or mismatched IDs can indicate spoofing or cache-poisoning attempts."),
-            ("QR", 1, "Query/response bit; responses without queries or queries marked as responses are suspicious."),
-            ("Opcode", 4, "Operation code; non-standard opcodes are rare and high-signal."),
-            ("AA", 1, "Authoritative answer; unexpected authority can indicate spoofing or rogue infrastructure."),
+            ("ID", 16, "Transaction ID; repeated or predictable IDs can indicate spoofing or cache-poisoning."),
+            ("QR", 1, "Query/response bit; responses without queries are highly suspicious."),
+            ("Opcode", 4, "Operation code; non-standard opcodes (non-zero) are rare and high-signal."),
+            ("AA", 1, "Authoritative answer; unexpected authority can indicate rogue infrastructure."),
             ("TC", 1, "Truncation flag; frequent truncation can force TCP fallback or indicate oversized abuse."),
             ("RD", 1, "Recursion desired; unexpected recursion from restricted networks can show resolver misuse."),
             ("RA", 1, "Recursion available; rogue or exposed recursive resolvers often reveal themselves here."),
             ("Z", 3, "Reserved bits; non-zero values are abnormal except negotiated extensions."),
-            ("RCODE", 4, "Response code; spikes in NXDOMAIN, SERVFAIL, or REFUSED can reveal DGA, outages, or probing."),
-            ("QDCOUNT", 16, "Question count; values other than one are uncommon and may be malformed or evasive."),
-            ("ANCOUNT", 16, "Answer count; unusual cardinality can indicate amplification, fast-flux, or malformed responses."),
-            ("NSCOUNT", 16, "Authority count; unexpected delegations or large counts can expose suspicious DNS infrastructure."),
-            ("ARCOUNT", 16, "Additional count; EDNS, glue, and oversized additional data are useful abuse indicators."),
+            ("RCODE", 4, "Response code; spikes in NXDOMAIN or SERVFAIL can reveal DGA or probing."),
+            ("QDCOUNT", 16, "Question count; values other than one are uncommon in standard queries."),
+            ("ANCOUNT", 16, "Answer count; unusual cardinality can indicate amplification or fast-flux."),
+            ("NSCOUNT", 16, "Authority count; unexpected delegations can expose suspicious infrastructure."),
+            ("ARCOUNT", 16, "Additional count; EDNS and oversized additional data are useful abuse indicators."),
         ],
     },
     2131: {
         "title": "RFC 2131 DHCP Message Header",
-        "note": "DHCP fields identify clients, servers, leases, and relay paths during rogue-DHCP and device-identity investigations.",
+        "note": "DHCP fields identify clients, servers, and relay paths during rogue-DHCP investigations.",
         "fields": [
-            ("op", 8, "Message op code; BOOTREQUEST/BOOTREPLY direction mismatches can reveal spoofing or relay issues."),
-            ("htype", 8, "Hardware type; unexpected values on Ethernet networks can indicate crafted clients."),
-            ("hlen", 8, "Hardware address length; invalid lengths break client identity and indicate malformed traffic."),
-            ("hops", 8, "Relay hop count; high or unexpected values suggest relay loops or unusual topology."),
-            ("xid", 32, "Transaction ID; collisions, repeats, or mismatches help spot spoofed offers and rogue servers."),
-            ("secs", 16, "Elapsed seconds; high values can signal client distress or lease acquisition problems."),
-            ("flags", 16, "Broadcast flag and reserved bits; abnormal reserved use may indicate crafted clients."),
-            ("ciaddr", 32, "Client IP address; unexpected preconfigured values can reveal conflicts or spoofing."),
-            ("yiaddr", 32, "Your/client IP address offered by server; watch unauthorized ranges or duplicate offers."),
-            ("siaddr", 32, "Next server address; unexpected boot servers can indicate rogue provisioning."),
-            ("giaddr", 32, "Relay agent address; unexpected relays may show rogue infrastructure or segmentation errors."),
-            ("chaddr", 128, "Client hardware address; mismatches with L2 source indicate spoofing or relay oddities."),
-            ("Magic Cookie", 32, "DHCP option marker; missing or wrong value indicates non-DHCP BOOTP or malformed packets."),
-            ("Options", 32, "Variable options; hunt rogue DNS/router options, odd vendor classes, and lease manipulation."),
+            ("op", 8, "Message op code; direction mismatches can reveal spoofing or relay issues."),
+            ("htype", 8, "Hardware type; unexpected values on Ethernet can indicate crafted clients."),
+            ("hlen", 8, "Hardware address length; invalid lengths indicate malformed traffic."),
+            ("hops", 8, "Relay hop count; high values suggest relay loops or unusual topology."),
+            ("xid", 32, "Transaction ID; collisions or mismatches help spot spoofed offers."),
+            ("secs", 16, "Elapsed seconds; high values can signal client distress."),
+            ("flags", 16, "Broadcast flag; abnormal reserved bit use may indicate crafted clients."),
+            ("ciaddr", 32, "Client IP; unexpected preconfigured values can reveal conflicts."),
+            ("yiaddr", 32, "Your/client IP; watch unauthorized ranges or duplicate offers."),
+            ("siaddr", 32, "Next server; unexpected boot servers can indicate rogue provisioning."),
+            ("giaddr", 32, "Relay agent; unexpected relays may show rogue infrastructure."),
+            ("chaddr", 128, "Client hardware address; mismatches with L2 source indicate spoofing."),
         ],
     },
     2328: {
         "title": "RFC 2328 OSPFv2 Packet Header",
         "note": "OSPF headers reveal adjacency abuse, area mismatches, authentication failures, and unexpected routing speakers.",
         "fields": [
-            ("Version", 8, "Should be 2 for OSPFv2; mismatches indicate malformed or wrong-protocol traffic."),
-            ("Type", 8, "Hello, DB Description, LS Request, LS Update, or LS Ack; unusual type bursts can show adjacency attacks."),
+            ("Version", 8, "Should be 2; mismatches indicate malformed or wrong-protocol traffic."),
+            ("Type", 8, "Hello, DB Description, LS Request, LS Update, or LS Ack; unusual bursts can show adjacency attacks."),
             ("Packet Length", 16, "Full OSPF packet length; mismatches suggest malformed packets or capture corruption."),
-            ("Router ID", 32, "Originating router identity; duplicate or unexpected IDs indicate spoofing or misconfiguration."),
-            ("Area ID", 32, "OSPF area; wrong-area packets are high-signal for rogue routers or topology leaks."),
+            ("Router ID", 32, "Originating router identity; duplicate IDs indicate spoofing."),
+            ("Area ID", 32, "OSPF area; wrong-area packets are high-signal for rogue routers."),
             ("Checksum", 16, "OSPF packet integrity; invalid checksums indicate corruption or crafted traffic."),
             ("AuType", 16, "Authentication type; none or unexpected auth mode can expose insecure adjacencies."),
-            ("Authentication", 64, "Authentication data; failures or mismatches can reveal adjacency hijack attempts."),
+            ("Authentication", 64, "Authentication data; failures can reveal adjacency hijack attempts."),
         ],
     },
     2460: {
-        "title": "RFC 2460 IPv6 Header",
-        "note": "IPv6 fixed headers plus extension chains expose tunneling, routing, fragmentation, and evasion patterns.",
+        "title": "RFC 2460 IPv6 Header & Extension Chain",
+        "note": "IPv6 fixed headers plus extension chains expose tunneling, routing, and evasion patterns.",
         "fields": [
-            ("Version", 4, "Should be 6 for IPv6; other values indicate malformed traffic or parser confusion."),
-            ("Traffic Class", 8, "QoS markings; unusual values can indicate tunneling, covert marking, or policy abuse."),
-            ("Flow Label", 20, "Flow identifier; unexpected non-zero or inconsistent labels can fingerprint hosts or tools."),
-            ("Payload Length", 16, "Length after fixed header; zero jumbo payloads or mismatches deserve scrutiny."),
-            ("Next Header", 8, "Upper-layer or extension header; long or unusual chains can bypass filters or hide payloads."),
-            ("Hop Limit", 8, "IPv6 TTL equivalent; unusually low or inconsistent values suggest spoofing or probing."),
-            ("Source Address", 128, "Origin IPv6 address; link-local, ULA, multicast, or spoofed sources in wrong zones are suspicious."),
-            ("Destination Address", 128, "Target IPv6 address; unexpected multicast, link-local, or routed destinations aid hunting."),
+            ("Version", 4, "Should be 6; other values indicate malformed traffic or parser confusion."),
+            ("Traffic Class", 8, "QoS markings; unusual values can indicate tunneling or covert marking."),
+            ("Flow Label", 20, "Flow identifier; inconsistent labels can fingerprint hosts or tools."),
+            ("Payload Length", 16, "Length after fixed header; zero jumbo payloads deserve scrutiny."),
+            ("Next Header", 8, "Extension header pointer; long or unknown chains can bypass filters."),
+            ("Hop Limit", 8, "IPv6 TTL; unusually low or inconsistent values suggest spoofing or probing."),
+            ("Source Address", 128, "Origin IPv6; link-local or spoofed sources in wrong zones are suspicious."),
+            ("Destination Address", 128, "Target IPv6; unexpected multicast or link-local destinations aid hunting."),
         ],
     },
     4271: {
-        "title": "RFC 4271 BGP Message Header",
-        "note": "BGP message framing and UPDATE attributes are central to route-leak, hijack, and suspicious peering investigations.",
+        "title": "RFC 4271 BGP Update Attributes",
+        "note": "BGP UPDATE attributes are central to route-leak, hijack, and suspicious peering investigations.",
         "fields": [
-            ("Marker", 128, "All ones unless authentication is used; wrong marker values indicate malformed or non-BGP traffic."),
-            ("Length", 16, "Total BGP message length; abnormal sizes can indicate malformed messages or UPDATE floods."),
-            ("Type", 8, "OPEN, UPDATE, NOTIFICATION, or KEEPALIVE; unexpected type sequences reveal session abuse or resets."),
-            ("UPDATE Withdrawn Routes Length", 16, "Withdrawn prefix block size; spikes can reveal route leaks, flaps, or attacks."),
-            ("Withdrawn Routes", 32, "Variable list of withdrawn prefixes; unexpected critical-prefix withdrawal is high-signal."),
-            ("Path Attributes Length", 16, "Size of path attributes; malformed values can trigger parser bugs or session resets."),
-            ("Path Attributes", 32, "AS_PATH manipulation is the primary vector for route hijacking; watch origin, next-hop, and community anomalies."),
-            ("NLRI", 32, "Advertised prefixes; more-specific or unauthorized announcements indicate leaks or hijacks."),
+            ("Attr Flags", 8, "Optional/Transitive bits; illegal combinations can propagate bad state."),
+            ("Attr Type", 8, "ORIGIN, AS_PATH, NEXT_HOP, MED, LOCAL_PREF, COMMUNITY; core hunting pivots."),
+            ("ORIGIN", 8, "IGP/EGP/INCOMPLETE; unexpected changes can signal leaks or hijacks."),
+            ("AS_PATH", 32, "Primary vector for hijacking; watch impossible paths and prepending abuse."),
+            ("NEXT_HOP", 32, "Reachability; unexpected next-hops can reveal redirection or blackholes."),
+            ("COMMUNITY", 32, "Policy tags; blackhole or provider-specific tags can alter propagation."),
         ],
     },
-    5321: {
-        "title": "RFC 5321 SMTP Command/Reply Fields",
-        "note": "SMTP is line-oriented rather than a fixed binary header; this panel maps the primary command/reply fields analysts hunt in mail logs.",
+    4303: {
+        "title": "RFC 4303 ESP Header & Trailer",
+        "note": "ESP hides payloads, so SPI, sequence behavior, and policy context become the hunting surface.",
         "fields": [
-            ("Command Verb", 32, "HELO/EHLO, MAIL, RCPT, DATA, AUTH, STARTTLS; odd ordering or unsupported verbs indicate probing or abuse."),
-            ("Reply Code", 24, "Three-digit server response; 5xx/4xx spikes can show credential attacks, relay probing, or delivery failures."),
-            ("Enhanced Status", 32, "Optional x.y.z status; abnormal failures help separate policy blocks, auth problems, and reputation issues."),
-            ("Mailbox Path", 32, "MAIL FROM/RCPT TO identity; null senders, lookalikes, and relay targets are hunting pivots."),
-            ("Extension Args", 32, "ESMTP parameters such as SIZE, AUTH, STARTTLS; downgrades or suspicious auth use deserve review."),
+            ("SPI", 32, "Security Parameters Index; unknown or reused SPIs can indicate rogue tunnels."),
+            ("Sequence", 32, "Anti-replay value; resets or gaps suggest replay attempts or failover confusion."),
+            ("Payload", 32, "Encrypted data; size and timing are key signals when contents are opaque."),
+            ("Padding", 32, "Alignment bytes; unusual patterns can fingerprint implementations."),
+            ("Pad Length", 8, "Number of padding bytes; impossible values indicate malformed ESP."),
+            ("Next Header", 8, "Protected inner protocol; visible after decryption; useful for policy validation."),
+            ("ICV", 32, "Integrity Check Value; failures indicate tampering or wrong keys."),
         ],
     },
 }
@@ -238,12 +351,22 @@ THREAT_INDICATORS: dict[int, list[dict[str, str]]] = {
         {"name": "Reserved Bit Set", "normal": "Reserved bit is always 0.", "malicious": "Evil bit (RFC 3514) or non-zero reserved bits in crafted traffic.", "sev": "low"},
         {"name": "Source Routing Options", "normal": "IP options are rare; routing is hop-by-hop.", "malicious": "Strict or loose source routing to bypass topology constraints.", "sev": "high"},
     ],
+    792: [
+        {"name": "ICMP Tunneling", "normal": "Echo payloads are short diagnostics with predictable size and content.", "malicious": "High-entropy or oversized echo payloads move command data or exfiltration through ICMP.", "sev": "high"},
+        {"name": "Ping Floods", "normal": "Low-rate echo requests with matching replies for diagnostics.", "malicious": "Sustained high-volume echo requests, spoofed sources, or one-way floods cause denial of service.", "sev": "high"},
+        {"name": "Redirect Abuse", "normal": "ICMP redirects are rare and generally constrained to local gateway correction.", "malicious": "Unexpected redirect messages point hosts at attacker-controlled gateways for traffic interception.", "sev": "high"},
+        {"name": "Reconnaissance Error Bursts", "normal": "Occasional unreachable or time-exceeded messages during real failures.", "malicious": "Bursts of destination-unreachable or time-exceeded messages reveal sweeps, traceroute mapping, or spoofed probing.", "sev": "medium"},
+    ],
     793: [
-        {"name": "Illegal Flag Combinions", "normal": "Valid state transitions (SYN, SYN-ACK, etc).", "malicious": "NULL, Xmas, or SYN-FIN scans; flags that shouldn't exist together.", "sev": "high"},
+        {"name": "Illegal Flag Combinations", "normal": "Valid state transitions (SYN, SYN-ACK, etc).", "malicious": "NULL, Xmas, or SYN-FIN scans; flags that shouldn't exist together.", "sev": "high"},
         {"name": "SYN Flood Patterns", "normal": "Balanced SYN and ACK packets.", "malicious": "Massive burst of SYNs without corresponding ACKs from many IPs.", "sev": "high"},
         {"name": "RST Injection", "normal": "RST sent on connection close or error.", "malicious": "Unsolicited RSTs designed to kill active legitimate sessions.", "sev": "medium"},
         {"name": "Window Size Anomalies", "normal": "Dynamic window scaling based on congestion.", "malicious": "Stuck at tiny values or zero-window probes to hang servers.", "sev": "medium"},
         {"name": "Urgent Pointer Abuse", "normal": "Rarely used in modern protocols.", "malicious": "Non-zero urgent pointer in data-less packets to trigger parser bugs.", "sev": "low"},
+    ],
+    826: [
+        {"name": "ARP Poisoning", "normal": "Addresses are mapped to correct MACs and remain stable.", "malicious": "Gratuitous ARP or spoofed replies mapping gateway IPs to attacker MACs.", "sev": "high"},
+        {"name": "MAC Flooding", "normal": "CAM table contains legitimate local entries.", "malicious": "Thousands of fake MACs fill switches, forcing fail-open hub behavior.", "sev": "medium"},
     ],
     1035: [
         {"name": "Long Subdomain Chains", "normal": "2-3 levels of subdomains (e.g. mail.google.com).", "malicious": "Many layers of encoded data in subdomains (DNS tunneling).", "sev": "high"},
@@ -264,7 +387,8 @@ THREAT_INDICATORS: dict[int, list[dict[str, str]]] = {
     ],
     2460: [
         {"name": "Extension Header Abuse", "normal": "0-1 simple extension headers.", "malicious": "Long chains of headers to hide payload from shallow inspection.", "sev": "high"},
-        {"name": "Tunneling Indicators", "normal": "Standard IPv6 traffic.", "malicious": "IPv6-in-IPv4 (6to4/Teredo) used to bypass IPv4-only filters.", "sev": "medium"},
+        {"name": "Tunneled 6-in-4", "normal": "Native IPv6 paths and explicitly approved tunnels.", "malicious": "Protocol 41, 6to4, or Teredo traffic appears where IPv6 tunneling is not authorized.", "sev": "medium"},
+        {"name": "Fragment Header Evasion", "normal": "Fragmentation is uncommon on well-behaved IPv6 paths.", "malicious": "Atomic, tiny, excessive, or evasive fragments attempt to bypass ACLs and IDS reassembly.", "sev": "high"},
         {"name": "Unexpected ICMPv6", "normal": "Essential ND and error messages.", "malicious": "Flood of Redirects or RA to perform MitM or DoS.", "sev": "high"},
     ],
     4271: [
@@ -272,6 +396,17 @@ THREAT_INDICATORS: dict[int, list[dict[str, str]]] = {
         {"name": "Prefix Hijacking Patterns", "normal": "Origins match authorized IRR/RPKI records.", "malicious": "Unauthorized AS announcing a more-specific or new prefix.", "sev": "high"},
         {"name": "Unusual COMMUNITY Values", "normal": "Used for standard traffic engineering.", "malicious": "Proprietary or 'blackhole' communities used to redirect traffic.", "sev": "medium"},
         {"name": "Route Leaks", "normal": "Routes stay within intended peering boundaries.", "malicious": "Propagating private peering routes to the global internet.", "sev": "medium"},
+    ],
+    4301: [
+        {"name": "Policy Bypass", "normal": "Traffic matching protected selectors is carried through expected IPsec policy.", "malicious": "Sensitive flows appear in cleartext or outside the expected tunnel policy.", "sev": "high"},
+        {"name": "Unexpected Security Associations", "normal": "SAs are negotiated between approved peers and lifetimes.", "malicious": "New or stale SAs appear for unknown peers, wrong subnets, or suspicious lifetimes.", "sev": "high"},
+        {"name": "Selector Drift", "normal": "Protected source, destination, and protocol selectors match documented policy.", "malicious": "Broad selectors or changed peer identities expose unintended traffic to tunnel or bypass paths.", "sev": "medium"},
+    ],
+    4303: [
+        {"name": "Unexpected ESP", "normal": "ESP appears only between approved VPN/IPsec peers.", "malicious": "ESP from unknown endpoints or unexpected networks can hide unauthorized tunnels.", "sev": "high"},
+        {"name": "Replay or Sequence Abuse", "normal": "Sequence numbers advance without repeats inside an SA.", "malicious": "Repeated or sharply regressing sequence numbers suggest replay, failover confusion, or crafted traffic.", "sev": "medium"},
+        {"name": "Integrity Failures", "normal": "ESP authentication checks pass for active SAs.", "malicious": "ICV failures indicate tampering, wrong keys, corruption, or probing of IPsec endpoints.", "sev": "high"},
+        {"name": "Policy Bypass", "normal": "Inner protected traffic matches IPsec policy after decryption.", "malicious": "Unexpected inner protocols or subnets reveal overly broad tunnel policy or abuse.", "sev": "high"},
     ],
     5321: [
         {"name": "Open Relay Indicators", "normal": "Rejects mail for external domains.", "malicious": "Accepts mail from any source for any destination (spam).", "sev": "high"},
@@ -291,107 +426,1906 @@ THREAT_INDICATORS: dict[int, list[dict[str, str]]] = {
     ],
 }
 
+DETECTION_QUESTIONS: dict[int, list[str]] = {
+    768: ["Are UDP length values consistent with observed payload sizes?", "Are amplification-prone services receiving small requests and sending large responses?", "Are source or destination ports impossible, zero, or outside expected service policy?"],
+    791: ["Are fragmented IPv4 packets tiny, overlapping, or excessive for the application?", "Do TTL values shift unexpectedly for the same source or path?", "Are IP options or source-routing fields present where policy forbids them?"],
+    792: ["Are ICMP type/code pairs valid for the observed flow and destination?", "Are echo payloads unusually large, high-entropy, or persistent enough to indicate tunneling?", "Are redirect messages changing host gateways outside approved router paths?", "Are ICMP errors clustering around scans or impossible source addresses?"],
+    793: ["Are TCP flag combinations valid for the expected connection state?", "Are SYNs balanced by ACKs or are they forming a flood pattern?", "Are RSTs arriving out of window or from unexpected network positions?", "Are ICMP errors quoting TCP headers pointing to valid internal ports?"],
+    826: ["Do ARP sender hardware addresses match Ethernet source addresses?", "Are protected gateway IPs suddenly mapped to new MAC addresses?", "Are gratuitous ARP replies or target sweeps appearing outside normal operations?"],
+    1035: ["Are DNS labels unusually long, random, or high entropy?", "Are query counts, response codes, or additional sections outside normal resolver behavior?", "Are TXT or NULL-like payloads being used for data movement?"],
+    2131: ["Are DHCP offers coming from only authorized server addresses?", "Are many distinct client hardware addresses exhausting leases rapidly?", "Are router, DNS, or boot-server options changing unexpectedly?"],
+    2328: ["Are OSPF packets coming from approved router IDs and areas?", "Are authentication modes and checksums valid for each adjacency?", "Are LSA floods or max-age events happening outside topology changes?"],
+    2460: ["Are IPv6 extension headers chained deeper than policy allows?", "Is protocol 41, 6to4, or Teredo traffic present where tunneling is not approved?", "Are fragment headers used for tiny, atomic, or evasive fragments?"],
+    3954: ["Are NetFlow exporters limited to approved devices?", "Do flow records show many tiny one-way flows consistent with scanning?", "Are template IDs rotating faster than expected?"],
+    4271: ["Do advertised prefixes match authorized origins and expected peers?", "Are AS_PATH values impossibly short, looping, private, or suddenly changed?", "Are communities or next-hop attributes redirecting traffic unexpectedly?"],
+    4301: ["Do protected selectors match documented IPsec policy?", "Is sensitive traffic ever observed outside the required tunnel?", "Are new SAs appearing for unknown peers or broad subnets?"],
+    4303: ["Is ESP limited to approved IPsec peers and expected SPI values?", "Do ESP sequence numbers repeat or regress within a security association?", "Do decrypted inner protocols match tunnel policy?"],
+    5321: ["Are SMTP command sequences valid and expected for the sender role?", "Are null senders, relay attempts, or EHLO anomalies increasing?", "Are 4xx/5xx replies clustering around authentication or delivery abuse?"],
+    7011: ["Are IPFIX exporters limited to approved devices?", "Are templates stable and consistent with known telemetry profiles?", "Do unidirectional flows or fan-out patterns indicate scanning or DDoS?"],
+    7230: ["Are HTTP message headers malformed, duplicated, or conflicting?", "Are proxy-routing headers changing the intended destination?", "Are request smuggling indicators present across front-end and back-end parsing?"],
+    7540: ["Are HTTP/2 frame sequences valid for stream state?", "Are SETTINGS, RST_STREAM, or GOAWAY frames spiking abnormally?", "Are multiplexed streams hiding fan-out or unusual request timing?"],
+}
+
+for _rfc_num, _questions in DETECTION_QUESTIONS.items():
+    if _rfc_num in HEADER_REFERENCES:
+        HEADER_REFERENCES[_rfc_num]["detection_questions"] = _questions
+
+KNOWN_RFC_TAG_GROUPS: dict[str, set[int]] = {
+    "application": {1035, 1123, 2131, 2616, 2782, 5321, 7230, 7540, 821, 882, 883, 973, 974, 1034, 1101, 1183, 1348, 1349, 1455, 1637, 1788, 1825, 1827, 1869, 1876, 1995, 1996, 2052, 2065, 2068, 2136, 2137, 2145, 2181, 2308, 2401, 2406, 2474, 2535, 2617, 2673, 2817, 2818, 2821, 2845, 2931, 3007, 3008, 3090, 3225, 3226, 3363, 3364, 3396, 3597, 3645, 3655, 3757, 3845, 4033, 4034, 4035, 4305, 4343, 4361, 4470, 5336, 5395, 5452, 5785, 5864, 5890, 5936, 5966, 6014, 6195, 6266, 6335, 6585, 6840, 6842, 6891, 6895, 6944, 7231, 7232, 7233, 7234, 7235, 7474, 7504, 7595, 7615, 7694, 7766, 8020, 8198, 8436, 8482, 8490, 8499, 8553, 8615, 8740, 8767, 8945, 9103, 9110, 9111, 9112, 9113, 9210, 9499, 9520, 9619, 9824, 9905},
+    "routing": {791, 792, 826, 1122, 2460, 2328, 4271, 974, 1583, 1654, 1771, 1788, 1827, 1883, 2178, 2406, 2474, 2481, 2873, 3168, 3226, 3363, 3364, 3697, 4724, 4884, 4893, 5065, 5095, 5101, 5227, 5336, 5462, 5494, 5709, 5722, 5871, 6286, 6425, 6426, 6437, 6472, 6549, 6564, 6608, 6633, 6793, 6829, 6845, 6860, 6864, 6918, 6935, 6946, 7045, 7112, 7474, 7506, 7606, 7705, 8029, 8042, 8200, 8212, 8538, 8611, 8654, 9072, 9355, 9454, 9570, 9601, 9673, 9687, 9774},
+    "monitoring": {1035, 2131, 2616, 2782, 3954, 5321, 7011, 7230, 3697, 5101, 6437},
+    "security": {791, 792, 826, 1122, 2460, 4271, 4301, 4303, 1455, 1825, 1827, 1948, 2065, 2137, 2401, 2406, 2535, 2617, 2845, 3007, 3008, 3090, 3225, 3226, 3645, 3655, 3757, 3845, 4033, 4034, 4035, 4305, 4470, 4635, 5709, 5961, 6014, 6335, 6528, 6840, 6944, 7235, 7474, 7615, 7619, 8198, 8482, 8945, 9824, 9905},
+    "transport": {768, 793, 1122, 4303, 7540, 879, 1827, 2406, 2873, 2988, 4305, 5961, 5966, 6093, 6298, 6335, 6429, 6691, 6935, 7766, 9210, 9293, 9768, 9868},
+    "update-chain": {821, 879, 882, 883, 950, 973, 974, 1011, 1034, 1101, 1183, 1348, 1349, 1455, 1531, 1541, 1583, 1637, 1654, 1771, 1788, 1825, 1827, 1869, 1876, 1883, 1948, 1982, 1995, 1996, 2052, 2065, 2068, 2136, 2137, 2145, 2178, 2181, 2205, 2308, 2401, 2406, 2474, 2481, 2535, 2617, 2673, 2817, 2818, 2821, 2845, 2873, 2931, 2988, 3007, 3008, 3090, 3168, 3225, 3226, 3260, 3363, 3364, 3396, 3425, 3445, 3597, 3645, 3655, 3658, 3697, 3755, 3757, 3845, 3864, 4033, 4034, 4035, 4305, 4343, 4361, 4379, 4470, 4635, 4724, 4884, 4893, 5065, 5095, 5101, 5227, 5336, 5395, 5452, 5462, 5494, 5709, 5722, 5785, 5864, 5871, 5884, 5890, 5936, 5961, 5966, 6014, 6040, 6093, 6195, 6266, 6286, 6298, 6335, 6424, 6425, 6426, 6429, 6437, 6472, 6528, 6549, 6564, 6585, 6604, 6608, 6633, 6691, 6793, 6829, 6840, 6842, 6845, 6860, 6864, 6891, 6895, 6918, 6935, 6944, 6946, 7045, 7112, 7231, 7232, 7233, 7234, 7235, 7474, 7504, 7506, 7537, 7538, 7595, 7606, 7607, 7615, 7619, 7694, 7705, 7726, 7743, 7766, 8020, 8029, 8042, 8198, 8200, 8212, 8311, 8335, 8436, 8482, 8490, 8499, 8538, 8553, 8611, 8615, 8654, 8740, 8767, 8945, 9041, 9072, 9077, 9103, 9110, 9111, 9112, 9113, 9210, 9293, 9355, 9454, 9499, 9520, 9570, 9601, 9619, 9673, 9687, 9768, 9774, 9824, 9868, 9905},
+}
+
+KNOWN_RFC_TAGS: dict[int, tuple[str, ...]] = {
+    num: tuple(tag for tag in TAG_DESCRIPTIONS if num in KNOWN_RFC_TAG_GROUPS[tag])
+    for num in set().union(*KNOWN_RFC_TAG_GROUPS.values())
+}
+
 RELATION_RE = re.compile(r"\b(Updated by|Obsoletes|Obsoleted by):(?P<body>.*?)(?=<br\s*/?>|\n|</span>|$)", re.I | re.S)
 RFC_NUM_RE = re.compile(r"\b(?:RFCs?\s*)?(\d{3,5})\b", re.I)
 
 
 SITE_CSS = r"""
-:root { color-scheme: dark; --bg:#070912; --panel:#0e1424; --panel2:#111a2d; --text:#eef5ff; --muted:#9fb0c9; --line:rgba(255,255,255,.11); --cyan:#65e4ff; --violet:#b89cff; --pink:#ff70b8; --green:#7dffa8; --amber:#ffd36a; }
+
+:root {
+  color-scheme: dark;
+  --bg: #070912;
+  --panel: #0e1424;
+  --panel2: #111a2d;
+  --panel3: #152035;
+  --text: #eef5ff;
+  --text2: #d8e6fa;
+  --muted: #9fb0c9;
+  --muted2: #7a88a1;
+  --line: rgba(255,255,255,.11);
+  --line2: rgba(255,255,255,.08);
+  --cyan: #65e4ff;
+  --cyan2: #4dc8ff;
+  --violet: #b89cff;
+  --violet2: #a388ff;
+  --pink: #ff70b8;
+  --pink2: #ff5aa0;
+  --green: #7dffa8;
+  --green2: #5eff8c;
+  --amber: #ffd36a;
+  --amber2: #ffc748;
+  --red: #ff6b8b;
+  --glass: rgba(14,20,36,.65);
+  --glass2: rgba(14,20,36,.85);
+}
+
 * { box-sizing: border-box; }
-body { margin: 0; min-height: 100vh; background: radial-gradient(circle at 12% -10%, rgba(101,228,255,.22), transparent 32rem), radial-gradient(circle at 88% 8%, rgba(184,156,255,.2), transparent 31rem), linear-gradient(135deg, #050711 0%, #09111e 48%, #100b1f 100%); color: var(--text); font: 16px/1.6 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
-body:before { content:""; position: fixed; inset:0; pointer-events:none; background-image: linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px); background-size: 44px 44px; mask-image: radial-gradient(circle at top, black, transparent 75%); }
-a { color: inherit; text-decoration: none; }
-.shell { width: min(1180px, calc(100% - 34px)); margin: 0 auto; }
-.hero { padding: 70px 0 38px; }
-.eyebrow { color: var(--cyan); text-transform: uppercase; letter-spacing: .2em; font-size: .76rem; font-weight: 800; }
-h1 { margin: 12px 0 14px; font-size: clamp(2.5rem, 7vw, 6.4rem); line-height: .88; letter-spacing: -.075em; max-width: 940px; }
-.hero p { max-width: 760px; color: var(--muted); font-size: 1.08rem; }
-.hero strong { color: var(--text); }
-.toolbar { position: sticky; top: 0; z-index: 5; padding: 16px 0; backdrop-filter: blur(18px); background: linear-gradient(to bottom, rgba(7,9,18,.92), rgba(7,9,18,.72)); border-bottom: 1px solid var(--line); }
-.toolbar-row { display:grid; grid-template-columns: 1fr auto; gap: 12px; align-items:center; }
-.searchbox { display:flex; gap: 12px; align-items:center; padding: 12px 16px; border: 1px solid var(--line); border-radius: 999px; background: rgba(14,20,36,.72); box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 20px 70px rgba(0,0,0,.3); }
-.searchbox span { color: var(--cyan); font-weight: 900; }
-.view-count { color: var(--muted); font-weight: 800; white-space: nowrap; }
-.filters { display:flex; flex-wrap:wrap; gap: 10px; margin-top: 13px; }
-button.filter, button.reader-btn { cursor:pointer; color: #eaf3ff; border: 1px solid rgba(255,255,255,.13); background: rgba(255,255,255,.07); border-radius: 999px; padding: 8px 12px; font: inherit; font-size: .85rem; font-weight: 900; transition: background .18s ease, border-color .18s ease, transform .18s ease; }
-button.filter:hover, button.reader-btn:hover, button.filter.active { transform: translateY(-1px); border-color: rgba(101,228,255,.55); background: rgba(101,228,255,.14); }
-input { width: 100%; border: 0; outline: 0; background: transparent; color: var(--text); font: inherit; }
-input::placeholder { color: #71819b; }
-.stats { display:grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; margin: 24px 0 30px; }
-.stat { border: 1px solid var(--line); border-radius: 22px; padding: 16px; background: linear-gradient(145deg, rgba(255,255,255,.08), rgba(255,255,255,.03)); min-height: 112px; }
-.stat b { display:block; font-size: 1.45rem; }
-.stat span { color: var(--muted); font-size: .88rem; }
-.grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; padding: 6px 0 70px; }
-.card { position:relative; overflow:hidden; min-height: 248px; padding: 22px; border-radius: 28px; background: linear-gradient(145deg, rgba(19,28,48,.96), rgba(11,16,30,.88)); border: 1px solid var(--line); box-shadow: 0 22px 80px rgba(0,0,0,.35); transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease; }
-.card:before { content:""; position:absolute; inset:-1px; opacity:.58; background: radial-gradient(circle at top right, rgba(101,228,255,.22), transparent 45%), radial-gradient(circle at bottom left, rgba(255,112,184,.16), transparent 42%); pointer-events:none; }
-.card:hover { transform: translateY(-5px); border-color: rgba(101,228,255,.45); box-shadow: 0 28px 95px rgba(0,0,0,.48); }
-.card.chain { border-color: rgba(255,211,106,.32); }
-.card.chain:before { background: radial-gradient(circle at top right, rgba(255,211,106,.24), transparent 45%), radial-gradient(circle at bottom left, rgba(184,156,255,.18), transparent 42%); }
-.card > * { position:relative; }
-.num { display:inline-flex; align-items:center; gap:8px; color: var(--cyan); font-weight: 900; letter-spacing:.08em; }
-.num:before { content:""; width: 9px; height: 9px; border-radius:50%; background: var(--green); box-shadow: 0 0 18px var(--green); }
-.card h2 { margin: 14px 0 10px; font-size: 1.33rem; line-height: 1.16; letter-spacing: -.03em; }
-.card p { margin: 0 0 20px; color: var(--muted); }
-.tags, .meta-tags { display:flex; flex-wrap:wrap; gap: 8px; }
-.tag { color: #dce7ff; border: 1px solid rgba(255,255,255,.13); background: rgba(255,255,255,.07); border-radius: 999px; padding: 5px 10px; font-size: .78rem; font-weight: 800; }
-.tag-update-chain { color: #1b1300; border-color: rgba(255,211,106,.75); background: linear-gradient(135deg, var(--amber), #ff9f6a); }
-.open { display:inline-flex; margin-top: 20px; color: var(--text); font-weight: 900; }
-.open:after { content:"→"; margin-left: 8px; color: var(--pink); }
-.empty { display:none; color: var(--muted); padding: 40px 0 80px; }
-.toplink { color: var(--cyan); font-weight: 900; }
-.progress { position: fixed; top: 0; left: 0; height: 3px; width: 0; z-index: 20; background: linear-gradient(90deg, var(--cyan), var(--pink), var(--amber)); box-shadow: 0 0 22px rgba(101,228,255,.7); }
-.doc-layout { width: min(1160px, calc(100% - 32px)); margin: 0 auto; padding: 34px 0 80px; }
-.reader-tools { display:flex; flex-wrap:wrap; gap: 10px; align-items:center; justify-content:space-between; margin: 18px 0; padding: 12px; border: 1px solid var(--line); border-radius: 999px; background: rgba(14,20,36,.7); }
-.reader-tools .group { display:flex; flex-wrap:wrap; gap: 8px; }
-.doc-hero { margin: 22px 0; padding: 28px; border: 1px solid var(--line); border-radius: 30px; background: linear-gradient(145deg, rgba(19,28,48,.95), rgba(12,17,31,.84)); }
-.doc-hero h1 { font-size: clamp(2rem, 5vw, 4.7rem); max-width: none; }
-.note { margin: 18px 0 0; padding: 16px 18px; border-left: 3px solid var(--cyan); border-radius: 14px; color: #dbe8ff; background: rgba(101,228,255,.08); }
-.reader-grid { display:grid; grid-template-columns: minmax(0, 1fr) 270px; gap: 18px; align-items:start; }
-.doc-body { overflow:auto; padding: 34px; border: 1px solid var(--line); border-radius: 26px; background: rgba(6,9,17,.84); box-shadow: 0 24px 90px rgba(0,0,0,.35); }
-.doc-body.focus { max-width: 820px; margin: 0 auto; font-size: 1.05rem; }
-.doc-body pre { white-space: pre-wrap; color: #d9e7ff; font: .92rem/1.55 "SFMono-Regular", Consolas, "Liberation Mono", monospace; }
-.doc-body.comfy pre, .doc-body.comfy { font-size: 1.06rem; line-height: 1.75; }
-.doc-body table { max-width:100%; }
-.doc-body, .doc-body p, .doc-body td, .doc-body li, .doc-body pre { color: #d8e6fa; }
-.doc-body a { color: var(--cyan); text-decoration: underline; }
-.doc-body a.rfc-local { color: var(--green); font-weight: 900; text-decoration-color: rgba(125,255,168,.55); }
-.doc-body a.rfc-external { color: var(--amber); font-weight: 900; text-decoration-style: dotted; }
-.doc-body a.rfc-local:after { content:" local"; font-size:.68em; color: var(--green); text-transform: uppercase; margin-left:.25em; }
-.doc-body a.rfc-external:after { content:" external"; font-size:.68em; color: var(--amber); text-transform: uppercase; margin-left:.25em; }
-.doc-body h1, .doc-body h2, .doc-body h3 { color: var(--text); }
-.toc-panel { position: sticky; top: 102px; max-height: calc(100vh - 130px); overflow:auto; padding: 18px; border: 1px solid var(--line); border-radius: 24px; background: rgba(14,20,36,.75); }
-.toc-panel h2 { margin: 18px 0 12px; font-size: .9rem; color: var(--cyan); text-transform: uppercase; letter-spacing:.14em; }
-.toc-panel a { display:block; color: var(--muted); font-size: .88rem; line-height:1.25; padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,.06); }
-.toc-panel a:hover { color: var(--text); }
-.toc-panel .muted { color: var(--muted); font-size:.88rem; }
-.header-reference-panel { margin: 0 0 18px; border: 1px solid rgba(101,228,255,.24); border-radius: 20px; background: linear-gradient(145deg, rgba(101,228,255,.10), rgba(255,112,184,.05)); overflow:hidden; }
-.header-reference-panel summary { cursor:pointer; list-style:none; padding: 14px 15px; border-bottom: 1px solid rgba(255,255,255,.08); }
-.header-reference-panel summary::-webkit-details-marker { display:none; }
-.header-reference-panel summary span { display:block; color: var(--cyan); text-transform: uppercase; letter-spacing:.13em; font-size:.66rem; font-weight:900; }
-.header-reference-panel summary strong { display:block; margin-top: 4px; color: var(--text); font-size:.94rem; line-height:1.2; }
-.header-reference-panel summary:after { content:"▾"; float:right; margin-top:-28px; color: var(--pink); font-weight:900; }
-.header-reference-panel:not([open]) summary { border-bottom:0; }
-.header-reference-panel:not([open]) summary:after { content:"▸"; }
-.header-note { margin: 12px 14px; color:#dbe8ff; font-size:.83rem; line-height:1.45; }
-.bit-axis { margin: 0 14px 6px; color: var(--muted); font-size:.72rem; font-weight:900; letter-spacing:.08em; text-transform:uppercase; }
-.header-diagram-wrap { margin: 0 12px 14px; overflow-x:auto; padding: 10px; border: 1px solid rgba(255,255,255,.10); border-radius: 16px; background: rgba(5,7,17,.58); }
-.header-bit-layout { min-width: 320px; width:100%; height:auto; display:block; }
-.bit-label { fill:#9fb0c9; font: 10px ui-monospace, SFMono-Regular, Consolas, monospace; }
-.bit-grid { stroke: rgba(255,255,255,.13); stroke-width: 1; }
-.field-block { stroke: rgba(255,255,255,.28); stroke-width: 1; }
-.field-0 { fill: rgba(101,228,255,.38); }
-.field-1 { fill: rgba(184,156,255,.38); }
-.field-2 { fill: rgba(255,112,184,.32); }
-.field-3 { fill: rgba(125,255,168,.28); }
-.field-4 { fill: rgba(255,211,106,.32); }
-.field-label { fill:#f6fbff; font: 9px ui-monospace, SFMono-Regular, Consolas, monospace; font-weight:800; pointer-events:none; }
-.header-field-table { width: calc(100% - 24px); margin: 0 12px 14px; border-collapse: collapse; font-size:.75rem; line-height:1.35; }
-.header-field-table th, .header-field-table td { padding: 7px 6px; border-top: 1px solid rgba(255,255,255,.08); vertical-align:top; }
-.header-field-table th { color: var(--cyan); text-align:left; font-size:.68rem; text-transform:uppercase; letter-spacing:.08em; }
-.header-field-table td:nth-child(2) { color: var(--amber); font-weight:900; white-space:nowrap; }
-footer { color: var(--muted); border-top: 1px solid var(--line); padding: 28px 0 50px; }
-@media (max-width: 980px) { .reader-grid { grid-template-columns: 1fr; } .toc-panel { position:relative; top:auto; max-height:none; order:-1; } }
-@media (max-width: 780px) { .toolbar-row { grid-template-columns: 1fr; } .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } .hero { padding-top: 46px; } .doc-body, .doc-hero { padding: 20px; border-radius: 22px; } .reader-tools { border-radius: 22px; } .header-field-table { font-size:.72rem; } }
+*::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: 
+    radial-gradient(circle at 12% -10%, rgba(101,228,255,.22), transparent 32rem),
+    radial-gradient(circle at 88% 8%, rgba(184,156,255,.2), transparent 31rem),
+    radial-gradient(circle at 50% 90%, rgba(255,112,184,.12), transparent 38rem),
+    linear-gradient(135deg, #050711 0%, #09111e 48%, #100b1f 100%);
+  color: var(--text);
+  font: 16px/1.6 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+body:before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: 
+    linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(circle at top, black, transparent 75%);
+}
+
+/* Subtle animated background stars */
+body:after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: transparent;
+}
+
+/* Animation keyframes */
+@keyframes float {
+  0%, 100% { transform: translateY(0) translateX(0); opacity: 0.4; }
+  50% { transform: translateY(-20px) translateX(10px); opacity: 0.7; }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.02); }
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(101,228,255,0.3); }
+  50% { box-shadow: 0 0 40px rgba(101,228,255,0.5), 0 0 60px rgba(184,156,255,0.3); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--cyan);
+}
+
+/* Shell container */
+.shell {
+  width: min(1180px, calc(100% - 34px));
+  margin: 0 auto;
+}
+
+/* ==================== HERO SECTION ==================== */
+.hero {
+  padding: 80px 0 48px;
+  text-align: center;
+  animation: slideUp 0.6s ease-out;
+}
+
+.eyebrow {
+  display: inline-block;
+  color: var(--cyan);
+  text-transform: uppercase;
+  letter-spacing: .22em;
+  font-size: .78rem;
+  font-weight: 800;
+  margin-bottom: 16px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(101,228,255,.1);
+  border: 1px solid rgba(101,228,255,.2);
+  animation: pulse 4s ease-in-out infinite;
+}
+
+h1 {
+  margin: 12px 0 16px;
+  font-size: clamp(2.7rem, 8vw, 6.8rem);
+  line-height: .86;
+  letter-spacing: -.08em;
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+  background: linear-gradient(135deg, var(--text), var(--cyan), var(--violet));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-fill-color: transparent;
+}
+
+.hero p {
+  max-width: 780px;
+  color: var(--text2);
+  font-size: 1.12rem;
+  line-height: 1.7;
+  margin: 0 auto;
+  font-weight: 400;
+}
+
+.hero strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* ==================== TOOLBAR ==================== */
+.toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  padding: 18px 0;
+  backdrop-filter: blur(24px) saturate(1.2);
+  -webkit-backdrop-filter: blur(24px) saturate(1.2);
+  background: linear-gradient(to bottom, 
+    rgba(7,9,18,.95), 
+    rgba(7,9,18,.82));
+  border-bottom: 1px solid var(--line);
+  transition: all 0.3s ease;
+}
+
+.toolbar.scrolled {
+  padding: 14px 0;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+}
+
+.toolbar-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 16px;
+  align-items: center;
+}
+
+.searchbox {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  padding: 14px 18px 14px 18px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--glass2);
+  box-shadow: 
+    inset 0 1px 0 rgba(255,255,255,.08),
+    0 8px 32px rgba(0,0,0,.25);
+  transition: all 0.25s ease;
+  backdrop-filter: blur(12px);
+}
+
+.searchbox:focus-within {
+  border-color: rgba(101,228,255,.5);
+  box-shadow: 
+    0 0 0 3px rgba(101,228,255,.15),
+    inset 0 1px 0 rgba(255,255,255,.08),
+    0 8px 40px rgba(0,0,0,.35);
+}
+
+.searchbox span {
+  color: var(--cyan);
+  font-weight: 900;
+  font-size: 1.05rem;
+  transition: color 0.2s ease;
+}
+
+.searchbox input {
+  flex: 1;
+  min-width: 240px;
+}
+
+.searchbox input::placeholder {
+  color: #7a88a1;
+}
+
+.searchbox input:focus {
+  outline: none;
+}
+
+.view-count {
+  color: var(--muted);
+  font-weight: 800;
+  white-space: nowrap;
+  font-size: 0.9rem;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: var(--glass);
+  border: 1px solid var(--line2);
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+/* ==================== BUTTONS ==================== */
+button.filter,
+button.reader-btn {
+  cursor: pointer;
+  color: #eaf3ff;
+  border: 1px solid rgba(255,255,255,.14);
+  background: var(--glass);
+  border-radius: 999px;
+  padding: 8px 14px;
+  font: inherit;
+  font-size: .86rem;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+button.filter::before,
+button.reader-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, 
+    rgba(255,255,255,.1) 0%,
+    rgba(255,255,255,.03) 100%);
+  opacity: 0;
+  transition: opacity 0.22s ease;
+}
+
+button.filter:hover,
+button.reader-btn:hover {
+  transform: translateY(-2px);
+  border-color: rgba(101,228,255,.6);
+  background: rgba(101,228,255,.2);
+  box-shadow: 0 8px 24px rgba(101,228,255,.25);
+}
+
+button.filter:hover::before,
+button.reader-btn:hover::before {
+  opacity: 1;
+}
+
+button.filter.active {
+  transform: translateY(-1px);
+  border-color: rgba(101,228,255,.7);
+  background: rgba(101,228,255,.25);
+  color: var(--text);
+}
+
+/* Special button styles for accent buttons */
+button.reader-btn.style-pink {
+  border-color: rgba(255,112,184,.4);
+  background: rgba(255,112,184,.12);
+  color: var(--pink);
+}
+
+button.reader-btn.style-pink:hover {
+  border-color: var(--pink);
+  background: rgba(255,112,184,.25);
+  color: var(--pink2);
+}
+
+button.reader-btn.style-cyan {
+  border-color: rgba(101,228,255,.4);
+  background: rgba(101,228,255,.12);
+  color: var(--cyan);
+}
+
+button.reader-btn.style-cyan:hover {
+  border-color: var(--cyan);
+  background: rgba(101,228,255,.25);
+}
+
+input {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: 1rem;
+}
+
+input::placeholder {
+  color: #7a88a1;
+}
+
+input:focus {
+  outline: none;
+}
+
+/* ==================== STATS ==================== */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+  margin: 28px 0 36px;
+}
+
+.stat {
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 20px;
+  background: linear-gradient(145deg, 
+    rgba(255,255,255,.09), 
+    rgba(255,255,255,.04));
+  min-height: 116px;
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, 
+    rgba(101,228,255,.1) 0%, 
+    transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.stat:hover {
+  transform: translateY(-4px);
+  border-color: rgba(101,228,255,.4);
+  box-shadow: 0 12px 40px rgba(101,228,255,.2);
+}
+
+.stat:hover::before {
+  opacity: 0.3;
+}
+
+.stat b {
+  display: block;
+  font-size: 1.55rem;
+  line-height: 1.2;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, var(--cyan), var(--violet));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-fill-color: transparent;
+}
+
+.stat span {
+  color: var(--muted2);
+  font-size: .86rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 8px;
+  display: block;
+}
+/* ==================== CARDS GRID ==================== */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+  gap: 20px;
+  padding: 12px 0 80px;
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  min-height: 252px;
+  padding: 24px;
+  border-radius: 30px;
+  background: linear-gradient(145deg, 
+    rgba(19,28,48,.98), 
+    rgba(11,16,30,.92));
+  border: 1px solid var(--line);
+  box-shadow: 
+    0 12px 48px rgba(0,0,0,.45),
+    inset 0 1px 0 rgba(255,255,255,.04);
+  transition: 
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.25s ease,
+    box-shadow 0.3s ease;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  opacity: 0.65;
+  background: 
+    radial-gradient(circle at top right, 
+      rgba(101,228,255,.24), 
+      transparent 48%),
+    radial-gradient(circle at bottom left, 
+      rgba(255,112,184,.18), 
+      transparent 45%);
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 32px;
+  border: 1px solid transparent;
+  background: linear-gradient(145deg, 
+    rgba(255,255,255,.12), 
+    rgba(255,255,255,.04));
+  opacity: 0;
+  transition: opacity 0.25s ease, border-color 0.25s ease;
+  z-index: -1;
+}
+
+.card:hover {
+  transform: translateY(-6px) scale(1.01);
+  border-color: rgba(101,228,255,.55);
+  box-shadow: 
+    0 20px 70px rgba(0,0,0,.55),
+    0 8px 32px rgba(101,228,255,.15);
+}
+
+.card:hover::before {
+  opacity: 0.85;
+}
+
+.card:hover::after {
+  opacity: 1;
+  border-color: rgba(101,228,255,.2);
+}
+
+.card.chain {
+  border-color: rgba(255,211,106,.38);
+}
+
+.card.chain::before {
+  background: 
+    radial-gradient(circle at top right, 
+      rgba(255,211,106,.28), 
+      transparent 48%),
+    radial-gradient(circle at bottom left, 
+      rgba(184,156,255,.22), 
+      transparent 45%);
+}
+
+.card.chain:hover {
+  border-color: rgba(255,211,106,.6);
+  box-shadow: 
+    0 20px 70px rgba(0,0,0,.55),
+    0 8px 32px rgba(255,211,106,.25);
+}
+
+.card > * {
+  position: relative;
+}
+
+/* Card animation on load */
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card {
+  animation: cardIn 0.4s ease-out backwards;
+}
+
+.card:nth-child(1) { animation-delay: 0.02s; }
+.card:nth-child(2) { animation-delay: 0.04s; }
+.card:nth-child(3) { animation-delay: 0.06s; }
+.card:nth-child(4) { animation-delay: 0.08s; }
+.card:nth-child(5) { animation-delay: 0.1s; }
+.card:nth-child(6) { animation-delay: 0.12s; }
+.card:nth-child(7) { animation-delay: 0.14s; }
+.card:nth-child(8) { animation-delay: 0.16s; }
+.card:nth-child(9) { animation-delay: 0.18s; }
+.card:nth-child(10) { animation-delay: 0.2s; }
+.card:nth-child(11) { animation-delay: 0.22s; }
+.card:nth-child(12) { animation-delay: 0.24s; }
+
+.num {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--cyan);
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.card:hover .num {
+  color: var(--cyan2);
+}
+
+.num::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 
+    0 0 20px var(--green),
+    0 0 40px var(--green2);
+  animation: pulse 3s ease-in-out infinite;
+}
+
+.card h2 {
+  margin: 16px 0 12px;
+  font-size: 1.38rem;
+  line-height: 1.14;
+  letter-spacing: -0.04em;
+  color: var(--text);
+  transition: color 0.2s ease;
+}
+
+.card:hover h2 {
+  color: var(--text2);
+}
+
+.card p {
+  margin: 0 0 22px;
+  color: var(--muted2);
+  line-height: 1.55;
+  font-size: 0.95rem;
+}
+
+.tags, .meta-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  color: #e2efff;
+  border: 1px solid rgba(255,255,255,.16);
+  background: rgba(255,255,255,.06);
+  border-radius: 999px;
+  padding: 6px 11px;
+  font-size: .76rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(10px);
+}
+
+.tag:hover {
+  border-color: rgba(101,228,255,.4);
+  background: rgba(101,228,255,.12);
+  color: var(--cyan);
+  transform: translateY(-1px);
+}
+
+.tag-routing {
+  border-color: rgba(184,156,255,.3);
+  background: rgba(184,156,255,.1);
+  color: rgba(184,156,255,.9);
+}
+
+.tag-transport {
+  border-color: rgba(255,211,106,.3);
+  background: rgba(255,211,106,.1);
+  color: rgba(255,211,106,.9);
+}
+
+.tag-application {
+  border-color: rgba(255,112,184,.3);
+  background: rgba(255,112,184,.1);
+  color: rgba(255,112,184,.9);
+}
+
+.tag-security {
+  border-color: rgba(125,255,168,.3);
+  background: rgba(125,255,168,.1);
+  color: rgba(125,255,168,.9);
+}
+
+.tag-monitoring {
+  border-color: rgba(101,228,255,.3);
+  background: rgba(101,228,255,.1);
+  color: rgba(101,228,255,.9);
+}
+
+.tag-update-chain {
+  color: #1b1300;
+  border-color: rgba(255,211,106,.8);
+  background: linear-gradient(135deg, var(--amber), #ff9f6a);
+  font-weight: 900;
+  box-shadow: 0 4px 16px rgba(255,211,106,.25);
+}
+
+.open {
+  display: inline-flex;
+  margin-top: 22px;
+  color: var(--text);
+  font-weight: 900;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  transition: all 0.2s ease;
+}
+
+.open::after {
+  content: "→";
+  margin-left: 9px;
+  color: var(--pink);
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.open:hover {
+  color: var(--cyan);
+}
+
+.open:hover::after {
+  transform: translateX(4px);
+  color: var(--pink2);
+}
+
+.empty {
+  display: none;
+  color: var(--muted);
+  padding: 48px 0 90px;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.empty.display {
+  display: block;
+  animation: slideUp 0.4s ease-out;
+}
+.toplink {
+  color: var(--cyan);
+  font-weight: 900;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.toplink:hover {
+  color: var(--cyan2);
+  text-shadow: 0 0 12px rgba(101,228,255,.5);
+}
+
+.progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  width: 0;
+  z-index: 20;
+  background: linear-gradient(90deg, var(--cyan), var(--violet), var(--pink), var(--amber));
+  background-size: 400% 100%;
+  box-shadow: 0 0 28px rgba(101,228,255,.7);
+  transition: width 0.3s ease;
+  animation: shimmer 8s linear infinite;
+}
+
+/* ==================== DOC LAYOUT ==================== */
+.doc-layout {
+  width: min(1160px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 40px 0 90px;
+  animation: slideUp 0.5s ease-out;
+}
+
+.reader-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px 0;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--glass2);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 8px 32px rgba(0,0,0,.2);
+}
+
+.reader-tools .group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.doc-hero {
+  margin: 24px 0 28px;
+  padding: 32px 36px;
+  border: 1px solid var(--line);
+  border-radius: 32px;
+  background: linear-gradient(145deg, 
+    rgba(19,28,48,.98), 
+    rgba(12,17,31,.92));
+  box-shadow: 
+    0 12px 50px rgba(0,0,0,.45),
+    inset 0 1px 0 rgba(255,255,255,.04);
+  position: relative;
+  overflow: hidden;
+}
+
+.doc-hero::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  opacity: 0.5;
+  background: 
+    radial-gradient(circle at top right, 
+      rgba(101,228,255,.18), 
+      transparent 45%),
+    radial-gradient(circle at bottom left, 
+      rgba(184,156,255,.14), 
+      transparent 42%);
+  pointer-events: none;
+}
+
+.doc-hero h1 {
+  font-size: clamp(2.1rem, 5.5vw, 5rem);
+  max-width: none;
+  line-height: 1.05;
+  letter-spacing: -0.06em;
+  margin: 0 0 12px;
+  color: var(--text);
+  background: linear-gradient(135deg, var(--text), var(--cyan));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-fill-color: transparent;
+}
+
+.doc-hero .eyebrow {
+  margin-bottom: 12px;
+  animation: none;
+  background: rgba(101,228,255,.08);
+  border: 1px solid rgba(101,228,255,.2);
+}
+
+.note {
+  margin: 20px 0 0;
+  padding: 18px 22px;
+  border-left: 4px solid var(--cyan);
+  border-radius: 16px;
+  color: #e2efff;
+  background: rgba(101,228,255,.07);
+  box-shadow: 0 4px 20px rgba(101,228,255,.1);
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
+.reader-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 20px;
+  align-items: start;
+}
+
+.doc-body {
+  overflow: auto;
+  padding: 38px 40px;
+  border: 1px solid var(--line);
+  border-radius: 30px;
+  background: rgba(6,9,17,.88);
+  box-shadow: 
+    0 28px 100px rgba(0,0,0,.45),
+    inset 0 1px 0 rgba(255,255,255,.03);
+}
+
+.doc-body.focus {
+  max-width: 840px;
+  margin: 0 auto;
+  font-size: 1.06rem;
+  line-height: 1.8;
+}
+
+.doc-body::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  opacity: 0.4;
+  background: 
+    radial-gradient(circle at top right, 
+      rgba(101,228,255,.12), 
+      transparent 45%),
+    radial-gradient(circle at bottom left, 
+      rgba(184,156,255,.1), 
+      transparent 42%);
+  pointer-events: none;
+  border-radius: 31px;
+}
+
+.doc-body pre {
+  white-space: pre-wrap;
+  color: #e2efff;
+  font: .94rem/1.6 "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  background: rgba(0,0,0,.2);
+  padding: 2px 4px;
+  border-radius: 6px;
+  overflow-x: auto;
+}
+
+.doc-body.comfy pre,
+.doc-body.comfy {
+  font-size: 1.08rem;
+  line-height: 1.8;
+}
+
+.doc-body table {
+  max-width: 100%;
+  border-collapse: collapse;
+  margin: 18px 0;
+}
+
+.doc-body table th,
+.doc-body table td {
+  padding: 10px 14px;
+  border: 1px solid var(--line2);
+}
+
+.doc-body table th {
+  background: var(--glass);
+  color: var(--cyan);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.85rem;
+}
+
+.doc-body, .doc-body p, .doc-body td, .doc-body li, .doc-body pre {
+  color: #e2efff;
+  line-height: 1.7;
+}
+
+.doc-body a {
+  color: var(--cyan);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: all 0.2s ease;
+}
+
+.doc-body a:hover {
+  color: var(--cyan2);
+  text-shadow: 0 0 12px rgba(101,228,255,.4);
+}
+
+.doc-body a.rfc-local {
+  color: var(--green);
+  font-weight: 900;
+  text-decoration-color: rgba(125,255,168,.55);
+}
+
+.doc-body a.rfc-external {
+  color: var(--amber);
+  font-weight: 900;
+  text-decoration-style: dotted;
+}
+
+.doc-body a.rfc-local:after {
+  content: " local";
+  font-size: .68em;
+  color: var(--green);
+  text-transform: uppercase;
+  margin-left: .25em;
+}
+
+.doc-body a.rfc-external:after {
+  content: " external";
+  font-size: .68em;
+  color: var(--amber);
+  text-transform: uppercase;
+  margin-left: .25em;
+}
+
+.doc-body h1, .doc-body h2, .doc-body h3 {
+  color: var(--text);
+  margin: 24px 0 16px;
+  line-height: 1.2;
+}
+
+.doc-body h1 {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  border-bottom: 2px solid var(--line);
+  padding-bottom: 12px;
+}
+
+.doc-body h2 {
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  border-bottom: 1px solid var(--line2);
+  padding-bottom: 8px;
+  color: var(--cyan);
+}
+
+.doc-body h3 {
+  font-size: 1.35rem;
+  color: var(--violet);
+}
+.toc-panel {
+  position: sticky;
+  top: 102px;
+  max-height: calc(100vh - 140px);
+  overflow: auto;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 26px;
+  background: var(--glass2);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 12px 40px rgba(0,0,0,.3);
+}
+
+.toc-panel::-webkit-scrollbar {
+  width: 6px;
+}
+
+.toc-panel::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 3px;
+}
+
+.toc-panel::-webkit-scrollbar-thumb {
+  background: rgba(101,228,255,.3);
+  border-radius: 3px;
+}
+
+.toc-panel::-webkit-scrollbar-thumb:hover {
+  background: rgba(101,228,255,.5);
+}
+
+.toc-panel h2 {
+  margin: 16px 0 14px;
+  font-size: .92rem;
+  color: var(--cyan);
+  text-transform: uppercase;
+  letter-spacing: .16em;
+  font-weight: 800;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line2);
+}
+
+.toc-panel a {
+  display: block;
+  color: var(--muted2);
+  font-size: .88rem;
+  line-height: 1.35;
+  padding: 9px 8px;
+  border-bottom: 1px solid var(--line2);
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.toc-panel a:hover {
+  color: var(--cyan);
+  background: rgba(101,228,255,.08);
+  padding-left: 14px;
+  border-left: 3px solid var(--cyan);
+}
+
+.toc-panel .muted {
+  color: var(--muted);
+  font-size: .86rem;
+  padding: 12px 8px;
+  font-style: italic;
+}
+.header-reference-panel,
+.detection-questions-panel {
+  margin: 0 0 20px;
+  border: 1px solid rgba(101,228,255,.28);
+  border-radius: 22px;
+  background: linear-gradient(145deg, 
+    rgba(101,228,255,.12), 
+    rgba(255,112,184,.06));
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(101,228,255,.15);
+}
+
+.doc-body > .header-reference-panel.inline-header-reference {
+  margin: 28px 0 34px;
+  box-shadow: 
+    0 20px 60px rgba(0,0,0,.35),
+    inset 0 1px 0 rgba(255,255,255,.06);
+  animation: slideUp 0.5s ease-out;
+}
+
+.doc-body > .header-reference-panel.inline-header-reference summary strong {
+  font-size: 1.1rem;
+  color: var(--text);
+}
+
+.doc-body > .header-reference-panel.inline-header-reference .header-note {
+  font-size: .94rem;
+  color: var(--text2);
+}
+
+.doc-body > .header-reference-panel.inline-header-reference .header-diagram-wrap {
+  margin-bottom: 20px;
+  padding: 14px;
+  border-radius: 16px;
+  background: rgba(5,7,17,.4);
+}
+
+.doc-body > .header-reference-panel.inline-header-reference .header-field-table {
+  font-size: .84rem;
+  line-height: 1.45;
+}
+.arp-flowchart-panel {
+  position: relative;
+  margin: 32px 0 38px;
+  padding: 28px;
+  border: 1px solid rgba(101,228,255,.35);
+  border-radius: 30px;
+  overflow: hidden;
+  background: 
+    radial-gradient(circle at 10% 0%, 
+      rgba(101,228,255,.26), 
+      transparent 35%),
+    radial-gradient(circle at 90% 10%, 
+      rgba(255,112,184,.22), 
+      transparent 36%),
+    linear-gradient(145deg, 
+      rgba(11,18,33,.99), 
+      rgba(17,22,44,.94));
+  box-shadow: 
+    0 28px 90px rgba(0,0,0,.42),
+    inset 0 1px 0 rgba(255,255,255,.08);
+  animation: slideUp 0.6s ease-out;
+}
+
+.arp-flowchart-panel:before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background: conic-gradient(from 120deg, 
+    transparent, 
+    rgba(101,228,255,.12), 
+    transparent, 
+    rgba(255,112,184,.1), 
+    transparent);
+  animation: arpGlow 16s linear infinite;
+  opacity: 0.8;
+}
+
+.arp-flowchart-panel > * {
+  position: relative;
+  z-index: 1;
+}
+
+.arp-flowchart-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 12px;
+  border: 1px solid rgba(101,228,255,.32);
+  border-radius: 999px;
+  color: var(--cyan);
+  background: rgba(101,228,255,.1);
+  font-size: .72rem;
+  font-weight: 900;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  backdrop-filter: blur(10px);
+}
+
+.arp-flowchart-panel h2 {
+  margin: 16px 0 10px;
+  color: var(--text);
+  font-size: clamp(1.4rem, 3.2vw, 2.25rem);
+  line-height: 1.15;
+  letter-spacing: -0.04em;
+}
+
+.arp-flowchart-panel .flow-subtitle {
+  margin: 0 0 20px;
+  color: #d0dfff;
+  max-width: 880px;
+  line-height: 1.6;
+  font-size: 1.02rem;
+}
+.arp-flow { display:grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 14px; align-items:stretch; }
+.flow-node {
+  position: relative;
+  min-height: 96px;
+  padding: 16px;
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 22px;
+  background: linear-gradient(145deg, 
+    rgba(255,255,255,.09), 
+    rgba(255,255,255,.04));
+  box-shadow: 
+    inset 0 1px 0 rgba(255,255,255,.08),
+    0 4px 16px rgba(0,0,0,.2);
+  transition: all 0.25s ease;
+}
+
+.flow-node:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    inset 0 1px 0 rgba(255,255,255,.12),
+    0 8px 28px rgba(0,0,0,.35);
+}
+
+.flow-node strong {
+  display: block;
+  color: #f8fbff;
+  font-size: .98rem;
+  line-height: 1.22;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.flow-node small {
+  display: block;
+  margin-top: 8px;
+  color: #c0d0e8;
+  line-height: 1.4;
+  font-size: 0.86rem;
+}
+
+.flow-node code {
+  color: #ffeb88;
+  font-weight: 900;
+  font-size: 0.9rem;
+}
+
+.flow-node.start {
+  grid-column: span 12;
+  min-height: auto;
+  border-color: rgba(125,255,168,.35);
+  background: linear-gradient(90deg, 
+    rgba(125,255,168,.18), 
+    rgba(101,228,255,.12));
+  box-shadow: 0 0 24px rgba(125,255,168,.2);
+}
+
+.flow-node.decision {
+  grid-column: span 4;
+  border-color: rgba(101,228,255,.4);
+  background: linear-gradient(145deg, 
+    rgba(101,228,255,.18), 
+    rgba(184,156,255,.1));
+}
+
+.flow-node.action {
+  grid-column: span 4;
+  border-color: rgba(184,156,255,.32);
+  background: linear-gradient(145deg, 
+    rgba(184,156,255,.12), 
+    rgba(255,255,255,.04));
+}
+
+.flow-node.merge {
+  grid-column: span 8;
+  border-color: rgba(255,211,106,.35);
+  background: linear-gradient(145deg, 
+    rgba(255,211,106,.16), 
+    rgba(255,112,184,.09));
+}
+
+.flow-node.reply {
+  grid-column: span 6;
+  border-color: rgba(125,255,168,.38);
+  background: linear-gradient(145deg, 
+    rgba(125,255,168,.16), 
+    rgba(101,228,255,.1));
+}
+
+.flow-node.stop {
+  grid-column: span 4;
+  border-color: rgba(255,112,184,.35);
+  background: linear-gradient(145deg, 
+    rgba(255,112,184,.2), 
+    rgba(255,255,255,.04));
+}
+
+.flow-pill {
+  display: inline-flex;
+  margin-bottom: 10px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: rgba(0,0,0,.3);
+  color: var(--cyan);
+  font-size: .66rem;
+  font-weight: 900;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  backdrop-filter: blur(10px);
+}
+
+.flow-node.stop .flow-pill { color: var(--pink); }
+.flow-node.reply .flow-pill { color: var(--green); }
+.flow-node.merge .flow-pill { color: var(--amber); }
+
+.flow-arrow {
+  grid-column: span 12;
+  text-align: center;
+  color: var(--cyan);
+  font-weight: 900;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  font-size: .72rem;
+  opacity: 0.95;
+  padding: 8px 0;
+}
+
+.flow-branch {
+  display: grid;
+  grid-column: span 12;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 16px;
+  margin: 4px 0;
+}
+
+.flow-branch .yes-line {
+  grid-column: span 8;
+  padding: 10px 14px;
+  border-left: 3px solid rgba(125,255,168,.6);
+  color: var(--green);
+  font-size: .74rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .16em;
+  background: rgba(125,255,168,.08);
+}
+
+.flow-branch .no-line {
+  grid-column: span 4;
+  padding: 10px 14px;
+  border-left: 3px solid rgba(255,112,184,.6);
+  color: var(--pink);
+  font-size: .74rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .16em;
+  background: rgba(255,112,184,.08);
+}
+@keyframes arpGlow { to { transform: rotate(1turn); } }
+.header-reference-panel summary,
+.detection-questions-panel summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--line2);
+  transition: background 0.2s ease;
+}
+
+.header-reference-panel summary:hover,
+.detection-questions-panel summary:hover {
+  background: rgba(101,228,255,.08);
+}
+
+.header-reference-panel summary::-webkit-details-marker,
+.detection-questions-panel summary::-webkit-details-marker {
+  display: none;
+}
+
+.header-reference-panel summary span,
+.detection-questions-panel summary span {
+  display: block;
+  color: var(--cyan);
+  text-transform: uppercase;
+  letter-spacing: .16em;
+  font-size: .68rem;
+  font-weight: 900;
+}
+
+.header-reference-panel summary strong,
+.detection-questions-panel summary strong {
+  display: block;
+  margin-top: 6px;
+  color: var(--text);
+  font-size: 1rem;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.header-reference-panel summary:after,
+.detection-questions-panel summary:after {
+  content: "▾";
+  float: right;
+  margin-top: -28px;
+  color: var(--pink);
+  font-weight: 900;
+  font-size: 1.1rem;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.header-reference-panel[open] summary:after,
+.detection-questions-panel[open] summary:after {
+  transform: rotate(180deg);
+  color: var(--cyan);
+}
+
+.header-reference-panel:not([open]) summary,
+.detection-questions-panel:not([open]) summary {
+  border-bottom: 0;
+}
+
+.header-reference-panel:not([open]) summary:after,
+.detection-questions-panel:not([open]) summary:after {
+  content: "▸";
+  color: var(--muted);
+}
+
+.header-note {
+  margin: 14px 16px;
+  color: #e2efff;
+  font-size: .88rem;
+  line-height: 1.5;
+}
+
+.detection-questions-panel ol {
+  margin: 14px 18px 18px 36px;
+  color: var(--text2);
+  font-size: .9rem;
+}
+
+.detection-questions-panel li + li {
+  margin-top: 8px;
+}
+.bit-axis {
+  margin: 0 16px 8px;
+  color: var(--muted2);
+  font-size: .74rem;
+  font-weight: 900;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.header-diagram-wrap {
+  margin: 0 14px 18px;
+  overflow-x: auto;
+  padding: 14px;
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 18px;
+  background: rgba(5,7,17,.65);
+  box-shadow: inset 0 8px 24px rgba(0,0,0,.3);
+}
+
+.header-bit-layout {
+  min-width: 340px;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.bit-label {
+  fill: #a8b8d4;
+  font: 10.5px ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-weight: 600;
+}
+
+.bit-grid {
+  stroke: rgba(255,255,255,.18);
+  stroke-width: 1.2;
+}
+
+.field-block {
+  stroke: rgba(255,255,255,.32);
+  stroke-width: 1.2;
+}
+
+.field-0 { fill: rgba(101,228,255,.42); }
+.field-1 { fill: rgba(184,156,255,.42); }
+.field-2 { fill: rgba(255,112,184,.36); }
+.field-3 { fill: rgba(125,255,168,.32); }
+.field-4 { fill: rgba(255,211,106,.36); }
+
+.field-label {
+  fill: #fcfdff;
+  font: 9.5px ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-weight: 800;
+  pointer-events: none;
+  text-shadow: 0 2px 4px rgba(0,0,0,.4);
+}
+
+.header-field-table {
+  width: calc(100% - 28px);
+  margin: 0 14px 18px;
+  border-collapse: collapse;
+  font-size: .78rem;
+  line-height: 1.4;
+}
+
+.header-field-table th,
+.header-field-table td {
+  padding: 9px 8px;
+  border-top: 1px solid var(--line2);
+  vertical-align: top;
+}
+
+.header-field-table th {
+  color: var(--cyan);
+  text-align: left;
+  font-size: .72rem;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  font-weight: 800;
+  background: rgba(101,228,255,.06);
+  padding: 10px 10px;
+}
+
+.header-field-table td:nth-child(2) {
+  color: var(--amber);
+  font-weight: 900;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.header-field-table td:nth-child(3) {
+  color: var(--text2);
+  font-size: 0.88em;
+}
+footer {
+  color: var(--muted2);
+  border-top: 1px solid var(--line);
+  padding: 32px 0 56px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+footer .shell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ==================== FLASHCARD STYLES ==================== */
+.study-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: var(--bg);
+  z-index: 9999;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  backdrop-filter: blur(20px);
+}
+
+.study-overlay::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, 
+    rgba(7,9,18,0.95), 
+    rgba(7,9,18,0.85));
+  backdrop-filter: blur(12px);
+}
+
+.study-overlay.active {
+  display: flex;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.study-header {
+  position: absolute;
+  top: 24px;
+  width: min(840px, 100%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--muted2);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.study-progress-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 5px;
+  background: linear-gradient(90deg, var(--cyan), var(--violet), var(--pink));
+  background-size: 200% 100%;
+  transition: width 0.3s ease;
+  animation: shimmer 10s linear infinite;
+  box-shadow: 0 0 28px rgba(101,228,255,.6);
+}
+
+.card-container {
+  width: min(640px, 100%);
+  height: 420px;
+  perspective: 1200px;
+  cursor: pointer;
+}
+
+.flashcard {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.card-container.flipped .flashcard {
+  transform: rotateY(180deg);
+}
+
+.card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 44px;
+  border-radius: 34px;
+  border: 2px solid var(--line);
+  background: var(--panel);
+  box-shadow: 
+    0 36px 120px rgba(0,0,0,0.6),
+    inset 0 2px 0 rgba(255,255,255,.04);
+  transition: all 0.3s ease;
+}
+
+.card-face:hover {
+  box-shadow: 
+    0 40px 140px rgba(0,0,0,0.7),
+    inset 0 2px 0 rgba(255,255,255,.06);
+}
+
+.card-back {
+  transform: rotateY(180deg);
+  border-color: var(--cyan);
+  background: linear-gradient(145deg, 
+    rgba(14,20,36,0.98), 
+    rgba(11,16,30,0.94));
+}
+
+.card-category {
+  position: absolute;
+  top: 32px;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  color: var(--cyan);
+  font-weight: 800;
+}
+
+.card-prompt {
+  font-size: 1.9rem;
+  font-weight: 800;
+  line-height: 1.18;
+  margin: 24px 0;
+  color: var(--text);
+}
+
+.card-answer {
+  font-size: 1.15rem;
+  line-height: 1.65;
+  color: var(--text2);
+  max-width: 100%;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.card-meta {
+  position: absolute;
+  bottom: 32px;
+  font-size: 0.74rem;
+  color: var(--muted2);
+  letter-spacing: 0.08em;
+}
+
+.study-actions {
+  margin-top: 44px;
+  display: none;
+  gap: 18px;
+}
+
+.study-actions.visible {
+  display: flex;
+  animation: slideUp 0.3s ease-out;
+}
+
+.srs-btn {
+  padding: 14px 28px;
+  border-radius: 999px;
+  border: none;
+  font-weight: 900;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  letter-spacing: 0.04em;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+
+.srs-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.6);
+}
+
+.srs-btn:active {
+  transform: translateY(-1px);
+}
+
+.btn-again {
+  background: linear-gradient(145deg, var(--pink), var(--pink2));
+  color: var(--bg);
+}
+
+.btn-hard {
+  background: linear-gradient(145deg, var(--amber), var(--amber2));
+  color: var(--bg);
+}
+
+.btn-good {
+  background: linear-gradient(145deg, var(--cyan), var(--cyan2));
+  color: var(--bg);
+}
+
+.btn-easy {
+  background: linear-gradient(145deg, var(--green), var(--green2));
+  color: var(--bg);
+}
+
+.study-summary {
+  text-align: center;
+  display: none;
+  padding: 40px 0;
+}
+
+.study-summary.active {
+  display: block;
+  animation: slideUp 0.4s ease-out;
+}
+
+.study-summary h1 {
+  color: var(--text);
+  margin-bottom: 32px;
+  font-size: 2.4rem;
+  background: linear-gradient(135deg, var(--cyan), var(--violet));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-fill-color: transparent;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin: 32px 0 40px;
+}
+
+.summary-stat {
+  padding: 24px;
+  background: var(--panel2);
+  border-radius: 24px;
+  border: 1px solid var(--line);
+  transition: all 0.25s ease;
+}
+
+.summary-stat:hover {
+  transform: translateY(-4px);
+  border-color: rgba(101,228,255,.4);
+  box-shadow: 0 12px 40px rgba(101,228,255,.2);
+}
+
+.summary-stat b {
+  display: block;
+  font-size: 2.2rem;
+  color: var(--cyan);
+  line-height: 1.1;
+}
+
+.summary-stat span {
+  color: var(--muted2);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 8px;
+  display: block;
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+@media (max-width: 980px) {
+  .reader-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .toc-panel {
+    position: relative;
+    top: auto;
+    max-height: none;
+    order: -1;
+  }
+  
+  .stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 780px) {
+  .toolbar-row {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  
+  .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  
+  .hero {
+    padding-top: 52px;
+  }
+  
+  .doc-body,
+  .doc-hero {
+    padding: 22px;
+    border-radius: 24px;
+  }
+  
+  .reader-tools {
+    border-radius: 24px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .reader-tools .group {
+    justify-content: center;
+  }
+  
+  .header-field-table {
+    font-size: .74rem;
+  }
+  
+  .arp-flowchart-panel {
+    padding: 20px;
+    border-radius: 24px;
+  }
+  
+  .flow-node,
+  .flow-node.start,
+  .flow-node.decision,
+  .flow-node.action,
+  .flow-node.merge,
+  .flow-node.reply,
+  .flow-node.stop {
+    grid-column: span 12;
+  }
+  
+  .summary-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 50px 0 32px;
+  }
+  
+  h1 {
+    font-size: clamp(2rem, 10vw, 4rem);
+  }
+  
+  .searchbox {
+    padding: 12px 14px;
+  }
+  
+  .card {
+    min-height: 240px;
+    padding: 20px;
+  }
+  
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  
+  .stat {
+    min-height: 100px;
+    padding: 16px;
+  }
+  
+  .stat b {
+    font-size: 1.35rem;
+  }
+}
 
 /* Flashcard SRS Overlay */
 .study-overlay {
@@ -552,6 +2486,516 @@ footer { color: var(--muted); border-top: 1px solid var(--line); padding: 28px 0
   color: var(--muted);
   font-size: 0.8rem;
 }
+
+/* ==================== DESIGN REFRESH: hierarchy, scanning, accessibility ==================== */
+:root {
+  --focus-ring: rgba(101, 228, 255, .55);
+  --surface-strong: rgba(11, 16, 30, .94);
+  --surface-soft: rgba(255, 255, 255, .045);
+}
+
+::selection { background: rgba(101,228,255,.28); color: var(--text); }
+
+body { text-wrap: pretty; }
+
+.skip-link {
+  position: fixed;
+  left: 18px;
+  top: 14px;
+  z-index: 10000;
+  transform: translateY(-140%);
+  padding: 10px 14px;
+  border-radius: 999px;
+  color: #04111a;
+  background: var(--cyan);
+  font-weight: 900;
+  box-shadow: 0 16px 40px rgba(0,0,0,.45);
+}
+.skip-link:focus { transform: translateY(0); }
+
+:where(a, button, input, textarea, summary):focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px rgba(101,228,255,.12);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.inline-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.inline-actions.center { justify-content: center; }
+
+.hero {
+  position: relative;
+  isolation: isolate;
+}
+.hero::after {
+  content: "";
+  display: block;
+  width: min(760px, 72vw);
+  height: 1px;
+  margin: 32px auto 0;
+  background: linear-gradient(90deg, transparent, rgba(101,228,255,.52), rgba(255,112,184,.32), transparent);
+}
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 26px;
+}
+.hero-action {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 15px;
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 999px;
+  color: var(--text2);
+  background: linear-gradient(145deg, rgba(255,255,255,.085), rgba(255,255,255,.035));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 14px 34px rgba(0,0,0,.24);
+  font-weight: 850;
+  font-size: .9rem;
+  transition: transform .18s ease, border-color .18s ease, background .18s ease, color .18s ease;
+}
+.hero-action:hover {
+  transform: translateY(-2px);
+  color: var(--text);
+  border-color: rgba(101,228,255,.46);
+  background: rgba(101,228,255,.11);
+}
+.hero-action.primary {
+  color: #061018;
+  border-color: rgba(101,228,255,.72);
+  background: linear-gradient(135deg, var(--cyan), var(--violet));
+}
+
+.study-plan {
+  margin: 26px 0 34px;
+  padding: clamp(22px, 3vw, 34px);
+  border: 1px solid rgba(101,228,255,.18);
+  border-radius: 34px;
+  background:
+    radial-gradient(circle at top left, rgba(101,228,255,.14), transparent 30%),
+    radial-gradient(circle at 85% 12%, rgba(255,112,184,.12), transparent 28%),
+    linear-gradient(145deg, rgba(13,20,36,.96), rgba(10,14,28,.92));
+  box-shadow:
+    0 24px 80px rgba(0,0,0,.34),
+    inset 0 1px 0 rgba(255,255,255,.08);
+}
+
+.study-plan-intro h2 {
+  margin: 10px 0 14px;
+  font-size: clamp(2rem, 4vw, 3.3rem);
+  line-height: .94;
+  letter-spacing: -.05em;
+  color: var(--text);
+}
+
+.study-plan-intro p {
+  max-width: 72ch;
+  margin: 0;
+  color: var(--text2);
+  font-size: 1.02rem;
+}
+
+.study-plan-grid,
+.study-track-grid {
+  display: grid;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.study-plan-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.study-track-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.study-card,
+.study-track {
+  position: relative;
+  overflow: hidden;
+  padding: 22px;
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 26px;
+  background: linear-gradient(160deg, rgba(255,255,255,.055), rgba(255,255,255,.02));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
+}
+
+.study-card::before,
+.study-track::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(101,228,255,.45), transparent 60%);
+}
+
+.study-card h3,
+.study-track h3 {
+  margin: 8px 0 12px;
+  font-size: 1.28rem;
+  line-height: 1.1;
+  letter-spacing: -.03em;
+  color: var(--text);
+}
+
+.study-card p,
+.study-track p,
+.study-active span {
+  color: var(--text2);
+}
+
+.study-card-kicker,
+.study-track-kicker {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 0 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(101,228,255,.22);
+  color: var(--cyan);
+  background: rgba(101,228,255,.08);
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  font-size: .7rem;
+  font-weight: 900;
+}
+
+.study-list {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--text2);
+}
+
+.study-list li + li {
+  margin-top: 10px;
+}
+
+.study-aside {
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: .92rem;
+}
+
+.if-then-form {
+  display: grid;
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.if-then-form label {
+  display: grid;
+  gap: 8px;
+}
+
+.if-then-form label span {
+  color: var(--text);
+  font-size: .9rem;
+  font-weight: 700;
+}
+
+.if-then-preview {
+  min-height: 74px;
+  padding: 14px 16px;
+  border: 1px dashed rgba(255,255,255,.14);
+  border-radius: 18px;
+  color: var(--text2);
+  background: rgba(6,10,20,.45);
+}
+
+.study-status {
+  min-height: 1.2em;
+  color: var(--green);
+  font-size: .9rem;
+  font-weight: 700;
+}
+
+.study-status-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: end;
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.study-active {
+  display: grid;
+  gap: 5px;
+}
+
+.study-active strong {
+  color: var(--text);
+  font-size: 1.15rem;
+}
+
+.study-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0 18px;
+}
+
+.study-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0 11px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.1);
+  background: rgba(255,255,255,.05);
+  color: var(--text2);
+  font-size: .84rem;
+  font-weight: 700;
+}
+
+.study-track-head {
+  display: grid;
+  gap: 8px;
+}
+
+.study-path-btn.active {
+  border-color: rgba(101,228,255,.68);
+  box-shadow: 0 0 0 3px rgba(101,228,255,.12);
+}
+
+.science-list {
+  display: grid;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.science-list li {
+  display: grid;
+  gap: 4px;
+  padding-left: 18px;
+  border-left: 2px solid rgba(101,228,255,.18);
+}
+
+.science-list a {
+  color: var(--text);
+  font-weight: 800;
+}
+
+.science-list span {
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.toolbar-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: flex-end;
+}
+.view-count { min-height: 38px; display: inline-flex; align-items: center; }
+
+.grid { align-items: stretch; }
+.card {
+  display: flex;
+  flex-direction: column;
+}
+.card .tags { margin-top: auto; }
+.card .open { align-self: flex-start; }
+.card p { max-width: 62ch; }
+body.card-compact .grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px; }
+body.card-compact .card { min-height: 190px; padding: 18px; border-radius: 22px; }
+body.card-compact .card h2 { font-size: 1.12rem; margin: 12px 0 8px; }
+body.card-compact .card p { font-size: .87rem; line-height: 1.45; margin-bottom: 14px; }
+body.card-compact .open { margin-top: 14px; }
+
+.toc-panel a.active {
+  color: var(--text);
+  border-color: rgba(101,228,255,.34);
+  background: linear-gradient(90deg, rgba(101,228,255,.14), transparent);
+  padding-left: 10px;
+  border-radius: 10px;
+}
+
+/* Interactive RFC graph: contained controls + readable legend */
+.map-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: none;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 20% 8%, rgba(101,228,255,.18), transparent 30%),
+    radial-gradient(circle at 82% 18%, rgba(255,82,168,.14), transparent 28%),
+    linear-gradient(180deg, rgba(5,8,18,.98), rgba(2,4,12,.99));
+}
+.map-overlay.active { display: grid; grid-template-rows: auto 1fr; }
+.map-header {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 18px clamp(18px, 3vw, 36px);
+  border-bottom: 1px solid rgba(101,228,255,.14);
+  background: rgba(4,8,18,.72);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 18px 48px rgba(0,0,0,.34);
+}
+.map-header .eyebrow {
+  margin: 0;
+  letter-spacing: .18em;
+  white-space: nowrap;
+}
+.map-container {
+  position: relative;
+  min-height: 0;
+  overflow: hidden;
+  background-image:
+    linear-gradient(rgba(101,228,255,.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(101,228,255,.045) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+.map-container svg { display: block; width: 100%; height: 100%; }
+.map-legend {
+  position: absolute;
+  left: clamp(16px, 2.5vw, 30px);
+  top: clamp(16px, 2.5vw, 30px);
+  z-index: 2;
+  width: min(300px, calc(100vw - 32px));
+  max-height: calc(100% - 32px);
+  overflow: auto;
+  padding: 18px;
+  border: 1px solid rgba(101,228,255,.20);
+  border-radius: 24px;
+  color: var(--text);
+  background: linear-gradient(145deg, rgba(8,14,30,.92), rgba(6,9,20,.82));
+  box-shadow: 0 24px 70px rgba(0,0,0,.42), inset 0 1px 0 rgba(255,255,255,.08);
+  backdrop-filter: blur(16px);
+}
+.legend-group + .legend-group { margin-top: 18px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.08); }
+.legend-group h4 {
+  margin: 0 0 12px;
+  color: var(--text);
+  font-size: .82rem;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+}
+.legend-item {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  align-items: center;
+  gap: 10px;
+  min-height: 30px;
+  color: var(--text2);
+  font-size: .93rem;
+  line-height: 1.25;
+}
+.legend-color {
+  width: 13px;
+  height: 13px;
+  border-radius: 999px;
+  box-shadow: 0 0 16px currentColor;
+}
+.legend-line {
+  width: 20px;
+  height: 0;
+  border-radius: 999px;
+  border-top: 2px solid rgba(226,232,255,.78);
+}
+.link {
+  fill: none;
+  stroke: rgba(226,232,255,.45);
+  stroke-width: 1.8;
+}
+.link.update-chain { stroke: var(--amber); stroke-dasharray: 8 6; }
+.link.threat { stroke: var(--pink); stroke-dasharray: 2 5; }
+.link.highlight { stroke-width: 3.5; filter: drop-shadow(0 0 8px currentColor); }
+.link.dimmed, .node.dimmed { opacity: .18; }
+.node { cursor: pointer; transition: opacity .18s ease; }
+.node rect {
+  rx: 13;
+  ry: 13;
+  fill: rgba(10,16,32,.92);
+  stroke: var(--cyan);
+  stroke-width: 1.4;
+  filter: drop-shadow(0 12px 18px rgba(0,0,0,.45));
+}
+.node-link rect { stroke: var(--violet); }
+.node-routing rect, .node-security rect { stroke: var(--cyan); }
+.node-transport rect { stroke: var(--amber); }
+.node-application rect { stroke: var(--pink); }
+.node-monitoring rect { stroke: var(--green); }
+.node text {
+  fill: var(--text);
+  font-size: 10px;
+  font-weight: 800;
+  text-anchor: middle;
+  pointer-events: none;
+}
+.node .node-rfc { fill: var(--muted); font-size: 9px; font-weight: 700; }
+
+.doc-body pre {
+  max-width: 92ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+.doc-body.focus pre { max-width: 78ch; }
+.reader-tools { min-height: 58px; }
+
+@media (max-width: 780px) {
+  .hero-actions { justify-content: flex-start; }
+  .hero-action { width: 100%; justify-content: center; }
+  .study-plan { padding: 20px 16px; border-radius: 26px; }
+  .study-plan-grid,
+  .study-track-grid { grid-template-columns: 1fr; }
+  .study-status-row { align-items: stretch; }
+  .study-status-row .reader-btn { width: 100%; }
+  .searchbox input { min-width: 0; }
+  .toolbar-controls { width: 100%; justify-content: space-between; }
+  .toolbar-controls .reader-btn { flex: 1; }
+  .map-overlay.active { grid-template-rows: auto 1fr; }
+  .map-header { align-items: flex-start; flex-direction: column; padding: 14px 16px; }
+  .map-header .eyebrow { white-space: normal; }
+  .map-legend {
+    left: 12px;
+    right: 12px;
+    top: 12px;
+    width: auto;
+    max-height: 45%;
+    border-radius: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .001ms !important;
+  }
+  .eyebrow, .num::before, .study-progress-bar, .arp-flowchart-panel::before { animation: none !important; }
+  .card:hover, .hero-action:hover, button.reader-btn:hover, button.filter:hover { transform: none !important; }
+}
+
+
 """
 
 
@@ -561,6 +3005,7 @@ const cards = [...document.querySelectorAll('.card')];
 const empty = document.querySelector('.empty');
 const count = document.querySelector('#count');
 const filters = [...document.querySelectorAll('.filter')];
+const densityToggleBtn = document.querySelector('#density-toggle');
 const viewNotesBtn = document.querySelector('#view-notes');
 const backToGridBtn = document.querySelector('#back-to-grid');
 const notesView = document.querySelector('#notes-view');
@@ -570,6 +3015,33 @@ const exportBtn = document.querySelector('#export-notes');
 const importBtn = document.querySelector('#import-notes-btn');
 const importFile = document.querySelector('#import-notes-file');
 const noteFilterBtns = [...document.querySelectorAll('.notes-filter-btn')];
+const toolbar = document.querySelector('.toolbar');
+const studyPathBtns = [...document.querySelectorAll('.study-path-btn')];
+const clearStudyPathBtn = document.querySelector('#clear-study-path');
+const activeStudyPathEl = document.querySelector('#active-study-path');
+const ifThenCueInput = document.querySelector('#if-then-cue');
+const ifThenActionInput = document.querySelector('#if-then-action');
+const ifThenPreview = document.querySelector('#if-then-preview');
+const ifThenStatus = document.querySelector('#if-then-status');
+const saveIfThenBtn = document.querySelector('#save-if-then');
+const clearIfThenBtn = document.querySelector('#clear-if-then');
+const emptyDefaultText = empty?.textContent || '';
+
+function readJSON(key, fallback = {}) {
+  try { return JSON.parse(localStorage.getItem(key) || JSON.stringify(fallback)); }
+  catch (err) { return fallback; }
+}
+
+function writeJSON(key, value) {
+  try { localStorage.setItem(key, JSON.stringify(value)); }
+  catch (err) { console.warn(`Could not save ${key}`, err); }
+}
+
+function setOverlayOpen(overlay, open) {
+  if (!overlay) return;
+  overlay.classList.toggle('active', open);
+  overlay.setAttribute('aria-hidden', String(!open));
+}
 
 // FSRS Study Mode
 const studyOverlay = document.querySelector('#study-overlay');
@@ -584,6 +3056,14 @@ const srsDueBadge = document.querySelector('#srs-due-count');
 
 let activeTag = 'all';
 let activeNoteFilter = 'all';
+let activeStudyPath = '';
+let activeStudyRfcSet = null;
+
+let savedDensity = 'comfortable';
+try { savedDensity = localStorage.getItem('rfc_card_density') || 'comfortable'; }
+catch (err) { savedDensity = 'comfortable'; }
+document.body.classList.toggle('card-compact', savedDensity === 'compact');
+if (densityToggleBtn) densityToggleBtn.textContent = savedDensity === 'compact' ? 'Comfort cards' : 'Compact cards';
 let currentSession = [];
 let sessionIdx = 0;
 let sessionStats = { reviewed: 0, mastered: 0, dueTomorrow: 0 };
@@ -591,11 +3071,11 @@ let sessionStats = { reviewed: 0, mastered: 0, dueTomorrow: 0 };
 const w = [0.4, 0.6, 2.4, 5.8, 4.93, 0.94, 0.86, 0.01, 1.49, 0.14, 0.94, 2.18, 0.05, 0.34, 1.26, 0.29, 2.61];
 
 function getSRSData() {
-  return JSON.parse(localStorage.getItem('rfc_srs_state_fsrs') || '{}');
+  return readJSON('rfc_srs_state_fsrs');
 }
 
 function saveSRSData(state) {
-  localStorage.setItem('rfc_srs_state_fsrs', JSON.stringify(state));
+  writeJSON('rfc_srs_state_fsrs', state);
   updateDueCounts();
 }
 
@@ -638,7 +3118,7 @@ function initStudySession(all = false) {
   if (currentSession.length === 0 && !all) { alert("No cards due! Use 'Study All' to practice anyway."); return; }
   currentSession.sort(() => Math.random() - 0.5);
   sessionIdx = 0; sessionStats = { reviewed: 0, mastered: 0, dueTomorrow: 0 };
-  studyOverlay.classList.add('active'); studySummary.classList.remove('active');
+  setOverlayOpen(studyOverlay, true); studySummary.classList.remove('active');
   cardContainer.style.display = 'block'; showCard();
 }
 
@@ -684,19 +3164,19 @@ document.querySelectorAll('.srs-btn').forEach(btn => {
   btn.addEventListener('click', (e) => { e.stopPropagation(); handleAnswer(parseInt(btn.dataset.quality)); });
 });
 
-if (closeStudyBtn) closeStudyBtn.addEventListener('click', () => studyOverlay.classList.remove('active'));
-document.querySelector('#finish-study').addEventListener('click', () => studyOverlay.classList.remove('active'));
+if (closeStudyBtn) closeStudyBtn.addEventListener('click', () => setOverlayOpen(studyOverlay, false));
+document.querySelector('#finish-study')?.addEventListener('click', () => setOverlayOpen(studyOverlay, false));
 document.querySelector('#restart-study').addEventListener('click', () => initStudySession());
 if (startStudyBtn) startStudyBtn.addEventListener('click', () => initStudySession(false));
 if (studyAllBtn) studyAllBtn.addEventListener('click', () => initStudySession(true));
 
-const resetSrsBtn = document.querySelector(\"#reset-srs\");
-if (resetSrsBtn) resetSrsBtn.addEventListener(\"click\", () => { if(confirm(\"Wipe all FSRS progress?\")) { localStorage.removeItem(\"rfc_srs_state_fsrs\"); location.reload(); } });
+const resetSrsBtn = document.querySelector("#reset-srs");
+if (resetSrsBtn) resetSrsBtn.addEventListener("click", () => { if(confirm("Wipe all FSRS progress?")) { try { localStorage.removeItem("rfc_srs_state_fsrs"); } catch (err) {} location.reload(); } });
 
 window.addEventListener('keydown', (e) => {
   if (!studyOverlay || !studyOverlay.classList.contains('active')) return;
-  if (e.key === 'Escape') studyOverlay.classList.remove('active');
-  if (e.key === ' ') { if (!cardContainer.classList.contains('flipped')) cardContainer.click(); }
+  if (e.key === 'Escape') setOverlayOpen(studyOverlay, false);
+  if (e.key === ' ') { e.preventDefault(); if (!cardContainer.classList.contains('flipped')) cardContainer.click(); }
   if (cardContainer.classList.contains('flipped')) {
     if (e.key === '1') handleAnswer(1); if (e.key === '2') handleAnswer(2); if (e.key === '3') handleAnswer(3); if (e.key === '4') handleAnswer(4);
   }
@@ -717,103 +3197,202 @@ const GRAPH_DATA = {
     }));
   },
   links: [
-    { source: \"793\", target: \"791\", type: \"dependency\" }, { source: \"768\", target: \"791\", type: \"dependency\" },
-    { source: \"1035\", target: \"768\", type: \"dependency\" }, { source: \"1035\", target: \"793\", type: \"dependency\" },
-    { source: \"4271\", target: \"793\", type: \"dependency\" }, { source: \"2131\", target: \"768\", type: \"dependency\" },
-    { source: \"5321\", target: \"793\", type: \"dependency\" }, { source: \"3954\", target: \"768\", type: \"dependency\" },
-    { source: \"7011\", target: \"768\", type: \"dependency\" }, { source: \"2616\", target: \"793\", type: \"dependency\" },
-    { source: \"7230\", target: \"793\", type: \"dependency\" }, { source: \"7540\", target: \"793\", type: \"dependency\" },
-    { source: \"2328\", target: \"791\", type: \"dependency\" }, { source: \"826\", target: \"791\", type: \"dependency\" },
-    { source: \"2460\", target: \"791\", type: \"update-chain\" }, { source: \"7230\", target: \"2616\", type: \"update-chain\" },
-    { source: \"1035\", target: \"5321\", type: \"threat\" }, { source: \"1035\", target: \"768\", type: \"threat\" },
-    { source: \"4271\", target: \"2328\", type: \"threat\" }, { source: \"791\", target: \"2460\", type: \"threat\" },
-    { source: \"793\", target: \"7540\", type: \"threat\" },
+    { source: "793", target: "791", type: "dependency" }, { source: "768", target: "791", type: "dependency" },
+    { source: "1035", target: "768", type: "dependency" }, { source: "1035", target: "793", type: "dependency" },
+    { source: "4271", target: "793", type: "dependency" }, { source: "2131", target: "768", type: "dependency" },
+    { source: "5321", target: "793", type: "dependency" }, { source: "3954", target: "768", type: "dependency" },
+    { source: "7011", target: "768", type: "dependency" }, { source: "2616", target: "793", type: "dependency" },
+    { source: "7230", target: "793", type: "dependency" }, { source: "7540", target: "793", type: "dependency" },
+    { source: "2328", target: "791", type: "dependency" }, { source: "826", target: "791", type: "dependency" },
+    { source: "2460", target: "791", type: "update-chain" }, { source: "7230", target: "2616", type: "update-chain" },
+    { source: "1035", target: "5321", type: "threat" }, { source: "1035", target: "768", type: "threat" },
+    { source: "4271", target: "2328", type: "threat" }, { source: "791", target: "2460", type: "threat" },
+    { source: "793", target: "7540", type: "threat" },
   ]
 };
 
 function initMap() {
-  if (!window.d3) { console.error(\"D3 not loaded\"); return; }
-  const nodes = GRAPH_DATA.nodes; if (!nodes.length) { console.warn(\"No nodes found\"); return; }
+  if (!mapContainer) return;
+  const nodes = GRAPH_DATA.nodes; if (!nodes.length) { console.warn("No nodes found"); return; }
   const nodeIds = new Set(nodes.map(n => n.id));
   const links = GRAPH_DATA.links.filter(l => nodeIds.has(l.source) && nodeIds.has(l.target)).map(l => ({...l}));
-  
+
   const width = mapContainer.clientWidth || window.innerWidth;
   const height = mapContainer.clientHeight || window.innerHeight;
-  
-  d3.select(\"#map-container svg\").remove();
-  const svg = d3.select(\"#map-container\").append(\"svg\")
-    .attr(\"width\", \"100%\").attr(\"height\", \"100%\").attr(\"viewBox\", [0, 0, width, height]);
-  const g = svg.append(\"g\");
 
-  svg.call(d3.zoom().extent([[0, 0], [width, height]]).scaleExtent([0.1, 8]).on(\"zoom\", ({transform}) => g.attr(\"transform\", transform)));
+  mapContainer.querySelector('svg')?.remove();
+  const ns = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(ns, 'svg');
+  svg.setAttribute('width', '100%');
+  svg.setAttribute('height', '100%');
+  svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+  svg.setAttribute('role', 'img');
+  svg.setAttribute('aria-label', 'RFC dependency graph');
+  const g = document.createElementNS(ns, 'g');
+  svg.appendChild(g);
+  mapContainer.appendChild(svg);
 
-  const simulation = d3.forceSimulation(nodes)
-    .force(\"link\", d3.forceLink(links).id(d => d.id).distance(150))
-    .force(\"charge\", d3.forceManyBody().strength(-400))
-    .force(\"center\", d3.forceCenter(width / 2, height / 2))
-    .force(\"collision\", d3.forceCollide().radius(70));
+  const centerX = width / 2;
+  const centerY = height / 2;
+  const radius = Math.max(180, Math.min(width, height) * 0.36);
+  const priority = new Set(['768', '791', '792', '793', '826', '1035', '2131', '2328', '3954', '4271', '5321', '7011', '7230', '7540']);
+  const visibleNodes = nodes.filter(n => priority.has(n.id));
+  const visibleIds = new Set(visibleNodes.map(n => n.id));
+  const visibleLinks = links.filter(l => visibleIds.has(l.source) && visibleIds.has(l.target));
+  visibleNodes.forEach((node, index) => {
+    const angle = (index / visibleNodes.length) * Math.PI * 2 - Math.PI / 2;
+    node.x = centerX + Math.cos(angle) * radius;
+    node.y = centerY + Math.sin(angle) * radius;
+  });
+  const byId = new Map(visibleNodes.map(node => [node.id, node]));
+  const linkEls = [];
+  const nodeEls = [];
 
-  const link = g.append(\"g\").selectAll(\"path\").data(links).join(\"path\").attr(\"class\", d => `link ${d.type}`);
-  const node = g.append(\"g\").selectAll(\".node\").data(nodes).join(\"g\").attr(\"class\", d => `node node-${d.layer}`)
-    .call(d3.drag().on(\"start\", (e) => { if (!e.active) simulation.alphaTarget(0.3).restart(); e.subject.fx = e.subject.x; e.subject.fy = e.subject.y; })
-      .on(\"drag\", (e) => { e.subject.fx = e.x; e.subject.fy = e.y; })
-      .on(\"end\", (e) => { if (!e.active) simulation.alphaTarget(0); e.subject.fx = null; e.subject.fy = null; }))
-    .on(\"click\", (e, d) => { if (e.defaultPrevented) return; window.location.href = `rfc/rfc${d.num}.html`; })
-    .on(\"mouseover\", (e, d) => {
-      const neighbors = new Set([d.id]);
-      links.forEach(l => { 
-        const s = typeof l.source === 'object' ? l.source.id : l.source;
-        const t = typeof l.target === 'object' ? l.target.id : l.target;
-        if (s === d.id) neighbors.add(t); if (t === d.id) neighbors.add(s);
-      });
-      node.classed(\"dimmed\", n => !neighbors.has(n.id));
-      link.classed(\"dimmed\", l => {
-        const s = typeof l.source === 'object' ? l.source.id : l.source;
-        const t = typeof l.target === 'object' ? l.target.id : l.target;
-        return s !== d.id && t !== d.id;
-      });
-      link.classed(\"highlight\", l => {
-        const s = typeof l.source === 'object' ? l.source.id : l.source;
-        const t = typeof l.target === 'object' ? l.target.id : l.target;
-        return s === d.id || t === d.id;
-      });
-    }).on(\"mouseout\", () => { node.classed(\"dimmed\", false); link.classed(\"dimmed\", false); link.classed(\"highlight\", false); });
+  visibleLinks.forEach(link => {
+    const source = byId.get(link.source);
+    const target = byId.get(link.target);
+    if (!source || !target) return;
+    const path = document.createElementNS(ns, 'path');
+    const midX = (source.x + target.x) / 2;
+    const midY = (source.y + target.y) / 2;
+    const curveX = midX + (centerX - midX) * 0.24;
+    const curveY = midY + (centerY - midY) * 0.24;
+    path.setAttribute('d', `M${source.x},${source.y} Q${curveX},${curveY} ${target.x},${target.y}`);
+    path.setAttribute('class', `link ${link.type}`);
+    path.dataset.source = source.id;
+    path.dataset.target = target.id;
+    g.appendChild(path);
+    linkEls.push(path);
+  });
 
-  node.append(\"rect\").attr(\"width\", 100).attr(\"height\", 45).attr(\"x\", -50).attr(\"y\", -22);
-  node.append(\"text\").attr(\"dy\", \"-2\").text(d => d.name.length > 15 ? d.name.substring(0, 13) + '...' : d.name);
-  node.append(\"text\").attr(\"class\", \"node-rfc\").attr(\"dy\", \"12\").text(d => `RFC ${d.num}`);
+  visibleNodes.forEach(node => {
+    const group = document.createElementNS(ns, 'g');
+    group.setAttribute('class', `node node-${node.layer}`);
+    group.setAttribute('transform', `translate(${node.x},${node.y})`);
+    group.setAttribute('tabindex', '0');
+    group.setAttribute('role', 'link');
+    group.setAttribute('aria-label', `Open RFC ${node.num}: ${node.name}`);
+    group.dataset.id = node.id;
+    const nodeWidth = Math.max(120, node.name.length * 8 + 30);
+    const title = document.createElementNS(ns, 'title');
+    title.textContent = `RFC ${node.num}: ${node.name}`;
+    const rect = document.createElementNS(ns, 'rect');
+    rect.setAttribute('width', String(nodeWidth));
+    rect.setAttribute('height', '54');
+    rect.setAttribute('x', String(-nodeWidth / 2));
+    rect.setAttribute('y', '-27');
+    const label = document.createElementNS(ns, 'text');
+    label.setAttribute('dy', '-4');
+    label.style.fontSize = '11px';
+    label.textContent = node.name;
+    const num = document.createElementNS(ns, 'text');
+    num.setAttribute('class', 'node-rfc');
+    num.setAttribute('dy', '14');
+    num.textContent = `RFC ${node.num}`;
+    group.append(title, rect, label, num);
+    const open = () => { window.location.href = `rfc/rfc${node.num}.html`; };
+    group.addEventListener('click', open);
+    group.addEventListener('keydown', (event) => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); open(); } });
+    group.addEventListener('pointerenter', () => highlightGraph(node.id, nodeEls, linkEls));
+    group.addEventListener('pointerleave', () => clearGraphHighlight(nodeEls, linkEls));
+    g.appendChild(group);
+    nodeEls.push(group);
+  });
 
-  simulation.on(\"tick\", () => {
-    link.attr(\"d\", d => {
-      const dx = d.target.x - d.source.x, dy = d.target.y - d.source.y;
-      const dr = Math.sqrt(dx * dx + dy * dy);
-      return `M${d.source.x},${d.source.y}A${dr},${dr} 0 0,1 ${d.target.x},${d.target.y}`;
-    });
-    node.attr(\"transform\", d => `translate(${d.x},${d.y})`);
+  let transform = { x: 0, y: 0, scale: 1 };
+  let dragStart = null;
+  const applyTransform = () => g.setAttribute('transform', `translate(${transform.x} ${transform.y}) scale(${transform.scale})`);
+  svg.addEventListener('wheel', (event) => {
+    event.preventDefault();
+    transform.scale = Math.min(3, Math.max(0.45, transform.scale + (event.deltaY > 0 ? -0.08 : 0.08)));
+    applyTransform();
+  }, { passive: false });
+  svg.addEventListener('pointerdown', (event) => { dragStart = { x: event.clientX - transform.x, y: event.clientY - transform.y }; svg.setPointerCapture(event.pointerId); });
+  svg.addEventListener('pointermove', (event) => {
+    if (!dragStart) return;
+    transform.x = event.clientX - dragStart.x;
+    transform.y = event.clientY - dragStart.y;
+    applyTransform();
+  });
+  svg.addEventListener('pointerup', () => { dragStart = null; });
+}
+
+function highlightGraph(id, nodeEls, linkEls) {
+  const neighbors = new Set([id]);
+  linkEls.forEach(link => {
+    if (link.dataset.source === id) neighbors.add(link.dataset.target);
+    if (link.dataset.target === id) neighbors.add(link.dataset.source);
+  });
+  nodeEls.forEach(node => node.classList.toggle('dimmed', !neighbors.has(node.dataset.id)));
+  linkEls.forEach(link => {
+    const active = link.dataset.source === id || link.dataset.target === id;
+    link.classList.toggle('highlight', active);
+    link.classList.toggle('dimmed', !active);
   });
 }
 
-if (openMapBtn) openMapBtn.addEventListener('click', () => { mapOverlay.classList.add('active'); setTimeout(initMap, 100); });
-if (closeMapBtn) closeMapBtn.addEventListener('click', () => mapOverlay.classList.remove('active'));
+function clearGraphHighlight(nodeEls, linkEls) {
+  nodeEls.forEach(node => node.classList.remove('dimmed'));
+  linkEls.forEach(link => link.classList.remove('dimmed', 'highlight'));
+}
+
+function setStudyPath(pathId, scrollIntoView = false) {
+  const activeBtn = studyPathBtns.find((btn) => btn.dataset.path === pathId) || null;
+  activeStudyPath = activeBtn?.dataset.label || '';
+  activeStudyRfcSet = activeBtn ? new Set((activeBtn.dataset.rfcs || '').split(' ').filter(Boolean)) : null;
+  studyPathBtns.forEach((btn) => btn.classList.toggle('active', btn === activeBtn));
+  if (activeStudyPathEl) activeStudyPathEl.textContent = activeStudyPath || 'Full library mode';
+  if (clearStudyPathBtn) clearStudyPathBtn.disabled = !activeBtn;
+  try { localStorage.setItem('rfc_active_study_path', activeBtn?.dataset.path || ''); } catch (err) {}
+  applyFilters();
+  if (scrollIntoView) document.querySelector('#rfc-grid')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function updateIfThenPreview() {
+  if (!ifThenPreview) return;
+  const cue = ifThenCueInput?.value.trim() || '';
+  const action = ifThenActionInput?.value.trim() || '';
+  if (!cue && !action) {
+    ifThenPreview.textContent = 'If your cue happens, then your study move lives here. Tiny counts. Tiny is how empires are built.';
+    return;
+  }
+  ifThenPreview.textContent = `If ${cue || '...'}, then ${action || '...'}.`;
+}
+
+function loadIfThenPlan() {
+  const saved = readJSON('rfc_if_then_plan', { cue: '', action: '' });
+  if (ifThenCueInput) ifThenCueInput.value = saved.cue || '';
+  if (ifThenActionInput) ifThenActionInput.value = saved.action || '';
+  updateIfThenPreview();
+}
+
+if (openMapBtn) openMapBtn.addEventListener('click', () => { setOverlayOpen(mapOverlay, true); setTimeout(initMap, 100); });
+if (closeMapBtn) closeMapBtn.addEventListener('click', () => setOverlayOpen(mapOverlay, false));
 
 window.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && mapOverlay.classList.contains('active')) mapOverlay.classList.remove('active');
+  if (e.key === 'Escape' && mapOverlay?.classList.contains('active')) setOverlayOpen(mapOverlay, false);
 });
 
 function applyFilters() {
-  const term = q.value.trim().toLowerCase();
+  const term = q?.value.trim().toLowerCase() || '';
   let visible = 0;
   for (const card of cards) {
     const tagHit = activeTag === 'all' || card.dataset.tags.split(' ').includes(activeTag);
-    const hit = tagHit && card.dataset.search.includes(term);
+    const studyHit = !activeStudyRfcSet || activeStudyRfcSet.has(card.dataset.rfc);
+    const hit = tagHit && studyHit && card.dataset.search.includes(term);
     card.style.display = hit ? '' : 'none';
     if (hit) visible++;
   }
-  count.textContent = `${visible} shown`; empty.style.display = visible ? 'none' : 'block';
+  if (count) count.textContent = `${visible} of ${cards.length} shown${activeStudyPath ? ` · Path: ${activeStudyPath}` : ''}`;
+  if (empty) {
+    empty.style.display = visible ? 'none' : 'block';
+    empty.textContent = activeStudyPath ? `No RFCs match the current search inside "${activeStudyPath}". Try clearing the search or switching tracks.` : emptyDefaultText;
+  }
 }
 
 function renderNotes() {
-  const allNotes = JSON.parse(localStorage.getItem('rfc_notes') || '{}');
+  if (!notesContainer) return;
+  const allNotes = readJSON('rfc_notes');
   notesContainer.innerHTML = '';
   const rfcNums = Object.keys(allNotes).sort((a, b) => parseInt(a) - parseInt(b));
   let hasVisibleNotes = false;
@@ -826,7 +3405,7 @@ function renderNotes() {
     const firstNoteId = filteredSids[0];
     const rfcTitle = allNotes[num][firstNoteId].rfcTitle || `RFC ${num}`;
     const header = document.createElement('div'); header.className = 'notes-rfc-header';
-    header.innerHTML = `<span>RFC ${num}: ${rfcTitle}</span> <a href=\"rfc/rfc${num}.html\">View RFC</a>`;
+    header.innerHTML = `<span>RFC ${num}: ${rfcTitle}</span> <a href="rfc/rfc${num}.html">View RFC</a>`;
     rfcGroup.appendChild(header);
     filteredSids.forEach(sid => {
       const note = allNotes[num][sid];
@@ -839,7 +3418,7 @@ function renderNotes() {
     notesContainer.appendChild(rfcGroup);
   });
   if (!hasVisibleNotes) {
-    notesContainer.innerHTML = rfcNums.length === 0 ? '<div class=\"notes-empty\">You haven\'t added any notes yet.</div>' : `<div class=\"notes-empty\">No notes match the \"${activeNoteFilter}\" filter.</div>`;
+    notesContainer.innerHTML = rfcNums.length === 0 ? '<div class="notes-empty">You haven\'t added any notes yet.</div>' : `<div class="notes-empty">No notes match the "${activeNoteFilter}" filter.</div>`;
   }
 }
 
@@ -853,37 +3432,69 @@ function toggleNotesView(show) {
   }
 }
 
-q.addEventListener('input', applyFilters);
+q?.addEventListener('input', applyFilters);
+studyPathBtns.forEach((btn) => btn.addEventListener('click', () => setStudyPath(btn.dataset.path, true)));
+if (clearStudyPathBtn) clearStudyPathBtn.addEventListener('click', () => setStudyPath('', false));
+if (densityToggleBtn) densityToggleBtn.addEventListener('click', () => {
+  const compact = !document.body.classList.contains('card-compact');
+  document.body.classList.toggle('card-compact', compact);
+  try { localStorage.setItem('rfc_card_density', compact ? 'compact' : 'comfortable'); } catch (err) {}
+  densityToggleBtn.textContent = compact ? 'Comfort cards' : 'Compact cards';
+});
 filters.forEach(btn => btn.addEventListener('click', () => { activeTag = btn.dataset.tag; filters.forEach(item => item.classList.toggle('active', item === btn)); applyFilters(); }));
 noteFilterBtns.forEach(btn => btn.addEventListener('click', () => { activeNoteFilter = btn.dataset.filter; noteFilterBtns.forEach(b => b.classList.toggle('active', b === btn)); renderNotes(); }));
-viewNotesBtn.addEventListener('click', () => toggleNotesView(true));
-backToGridBtn.addEventListener('click', () => toggleNotesView(false));
-exportBtn.addEventListener('click', () => {
+if (viewNotesBtn) viewNotesBtn.addEventListener('click', () => toggleNotesView(true));
+if (backToGridBtn) backToGridBtn.addEventListener('click', () => toggleNotesView(false));
+if (exportBtn) exportBtn.addEventListener('click', () => {
   const allNotes = localStorage.getItem('rfc_notes') || '{}';
   const blob = new Blob([allNotes], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a'); a.href = url; a.download = `rfc-annotations-${new Date().toISOString().split('T')[0]}.json`; a.click(); URL.revokeObjectURL(url);
 });
-importBtn.addEventListener('click', () => importFile.click());
-importFile.addEventListener('change', (e) => {
+if (importBtn && importFile) importBtn.addEventListener('click', () => importFile.click());
+if (importFile) importFile.addEventListener('change', (e) => {
   const file = e.target.files[0]; if (!file) return;
   const reader = new FileReader();
   reader.onload = (event) => {
     try {
       const imported = JSON.parse(event.target.result);
-      const current = JSON.parse(localStorage.getItem('rfc_notes') || '{}');
+      const current = readJSON('rfc_notes');
       for (const rfcNum in imported) {
         if (!current[rfcNum]) current[rfcNum] = imported[rfcNum];
         else current[rfcNum] = { ...current[rfcNum], ...imported[rfcNum] };
       }
-      localStorage.setItem('rfc_notes', JSON.stringify(current)); renderNotes(); alert('Notes imported and merged successfully!');
+      writeJSON('rfc_notes', current); renderNotes(); alert('Notes imported and merged successfully!');
     } catch (err) { alert('Error importing notes: Invalid JSON file'); }
   };
   reader.readAsText(file);
 });
+ifThenCueInput?.addEventListener('input', updateIfThenPreview);
+ifThenActionInput?.addEventListener('input', updateIfThenPreview);
+if (saveIfThenBtn) saveIfThenBtn.addEventListener('click', () => {
+  const cue = ifThenCueInput?.value.trim() || '';
+  const action = ifThenActionInput?.value.trim() || '';
+  writeJSON('rfc_if_then_plan', { cue, action });
+  if (ifThenStatus) ifThenStatus.textContent = cue && action ? 'Saved locally. Future you now has a cue, a move, and slightly fewer excuses.' : 'Saved, though a specific cue and action will work better.';
+  updateIfThenPreview();
+});
+if (clearIfThenBtn) clearIfThenBtn.addEventListener('click', () => {
+  if (ifThenCueInput) ifThenCueInput.value = '';
+  if (ifThenActionInput) ifThenActionInput.value = '';
+  writeJSON('rfc_if_then_plan', { cue: '', action: '' });
+  if (ifThenStatus) ifThenStatus.textContent = 'Pact cleared. The gremlin has been temporarily released back into the wild.';
+  updateIfThenPreview();
+});
 
+loadIfThenPlan();
+try {
+  const savedStudyPath = localStorage.getItem('rfc_active_study_path') || '';
+  if (savedStudyPath) setStudyPath(savedStudyPath, false);
+  else applyFilters();
+} catch (err) {
+  applyFilters();
+}
 updateDueCounts();
-applyFilters();
+window.addEventListener('scroll', () => toolbar?.classList.toggle('scrolled', window.scrollY > 12), { passive: true });
 """
 
 
@@ -1072,6 +3683,19 @@ function makeToc() {
   return headings;
 }
 
+function initActiveToc(headings) {
+  if (!headings || !headings.length || !('IntersectionObserver' in window)) return;
+  const links = new Map([...toc.querySelectorAll('a[href^="#"]')].map(a => [decodeURIComponent(a.hash.slice(1)), a]));
+  const setActive = (id) => {
+    links.forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${id}`));
+  };
+  const observer = new IntersectionObserver((entries) => {
+    const visible = entries.filter(entry => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+    if (visible?.target?.id) setActive(visible.target.id);
+  }, { rootMargin: '-18% 0px -70% 0px', threshold: [0, .25, .5, 1] });
+  headings.forEach(heading => heading.id && observer.observe(heading));
+}
+
 function initAnnotations(headings) {
   if (!rfcNumber || !headings || !headings.length) return;
   const allNotes = JSON.parse(localStorage.getItem('rfc_notes') || '{}');
@@ -1150,6 +3774,7 @@ if (comfyBtn) comfyBtn.addEventListener('click', () => body.classList.toggle('co
 if (topBtn) topBtn.addEventListener('click', () => scrollTo({ top: 0, behavior: 'smooth' }));
 setHeaderPanelDefault();
 const headings = makeToc();
+initActiveToc(headings);
 initAnnotations(headings);
 updateProgress();
 updateDueBadge();
@@ -1223,7 +3848,9 @@ def extract_title(build: RFCBuild) -> str:
     return f"RFC {build.meta.num}"
 
 
-def infer_tags(title: str) -> tuple[str, ...]:
+def infer_tags(title: str, num: int | None = None) -> tuple[str, ...]:
+    if num in KNOWN_RFC_TAGS:
+        return KNOWN_RFC_TAGS[num]
     lower = title.lower()
     tags: set[str] = {"update-chain"}
     if any(word in lower for word in ("tcp", "udp", "transport", "stream", "flow control", "encapsulat", "payload")):
@@ -1241,7 +3868,7 @@ def infer_tags(title: str) -> tuple[str, ...]:
 
 def derived_meta(num: int, build: RFCBuild) -> RFCMeta:
     title = extract_title(build)
-    tags = infer_tags(title)
+    tags = infer_tags(title, num)
     return RFCMeta(
         num,
         title,
@@ -1371,6 +3998,95 @@ def render_header_reference_panel(rfc_num: int) -> str:
 </details>"""
 
 
+def render_detection_questions_panel(rfc_num: int) -> str:
+    spec = HEADER_REFERENCES.get(rfc_num)
+    if not spec:
+        return ""
+    questions = spec.get("detection_questions", [])
+    if not isinstance(questions, list) or not questions:
+        return ""
+    items = "".join(f"<li>{html.escape(str(question))}</li>" for question in questions)
+    return f"""<details class="detection-questions-panel">
+  <summary><span>Detection prompts</span><strong>Questions to ask</strong></summary>
+  <ol>{items}</ol>
+</details>"""
+
+
+def render_inline_header_reference(rfc_num: int) -> str:
+    panel = render_header_reference_panel(rfc_num)
+    return panel.replace(
+        'class="header-reference-panel"',
+        'class="header-reference-panel inline-header-reference"',
+        1,
+    )
+
+
+def render_arp_receive_flow_chart() -> str:
+    """Render RFC 826's packet-reception pseudo-code as a readable flow chart."""
+    return """<section class=\"arp-flowchart-panel\" aria-labelledby=\"arp-flowchart-title\">
+  <div class=\"arp-flowchart-kicker\">ARP receive state machine</div>
+  <h2 id=\"arp-flowchart-title\">RFC 826 ARP Packet Reception Flow</h2>
+  <p class=\"flow-subtitle\">The RFC intentionally updates sender mappings before checking whether the packet is a request. These decision cards make the hidden cache-poisoning logic visible.</p>
+  <div class=\"arp-flow\" role=\"list\">
+    <div class=\"flow-node start\" role=\"listitem\"><span class=\"flow-pill\">Receive</span><strong>ARP packet arrives</strong><small>Start with address-family sanity, not the opcode.</small></div>
+    <div class=\"flow-arrow\">↓ validate hardware + protocol ↓</div>
+    <div class=\"flow-node decision\" role=\"listitem\"><span class=\"flow-pill\">Decision</span><strong>Do I have the hardware type in ar$hrd?</strong><small>For Ethernet this should be <code>ares_hrd$Ethernet</code>; optionally verify <code>ar$hln</code>.</small></div>
+    <div class=\"flow-node decision\" role=\"listitem\"><span class=\"flow-pill\">Decision</span><strong>Do I speak the protocol in ar$pro?</strong><small>For IPv4 ARP this should resolve the IP EtherType; optionally verify <code>ar$pln</code>.</small></div>
+    <div class=\"flow-node stop\" role=\"listitem\"><span class=\"flow-pill\">No branch</span><strong>Discard / stop</strong><small>Negative conditionals end processing and drop the packet.</small></div>
+    <div class=\"flow-node action\" role=\"listitem\"><span class=\"flow-pill\">Init</span><strong><code>Merge_flag := false</code></strong><small>Prepare to track whether an existing translation-table entry was refreshed.</small></div>
+    <div class=\"flow-node merge\" role=\"listitem\"><span class=\"flow-pill\">Cache merge</span><strong>If <code>&lt;protocol type, sender protocol address&gt;</code> already exists, update sender hardware address and set <code>Merge_flag := true</code>.</strong><small>This is the poison-sensitive step: existing bindings may change before target/opcode checks.</small></div>
+    <div class=\"flow-node decision\" role=\"listitem\"><span class=\"flow-pill\">Decision</span><strong>Am I the target protocol address?</strong><small>If not, the RFC flow stops after any merge/update above.</small></div>
+    <div class=\"flow-node stop\" role=\"listitem\"><span class=\"flow-pill\">No branch</span><strong>Not my address: stop</strong><small>Translation-table side effects may already have happened if the sender pair matched.</small></div>
+    <div class=\"flow-node action\" role=\"listitem\"><span class=\"flow-pill\">Learn</span><strong>If <code>Merge_flag</code> is false, add <code>&lt;protocol type, sender protocol address, sender hardware address&gt;</code>.</strong><small>Target hosts learn the sender before deciding whether to answer.</small></div>
+    <div class=\"flow-node decision\" role=\"listitem\"><span class=\"flow-pill\">NOW</span><strong>NOW look at ar$op: is it <code>ares_op$REQUEST</code>?</strong><small>RFC 826 delays opcode inspection until after cache learning/merging.</small></div>
+    <div class=\"flow-node stop\" role=\"listitem\"><span class=\"flow-pill\">No branch</span><strong>Not a request: stop</strong><small>Replies or unusual opcodes do not trigger reply construction here.</small></div>
+    <div class=\"flow-node reply\" role=\"listitem\"><span class=\"flow-pill\">Reply build</span><strong>Swap hardware/protocol fields and put local addresses into sender fields.</strong><small>The original sender becomes the new target for the response.</small></div>
+    <div class=\"flow-node reply\" role=\"listitem\"><span class=\"flow-pill\">Transmit</span><strong>Set ar$op = ares_op$REPLY and Send reply on the same hardware.</strong><small>Send to the new target hardware address on the interface that received the request.</small></div>
+  </div>
+</section>"""
+
+
+ENHANCEMENT_REGISTRY: dict[int, list[tuple[str, object]]] = {
+    768: [("Header Format\n\n", render_inline_header_reference)],
+    791: [("Internet Header Format\n\n", render_inline_header_reference)],
+    792: [("Message Formats\n\n", render_inline_header_reference)],
+    793: [("TCP Header Format\n\n", render_inline_header_reference)],
+    826: [
+        ("Packet format:\n--------------\n", render_inline_header_reference),
+        ("Packet Reception:\n-----------------\n\n", lambda _rfc_num: render_arp_receive_flow_chart()),
+    ],
+    1035: [("Header section format\n\n", render_inline_header_reference)],
+    2131: [("Protocol Summary\n\n", render_inline_header_reference)],
+    2460: [("IPv6 Header Format\n\n", render_inline_header_reference)],
+    4271: [("BGP Message Header\n\n", render_inline_header_reference)],
+    4303: [("Encapsulating Security Payload Packet Format\n\n", render_inline_header_reference)],
+}
+
+
+def inject_all_enhancements(rfc_num: int, body: str) -> tuple[str, set[str]]:
+    """Place registered protocol enhancements next to the RFC prose they explain."""
+    inserted: set[str] = set()
+    for anchor, render_fn in ENHANCEMENT_REGISTRY.get(rfc_num, []):
+        if anchor not in body:
+            continue
+        enhancement = render_fn(rfc_num)  # type: ignore[operator]
+        if not enhancement:
+            continue
+        body = body.replace(anchor, f"{anchor}</pre>{enhancement}<pre>", 1)
+        inserted.add(getattr(render_fn, "__name__", "enhancement"))
+    return body, inserted
+
+
+def inject_inline_header_reference(rfc_num: int, body: str) -> tuple[str, bool]:
+    updated, inserted = inject_all_enhancements(rfc_num, body)
+    return updated, "render_inline_header_reference" in inserted
+
+
+def inject_arp_receive_flow_chart(rfc_num: int, body: str) -> tuple[str, bool]:
+    updated, inserted = inject_all_enhancements(rfc_num, body)
+    return updated, "<lambda>" in inserted
+
+
 def page(title: str, content: str, extra_head: str = "") -> str:
     return f"""<!doctype html>
 <html lang=\"en\">
@@ -1381,6 +4097,7 @@ def page(title: str, content: str, extra_head: str = "") -> str:
   <link rel=\"stylesheet\" href=\"{extra_head}assets/style.css\">
 </head>
 <body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
 {content}
 </body>
 </html>
@@ -1549,11 +4266,11 @@ def render_study_overlay() -> str:
 
 def render_map_overlay() -> str:
     return """
-<div id="map-overlay" class="map-overlay">
+<div id="map-overlay" class="map-overlay" role="dialog" aria-modal="true" aria-label="Interactive RFC graph" aria-hidden="true">
   <div class="map-header">
     <div class="eyebrow">Interactive RFC Graph</div>
-    <div style="display:flex; gap:10px;">
-      <button id="close-map" class="reader-btn">Exit Map (Esc)</button>
+    <div class="inline-actions">
+      <button id="close-map" class="reader-btn" type="button">Exit Map (Esc)</button>
     </div>
   </div>
   <div id="map-container" class="map-container">
@@ -1578,6 +4295,106 @@ def render_map_overlay() -> str:
 """
 
 
+def render_study_plan() -> str:
+    track_cards = []
+    for track in STUDY_TRACKS:
+        rfcs = track["rfcs"]
+        chips = "".join(f"<span class=\"study-chip\">RFC {num}</span>" for num in rfcs)
+        rfc_values = " ".join(str(num) for num in rfcs)
+        track_cards.append(
+            f"""<article class="study-track">
+  <div class="study-track-head">
+    <span class="study-track-kicker">{html.escape(track["eyebrow"])}</span>
+    <h3>{html.escape(track["title"])}</h3>
+  </div>
+  <p>{html.escape(track["summary"])}</p>
+  <div class="study-chip-row">{chips}</div>
+  <button class="reader-btn style-cyan study-path-btn" type="button" data-path="{html.escape(track["id"])}" data-label="{html.escape(track["title"])}" data-rfcs="{html.escape(rfc_values)}">Load this path</button>
+</article>"""
+        )
+
+    science_items = "".join(
+        f"""<li><a href="{html.escape(note["url"])}">{html.escape(note["title"])}</a><span>{html.escape(note["source"])} · {html.escape(note["summary"])}</span></li>"""
+        for note in SCIENCE_NOTES
+    )
+
+    return f"""<section id="study-plan" class="study-plan">
+  <div class="study-plan-intro">
+    <div class="eyebrow">Science-backed study plan</div>
+    <h2>Study like a hunter, not a hostage.</h2>
+    <p>You do not need to absorb 228 RFCs in one tragic caffeine opera. The research-backed move is smaller: pick a mission, read one meaningful chunk, try to recall it from memory, and let spaced review do the heavy lifting while your ego takes a brief but educational hit.</p>
+  </div>
+
+  <div class="study-plan-grid">
+    <article class="study-card">
+      <span class="study-card-kicker">Daily loop</span>
+      <h3>The 25-minute orbit</h3>
+      <ol class="study-list">
+        <li><strong>2 minutes:</strong> Pick one track and skim the hunting context so your brain knows why this RFC matters.</li>
+        <li><strong>12 minutes:</strong> Read one RFC or one major section. Stop before fatigue turns prose into wallpaper.</li>
+        <li><strong>4 minutes:</strong> Close the page and write or say three things you remember. No peeking. Mild annoyance means it is working.</li>
+        <li><strong>5 minutes:</strong> Run <em>Study Due</em> for low-stakes retrieval with feedback.</li>
+        <li><strong>2 minutes:</strong> Leave one note: weird field, likely detection clue, or one thing Future You will forget on purpose.</li>
+      </ol>
+    </article>
+
+    <article class="study-card">
+      <span class="study-card-kicker">Weekly rhythm</span>
+      <h3>How to not bounce off the material</h3>
+      <ul class="study-list">
+        <li><strong>Four focused sessions:</strong> Stay inside one sprint so the protocol family starts to cohere.</li>
+        <li><strong>One mixed session:</strong> Use the protocol map plus due cards to interleave concepts and dependencies.</li>
+        <li><strong>One light day:</strong> Catch up, reread a threat indicator, or take a guilt-free rest day. Sustainability beats martyrdom.</li>
+      </ul>
+      <p class="study-aside">After the six core sprints, use the <strong>update-chain</strong> tag as your side-quest generator.</p>
+    </article>
+
+    <article class="study-card planner-card">
+      <span class="study-card-kicker">Implementation intention</span>
+      <h3>Make Future You dramatically less slippery</h3>
+      <p>If-then plans help turn vague good intentions into visible action. Keep the cue specific and the task tiny enough that your internal gremlin has a weaker legal case.</p>
+      <div class="if-then-form">
+        <label>
+          <span>If it is...</span>
+          <input id="if-then-cue" type="text" placeholder="after coffee, after standup, 8:30 PM">
+        </label>
+        <label>
+          <span>Then I will...</span>
+          <input id="if-then-action" type="text" placeholder="read one RFC section and do 10 due cards">
+        </label>
+        <div id="if-then-preview" class="if-then-preview">If your cue happens, then your study move lives here. Tiny counts. Tiny is how empires are built.</div>
+        <div class="inline-actions">
+          <button id="save-if-then" class="reader-btn style-cyan" type="button">Save pact</button>
+          <button id="clear-if-then" class="reader-btn" type="button">Clear pact</button>
+        </div>
+        <div id="if-then-status" class="study-status" aria-live="polite"></div>
+      </div>
+    </article>
+  </div>
+
+  <div class="study-status-row">
+    <div class="study-active">
+      <span class="study-card-kicker">Current focus</span>
+      <strong id="active-study-path">Full library mode</strong>
+      <span>Load a track to narrow the grid to a sane starting point.</span>
+    </div>
+    <button id="clear-study-path" class="reader-btn" type="button">Show whole library</button>
+  </div>
+
+  <div class="study-track-grid">
+    {''.join(track_cards)}
+  </div>
+
+  <article class="study-card evidence-card">
+    <span class="study-card-kicker">Evidence, not vibes</span>
+    <h3>Why this routine works</h3>
+    <ul class="science-list">
+      {science_items}
+    </ul>
+  </article>
+</section>"""
+
+
 def build_site(builds: list[RFCBuild]) -> None:
     if SITE_DIR.exists():
         shutil.rmtree(SITE_DIR)
@@ -1593,6 +4410,7 @@ def build_site(builds: list[RFCBuild]) -> None:
     
     study_overlay = render_study_overlay()
     map_overlay = render_map_overlay()
+    study_plan = render_study_plan()
     
     filters = ["<button class=\"filter active\" data-tag=\"all\">All</button>"]
     filters.extend(f"<button class=\"filter\" data-tag=\"{html.escape(tag)}\">{html.escape(tag)}</button>" for tag in all_tags)
@@ -1608,7 +4426,7 @@ def build_site(builds: list[RFCBuild]) -> None:
       <div class="btn-group">
         <button id="start-study" class="reader-btn">Study Due</button>
         <button id="study-all" class="reader-btn">Study All</button>
-        <button id="open-map" class="reader-btn" style="border-color:var(--pink); color:var(--pink);">Protocol Map</button>
+        <button id="open-map" class="reader-btn style-pink" type="button">Protocol Map</button>
       </div>
     </div>"""
 
@@ -1620,7 +4438,7 @@ def build_site(builds: list[RFCBuild]) -> None:
         status = "HTML" if build.html_ok else "TXT" if build.text_ok else "missing"
         card_class = "card chain" if meta.update_chain else "card"
         cards.append(
-            f"""<a class=\"{card_class}\" href=\"rfc/{slug(meta)}\" data-search=\"{html.escape(search)}\" data-tags=\"{html.escape(' '.join(meta.tags))}\">
+            f"""<a class=\"{card_class}\" href=\"rfc/{slug(meta)}\" data-search=\"{html.escape(search)}\" data-tags=\"{html.escape(' '.join(meta.tags))}\" data-rfc=\"{meta.num}\">
   <span class=\"num\">RFC {meta.num} · {status}</span>
   <h2>{html.escape(meta.title)}</h2>
   <p>{html.escape(meta.relevance)}</p>
@@ -1630,21 +4448,47 @@ def build_site(builds: list[RFCBuild]) -> None:
         )
 
     index_content = f"""
-<script src=\"assets/d3.min.js\"></script>
 {study_overlay}
 {map_overlay}
 <script>window.FLASHCARDS = {flashcards};</script>
 <header class=\"hero shell\">
   <div class=\"eyebrow\">Curated protocol intelligence</div>
   <h1>RFCs for network threat hunting.</h1>
-  <p><strong>{len(builds)} specifications</strong> covering transport, routing, monitoring, security, application-layer behavior, and two-hop update-chain context. Built as a fully local dark-mode reference library with no runtime network dependencies.</p>
+  <p><strong>{len(builds)} specifications</strong> covering transport, routing, monitoring, security, application-layer behavior, and two-hop update-chain context. Built as a fully local dark-mode reference library with guided study tracks, spaced review, and no runtime network dependencies.</p>
+  <div class=\"hero-actions\" aria-label=\"Primary actions\">
+    <a class=\"hero-action\" href=\"#study-plan\">Start a study plan</a>
+    <a class=\"hero-action primary\" href=\"#rfc-grid\">Browse RFCs</a>
+    <button id=\"view-notes\" class=\"hero-action\" type=\"button\">View notes</button>
+  </div>
 </header>
-<div class=\"toolbar\"><div class=\"shell\"><div class=\"toolbar-row\"><label class=\"searchbox\"><span>⌕</span><input id=\"q\" autocomplete=\"off\" placeholder=\"Filter by RFC number, title, tag, or keyword...\"></label><div id=\"count\" class=\"view-count\"></div></div><div class=\"filters\">{''.join(filters)}</div></div></div>
-<main class=\"shell\">
+<div class=\"toolbar\"><div class=\"shell\"><div class=\"toolbar-row\"><label class=\"searchbox\"><span aria-hidden=\"true\">⌕</span><input id=\"q\" autocomplete=\"off\" placeholder=\"Filter by RFC number, title, tag, or keyword...\" aria-label=\"Filter RFCs\"></label><div class=\"toolbar-controls\"><div id=\"count\" class=\"view-count\" aria-live=\"polite\"></div><button id=\"density-toggle\" class=\"reader-btn\" type=\"button\">Compact cards</button></div></div><div class=\"filters\" aria-label=\"Protocol category filters\">{''.join(filters)}</div></div></div>
+<main id=\"main-content\" class=\"shell\">
+  {study_plan}
   <section class=\"stats\">{stats}</section>
-  <section class=\"grid\">{''.join(cards)}</section>
+  <section id=\"rfc-grid\" class=\"grid\">{''.join(cards)}</section>
   <p class=\"empty\">No matching RFCs. Try a protocol name, tag, or RFC number.</p>
 </main>
+<section id=\"notes-view\" class=\"notes-view shell\" aria-live=\"polite\">
+  <div class=\"notes-header\">
+    <div>
+      <div class=\"eyebrow\">Local annotations</div>
+      <h2>Your saved RFC notes</h2>
+      <p>Review highlights, evidence ideas, and hunting notes saved in this browser.</p>
+    </div>
+    <div class=\"btn-group\">
+      <button id=\"back-to-grid\" class=\"reader-btn\" type=\"button\">Back to RFCs</button>
+      <button id=\"export-notes\" class=\"reader-btn\" type=\"button\">Export notes</button>
+      <button id=\"import-notes-btn\" class=\"reader-btn\" type=\"button\">Import notes</button>
+      <input id=\"import-notes-file\" type=\"file\" accept=\"application/json\" hidden>
+    </div>
+  </div>
+  <div class=\"notes-filter-row\" aria-label=\"Note type filters\">
+    <button class=\"notes-filter-btn active\" data-filter=\"all\" type=\"button\">All</button>
+    <button class=\"notes-filter-btn\" data-filter=\"note\" type=\"button\">Notes</button>
+    <button class=\"notes-filter-btn\" data-filter=\"highlight\" type=\"button\">Highlights</button>
+  </div>
+  <div id=\"notes-container\"></div>
+</section>
 <footer><div class=\"shell\">Generated locally from rfc-editor.org sources. Open an RFC card to read the cached HTML source or styled plaintext fallback.</div></footer>
 <script src=\"assets/index.js\"></script>
 """
@@ -1653,21 +4497,26 @@ def build_site(builds: list[RFCBuild]) -> None:
     for build in builds:
         meta = build.meta
         tags = "".join(f"<span class=\"tag tag-{html.escape(tag)}\">{html.escape(tag)}</span>" for tag in meta.tags)
+        inline_header_reference = False
         if build.html_ok and build.html_path:
             body = localize_rfc_links(extract_body(read_text(build.html_path)), local_nums)
+            body, inserted_enhancements = inject_all_enhancements(meta.num, body)
+            inline_header_reference = "render_inline_header_reference" in inserted_enhancements
         elif build.text_ok and build.text_path:
             linked_text = link_plain_metadata_refs(html.escape(read_text(build.text_path)), local_nums)
             body = f"<pre>{linked_text}</pre>"
+            body, inserted_enhancements = inject_all_enhancements(meta.num, body)
+            inline_header_reference = "render_inline_header_reference" in inserted_enhancements
         else:
             body = "<pre>RFC source could not be fetched.</pre>"
-        header_reference = render_header_reference_panel(meta.num)
+        header_reference = "" if inline_header_reference else render_header_reference_panel(meta.num)
+        detection_questions = render_detection_questions_panel(meta.num)
         threat_indicators = render_threat_indicators(meta.num)
         content = f"""
-<script src=\"../assets/d3.min.js\"></script>
 <div class=\"progress\"></div>
 {study_overlay}
 <script>window.FLASHCARDS = {flashcards};</script>
-<main class=\"doc-layout\">
+<main id=\"main-content\" class=\"doc-layout\">
   <a class=\"toplink\" href=\"../index.html\">← Back to index</a>
   <section class=\"doc-hero\">
     <div class=\"eyebrow\">RFC {meta.num}</div>
@@ -1683,7 +4532,7 @@ def build_site(builds: list[RFCBuild]) -> None:
     </div>
     <button class=\"reader-btn\" data-action=\"top\">Back to top</button>
   </section>
-  <section class=\"reader-grid\"><article class=\"doc-body\">{body}</article><aside class=\"toc-panel\">{threat_indicators}{header_reference}<h2>On this RFC</h2><div id=\"toc-links\"></div></aside></section>
+  <section class=\"reader-grid\"><article class=\"doc-body\">{body}</article><aside class=\"toc-panel\">{detection_questions}{threat_indicators}{header_reference}<h2>On this RFC</h2><div id=\"toc-links\"></div></aside></section>
 </main>
 <script src=\"../assets/doc.js\"></script>
 """
@@ -1696,9 +4545,31 @@ def plain_to_xhtml(text: str) -> str:
 
 def html_to_epub_xhtml(raw: str) -> str:
     body = extract_body(raw)
+    body = re.sub(r"<script\b[^>]*>.*?</script>", "", body, flags=re.I | re.S)
+    body = re.sub(r"<style\b[^>]*>.*?</style>", "", body, flags=re.I | re.S)
+    body = re.sub(r"\s(?:onclick|onload|onerror|style)=([\"']).*?\1", "", body, flags=re.I | re.S)
     body = re.sub(r"<br\s*>", "<br />", body, flags=re.I)
     body = re.sub(r"<hr\s*>", "<hr />", body, flags=re.I)
     return body
+
+
+def epub_chapter_file(num: int) -> str:
+    return f"rfc{num}.xhtml"
+
+
+def tag_list(tags: Iterable[str]) -> str:
+    return "".join(f'<span class="tag">{html.escape(tag)}</span>' for tag in tags)
+
+
+def render_inline_study_checkpoint(build: RFCBuild, limit: int = 3) -> str:
+    cards = generate_flashcards([build])[:limit]
+    if not cards:
+        return ""
+    items = "".join(
+        f"""<li><p><strong>{html.escape(card['prompt'])}</strong></p><p class="answer">{html.escape(card['answer']).replace(chr(10), '<br />')}</p></li>"""
+        for card in cards
+    )
+    return f"""<div class="checkpoint"><p class="kicker">Study checkpoint</p><h2>Quick review: RFC {build.meta.num}</h2><ol>{items}</ol></div>"""
 
 
 def chapter_content(build: RFCBuild, local_nums: set[int], include_category: bool = False) -> str:
@@ -1711,26 +4582,57 @@ def chapter_content(build: RFCBuild, local_nums: set[int], include_category: boo
     else:
         source = "<p>RFC source could not be fetched.</p>"
     category = f"<p><strong>Categories:</strong> {html.escape(', '.join(meta.tags))}</p>" if include_category else ""
+    keywords = f"<p><strong>Keywords:</strong> {html.escape(', '.join(meta.keywords))}</p>" if meta.keywords else ""
+    seed_note = "Update-chain context" if meta.update_chain else "Seed RFC"
+    header_reference = render_header_reference_panel(meta.num)
+    detection_questions = render_detection_questions_panel(meta.num)
+    threat_indicators = render_threat_indicators(meta.num)
     return f"""<h1>RFC {meta.num}: {html.escape(meta.title)}</h1>
-<aside><p><strong>Threat hunting relevance:</strong> {html.escape(meta.relevance)}</p>{category}</aside>
+<aside class="chapter-brief">
+  <p class="kicker">{html.escape(seed_note)}</p>
+  <p><strong>Threat hunting relevance:</strong> {html.escape(meta.relevance)}</p>
+  {category}
+  {keywords}
+  <p class="tags">{tag_list(meta.tags)}</p>
+</aside>
+{detection_questions}
+{threat_indicators}
+{header_reference}
 {source}
+{render_inline_study_checkpoint(build)}
 """
 
 
 def add_epub_css(book: epub.EpubBook) -> epub.EpubItem:
     css = """
-body { font-family: Georgia, serif; line-height: 1.62; color: #111827; }
+body { font-family: Georgia, serif; line-height: 1.62; color: #111827; margin: 0 5%; }
 h1 { color: #0f172a; font-size: 1.85em; line-height: 1.08; border-bottom: 2px solid #dbeafe; padding-bottom: .35em; }
-h2, h3 { color: #172554; margin-top: 1.4em; }
-aside { border-left: 5px solid #2563eb; background: #eef5ff; padding: .8em 1em; margin: 1em 0 1.25em; border-radius: .35em; }
+h2, h3, h4 { color: #172554; margin-top: 1.4em; }
+aside, .chapter-brief, .category-card, .threat-panel, .header-reference-panel, .detection-questions-panel { border-left: 5px solid #2563eb; background: #eef5ff; padding: .8em 1em; margin: 1em 0 1.25em; border-radius: .35em; }
 pre { white-space: pre-wrap; font-family: ui-monospace, Consolas, monospace; font-size: .82em; line-height: 1.45; background: #f8fafc; border: 1px solid #e2e8f0; padding: .8em; }
+table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+th, td { border: 1px solid #cbd5e1; padding: .35em .45em; vertical-align: top; }
+th { background: #dbeafe; color: #172554; }
 a { color: #1d4ed8; }
 a.rfc-local { color: #047857; font-weight: bold; }
 a.rfc-external { color: #b45309; font-weight: bold; }
-.kicker { color: #2563eb; font-family: sans-serif; font-size: .8em; font-weight: bold; letter-spacing: .12em; text-transform: uppercase; }
+ul.index-list { padding-left: 1.2em; }
+ul.index-list li { margin: .45em 0; }
+.kicker { color: #2563eb; font-family: sans-serif; font-size: .78em; font-weight: bold; letter-spacing: .12em; text-transform: uppercase; }
 .title-page { margin-top: 18%; text-align: center; }
 .title-page h1 { border: 0; font-size: 2.4em; }
-.title-page p { color: #475569; }
+.title-page p, .muted { color: #475569; }
+.tags { margin-top: .75em; }
+.tag { display: inline-block; border: 1px solid #bfdbfe; border-radius: 999px; padding: .12em .55em; margin: .1em .2em .1em 0; color: #1e3a8a; background: #eff6ff; font-family: sans-serif; font-size: .78em; font-weight: bold; }
+.threat-item, .field-card { border-top: 1px solid #bfdbfe; padding-top: .75em; margin-top: .75em; }
+.threat-severity { font-family: sans-serif; font-size: .75em; font-weight: bold; text-transform: uppercase; color: #991b1b; }
+.header-bit-grid, .flow-lane, .flow-node { display: block; }
+.field-purpose, .threat-box, .flow-node small { color: #334155; }
+.learning-svg { display: block; width: 100%; max-width: 760px; height: auto; margin: 1.2em auto; }
+.svg-label { font-family: sans-serif; font-size: 15px; font-weight: bold; fill: #0f172a; }
+.svg-small { font-family: sans-serif; font-size: 11px; fill: #334155; }
+.checkpoint { border: 1px solid #bfdbfe; background: #f8fafc; padding: .8em 1em; margin: 1em 0; border-radius: .4em; }
+.answer { color: #334155; margin-top: .25em; }
 """
     nav_css = epub.EpubItem(uid="style_nav", file_name="style/nav.css", media_type="text/css", content=css)
     book.add_item(nav_css)
@@ -1760,20 +4662,158 @@ def make_intro(book: epub.EpubBook, title: str, subtitle: str) -> epub.EpubHtml:
     return intro
 
 
+def category_chart_svg(builds: list[RFCBuild]) -> str:
+    counts = [(tag, sum(tag in build.meta.tags for build in builds)) for tag in TAG_DESCRIPTIONS]
+    max_count = max(count for _, count in counts) or 1
+    rows = []
+    for index, (tag, count) in enumerate(counts):
+        y = 42 + index * 42
+        width = 430 * count / max_count
+        rows.append(f"""
+  <text class="svg-label" x="18" y="{y + 16}">{html.escape(tag.title())}</text>
+  <rect x="155" y="{y}" width="{width:.1f}" height="24" rx="12" fill="#2563eb" opacity=".86" />
+  <text class="svg-small" x="{165 + width:.1f}" y="{y + 16}">{count} RFCs</text>""")
+    return f"""<svg class="learning-svg" viewBox="0 0 660 310" role="img" aria-label="RFC category distribution" xmlns="http://www.w3.org/2000/svg">
+  <rect width="660" height="310" rx="22" fill="#eff6ff" />
+  <text class="svg-label" x="18" y="28">Category Coverage</text>
+  {''.join(rows)}
+</svg>"""
+
+
+def protocol_stack_svg() -> str:
+    layers = [
+        ("Application", "DNS · DHCP · SMTP · HTTP", "#db2777"),
+        ("Monitoring", "NetFlow · IPFIX · flow telemetry", "#0891b2"),
+        ("Transport", "UDP · TCP · HTTP/2 framing context", "#d97706"),
+        ("Routing", "IPv4 · IPv6 · ICMP · ARP · OSPF · BGP", "#7c3aed"),
+        ("Security", "IPsec · ESP · DNSSEC · protocol abuse", "#059669"),
+    ]
+    rows = []
+    for index, (name, examples, color) in enumerate(layers):
+        y = 34 + index * 58
+        rows.append(f"""
+  <rect x="34" y="{y}" width="592" height="42" rx="16" fill="{color}" opacity=".86" />
+  <text class="svg-label" x="55" y="{y + 25}" fill="#ffffff">{html.escape(name)}</text>
+  <text class="svg-small" x="185" y="{y + 25}" fill="#ffffff">{html.escape(examples)}</text>""")
+    return f"""<svg class="learning-svg" viewBox="0 0 660 340" role="img" aria-label="Protocol learning stack" xmlns="http://www.w3.org/2000/svg">
+  <rect width="660" height="340" rx="22" fill="#f8fafc" />
+  <text class="svg-label" x="34" y="24">How To Read The Collection</text>
+  {''.join(rows)}
+</svg>"""
+
+
+def investigation_loop_svg() -> str:
+    nodes = [
+        (330, 46, "1. Identify", "Protocol + layer"),
+        (552, 160, "2. Inspect", "Header fields"),
+        (468, 286, "3. Compare", "Normal vs abnormal"),
+        (192, 286, "4. Hunt", "Signals + pivots"),
+        (108, 160, "5. Validate", "RFC behavior"),
+    ]
+    circles = []
+    for x, y, title, subtitle in nodes:
+        circles.append(f"""
+  <circle cx="{x}" cy="{y}" r="62" fill="#dbeafe" stroke="#2563eb" stroke-width="3" />
+  <text class="svg-label" x="{x}" y="{y - 5}" text-anchor="middle">{html.escape(title)}</text>
+  <text class="svg-small" x="{x}" y="{y + 16}" text-anchor="middle">{html.escape(subtitle)}</text>""")
+    return f"""<svg class="learning-svg" viewBox="0 0 660 360" role="img" aria-label="Threat hunting investigation loop" xmlns="http://www.w3.org/2000/svg">
+  <rect width="660" height="360" rx="22" fill="#eff6ff" />
+  <path d="M385 70 C500 72 590 118 588 178" fill="none" stroke="#64748b" stroke-width="4" marker-end="url(#arrow)" />
+  <path d="M540 218 C490 318 370 336 282 306" fill="none" stroke="#64748b" stroke-width="4" marker-end="url(#arrow)" />
+  <path d="M170 248 C90 210 76 116 258 66" fill="none" stroke="#64748b" stroke-width="4" marker-end="url(#arrow)" />
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#64748b" /></marker></defs>
+  {''.join(circles)}
+</svg>"""
+
+
+def make_learning_guide(book: epub.EpubBook, builds: list[RFCBuild]) -> epub.EpubHtml:
+    chapter = epub.EpubHtml(title="Learning Guide", file_name="learning-guide.xhtml", lang="en")
+    chapter.content = f"""<h1>Learning Guide</h1>
+<p>This EPUB is structured as a field guide: start with protocol role, inspect the fields that create observable traffic, then map abnormal behavior to hunting questions.</p>
+{protocol_stack_svg()}
+{category_chart_svg(builds)}
+{investigation_loop_svg()}
+<div class="checkpoint"><p class="kicker">Suggested path</p><ol>
+<li>Read the seed RFCs first: UDP, IPv4, ICMP, TCP, ARP, DNS, DHCP, OSPF, BGP, SMTP, HTTP, IPFIX, IPsec, and ESP.</li>
+<li>Use update-chain RFCs when modern behavior differs from the historical baseline.</li>
+<li>For each chapter, turn the relevance note into a detection question and the header/reference panels into parsing checks.</li>
+</ol></div>"""
+    chapter.add_item(book.get_item_with_id("style_nav"))
+    book.add_item(chapter)
+    return chapter
+
+
+def make_flashcard_appendix(book: epub.EpubBook, builds: list[RFCBuild], file_name: str = "study-cards.xhtml") -> epub.EpubHtml:
+    cards = generate_flashcards(builds)
+    chapter = epub.EpubHtml(title="Study Cards", file_name=file_name, lang="en")
+    grouped: dict[str, list[dict[str, str]]] = {}
+    for card in cards:
+        grouped.setdefault(card["rfc"], []).append(card)
+    sections = []
+    for rfc_num in sorted(grouped, key=int):
+        items = []
+        for card in grouped[rfc_num][:8]:
+            items.append(f"""<li class="checkpoint"><p><strong>{html.escape(card['category'])}:</strong> {html.escape(card['prompt'])}</p><p class="answer">{html.escape(card['answer']).replace(chr(10), '<br />')}</p></li>""")
+        sections.append(f"<h2>RFC {html.escape(rfc_num)}</h2><ol>{''.join(items)}</ol>")
+    chapter.content = f"""<h1>Study Cards</h1>
+<p>Question-and-answer prompts for spaced review. Each answer is shown inline so this appendix works on any EPUB reader.</p>
+{''.join(sections)}"""
+    chapter.add_item(book.get_item_with_id("style_nav"))
+    book.add_item(chapter)
+    return chapter
+
+
+def make_collection_index(book: epub.EpubBook, builds: list[RFCBuild], title: str, file_name: str = "collection-index.xhtml") -> epub.EpubHtml:
+    chapter = epub.EpubHtml(title=title, file_name=file_name, lang="en")
+    seed_count = sum(not build.meta.update_chain for build in builds)
+    items = []
+    for build in builds:
+        meta = build.meta
+        source = "update-chain" if meta.update_chain else "seed"
+        items.append(
+            f'<li><a href="{epub_chapter_file(meta.num)}">RFC {meta.num}: {html.escape(meta.title)}</a>'
+            f'<br /><span class="muted">{html.escape(source)} · {html.escape(", ".join(meta.tags))}</span></li>'
+        )
+    chapter.content = f"""<h1>{html.escape(title)}</h1>
+<p>{len(builds)} RFCs total: {seed_count} seed RFCs and {len(builds) - seed_count} update-chain context RFCs.</p>
+<ul class="index-list">{''.join(items)}</ul>"""
+    chapter.add_item(book.get_item_with_id("style_nav"))
+    book.add_item(chapter)
+    return chapter
+
+
+def make_category_index(book: epub.EpubBook, builds: list[RFCBuild], tag: str) -> epub.EpubHtml:
+    chapter = epub.EpubHtml(title=tag.title(), file_name=f"category-{tag}.xhtml", lang="en")
+    tagged = [build for build in builds if tag in build.meta.tags]
+    links = "".join(
+        f'<li><a href="{epub_chapter_file(build.meta.num)}">RFC {build.meta.num}: {html.escape(build.meta.title)}</a></li>'
+        for build in tagged
+    )
+    chapter.content = f"""<h1>{html.escape(tag.title())}</h1>
+<div class="category-card"><p>{html.escape(TAG_DESCRIPTIONS[tag])}</p><p><strong>{len(tagged)} RFCs</strong> in this category.</p></div>
+<ul class="index-list">{links}</ul>"""
+    chapter.add_item(book.get_item_with_id("style_nav"))
+    book.add_item(chapter)
+    return chapter
+
+
 def write_complete_epub(builds: list[RFCBuild]) -> None:
     book = make_book("RFC Threat Hunting Collection - Complete", "rfc-threat-hunting-complete")
     intro = make_intro(book, "RFC Threat Hunting Collection", "A complete single-volume protocol field library.")
+    learning_guide = make_learning_guide(book, builds)
+    collection_index = make_collection_index(book, builds, "RFC Index")
     chapters = []
     local_nums = {build.meta.num for build in builds}
     for build in builds:
         meta = build.meta
-        chapter = epub.EpubHtml(title=f"RFC {meta.num}: {meta.title}", file_name=f"rfc{meta.num}.xhtml", lang="en")
+        chapter = epub.EpubHtml(title=f"RFC {meta.num}: {meta.title}", file_name=epub_chapter_file(meta.num), lang="en")
         chapter.content = chapter_content(build, local_nums, include_category=True)
         chapter.add_item(book.get_item_with_id("style_nav"))
         book.add_item(chapter)
         chapters.append(chapter)
-    book.toc = (intro, *chapters)
-    book.spine = ["nav", intro, *chapters]
+    flashcards = make_flashcard_appendix(book, builds)
+    book.toc = (intro, learning_guide, collection_index, (epub.Section("RFC Chapters"), tuple(chapters)), flashcards)
+    book.spine = ["nav", intro, learning_guide, collection_index, *chapters, flashcards]
     book.add_item(epub.EpubNcx())
     book.add_item(epub.EpubNav())
     epub.write_epub(str(EPUB_DIR / "rfc-threat-hunting-complete.epub"), book)
@@ -1782,28 +4822,27 @@ def write_complete_epub(builds: list[RFCBuild]) -> None:
 def write_category_epub(builds: list[RFCBuild]) -> None:
     book = make_book("RFC Threat Hunting Collection - By Category", "rfc-threat-hunting-by-category")
     intro = make_intro(book, "RFC Threat Hunting By Category", "The same RFCs grouped by analyst workflow: application, monitoring, routing, security, and transport.")
-    spine: list[object] = ["nav", intro]
-    toc = [intro]
+    learning_guide = make_learning_guide(book, builds)
+    spine: list[object] = ["nav", intro, learning_guide]
+    toc: list[object] = [intro, learning_guide]
     local_nums = {build.meta.num for build in builds}
-    by_num = {build.meta.num: build for build in builds}
+    chapter_by_num: dict[int, epub.EpubHtml] = {}
+    for build in builds:
+        meta = build.meta
+        chapter = epub.EpubHtml(title=f"RFC {meta.num}: {meta.title}", file_name=epub_chapter_file(meta.num), lang="en")
+        chapter.content = chapter_content(build, local_nums, include_category=True)
+        chapter.add_item(book.get_item_with_id("style_nav"))
+        book.add_item(chapter)
+        chapter_by_num[meta.num] = chapter
     for tag in sorted(TAG_DESCRIPTIONS):
-        intro = epub.EpubHtml(title=tag.title(), file_name=f"category-{tag}.xhtml", lang="en")
-        intro.content = f"<h1>{html.escape(tag.title())}</h1><p>{html.escape(TAG_DESCRIPTIONS[tag])}</p>"
-        intro.add_item(book.get_item_with_id("style_nav"))
-        book.add_item(intro)
-        spine.append(intro)
-        category_chapters = []
-        for build in builds:
-            meta = build.meta
-            if tag not in meta.tags:
-                continue
-            chapter = epub.EpubHtml(title=f"RFC {meta.num}: {meta.title}", file_name=f"{tag}-rfc{meta.num}.xhtml", lang="en")
-            chapter.content = chapter_content(build, local_nums, include_category=True)
-            chapter.add_item(book.get_item_with_id("style_nav"))
-            book.add_item(chapter)
-            category_chapters.append(chapter)
-            spine.append(chapter)
-        toc.append((epub.Section(tag.title()), tuple(category_chapters)))
+        category_intro = make_category_index(book, builds, tag)
+        spine.append(category_intro)
+        category_chapters = [chapter_by_num[build.meta.num] for build in builds if tag in build.meta.tags]
+        toc.append((epub.Section(tag.title()), (category_intro, *category_chapters)))
+    spine.extend(chapter_by_num[num] for num in sorted(chapter_by_num))
+    flashcards = make_flashcard_appendix(book, builds)
+    spine.append(flashcards)
+    toc.append(flashcards)
     book.toc = tuple(toc)
     book.spine = spine
     book.add_item(epub.EpubNcx())

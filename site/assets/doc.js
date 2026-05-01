@@ -183,6 +183,19 @@ function makeToc() {
   return headings;
 }
 
+function initActiveToc(headings) {
+  if (!headings || !headings.length || !('IntersectionObserver' in window)) return;
+  const links = new Map([...toc.querySelectorAll('a[href^="#"]')].map(a => [decodeURIComponent(a.hash.slice(1)), a]));
+  const setActive = (id) => {
+    links.forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${id}`));
+  };
+  const observer = new IntersectionObserver((entries) => {
+    const visible = entries.filter(entry => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+    if (visible?.target?.id) setActive(visible.target.id);
+  }, { rootMargin: '-18% 0px -70% 0px', threshold: [0, .25, .5, 1] });
+  headings.forEach(heading => heading.id && observer.observe(heading));
+}
+
 function initAnnotations(headings) {
   if (!rfcNumber || !headings || !headings.length) return;
   const allNotes = JSON.parse(localStorage.getItem('rfc_notes') || '{}');
@@ -261,6 +274,7 @@ if (comfyBtn) comfyBtn.addEventListener('click', () => body.classList.toggle('co
 if (topBtn) topBtn.addEventListener('click', () => scrollTo({ top: 0, behavior: 'smooth' }));
 setHeaderPanelDefault();
 const headings = makeToc();
+initActiveToc(headings);
 initAnnotations(headings);
 updateProgress();
 updateDueBadge();

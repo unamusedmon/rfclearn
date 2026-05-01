@@ -1,102 +1,136 @@
-# RFC Threat Hunting Library
+# Protocol Prowler
 
-<p align="center">
-  <strong>A dark-mode, offline-first protocol field guide for network defenders.</strong><br>
-  Curated RFCs, hunting notes, local cross-links, EPUB exports, and quick visual header references.
-</p>
+RFCs are where the Internet keeps its ancient laws, protocol gossip, and deeply specific feelings about bit fields.
 
-<p align="center">
-  <a href="#quick-start">Quick Start</a> •
-  <a href="#whats-inside">What's Inside</a> •
-  <a href="#header-field-panels">Header Panels</a> •
-  <a href="#gitlab-pages">GitLab Pages</a> •
-  <a href="#hunting-workflows">Hunting Workflows</a>
-</p>
+Protocol Prowler turns that magnificent swamp into a local threat-hunting library you can actually use.
 
----
+This repo builds an offline-first reference site for network defenders, security researchers, and anyone who has ever opened an RFC and thought, "Ah yes, 38 pages of pure emotional support prose about checksums."
 
-## Why this exists
+## What This Thing Actually Does
 
-Reading raw RFCs during an investigation is painful. This project turns a curated set of high-value networking RFCs into a local, searchable, dark-themed reference library built for threat hunters.
+It takes a curated collection of RFCs from the [RFC Editor](https://www.rfc-editor.org/), cleans them up, cross-links them locally, and wraps them in a site designed for people who need to understand protocols without developing a personal grudge against typography.
 
-It combines:
+You get:
 
-- Cached RFC HTML/TXT sources from rfc-editor.org
-- Analyst-focused relevance notes
-- Local RFC cross-links, including update and obsoletion chains
-- Protocol categories for routing, transport, security, monitoring, and application workflows
-- EPUB exports for offline reading
-- Header field quick-reference panels for major protocols
+- searchable local RFC pages
+- protocol relevance notes written for hunters, not historians
+- header and packet visualizations for key protocols
+- threat-hunting indicators and detection prompts
+- local notes and highlights
+- built-in spaced-repetition flashcards
+- a guided study plan so "I should really learn these RFCs" stops being a yearly wish and becomes a real habit
+- EPUB exports for offline reading, bunker mode, and flights where you want to feel like a very tired wizard
 
-No runtime network calls are needed after the site is built.
+## Why It Exists
 
----
+Reading raw RFCs during an investigation is a little like trying to learn sword fighting by reading municipal plumbing code.
 
-## What's inside
+Technically possible.
 
-Primary seed RFCs include:
+Spiritually hostile.
 
-| Area | RFCs |
-|---|---|
-| Transport | UDP 768, TCP 793, HTTP/2 7540 |
-| Routing | IPv4 791, ICMP 792, ARP 826, OSPF 2328, BGP 4271, IPv6 2460 |
-| Application | DNS 1035, DHCP 2131, SMTP 5321, HTTP 2616 / 7230 |
-| Monitoring | NetFlow v9 3954, IPFIX 7011 |
-| Security | IPsec architecture 4301, ESP 4303 |
+This project exists to make protocol knowledge fast to navigate, easier to remember, and far more useful when you are looking at suspicious traffic and asking questions like:
 
-The build also follows update, obsolete, and obsoleted-by relationships to pull related context RFCs.
+- Is this weird?
+- Is this broken?
+- Is this malicious?
+- Is this BGP doing BGP things again?
 
----
+## Quick Start
 
-## Header field panels
-
-Selected RFC pages include a collapsible quick-reference sidebar with:
-
-- A visual 0-31 bit layout diagram
-- Field blocks sized to their bit widths
-- Compact field reference table
-- Hunting-relevant abnormal indicators
-
-Currently covered:
-
-- RFC 768: UDP header
-- RFC 791: IPv4 header
-- RFC 793: TCP header
-- RFC 1035: DNS message header
-- RFC 2131: DHCP message header
-- RFC 2328: OSPFv2 packet header
-- RFC 2460: IPv6 header
-- RFC 4271: BGP message / UPDATE fields
-- RFC 5321: SMTP command and reply fields
-
-Example hunting notes:
-
-- TCP Flags: SYN/ACK/RST/FIN combinations; watch for illegal flag combos, SYN floods, or RST injection.
-- IPv4 TTL: Decrements each hop; unusually low or inconsistent TTL can indicate spoofing or traceroute probing.
-- BGP Path Attributes: AS_PATH manipulation is the primary vector for route hijacking.
-
----
-
-## Quick start
-
-This project uses Python and `ebooklib` for EPUB generation.
-
-If you have `uv`:
+Install dependencies:
 
 ```bash
-uv run --with ebooklib python build_rfc_collection.py
+python3 -m pip install -r requirements.txt
 ```
 
-Or with a virtual environment:
+Build the site and EPUBs:
 
 ```bash
-python3 -m venv .venv
-source .venv/bin/activate
-python -m pip install -r requirements.txt
-python build_rfc_collection.py
+python3 build_rfc_collection.py
 ```
 
-Outputs:
+Open the site:
+
+```bash
+xdg-open site/index.html
+```
+
+If you want to serve it locally:
+
+```bash
+python3 -m http.server 8765 --directory site
+```
+
+Then browse to:
+
+```text
+http://127.0.0.1:8765
+```
+
+## How To Use It Without Becoming An RFC Monk
+
+The homepage includes a built-in study system because the best study plan is the one that does not feel like a hostage negotiation.
+
+The basic loop is:
+
+1. Pick one study track instead of licking the entire protocol encyclopedia in one sitting.
+2. Read one RFC or one major section for 10 to 15 minutes.
+3. Close it and recall three things from memory before rereading.
+4. Run `Study Due` to do low-stakes retrieval practice.
+5. Leave one short note about a field, threat clue, or edge case worth remembering.
+
+If recall feels slightly annoying, that is not failure. That is your brain being forced to do a push-up.
+
+### Suggested 6-sprint path
+
+- `Packet Skeleton Crew`: RFC 768, 791, 792, 793, 826
+- `Boot, Name, Find`: RFC 1035, 1123, 2131, 2782
+- `Routes, Lies, and Routers`: RFC 1122, 2328, 2460, 4271
+- `Tunnels and Trust Issues`: RFC 4301, 4303
+- `Web and Mail Drama Desk`: RFC 2616, 5321, 7230, 7540
+- `Logs, Flows, and Receipts`: RFC 3954, 7011
+
+After that, use the `update-chain` tag when you want the lore expansion pack.
+
+### Tiny if-then plan
+
+If you want to actually keep going, make the cue stupidly specific:
+
+`If it is after coffee, then I read one RFC section and do 10 due cards.`
+
+Not:
+
+`At some point, when the vibes are right, I will become a protocol scholar.`
+
+The vibes are lazy and cannot be trusted.
+
+## Why The Study Plan Works
+
+This is not just motivational theater with nicer gradients.
+
+The study flow is based on durable findings from learning and motivation research:
+
+- `Spacing`: distributed practice improves long-term retention better than cramming. Source: [Cepeda et al. (2006)](https://doi.org/10.1037/0033-2909.132.3.354)
+- `Retrieval practice`: testing yourself beats passive restudy for durable learning. Source: [Adesope et al. (2017)](https://doi.org/10.3102/0034654316689306)
+- `Low-stakes quizzing with feedback`: practice tests improve learning across contexts, and feedback helps more. Source: [Yang et al. (2021)](https://doi.org/10.1037/bul0000309)
+- `Autonomy and competence support`: motivation improves when learners get a manageable path and some real choice. Source: [Wang et al. (2024)](https://doi.org/10.1016/j.lmot.2024.102015)
+- `Interest and relevance`: reading motivation improves most when the material feels meaningful, not when it merely exists in your general direction. Source: [de Nooijer et al. (2024)](https://doi.org/10.1007/s10648-023-09719-3)
+- `Implementation intentions`: specific if-then plans make follow-through more likely. Source: [Gollwitzer & Sheeran (2006)](https://doi.org/10.1016/S0065-2601(06)38002-1)
+
+In short:
+
+- read less at a time
+- come back more often
+- recall before rereading
+- use concrete cues
+- give your brain a reason to care
+
+Miraculously, this works better than highlighting a paragraph until it looks like a radioactive banana.
+
+## Outputs
+
+Running the builder generates:
 
 ```text
 site/                                      Static website
@@ -104,42 +138,9 @@ epub/rfc-threat-hunting-complete.epub     Complete EPUB
 epub/rfc-threat-hunting-by-category.epub  Category-grouped EPUB
 ```
 
-Open the local site:
-
-```bash
-python3 -m http.server 8765 --directory site
-```
-
-Then browse:
-
-```text
-http://127.0.0.1:8765
-```
-
----
-
-## Project layout
-
-```text
-.
-├── build_rfc_collection.py     # Fetch, parse, link, render site, and build EPUBs
-├── requirements.txt            # Python dependencies
-├── data/                       # Cached RFC sources
-│   ├── html/
-│   └── txt/
-├── site/                       # Generated static site
-│   ├── index.html
-│   ├── assets/
-│   └── rfc/
-├── epub/                       # Generated EPUB books
-└── tests/                      # Regression tests for generated header panels
-```
-
----
-
 ## Testing
 
-Run the regression tests:
+Run tests:
 
 ```bash
 python3 -m unittest discover -s tests -v
@@ -151,99 +152,18 @@ Syntax-check the builder:
 python3 -m py_compile build_rfc_collection.py
 ```
 
-If your system Python does not have `ebooklib`, tests still stub that dependency so the header-panel rendering tests can run without installing EPUB tooling.
+## What You Will Probably Learn Faster Here
 
----
+- Why TTL weirdness matters
+- Why ARP is less a protocol and more a trust exercise gone wrong
+- Why DNS can be both useful and slightly criminal-looking
+- Why SMTP has spent decades politely asking people to stop doing cursed things
+- Why BGP is proof that civilization is a collaborative art project
 
-## GitLab setup
+## License
 
-You do not need GitHub to use GitLab. Create the project directly in GitLab, then add the GitLab remote.
+Use it freely.
 
-### Option A: GitLab web UI
+If it helps you understand packets better, excellent.
 
-1. Go to GitLab.
-2. Create a new blank project.
-3. Copy the HTTPS or SSH clone URL.
-4. Run one of these locally:
-
-HTTPS:
-
-```bash
-git remote add origin https://gitlab.com/YOUR_NAMESPACE/YOUR_PROJECT.git
-git push -u origin main
-```
-
-SSH:
-
-```bash
-git remote add origin git@gitlab.com:YOUR_NAMESPACE/YOUR_PROJECT.git
-git push -u origin main
-```
-
-### Option B: GitLab CLI
-
-If you install `glab`, you can create the project from this directory:
-
-```bash
-glab auth login
-glab repo create YOUR_PROJECT --private=false --source=. --push
-```
-
----
-
-## GitLab Pages
-
-This repo includes a GitLab Pages pipeline in `.gitlab-ci.yml`.
-
-When pushed to GitLab, the pipeline:
-
-1. Installs Python dependencies
-2. Rebuilds the RFC site and EPUB files
-3. Publishes `site/` as GitLab Pages
-4. Keeps EPUB files as downloadable job artifacts
-
-After the first successful pipeline, check:
-
-```text
-Project → Deploy → Pages
-```
-
----
-
-## Hunting workflows
-
-Use this library when you need fast protocol context during:
-
-- Packet capture triage
-- SIEM field interpretation
-- IDS signature review
-- Firewall and routing anomaly analysis
-- DNS tunneling investigations
-- DHCP rogue-server hunts
-- BGP leak and hijack reviews
-- TCP scan, injection, and reset analysis
-- IPv4/IPv6 fragmentation and evasion analysis
-
----
-
-## Design notes
-
-The site is intentionally:
-
-- Dark themed for long investigation sessions
-- Static and portable
-- Usable offline
-- Friendly to browser search
-- Rich enough for analysts without hiding the original RFC text
-
----
-
-## License and source material
-
-RFC content is sourced from the RFC Editor cache under the terms applicable to RFC documents. This project adds local generation, styling, curation metadata, and analyst-focused reference material.
-
----
-
-<p align="center">
-  Built for defenders who read packets, chase weird fields, and keep receipts.
-</p>
+If it causes you to develop strong opinions about extension headers, that is between you and destiny.

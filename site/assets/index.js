@@ -4,6 +4,7 @@ const cards = [...document.querySelectorAll('.card')];
 const empty = document.querySelector('.empty');
 const count = document.querySelector('#count');
 const filters = [...document.querySelectorAll('.filter')];
+const densityToggleBtn = document.querySelector('#density-toggle');
 const viewNotesBtn = document.querySelector('#view-notes');
 const backToGridBtn = document.querySelector('#back-to-grid');
 const notesView = document.querySelector('#notes-view');
@@ -13,6 +14,33 @@ const exportBtn = document.querySelector('#export-notes');
 const importBtn = document.querySelector('#import-notes-btn');
 const importFile = document.querySelector('#import-notes-file');
 const noteFilterBtns = [...document.querySelectorAll('.notes-filter-btn')];
+const toolbar = document.querySelector('.toolbar');
+const studyPathBtns = [...document.querySelectorAll('.study-path-btn')];
+const clearStudyPathBtn = document.querySelector('#clear-study-path');
+const activeStudyPathEl = document.querySelector('#active-study-path');
+const ifThenCueInput = document.querySelector('#if-then-cue');
+const ifThenActionInput = document.querySelector('#if-then-action');
+const ifThenPreview = document.querySelector('#if-then-preview');
+const ifThenStatus = document.querySelector('#if-then-status');
+const saveIfThenBtn = document.querySelector('#save-if-then');
+const clearIfThenBtn = document.querySelector('#clear-if-then');
+const emptyDefaultText = empty?.textContent || '';
+
+function readJSON(key, fallback = {}) {
+  try { return JSON.parse(localStorage.getItem(key) || JSON.stringify(fallback)); }
+  catch (err) { return fallback; }
+}
+
+function writeJSON(key, value) {
+  try { localStorage.setItem(key, JSON.stringify(value)); }
+  catch (err) { console.warn(`Could not save ${key}`, err); }
+}
+
+function setOverlayOpen(overlay, open) {
+  if (!overlay) return;
+  overlay.classList.toggle('active', open);
+  overlay.setAttribute('aria-hidden', String(!open));
+}
 
 // FSRS Study Mode
 const studyOverlay = document.querySelector('#study-overlay');
@@ -27,6 +55,14 @@ const srsDueBadge = document.querySelector('#srs-due-count');
 
 let activeTag = 'all';
 let activeNoteFilter = 'all';
+let activeStudyPath = '';
+let activeStudyRfcSet = null;
+
+let savedDensity = 'comfortable';
+try { savedDensity = localStorage.getItem('rfc_card_density') || 'comfortable'; }
+catch (err) { savedDensity = 'comfortable'; }
+document.body.classList.toggle('card-compact', savedDensity === 'compact');
+if (densityToggleBtn) densityToggleBtn.textContent = savedDensity === 'compact' ? 'Comfort cards' : 'Compact cards';
 let currentSession = [];
 let sessionIdx = 0;
 let sessionStats = { reviewed: 0, mastered: 0, dueTomorrow: 0 };
@@ -34,11 +70,11 @@ let sessionStats = { reviewed: 0, mastered: 0, dueTomorrow: 0 };
 const w = [0.4, 0.6, 2.4, 5.8, 4.93, 0.94, 0.86, 0.01, 1.49, 0.14, 0.94, 2.18, 0.05, 0.34, 1.26, 0.29, 2.61];
 
 function getSRSData() {
-  return JSON.parse(localStorage.getItem('rfc_srs_state_fsrs') || '{}');
+  return readJSON('rfc_srs_state_fsrs');
 }
 
 function saveSRSData(state) {
-  localStorage.setItem('rfc_srs_state_fsrs', JSON.stringify(state));
+  writeJSON('rfc_srs_state_fsrs', state);
   updateDueCounts();
 }
 
@@ -81,7 +117,7 @@ function initStudySession(all = false) {
   if (currentSession.length === 0 && !all) { alert("No cards due! Use 'Study All' to practice anyway."); return; }
   currentSession.sort(() => Math.random() - 0.5);
   sessionIdx = 0; sessionStats = { reviewed: 0, mastered: 0, dueTomorrow: 0 };
-  studyOverlay.classList.add('active'); studySummary.classList.remove('active');
+  setOverlayOpen(studyOverlay, true); studySummary.classList.remove('active');
   cardContainer.style.display = 'block'; showCard();
 }
 
@@ -127,19 +163,19 @@ document.querySelectorAll('.srs-btn').forEach(btn => {
   btn.addEventListener('click', (e) => { e.stopPropagation(); handleAnswer(parseInt(btn.dataset.quality)); });
 });
 
-if (closeStudyBtn) closeStudyBtn.addEventListener('click', () => studyOverlay.classList.remove('active'));
-document.querySelector('#finish-study').addEventListener('click', () => studyOverlay.classList.remove('active'));
+if (closeStudyBtn) closeStudyBtn.addEventListener('click', () => setOverlayOpen(studyOverlay, false));
+document.querySelector('#finish-study')?.addEventListener('click', () => setOverlayOpen(studyOverlay, false));
 document.querySelector('#restart-study').addEventListener('click', () => initStudySession());
 if (startStudyBtn) startStudyBtn.addEventListener('click', () => initStudySession(false));
 if (studyAllBtn) studyAllBtn.addEventListener('click', () => initStudySession(true));
 
-const resetSrsBtn = document.querySelector(\"#reset-srs\");
-if (resetSrsBtn) resetSrsBtn.addEventListener(\"click\", () => { if(confirm(\"Wipe all FSRS progress?\")) { localStorage.removeItem(\"rfc_srs_state_fsrs\"); location.reload(); } });
+const resetSrsBtn = document.querySelector("#reset-srs");
+if (resetSrsBtn) resetSrsBtn.addEventListener("click", () => { if(confirm("Wipe all FSRS progress?")) { try { localStorage.removeItem("rfc_srs_state_fsrs"); } catch (err) {} location.reload(); } });
 
 window.addEventListener('keydown', (e) => {
   if (!studyOverlay || !studyOverlay.classList.contains('active')) return;
-  if (e.key === 'Escape') studyOverlay.classList.remove('active');
-  if (e.key === ' ') { if (!cardContainer.classList.contains('flipped')) cardContainer.click(); }
+  if (e.key === 'Escape') setOverlayOpen(studyOverlay, false);
+  if (e.key === ' ') { e.preventDefault(); if (!cardContainer.classList.contains('flipped')) cardContainer.click(); }
   if (cardContainer.classList.contains('flipped')) {
     if (e.key === '1') handleAnswer(1); if (e.key === '2') handleAnswer(2); if (e.key === '3') handleAnswer(3); if (e.key === '4') handleAnswer(4);
   }
@@ -160,103 +196,202 @@ const GRAPH_DATA = {
     }));
   },
   links: [
-    { source: \"793\", target: \"791\", type: \"dependency\" }, { source: \"768\", target: \"791\", type: \"dependency\" },
-    { source: \"1035\", target: \"768\", type: \"dependency\" }, { source: \"1035\", target: \"793\", type: \"dependency\" },
-    { source: \"4271\", target: \"793\", type: \"dependency\" }, { source: \"2131\", target: \"768\", type: \"dependency\" },
-    { source: \"5321\", target: \"793\", type: \"dependency\" }, { source: \"3954\", target: \"768\", type: \"dependency\" },
-    { source: \"7011\", target: \"768\", type: \"dependency\" }, { source: \"2616\", target: \"793\", type: \"dependency\" },
-    { source: \"7230\", target: \"793\", type: \"dependency\" }, { source: \"7540\", target: \"793\", type: \"dependency\" },
-    { source: \"2328\", target: \"791\", type: \"dependency\" }, { source: \"826\", target: \"791\", type: \"dependency\" },
-    { source: \"2460\", target: \"791\", type: \"update-chain\" }, { source: \"7230\", target: \"2616\", type: \"update-chain\" },
-    { source: \"1035\", target: \"5321\", type: \"threat\" }, { source: \"1035\", target: \"768\", type: \"threat\" },
-    { source: \"4271\", target: \"2328\", type: \"threat\" }, { source: \"791\", target: \"2460\", type: \"threat\" },
-    { source: \"793\", target: \"7540\", type: \"threat\" },
+    { source: "793", target: "791", type: "dependency" }, { source: "768", target: "791", type: "dependency" },
+    { source: "1035", target: "768", type: "dependency" }, { source: "1035", target: "793", type: "dependency" },
+    { source: "4271", target: "793", type: "dependency" }, { source: "2131", target: "768", type: "dependency" },
+    { source: "5321", target: "793", type: "dependency" }, { source: "3954", target: "768", type: "dependency" },
+    { source: "7011", target: "768", type: "dependency" }, { source: "2616", target: "793", type: "dependency" },
+    { source: "7230", target: "793", type: "dependency" }, { source: "7540", target: "793", type: "dependency" },
+    { source: "2328", target: "791", type: "dependency" }, { source: "826", target: "791", type: "dependency" },
+    { source: "2460", target: "791", type: "update-chain" }, { source: "7230", target: "2616", type: "update-chain" },
+    { source: "1035", target: "5321", type: "threat" }, { source: "1035", target: "768", type: "threat" },
+    { source: "4271", target: "2328", type: "threat" }, { source: "791", target: "2460", type: "threat" },
+    { source: "793", target: "7540", type: "threat" },
   ]
 };
 
 function initMap() {
-  if (!window.d3) { console.error(\"D3 not loaded\"); return; }
-  const nodes = GRAPH_DATA.nodes; if (!nodes.length) { console.warn(\"No nodes found\"); return; }
+  if (!mapContainer) return;
+  const nodes = GRAPH_DATA.nodes; if (!nodes.length) { console.warn("No nodes found"); return; }
   const nodeIds = new Set(nodes.map(n => n.id));
   const links = GRAPH_DATA.links.filter(l => nodeIds.has(l.source) && nodeIds.has(l.target)).map(l => ({...l}));
-  
+
   const width = mapContainer.clientWidth || window.innerWidth;
   const height = mapContainer.clientHeight || window.innerHeight;
-  
-  d3.select(\"#map-container svg\").remove();
-  const svg = d3.select(\"#map-container\").append(\"svg\")
-    .attr(\"width\", \"100%\").attr(\"height\", \"100%\").attr(\"viewBox\", [0, 0, width, height]);
-  const g = svg.append(\"g\");
 
-  svg.call(d3.zoom().extent([[0, 0], [width, height]]).scaleExtent([0.1, 8]).on(\"zoom\", ({transform}) => g.attr(\"transform\", transform)));
+  mapContainer.querySelector('svg')?.remove();
+  const ns = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(ns, 'svg');
+  svg.setAttribute('width', '100%');
+  svg.setAttribute('height', '100%');
+  svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+  svg.setAttribute('role', 'img');
+  svg.setAttribute('aria-label', 'RFC dependency graph');
+  const g = document.createElementNS(ns, 'g');
+  svg.appendChild(g);
+  mapContainer.appendChild(svg);
 
-  const simulation = d3.forceSimulation(nodes)
-    .force(\"link\", d3.forceLink(links).id(d => d.id).distance(150))
-    .force(\"charge\", d3.forceManyBody().strength(-400))
-    .force(\"center\", d3.forceCenter(width / 2, height / 2))
-    .force(\"collision\", d3.forceCollide().radius(70));
+  const centerX = width / 2;
+  const centerY = height / 2;
+  const radius = Math.max(180, Math.min(width, height) * 0.36);
+  const priority = new Set(['768', '791', '792', '793', '826', '1035', '2131', '2328', '3954', '4271', '5321', '7011', '7230', '7540']);
+  const visibleNodes = nodes.filter(n => priority.has(n.id));
+  const visibleIds = new Set(visibleNodes.map(n => n.id));
+  const visibleLinks = links.filter(l => visibleIds.has(l.source) && visibleIds.has(l.target));
+  visibleNodes.forEach((node, index) => {
+    const angle = (index / visibleNodes.length) * Math.PI * 2 - Math.PI / 2;
+    node.x = centerX + Math.cos(angle) * radius;
+    node.y = centerY + Math.sin(angle) * radius;
+  });
+  const byId = new Map(visibleNodes.map(node => [node.id, node]));
+  const linkEls = [];
+  const nodeEls = [];
 
-  const link = g.append(\"g\").selectAll(\"path\").data(links).join(\"path\").attr(\"class\", d => `link ${d.type}`);
-  const node = g.append(\"g\").selectAll(\".node\").data(nodes).join(\"g\").attr(\"class\", d => `node node-${d.layer}`)
-    .call(d3.drag().on(\"start\", (e) => { if (!e.active) simulation.alphaTarget(0.3).restart(); e.subject.fx = e.subject.x; e.subject.fy = e.subject.y; })
-      .on(\"drag\", (e) => { e.subject.fx = e.x; e.subject.fy = e.y; })
-      .on(\"end\", (e) => { if (!e.active) simulation.alphaTarget(0); e.subject.fx = null; e.subject.fy = null; }))
-    .on(\"click\", (e, d) => { if (e.defaultPrevented) return; window.location.href = `rfc/rfc${d.num}.html`; })
-    .on(\"mouseover\", (e, d) => {
-      const neighbors = new Set([d.id]);
-      links.forEach(l => { 
-        const s = typeof l.source === 'object' ? l.source.id : l.source;
-        const t = typeof l.target === 'object' ? l.target.id : l.target;
-        if (s === d.id) neighbors.add(t); if (t === d.id) neighbors.add(s);
-      });
-      node.classed(\"dimmed\", n => !neighbors.has(n.id));
-      link.classed(\"dimmed\", l => {
-        const s = typeof l.source === 'object' ? l.source.id : l.source;
-        const t = typeof l.target === 'object' ? l.target.id : l.target;
-        return s !== d.id && t !== d.id;
-      });
-      link.classed(\"highlight\", l => {
-        const s = typeof l.source === 'object' ? l.source.id : l.source;
-        const t = typeof l.target === 'object' ? l.target.id : l.target;
-        return s === d.id || t === d.id;
-      });
-    }).on(\"mouseout\", () => { node.classed(\"dimmed\", false); link.classed(\"dimmed\", false); link.classed(\"highlight\", false); });
+  visibleLinks.forEach(link => {
+    const source = byId.get(link.source);
+    const target = byId.get(link.target);
+    if (!source || !target) return;
+    const path = document.createElementNS(ns, 'path');
+    const midX = (source.x + target.x) / 2;
+    const midY = (source.y + target.y) / 2;
+    const curveX = midX + (centerX - midX) * 0.24;
+    const curveY = midY + (centerY - midY) * 0.24;
+    path.setAttribute('d', `M${source.x},${source.y} Q${curveX},${curveY} ${target.x},${target.y}`);
+    path.setAttribute('class', `link ${link.type}`);
+    path.dataset.source = source.id;
+    path.dataset.target = target.id;
+    g.appendChild(path);
+    linkEls.push(path);
+  });
 
-  node.append(\"rect\").attr(\"width\", 100).attr(\"height\", 45).attr(\"x\", -50).attr(\"y\", -22);
-  node.append(\"text\").attr(\"dy\", \"-2\").text(d => d.name.length > 15 ? d.name.substring(0, 13) + '...' : d.name);
-  node.append(\"text\").attr(\"class\", \"node-rfc\").attr(\"dy\", \"12\").text(d => `RFC ${d.num}`);
+  visibleNodes.forEach(node => {
+    const group = document.createElementNS(ns, 'g');
+    group.setAttribute('class', `node node-${node.layer}`);
+    group.setAttribute('transform', `translate(${node.x},${node.y})`);
+    group.setAttribute('tabindex', '0');
+    group.setAttribute('role', 'link');
+    group.setAttribute('aria-label', `Open RFC ${node.num}: ${node.name}`);
+    group.dataset.id = node.id;
+    const nodeWidth = Math.max(120, node.name.length * 8 + 30);
+    const title = document.createElementNS(ns, 'title');
+    title.textContent = `RFC ${node.num}: ${node.name}`;
+    const rect = document.createElementNS(ns, 'rect');
+    rect.setAttribute('width', String(nodeWidth));
+    rect.setAttribute('height', '54');
+    rect.setAttribute('x', String(-nodeWidth / 2));
+    rect.setAttribute('y', '-27');
+    const label = document.createElementNS(ns, 'text');
+    label.setAttribute('dy', '-4');
+    label.style.fontSize = '11px';
+    label.textContent = node.name;
+    const num = document.createElementNS(ns, 'text');
+    num.setAttribute('class', 'node-rfc');
+    num.setAttribute('dy', '14');
+    num.textContent = `RFC ${node.num}`;
+    group.append(title, rect, label, num);
+    const open = () => { window.location.href = `rfc/rfc${node.num}.html`; };
+    group.addEventListener('click', open);
+    group.addEventListener('keydown', (event) => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); open(); } });
+    group.addEventListener('pointerenter', () => highlightGraph(node.id, nodeEls, linkEls));
+    group.addEventListener('pointerleave', () => clearGraphHighlight(nodeEls, linkEls));
+    g.appendChild(group);
+    nodeEls.push(group);
+  });
 
-  simulation.on(\"tick\", () => {
-    link.attr(\"d\", d => {
-      const dx = d.target.x - d.source.x, dy = d.target.y - d.source.y;
-      const dr = Math.sqrt(dx * dx + dy * dy);
-      return `M${d.source.x},${d.source.y}A${dr},${dr} 0 0,1 ${d.target.x},${d.target.y}`;
-    });
-    node.attr(\"transform\", d => `translate(${d.x},${d.y})`);
+  let transform = { x: 0, y: 0, scale: 1 };
+  let dragStart = null;
+  const applyTransform = () => g.setAttribute('transform', `translate(${transform.x} ${transform.y}) scale(${transform.scale})`);
+  svg.addEventListener('wheel', (event) => {
+    event.preventDefault();
+    transform.scale = Math.min(3, Math.max(0.45, transform.scale + (event.deltaY > 0 ? -0.08 : 0.08)));
+    applyTransform();
+  }, { passive: false });
+  svg.addEventListener('pointerdown', (event) => { dragStart = { x: event.clientX - transform.x, y: event.clientY - transform.y }; svg.setPointerCapture(event.pointerId); });
+  svg.addEventListener('pointermove', (event) => {
+    if (!dragStart) return;
+    transform.x = event.clientX - dragStart.x;
+    transform.y = event.clientY - dragStart.y;
+    applyTransform();
+  });
+  svg.addEventListener('pointerup', () => { dragStart = null; });
+}
+
+function highlightGraph(id, nodeEls, linkEls) {
+  const neighbors = new Set([id]);
+  linkEls.forEach(link => {
+    if (link.dataset.source === id) neighbors.add(link.dataset.target);
+    if (link.dataset.target === id) neighbors.add(link.dataset.source);
+  });
+  nodeEls.forEach(node => node.classList.toggle('dimmed', !neighbors.has(node.dataset.id)));
+  linkEls.forEach(link => {
+    const active = link.dataset.source === id || link.dataset.target === id;
+    link.classList.toggle('highlight', active);
+    link.classList.toggle('dimmed', !active);
   });
 }
 
-if (openMapBtn) openMapBtn.addEventListener('click', () => { mapOverlay.classList.add('active'); setTimeout(initMap, 100); });
-if (closeMapBtn) closeMapBtn.addEventListener('click', () => mapOverlay.classList.remove('active'));
+function clearGraphHighlight(nodeEls, linkEls) {
+  nodeEls.forEach(node => node.classList.remove('dimmed'));
+  linkEls.forEach(link => link.classList.remove('dimmed', 'highlight'));
+}
+
+function setStudyPath(pathId, scrollIntoView = false) {
+  const activeBtn = studyPathBtns.find((btn) => btn.dataset.path === pathId) || null;
+  activeStudyPath = activeBtn?.dataset.label || '';
+  activeStudyRfcSet = activeBtn ? new Set((activeBtn.dataset.rfcs || '').split(' ').filter(Boolean)) : null;
+  studyPathBtns.forEach((btn) => btn.classList.toggle('active', btn === activeBtn));
+  if (activeStudyPathEl) activeStudyPathEl.textContent = activeStudyPath || 'Full library mode';
+  if (clearStudyPathBtn) clearStudyPathBtn.disabled = !activeBtn;
+  try { localStorage.setItem('rfc_active_study_path', activeBtn?.dataset.path || ''); } catch (err) {}
+  applyFilters();
+  if (scrollIntoView) document.querySelector('#rfc-grid')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function updateIfThenPreview() {
+  if (!ifThenPreview) return;
+  const cue = ifThenCueInput?.value.trim() || '';
+  const action = ifThenActionInput?.value.trim() || '';
+  if (!cue && !action) {
+    ifThenPreview.textContent = 'If your cue happens, then your study move lives here. Tiny counts. Tiny is how empires are built.';
+    return;
+  }
+  ifThenPreview.textContent = `If ${cue || '...'}, then ${action || '...'}.`;
+}
+
+function loadIfThenPlan() {
+  const saved = readJSON('rfc_if_then_plan', { cue: '', action: '' });
+  if (ifThenCueInput) ifThenCueInput.value = saved.cue || '';
+  if (ifThenActionInput) ifThenActionInput.value = saved.action || '';
+  updateIfThenPreview();
+}
+
+if (openMapBtn) openMapBtn.addEventListener('click', () => { setOverlayOpen(mapOverlay, true); setTimeout(initMap, 100); });
+if (closeMapBtn) closeMapBtn.addEventListener('click', () => setOverlayOpen(mapOverlay, false));
 
 window.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && mapOverlay.classList.contains('active')) mapOverlay.classList.remove('active');
+  if (e.key === 'Escape' && mapOverlay?.classList.contains('active')) setOverlayOpen(mapOverlay, false);
 });
 
 function applyFilters() {
-  const term = q.value.trim().toLowerCase();
+  const term = q?.value.trim().toLowerCase() || '';
   let visible = 0;
   for (const card of cards) {
     const tagHit = activeTag === 'all' || card.dataset.tags.split(' ').includes(activeTag);
-    const hit = tagHit && card.dataset.search.includes(term);
+    const studyHit = !activeStudyRfcSet || activeStudyRfcSet.has(card.dataset.rfc);
+    const hit = tagHit && studyHit && card.dataset.search.includes(term);
     card.style.display = hit ? '' : 'none';
     if (hit) visible++;
   }
-  count.textContent = `${visible} shown`; empty.style.display = visible ? 'none' : 'block';
+  if (count) count.textContent = `${visible} of ${cards.length} shown${activeStudyPath ? ` · Path: ${activeStudyPath}` : ''}`;
+  if (empty) {
+    empty.style.display = visible ? 'none' : 'block';
+    empty.textContent = activeStudyPath ? `No RFCs match the current search inside "${activeStudyPath}". Try clearing the search or switching tracks.` : emptyDefaultText;
+  }
 }
 
 function renderNotes() {
-  const allNotes = JSON.parse(localStorage.getItem('rfc_notes') || '{}');
+  if (!notesContainer) return;
+  const allNotes = readJSON('rfc_notes');
   notesContainer.innerHTML = '';
   const rfcNums = Object.keys(allNotes).sort((a, b) => parseInt(a) - parseInt(b));
   let hasVisibleNotes = false;
@@ -269,7 +404,7 @@ function renderNotes() {
     const firstNoteId = filteredSids[0];
     const rfcTitle = allNotes[num][firstNoteId].rfcTitle || `RFC ${num}`;
     const header = document.createElement('div'); header.className = 'notes-rfc-header';
-    header.innerHTML = `<span>RFC ${num}: ${rfcTitle}</span> <a href=\"rfc/rfc${num}.html\">View RFC</a>`;
+    header.innerHTML = `<span>RFC ${num}: ${rfcTitle}</span> <a href="rfc/rfc${num}.html">View RFC</a>`;
     rfcGroup.appendChild(header);
     filteredSids.forEach(sid => {
       const note = allNotes[num][sid];
@@ -282,7 +417,7 @@ function renderNotes() {
     notesContainer.appendChild(rfcGroup);
   });
   if (!hasVisibleNotes) {
-    notesContainer.innerHTML = rfcNums.length === 0 ? '<div class=\"notes-empty\">You haven\'t added any notes yet.</div>' : `<div class=\"notes-empty\">No notes match the \"${activeNoteFilter}\" filter.</div>`;
+    notesContainer.innerHTML = rfcNums.length === 0 ? '<div class="notes-empty">You haven\'t added any notes yet.</div>' : `<div class="notes-empty">No notes match the "${activeNoteFilter}" filter.</div>`;
   }
 }
 
@@ -296,34 +431,66 @@ function toggleNotesView(show) {
   }
 }
 
-q.addEventListener('input', applyFilters);
+q?.addEventListener('input', applyFilters);
+studyPathBtns.forEach((btn) => btn.addEventListener('click', () => setStudyPath(btn.dataset.path, true)));
+if (clearStudyPathBtn) clearStudyPathBtn.addEventListener('click', () => setStudyPath('', false));
+if (densityToggleBtn) densityToggleBtn.addEventListener('click', () => {
+  const compact = !document.body.classList.contains('card-compact');
+  document.body.classList.toggle('card-compact', compact);
+  try { localStorage.setItem('rfc_card_density', compact ? 'compact' : 'comfortable'); } catch (err) {}
+  densityToggleBtn.textContent = compact ? 'Comfort cards' : 'Compact cards';
+});
 filters.forEach(btn => btn.addEventListener('click', () => { activeTag = btn.dataset.tag; filters.forEach(item => item.classList.toggle('active', item === btn)); applyFilters(); }));
 noteFilterBtns.forEach(btn => btn.addEventListener('click', () => { activeNoteFilter = btn.dataset.filter; noteFilterBtns.forEach(b => b.classList.toggle('active', b === btn)); renderNotes(); }));
-viewNotesBtn.addEventListener('click', () => toggleNotesView(true));
-backToGridBtn.addEventListener('click', () => toggleNotesView(false));
-exportBtn.addEventListener('click', () => {
+if (viewNotesBtn) viewNotesBtn.addEventListener('click', () => toggleNotesView(true));
+if (backToGridBtn) backToGridBtn.addEventListener('click', () => toggleNotesView(false));
+if (exportBtn) exportBtn.addEventListener('click', () => {
   const allNotes = localStorage.getItem('rfc_notes') || '{}';
   const blob = new Blob([allNotes], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a'); a.href = url; a.download = `rfc-annotations-${new Date().toISOString().split('T')[0]}.json`; a.click(); URL.revokeObjectURL(url);
 });
-importBtn.addEventListener('click', () => importFile.click());
-importFile.addEventListener('change', (e) => {
+if (importBtn && importFile) importBtn.addEventListener('click', () => importFile.click());
+if (importFile) importFile.addEventListener('change', (e) => {
   const file = e.target.files[0]; if (!file) return;
   const reader = new FileReader();
   reader.onload = (event) => {
     try {
       const imported = JSON.parse(event.target.result);
-      const current = JSON.parse(localStorage.getItem('rfc_notes') || '{}');
+      const current = readJSON('rfc_notes');
       for (const rfcNum in imported) {
         if (!current[rfcNum]) current[rfcNum] = imported[rfcNum];
         else current[rfcNum] = { ...current[rfcNum], ...imported[rfcNum] };
       }
-      localStorage.setItem('rfc_notes', JSON.stringify(current)); renderNotes(); alert('Notes imported and merged successfully!');
+      writeJSON('rfc_notes', current); renderNotes(); alert('Notes imported and merged successfully!');
     } catch (err) { alert('Error importing notes: Invalid JSON file'); }
   };
   reader.readAsText(file);
 });
+ifThenCueInput?.addEventListener('input', updateIfThenPreview);
+ifThenActionInput?.addEventListener('input', updateIfThenPreview);
+if (saveIfThenBtn) saveIfThenBtn.addEventListener('click', () => {
+  const cue = ifThenCueInput?.value.trim() || '';
+  const action = ifThenActionInput?.value.trim() || '';
+  writeJSON('rfc_if_then_plan', { cue, action });
+  if (ifThenStatus) ifThenStatus.textContent = cue && action ? 'Saved locally. Future you now has a cue, a move, and slightly fewer excuses.' : 'Saved, though a specific cue and action will work better.';
+  updateIfThenPreview();
+});
+if (clearIfThenBtn) clearIfThenBtn.addEventListener('click', () => {
+  if (ifThenCueInput) ifThenCueInput.value = '';
+  if (ifThenActionInput) ifThenActionInput.value = '';
+  writeJSON('rfc_if_then_plan', { cue: '', action: '' });
+  if (ifThenStatus) ifThenStatus.textContent = 'Pact cleared. The gremlin has been temporarily released back into the wild.';
+  updateIfThenPreview();
+});
 
+loadIfThenPlan();
+try {
+  const savedStudyPath = localStorage.getItem('rfc_active_study_path') || '';
+  if (savedStudyPath) setStudyPath(savedStudyPath, false);
+  else applyFilters();
+} catch (err) {
+  applyFilters();
+}
 updateDueCounts();
-applyFilters();
+window.addEventListener('scroll', () => toolbar?.classList.toggle('scrolled', window.scrollY > 12), { passive: true });
