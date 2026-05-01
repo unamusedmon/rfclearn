@@ -24,6 +24,7 @@ def clean_text(text):
 def export_to_anki():
     # 1. Gather all RFCs in data/txt
     txt_dir = Path("data/txt")
+    html_dir = Path("data/html")
     rfc_files = list(txt_dir.glob("rfc*.txt"))
     
     # 2. Process them to get metadata
@@ -33,7 +34,14 @@ def export_to_anki():
     seed_nums = {meta.num for meta in brc.RFCS}
     for meta in brc.RFCS:
         txt_path = txt_dir / f"rfc{meta.num}.txt"
-        build = brc.RFCBuild(meta=meta, text_path=txt_path, text_ok=txt_path.exists())
+        html_path = html_dir / f"rfc{meta.num}.html"
+        build = brc.RFCBuild(
+            meta=meta,
+            text_path=txt_path,
+            html_path=html_path if html_path.exists() else None,
+            text_ok=txt_path.exists(),
+            html_ok=html_path.exists(),
+        )
         builds.append(build)
         
     # Then, add the rest from the directory
@@ -47,18 +55,26 @@ def export_to_anki():
             
         # Create a build object for derived metadata
         dummy_meta = brc.RFCMeta(num, f"RFC {num}", "", ("update-chain",), update_chain=True)
-        build = brc.RFCBuild(meta=dummy_meta, text_path=f, text_ok=True)
+        html_path = html_dir / f"rfc{num}.html"
+        build = brc.RFCBuild(
+            meta=dummy_meta,
+            text_path=f,
+            html_path=html_path if html_path.exists() else None,
+            text_ok=True,
+            html_ok=html_path.exists(),
+        )
         # Use brc's logic to infer title and tags
         build.meta = brc.derived_meta(num, build)
         builds.append(build)
 
+    titles_by_num = {build.meta.num: brc.extract_title(build) for build in builds}
     cards = []
     
     # Psychology: Use Tags for filtering in Anki
     # Psychology: Active Recall - RFC Number to Title
     for b in builds:
         num = b.meta.num
-        title = b.meta.title
+        title = titles_by_num[num]
         tags = " ".join(b.meta.tags)
         
         # Card 1: Number -> Title
@@ -96,7 +112,7 @@ def export_to_anki():
 
     # Threat Indicator Cards
     for num, indicators in brc.THREAT_INDICATORS.items():
-        title = next((b.meta.title for b in builds if b.meta.num == num), f"RFC {num}")
+        title = titles_by_num.get(num, f"RFC {num}")
         for ind in indicators:
             # Psychology: Comparison (Normal vs Malicious)
             cards.append({

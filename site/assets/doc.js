@@ -268,11 +268,105 @@ function setHeaderPanelDefault() {
   headerPanel.open = !matchMedia('(max-width: 780px)').matches;
 }
 
+function isAsciiDiagramLine(line) {
+  const trimmed = line.trim();
+  if (!trimmed) return false;
+  if (/^[+|\-:\s]+$/.test(trimmed) && /[+|]/.test(trimmed) && trimmed.length >= 8) return true;
+  if (/\+[-+=]{3,}\+/.test(trimmed)) return true;
+  if (/\|.*\|/.test(trimmed) && trimmed.length >= 12) return true;
+  if (/^(?:\d+\s+){6,}\d+$/.test(trimmed)) return true;
+  return false;
+}
+
+function renderModernAsciiDiagram(lines) {
+  const panel = document.createElement('figure');
+  panel.className = 'modern-ascii-diagram';
+  panel.setAttribute('role', 'img');
+  panel.setAttribute('aria-label', 'Modernized RFC packet diagram');
+
+  const kicker = document.createElement('figcaption');
+  kicker.className = 'modern-diagram-kicker';
+  kicker.textContent = 'Modernized packet graphic';
+  panel.appendChild(kicker);
+
+  const grid = document.createElement('div');
+  grid.className = 'modern-diagram-grid';
+  const rows = lines
+    .map(line => line.split('|').map(cell => cell.trim()).filter(Boolean))
+    .filter(cells => cells.length > 0 && cells.some(cell => /[A-Za-z0-9]/.test(cell)));
+
+  if (!rows.length) {
+    const fallback = document.createElement('div');
+    fallback.className = 'modern-diagram-fallback';
+    fallback.textContent = lines.join('\n');
+    grid.appendChild(fallback);
+  } else {
+    rows.forEach((cells) => {
+      const row = document.createElement('div');
+      row.className = 'modern-diagram-row';
+      row.style.setProperty('--cell-count', String(cells.length));
+      cells.forEach((label) => {
+        const cell = document.createElement('div');
+        cell.className = 'modern-diagram-cell';
+        cell.textContent = label.replace(/\s+/g, ' ');
+        row.appendChild(cell);
+      });
+      grid.appendChild(row);
+    });
+  }
+  panel.appendChild(grid);
+  return panel;
+}
+
+function modernizeAsciiGraphics() {
+  document.querySelectorAll('.rfc-source-shell pre').forEach((pre) => {
+    const lines = pre.textContent.split('\n');
+    const parts = [];
+    let index = 0;
+    let changed = false;
+    while (index < lines.length) {
+      if (!isAsciiDiagramLine(lines[index])) {
+        const start = index;
+        while (index < lines.length && !isAsciiDiagramLine(lines[index])) index++;
+        const text = lines.slice(start, index).join('\n');
+        if (text.trim()) parts.push({ type: 'text', lines: text });
+        continue;
+      }
+      const start = index;
+      let diagramCount = 0;
+      while (index < lines.length && (isAsciiDiagramLine(lines[index]) || !lines[index].trim())) {
+        if (isAsciiDiagramLine(lines[index])) diagramCount++;
+        index++;
+      }
+      const block = lines.slice(start, index);
+      if (diagramCount >= 3 && block.some(line => /\|.*\||\+[-+=]{3,}\+/.test(line))) {
+        parts.push({ type: 'diagram', lines: block });
+        changed = true;
+      } else {
+        parts.push({ type: 'text', lines: block.join('\n') });
+      }
+    }
+    if (!changed) return;
+    const fragment = document.createDocumentFragment();
+    parts.forEach((part) => {
+      if (part.type === 'diagram') {
+        fragment.appendChild(renderModernAsciiDiagram(part.lines));
+      } else if (part.lines.trim()) {
+        const textPre = document.createElement('pre');
+        textPre.textContent = part.lines.replace(/^\n+|\n+$/g, '');
+        fragment.appendChild(textPre);
+      }
+    });
+    pre.replaceWith(fragment);
+  });
+}
+
 addEventListener('scroll', updateProgress, { passive: true });
 if (focusBtn) focusBtn.addEventListener('click', () => body.classList.toggle('focus'));
 if (comfyBtn) comfyBtn.addEventListener('click', () => body.classList.toggle('comfy'));
 if (topBtn) topBtn.addEventListener('click', () => scrollTo({ top: 0, behavior: 'smooth' }));
 setHeaderPanelDefault();
+modernizeAsciiGraphics();
 const headings = makeToc();
 initActiveToc(headings);
 initAnnotations(headings);

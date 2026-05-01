@@ -34,6 +34,24 @@ class HeaderReferenceTests(unittest.TestCase):
     def setUpClass(cls):
         cls.builder = load_builder()
 
+    def make_update_chain_build(self, num: int):
+        placeholder = self.builder.RFCMeta(num, f"RFC {num}", "", ("update-chain",), update_chain=True)
+        return self.builder.RFCBuild(
+            meta=placeholder,
+            text_path=ROOT / "data" / "txt" / f"rfc{num}.txt",
+            html_path=ROOT / "data" / "html" / f"rfc{num}.html",
+            text_ok=True,
+            html_ok=True,
+        )
+
+    def make_text_only_update_chain_build(self, num: int):
+        placeholder = self.builder.RFCMeta(num, f"RFC {num}", "", ("update-chain",), update_chain=True)
+        return self.builder.RFCBuild(
+            meta=placeholder,
+            text_path=ROOT / "data" / "txt" / f"rfc{num}.txt",
+            text_ok=True,
+        )
+
     def test_tcp_header_reference_renders_bit_layout_and_hunting_descriptions(self):
         panel = self.builder.render_header_reference_panel(793)
 
@@ -114,6 +132,74 @@ class HeaderReferenceTests(unittest.TestCase):
         self.assertIn('Save pact', section)
         self.assertIn('10.1037/0033-2909.132.3.354', section)
         self.assertIn('10.1016/S0065-2601(06)38002-1', section)
+
+    def test_rfc_source_formatter_wraps_pages_and_preserves_page_break_intent(self):
+        raw = (
+            "<span>Updated by: <a href=\"rfc9999.html\">9999</a></span>"
+            "<pre>RFC: 1234\nFront matter</pre>"
+            "<hr/><!--NewPage-->"
+            "<pre>TABLE OF CONTENTS\n<a href=\"#section-1\">1</a>. Intro</pre>"
+        )
+
+        formatted = self.builder.format_rfc_source_body(raw, "RFC Editor HTML")
+
+        self.assertIn('class="source-banner"', formatted)
+        self.assertIn("cold-war fax vibes", formatted)
+        self.assertIn('class="rfc-page is-cover"', formatted)
+        self.assertIn('class="rfc-page is-contents"', formatted)
+        self.assertIn('class="rfc-page-meta"', formatted)
+        self.assertIn("2 page cards", formatted)
+        self.assertNotIn("<!--NewPage-->", formatted)
+
+    def test_extract_title_uses_cached_html_for_text_only_builds(self):
+        self.assertEqual(
+            "Internet Standard Subnetting Procedure",
+            self.builder.extract_title(self.make_text_only_update_chain_build(950)),
+        )
+        self.assertEqual(
+            "Secret Key Transaction Authentication for DNS (TSIG)",
+            self.builder.extract_title(self.make_text_only_update_chain_build(2845)),
+        )
+
+    def test_extract_title_from_text_handles_vintage_multiline_titles(self):
+        text = """
+Network Working Group                                          J. Postel
+Request for Comments: 879                                            ISI
+                                                            November 1983
+
+
+                       The TCP Maximum Segment Size
+                            and Related Topics
+
+This memo discusses the TCP Maximum Segment Size Option and related
+topics.
+"""
+
+        self.assertEqual(
+            "The TCP Maximum Segment Size and Related Topics",
+            self.builder.extract_title_from_text(text, 879),
+        )
+
+    def test_update_chain_dns_any_description_is_specific(self):
+        meta = self.builder.derived_meta(8482, self.make_update_chain_build(8482))
+
+        self.assertIn("QTYPE=ANY", meta.relevance)
+        self.assertIn("authoritative servers", meta.relevance)
+        self.assertNotIn("Pulled in through the RFC update chain", meta.relevance)
+
+    def test_update_chain_bgp_error_handling_description_is_specific(self):
+        meta = self.builder.derived_meta(7606, self.make_update_chain_build(7606))
+
+        self.assertIn("BGP UPDATE error handling", meta.relevance)
+        self.assertIn("route churn", meta.relevance)
+        self.assertNotIn("Pulled in through the RFC update chain", meta.relevance)
+
+    def test_update_chain_udp_options_description_is_specific(self):
+        meta = self.builder.derived_meta(9868, self.make_update_chain_build(9868))
+
+        self.assertIn("UDP transport options", meta.relevance)
+        self.assertIn("post-payload", meta.relevance)
+        self.assertNotIn("Pulled in through the RFC update chain", meta.relevance)
 
     def test_unknown_rfc_has_no_header_reference_panel(self):
         self.assertEqual("", self.builder.render_header_reference_panel(9999))

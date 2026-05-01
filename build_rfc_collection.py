@@ -1289,7 +1289,9 @@ input:focus {
 }
 
 .doc-body {
-  overflow: auto;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   padding: 38px 40px;
   border: 1px solid var(--line);
   border-radius: 30px;
@@ -1310,6 +1312,7 @@ input:focus {
   content: "";
   position: absolute;
   inset: -1px;
+  z-index: 0;
   opacity: 0.4;
   background: 
     radial-gradient(circle at top right, 
@@ -1322,13 +1325,19 @@ input:focus {
   border-radius: 31px;
 }
 
+.doc-body > * {
+  position: relative;
+  z-index: 1;
+}
+
 .doc-body pre {
   white-space: pre-wrap;
   color: #e2efff;
-  font: .94rem/1.6 "SFMono-Regular", Consolas, "Liberation Mono", monospace;
-  background: rgba(0,0,0,.2);
-  padding: 2px 4px;
-  border-radius: 6px;
+  font: .93rem/1.72 "IBM Plex Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  margin: 0;
   overflow-x: auto;
 }
 
@@ -1374,6 +1383,21 @@ input:focus {
 .doc-body a:hover {
   color: var(--cyan2);
   text-shadow: 0 0 12px rgba(101,228,255,.4);
+}
+
+.doc-body a[href^="#section-"] {
+  display: inline-block;
+  padding: 0.02rem 0.44rem;
+  border-radius: 999px;
+  background: rgba(101,228,255,.1);
+  box-shadow: inset 0 0 0 1px rgba(101,228,255,.18);
+  text-decoration: none;
+  font-weight: 800;
+}
+
+.doc-body a[href^="#page-"] {
+  color: var(--muted);
+  text-decoration-color: rgba(255,255,255,.24);
 }
 
 .doc-body a.rfc-local {
@@ -1427,6 +1451,310 @@ input:focus {
   font-size: 1.35rem;
   color: var(--violet);
 }
+
+.source-banner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(220px, .95fr);
+  gap: 18px;
+  margin: 0 0 22px;
+  padding: 22px 24px;
+  border: 1px solid rgba(101,228,255,.2);
+  border-radius: 24px;
+  background:
+    linear-gradient(145deg, rgba(101,228,255,.11), rgba(184,156,255,.08)),
+    rgba(8,12,24,.82);
+  box-shadow:
+    0 16px 48px rgba(0,0,0,.28),
+    inset 0 1px 0 rgba(255,255,255,.05);
+}
+
+.source-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  color: var(--cyan);
+  font-size: .78rem;
+  font-weight: 900;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.source-kicker::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--cyan), var(--violet));
+  box-shadow: 0 0 14px rgba(101,228,255,.45);
+}
+
+.source-banner strong {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 1.22rem;
+  line-height: 1.2;
+  color: var(--text);
+}
+
+.source-banner p {
+  margin: 0;
+  color: var(--text2);
+  max-width: 60ch;
+}
+
+.source-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: start;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.source-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 10px 14px;
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 999px;
+  background: rgba(7,10,19,.56);
+  color: var(--text2);
+  font-size: .85rem;
+  font-weight: 700;
+  letter-spacing: .02em;
+}
+
+.source-chip::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--amber);
+  box-shadow: 0 0 12px rgba(255,211,106,.35);
+}
+
+.rfc-source-shell {
+  display: grid;
+  gap: 18px;
+}
+
+.rfc-page {
+  position: relative;
+  padding: 20px 22px 24px;
+  border: 1px solid rgba(255,255,255,.09);
+  border-radius: 26px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.015)),
+    rgba(10,14,28,.82);
+  box-shadow:
+    0 18px 46px rgba(0,0,0,.28),
+    inset 0 1px 0 rgba(255,255,255,.04);
+  overflow: hidden;
+}
+
+.rfc-page::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  background: linear-gradient(180deg, var(--cyan), var(--violet));
+  opacity: .9;
+}
+
+.rfc-page.is-cover {
+  background:
+    radial-gradient(circle at top right, rgba(101,228,255,.08), transparent 34%),
+    linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.018)),
+    rgba(10,14,28,.9);
+}
+
+.rfc-page.is-contents::after {
+  content: "jump links live here";
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  padding: 7px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(101,228,255,.18);
+  background: rgba(101,228,255,.08);
+  color: var(--cyan);
+  font-size: .7rem;
+  font-weight: 900;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.rfc-page-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0 0 14px;
+}
+
+.rfc-page-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.1);
+  background: rgba(7,11,20,.62);
+  color: var(--text2);
+  font-size: .74rem;
+  font-weight: 900;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.rfc-page-label::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--green);
+  box-shadow: 0 0 10px rgba(125,255,168,.38);
+}
+
+.rfc-page-meta {
+  margin: 0 0 18px;
+  padding: 14px 16px;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 18px;
+  background: rgba(255,255,255,.03);
+  color: var(--muted);
+  font-size: .82rem;
+  line-height: 1.75;
+}
+
+.rfc-page-meta a:not([href]) {
+  color: var(--muted);
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(255,255,255,.12);
+}
+
+.rfc-page-meta a[href] {
+  font-weight: 700;
+}
+
+.rfc-page pre + pre,
+.rfc-page details + pre,
+.rfc-page pre + details,
+.rfc-page details + details {
+  margin-top: 16px;
+}
+
+.rfc-page .header-reference-panel,
+.rfc-page .arp-flowchart-panel,
+.rfc-page .modern-ascii-diagram {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.modern-ascii-diagram {
+  position: relative;
+  padding: 22px;
+  border: 1px solid rgba(101,228,255,.26);
+  border-radius: 26px;
+  background:
+    radial-gradient(circle at 16% 12%, rgba(101,228,255,.22), transparent 32%),
+    radial-gradient(circle at 86% 18%, rgba(184,156,255,.2), transparent 34%),
+    linear-gradient(145deg, rgba(9,15,32,.96), rgba(5,8,18,.94));
+  box-shadow:
+    0 22px 70px rgba(0,0,0,.34),
+    inset 0 1px 0 rgba(255,255,255,.08),
+    0 0 42px rgba(101,228,255,.08);
+  overflow: hidden;
+}
+
+.modern-ascii-diagram::before {
+  content: "";
+  position: absolute;
+  inset: -40% -20% auto;
+  height: 120px;
+  background: linear-gradient(90deg, transparent, rgba(101,228,255,.2), transparent);
+  transform: rotate(-8deg);
+}
+
+.modern-diagram-kicker {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  color: var(--cyan);
+  font-size: .76rem;
+  font-weight: 900;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.modern-diagram-kicker::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--cyan), var(--violet));
+  box-shadow: 0 0 16px rgba(101,228,255,.55);
+}
+
+.modern-diagram-grid {
+  position: relative;
+  display: grid;
+  gap: 9px;
+}
+
+.modern-diagram-row {
+  display: grid;
+  grid-template-columns: repeat(var(--cell-count, 1), minmax(0, 1fr));
+  gap: 9px;
+}
+
+.modern-diagram-cell {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 12px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 15px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03)),
+    rgba(101,228,255,.06);
+  color: #f6fbff;
+  text-align: center;
+  font: 800 .82rem/1.25 Inter, system-ui, sans-serif;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.08);
+}
+
+.modern-diagram-row:nth-child(5n+1) .modern-diagram-cell { border-color: rgba(101,228,255,.28); }
+.modern-diagram-row:nth-child(5n+2) .modern-diagram-cell { border-color: rgba(184,156,255,.26); }
+.modern-diagram-row:nth-child(5n+3) .modern-diagram-cell { border-color: rgba(125,255,168,.24); }
+.modern-diagram-row:nth-child(5n+4) .modern-diagram-cell { border-color: rgba(255,211,106,.24); }
+.modern-diagram-row:nth-child(5n+5) .modern-diagram-cell { border-color: rgba(255,111,145,.24); }
+
+.modern-diagram-fallback {
+  white-space: pre-wrap;
+  color: #e2efff;
+  font: .86rem/1.55 "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+}
+
+.doc-body.focus .rfc-source-shell {
+  max-width: 78ch;
+  margin: 0 auto;
+}
+
+.doc-body.comfy .rfc-page {
+  padding: 22px 24px 28px;
+}
+
+.doc-body.comfy .rfc-page pre {
+  font-size: .99rem;
+  line-height: 1.82;
+}
+
 .toc-panel {
   position: sticky;
   top: 102px;
@@ -2253,6 +2581,26 @@ footer .shell {
     padding: 22px;
     border-radius: 24px;
   }
+
+  .source-banner {
+    grid-template-columns: 1fr;
+    padding: 18px;
+  }
+
+  .source-meta {
+    justify-content: flex-start;
+  }
+
+  .rfc-page {
+    padding: 18px 18px 20px;
+    border-radius: 22px;
+  }
+
+  .rfc-page.is-contents::after {
+    position: static;
+    display: inline-flex;
+    margin: 0 0 12px;
+  }
   
   .reader-tools {
     border-radius: 24px;
@@ -2952,12 +3300,8 @@ body.card-compact .open { margin-top: 14px; }
 }
 .node .node-rfc { fill: var(--muted); font-size: 9px; font-weight: 700; }
 
-.doc-body pre {
-  max-width: 92ch;
-  margin-left: auto;
-  margin-right: auto;
-}
-.doc-body.focus pre { max-width: 78ch; }
+.doc-body pre { max-width: 100%; }
+.doc-body.focus pre { max-width: 100%; }
 .reader-tools { min-height: 58px; }
 
 @media (max-width: 780px) {
@@ -3768,11 +4112,105 @@ function setHeaderPanelDefault() {
   headerPanel.open = !matchMedia('(max-width: 780px)').matches;
 }
 
+function isAsciiDiagramLine(line) {
+  const trimmed = line.trim();
+  if (!trimmed) return false;
+  if (/^[+|\-:\s]+$/.test(trimmed) && /[+|]/.test(trimmed) && trimmed.length >= 8) return true;
+  if (/\+[-+=]{3,}\+/.test(trimmed)) return true;
+  if (/\|.*\|/.test(trimmed) && trimmed.length >= 12) return true;
+  if (/^(?:\d+\s+){6,}\d+$/.test(trimmed)) return true;
+  return false;
+}
+
+function renderModernAsciiDiagram(lines) {
+  const panel = document.createElement('figure');
+  panel.className = 'modern-ascii-diagram';
+  panel.setAttribute('role', 'img');
+  panel.setAttribute('aria-label', 'Modernized RFC packet diagram');
+
+  const kicker = document.createElement('figcaption');
+  kicker.className = 'modern-diagram-kicker';
+  kicker.textContent = 'Modernized packet graphic';
+  panel.appendChild(kicker);
+
+  const grid = document.createElement('div');
+  grid.className = 'modern-diagram-grid';
+  const rows = lines
+    .map(line => line.split('|').map(cell => cell.trim()).filter(Boolean))
+    .filter(cells => cells.length > 0 && cells.some(cell => /[A-Za-z0-9]/.test(cell)));
+
+  if (!rows.length) {
+    const fallback = document.createElement('div');
+    fallback.className = 'modern-diagram-fallback';
+    fallback.textContent = lines.join('\n');
+    grid.appendChild(fallback);
+  } else {
+    rows.forEach((cells) => {
+      const row = document.createElement('div');
+      row.className = 'modern-diagram-row';
+      row.style.setProperty('--cell-count', String(cells.length));
+      cells.forEach((label) => {
+        const cell = document.createElement('div');
+        cell.className = 'modern-diagram-cell';
+        cell.textContent = label.replace(/\s+/g, ' ');
+        row.appendChild(cell);
+      });
+      grid.appendChild(row);
+    });
+  }
+  panel.appendChild(grid);
+  return panel;
+}
+
+function modernizeAsciiGraphics() {
+  document.querySelectorAll('.rfc-source-shell pre').forEach((pre) => {
+    const lines = pre.textContent.split('\n');
+    const parts = [];
+    let index = 0;
+    let changed = false;
+    while (index < lines.length) {
+      if (!isAsciiDiagramLine(lines[index])) {
+        const start = index;
+        while (index < lines.length && !isAsciiDiagramLine(lines[index])) index++;
+        const text = lines.slice(start, index).join('\n');
+        if (text.trim()) parts.push({ type: 'text', lines: text });
+        continue;
+      }
+      const start = index;
+      let diagramCount = 0;
+      while (index < lines.length && (isAsciiDiagramLine(lines[index]) || !lines[index].trim())) {
+        if (isAsciiDiagramLine(lines[index])) diagramCount++;
+        index++;
+      }
+      const block = lines.slice(start, index);
+      if (diagramCount >= 3 && block.some(line => /\|.*\||\+[-+=]{3,}\+/.test(line))) {
+        parts.push({ type: 'diagram', lines: block });
+        changed = true;
+      } else {
+        parts.push({ type: 'text', lines: block.join('\n') });
+      }
+    }
+    if (!changed) return;
+    const fragment = document.createDocumentFragment();
+    parts.forEach((part) => {
+      if (part.type === 'diagram') {
+        fragment.appendChild(renderModernAsciiDiagram(part.lines));
+      } else if (part.lines.trim()) {
+        const textPre = document.createElement('pre');
+        textPre.textContent = part.lines.replace(/^\n+|\n+$/g, '');
+        fragment.appendChild(textPre);
+      }
+    });
+    pre.replaceWith(fragment);
+  });
+}
+
 addEventListener('scroll', updateProgress, { passive: true });
 if (focusBtn) focusBtn.addEventListener('click', () => body.classList.toggle('focus'));
 if (comfyBtn) comfyBtn.addEventListener('click', () => body.classList.toggle('comfy'));
 if (topBtn) topBtn.addEventListener('click', () => scrollTo({ top: 0, behavior: 'smooth' }));
 setHeaderPanelDefault();
+modernizeAsciiGraphics();
 const headings = makeToc();
 initActiveToc(headings);
 initAnnotations(headings);
@@ -3833,18 +4271,174 @@ def parse_related_rfcs(text: str) -> set[int]:
     return related
 
 
-def extract_title(build: RFCBuild) -> str:
-    if build.html_ok and build.html_path:
-        raw = read_text(build.html_path)
+TITLE_STOP_LINE_RE = re.compile(
+    r"(?i)^(?:status(?:\s+of\s+this\s+memo)?|abstract|copyright\s+notice|table\s+of\s+contents|contents|introduction|overview|acknowledg(?:e)?ment|1\s*[-.]\s+[A-Za-z])$"
+)
+TITLE_METADATA_RE = re.compile(
+    r"(?i)^(?:network working group|internet engineering task force|internet architecture board|request for comments|rfc\s*:?\s*\d+|category:|updates?:|updated by:|obsoletes?:|obsoleted by:|std:|bcp:|fyi:|issn:)"
+)
+TITLE_DATE_RE = re.compile(
+    r"(?i)^(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:tember)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)\s+\d{4}$"
+)
+TITLE_AUTHOR_RE = re.compile(
+    r"^(?:[A-Z]\.\s*){1,3}[A-Z][A-Za-z'`.-]+(?:\s+(?:[A-Z][A-Za-z'`.-]+|[23](?:rd)?|Jr\.?|Sr\.?)){0,4}$"
+)
+TITLE_PROTOCOL_HINTS = (
+    "protocol", "internet", "domain", "dns", "tcp", "udp", "http", "mail", "smtp", "dhcp", "bgp",
+    "ospf", "uri", "security", "authentication", "names", "subnet", "ip", "ipv6", "ipv4", "zone",
+    "cache", "routing", "header", "message", "packet", "congestion", "label", "semantics", "transport",
+)
+
+
+def clean_title_line(line: str) -> str:
+    return re.sub(r"\s+", " ", line.replace("\ufeff", "")).strip()
+
+
+def parse_html_title(raw: str, num: int) -> str | None:
+    match = re.search(rf"<title>\s*RFC\s+{num}\s*:?\s*(.*?)\s*</title>", raw, flags=re.I | re.S)
+    if not match:
         match = re.search(r"<title>\s*RFC\s+\d+\s*:?\s*(.*?)\s*</title>", raw, flags=re.I | re.S)
-        if match:
-            return html.unescape(re.sub(r"\s+", " ", match.group(1))).strip(" -:")
-    text = read_text(build.text_path)
-    for line in text.splitlines()[:80]:
-        clean = line.strip()
-        if clean and not clean.lower().startswith(("network working group", "request for comments", "rfc", "category", "updates", "obsoletes")):
+    if not match:
+        return None
+    title = html.unescape(re.sub(r"\s+", " ", match.group(1))).strip(" -:")
+    return title or None
+
+
+def cached_html_path(build: RFCBuild) -> Path | None:
+    candidates = [build.html_path, DATA_DIR / "html" / f"rfc{build.meta.num}.html"]
+    for path in candidates:
+        if path and path.exists():
+            return path
+    return None
+
+
+def looks_like_title_line(clean: str, raw: str) -> bool:
+    if not clean or len(clean) < 6 or len(clean) > 120:
+        return False
+    if TITLE_METADATA_RE.match(clean) or TITLE_STOP_LINE_RE.match(clean) or TITLE_DATE_RE.match(clean):
+        return False
+    if "[page" in clean.lower():
+        return False
+    if clean.startswith(("+", "|")) or set(clean) <= {"-", "*", "_", "=", "+", "|", ".", " "}:
+        return False
+    if re.fullmatch(r"[IVXLCDM]+", clean):
+        return False
+    if clean.endswith("."):
+        return False
+    if TITLE_AUTHOR_RE.fullmatch(clean):
+        return False
+    if re.search(r"\b(?:telephone|phone|facsimile|fax)\b", clean, flags=re.I):
+        return False
+    words = re.findall(r"[A-Za-z0-9][A-Za-z0-9'()/.-]*", clean)
+    if len(words) < 2 or len(words) > 18:
+        return False
+    alpha_chars = [ch for ch in clean if ch.isalpha()]
+    if not alpha_chars:
+        return False
+    uppercase_ratio = sum(1 for ch in alpha_chars if ch.isupper()) / len(alpha_chars)
+    titleish_words = sum(1 for word in words if word[:1].isupper() or word.isupper())
+    hint_hits = sum(1 for hint in TITLE_PROTOCOL_HINTS if hint in clean.lower())
+    lead_spaces = len(raw) - len(raw.lstrip(" "))
+    if uppercase_ratio >= 0.45 or titleish_words / len(words) >= 0.7:
+        return True
+    return bool(hint_hits and lead_spaces >= 4)
+
+
+def looks_like_title_continuation(clean: str, raw: str) -> bool:
+    if not clean or len(clean) < 3 or len(clean) > 90:
+        return False
+    if TITLE_METADATA_RE.match(clean) or TITLE_STOP_LINE_RE.match(clean) or TITLE_DATE_RE.match(clean):
+        return False
+    if TITLE_AUTHOR_RE.fullmatch(clean) or clean.endswith("."):
+        return False
+    if "[page" in clean.lower():
+        return False
+    words = re.findall(r"[A-Za-z0-9][A-Za-z0-9'()/.-]*", clean)
+    if not words or len(words) > 10:
+        return False
+    lead_spaces = len(raw) - len(raw.lstrip(" "))
+    if clean[:1].islower():
+        return True
+    return lead_spaces >= 8 and words[0].lower() in {"and", "or", "for", "of", "to", "the", "with", "using", "in"}
+
+
+def score_title_block(lines: list[tuple[str, str]], start_index: int) -> int:
+    title = " ".join(clean for clean, _raw in lines)
+    hint_hits = sum(1 for hint in TITLE_PROTOCOL_HINTS if hint in title.lower())
+    lead_space_bonus = sum(1 for _clean, raw in lines if len(raw) - len(raw.lstrip(" ")) >= 8)
+    uppercase_bonus = 0
+    for clean, _raw in lines:
+        alpha_chars = [ch for ch in clean if ch.isalpha()]
+        if alpha_chars and sum(1 for ch in alpha_chars if ch.isupper()) / len(alpha_chars) >= 0.55:
+            uppercase_bonus += 1
+    score = len(lines) * 4 + hint_hits * 3 + lead_space_bonus + uppercase_bonus
+    score += max(0, 22 - start_index)
+    if re.search(r"\b(?:inc|corp|labs|university|institute|motorola|nominum|stanford)\b", title, flags=re.I):
+        score -= 10
+    return score
+
+
+def extract_title_from_text(text: str, num: int) -> str | None:
+    lines = text.replace("\r", "").replace("\ufeff", "").splitlines()
+    candidates: list[tuple[int, int, list[tuple[str, str]]]] = []
+    current: list[tuple[str, str]] = []
+    current_start = 0
+
+    for index, raw_line in enumerate(lines[:120]):
+        clean = clean_title_line(raw_line)
+        if TITLE_STOP_LINE_RE.match(clean):
+            if current:
+                candidates.append((score_title_block(current, current_start), current_start, current))
+            current = []
+            break
+        if not clean:
+            if current:
+                candidates.append((score_title_block(current, current_start), current_start, current))
+                current = []
+            continue
+        direct_match = re.match(rf"^RFC\s+{num}\s*[-:]\s*(.+)$", clean, flags=re.I)
+        if direct_match:
+            direct_title = clean_title_line(direct_match.group(1)).strip(" -:")
+            if direct_title and not TITLE_DATE_RE.match(direct_title):
+                return direct_title
+        if looks_like_title_line(clean, raw_line) or (current and looks_like_title_continuation(clean, raw_line)):
+            if not current:
+                current_start = index
+            current.append((clean, raw_line))
+            if len(current) == 3:
+                candidates.append((score_title_block(current, current_start), current_start, current))
+                current = []
+        elif current:
+            candidates.append((score_title_block(current, current_start), current_start, current))
+            current = []
+
+    if current:
+        candidates.append((score_title_block(current, current_start), current_start, current))
+
+    if candidates:
+        best_block = max(candidates, key=lambda item: (item[0], -item[1]))[2]
+        title = " ".join(clean for clean, _raw in best_block).strip(" -:")
+        if title:
+            return title
+
+    for raw_line in lines[:120]:
+        clean = clean_title_line(raw_line)
+        if clean and not TITLE_METADATA_RE.match(clean) and not TITLE_DATE_RE.match(clean):
             if len(clean) > 8:
                 return clean
+    return None
+
+
+def extract_title(build: RFCBuild) -> str:
+    html_path = cached_html_path(build)
+    if html_path:
+        title = parse_html_title(read_text(html_path), build.meta.num)
+        if title:
+            return title
+    text = read_text(build.text_path)
+    title = extract_title_from_text(text, build.meta.num)
+    if title:
+        return title
     return f"RFC {build.meta.num}"
 
 
@@ -3866,13 +4460,290 @@ def infer_tags(title: str, num: int | None = None) -> tuple[str, ...]:
     return tuple(tag for tag in TAG_DESCRIPTIONS if tag in tags)
 
 
+def extract_summary_source(build: RFCBuild) -> str:
+    if build.text_ok and build.text_path:
+        return read_text(build.text_path)
+    if build.html_ok and build.html_path:
+        return html.unescape(re.sub(r"<[^>]+>", " ", extract_body(read_text(build.html_path))))
+    return ""
+
+
+def clean_summary_text(text: str) -> str:
+    text = text.replace("\ufeff", "").replace("\r", "").replace("\f", "\n")
+    text = re.sub(r"\[[^\]]+\]", "", text)
+    text = re.sub(r"\s+", " ", text)
+    return text.strip()
+
+
+def split_sentences(text: str) -> list[str]:
+    if not text:
+        return []
+    parts = re.split(r"(?<=[.!?])\s+(?=[A-Z0-9\"'])", text)
+    return [part.strip() for part in parts if part.strip()]
+
+
+def extract_abstract_or_intro(build: RFCBuild) -> str:
+    source = extract_summary_source(build).replace("\ufeff", "").replace("\r", "").replace("\f", "\n")
+    if not source:
+        return ""
+
+    abstract_match = re.search(
+        r"(?ims)^\s*Abstract\s*$\s*(?P<body>.*?)(?=^\s*(?:Status of This Memo|Copyright Notice|Table of Contents|1\.\s+Introduction)\b)",
+        source,
+    )
+    if abstract_match:
+        body = abstract_match.group("body")
+        paragraphs = [clean_summary_text(chunk) for chunk in re.split(r"\n\s*\n", body) if clean_summary_text(chunk)]
+        summary = " ".join(paragraphs[:2])
+        return " ".join(split_sentences(summary)[:3])
+
+    intro_heading = re.compile(r"(?im)^\s*1\.\s+Introduction\s*$")
+    next_heading = re.compile(r"(?im)^\s*2\.\s+[A-Za-z]")
+    for match in intro_heading.finditer(source):
+        start = match.end()
+        window = source[start:start + 900]
+        if window.count(".") > 25 and "..." in window[:300]:
+            continue
+        stop_match = next_heading.search(source, start)
+        body = source[start:stop_match.start()] if stop_match else source[start:start + 1400]
+        paragraphs = [clean_summary_text(chunk) for chunk in re.split(r"\n\s*\n", body) if clean_summary_text(chunk)]
+        if not paragraphs:
+            continue
+        summary = " ".join(paragraphs[:2])
+        return " ".join(split_sentences(summary)[:3])
+
+    cleaned = clean_summary_text(source[:1200])
+    return " ".join(split_sentences(cleaned)[:2])
+
+
+def infer_protocol_label(title: str, summary: str, tags: tuple[str, ...]) -> str:
+    combined = f"{title} {summary}".lower()
+    checks = (
+        ("DNS", ("dns", "domain name system", "dnssec", "rrset", "resolver", "zone transfer", "qtype=any", "nxdomain")),
+        ("BGP", ("bgp", "as_path", "as 0", "graceful restart", "route propagation")),
+        ("OSPF", ("ospf", "lsa", "router alert", "adjacency")),
+        ("SMTP", ("smtp", "mail transfer", "ehlo", "mail relay")),
+        ("HTTP", ("http", "http/1.1", "http/2", "content-disposition", "status code")),
+        ("DHCP", ("dhcp", "lease", "relay agent", "bootp")),
+        ("IPsec", ("security architecture for the internet protocol", "ipsec", "security association")),
+        ("ESP", ("encapsulating security payload", "esp ")),
+        ("IPv6", ("ipv6", "icmpv6", "extension header", "atomic fragments", "flow label", "teredo", "6to4")),
+        ("IPv4", ("ipv4", "type of service", "differentiated services", "ecn to ip")),
+        ("TCP", ("tcp", "sequence number", "retransmission timer", "persist condition", "urgent")),
+        ("UDP", ("udp", "datagram", "udp-lite", "checksum", "transport options")),
+        ("IPFIX", ("ipfix", "flow information export")),
+        ("NetFlow", ("netflow",)),
+        ("MPLS", ("mpls", "label switched path", "lsp ping", "pseudowire")),
+        ("URI", ("uri", "well-known uniform resource identifiers", "uri schemes")),
+    )
+    for label, needles in checks:
+        if any(needle in combined for needle in needles):
+            return label
+    if "application" in tags:
+        return "application protocol"
+    if "transport" in tags:
+        return "transport protocol"
+    if "routing" in tags:
+        return "routing protocol"
+    if "security" in tags:
+        return "security protocol"
+    return "protocol"
+
+
+def normalize_title_focus(title: str) -> str:
+    focus = " ".join(title.split()).strip().rstrip(".")
+    replacements = (
+        ("Providing ", ""),
+        ("Revised ", ""),
+        ("Additional ", ""),
+        ("The Addition of ", ""),
+        ("On the Implementation of ", "implementation of "),
+        ("Recommendation for Not Using ", "avoidance of "),
+        ("Defending Against ", "defense against "),
+        ("Improving ", "improved "),
+        ("Upgrading to ", "upgrades to "),
+        ("Handling of ", ""),
+        ("Handling ", ""),
+        ("Serving ", ""),
+        ("Using ", "use of "),
+        ("Detecting ", "detection of "),
+        ("Representing ", "representation of "),
+        ("Deprecating the Use of ", "deprecation of "),
+        ("Deprecating ", "deprecation of "),
+        ("Notification Message Support for ", "notification support for "),
+        ("Update to ", ""),
+        ("Updates to ", ""),
+    )
+    for old, new in replacements:
+        if focus.startswith(old):
+            focus = new + focus[len(old):]
+            break
+    return focus
+
+
+def update_subject_phrase(title: str, summary: str, protocol: str) -> str:
+    combined = f"{title} {summary}".lower()
+    rules = (
+        (r"simple mail transfer protocol", "SMTP command, relay, and reply behavior"),
+        (r"domain names? - concepts and facilities|domain names?: concepts and facilities", "foundational DNS naming and delegation behavior"),
+        (r"domain names? - implementation and specification|domain names?: implementation specification", "core DNS message and record behavior"),
+        (r"dynamic host configuration protocol", "DHCP lease, relay, and option behavior"),
+        (r"ospf version 2", "OSPFv2 adjacency and link-state behavior"),
+        (r"security architecture for the internet protocol", "IPsec security architecture"),
+        (r"ip encapsulating security payload|encapsulating security payload", "ESP packet protection behavior"),
+        (r"internet protocol, version 6|ipv6 specification", "foundational IPv6 packet behavior"),
+        (r"a border gateway protocol 4|bgp-4", "BGP-4 route advertisement behavior"),
+        (r"qtype=any|any queries|any query", "DNS responder behavior for QTYPE=ANY queries"),
+        (r"nxdomain", "DNS NXDOMAIN handling for entire denied subtrees"),
+        (r"negative caching", "DNS negative caching behavior"),
+        (r"zone transfer over tls", "DNS zone transfer over TLS"),
+        (r"zone transfer|axfr", "DNS zone transfer behavior"),
+        (r"dynamic update", "DNS dynamic update behavior"),
+        (r"dns notify|dns notify|zone changes", "DNS zone-change notifications"),
+        (r"delegation signer|\bds\b", "DNSSEC delegation-signer handling"),
+        (r"authenticated data \(ad\) bit|authenticated data bit| ad bit", "DNSSEC authenticated-data signaling"),
+        (r"aggressive use.*dnssec|dnssec.*aggressive use", "aggressive use of validated DNSSEC cache data"),
+        (r"serving stale", "DNS stale-answer serving"),
+        (r"dns terminology", "modern DNS terminology"),
+        (r"transport over tcp", "DNS transport over TCP"),
+        (r"tsig|transaction authentication", "TSIG-based DNS transaction authentication"),
+        (r"revised error handling|error handling.*bgp", "BGP UPDATE error handling"),
+        (r"graceful restart", "BGP graceful restart behavior"),
+        (r"four-octet.*as|four octet.*as", "BGP four-octet ASN handling"),
+        (r"extended message", "larger BGP message handling"),
+        (r"optional parameters length", "BGP OPEN optional-parameter encoding"),
+        (r"\bas 0\b", "BGP handling of AS 0"),
+        (r"send hold timer", "BGP send-hold-timer behavior"),
+        (r"hmac-sha|cryptographic authentication", "OSPFv2 cryptographic authentication"),
+        (r"multi-instance", "OSPF multi-instance behavior"),
+        (r"\bbfd\b", "OSPF fast-failure signaling with BFD"),
+        (r"manual key management", "OSPFv2 manual-key security behavior"),
+        (r"flow label", "IPv6 flow-label behavior"),
+        (r"extension headers", "IPv6 extension-header processing"),
+        (r"atomic fragments|overlapping ipv6 fragments|fragment", "IPv6 fragment handling"),
+        (r"router alert", "IPv6 Router Alert behavior"),
+        (r"\becn\b|explicit congestion notification", "ECN handling across IP and tunnels"),
+        (r"retransmission timer", "TCP retransmission-timer calculation"),
+        (r"urgent", "TCP urgent-pointer behavior"),
+        (r"blind in-window", "TCP resistance to blind in-window attacks"),
+        (r"sequence number attacks", "TCP sequence-number hardening"),
+        (r"persist condition", "TCP persist behavior"),
+        (r"maximum segment size|\bmss\b", "TCP MSS handling"),
+        (r"transmission control protocol \(tcp\)|obsoletes rfc 793", "the consolidated TCP base specification"),
+        (r"transport options", "UDP transport options"),
+        (r"checksum", "UDP checksum handling for tunnels"),
+        (r"algorithm.*esp|encapsulating security payload.*algorithm", "ESP algorithm requirements"),
+        (r"http over tls", "HTTP over TLS"),
+        (r"http/2.*tls 1\.3|tls 1\.3.*http/2", "HTTP/2 operation over TLS 1.3"),
+        (r"authentication", "HTTP authentication behavior"),
+        (r"status code 308|additional http status codes", "HTTP status-code handling"),
+        (r"content-disposition", "HTTP content-disposition parsing"),
+        (r"smtp.*extension|service extensions", "SMTP command and extension behavior"),
+        (r"internationalized email", "SMTP support for internationalized addresses"),
+        (r"flow information export|netflow|ipfix", "flow-export telemetry behavior"),
+        (r"uri schemes|well-known uniform resource identifiers", "URI scheme and well-known-URI handling"),
+    )
+    for pattern, phrase in rules:
+        if re.search(pattern, combined):
+            return phrase
+
+    focus = normalize_title_focus(title)
+    if not focus:
+        return f"{protocol} behavior"
+    protocol_aliases = {
+        "SMTP": ("smtp", "mail transfer"),
+        "HTTP": ("http", "hypertext"),
+        "TCP": ("tcp", "transmission control protocol"),
+        "UDP": ("udp", "user datagram"),
+        "DNS": ("dns", "domain name"),
+        "BGP": ("bgp", "border gateway protocol"),
+        "OSPF": ("ospf",),
+        "DHCP": ("dhcp", "host configuration"),
+        "IPv6": ("ipv6", "internet protocol, version 6"),
+        "IPv4": ("ipv4", "internet protocol"),
+        "ESP": ("esp", "encapsulating security payload"),
+        "IPsec": ("ipsec", "security architecture for the internet protocol"),
+        "IPFIX": ("ipfix", "flow information export"),
+        "NetFlow": ("netflow",),
+        "URI": ("uri", "uniform resource identifier"),
+    }
+    aliases = protocol_aliases.get(protocol, (protocol.lower(),))
+    if protocol != "protocol" and not any(alias in focus.lower() for alias in aliases):
+        if len(focus.split()) <= 6 and re.search(r"\b(protocol|version|specification)\b", focus, flags=re.I):
+            return f"foundational {protocol} behavior"
+        if re.match(r"^(deprecation|avoidance|implementation|representation|use)\b", focus, flags=re.I):
+            return f"{protocol} {focus}"
+        return f"{focus} in {protocol}"
+    return focus
+
+
+def update_lead_verb(title: str, summary: str, has_abstract: bool) -> str:
+    combined = f"{title} {summary}".lower()
+    title_lower = title.lower()
+    if any(word in combined for word in ("deprecat", "obsolet", "not using")):
+        return "Deprecates"
+    if "error handling" in combined or "revised " in title_lower:
+        return "Revises"
+    if any(word in combined for word in ("clarif", "redefinition", "states clearly", "terminology")):
+        return "Clarifies"
+    if any(word in combined for word in ("guidance", "guidelines", "requirements", "procedures", "considerations")):
+        return "Guides"
+    if any(word in combined for word in ("dnssec", "tsig", "authentication", "integrity", "tls", "hmac", "sha-1")):
+        return "Strengthens"
+    if any(word in combined for word in ("support for", "additional", "option", "options", "extensions", "extended")):
+        return "Extends"
+    if any(word in combined for word in ("specifies", "defines", "protocol", "resource record", "format", "encoding")):
+        return "Defines"
+    if not has_abstract:
+        return "Documents"
+    return "Updates"
+
+
+def update_why_care(protocol: str, title: str, summary: str, tags: tuple[str, ...]) -> str:
+    combined = f"{title} {summary}".lower()
+    if "qtype=any" in combined or "any query" in combined:
+        return "Useful for interpreting amplification-resistant DNS behavior and why modern authoritative servers may return lean or policy-driven ANY answers."
+    if "nxdomain" in combined:
+        return "Relevant when negative answers shape cache behavior, subtree enumeration, or why an entire branch of names disappears from resolution."
+    if protocol == "BGP" and "error handling" in combined:
+        return "Matters because malformed attributes no longer have to look like full-session failure, which changes how route churn and peer resets should be read."
+    if protocol == "UDP" and "options" in combined:
+        return "Hunters should know which post-payload bytes are legitimate extensions before treating them as malformed data, covert signaling, or middlebox breakage."
+    if protocol == "DNS":
+        return "Useful for interpreting resolver behavior, amplification controls, signed data, and suspicious DNS responses during hunts."
+    if protocol == "BGP":
+        return "Relevant when route leaks, malformed attributes, failover behavior, or policy changes affect what normal routing churn should look like."
+    if protocol == "OSPF":
+        return "Relevant when adjacency rules, authentication, or LSA handling change what route manipulation and control-plane noise should look like."
+    if protocol in {"IPv4", "IPv6", "TCP", "UDP"}:
+        return "Useful for recognizing modern baseline wire behavior, parser edge cases, and traffic patterns that may look malicious if you expect older semantics."
+    if protocol in {"HTTP", "SMTP", "DHCP", "URI"}:
+        return "Useful for parsing application traffic correctly and spotting behavior that modern clients, servers, or intermediaries should no longer treat as normal."
+    if protocol in {"IPsec", "ESP"} or "security" in tags:
+        return "Relevant when validating protected sessions, negotiated algorithms, and why traffic is accepted, rejected, or downgraded."
+    if protocol in {"IPFIX", "NetFlow", "MPLS"} or "monitoring" in tags:
+        return "Useful for telemetry normalization, exporter validation, and avoiding false positives when formats or control messages change."
+    if any(word in combined for word in ("deprecat", "obsolet", "not using")):
+        return "Useful for spotting legacy behavior that still appears on the wire even though current guidance expects it to disappear."
+    return "Useful for understanding the newer baseline so defenders do not mistake standards drift for malicious behavior."
+
+
+def generate_update_chain_relevance(title: str, build: RFCBuild, tags: tuple[str, ...]) -> str:
+    summary = extract_abstract_or_intro(build)
+    protocol = infer_protocol_label(title, summary, tags)
+    subject = update_subject_phrase(title, summary, protocol)
+    verb = update_lead_verb(title, summary, bool(summary))
+    why = update_why_care(protocol, title, summary, tags)
+    return f"{verb} {subject}. {why}"
+
+
 def derived_meta(num: int, build: RFCBuild) -> RFCMeta:
     title = extract_title(build)
     tags = infer_tags(title, num)
     return RFCMeta(
         num,
         title,
-        f"Pulled in through the RFC update chain; review '{title}' to understand protocol changes that may affect detection, parsing, or investigation context.",
+        generate_update_chain_relevance(title, build, tags),
         tags,
         tuple(re.findall(r"[A-Za-z0-9][A-Za-z0-9-]{2,}", title.lower()))[:10],
         True,
@@ -4085,6 +4956,88 @@ def inject_inline_header_reference(rfc_num: int, body: str) -> tuple[str, bool]:
 def inject_arp_receive_flow_chart(rfc_num: int, body: str) -> tuple[str, bool]:
     updated, inserted = inject_all_enhancements(rfc_num, body)
     return updated, "<lambda>" in inserted
+
+
+def markup_text_content(markup: str) -> str:
+    text = re.sub(r"<[^>]+>", " ", markup)
+    text = html.unescape(text)
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def classify_source_page_label(index: int, page_text: str) -> str:
+    lowered = page_text.lower()
+    if index == 0:
+        return "Cover page"
+    if "table of contents" in lowered:
+        return "Contents"
+    if "appendix" in lowered and "glossary" not in lowered:
+        return "Appendix"
+    if "references" in lowered and len(page_text) < 240:
+        return "References"
+    return f"Source page {index + 1}"
+
+
+def normalize_source_page_markup(page_markup: str) -> str:
+    page_markup = page_markup.strip()
+    if not page_markup:
+        return ""
+    match = re.match(r"(?s)(.*?)(<pre\b.*)", page_markup)
+    if not match or not match.group(1).strip():
+        return page_markup
+    lead = re.sub(r"(?:<br\s*/?>\s*){3,}", "<br />", match.group(1).strip(), flags=re.I)
+    return f'<div class="rfc-page-meta">{lead}</div>{match.group(2)}'
+
+
+def format_rfc_source_body(body: str, source_format: str) -> str:
+    raw_pages = re.split(r"<hr\s*/?>\s*<!--NewPage-->", body, flags=re.I)
+    page_markup: list[str] = []
+    for raw_page in raw_pages:
+        text = markup_text_content(raw_page)
+        if not text:
+            continue
+        index = len(page_markup)
+        label = classify_source_page_label(index, text)
+        page_class = "rfc-page"
+        if index == 0:
+            page_class += " is-cover"
+        if "table of contents" in text.lower():
+            page_class += " is-contents"
+        page_markup.append(
+            f"""<section class="{page_class}">
+  <div class="rfc-page-top">
+    <span class="rfc-page-label">{label}</span>
+  </div>
+  {normalize_source_page_markup(raw_page)}
+</section>"""
+        )
+
+    if not page_markup:
+        page_markup.append(
+            """<section class="rfc-page is-cover">
+  <div class="rfc-page-top">
+    <span class="rfc-page-label">Source page 1</span>
+  </div>
+  <pre>RFC source could not be formatted.</pre>
+</section>"""
+        )
+
+    page_count = len(page_markup)
+    page_label = "1 page card" if page_count == 1 else f"{page_count} page cards"
+    return f"""<div class="source-banner">
+  <div>
+    <span class="source-kicker">Reader mode</span>
+    <strong>Original RFC text, but with fewer cold-war fax vibes.</strong>
+    <p>The source is still the source. We just gave it page cards, local links, and enough breathing room that your eyeballs no longer need hazard pay.</p>
+  </div>
+  <div class="source-meta">
+    <span class="source-chip">{page_label}</span>
+    <span class="source-chip">{html.escape(source_format)}</span>
+    <span class="source-chip">Page breaks preserved</span>
+  </div>
+</div>
+<div class="rfc-source-shell">
+  {''.join(page_markup)}
+</div>"""
 
 
 def page(title: str, content: str, extra_head: str = "") -> str:
@@ -4502,13 +5455,15 @@ def build_site(builds: list[RFCBuild]) -> None:
             body = localize_rfc_links(extract_body(read_text(build.html_path)), local_nums)
             body, inserted_enhancements = inject_all_enhancements(meta.num, body)
             inline_header_reference = "render_inline_header_reference" in inserted_enhancements
+            body = format_rfc_source_body(body, "RFC Editor HTML")
         elif build.text_ok and build.text_path:
             linked_text = link_plain_metadata_refs(html.escape(read_text(build.text_path)), local_nums)
             body = f"<pre>{linked_text}</pre>"
             body, inserted_enhancements = inject_all_enhancements(meta.num, body)
             inline_header_reference = "render_inline_header_reference" in inserted_enhancements
+            body = format_rfc_source_body(body, "Plaintext fallback")
         else:
-            body = "<pre>RFC source could not be fetched.</pre>"
+            body = format_rfc_source_body("<pre>RFC source could not be fetched.</pre>", "Unavailable source")
         header_reference = "" if inline_header_reference else render_header_reference_panel(meta.num)
         detection_questions = render_detection_questions_panel(meta.num)
         threat_indicators = render_threat_indicators(meta.num)
