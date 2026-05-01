@@ -266,31 +266,30 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 4</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8553">RFC 8553</a>                    DNS AttrLeaf Fix                  March 2019</span>
+  <pre>RFC 8553                    DNS AttrLeaf Fix                  March 2019
 
 
-<span><a href="#section-2.1">2.1</a>.  TXT RRset</span>
+2.1.  TXT RRset
 
 
 
-      NOTE -  Documents falling into this category include: [<a href="./rfc5518" title="&quot;Vouch By Reference&quot;">RFC5518</a>],
-         [<a href="./rfc5617" title="&quot;DomainKeys Identified Mail (DKIM) Author Domain Signing Practices (ADSP)&quot;">RFC5617</a>], [<a href="./rfc6120" title="&quot;Extensible Messaging and Presence Protocol (XMPP): Core&quot;">RFC6120</a>], [<a href="./rfc6376" title="&quot;DomainKeys Identified Mail (DKIM) Signatures&quot;">RFC6376</a>], [<a href="./rfc6763" title="&quot;DNS-Based Service Discovery&quot;">RFC6763</a>], [<a href="./rfc7208" title="&quot;Sender Policy Framework (SPF) for Authorizing Use of Domains in Email, Version 1&quot;">RFC7208</a>], and
-         [<a href="./rfc7489" title="&quot;Domain-based Message Authentication, Reporting, and Conformance (DMARC)&quot;">RFC7489</a>].
+      NOTE -  Documents falling into this category include: [RFC5518],
+         [RFC5617], [RFC6120], [RFC6376], [RFC6763], [RFC7208], and
+         [RFC7489].
 
    This section provides a generic approach for changes to existing
    specifications that define straightforward use of underscored node
    names when scoping the use of a TXT RRset.  The approach provides the
    information needed for adapting such specifications to the use of the
-   IANA "Underscored and Globally Scoped DNS Node Names" registry
-   [<a href="./rfc8552" title="&quot;Scoped Interpretation of DNS Resource Records through &quot;">RFC8552</a>].  Hence, the approach is meant both as an update to these
+   IANA &quot;Underscored and Globally Scoped DNS Node Names&quot; registry
+   [RFC8552].  Hence, the approach is meant both as an update to these
    existing specifications and as guidance for changes when those
    documents are revised.
 
    For any document that specifies the use of a TXT RRset under one or
    more underscored names, the global node name is expected to be
-   registered in the IANA "Underscored and Globally Scoped DNS Node
-   Names" registry [<a href="./rfc8552" title="&quot;Scoped Interpretation of DNS Resource Records through &quot;">RFC8552</a>].  An effort has been made to locate
+   registered in the IANA &quot;Underscored and Globally Scoped DNS Node
+   Names&quot; registry [RFC8552].  An effort has been made to locate
    existing documents that do this, to register the global underscored
    node names, and to list them in the initial set of names added to the
    registry.
@@ -301,19 +300,12 @@ Table of Contents
    closest to the root -- that can be used through the IANA
    Considerations section of the specification:
 
-      "Per [<a href="./rfc8552" title="&quot;Scoped Interpretation of DNS Resource Records through &quot;">RFC8552</a>], please add the following entry to the "Underscored
-      and Globally Scoped DNS Node Names" registry:"
-
-   +--------+----------------+-----------------------------------------+
-   | RR     | _NODE NAME     | Reference                               |
-   | Type   |                |                                         |
-   +--------+----------------+-----------------------------------------+
-   | TXT    | _{DNS node     | {citation for the document making the   |
-   |        | name}          | addition}                               |
-   +--------+----------------+-----------------------------------------+
-
-        Table 1: Entry for the "Underscored and Globally Scoped DNS
-                    Node Names" Registry for TXT RR Use
+      &quot;Per [RFC8552], please add the following entry to the &quot;Underscored
+      and Globally Scoped DNS Node Names&quot; registry:&quot;</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">RR</div><div class="modern-diagram-cell">_NODE NAME</div><div class="modern-diagram-cell">Reference</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Type</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">TXT</div><div class="modern-diagram-cell">_{DNS node</div><div class="modern-diagram-cell">{citation for the document making the</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">name}</div><div class="modern-diagram-cell">addition}</div></div></div>
+</figure><pre>        Table 1: Entry for the &quot;Underscored and Globally Scoped DNS
+                    Node Names&quot; Registry for TXT RR Use
 
 
 
@@ -321,7 +313,7 @@ Table of Contents
 
 
 
-<span>Crocker                   Best Current Practice                 [Page 4]</span></pre>
+Crocker                   Best Current Practice                 [Page 4]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 5</span>
@@ -386,43 +378,35 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 6</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8553">RFC 8553</a>                    DNS AttrLeaf Fix                  March 2019</span>
+  <pre>RFC 8553                    DNS AttrLeaf Fix                  March 2019
 
 
-      "Per [<a href="./rfc8552" title="&quot;Scoped Interpretation of DNS Resource Records through &quot;">RFC8552</a>], please add the following entry to the "Underscored
-      and Globally Scoped DNS Node Names" registry:
+      &quot;Per [RFC8552], please add the following entry to the &quot;Underscored
+      and Globally Scoped DNS Node Names&quot; registry:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">RR</div><div class="modern-diagram-cell">_NODE NAME</div><div class="modern-diagram-cell">Reference</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Type</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">SRV</div><div class="modern-diagram-cell">_{DNS &#x27;protocol&#x27;</div><div class="modern-diagram-cell">{citation for the document making</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">node name}</div><div class="modern-diagram-cell">the addition}</div></div></div>
+</figure><pre>     Table 2: Entry for the &quot;Underscored and Globally Scoped DNS Node
+                      Names&quot; Registry for SRV RR Use
 
-   +--------+----------------------+-----------------------------------+
-   | RR     | _NODE NAME           | Reference                         |
-   | Type   |                      |                                   |
-   +--------+----------------------+-----------------------------------+
-   | SRV    | _{DNS 'protocol'     | {citation for the document making |
-   |        | node name}           | the addition}                     |
-   +--------+----------------------+-----------------------------------+
+2.3.  URI RRset
 
-     Table 2: Entry for the "Underscored and Globally Scoped DNS Node
-                      Names" Registry for SRV RR Use
-
-<span><a href="#section-2.3">2.3</a>.  URI RRset</span>
-
-   Specification of the URI resource record [<a href="./rfc7553" title="&quot;The Uniform Resource Identifier (URI) DNS Resource Record&quot;">RFC7553</a>] provides a
+   Specification of the URI resource record [RFC7553] provides a
    template for use of underscored node names.  The global node name is
-   characterized as naming the 'protocol' that is associated with URI RR
-   usage or by reversing an Enumservice sequence [<a href="./rfc6117" title="&quot;IANA Registration of Enumservices: Guide, Template, and IANA Considerations&quot;">RFC6117</a>].
+   characterized as naming the &#x27;protocol&#x27; that is associated with URI RR
+   usage or by reversing an Enumservice sequence [RFC6117].
 
    This section provides a generic approach for changes to existing
    specifications that define use of a URI RRset.  The approach provides
    the information needed for adapting such specifications to the use of
-   the IANA "Underscored and Globally Scoped DNS Node Names" registry
-   [<a href="./rfc8552" title="&quot;Scoped Interpretation of DNS Resource Records through &quot;">RFC8552</a>].  Hence, the approach is meant both as an update to these
+   the IANA &quot;Underscored and Globally Scoped DNS Node Names&quot; registry
+   [RFC8552].  Hence, the approach is meant both as an update to these
    existing specifications and as guidance for changes when those
    documents are revised.
 
    For any document that specifies the use of a URI RRset, the global
-   ('protocol' or highest-level Enumservice) underscored node name is
-   expected to be registered in the IANA "Underscored and Globally
-   Scoped DNS Node Names" registry [<a href="./rfc8552" title="&quot;Scoped Interpretation of DNS Resource Records through &quot;">RFC8552</a>].  An effort has been made
+   (&#x27;protocol&#x27; or highest-level Enumservice) underscored node name is
+   expected to be registered in the IANA &quot;Underscored and Globally
+   Scoped DNS Node Names&quot; registry [RFC8552].  An effort has been made
    to locate existing documents that do this, to register the global
    underscored node names, and to list them in the initial set of names
    added to the registry.
@@ -441,41 +425,33 @@ Table of Contents
 
 
 
-<span>Crocker                   Best Current Practice                 [Page 6]</span></pre>
+Crocker                   Best Current Practice                 [Page 6]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 7</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8553">RFC 8553</a>                    DNS AttrLeaf Fix                  March 2019</span>
+  <pre>RFC 8553                    DNS AttrLeaf Fix                  March 2019
 
 
-      "Per [<a href="./rfc8552" title="&quot;Scoped Interpretation of DNS Resource Records through &quot;">RFC8552</a>], please add the following entry to the "Underscored
-      and Globally Scoped DNS Node Names" registry:
+      &quot;Per [RFC8552], please add the following entry to the &quot;Underscored
+      and Globally Scoped DNS Node Names&quot; registry:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">RR</div><div class="modern-diagram-cell">_NODE NAME</div><div class="modern-diagram-cell">Reference</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Type</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">URI</div><div class="modern-diagram-cell">_{DNS &#x27;protocol&#x27; or</div><div class="modern-diagram-cell">{citation for the document</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Enumservice node name}</div><div class="modern-diagram-cell">making the addition}</div></div></div>
+</figure><pre>     Table 3: Entry for the &quot;Underscored and Globally Scoped DNS Node
+                      Names&quot; Registry for URI RR Use
 
-   +-------+----------------------------+------------------------------+
-   | RR    | _NODE NAME                 | Reference                    |
-   | Type  |                            |                              |
-   +-------+----------------------------+------------------------------+
-   | URI   | _{DNS 'protocol' or        | {citation for the document   |
-   |       | Enumservice node name}     | making the addition}         |
-   +-------+----------------------------+------------------------------+
+3.  Underscored Template Specifications
 
-     Table 3: Entry for the "Underscored and Globally Scoped DNS Node
-                      Names" Registry for URI RR Use
-
-<span><a href="#section-3">3</a>.  Underscored Template Specifications</span>
-
-<span><a href="#section-3.1">3.1</a>.  SRV Specification Changes</span>
+3.1.  SRV Specification Changes
 
    The specification for a domain name, under which an SRV resource
-   record [<a href="./rfc2782" title="&quot;A DNS RR for specifying the location of services (DNS SRV)&quot;">RFC2782</a>] appears, provides a template for use of underscored
+   record [RFC2782] appears, provides a template for use of underscored
    node names.  The global underscored node name is characterized as
-   indicating the 'protocol' that is associated with SRV RR usage.
+   indicating the &#x27;protocol&#x27; that is associated with SRV RR usage.
 
-   The text of [<a href="./rfc2782" title="&quot;A DNS RR for specifying the location of services (DNS SRV)&quot;">RFC2782</a>] is changed as described below.  In addition,
-   note that a normative reference to <a href="./rfc8552">RFC 8552</a> is added to the
-   References section of <a href="./rfc2782">RFC 2782</a>.
+   The text of [RFC2782] is changed as described below.  In addition,
+   note that a normative reference to RFC 8552 is added to the
+   References section of RFC 2782.
 
       OLD:
 
@@ -501,7 +477,7 @@ Table of Contents
 
 
 
-<span>Crocker                   Best Current Practice                 [Page 7]</span></pre>
+Crocker                   Best Current Practice                 [Page 7]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 8</span>

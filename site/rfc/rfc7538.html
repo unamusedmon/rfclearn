@@ -146,62 +146,53 @@ Copyright Notice
   <div class="rfc-page-top">
     <span class="rfc-page-label">Contents</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc7538">RFC 7538</a>                  HTTP Status Code 308                April 2015</span>
+  <pre>RFC 7538                  HTTP Status Code 308                April 2015
 
 
 Table of Contents
 
-   <a href="#section-1">1</a>.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   <a href="#page-2">2</a>
-   <a href="#section-2">2</a>.  Notational Conventions  . . . . . . . . . . . . . . . . . . .   <a href="#page-2">2</a>
-   <a href="#section-3">3</a>.  308 Permanent Redirect  . . . . . . . . . . . . . . . . . . .   <a href="#page-3">3</a>
-   <a href="#section-4">4</a>.  Deployment Considerations . . . . . . . . . . . . . . . . . .   <a href="#page-3">3</a>
-   <a href="#section-5">5</a>.  Security Considerations . . . . . . . . . . . . . . . . . . .   <a href="#page-4">4</a>
-   <a href="#section-6">6</a>.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   <a href="#page-5">5</a>
-   <a href="#section-7">7</a>.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   <a href="#page-5">5</a>
-     <a href="#section-7.1">7.1</a>.  Normative References  . . . . . . . . . . . . . . . . . .   <a href="#page-5">5</a>
-     <a href="#section-7.2">7.2</a>.  Informative References  . . . . . . . . . . . . . . . . .   <a href="#page-5">5</a>
-   Acknowledgements  . . . . . . . . . . . . . . . . . . . . . . . .   <a href="#page-6">6</a>
-   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .   <a href="#page-6">6</a>
+   1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
+   2.  Notational Conventions  . . . . . . . . . . . . . . . . . . .   2
+   3.  308 Permanent Redirect  . . . . . . . . . . . . . . . . . . .   3
+   4.  Deployment Considerations . . . . . . . . . . . . . . . . . .   3
+   5.  Security Considerations . . . . . . . . . . . . . . . . . . .   4
+   6.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   5
+   7.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   5
+     7.1.  Normative References  . . . . . . . . . . . . . . . . . .   5
+     7.2.  Informative References  . . . . . . . . . . . . . . . . .   5
+   Acknowledgements  . . . . . . . . . . . . . . . . . . . . . . . .   6
+   Author&#x27;s Address  . . . . . . . . . . . . . . . . . . . . . . . .   6
 
-<span><a href="#section-1">1</a>.  Introduction</span>
+1.  Introduction
 
    HTTP defines a set of status codes for the purpose of redirecting a
-   request to a different URI ([<a href="./rfc3986" title="&quot;Uniform Resource Identifier (URI): Generic Syntax&quot;">RFC3986</a>]).  The history of these status
-   codes is summarized in <a href="./rfc7231#section-6.4">Section&nbsp;6.4 of [RFC7231]</a>, which also
+   request to a different URI ([RFC3986]).  The history of these status
+   codes is summarized in Section 6.4 of [RFC7231], which also
    classifies the existing status codes into four categories.
 
    The first of these categories contains the status codes 301 (Moved
    Permanently), 302 (Found), and 307 (Temporary Redirect), which can be
-   classified as below:
-
-   +-------------------------------------------+-----------+-----------+
-   |                                           | Permanent | Temporary |
-   +-------------------------------------------+-----------+-----------+
-   | Allows changing the request method from   | 301       | 302       |
-   | POST to GET                               |           |           |
-   | Does not allow changing the request       | -         | 307       |
-   | method from POST to GET                   |           |           |
-   +-------------------------------------------+-----------+-----------+
-
-   <a href="./rfc7231#section-6.4.7">Section&nbsp;6.4.7 of [RFC7231]</a> states that it does not define a permanent
+   classified as below:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Permanent</div><div class="modern-diagram-cell">Temporary</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Allows changing the request method from</div><div class="modern-diagram-cell">301</div><div class="modern-diagram-cell">302</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">POST to GET</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Does not allow changing the request</div><div class="modern-diagram-cell">-</div><div class="modern-diagram-cell">307</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">method from POST to GET</div></div></div>
+</figure><pre>   Section 6.4.7 of [RFC7231] states that it does not define a permanent
    variant of status code 307; this specification adds the status code
-   308, defining this missing variant (<a href="#section-3">Section 3</a>).
+   308, defining this missing variant (Section 3).
 
    This specification contains no technical changes from the
-   Experimental <a href="./rfc7238">RFC 7238</a>, which it obsoletes.
+   Experimental RFC 7238, which it obsoletes.
 
-<span><a href="#section-2">2</a>.  Notational Conventions</span>
+2.  Notational Conventions
 
-   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
-   "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
-   document are to be interpreted as described in [<a href="./rfc2119" title="&quot;Key words for use in RFCs to Indicate Requirement Levels&quot;">RFC2119</a>].
-
-
+   The key words &quot;MUST&quot;, &quot;MUST NOT&quot;, &quot;REQUIRED&quot;, &quot;SHALL&quot;, &quot;SHALL NOT&quot;,
+   &quot;SHOULD&quot;, &quot;SHOULD NOT&quot;, &quot;RECOMMENDED&quot;, &quot;MAY&quot;, and &quot;OPTIONAL&quot; in this
+   document are to be interpreted as described in [RFC2119].
 
 
 
-<span>Reschke                      Standards Track                    [Page 2]</span></pre>
+
+
+Reschke                      Standards Track                    [Page 2]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 3</span>
@@ -326,62 +317,56 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 5</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc7538">RFC 7538</a>                  HTTP Status Code 308                April 2015</span>
+  <pre>RFC 7538                  HTTP Status Code 308                April 2015
 
 
-<span><a href="#section-6">6</a>.  IANA Considerations</span>
+6.  IANA Considerations
 
-   The "Hypertext Transfer Protocol (HTTP) Status Code Registry"
-   (defined in <a href="./rfc7231#section-8.2">Section&nbsp;8.2 of [RFC7231]</a> and located at
-   &lt;<a>http://www.iana.org/assignments/http-status-codes</a>&gt;) has been updated
-   to reference this specification.
+   The &quot;Hypertext Transfer Protocol (HTTP) Status Code Registry&quot;
+   (defined in Section 8.2 of [RFC7231] and located at
+   &lt;http://www.iana.org/assignments/http-status-codes&gt;) has been updated
+   to reference this specification.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Value</div><div class="modern-diagram-cell">Description</div><div class="modern-diagram-cell">Reference</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">308</div><div class="modern-diagram-cell">Permanent Redirect</div><div class="modern-diagram-cell">Section 3 of this specification</div></div></div>
+</figure><pre>7.  References
 
-   +-------+--------------------+----------------------------------+
-   | Value | Description        | Reference                        |
-   +-------+--------------------+----------------------------------+
-   | 308   | Permanent Redirect | <a href="#section-3">Section 3</a> of this specification  |
-   +-------+--------------------+----------------------------------+
+7.1.  Normative References
 
-<span><a href="#section-7">7</a>.  References</span>
+   [RFC2119]  Bradner, S., &quot;Key words for use in RFCs to Indicate
+              Requirement Levels&quot;, BCP 14, RFC 2119, March 1997,
+              &lt;http://www.rfc-editor.org/info/rfc2119&gt;.
 
-<span><a href="#section-7.1">7.1</a>.  Normative References</span>
+   [RFC3986]  Berners-Lee, T., Fielding, R., and L. Masinter, &quot;Uniform
+              Resource Identifier (URI): Generic Syntax&quot;, STD 66, RFC
+              3986, January 2005,
+              &lt;http://www.rfc-editor.org/info/rfc3986&gt;.
 
-   [<a>RFC2119</a>]  Bradner, S., "Key words for use in RFCs to Indicate
-              Requirement Levels", <a>BCP 14</a>, <a href="./rfc2119">RFC 2119</a>, March 1997,
-              &lt;<a>http://www.rfc-editor.org/info/rfc2119</a>&gt;.
+   [RFC7230]  Fielding, R., Ed. and J. Reschke, Ed., &quot;Hypertext Transfer
+              Protocol (HTTP/1.1): Message Syntax and Routing&quot;, RFC
+              7230, June 2014, &lt;http://www.rfc-editor.org/info/rfc7230&gt;.
 
-   [<a>RFC3986</a>]  Berners-Lee, T., Fielding, R., and L. Masinter, "Uniform
-              Resource Identifier (URI): Generic Syntax", STD 66, <a href="./rfc3986">RFC</a>
-              <a href="https://www.rfc-editor.org/rfc/rfc3986.html" class="rfc-external">3986</a>, January 2005,
-              &lt;<a>http://www.rfc-editor.org/info/rfc3986</a>&gt;.
+   [RFC7231]  Fielding, R., Ed. and J. Reschke, Ed., &quot;Hypertext Transfer
+              Protocol (HTTP/1.1): Semantics and Content&quot;, RFC 7231,
+              June 2014, &lt;http://www.rfc-editor.org/info/rfc7231&gt;.
 
-   [<a>RFC7230</a>]  Fielding, R., Ed. and J. Reschke, Ed., "Hypertext Transfer
-              Protocol (HTTP/1.1): Message Syntax and Routing", <a href="./rfc7230">RFC</a>
-              <a href="rfc7230.html" class="rfc-local">7230</a>, June 2014, &lt;<a>http://www.rfc-editor.org/info/rfc7230</a>&gt;.
+   [RFC7234]  Fielding, R., Ed., Nottingham, M., Ed., and J. Reschke,
+              Ed., &quot;Hypertext Transfer Protocol (HTTP/1.1): Caching&quot;,
+              RFC 7234, June 2014,
+              &lt;http://www.rfc-editor.org/info/rfc7234&gt;.
 
-   [<a>RFC7231</a>]  Fielding, R., Ed. and J. Reschke, Ed., "Hypertext Transfer
-              Protocol (HTTP/1.1): Semantics and Content", <a href="./rfc7231">RFC 7231</a>,
-              June 2014, &lt;<a>http://www.rfc-editor.org/info/rfc7231</a>&gt;.
+7.2.  Informative References
 
-   [<a>RFC7234</a>]  Fielding, R., Ed., Nottingham, M., Ed., and J. Reschke,
-              Ed., "Hypertext Transfer Protocol (HTTP/1.1): Caching",
-              <a href="./rfc7234">RFC 7234</a>, June 2014,
-              &lt;<a>http://www.rfc-editor.org/info/rfc7234</a>&gt;.
-
-<span><a href="#section-7.2">7.2</a>.  Informative References</span>
-
-   [<a>HTML</a>]     Hickson, I., Berjon, R., Faulkner, S., Leithead, T., Doyle
-              Navara, E., O'Connor, E., and S. Pfeiffer, "HTML5", W3C
+   [HTML]     Hickson, I., Berjon, R., Faulkner, S., Leithead, T., Doyle
+              Navara, E., O&#x27;Connor, E., and S. Pfeiffer, &quot;HTML5&quot;, W3C
               Recommendation REC-html5-20141028, October 2014,
-              &lt;<a>http://www.w3.org/TR/2014/REC-html5-20141028/</a>&gt;.
+              &lt;http://www.w3.org/TR/2014/REC-html5-20141028/&gt;.
 
-              Latest version available at &lt;<a>http://www.w3.org/TR/html5/</a>&gt;.
-
-
+              Latest version available at &lt;http://www.w3.org/TR/html5/&gt;.
 
 
-<span>Reschke                      Standards Track                    [Page 5]</span></pre>
+
+
+Reschke                      Standards Track                    [Page 5]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 6</span>

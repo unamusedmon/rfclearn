@@ -788,47 +788,29 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 14</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2328">RFC 2328</a>                     OSPF Version 2                   April 1998</span>
+  <pre>RFC 2328                     OSPF Version 2                   April 1998
 
 
 
 
 
-                                                  **FROM**
-
-                                           *      |RT1|RT2|
-                +---+Ia    +---+           *   ------------
-                |RT1|------|RT2|           T   RT1|   | X |
-                +---+    Ib+---+           O   RT2| X |   |
-                                           *    Ia|   | X |
-                                           *    Ib| X |   |
-
-                     Physical point-to-point networks
+                                                  **FROM**</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">*</div><div class="modern-diagram-cell">RT1</div><div class="modern-diagram-cell">RT2</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">+---+Ia    +---+           *   ------------</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">RT1</div><div class="modern-diagram-cell">------</div><div class="modern-diagram-cell">RT2</div><div class="modern-diagram-cell">T   RT1</div><div class="modern-diagram-cell">X</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">+---+    Ib+---+           O   RT2</div><div class="modern-diagram-cell">X</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">*    Ia</div><div class="modern-diagram-cell">X</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">*    Ib</div><div class="modern-diagram-cell">X</div></div></div>
+</figure><pre>                     Physical point-to-point networks
 
 
-                                                  **FROM**
-                      +---+                *
-                      |RT7|                *      |RT7| N3|
-                      +---+                T   ------------
-                        |                  O   RT7|   |   |
-            +----------------------+       *    N3| X |   |
-                       N3                  *
+                                                  **FROM**</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">RT7</div><div class="modern-diagram-cell">*</div><div class="modern-diagram-cell">RT7</div><div class="modern-diagram-cell">N3</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">+---+                T   ------------</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">O   RT7</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">+----------------------+       *    N3</div><div class="modern-diagram-cell">X</div></div></div>
+</figure><pre>                       N3                  *
 
                               Stub networks
 
-                                                  **FROM**
-                +---+      +---+
-                |RT3|      |RT4|              |RT3|RT4|RT5|RT6|N2 |
-                +---+      +---+        *  ------------------------
-                  |    N2    |          *  RT3|   |   |   |   | X |
-            +----------------------+    T  RT4|   |   |   |   | X |
-                  |          |          O  RT5|   |   |   |   | X |
-                +---+      +---+        *  RT6|   |   |   |   | X |
-                |RT5|      |RT6|        *   N2| X | X | X | X |   |
-                +---+      +---+
-
-                          Broadcast or NBMA networks
+                                                  **FROM**</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 7"><div class="modern-diagram-cell">RT3</div><div class="modern-diagram-cell">RT4</div><div class="modern-diagram-cell">RT3</div><div class="modern-diagram-cell">RT4</div><div class="modern-diagram-cell">RT5</div><div class="modern-diagram-cell">RT6</div><div class="modern-diagram-cell">N2</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">N2</div><div class="modern-diagram-cell">*  RT3</div><div class="modern-diagram-cell">X</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">+----------------------+    T  RT4</div><div class="modern-diagram-cell">X</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">O  RT5</div><div class="modern-diagram-cell">X</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">+---+      +---+        *  RT6</div><div class="modern-diagram-cell">X</div></div><div class="modern-diagram-row" style="--cell-count: 7"><div class="modern-diagram-cell">RT5</div><div class="modern-diagram-cell">RT6</div><div class="modern-diagram-cell">*   N2</div><div class="modern-diagram-cell">X</div><div class="modern-diagram-cell">X</div><div class="modern-diagram-cell">X</div><div class="modern-diagram-cell">X</div></div></div>
+</figure><pre>                          Broadcast or NBMA networks
 
 
 
@@ -837,7 +819,7 @@ Table of Contents
 
 
 
-<span>Moy                         Standards Track                    [Page 14]</span></pre>
+Moy                         Standards Track                    [Page 14]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 15</span>
@@ -950,8 +932,7 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 17</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2328">RFC 2328</a>                     OSPF Version 2                   April 1998</span>
+  <pre>RFC 2328                     OSPF Version 2                   April 1998
 
 
             IP interface addresses on the Point-to-MultiPoint network.
@@ -964,7 +945,7 @@ Table of Contents
 
             On some non-broadcast networks, use of Point-to-MultiPoint
             mode and data-link protocols such as Inverse ARP (see
-            [<a href="#ref-Ref14" title="&quot;Inverse Address Resolution Protocol&quot;">Ref14</a>]) will allow autodiscovery of OSPF neighbors even
+            [Ref14]) will allow autodiscovery of OSPF neighbors even
             though broadcast support is not available.
 
 
@@ -972,22 +953,10 @@ Table of Contents
 
 
 
-                                                  **FROM**
-                +---+      +---+
-                |RT3|      |RT4|              |RT3|RT4|RT5|RT6|
-                +---+      +---+        *  --------------------
-                I3|    N2    |I4        *  RT3|   | X | X | X |
-            +----------------------+    T  RT4| X |   |   | X |
-                I5|          |I6        O  RT5| X |   |   | X |
-                +---+      +---+        *  RT6| X | X | X |   |
-                |RT5|      |RT6|        *   I3| X |   |   |   |
-                +---+      +---+            I4|   | X |   |   |
-                                            I5|   |   | X |   |
-                                            I6|   |   |   | X |
-
-
-
-                    Figure 1b: Network map components
+                                                  **FROM**</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 6"><div class="modern-diagram-cell">RT3</div><div class="modern-diagram-cell">RT4</div><div class="modern-diagram-cell">RT3</div><div class="modern-diagram-cell">RT4</div><div class="modern-diagram-cell">RT5</div><div class="modern-diagram-cell">RT6</div></div><div class="modern-diagram-row" style="--cell-count: 6"><div class="modern-diagram-cell">I3</div><div class="modern-diagram-cell">N2</div><div class="modern-diagram-cell">I4        *  RT3</div><div class="modern-diagram-cell">X</div><div class="modern-diagram-cell">X</div><div class="modern-diagram-cell">X</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">+----------------------+    T  RT4</div><div class="modern-diagram-cell">X</div><div class="modern-diagram-cell">X</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">I5</div><div class="modern-diagram-cell">I6        O  RT5</div><div class="modern-diagram-cell">X</div><div class="modern-diagram-cell">X</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">+---+      +---+        *  RT6</div><div class="modern-diagram-cell">X</div><div class="modern-diagram-cell">X</div><div class="modern-diagram-cell">X</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">RT5</div><div class="modern-diagram-cell">RT6</div><div class="modern-diagram-cell">*   I3</div><div class="modern-diagram-cell">X</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">+---+      +---+            I4</div><div class="modern-diagram-cell">X</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">I5</div><div class="modern-diagram-cell">X</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">I6</div><div class="modern-diagram-cell">X</div></div></div>
+</figure><pre>                    Figure 1b: Network map components
                        Point-to-MultiPoint networks
 
              All routers can communicate directly over N2, except
@@ -999,7 +968,7 @@ Table of Contents
 
 
 
-<span>Moy                         Standards Track                    [Page 17]</span></pre>
+Moy                         Standards Track                    [Page 17]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 18</span>
@@ -1058,101 +1027,35 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 19</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2328">RFC 2328</a>                     OSPF Version 2                   April 1998</span>
+  <pre>RFC 2328                     OSPF Version 2                   April 1998
 
 
 
-                 +
-                 | 3+---+                     N12      N14
-               N1|--|RT1|\ 1                    \ N13 /
-                 |  +---+ \                     8\ |8/8
-                 +         \ ____                 \|/
-                            /    \   1+---+8    8+---+6
-                           *  N3  *---|RT4|------|RT5|--------+
-                            \____/    +---+      +---+        |
-                  +         /   |                  |7         |
-                  | 3+---+ /    |                  |          |
-                N2|--|RT2|/1    |1                 |6         |
-                  |  +---+    +---+8            6+---+        |
-                  +           |RT3|--------------|RT6|        |
-                              +---+              +---+        |
-                                |2               Ia|7         |
-                                |                  |          |
-                           +---------+             |          |
-                               N4                  |          |
-                                                   |          |
-                                                   |          |
-                       N11                         |          |
-                   +---------+                     |          |
-                        |                          |          |    N12
-                        |3                         |          |6 2/
-                      +---+                        |        +---+/
-                      |RT9|                        |        |RT7|---N15
-                      +---+                        |        +---+ 9
-                        |1                   +     |          |1
-                       _|__                  |   Ib|5       __|_
-                      /    \      1+----+2   |  3+----+1   /    \
-                     *  N9  *------|RT11|----|---|RT10|---*  N6  *
-                      \____/       +----+    |   +----+    \____/
-                        |                    |                |
-                        |1                   +                |1
-             +--+   10+----+                N8              +---+
-             |H1|-----|RT12|                                |RT8|
-             +--+SLIP +----+                                +---+
-                        |2                                    |4
-                        |                                     |
-                   +---------+                            +--------+
-                       N10                                    N7
+                 +</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">3+---+                     N12      N14</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">N1</div><div class="modern-diagram-cell">--</div><div class="modern-diagram-cell">RT1</div><div class="modern-diagram-cell">\ 1                    \ N13 /</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">+---+ \                     8\</div><div class="modern-diagram-cell">8/8</div></div></div>
+</figure><pre>                 +         \ ____                 \|/</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">/    \   1+---+8    8+---+6</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">*  N3  *---</div><div class="modern-diagram-cell">RT4</div><div class="modern-diagram-cell">------</div><div class="modern-diagram-cell">RT5</div><div class="modern-diagram-cell">--------+</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">+         /</div><div class="modern-diagram-cell">7</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">3+---+ /</div></div><div class="modern-diagram-row" style="--cell-count: 6"><div class="modern-diagram-cell">N2</div><div class="modern-diagram-cell">--</div><div class="modern-diagram-cell">RT2</div><div class="modern-diagram-cell">/1</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">6</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">+---+    +---+8            6+---+</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">+</div><div class="modern-diagram-cell">RT3</div><div class="modern-diagram-cell">--------------</div><div class="modern-diagram-cell">RT6</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">2               Ia</div><div class="modern-diagram-cell">7</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">N4</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">N11</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">N12</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">3</div><div class="modern-diagram-cell">6 2/</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">RT9</div><div class="modern-diagram-cell">RT7</div><div class="modern-diagram-cell">---N15</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">+---+</div><div class="modern-diagram-cell">+---+ 9</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">1                   +</div><div class="modern-diagram-cell">1</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">_</div><div class="modern-diagram-cell">__</div><div class="modern-diagram-cell">Ib</div><div class="modern-diagram-cell">5       __</div><div class="modern-diagram-cell">_</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">/    \      1+----+2</div><div class="modern-diagram-cell">3+----+1   /    \</div></div><div class="modern-diagram-row" style="--cell-count: 6"><div class="modern-diagram-cell">*  N9  *------</div><div class="modern-diagram-cell">RT11</div><div class="modern-diagram-cell">----</div><div class="modern-diagram-cell">---</div><div class="modern-diagram-cell">RT10</div><div class="modern-diagram-cell">---*  N6  *</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">1                   +</div><div class="modern-diagram-cell">1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">+--+   10+----+                N8              +---+</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">H1</div><div class="modern-diagram-cell">-----</div><div class="modern-diagram-cell">RT12</div><div class="modern-diagram-cell">RT8</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">+--+SLIP +----+                                +---+</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">2</div><div class="modern-diagram-cell">4</div></div></div>
+</figure><pre>                       N10                                    N7
 
 
 
-<span>Moy                         Standards Track                    [Page 19]</span></pre>
+Moy                         Standards Track                    [Page 19]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 20</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2328">RFC 2328</a>                     OSPF Version 2                   April 1998</span>
+  <pre>RFC 2328                     OSPF Version 2                   April 1998
 
 
                     Figure 2: A sample Autonomous System
 
-                                **FROM**
-
-                 |RT|RT|RT|RT|RT|RT|RT|RT|RT|RT|RT|RT|
-                 |1 |2 |3 |4 |5 |6 |7 |8 |9 |10|11|12|N3|N6|N8|N9|
-              ----- ---------------------------------------------
-              RT1|  |  |  |  |  |  |  |  |  |  |  |  |0 |  |  |  |
-              RT2|  |  |  |  |  |  |  |  |  |  |  |  |0 |  |  |  |
-              RT3|  |  |  |  |  |6 |  |  |  |  |  |  |0 |  |  |  |
-              RT4|  |  |  |  |8 |  |  |  |  |  |  |  |0 |  |  |  |
-              RT5|  |  |  |8 |  |6 |6 |  |  |  |  |  |  |  |  |  |
-              RT6|  |  |8 |  |7 |  |  |  |  |5 |  |  |  |  |  |  |
-              RT7|  |  |  |  |6 |  |  |  |  |  |  |  |  |0 |  |  |
-          *   RT8|  |  |  |  |  |  |  |  |  |  |  |  |  |0 |  |  |
-          *   RT9|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |0 |
-          T  RT10|  |  |  |  |  |7 |  |  |  |  |  |  |  |0 |0 |  |
-          O  RT11|  |  |  |  |  |  |  |  |  |  |  |  |  |  |0 |0 |
-          *  RT12|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |0 |
-          *    N1|3 |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
-               N2|  |3 |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
-               N3|1 |1 |1 |1 |  |  |  |  |  |  |  |  |  |  |  |  |
-               N4|  |  |2 |  |  |  |  |  |  |  |  |  |  |  |  |  |
-               N6|  |  |  |  |  |  |1 |1 |  |1 |  |  |  |  |  |  |
-               N7|  |  |  |  |  |  |  |4 |  |  |  |  |  |  |  |  |
-               N8|  |  |  |  |  |  |  |  |  |3 |2 |  |  |  |  |  |
-               N9|  |  |  |  |  |  |  |  |1 |  |1 |1 |  |  |  |  |
-              N10|  |  |  |  |  |  |  |  |  |  |  |2 |  |  |  |  |
-              N11|  |  |  |  |  |  |  |  |3 |  |  |  |  |  |  |  |
-              N12|  |  |  |  |8 |  |2 |  |  |  |  |  |  |  |  |  |
-              N13|  |  |  |  |8 |  |  |  |  |  |  |  |  |  |  |  |
-              N14|  |  |  |  |8 |  |  |  |  |  |  |  |  |  |  |  |
-              N15|  |  |  |  |  |  |9 |  |  |  |  |  |  |  |  |  |
-               H1|  |  |  |  |  |  |  |  |  |  |  |10|  |  |  |  |
-
-
-                     Figure 3: The resulting directed graph
+                                **FROM**</pre><pre>                 |RT|RT|RT|RT|RT|RT|RT|RT|RT|RT|RT|RT|
+                 |1 |2 |3 |4 |5 |6 |7 |8 |9 |10|11|12|N3|N6|N8|N9|</pre><pre>              ----- ---------------------------------------------</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">RT1</div><div class="modern-diagram-cell">0</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">RT2</div><div class="modern-diagram-cell">0</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">RT3</div><div class="modern-diagram-cell">6</div><div class="modern-diagram-cell">0</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">RT4</div><div class="modern-diagram-cell">8</div><div class="modern-diagram-cell">0</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">RT5</div><div class="modern-diagram-cell">8</div><div class="modern-diagram-cell">6</div><div class="modern-diagram-cell">6</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">RT6</div><div class="modern-diagram-cell">8</div><div class="modern-diagram-cell">7</div><div class="modern-diagram-cell">5</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">RT7</div><div class="modern-diagram-cell">6</div><div class="modern-diagram-cell">0</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">*   RT8</div><div class="modern-diagram-cell">0</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">*   RT9</div><div class="modern-diagram-cell">0</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">T  RT10</div><div class="modern-diagram-cell">7</div><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">0</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">O  RT11</div><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">0</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">*  RT12</div><div class="modern-diagram-cell">0</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">*    N1</div><div class="modern-diagram-cell">3</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">N2</div><div class="modern-diagram-cell">3</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">N3</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">N4</div><div class="modern-diagram-cell">2</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">N6</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">N7</div><div class="modern-diagram-cell">4</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">N8</div><div class="modern-diagram-cell">3</div><div class="modern-diagram-cell">2</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">N9</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">N10</div><div class="modern-diagram-cell">2</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">N11</div><div class="modern-diagram-cell">3</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">N12</div><div class="modern-diagram-cell">8</div><div class="modern-diagram-cell">2</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">N13</div><div class="modern-diagram-cell">8</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">N14</div><div class="modern-diagram-cell">8</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">N15</div><div class="modern-diagram-cell">9</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">H1</div><div class="modern-diagram-cell">10</div></div></div>
+</figure><pre>                     Figure 3: The resulting directed graph
 
                  Networks and routers are represented by vertices.
                  An edge of cost X connects Vertex A to Vertex B iff
@@ -1161,25 +1064,19 @@ Table of Contents
 
 
 
-<span>Moy                         Standards Track                    [Page 20]</span></pre>
+Moy                         Standards Track                    [Page 20]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 21</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2328">RFC 2328</a>                     OSPF Version 2                   April 1998</span>
+  <pre>RFC 2328                     OSPF Version 2                   April 1998
 
 
-                     **FROM**                       **FROM**
-
-                  |RT12|N9|N10|H1|                 |RT9|RT11|RT12|N9|
-           *  --------------------          *  ----------------------
-           *  RT12|    |  |   |  |          *   RT9|   |    |    |0 |
-           T    N9|1   |  |   |  |          T  RT11|   |    |    |0 |
-           O   N10|2   |  |   |  |          O  RT12|   |    |    |0 |
-           *    H1|10  |  |   |  |          *    N9|   |    |    |  |
-           *                                *
-                RT12's router-LSA              N9's network-LSA
+                     **FROM**                       **FROM**</pre><pre>                  |RT12|N9|N10|H1|                 |RT9|RT11|RT12|N9|</pre><pre>           *  --------------------          *  ----------------------</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">*  RT12</div><div class="modern-diagram-cell">*   RT9</div><div class="modern-diagram-cell">0</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">T    N9</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">T  RT11</div><div class="modern-diagram-cell">0</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">O   N10</div><div class="modern-diagram-cell">2</div><div class="modern-diagram-cell">O  RT12</div><div class="modern-diagram-cell">0</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">*    H1</div><div class="modern-diagram-cell">10</div><div class="modern-diagram-cell">*    N9</div></div></div>
+</figure><pre>           *                                *
+                RT12&#x27;s router-LSA              N9&#x27;s network-LSA
 
                   Figure 4: Individual link state components
 
@@ -1210,43 +1107,35 @@ Table of Contents
         (in this case, the serial line between Routers RT6 and RT10).
 
 
-        Routes to networks belonging to other AS'es (such as N12) appear
+        Routes to networks belonging to other AS&#x27;es (such as N12) appear
         as dashed lines on the shortest path tree in Figure 5.  Use of
 
 
 
-<span>Moy                         Standards Track                    [Page 21]</span></pre>
+Moy                         Standards Track                    [Page 21]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 22</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2328">RFC 2328</a>                     OSPF Version 2                   April 1998</span>
+  <pre>RFC 2328                     OSPF Version 2                   April 1998
 
 
 
                                 RT6(origin)
-                    RT5 o------------o-----------o Ib
-                       /|\    6      |\     7
-                     8/8|8\          | \
-                     /  |  \        6|  \
-                    o   |   o        |   \7
-                   N12  o  N14       |    \
+                    RT5 o------------o-----------o Ib</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">/</div><div class="modern-diagram-cell">\    6</div><div class="modern-diagram-cell">\     7</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">8/8</div><div class="modern-diagram-cell">8\</div><div class="modern-diagram-cell">\</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">/</div><div class="modern-diagram-cell">\        6</div><div class="modern-diagram-cell">\</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">o</div><div class="modern-diagram-cell">o</div><div class="modern-diagram-cell">\7</div></div></div>
+</figure><pre>                   N12  o  N14       |    \
                        N13        2  |     \
                             N4 o-----o RT3  \
                                     /        \    5
                                   1/     RT10 o-------o Ia
                                   /           |\
-                       RT4 o-----o N3        3| \1
-                                /|            |  \ N6     RT7
-                               / |         N8 o   o---------o
-                              /  |            |   |        /|
-                         RT2 o   o RT1        |   |      2/ |9
-                            /    |            |   |RT8   /  |
-                           /3    |3      RT11 o   o     o   o
-                          /      |            |   |    N12 N15
-                      N2 o       o N1        1|   |4
-                                              |   |
+                       RT4 o-----o N3        3| \1</pre><pre>                                /|            |  \ N6     RT7</pre><pre>                               / |         N8 o   o---------o</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">RT2 o   o RT1</div><div class="modern-diagram-cell">2/</div><div class="modern-diagram-cell">9</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">/</div><div class="modern-diagram-cell">RT8   /</div></div></div>
+</figure><pre>                           /3    |3      RT11 o   o     o   o</pre><pre>                          /      |            |   |    N12 N15
+                      N2 o       o N1        1|   |4</pre><pre>                                              |   |
                                            N9 o   o N7
                                              /|
                                             / |
@@ -1263,13 +1152,13 @@ Table of Contents
               Edges that are not marked with a cost have a cost of
               of zero (these are network-to-router links). Routes
               to networks N12-N15 are external information that is
-                         considered in <a href="#section-2.3">Section 2.3</a>
+                         considered in Section 2.3
 
 
 
 
 
-<span>Moy                         Standards Track                    [Page 22]</span></pre>
+Moy                         Standards Track                    [Page 22]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 23</span>
@@ -1652,56 +1541,18 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 30</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2328">RFC 2328</a>                     OSPF Version 2                   April 1998</span>
+  <pre>RFC 2328                     OSPF Version 2                   April 1998
 
 
 
              ...........................
-             .   +                     .
-             .   | 3+---+              .      N12      N14
-             . N1|--|RT1|\ 1           .        \ N13 /
-             .   |  +---+ \            .        8\ |8/8
-             .   +         \ ____      .          \|/
-             .              /    \   1+---+8    8+---+6
-             .             *  N3  *---|RT4|------|RT5|--------+
-             .              \____/    +---+      +---+        |
-             .    +         /      \   .           |7         |
-             .    | 3+---+ /        \  .           |          |
-             .  N2|--|RT2|/1        1\ .           |6         |
-             .    |  +---+            +---+8    6+---+        |
-             .    +                   |RT3|------|RT6|        |
-             .                        +---+      +---+        |
-             .                      2/ .         Ia|7         |
-             .                      /  .           |          |
-             .             +---------+ .           |          |
-             .Area 1           N4      .           |          |
-             ...........................           |          |
-          ..........................               |          |
-          .            N11         .               |          |
-          .        +---------+     .               |          |
-          .             |          .               |          |    N12
-          .             |3         .             Ib|5         |6 2/
-          .           +---+        .             +----+     +---+/
-          .           |RT9|        .    .........|RT10|.....|RT7|---N15.
-          .           +---+        .    .        +----+     +---+ 9    .
-          .             |1         .    .    +  /3    1\      |1       .
-          .            _|__        .    .    | /        \   __|_       .
-          .           /    \      1+----+2   |/          \ /    \      .
-          .          *  N9  *------|RT11|----|            *  N6  *     .
-          .           \____/       +----+    |             \____/      .
-          .             |          .    .    |                |        .
-          .             |1         .    .    +                |1       .
-          .  +--+   10+----+       .    .   N8              +---+      .
-          .  |H1|-----|RT12|       .    .                   |RT8|      .
-          .  +--+SLIP +----+       .    .                   +---+      .
-          .             |2         .    .                     |4       .
-          .             |          .    .                     |        .
-          .        +---------+     .    .                 +--------+   .
-
-
-
-<span>Moy                         Standards Track                    [Page 30]</span></pre>
+             .   +                     .</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">.</div><div class="modern-diagram-cell">3+---+              .      N12      N14</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">. N1</div><div class="modern-diagram-cell">--</div><div class="modern-diagram-cell">RT1</div><div class="modern-diagram-cell">\ 1           .        \ N13 /</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">.</div><div class="modern-diagram-cell">+---+ \            .        8\</div><div class="modern-diagram-cell">8/8</div></div></div>
+</figure><pre>             .   +         \ ____      .          \|/</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">.              /    \   1+---+8    8+---+6</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">.             *  N3  *---</div><div class="modern-diagram-cell">RT4</div><div class="modern-diagram-cell">------</div><div class="modern-diagram-cell">RT5</div><div class="modern-diagram-cell">--------+</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">.    +         /      \   .</div><div class="modern-diagram-cell">7</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">.</div><div class="modern-diagram-cell">3+---+ /        \  .</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">.  N2</div><div class="modern-diagram-cell">--</div><div class="modern-diagram-cell">RT2</div><div class="modern-diagram-cell">/1        1\ .</div><div class="modern-diagram-cell">6</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">.</div><div class="modern-diagram-cell">+---+            +---+8    6+---+</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">.    +</div><div class="modern-diagram-cell">RT3</div><div class="modern-diagram-cell">------</div><div class="modern-diagram-cell">RT6</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">.                      2/ .         Ia</div><div class="modern-diagram-cell">7</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">.Area 1           N4      .</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">.            N11         .</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">.</div><div class="modern-diagram-cell">.</div><div class="modern-diagram-cell">N12</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">.</div><div class="modern-diagram-cell">3         .             Ib</div><div class="modern-diagram-cell">5</div><div class="modern-diagram-cell">6 2/</div></div><div class="modern-diagram-row" style="--cell-count: 7"><div class="modern-diagram-cell">.</div><div class="modern-diagram-cell">RT9</div><div class="modern-diagram-cell">.    .........</div><div class="modern-diagram-cell">RT10</div><div class="modern-diagram-cell">.....</div><div class="modern-diagram-cell">RT7</div><div class="modern-diagram-cell">---N15.</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">.           +---+        .    .        +----+     +---+ 9    .</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">.</div><div class="modern-diagram-cell">1         .    .    +  /3    1\</div><div class="modern-diagram-cell">1       .</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">.           /    \      1+----+2</div><div class="modern-diagram-cell">/          \ /    \      .</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">.          *  N9  *------</div><div class="modern-diagram-cell">RT11</div><div class="modern-diagram-cell">----</div><div class="modern-diagram-cell">*  N6  *     .</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">.</div><div class="modern-diagram-cell">1         .    .    +</div><div class="modern-diagram-cell">1       .</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">.  +--+   10+----+       .    .   N8              +---+      .</div></div><div class="modern-diagram-row" style="--cell-count: 7"><div class="modern-diagram-cell">.</div><div class="modern-diagram-cell">H1</div><div class="modern-diagram-cell">-----</div><div class="modern-diagram-cell">RT12</div><div class="modern-diagram-cell">.    .</div><div class="modern-diagram-cell">RT8</div><div class="modern-diagram-cell">.</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">.  +--+SLIP +----+       .    .                   +---+      .</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">.</div><div class="modern-diagram-cell">2         .    .</div><div class="modern-diagram-cell">4       .</div></div></div>
+</figure><pre>Moy                         Standards Track                    [Page 30]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 31</span>
@@ -1760,37 +1611,15 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 32</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2328">RFC 2328</a>                     OSPF Version 2                   April 1998</span>
+  <pre>RFC 2328                     OSPF Version 2                   April 1998
 
 
 
-                               **FROM**
-
-                          |RT|RT|RT|RT|RT|RT|
-                          |1 |2 |3 |4 |5 |7 |N3|
-                       ----- -------------------
-                       RT1|  |  |  |  |  |  |0 |
-                       RT2|  |  |  |  |  |  |0 |
-                       RT3|  |  |  |  |  |  |0 |
-                   *   RT4|  |  |  |  |  |  |0 |
-                   *   RT5|  |  |14|8 |  |  |  |
-                   T   RT7|  |  |20|14|  |  |  |
-                   O    N1|3 |  |  |  |  |  |  |
-                   *    N2|  |3 |  |  |  |  |  |
-                   *    N3|1 |1 |1 |1 |  |  |  |
-                        N4|  |  |2 |  |  |  |  |
-                     Ia,Ib|  |  |20|27|  |  |  |
-                        N6|  |  |16|15|  |  |  |
-                        N7|  |  |20|19|  |  |  |
-                        N8|  |  |18|18|  |  |  |
-                 N9-N11,H1|  |  |29|36|  |  |  |
-                       N12|  |  |  |  |8 |2 |  |
-                       N13|  |  |  |  |8 |  |  |
-                       N14|  |  |  |  |8 |  |  |
-                       N15|  |  |  |  |  |9 |  |
-
-                      Figure 7: Area 1's Database.
+                               **FROM**</pre><pre>                          |RT|RT|RT|RT|RT|RT|
+                          |1 |2 |3 |4 |5 |7 |N3|</pre><pre>                       ----- -------------------</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">RT1</div><div class="modern-diagram-cell">0</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">RT2</div><div class="modern-diagram-cell">0</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">RT3</div><div class="modern-diagram-cell">0</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">*   RT4</div><div class="modern-diagram-cell">0</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">*   RT5</div><div class="modern-diagram-cell">14</div><div class="modern-diagram-cell">8</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">T   RT7</div><div class="modern-diagram-cell">20</div><div class="modern-diagram-cell">14</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">O    N1</div><div class="modern-diagram-cell">3</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">*    N2</div><div class="modern-diagram-cell">3</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">*    N3</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">N4</div><div class="modern-diagram-cell">2</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Ia,Ib</div><div class="modern-diagram-cell">20</div><div class="modern-diagram-cell">27</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">N6</div><div class="modern-diagram-cell">16</div><div class="modern-diagram-cell">15</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">N7</div><div class="modern-diagram-cell">20</div><div class="modern-diagram-cell">19</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">N8</div><div class="modern-diagram-cell">18</div><div class="modern-diagram-cell">18</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">N9-N11,H1</div><div class="modern-diagram-cell">29</div><div class="modern-diagram-cell">36</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">N12</div><div class="modern-diagram-cell">8</div><div class="modern-diagram-cell">2</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">N13</div><div class="modern-diagram-cell">8</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">N14</div><div class="modern-diagram-cell">8</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">N15</div><div class="modern-diagram-cell">9</div></div></div>
+</figure><pre>                      Figure 7: Area 1&#x27;s Database.
 
               Networks and routers are represented by vertices.
               An edge of cost X connects Vertex A to Vertex B iff
@@ -1809,44 +1638,19 @@ Table of Contents
 
 
 
-<span>Moy                         Standards Track                    [Page 32]</span></pre>
+Moy                         Standards Track                    [Page 32]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 33</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2328">RFC 2328</a>                     OSPF Version 2                   April 1998</span>
+  <pre>RFC 2328                     OSPF Version 2                   April 1998
 
 
-                                  **FROM**
-
-                            |RT|RT|RT|RT|RT|RT|RT
-                            |3 |4 |5 |6 |7 |10|11|
-                         ------------------------
-                         RT3|  |  |  |6 |  |  |  |
-                         RT4|  |  |8 |  |  |  |  |
-                         RT5|  |8 |  |6 |6 |  |  |
-                         RT6|8 |  |7 |  |  |5 |  |
-                         RT7|  |  |6 |  |  |  |  |
-                     *  RT10|  |  |  |7 |  |  |2 |
-                     *  RT11|  |  |  |  |  |3 |  |
-                     T    N1|4 |4 |  |  |  |  |  |
-                     O    N2|4 |4 |  |  |  |  |  |
-                     *    N3|1 |1 |  |  |  |  |  |
-                     *    N4|2 |3 |  |  |  |  |  |
-                          Ia|  |  |  |  |  |5 |  |
-                          Ib|  |  |  |7 |  |  |  |
-                          N6|  |  |  |  |1 |1 |3 |
-                          N7|  |  |  |  |5 |5 |7 |
-                          N8|  |  |  |  |4 |3 |2 |
-                   N9-N11,H1|  |  |  |  |  |  |11|
-                         N12|  |  |8 |  |2 |  |  |
-                         N13|  |  |8 |  |  |  |  |
-                         N14|  |  |8 |  |  |  |  |
-                         N15|  |  |  |  |9 |  |  |
-
-
-                     Figure 8: The backbone's database.
+                                  **FROM**</pre><pre>                            |RT|RT|RT|RT|RT|RT|RT
+                            |3 |4 |5 |6 |7 |10|11|</pre><pre>                         ------------------------</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">RT3</div><div class="modern-diagram-cell">6</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">RT4</div><div class="modern-diagram-cell">8</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">RT5</div><div class="modern-diagram-cell">8</div><div class="modern-diagram-cell">6</div><div class="modern-diagram-cell">6</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">RT6</div><div class="modern-diagram-cell">8</div><div class="modern-diagram-cell">7</div><div class="modern-diagram-cell">5</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">RT7</div><div class="modern-diagram-cell">6</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">*  RT10</div><div class="modern-diagram-cell">7</div><div class="modern-diagram-cell">2</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">*  RT11</div><div class="modern-diagram-cell">3</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">T    N1</div><div class="modern-diagram-cell">4</div><div class="modern-diagram-cell">4</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">O    N2</div><div class="modern-diagram-cell">4</div><div class="modern-diagram-cell">4</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">*    N3</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">*    N4</div><div class="modern-diagram-cell">2</div><div class="modern-diagram-cell">3</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Ia</div><div class="modern-diagram-cell">5</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Ib</div><div class="modern-diagram-cell">7</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">N6</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">3</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">N7</div><div class="modern-diagram-cell">5</div><div class="modern-diagram-cell">5</div><div class="modern-diagram-cell">7</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">N8</div><div class="modern-diagram-cell">4</div><div class="modern-diagram-cell">3</div><div class="modern-diagram-cell">2</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">N9-N11,H1</div><div class="modern-diagram-cell">11</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">N12</div><div class="modern-diagram-cell">8</div><div class="modern-diagram-cell">2</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">N13</div><div class="modern-diagram-cell">8</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">N14</div><div class="modern-diagram-cell">8</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">N15</div><div class="modern-diagram-cell">9</div></div></div>
+</figure><pre>                     Figure 8: The backbone&#x27;s database.
 
               Networks and routers are represented by vertices.
               An edge of cost X connects Vertex A to Vertex B iff
@@ -1863,7 +1667,7 @@ Table of Contents
 
 
 
-<span>Moy                         Standards Track                    [Page 33]</span></pre>
+Moy                         Standards Track                    [Page 33]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 34</span>
@@ -2732,44 +2536,23 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 50</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2328">RFC 2328</a>                     OSPF Version 2                   April 1998</span>
-
-
-
-
-
-                              +----+
-                              |RT10|------+
-                              +----+       \+-------------+
-                             /      \       |Routing Table|
-                            /        \      +-------------+
-                           /          \
-              +------+    /            \    +--------+
-              |Area 2|---+              +---|Backbone|
-              +------+***********+          +--------+
-             /        \           *        /          \
-            /          \           *      /            \
-       +---------+  +---------+    +------------+       +------------+
-       |Interface|  |Interface|    |Virtual Link|       |Interface Ib|
-       |  to N6  |  |  to N8  |    |   to RT11  |       +------------+
-       +---------+  +---------+    +------------+             |
-           /  \           |               |                   |
-          /    \          |               |                   |
-   +--------+ +--------+  |        +-------------+      +------------+
-   |Neighbor| |Neighbor|  |        |Neighbor RT11|      |Neighbor RT6|
-   |  RT8   | |  RT7   |  |        +-------------+      +------------+
-   +--------+ +--------+  |
-                          |
-                     +-------------+
-                     |Neighbor RT11|
-                     +-------------+
-
-
-                Figure 9: Router RT10's Data structures
+  <pre>RFC 2328                     OSPF Version 2                   April 1998</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">RT10</div><div class="modern-diagram-cell">------+</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">/      \</div><div class="modern-diagram-cell">Routing Table</div></div></div>
+</figure><pre>                           /          \</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Area 2</div><div class="modern-diagram-cell">---+              +---</div><div class="modern-diagram-cell">Backbone</div></div></div>
+</figure><pre>             /        \           *        /          \
+            /          \           *      /            \</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Interface</div><div class="modern-diagram-cell">Interface</div><div class="modern-diagram-cell">Virtual Link</div><div class="modern-diagram-cell">Interface Ib</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">to N6</div><div class="modern-diagram-cell">to N8</div><div class="modern-diagram-cell">to RT11</div><div class="modern-diagram-cell">+------------+</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Neighbor</div><div class="modern-diagram-cell">Neighbor</div><div class="modern-diagram-cell">Neighbor RT11</div><div class="modern-diagram-cell">Neighbor RT6</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">RT8</div><div class="modern-diagram-cell">RT7</div><div class="modern-diagram-cell">+-------------+      +------------+</div></div></div>
+</figure><pre>                          |</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Neighbor RT11</div></div></div>
+</figure><pre>                Figure 9: Router RT10&#x27;s Data structures
 
     Associated router interfaces
-        This router's interfaces connecting to the area.  A router
+        This router&#x27;s interfaces connecting to the area.  A router
         interface belongs to one and only one area (or the backbone).
         For the backbone area this list includes all the virtual links.
         A virtual link is identified by the Router ID of its other
@@ -2781,7 +2564,7 @@ Table of Contents
 
 
 
-<span>Moy                         Standards Track                    [Page 50]</span></pre>
+Moy                         Standards Track                    [Page 50]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 51</span>
@@ -3110,8 +2893,7 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 57</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2328">RFC 2328</a>                     OSPF Version 2                   April 1998</span>
+  <pre>RFC 2328                     OSPF Version 2                   April 1998
 
 
         One can picture the collection of adjacencies on a network as
@@ -3128,28 +2910,14 @@ Table of Contents
         communicate directly.  In contrast, on broadcast and NBMA
         networks only the Designated Router and the Backup Designated
         Router become adjacent to all other routers attached to the
-        network.
-
-
-
-          +---+            +---+
-          |RT1|------------|RT2|            o---------------o
-          +---+    N1      +---+           RT1             RT2
-
-
-
-                                                 RT7
-                                                  o---------+
-            +---+   +---+   +---+                /|\        |
-            |RT7|   |RT3|   |RT4|               / | \       |
-            +---+   +---+   +---+              /  |  \      |
-              |       |       |               /   |   \     |
-         +-----------------------+        RT5o RT6o    oRT4 |
-                  |       |     N2            *   *   *     |
-                +---+   +---+                  *  *  *      |
-                |RT5|   |RT6|                   * * *       |
-                +---+   +---+                    ***        |
-                                                  o---------+
+        network.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">RT1</div><div class="modern-diagram-cell">------------</div><div class="modern-diagram-cell">RT2</div><div class="modern-diagram-cell">o---------------o</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">+---+    N1      +---+           RT1             RT2</div></div></div>
+</figure><pre>                                                 RT7
+                                                  o---------+</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">RT7</div><div class="modern-diagram-cell">RT3</div><div class="modern-diagram-cell">RT4</div><div class="modern-diagram-cell">/</div><div class="modern-diagram-cell">\</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">+-----------------------+        RT5o RT6o    oRT4</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">N2            *   *   *</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">RT5</div><div class="modern-diagram-cell">RT6</div><div class="modern-diagram-cell">* * *</div></div></div>
+</figure><pre>                                                  o---------+
                                                  RT3
 
 
@@ -3159,7 +2927,7 @@ Table of Contents
 
 
 
-<span>Moy                         Standards Track                    [Page 57]</span></pre>
+Moy                         Standards Track                    [Page 57]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 58</span>
@@ -3704,32 +3472,21 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 68</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2328">RFC 2328</a>                     OSPF Version 2                   April 1998</span>
-
-
-
-                                  +----+   UnloopInd   +--------+
-                                  |Down|&lt;--------------|Loopback|
-                                  +----+               +--------+
-                                     |
-                                     |InterfaceUp
-                          +-------+  |               +--------------+
-                          |Waiting|&lt;-+--------------&gt;|Point-to-point|
-                          +-------+                  +--------------+
-                              |
+  <pre>RFC 2328                     OSPF Version 2                   April 1998</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">+----+   UnloopInd   +--------+</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Down</div><div class="modern-diagram-cell">&lt;--------------</div><div class="modern-diagram-cell">Loopback</div></div></div>
+</figure><pre>                                     |
+                                     |InterfaceUp</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Waiting</div><div class="modern-diagram-cell">&lt;-+--------------&gt;</div><div class="modern-diagram-cell">Point-to-point</div></div></div>
+</figure><pre>                              |
                      WaitTimer|BackupSeen
                               |
                               |
-                              |   NeighborChange
-          +------+           +-+&lt;---------------- +-------+
-          |Backup|&lt;----------|?|-----------------&gt;|DROther|
-          +------+----------&gt;+-+&lt;-----+           +-------+
-                    Neighbor  |       |
-                    Change    |       |Neighbor
-                              |       |Change
-                              |     +--+
-                              +----&gt;|DR|
+                              |   NeighborChange</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">Backup</div><div class="modern-diagram-cell">&lt;----------</div><div class="modern-diagram-cell">?</div><div class="modern-diagram-cell">-----------------&gt;</div><div class="modern-diagram-cell">DROther</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Neighbor</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Change</div><div class="modern-diagram-cell">Neighbor</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Change</div></div></div>
+</figure><pre>                              +----&gt;|DR|
                                     +--+
 
                       Figure 11: Interface State changes
@@ -3753,7 +3510,7 @@ Table of Contents
 
 
 
-<span>Moy                         Standards Track                    [Page 68]</span></pre>
+Moy                         Standards Track                    [Page 68]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 69</span>
@@ -4568,32 +4325,11 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 84</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2328">RFC 2328</a>                     OSPF Version 2                   April 1998</span>
-
-
-
-                                   +----+
-                                   |Down|
-                                   +----+
-                                     |\
-                                     | \Start
-                                     |  \      +-------+
-                             Hello   |   +----&gt;|Attempt|
-                            Received |         +-------+
-                                     |             |
-                             +----+&lt;-+             |HelloReceived
-                             |Init|&lt;---------------+
-                             +----+&lt;--------+
-                                |           |
-                                |2-Way      |1-Way
-                                |Received   |Received
-                                |           |
-              +-------+         |        +-----+
-              |ExStart|&lt;--------+-------&gt;|2-Way|
-              +-------+                  +-----+
-
-              Figure 12: Neighbor state changes (Hello Protocol)
+  <pre>RFC 2328                     OSPF Version 2                   April 1998</pre><pre>                                   +----+</pre><pre>                                   |Down|</pre><pre>                                   +----+</pre><pre>                                     |\
+                                     | \Start</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Hello</div><div class="modern-diagram-cell">+----&gt;</div><div class="modern-diagram-cell">Attempt</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Received</div><div class="modern-diagram-cell">+-------+</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">+----+&lt;-+</div><div class="modern-diagram-cell">HelloReceived</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Init</div><div class="modern-diagram-cell">&lt;---------------+</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">2-Way</div><div class="modern-diagram-cell">1-Way</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Received</div><div class="modern-diagram-cell">Received</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">ExStart</div><div class="modern-diagram-cell">&lt;--------+-------&gt;</div><div class="modern-diagram-cell">2-Way</div></div></div>
+</figure><pre>              Figure 12: Neighbor state changes (Hello Protocol)
 
                   In addition to the state transitions pictured,
                   Event KillNbr always forces Down State,
@@ -4617,33 +4353,18 @@ Table of Contents
 
 
 
-<span>Moy                         Standards Track                    [Page 84]</span></pre>
+Moy                         Standards Track                    [Page 84]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 85</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2328">RFC 2328</a>                     OSPF Version 2                   April 1998</span>
-
-
-                                  +-------+
-                                  |ExStart|
-                                  +-------+
-                                    |
-                     NegotiationDone|
-                                    +-&gt;+--------+
-                                       |Exchange|
-                                    +--+--------+
-                                    |
+  <pre>RFC 2328                     OSPF Version 2                   April 1998</pre><pre>                                  +-------+</pre><pre>                                  |ExStart|</pre><pre>                                  +-------+</pre><pre>                                    |
+                     NegotiationDone|</pre><pre>                                    +-&gt;+--------+</pre><pre>                                       |Exchange|</pre><pre>                                    +--+--------+</pre><pre>                                    |
                             Exchange|
-                              Done  |
-                    +----+          |      +-------+
-                    |Full|&lt;---------+-----&gt;|Loading|
-                    +----+&lt;-+              +-------+
-                            |  LoadingDone     |
-                            +------------------+
-
-            Figure 13: Neighbor state changes (Database Exchange)
+                              Done  |</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Full</div><div class="modern-diagram-cell">&lt;---------+-----&gt;</div><div class="modern-diagram-cell">Loading</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">LoadingDone</div></div></div>
+</figure><pre>            Figure 13: Neighbor state changes (Database Exchange)
 
                 In addition to the state transitions pictured,
                 Event SeqNumberMismatch forces ExStart state,
@@ -4660,18 +4381,18 @@ Table of Contents
             received from the neighbor, but that a more concerted effort
             should be made to contact the neighbor.  This is done by
             sending the neighbor Hello packets at intervals of
-            HelloInterval (see <a href="#section-9.5.1">Section 9.5.1</a>).
+            HelloInterval (see Section 9.5.1).
 
         Init
             In this state, an Hello packet has recently been seen from
             the neighbor.  However, bidirectional communication has not
             yet been established with the neighbor (i.e., the router
-            itself did not appear in the neighbor's Hello packet).  All
+            itself did not appear in the neighbor&#x27;s Hello packet).  All
 
 
 
 
-<span>Moy                         Standards Track                    [Page 85]</span></pre>
+Moy                         Standards Track                    [Page 85]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 86</span>
@@ -5756,20 +5477,10 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 106</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2328">RFC 2328</a>                     OSPF Version 2                   April 1998</span>
-
-
-
-
-
-
-
-            +---+                                         +---+
-            |RT1|                                         |RT2|
-            +---+                                         +---+
-
-            Down                                          Down
+  <pre>RFC 2328                     OSPF Version 2                   April 1998</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">RT1</div><div class="modern-diagram-cell">RT2</div></div></div>
+</figure><pre>            Down                                          Down
                             Hello(DR=0,seen=0)
                        ------------------------------&gt;
                          Hello (DR=RT2,seen=RT1,...)      Init
@@ -5805,7 +5516,7 @@ Table of Contents
 
 
 
-<span>Moy                         Standards Track                   [Page 106]</span></pre>
+Moy                         Standards Track                   [Page 106]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 107</span>
@@ -6890,40 +6601,28 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Appendix</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2328">RFC 2328</a>                     OSPF Version 2                   April 1998</span>
+  <pre>RFC 2328                     OSPF Version 2                   April 1998
 
 
 
                   ....................................
                   . 192.1.2                   Area 1 .
                   .     +                            .
-                  .     |                            .
-                  .     | 3+---+1                    .
-                  .  N1 |--|RT1|-----+               .
-                  .     |  +---+      \              .
-                  .     |              \  _______N3  .
-                  .     +               \/       \   .  1+---+
-                  .                     * 192.1.1 *------|RT4|
-                  .     +               /\_______/   .   +---+
-                  .     |              /     |       .
-                  .     | 3+---+1     /      |       .
-                  .  N2 |--|RT2|-----+      1|       .
-                  .     |  +---+           +---+8    .         6+---+
-                  .     |                  |RT3|----------------|RT6|
-                  .     +                  +---+     .          +---+
-                  . 192.1.3                  |2      .   18.10.0.6|7
-                  .                          |       .            |
-                  .                   +------------+ .
-                  .                     192.1.4 (N4) .
+                  .     |                            .</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">.</div><div class="modern-diagram-cell">3+---+1                    .</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">.  N1</div><div class="modern-diagram-cell">--</div><div class="modern-diagram-cell">RT1</div><div class="modern-diagram-cell">-----+               .</div></div></div>
+</figure><pre>                  .     |              \  _______N3  .</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">.     +               \/       \   .  1+---+</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">.                     * 192.1.1 *------</div><div class="modern-diagram-cell">RT4</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">.</div><div class="modern-diagram-cell">3+---+1     /</div><div class="modern-diagram-cell">.</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">.  N2</div><div class="modern-diagram-cell">--</div><div class="modern-diagram-cell">RT2</div><div class="modern-diagram-cell">-----+      1</div><div class="modern-diagram-cell">.</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">.</div><div class="modern-diagram-cell">+---+           +---+8    .         6+---+</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">.</div><div class="modern-diagram-cell">RT3</div><div class="modern-diagram-cell">----------------</div><div class="modern-diagram-cell">RT6</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">. 192.1.3</div><div class="modern-diagram-cell">2      .   18.10.0.6</div><div class="modern-diagram-cell">7</div></div></div>
+</figure><pre>                  .                     192.1.4 (N4) .
                   ....................................
 
 
                     Figure 15: Area 1 with IP addresses shown
 
-            The format of a router-LSA is shown in <a href="#appendix-A">Appendix A</a> (Section
+            The format of a router-LSA is shown in Appendix A (Section
             A.4.2).  The first 20 bytes of the LSA consist of the
-            generic LSA header that was discussed in <a href="#section-12.1">Section 12.1</a>.
+            generic LSA header that was discussed in Section 12.1.
             router-LSAs have LS type = 1.
 
             A router also indicates whether it is an area border router,
@@ -6939,7 +6638,7 @@ Table of Contents
 
 
 
-<span>Moy                         Standards Track                   [Page 127]</span></pre>
+Moy                         Standards Track                   [Page 127]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 128</span>
@@ -7700,8 +7399,7 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 142</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2328">RFC 2328</a>                     OSPF Version 2                   April 1998</span>
+  <pre>RFC 2328                     OSPF Version 2                   April 1998
 
 
                     RTA and RTB would originate the same set of AS-
@@ -7723,23 +7421,14 @@ Table of Contents
                     originated by the router having the highest OSPF
                     Router ID is used.  The router having the lower OSPF
                     Router ID can then flush its LSA.  Flushing an LSA
-                    is discussed in <a href="#section-14.1">Section 14.1</a>.
+                    is discussed in Section 14.1.
 
 
                                 +
-                                |
-                      +---+.....|.BGP
-                      |RTA|-----|.....+---+
-                      +---+     |-----|RTX|
-                                |     +---+
-                      +---+     |
-                      |RTB|-----|
-                      +---+     |
-                                |
-                      +---+     |
-                      |RTC|-----|
-                      +---+     |
-                                |
+                                |</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">+---+.....</div><div class="modern-diagram-cell">.BGP</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">RTA</div><div class="modern-diagram-cell">-----</div><div class="modern-diagram-cell">.....+---+</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">+---+</div><div class="modern-diagram-cell">-----</div><div class="modern-diagram-cell">RTX</div></div></div>
+</figure><pre>                      |RTB|-----|</pre><pre>                      +---+     |</pre><pre>                                |</pre><pre>                      +---+     |</pre><pre>                      |RTC|-----|</pre><pre>                      +---+     |</pre><pre>                                |
                                 +
 
 
@@ -7749,7 +7438,7 @@ Table of Contents
 
 
 
-<span>Moy                         Standards Track                   [Page 142]</span></pre>
+Moy                         Standards Track                   [Page 142]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 143</span>
@@ -9320,28 +9009,24 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 172</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2328">RFC 2328</a>                     OSPF Version 2                   April 1998</span>
+  <pre>RFC 2328                     OSPF Version 2                   April 1998
 
 
 
                       ........................
                       . Area 1 (transit)     .            +
-                      .                      .            |
-                      .      +---+1        1+---+100      |
-                      .      |RT2|----------|RT4|=========|
-                      .    1/+---+********* +---+         |
-                      .    /*******          .            |
-                      .  1/*Virtual          .            |
-                   1+---+/*  Link            .         Net|work
-             =======|RT1|*                   .            | N1
-                    +---+\                   .            |
-                      .   \                  .            |
-                      .    \                 .            |
-                      .    1\+---+1        1+---+20       |
-                      .      |RT3|----------|RT5|=========|
-                      .      +---+          +---+         |
-                      .                      .            |
+                      .                      .            |</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">.      +---+1        1+---+100</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">.</div><div class="modern-diagram-cell">RT2</div><div class="modern-diagram-cell">----------</div><div class="modern-diagram-cell">RT4</div><div class="modern-diagram-cell">=========</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">.    1/+---+********* +---+</div></div></div>
+</figure><pre>                      .    /*******          .            |
+                      .  1/*Virtual          .            |</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">1+---+/*  Link            .         Net</div><div class="modern-diagram-cell">work</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">=======</div><div class="modern-diagram-cell">RT1</div><div class="modern-diagram-cell">*                   .</div><div class="modern-diagram-cell">N1</div></div></div>
+</figure><pre>                      .   \                  .            |
+                      .    \                 .            |</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">.    1\+---+1        1+---+20</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">.</div><div class="modern-diagram-cell">RT3</div><div class="modern-diagram-cell">----------</div><div class="modern-diagram-cell">RT5</div><div class="modern-diagram-cell">=========</div></div></div>
+</figure><pre>                      .                      .            |
                       ........................            +
 
                     Figure 17: Routing through transit areas
@@ -9352,13 +9037,13 @@ Table of Contents
         N1 into Area 1.
 
         After the shortest-path tree has been calculated for the
-        backbone in <a href="#section-16.1">Section 16.1</a>, Router RT1 (left end of the virtual
+        backbone in Section 16.1, Router RT1 (left end of the virtual
         link) will have calculated a path through Router RT4 for all
         data traffic destined for Network N1. However, since Router RT5
         is so much closer to Network N1, all routers internal to Area 1
         (e.g., Routers RT2 and RT3) will forward their Network N1
         traffic towards Router RT5, instead of RT4. And indeed, after
-        examining Area 1's summary-LSAs by the above calculation, Router
+        examining Area 1&#x27;s summary-LSAs by the above calculation, Router
         RT1 will also forward Network N1 traffic towards RT5. Note that
         in this example the virtual link enables transit data traffic to
         be forwarded through Area 1, but the actual path the transit
@@ -9369,7 +9054,7 @@ Table of Contents
 
 
 
-<span>Moy                         Standards Track                   [Page 172]</span></pre>
+Moy                         Standards Track                   [Page 172]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 173</span>
@@ -10130,11 +9815,10 @@ References
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 187</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2328">RFC 2328</a>                     OSPF Version 2                   April 1998</span>
+  <pre>RFC 2328                     OSPF Version 2                   April 1998
 
 
-<span><a href="#appendix-A.2">A.2</a> The Options field</span>
+A.2 The Options field
 
     The OSPF Options field is present in OSPF Hello packets, Database
     Description packets and all LSAs.  The Options field enables OSPF
@@ -10159,27 +9843,24 @@ References
     Database Description packets and when originating LSAs. Conversely,
     routers encountering unrecognized Option bits in received Hello
     Packets, Database Description packets or LSAs should ignore the
-    capability and process the packet/LSA normally.
-
-                       +------------------------------------+
-                       | * | * | DC | EA | N/P | MC | E | * |
-                       +------------------------------------+
-
-                             The Options field
+    capability and process the packet/LSA normally.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 8"><div class="modern-diagram-cell">*</div><div class="modern-diagram-cell">*</div><div class="modern-diagram-cell">DC</div><div class="modern-diagram-cell">EA</div><div class="modern-diagram-cell">N/P</div><div class="modern-diagram-cell">MC</div><div class="modern-diagram-cell">E</div><div class="modern-diagram-cell">*</div></div></div>
+</figure><pre>                             The Options field
 
 
     E-bit
         This bit describes the way AS-external-LSAs are flooded, as
-        described in Sections <a href="#section-3.6">3.6</a>, <a href="#section-9.5">9.5</a>, <a href="#section-10.8">10.8</a> and <a href="#section-12.1.2">12.1.2</a> of this memo.
+        described in Sections 3.6, 9.5, 10.8 and 12.1.2 of this memo.
 
     MC-bit
         This bit describes whether IP multicast datagrams are forwarded
-        according to the specifications in [<a href="#ref-Ref18" title="&quot;Multicast Extensions to OSPF&quot;">Ref18</a>].
+        according to the specifications in [Ref18].
 
 
 
 
-<span>Moy                         Standards Track                   [Page 187]</span></pre>
+Moy                         Standards Track                   [Page 187]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 188</span>
@@ -10292,37 +9973,21 @@ References
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 190</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2328">RFC 2328</a>                     OSPF Version 2                   April 1998</span>
+  <pre>RFC 2328                     OSPF Version 2                   April 1998
 
 
-<span><a href="#appendix-A.3.1">A.3.1</a> The OSPF packet header</span>
+A.3.1 The OSPF packet header
 
     Every OSPF packet starts with a standard 24 byte header.  This
     header contains all the information necessary to determine whether
     the packet should be accepted for further processing.  This
-    determination is described in <a href="#section-8.2">Section 8.2</a> of the specification.
+    determination is described in Section 8.2 of the specification.
 
 
-        0                   1                   2                   3
-        0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |   Version #   |     Type      |         Packet length         |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                          Router ID                            |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                           Area ID                             |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |           Checksum            |             AuType            |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                       Authentication                          |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                       Authentication                          |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-
-
-    Version #
+        0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Version #</div><div class="modern-diagram-cell">Type</div><div class="modern-diagram-cell">Packet length</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Router ID</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Area ID</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Checksum</div><div class="modern-diagram-cell">AuType</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Authentication</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Authentication</div></div></div>
+</figure><pre>    Version #
         The OSPF version number.  This specification documents version 2
         of the protocol.
 
@@ -10341,7 +10006,7 @@ References
 
 
 
-<span>Moy                         Standards Track                   [Page 190]</span></pre>
+Moy                         Standards Track                   [Page 190]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Appendix</span>
@@ -10454,11 +10119,10 @@ References
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 193</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2328">RFC 2328</a>                     OSPF Version 2                   April 1998</span>
+  <pre>RFC 2328                     OSPF Version 2                   April 1998
 
 
-<span><a href="#appendix-A.3.2">A.3.2</a> The Hello packet</span>
+A.3.2 The Hello packet
 
     Hello packets are OSPF packet type 1.  These packets are sent
     periodically on all interfaces (including virtual links) in order to
@@ -10472,53 +10136,22 @@ References
     These parameters are included in Hello packets, so that differences
     can inhibit the forming of neighbor relationships.  A detailed
     explanation of the receive processing for Hello packets is presented
-    in <a href="#section-10.5">Section 10.5</a>.  The sending of Hello packets is covered in <a href="#section-9.5">Section</a>
-    <a href="#section-9.5">9.5</a>.
+    in Section 10.5.  The sending of Hello packets is covered in Section
+    9.5.
 
 
-        0                   1                   2                   3
-        0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |   Version #   |       1       |         Packet length         |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                          Router ID                            |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                           Area ID                             |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |           Checksum            |             AuType            |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                       Authentication                          |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                       Authentication                          |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                        Network Mask                           |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |         HelloInterval         |    Options    |    Rtr Pri    |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                     RouterDeadInterval                        |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                      Designated Router                        |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                   Backup Designated Router                    |
-
-
-
-<span>Moy                         Standards Track                   [Page 193]</span></pre>
+        0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Version #</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">Packet length</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Router ID</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Area ID</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Checksum</div><div class="modern-diagram-cell">AuType</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Authentication</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Authentication</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Network Mask</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">HelloInterval</div><div class="modern-diagram-cell">Options</div><div class="modern-diagram-cell">Rtr Pri</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">RouterDeadInterval</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Designated Router</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Backup Designated Router</div></div></div>
+</figure><pre>Moy                         Standards Track                   [Page 193]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 194</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2328">RFC 2328</a>                     OSPF Version 2                   April 1998</span>
-
-
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                          Neighbor                             |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                              ...                              |
-
-
-    Network mask
+  <pre>RFC 2328                     OSPF Version 2                   April 1998</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Neighbor</div></div></div>
+</figure><pre>    Network mask
         The network mask associated with this interface.  For example,
         if the interface is to a class B network whose third byte is
         used for subnetting, the network mask is 0xffffff00.
@@ -10528,10 +10161,10 @@ References
         in Section A.2.
 
     HelloInterval
-        The number of seconds between this router's Hello packets.
+        The number of seconds between this router&#x27;s Hello packets.
 
     Rtr Pri
-        This router's Router Priority.  Used in (Backup) Designated
+        This router&#x27;s Router Priority.  Used in (Backup) Designated
         Router election.  If set to 0, the router will be ineligible to
         become (Backup) Designated Router.
 
@@ -10557,16 +10190,15 @@ References
 
 
 
-<span>Moy                         Standards Track                   [Page 194]</span></pre>
+Moy                         Standards Track                   [Page 194]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 195</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2328">RFC 2328</a>                     OSPF Version 2                   April 1998</span>
+  <pre>RFC 2328                     OSPF Version 2                   April 1998
 
 
-<span><a href="#appendix-A.3.3">A.3.3</a> The Database Description packet</span>
+A.3.3 The Database Description packet
 
     Database Description packets are OSPF packet type 2.  These packets
     are exchanged when an adjacency is being initialized.  They describe
@@ -10576,32 +10208,12 @@ References
     master, the other the slave.  The master sends Database Description
     packets (polls) which are acknowledged by Database Description
     packets sent by the slave (responses).  The responses are linked to
-    the polls via the packets' DD sequence numbers.
+    the polls via the packets&#x27; DD sequence numbers.
 
-        0                   1                   2                   3
-        0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |   Version #   |       2       |         Packet length         |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                          Router ID                            |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                           Area ID                             |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |           Checksum            |             AuType            |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                       Authentication                          |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                       Authentication                          |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |         Interface MTU         |    Options    |0|0|0|0|0|I|M|MS
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                     DD sequence number                        |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                                                               |
-       +-                                                             -+
-       |                                                               |
-       +-                      An LSA Header                          -+
-       |                                                               |
+        0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Version #</div><div class="modern-diagram-cell">2</div><div class="modern-diagram-cell">Packet length</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Router ID</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Area ID</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Checksum</div><div class="modern-diagram-cell">AuType</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Authentication</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Authentication</div></div><div class="modern-diagram-row" style="--cell-count: 10"><div class="modern-diagram-cell">Interface MTU</div><div class="modern-diagram-cell">Options</div><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">I</div><div class="modern-diagram-cell">M</div><div class="modern-diagram-cell">MS</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">DD sequence number</div></div></div>
+</figure><pre>       +-                      An LSA Header                          -+</pre><div class="modern-diagram-fallback">       |                                                               |
        +-                                                             -+
        |                                                               |
        +-                                                             -+
@@ -10610,8 +10222,7 @@ References
        |                              ...                              |
 
 
-
-<span>Moy                         Standards Track                   [Page 195]</span></pre>
+</div><pre>Moy                         Standards Track                   [Page 195]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 196</span>
@@ -10670,17 +10281,16 @@ References
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 197</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2328">RFC 2328</a>                     OSPF Version 2                   April 1998</span>
+  <pre>RFC 2328                     OSPF Version 2                   April 1998
 
 
-<span><a href="#appendix-A.3.4">A.3.4</a> The Link State Request packet</span>
+A.3.4 The Link State Request packet
 
     Link State Request packets are OSPF packet type 3.  After exchanging
     Database Description packets with a neighboring router, a router may
     find that parts of its link-state database are out-of-date.  The
     Link State Request packet is used to request the pieces of the
-    neighbor's database that are more up-to-date.  Multiple Link State
+    neighbor&#x27;s database that are more up-to-date.  Multiple Link State
     Request packets may need to be used.
 
     A router that sends a Link State Request packet has in mind the
@@ -10690,36 +10300,14 @@ References
     Request Packet itself.  The router may receive even more recent
     instances in response.
 
-    The sending of Link State Request packets is documented in <a href="#section-10.9">Section</a>
-    <a href="#section-10.9">10.9</a>.  The reception of Link State Request packets is documented in
-    <a href="#section-10.7">Section 10.7</a>.
+    The sending of Link State Request packets is documented in Section
+    10.9.  The reception of Link State Request packets is documented in
+    Section 10.7.
 
-        0                   1                   2                   3
-        0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |   Version #   |       3       |         Packet length         |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                          Router ID                            |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                           Area ID                             |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |           Checksum            |             AuType            |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                       Authentication                          |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                       Authentication                          |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                          LS type                              |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                       Link State ID                           |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                     Advertising Router                        |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                              ...                              |
-
-
-
-<span>Moy                         Standards Track                   [Page 197]</span></pre>
+        0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Version #</div><div class="modern-diagram-cell">3</div><div class="modern-diagram-cell">Packet length</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Router ID</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Area ID</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Checksum</div><div class="modern-diagram-cell">AuType</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Authentication</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Authentication</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">LS type</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Link State ID</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Advertising Router</div></div></div>
+</figure><pre>Moy                         Standards Track                   [Page 197]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 198</span>
@@ -10778,11 +10366,10 @@ References
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 199</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2328">RFC 2328</a>                     OSPF Version 2                   April 1998</span>
+  <pre>RFC 2328                     OSPF Version 2                   April 1998
 
 
-<span><a href="#appendix-A.3.5">A.3.5</a> The Link State Update packet</span>
+A.3.5 The Link State Update packet
 
     Link State Update packets are OSPF packet type 4.  These packets
     implement the flooding of LSAs.  Each Link State Update packet
@@ -10795,39 +10382,12 @@ References
     Acknowledgment packets.  If retransmission of certain LSAs is
     necessary, the retransmitted LSAs are always sent directly to the
     neighbor.  For more information on the reliable flooding of LSAs,
-    consult <a href="#section-13">Section 13</a>.
+    consult Section 13.
 
-        0                   1                   2                   3
-        0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |   Version #   |       4       |         Packet length         |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                          Router ID                            |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                           Area ID                             |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |           Checksum            |             AuType            |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                       Authentication                          |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                       Authentication                          |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                            # LSAs                             |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                                                               |
-       +-                                                            +-+
-       |                             LSAs                              |
-       +-                                                            +-+
-       |                              ...                              |
-
-
-
-
-
-
-
-
-<span>Moy                         Standards Track                   [Page 199]</span></pre>
+        0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Version #</div><div class="modern-diagram-cell">4</div><div class="modern-diagram-cell">Packet length</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Router ID</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Area ID</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Checksum</div><div class="modern-diagram-cell">AuType</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Authentication</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Authentication</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell"># LSAs</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">LSAs</div></div></div>
+</figure><pre>Moy                         Standards Track                   [Page 199]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 200</span>
@@ -10886,11 +10446,10 @@ References
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 201</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2328">RFC 2328</a>                     OSPF Version 2                   April 1998</span>
+  <pre>RFC 2328                     OSPF Version 2                   April 1998
 
 
-<span><a href="#appendix-A.3.6">A.3.6</a> The Link State Acknowledgment packet</span>
+A.3.6 The Link State Acknowledgment packet
 
     Link State Acknowledgment Packets are OSPF packet type 5.  To make
     the flooding of LSAs reliable, flooded LSAs are explicitly
@@ -10904,56 +10463,31 @@ References
     Acknowledgment packet is sent either to the multicast address
     AllSPFRouters, to the multicast address AllDRouters, or as a
     unicast.  The sending of Link State Acknowledgement packets is
-    documented in <a href="#section-13.5">Section 13.5</a>.  The reception of Link State
-    Acknowledgement packets is documented in <a href="#section-13.7">Section 13.7</a>.
+    documented in Section 13.5.  The reception of Link State
+    Acknowledgement packets is documented in Section 13.7.
 
     The format of this packet is similar to that of the Data Description
     packet.  The body of both packets is simply a list of LSA headers.
 
 
-        0                   1                   2                   3
-        0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |   Version #   |       5       |         Packet length         |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                          Router ID                            |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                           Area ID                             |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |           Checksum            |             AuType            |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                       Authentication                          |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                       Authentication                          |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                                                               |
-       +-                                                             -+
-       |                                                               |
-       +-                         An LSA Header                       -+
-       |                                                               |
-       +-                                                             -+
-
-
-
-<span>Moy                         Standards Track                   [Page 201]</span></pre>
+        0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Version #</div><div class="modern-diagram-cell">5</div><div class="modern-diagram-cell">Packet length</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Router ID</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Area ID</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Checksum</div><div class="modern-diagram-cell">AuType</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Authentication</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Authentication</div></div></div>
+</figure><pre>       +-                         An LSA Header                       -+</pre><pre>       |                                                               |
+       +-                                                             -+</pre><pre>Moy                         Standards Track                   [Page 201]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 202</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2328">RFC 2328</a>                     OSPF Version 2                   April 1998</span>
-
-
-       |                                                               |
+  <pre>RFC 2328                     OSPF Version 2                   April 1998</pre><div class="modern-diagram-fallback">       |                                                               |
        +-                                                             -+
        |                                                               |
        +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
        |                              ...                              |
 
-
-    Each acknowledged LSA is described by its LSA header.  The LSA
+</div><pre>    Each acknowledged LSA is described by its LSA header.  The LSA
     header is documented in Section A.4.1.  It contains all the
-    information required to uniquely identify both the LSA and the LSA's
+    information required to uniquely identify both the LSA and the LSA&#x27;s
     current instance.
 
 
@@ -10989,7 +10523,7 @@ References
 
 
 
-<span>Moy                         Standards Track                   [Page 202]</span></pre>
+Moy                         Standards Track                   [Page 202]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 203</span>
@@ -11048,11 +10582,10 @@ References
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 204</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2328">RFC 2328</a>                     OSPF Version 2                   April 1998</span>
+  <pre>RFC 2328                     OSPF Version 2                   April 1998
 
 
-<span><a href="#appendix-A.4.1">A.4.1</a> The LSA header</span>
+A.4.1 The LSA header
 
     All LSAs begin with a common 20 byte header.  This header contains
     enough information to uniquely identify the LSA (LS type, Link State
@@ -11063,41 +10596,28 @@ References
     are also contained in the LSA header.
 
 
-        0                   1                   2                   3
-        0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |            LS age             |    Options    |    LS type    |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                        Link State ID                          |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                     Advertising Router                        |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                     LS sequence number                        |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |         LS checksum           |             length            |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-
-
-    LS age
+        0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">LS age</div><div class="modern-diagram-cell">Options</div><div class="modern-diagram-cell">LS type</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Link State ID</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Advertising Router</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">LS sequence number</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">LS checksum</div><div class="modern-diagram-cell">length</div></div></div>
+</figure><pre>    LS age
         The time in seconds since the LSA was originated.
 
     Options
         The optional capabilities supported by the described portion of
-        the routing domain.  OSPF's optional capabilities are documented
+        the routing domain.  OSPF&#x27;s optional capabilities are documented
         in Section A.2.
 
     LS type
         The type of the LSA.  Each LSA type has a separate advertisement
         format.  The LSA types defined in this memo are as follows (see
-        <a href="#section-12.1.3">Section 12.1.3</a> for further explanation):
+        Section 12.1.3 for further explanation):
 
 
 
 
 
 
-<span>Moy                         Standards Track                   [Page 204]</span></pre>
+Moy                         Standards Track                   [Page 204]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 205</span>
@@ -11156,56 +10676,22 @@ References
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 206</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2328">RFC 2328</a>                     OSPF Version 2                   April 1998</span>
+  <pre>RFC 2328                     OSPF Version 2                   April 1998
 
 
-<span><a href="#appendix-A.4.2">A.4.2</a> Router-LSAs</span>
+A.4.2 Router-LSAs
 
     Router-LSAs are the Type 1 LSAs.  Each router in an area originates
-    a router-LSA.  The LSA describes the state and cost of the router's
-    links (i.e., interfaces) to the area.  All of the router's links to
+    a router-LSA.  The LSA describes the state and cost of the router&#x27;s
+    links (i.e., interfaces) to the area.  All of the router&#x27;s links to
     the area must be described in a single router-LSA.  For details
-    concerning the construction of router-LSAs, see <a href="#section-12.4.1">Section 12.4.1</a>.
+    concerning the construction of router-LSAs, see Section 12.4.1.
 
 
-        0                   1                   2                   3
-        0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |            LS age             |     Options   |       1       |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                        Link State ID                          |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                     Advertising Router                        |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                     LS sequence number                        |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |         LS checksum           |             length            |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |    0    |V|E|B|        0      |            # links            |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                          Link ID                              |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                         Link Data                             |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |     Type      |     # TOS     |            metric             |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                              ...                              |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |      TOS      |        0      |          TOS  metric          |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                          Link ID                              |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                         Link Data                             |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                              ...                              |
-
-
-
-
-
-
-<span>Moy                         Standards Track                   [Page 206]</span></pre>
+        0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">LS age</div><div class="modern-diagram-cell">Options</div><div class="modern-diagram-cell">1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Link State ID</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Advertising Router</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">LS sequence number</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">LS checksum</div><div class="modern-diagram-cell">length</div></div><div class="modern-diagram-row" style="--cell-count: 6"><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">V</div><div class="modern-diagram-cell">E</div><div class="modern-diagram-cell">B</div><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell"># links</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Link ID</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Link Data</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Type</div><div class="modern-diagram-cell"># TOS</div><div class="modern-diagram-cell">metric</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">TOS</div><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">TOS  metric</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Link ID</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Link Data</div></div></div>
+</figure><pre>Moy                         Standards Track                   [Page 206]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 207</span>
@@ -11372,48 +10858,29 @@ References
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 210</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2328">RFC 2328</a>                     OSPF Version 2                   April 1998</span>
+  <pre>RFC 2328                     OSPF Version 2                   April 1998
 
 
-<span><a href="#appendix-A.4.3">A.4.3</a> Network-LSAs</span>
+A.4.3 Network-LSAs
 
     Network-LSAs are the Type 2 LSAs.  A network-LSA is originated for
     each broadcast and NBMA network in the area which supports two or
-    more routers.  The network-LSA is originated by the network's
+    more routers.  The network-LSA is originated by the network&#x27;s
     Designated Router.  The LSA describes all routers attached to the
-    network, including the Designated Router itself.  The LSA's Link
+    network, including the Designated Router itself.  The LSA&#x27;s Link
     State ID field lists the IP interface address of the Designated
     Router.
 
     The distance from the network to all attached routers is zero.  This
     is why metric fields need not be specified in the network-LSA.  For
-    details concerning the construction of network-LSAs, see <a href="#section-12.4.2">Section</a>
-    <a href="#section-12.4.2">12.4.2</a>.
+    details concerning the construction of network-LSAs, see Section
+    12.4.2.
 
 
-        0                   1                   2                   3
-        0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |            LS age             |      Options  |      2        |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                        Link State ID                          |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                     Advertising Router                        |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                     LS sequence number                        |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |         LS checksum           |             length            |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                         Network Mask                          |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                        Attached Router                        |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                              ...                              |
-
-
-
-    Network Mask
+        0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">LS age</div><div class="modern-diagram-cell">Options</div><div class="modern-diagram-cell">2</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Link State ID</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Advertising Router</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">LS sequence number</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">LS checksum</div><div class="modern-diagram-cell">length</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Network Mask</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Attached Router</div></div></div>
+</figure><pre>    Network Mask
         The IP address mask for the network.  For example, a class A
         network would have the mask 0xff000000.
 
@@ -11421,7 +10888,7 @@ References
 
 
 
-<span>Moy                         Standards Track                   [Page 210]</span></pre>
+Moy                         Standards Track                   [Page 210]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 211</span>
@@ -11480,56 +10947,32 @@ References
   <div class="rfc-page-top">
     <span class="rfc-page-label">Appendix</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2328">RFC 2328</a>                     OSPF Version 2                   April 1998</span>
+  <pre>RFC 2328                     OSPF Version 2                   April 1998
 
 
-<span><a href="#appendix-A.4.4">A.4.4</a> Summary-LSAs</span>
+A.4.4 Summary-LSAs
 
     Summary-LSAs are the Type 3 and 4 LSAs.  These LSAs are originated
     by area border routers. Summary-LSAs describe inter-area
     destinations.  For details concerning the construction of summary-
-    LSAs, see <a href="#section-12.4.3">Section 12.4.3</a>.
+    LSAs, see Section 12.4.3.
 
     Type 3 summary-LSAs are used when the destination is an IP network.
-    In this case the LSA's Link State ID field is an IP network number
+    In this case the LSA&#x27;s Link State ID field is an IP network number
     (if necessary, the Link State ID can also have one or more of the
-    network's "host" bits set; see <a href="#appendix-E">Appendix E</a> for details). When the
+    network&#x27;s &quot;host&quot; bits set; see Appendix E for details). When the
     destination is an AS boundary router, a Type 4 summary-LSA is used,
-    and the Link State ID field is the AS boundary router's OSPF Router
+    and the Link State ID field is the AS boundary router&#x27;s OSPF Router
     ID.  (To see why it is necessary to advertise the location of each
-    ASBR, consult <a href="#section-16.4">Section 16.4</a>.)  Other than the difference in the Link
+    ASBR, consult Section 16.4.)  Other than the difference in the Link
     State ID field, the format of Type 3 and 4 summary-LSAs is
     identical.
 
 
-        0                   1                   2                   3
-        0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |            LS age             |     Options   |    3 or 4     |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                        Link State ID                          |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                     Advertising Router                        |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                     LS sequence number                        |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |         LS checksum           |             length            |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                         Network Mask                          |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |      0        |                  metric                       |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |     TOS       |                TOS  metric                    |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                              ...                              |
-
-
-
-
-
-
-<span>Moy                         Standards Track                   [Page 212]</span></pre>
+        0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">LS age</div><div class="modern-diagram-cell">Options</div><div class="modern-diagram-cell">3 or 4</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Link State ID</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Advertising Router</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">LS sequence number</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">LS checksum</div><div class="modern-diagram-cell">length</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Network Mask</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">metric</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">TOS</div><div class="modern-diagram-cell">TOS  metric</div></div></div>
+</figure><pre>Moy                         Standards Track                   [Page 212]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 213</span>
@@ -11588,71 +11031,38 @@ References
   <div class="rfc-page-top">
     <span class="rfc-page-label">Appendix</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2328">RFC 2328</a>                     OSPF Version 2                   April 1998</span>
+  <pre>RFC 2328                     OSPF Version 2                   April 1998
 
 
-<span><a href="#appendix-A.4.5">A.4.5</a> AS-external-LSAs</span>
+A.4.5 AS-external-LSAs
 
     AS-external-LSAs are the Type 5 LSAs.  These LSAs are originated by
     AS boundary routers, and describe destinations external to the AS.
     For details concerning the construction of AS-external-LSAs, see
-    <a href="#section-12.4.3">Section 12.4.3</a>.
+    Section 12.4.3.
 
     AS-external-LSAs usually describe a particular external destination.
     For these LSAs the Link State ID field specifies an IP network
     number (if necessary, the Link State ID can also have one or more of
-    the network's "host" bits set; see <a href="#appendix-E">Appendix E</a> for details).  AS-
+    the network&#x27;s &quot;host&quot; bits set; see Appendix E for details).  AS-
     external-LSAs are also used to describe a default route.  Default
     routes are used when no specific route exists to the destination.
     When describing a default route, the Link State ID is always set to
     DefaultDestination (0.0.0.0) and the Network Mask is set to 0.0.0.0.
 
 
-        0                   1                   2                   3
-        0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |            LS age             |     Options   |      5        |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                        Link State ID                          |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                     Advertising Router                        |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                     LS sequence number                        |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |         LS checksum           |             length            |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                         Network Mask                          |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |E|     0       |                  metric                       |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                      Forwarding address                       |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                      External Route Tag                       |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |E|    TOS      |                TOS  metric                    |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                      Forwarding address                       |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-
-
-<span>Moy                         Standards Track                   [Page 214]</span></pre>
+        0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">LS age</div><div class="modern-diagram-cell">Options</div><div class="modern-diagram-cell">5</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Link State ID</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Advertising Router</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">LS sequence number</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">LS checksum</div><div class="modern-diagram-cell">length</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Network Mask</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">E</div><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">metric</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Forwarding address</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">External Route Tag</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">E</div><div class="modern-diagram-cell">TOS</div><div class="modern-diagram-cell">TOS  metric</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Forwarding address</div></div></div>
+</figure><pre>Moy                         Standards Track                   [Page 214]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 215</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2328">RFC 2328</a>                     OSPF Version 2                   April 1998</span>
-
-
-       |                      External Route Tag                       |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                              ...                              |
-
-
-
-    Network Mask
+  <pre>RFC 2328                     OSPF Version 2                   April 1998</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">External Route Tag</div></div></div>
+</figure><pre>    Network Mask
         The IP address mask for the advertised destination.  For
         example, when advertising a class A network the mask 0xff000000
         would be used.
@@ -11672,7 +11082,7 @@ References
     Forwarding address
         Data traffic for the advertised destination will be forwarded to
         this address.  If the Forwarding address is set to 0.0.0.0, data
-        traffic will be forwarded instead to the LSA's originator (i.e.,
+        traffic will be forwarded instead to the LSA&#x27;s originator (i.e.,
         the responsible AS boundary router).
 
     External Route Tag
@@ -11683,15 +11093,15 @@ References
 
     Additional TOS-specific information may also be included, for
     backward compatibility with previous versions of the OSPF
-    specification ([<a href="#ref-Ref9" title="&quot;OSPF Version 2&quot;">Ref9</a>]). For each desired TOS, TOS-specific
+    specification ([Ref9]). For each desired TOS, TOS-specific
     information is encoded as follows:
 
     TOS The Type of Service that the following fields concern.  The
-        encoding of TOS in OSPF LSAs is described in <a href="#section-12.3">Section 12.3</a>.
+        encoding of TOS in OSPF LSAs is described in Section 12.3.
 
 
 
-<span>Moy                         Standards Track                   [Page 215]</span></pre>
+Moy                         Standards Track                   [Page 215]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 216</span>
@@ -12398,38 +11808,32 @@ References
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 229</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2328">RFC 2328</a>                     OSPF Version 2                   April 1998</span>
+  <pre>RFC 2328                     OSPF Version 2                   April 1998
 
 
 
 
-        0                   1                   2                   3
-        0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |              0                |    Key ID     | Auth Data Len |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                 Cryptographic sequence number                 |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-                   Figure 18: Usage of the Authentication field
+        0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">Key ID</div><div class="modern-diagram-cell">Auth Data Len</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Cryptographic sequence number</div></div></div>
+</figure><pre>                   Figure 18: Usage of the Authentication field
                    in the OSPF packet header when Cryptographic
                           Authentication is employed
 
-        whenever the neighbor's state transitions to "Down". Whenever an
+        whenever the neighbor&#x27;s state transitions to &quot;Down&quot;. Whenever an
         OSPF packet is accepted as authentic, the cryptographic sequence
-        number is set to the received packet's sequence number.
+        number is set to the received packet&#x27;s sequence number.
 
         This specification does not provide a rollover procedure for the
         cryptographic sequence number. When the cryptographic sequence
         number that the router is sending hits the maximum value, the
         router should reset the cryptographic sequence number that it is
-        sending back to 0. After this is done, the router's neighbors
-        will reject the router's OSPF packets for a period of
+        sending back to 0. After this is done, the router&#x27;s neighbors
+        will reject the router&#x27;s OSPF packets for a period of
         RouterDeadInterval, and then the router will be forced to
         reestablish all adjacencies over the interface. However, it is
-        expected that many implementations will use "seconds since
-        reboot" (or "seconds since 1960", etc.) as the cryptographic
+        expected that many implementations will use &quot;seconds since
+        reboot&quot; (or &quot;seconds since 1960&quot;, etc.) as the cryptographic
         sequence number. Such a choice will essentially prevent
         rollover, since the cryptographic sequence number field is 32
         bits in length.
@@ -12447,7 +11851,7 @@ References
 
 
 
-<span>Moy                         Standards Track                   [Page 229]</span></pre>
+Moy                         Standards Track                   [Page 229]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 230</span>

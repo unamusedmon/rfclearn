@@ -266,8 +266,7 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 4</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc6564">RFC 6564</a>            Format for IPv6 Extension Headers         April 2012</span>
+  <pre>RFC 6564            Format for IPv6 Extension Headers         April 2012
 
 
    Mindful of the need for compatibility with existing IPv6 deployments,
@@ -278,30 +277,24 @@ Table of Contents
    technical explanation of why no existing IPv6 extension header can be
    used in the document proposing the new IPv6 extension header.
 
-<span><a href="#section-4">4</a>.  Proposed IPv6 Extension Header Format</span>
+4.  Proposed IPv6 Extension Header Format
 
    Any IPv6 extension headers defined in the future, keeping in mind the
-   restrictions specified in <a href="#section-3">Section 3</a> and also the restrictions
-   specified in [<a href="./rfc2460" title="&quot;Internet Protocol, Version 6 (IPv6) Specification&quot;">RFC2460</a>], MUST use the consistent format defined in
+   restrictions specified in Section 3 and also the restrictions
+   specified in [RFC2460], MUST use the consistent format defined in
    Figure 1.  This minimizes breakage in intermediate nodes that examine
    these extension headers.
 
-    0                   1                   2                   3
-    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |  Next Header  |  Hdr Ext Len  |                               |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+                               +
-   |                                                               |
-   .                                                               .
+    0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Next Header</div><div class="modern-diagram-cell">Hdr Ext Len</div></div></div>
+</figure><pre>   .                                                               .
    .                  Header Specific Data                         .
-   .                                                               .
-   |                                                               |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-   Next Header          8-bit selector.  Identifies the type of header
+   .                                                               .</pre><pre>   |                                                               |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>   Next Header          8-bit selector.  Identifies the type of header
                         immediately following the extension header.
                         Uses the same values as the IPv4 Protocol field
-                        [<a href="#ref-IANA_IP_PARAM" title="&quot;IP Parameters&quot;">IANA_IP_PARAM</a>].
+                        [IANA_IP_PARAM].
 
    Hdr Ext Len          8-bit unsigned integer.  Length of the extension
                         header in 8-octet units, not including the first
@@ -312,7 +305,7 @@ Table of Contents
 
                      Figure 1: Extension Header Layout
 
-<span><a href="#section-5">5</a>.  Backward Compatibility</span>
+5.  Backward Compatibility
 
    The scheme proposed in this document is not intended to be backward
    compatible with all the currently defined IPv6 extension headers.  It
@@ -321,7 +314,7 @@ Table of Contents
 
 
 
-<span>Krishnan, et al.             Standards Track                    [Page 4]</span></pre>
+Krishnan, et al.             Standards Track                    [Page 4]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 5</span>

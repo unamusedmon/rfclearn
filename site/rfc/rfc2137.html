@@ -266,30 +266,13 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 4</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2137">RFC 2137</a>                         SDNSDU                       April 1997</span>
+  <pre>RFC 2137                         SDNSDU                       April 1997
 
 
-                   SUMMARY OF DYNAMIC SECURE ZONE MODES
-
-   CRITERIA:                |   MODE A           |   MODE B
-   =========================+====================+===================
-   Definition:              | Zone Key Off line  | Zone Key On line
-   =========================+====================+===================
-   Server Workload          |   Low              |   High
-   -------------------------+--------------------+-------------------
-   Static Data Security     |   Very High        |   Medium-High
-   -------------------------+--------------------+-------------------
-   Dynamic Data Security    |   Medium           |   Medium-High
-   -------------------------+--------------------+-------------------
-   Key Restrictions         |   Fine grain       |   Coarse grain
-   -------------------------+--------------------+-------------------
-   Dynamic Data Temporality |   Transient        |   Permanent
-   -------------------------+--------------------+-------------------
-   Dynamic Key Rollover     |   No               |   Yes
-   -------------------------+--------------------+-------------------
-
-   For mode A, the zone owner key and static zone master file are always
+                   SUMMARY OF DYNAMIC SECURE ZONE MODES</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">CRITERIA:</div><div class="modern-diagram-cell">MODE A</div><div class="modern-diagram-cell">MODE B</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Definition:</div><div class="modern-diagram-cell">Zone Key Off line</div><div class="modern-diagram-cell">Zone Key On line</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Server Workload</div><div class="modern-diagram-cell">Low</div><div class="modern-diagram-cell">High</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Static Data Security</div><div class="modern-diagram-cell">Very High</div><div class="modern-diagram-cell">Medium-High</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Dynamic Data Security</div><div class="modern-diagram-cell">Medium</div><div class="modern-diagram-cell">Medium-High</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Key Restrictions</div><div class="modern-diagram-cell">Fine grain</div><div class="modern-diagram-cell">Coarse grain</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Dynamic Data Temporality</div><div class="modern-diagram-cell">Transient</div><div class="modern-diagram-cell">Permanent</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Dynamic Key Rollover</div><div class="modern-diagram-cell">No</div><div class="modern-diagram-cell">Yes</div></div></div>
+</figure><pre>   For mode A, the zone owner key and static zone master file are always
    kept off-line for maximum security of the static zone contents.
 
    As a consequence, any dynamicly added or changed RRs are signed in
@@ -321,7 +304,7 @@ Table of Contents
 
 
 
-<span>Eastlake                    Standards Track                     [Page 4]</span></pre>
+Eastlake                    Standards Track                     [Page 4]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 5</span>
@@ -386,11 +369,10 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 6</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2137">RFC 2137</a>                         SDNSDU                       April 1997</span>
+  <pre>RFC 2137                         SDNSDU                       April 1997
 
 
-<span><a href="#section-3.1">3.1</a> Update Keys</span>
+3.1 Update Keys
 
    All update requests to a secure zone must include signatures by one
    or more key(s) that together can authorize that update.  In order for
@@ -403,36 +385,34 @@ Table of Contents
    addition, such KEY RRs must be entity or user keys and not have the
    authentication use prohibited bit on.  All parts of the actual update
    must be within the scope of at least one of the keys used for a
-   request SIG on the update request as described in <a href="#section-4">section 4</a>.
+   request SIG on the update request as described in section 4.
 
-<span><a href="#section-3.1.1">3.1.1</a> Update Key Name Scope</span>
+3.1.1 Update Key Name Scope
 
    The owner name of any update authorizing KEY RR must (1) be the same
    as the owner name of any RRs being added or deleted or (2) a wildcard
-   name including within its extended scope (see <a href="#section-3.3">section 3.3</a>) the name
+   name including within its extended scope (see section 3.3) the name
    of any RRs being added or deleted and those RRs must be in the same
    zone.
 
-<span><a href="#section-3.1.2">3.1.2</a> Update Key Class Scope</span>
+3.1.2 Update Key Class Scope
 
    The class of any update authorizing KEY RR must be the same as the
-   class of any RR's being added or deleted.
+   class of any RR&#x27;s being added or deleted.
 
-<span><a href="#section-3.1.3">3.1.3</a> Update Key Signatory Field</span>
+3.1.3 Update Key Signatory Field
 
-   The four bit "signatory field" (see <a href="./rfc2065">RFC 2065</a>) of any update
+   The four bit &quot;signatory field&quot; (see RFC 2065) of any update
    authorizing KEY RR must be non-zero.  The bits have the meanings
-   described below for non-zone keys (see <a href="#section-3.2">section 3.2</a> for zone type
+   described below for non-zone keys (see section 3.2 for zone type
    keys).
 
                     UPDATE KEY RR SIGNATORY FIELD BITS
 
-         0           1           2           3
-   +-----------+-----------+-----------+-----------+
-   |   zone    |  strong   |  unique   |  general  |
-   +-----------+-----------+-----------+-----------+
-
-   Bit 0, zone control - If nonzero, this key is authorized to attach,
+         0           1           2           3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">zone</div><div class="modern-diagram-cell">strong</div><div class="modern-diagram-cell">unique</div><div class="modern-diagram-cell">general</div></div></div>
+</figure><pre>   Bit 0, zone control - If nonzero, this key is authorized to attach,
         detach, and move zones by creating and deleting NS, glue A, and
         zone KEY RR(s).  If zero, the key can not authorize any update
         that would effect such RRs.  This bit is meaningful for both
@@ -441,7 +421,7 @@ Table of Contents
 
 
 
-<span>Eastlake                    Standards Track                     [Page 6]</span></pre>
+Eastlake                    Standards Track                     [Page 6]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 7</span>
@@ -506,11 +486,10 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 8</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2137">RFC 2137</a>                         SDNSDU                       April 1997</span>
+  <pre>RFC 2137                         SDNSDU                       April 1997
 
 
-<span><a href="#section-3.2">3.2</a> Zone Keys and Update Modes</span>
+3.2 Zone Keys and Update Modes
 
    Zone type keys are automatically authorized to sign anything in their
    zone, of course, regardless of the value of their signatory field.
@@ -521,22 +500,20 @@ Table of Contents
 
                      ZONE KEY RR SIGNATORY FIELD BITS
 
-                  0           1           2           3
-            +-----------+-----------+-----------+-----------+
-            |   mode    |  strong   |  unique   |  general  |
-            +-----------+-----------+-----------+-----------+
-
-   Bit 0, mode - This bit indicates the update mode for this zone.  Zero
+                  0           1           2           3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">mode</div><div class="modern-diagram-cell">strong</div><div class="modern-diagram-cell">unique</div><div class="modern-diagram-cell">general</div></div></div>
+</figure><pre>   Bit 0, mode - This bit indicates the update mode for this zone.  Zero
         indicates mode A while a one indicates mode B.
 
-   Bit 1, strong update - If nonzero, this indicates that the "strong"
-        key feature described in <a href="#section-3.1.3">section 3.1.3</a> above is implemented and
+   Bit 1, strong update - If nonzero, this indicates that the &quot;strong&quot;
+        key feature described in section 3.1.3 above is implemented and
         enabled for this secure zone.  If zero, the feature is not
         available.  Has no effect if the zone is a mode B secure update
         zone.
 
    Bit 2, unique name update - If nonzero, this indicates that the
-        "unique name" feature described in <a href="#section-3.1.3">section 3.1.3</a> above is
+        &quot;unique name&quot; feature described in section 3.1.3 above is
         implemented and enabled for this secure zone.  If zero, this
         feature is not available.  Has no effect if the zone is a mode B
         secure update zone.
@@ -561,7 +538,7 @@ Table of Contents
 
 
 
-<span>Eastlake                    Standards Track                     [Page 8]</span></pre>
+Eastlake                    Standards Track                     [Page 8]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 9</span>

@@ -566,62 +566,32 @@ List of Tables
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 9</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2131">RFC 2131</a>          Dynamic Host Configuration Protocol         March 1997</span>
+  <pre>RFC 2131          Dynamic Host Configuration Protocol         March 1997
 
 
-   0                   1                   2                   3
-   0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |     op (1)    |   htype (1)   |   hlen (1)    |   hops (1)    |
-   +---------------+---------------+---------------+---------------+
-   |                            xid (4)                            |
-   +-------------------------------+-------------------------------+
-   |           secs (2)            |           flags (2)           |
-   +-------------------------------+-------------------------------+
-   |                          ciaddr  (4)                          |
-   +---------------------------------------------------------------+
-   |                          yiaddr  (4)                          |
-   +---------------------------------------------------------------+
-   |                          siaddr  (4)                          |
-   +---------------------------------------------------------------+
-   |                          giaddr  (4)                          |
-   +---------------------------------------------------------------+
-   |                                                               |
-   |                          chaddr  (16)                         |
-   |                                                               |
-   |                                                               |
-   +---------------------------------------------------------------+
-   |                                                               |
-   |                          sname   (64)                         |
-   +---------------------------------------------------------------+
-   |                                                               |
-   |                          file    (128)                        |
-   +---------------------------------------------------------------+
-   |                                                               |
-   |                          options (variable)                   |
-   +---------------------------------------------------------------+
+   0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">op (1)</div><div class="modern-diagram-cell">htype (1)</div><div class="modern-diagram-cell">hlen (1)</div><div class="modern-diagram-cell">hops (1)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">xid (4)</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">secs (2)</div><div class="modern-diagram-cell">flags (2)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">ciaddr  (4)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">yiaddr  (4)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">siaddr  (4)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">giaddr  (4)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">chaddr  (16)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">sname   (64)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">file    (128)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">options (variable)</div></div></div>
+</figure><pre>                  Figure 1:  Format of a DHCP message
 
-                  Figure 1:  Format of a DHCP message
-
-   DHCP defines a new 'client identifier' option that is used to pass an
+   DHCP defines a new &#x27;client identifier&#x27; option that is used to pass an
    explicit client identifier to a DHCP server.  This change eliminates
-   the overloading of the 'chaddr' field in BOOTP messages, where
-   'chaddr' is used both as a hardware address for transmission of BOOTP
-   reply messages and as a client identifier.  The 'client identifier'
+   the overloading of the &#x27;chaddr&#x27; field in BOOTP messages, where
+   &#x27;chaddr&#x27; is used both as a hardware address for transmission of BOOTP
+   reply messages and as a client identifier.  The &#x27;client identifier&#x27;
    is an opaque key, not to be interpreted by the server; for example,
-   the 'client identifier' may contain a hardware address, identical to
-   the contents of the 'chaddr' field, or it may contain another type of
-   identifier, such as a DNS name.  The 'client identifier' chosen by a
+   the &#x27;client identifier&#x27; may contain a hardware address, identical to
+   the contents of the &#x27;chaddr&#x27; field, or it may contain another type of
+   identifier, such as a DNS name.  The &#x27;client identifier&#x27; chosen by a
    DHCP client MUST be unique to that client within the subnet to which
-   the client is attached. If the client uses a 'client identifier' in
+   the client is attached. If the client uses a &#x27;client identifier&#x27; in
    one message, it MUST use that same identifier in all subsequent
    messages, to ensure that all servers correctly identify the client.
 
 
 
 
-<span>Droms                       Standards Track                     [Page 9]</span></pre>
+Droms                       Standards Track                     [Page 9]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 10</span>
@@ -686,20 +656,19 @@ List of Tables
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 11</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2131">RFC 2131</a>          Dynamic Host Configuration Protocol         March 1997</span>
+  <pre>RFC 2131          Dynamic Host Configuration Protocol         March 1997
 
 
-   datagram size an IP host must be prepared to accept [<a href="#ref-3" title="&quot;Requirements for Internet Hosts -- Communication Layers&quot;">3</a>].  DHCP
+   datagram size an IP host must be prepared to accept [3].  DHCP
    clients may negotiate the use of larger DHCP messages through the
-   'maximum DHCP message size' option.  The options field may be further
-   extended into the 'file' and 'sname' fields.
+   &#x27;maximum DHCP message size&#x27; option.  The options field may be further
+   extended into the &#x27;file&#x27; and &#x27;sname&#x27; fields.
 
    In the case of a client using DHCP for initial configuration (before
-   the client's TCP/IP software has been completely configured), DHCP
-   requires creative use of the client's TCP/IP software and liberal
-   interpretation of <a href="./rfc1122">RFC 1122</a>.  The TCP/IP software SHOULD accept and
-   forward to the IP layer any IP packets delivered to the client's
+   the client&#x27;s TCP/IP software has been completely configured), DHCP
+   requires creative use of the client&#x27;s TCP/IP software and liberal
+   interpretation of RFC 1122.  The TCP/IP software SHOULD accept and
+   forward to the IP layer any IP packets delivered to the client&#x27;s
    hardware address before the IP address is configured; DHCP servers
    and BOOTP relay agents may not be able to deliver DHCP messages to
    clients that cannot accept hardware unicast datagrams before the
@@ -707,26 +676,23 @@ List of Tables
 
    To work around some clients that cannot accept IP unicast datagrams
    before the TCP/IP software is configured as discussed in the previous
-   paragraph, DHCP uses the 'flags' field [<a href="#ref-21" title="&quot;Clarifications and Extensions for the Bootstrap Protocol&quot;">21</a>].  The leftmost bit is
+   paragraph, DHCP uses the &#x27;flags&#x27; field [21].  The leftmost bit is
    defined as the BROADCAST (B) flag.  The semantics of this flag are
-   discussed in <a href="#section-4.1">section 4.1</a> of this document.  The remaining bits of the
+   discussed in section 4.1 of this document.  The remaining bits of the
    flags field are reserved for future use.  They MUST be set to zero by
    clients and ignored by servers and relay agents.  Figure 2 gives the
-   format of the 'flags' field.
+   format of the &#x27;flags&#x27; field.
 
-                                    1 1 1 1 1 1
-                0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5
-                +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-                |B|             MBZ             |
-                +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-                B:  BROADCAST flag
+                                    1 1 1 1 1 1</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">B</div><div class="modern-diagram-cell">MBZ</div></div></div>
+</figure><pre>                B:  BROADCAST flag
 
                 MBZ:  MUST BE ZERO (reserved for future use)
 
-                Figure 2:  Format of the 'flags' field
+                Figure 2:  Format of the &#x27;flags&#x27; field
 
-<span><a href="#section-2.1">2.1</a> Configuration parameters repository</span>
+2.1 Configuration parameters repository
 
    The first service provided by DHCP is to provide persistent storage
    of network parameters for network clients.  The model of DHCP
@@ -737,11 +703,11 @@ List of Tables
    client.
 
    For example, the key might be the pair (IP-subnet-number, hardware-
-   address) (note that the "hardware-address" should be typed by the
+   address) (note that the &quot;hardware-address&quot; should be typed by the
 
 
 
-<span>Droms                       Standards Track                    [Page 11]</span></pre>
+Droms                       Standards Track                    [Page 11]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 12</span>
@@ -926,52 +892,24 @@ List of Tables
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 15</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2131">RFC 2131</a>          Dynamic Host Configuration Protocol         March 1997</span>
+  <pre>RFC 2131          Dynamic Host Configuration Protocol         March 1997
 
 
                 Server          Client          Server
             (not selected)                    (selected)
 
-                  v               v               v
-                  |               |               |
-                  |     Begins initialization     |
-                  |               |               |
-                  | _____________/|\____________  |
-                  |/DHCPDISCOVER | DHCPDISCOVER  \|
-                  |               |               |
-              Determines          |          Determines
-             configuration        |         configuration
-                  |               |               |
-                  |\             |  ____________/ |
-                  | \________    | /DHCPOFFER     |
-                  | DHCPOFFER\   |/               |
-                  |           \  |                |
-                  |       Collects replies        |
-                  |             \|                |
-                  |     Selects configuration     |
-                  |               |               |
-                  | _____________/|\____________  |
-                  |/ DHCPREQUEST  |  DHCPREQUEST\ |
-                  |               |               |
-                  |               |     Commits configuration
-                  |               |               |
-                  |               | _____________/|
-                  |               |/ DHCPACK      |
-                  |               |               |
-                  |    Initialization complete    |
-                  |               |               |
-                  .               .               .
-                  .               .               .
-                  |               |               |
-                  |      Graceful shutdown        |
-                  |               |               |
-                  |               |\ ____________ |
-                  |               | DHCPRELEASE  \|
-                  |               |               |
-                  |               |        Discards lease
-                  |               |               |
-                  v               v               v
+                  v               v               v</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Begins initialization</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">/DHCPDISCOVER</div><div class="modern-diagram-cell">DHCPDISCOVER  \</div></div></div>
+</figure><pre>              Determines          |          Determines
+             configuration        |         configuration</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">\________</div><div class="modern-diagram-cell">/DHCPOFFER</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">DHCPOFFER\</div><div class="modern-diagram-cell">/</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Collects replies</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Selects configuration</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">/ DHCPREQUEST</div><div class="modern-diagram-cell">DHCPREQUEST\</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Commits configuration</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">/ DHCPACK</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Initialization complete</div></div></div>
+</figure><pre>                  .               .               .
+                  .               .               .</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Graceful shutdown</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">DHCPRELEASE  \</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Discards lease</div></div></div>
+</figure><pre>                  v               v               v
      Figure 3: Timeline diagram of messages exchanged between DHCP
                client and servers when allocating a new network address
 
@@ -981,7 +919,7 @@ List of Tables
 
 
 
-<span>Droms                       Standards Track                    [Page 15]</span></pre>
+Droms                       Standards Track                    [Page 15]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 16</span>
@@ -1106,54 +1044,33 @@ List of Tables
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 18</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2131">RFC 2131</a>          Dynamic Host Configuration Protocol         March 1997</span>
+  <pre>RFC 2131          Dynamic Host Configuration Protocol         March 1997
 
 
    1. The client broadcasts a DHCPREQUEST message on its local subnet.
-      The message includes the client's network address in the
-      'requested IP address' option. As the client has not received its
-      network address, it MUST NOT fill in the 'ciaddr' field. BOOTP
+      The message includes the client&#x27;s network address in the
+      &#x27;requested IP address&#x27; option. As the client has not received its
+      network address, it MUST NOT fill in the &#x27;ciaddr&#x27; field. BOOTP
       relay agents pass the message on to DHCP servers not on the same
-      subnet.  If the client used a 'client identifier' to obtain its
-      address, the client MUST use the same 'client identifier' in the
+      subnet.  If the client used a &#x27;client identifier&#x27; to obtain its
+      address, the client MUST use the same &#x27;client identifier&#x27; in the
       DHCPREQUEST message.
 
-   2. Servers with knowledge of the client's configuration parameters
+   2. Servers with knowledge of the client&#x27;s configuration parameters
       respond with a DHCPACK message to the client.  Servers SHOULD NOT
-      check that the client's network address is already in use; the
+      check that the client&#x27;s network address is already in use; the
       client may respond to ICMP Echo Request messages at this point.
 
                 Server          Client          Server
 
-                  v               v               v
-                  |                |               |
-                  |              Begins            |
-                  |          initialization        |
-                  |                |               |
-                  |                /|\             |
-                  |   _________ __/ | \__________  |
-                  | /DHCPREQU EST  |  DHCPREQUEST\ |
-                  |/               |              \|
-                  |                |               |
-               Locates             |            Locates
-            configuration          |         configuration
-                  |                |               |
-                  |\               |              /|
-                  | \              |  ___________/ |
-                  |  \             | /  DHCPACK    |
-                  |   \ _______    |/              |
-                  |     DHCPACK\   |               |
-                  |          Initialization        |
-                  |             complete           |
-                  |               \|               |
-                  |                |               |
-                  |           (Subsequent          |
-                  |             DHCPACKS           |
-                  |             ignored)           |
-                  |                |               |
-                  |                |               |
-                  v                v               v
+                  v               v               v</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Begins</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">initialization</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">/DHCPREQU EST</div><div class="modern-diagram-cell">DHCPREQUEST\</div></div></div>
+</figure><pre>               Locates             |            Locates
+            configuration          |         configuration</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">\</div><div class="modern-diagram-cell">/  DHCPACK</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">DHCPACK\</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Initialization</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">complete</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">(Subsequent</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">DHCPACKS</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">ignored)</div></div></div>
+</figure><pre>                  v                v               v
 
      Figure 4: Timeline diagram of messages exchanged between DHCP
                client and servers when reusing a previously allocated
@@ -1161,7 +1078,7 @@ List of Tables
 
 
 
-<span>Droms                       Standards Track                    [Page 18]</span></pre>
+Droms                       Standards Track                    [Page 18]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 19</span>
@@ -2006,17 +1923,16 @@ All others                MAY          MAY                MUST NOT
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 33</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2131">RFC 2131</a>          Dynamic Host Configuration Protocol         March 1997</span>
+  <pre>RFC 2131          Dynamic Host Configuration Protocol         March 1997
 
 
       The DHCPREQUEST from a REBINDING client is intended to accommodate
       sites that have multiple DHCP servers and a mechanism for
       maintaining consistency among leases managed by multiple servers.
-      A DHCP server MAY extend a client's lease only if it has local
+      A DHCP server MAY extend a client&#x27;s lease only if it has local
       administrative authority to do so.
 
-<span><a href="#section-4.3.3">4.3.3</a> DHCPDECLINE message</span>
+4.3.3 DHCPDECLINE message
 
    If the server receives a DHCPDECLINE message, the client has
    discovered through some other means that the suggested network
@@ -2024,34 +1940,30 @@ All others                MAY          MAY                MUST NOT
    as not available and SHOULD notify the local system administrator of
    a possible configuration problem.
 
-<span><a href="#section-4.3.4">4.3.4</a> DHCPRELEASE message</span>
+4.3.4 DHCPRELEASE message
 
    Upon receipt of a DHCPRELEASE message, the server marks the network
    address as not allocated.  The server SHOULD retain a record of the
-   client's initialization parameters for possible reuse in response to
+   client&#x27;s initialization parameters for possible reuse in response to
    subsequent requests from the client.
 
-<span><a href="#section-4.3.5">4.3.5</a> DHCPINFORM message</span>
+4.3.5 DHCPINFORM message
 
    The server responds to a DHCPINFORM message by sending a DHCPACK
-   message directly to the address given in the 'ciaddr' field of the
+   message directly to the address given in the &#x27;ciaddr&#x27; field of the
    DHCPINFORM message.  The server MUST NOT send a lease expiration time
-   to the client and SHOULD NOT fill in 'yiaddr'.  The server includes
-   other parameters in the DHCPACK message as defined in <a href="#section-4.3.1">section 4.3.1</a>.
+   to the client and SHOULD NOT fill in &#x27;yiaddr&#x27;.  The server includes
+   other parameters in the DHCPACK message as defined in section 4.3.1.
 
-<span><a href="#section-4.3.6">4.3.6</a> Client messages</span>
+4.3.6 Client messages
 
    Table 4 details the differences between messages from clients in
    various states.
 
-   ---------------------------------------------------------------------
-   |              |INIT-REBOOT  |SELECTING    |RENEWING     |REBINDING |
-   ---------------------------------------------------------------------
-   |broad/unicast |broadcast    |broadcast    |unicast      |broadcast |
-   |server-ip     |MUST NOT     |MUST         |MUST NOT     |MUST NOT  |
-   |requested-ip  |MUST         |MUST         |MUST NOT     |MUST NOT  |
-   |ciaddr        |zero         |zero         |IP address   |IP address|
-   ---------------------------------------------------------------------
+   ---------------------------------------------------------------------</pre><pre>   |              |INIT-REBOOT  |SELECTING    |RENEWING     |REBINDING |</pre><pre>   ---------------------------------------------------------------------</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">broad/unicast</div><div class="modern-diagram-cell">broadcast</div><div class="modern-diagram-cell">broadcast</div><div class="modern-diagram-cell">unicast</div><div class="modern-diagram-cell">broadcast</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">server-ip</div><div class="modern-diagram-cell">MUST NOT</div><div class="modern-diagram-cell">MUST</div><div class="modern-diagram-cell">MUST NOT</div><div class="modern-diagram-cell">MUST NOT</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">requested-ip</div><div class="modern-diagram-cell">MUST</div><div class="modern-diagram-cell">MUST</div><div class="modern-diagram-cell">MUST NOT</div><div class="modern-diagram-cell">MUST NOT</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">ciaddr</div><div class="modern-diagram-cell">zero</div><div class="modern-diagram-cell">zero</div><div class="modern-diagram-cell">IP address</div><div class="modern-diagram-cell">IP address</div></div></div>
+</figure><pre>   ---------------------------------------------------------------------
 
               Table 4: Client messages from different states
 
@@ -2061,7 +1973,7 @@ All others                MAY          MAY                MUST NOT
 
 
 
-<span>Droms                       Standards Track                    [Page 33]</span></pre>
+Droms                       Standards Track                    [Page 33]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 34</span>
@@ -2126,53 +2038,16 @@ All others                MAY          MAY                MUST NOT
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 35</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2131">RFC 2131</a>          Dynamic Host Configuration Protocol         March 1997</span>
+  <pre>RFC 2131          Dynamic Host Configuration Protocol         March 1997
 
 
- --------                               -------
-|        | +--------------------------&gt;|       |&lt;-------------------+
-| INIT-  | |     +--------------------&gt;| INIT  |                    |
-| REBOOT |DHCPNAK/         +----------&gt;|       |&lt;---+               |
-|        |Restart|         |            -------     |               |
- --------  |  DHCPNAK/     |               |                        |
-    |      Discard offer   |      -/Send DHCPDISCOVER               |
--/Send DHCPREQUEST         |               |                        |
-    |      |     |      DHCPACK            v        |               |
- -----------     |   (not accept.)/   -----------   |               |
-|           |    |  Send DHCPDECLINE |           |                  |
-| REBOOTING |    |         |         | SELECTING |&lt;----+            |
-|           |    |        /          |           |     |DHCPOFFER/  |
- -----------     |       /            -----------   |  |Collect     |
-    |            |      /                  |   |       |  replies   |
-DHCPACK/         |     /  +----------------+   +-------+            |
-Record lease, set|    |   v   Select offer/                         |
-timers T1, T2   ------------  send DHCPREQUEST      |               |
-    |   +-----&gt;|            |             DHCPNAK, Lease expired/   |
-    |   |      | REQUESTING |                  Halt network         |
-    DHCPOFFER/ |            |                       |               |
-    Discard     ------------                        |               |
-    |   |        |        |                   -----------           |
-    |   +--------+     DHCPACK/              |           |          |
-    |              Record lease, set    -----| REBINDING |          |
-    |                timers T1, T2     /     |           |          |
-    |                     |        DHCPACK/   -----------           |
-    |                     v     Record lease, set   ^               |
-    +----------------&gt; -------      /timers T1,T2   |               |
-               +-----&gt;|       |&lt;---+                |               |
-               |      | BOUND |&lt;---+                |               |
-  DHCPOFFER, DHCPACK, |       |    |            T2 expires/   DHCPNAK/
-   DHCPNAK/Discard     -------     |             Broadcast  Halt network
-               |       | |         |            DHCPREQUEST         |
-               +-------+ |        DHCPACK/          |               |
-                    T1 expires/   Record lease, set |               |
-                 Send DHCPREQUEST timers T1, T2     |               |
-                 to leasing server |                |               |
-                         |   ----------             |               |
-                         |  |          |------------+               |
-                         +-&gt;| RENEWING |                            |
-                            |          |----------------------------+
-                             ----------
+ --------                               -------</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">INIT-</div><div class="modern-diagram-cell">+--------------------&gt;</div><div class="modern-diagram-cell">INIT</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">REBOOT</div><div class="modern-diagram-cell">DHCPNAK/         +----------&gt;</div><div class="modern-diagram-cell">&lt;---+</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Restart</div><div class="modern-diagram-cell">-------</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">--------</div><div class="modern-diagram-cell">DHCPNAK/</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Discard offer</div><div class="modern-diagram-cell">-/Send DHCPDISCOVER</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">-/Send DHCPREQUEST</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">DHCPACK            v</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">-----------</div><div class="modern-diagram-cell">(not accept.)/   -----------</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Send DHCPDECLINE</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">REBOOTING</div><div class="modern-diagram-cell">SELECTING</div><div class="modern-diagram-cell">&lt;----+</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">/</div><div class="modern-diagram-cell">DHCPOFFER/</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">-----------</div><div class="modern-diagram-cell">/            -----------</div><div class="modern-diagram-cell">Collect</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">/</div><div class="modern-diagram-cell">replies</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">DHCPACK/</div><div class="modern-diagram-cell">/  +----------------+   +-------+</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Record lease, set</div><div class="modern-diagram-cell">v   Select offer/</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">timers T1, T2   ------------  send DHCPREQUEST</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">+-----&gt;</div><div class="modern-diagram-cell">DHCPNAK, Lease expired/</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">REQUESTING</div><div class="modern-diagram-cell">Halt network</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">DHCPOFFER/</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Discard     ------------</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">+--------+     DHCPACK/</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Record lease, set    -----</div><div class="modern-diagram-cell">REBINDING</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">timers T1, T2     /</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">DHCPACK/   -----------</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">v     Record lease, set   ^</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">+----------------&gt; -------      /timers T1,T2</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">BOUND</div><div class="modern-diagram-cell">&lt;---+</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">DHCPOFFER, DHCPACK,</div><div class="modern-diagram-cell">T2 expires/   DHCPNAK/</div></div></div>
+</figure><pre>   DHCPNAK/Discard     -------     |             Broadcast  Halt network</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">DHCPREQUEST</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">+-------+</div><div class="modern-diagram-cell">DHCPACK/</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">T1 expires/   Record lease, set</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Send DHCPREQUEST timers T1, T2</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">to leasing server</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">+-&gt;</div><div class="modern-diagram-cell">RENEWING</div></div></div>
+</figure><pre>                             ----------
           Figure 5:  State-transition diagram for DHCP clients
 
 
@@ -2181,7 +2056,7 @@ timers T1, T2   ------------  send DHCPREQUEST      |               |
 
 
 
-<span>Droms                       Standards Track                    [Page 35]</span></pre>
+Droms                       Standards Track                    [Page 35]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 36</span>

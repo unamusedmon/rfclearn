@@ -746,31 +746,19 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 12</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc4271">RFC 4271</a>                         BGP-4                      January 2006</span>
+  <pre>RFC 4271                         BGP-4                      January 2006
 
 
-<span><a href="#section-4.1">4.1</a>.  Message Header Format</span>
+4.1.  Message Header Format
 
    Each message has a fixed-size header.  There may or may not be a data
    portion following the header, depending on the message type.  The
    layout of these fields is shown below:
 
-      0                   1                   2                   3
-      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                                                               |
-      +                                                               +
-      |                                                               |
-      +                                                               +
-      |                           Marker                              |
-      +                                                               +
-      |                                                               |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |          Length               |      Type     |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-      Marker:
+      0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Marker</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Length</div><div class="modern-diagram-cell">Type</div></div></div>
+</figure><pre>      Marker:
 
          This 16-octet field is included for compatibility; it MUST be
          set to all ones.
@@ -782,7 +770,7 @@ Table of Contents
          to locate the (Marker field of the) next message in the TCP
          stream.  The value of the Length field MUST always be at least
          19 and no greater than 4096, and MAY be further constrained,
-         depending on the message type.  "padding" of extra data after
+         depending on the message type.  &quot;padding&quot; of extra data after
          the message is not allowed.  Therefore, the Length field MUST
          have the smallest value required, given the rest of the
          message.
@@ -797,20 +785,19 @@ Table of Contents
                               3 - NOTIFICATION
                               4 - KEEPALIVE
 
-         [<a>RFC2918</a>] defines one more type code.
+         [RFC2918] defines one more type code.
 
 
 
-<span>Rekhter, et al.             Standards Track                    [Page 12]</span></pre>
+Rekhter, et al.             Standards Track                    [Page 12]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 13</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc4271">RFC 4271</a>                         BGP-4                      January 2006</span>
+  <pre>RFC 4271                         BGP-4                      January 2006
 
 
-<span><a href="#section-4.2">4.2</a>.  OPEN Message Format</span>
+4.2.  OPEN Message Format
 
    After a TCP connection is established, the first message sent by each
    side is an OPEN message.  If the OPEN message is acceptable, a
@@ -819,25 +806,10 @@ Table of Contents
    In addition to the fixed-size BGP header, the OPEN message contains
    the following fields:
 
-       0                   1                   2                   3
-       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-       +-+-+-+-+-+-+-+-+
-       |    Version    |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |     My Autonomous System      |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |           Hold Time           |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                         BGP Identifier                        |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       | Opt Parm Len  |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                                                               |
-       |             Optional Parameters (variable)                    |
-       |                                                               |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-      Version:
+       0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Version</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">My Autonomous System</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Hold Time</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">BGP Identifier</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Opt Parm Len</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Optional Parameters (variable)</div></div></div>
+</figure><pre>      Version:
 
          This 1-octet unsigned integer indicates the protocol version
          number of the message.  The current BGP version number is 4.
@@ -861,13 +833,12 @@ Table of Contents
 
 
 
-<span>Rekhter, et al.             Standards Track                    [Page 13]</span></pre>
+Rekhter, et al.             Standards Track                    [Page 13]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 14</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc4271">RFC 4271</a>                         BGP-4                      January 2006</span>
+  <pre>RFC 4271                         BGP-4                      January 2006
 
 
          Time.  The calculated value indicates the maximum number of
@@ -894,25 +865,22 @@ Table of Contents
          each parameter is encoded as a &lt;Parameter Type, Parameter
          Length, Parameter Value&gt; triplet.
 
-         0                   1
-         0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5
-         +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-...
-         |  Parm. Type   | Parm. Length  |  Parameter Value (variable)
-         +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-...
-
-         Parameter Type is a one octet field that unambiguously
+         0                   1</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Parm. Type</div><div class="modern-diagram-cell">Parm. Length</div><div class="modern-diagram-cell">Parameter Value (variable)</div></div></div>
+</figure><pre>         Parameter Type is a one octet field that unambiguously
          identifies individual parameters.  Parameter Length is a one
          octet field that contains the length of the Parameter Value
          field in octets.  Parameter Value is a variable length field
          that is interpreted according to the value of the Parameter
          Type field.
 
-         [<a>RFC3392</a>] defines the Capabilities Optional Parameter.
+         [RFC3392] defines the Capabilities Optional Parameter.
 
    The minimum length of the OPEN message is 29 octets (including the
    message header).
 
-<span><a href="#section-4.3">4.3</a>.  UPDATE Message Format</span>
+4.3.  UPDATE Message Format
 
    UPDATE messages are used to transfer routing information between BGP
    peers.  The information in the UPDATE message can be used to
@@ -921,13 +889,12 @@ Table of Contents
 
 
 
-<span>Rekhter, et al.             Standards Track                    [Page 14]</span></pre>
+Rekhter, et al.             Standards Track                    [Page 14]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 15</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc4271">RFC 4271</a>                         BGP-4                      January 2006</span>
+  <pre>RFC 4271                         BGP-4                      January 2006
 
 
    information loops and some other anomalies may be detected and
@@ -939,21 +906,10 @@ Table of Contents
    advertise a feasible route and withdraw multiple unfeasible routes
    from service.  The UPDATE message always includes the fixed-size BGP
    header, and also includes the other fields, as shown below (note,
-   some of the shown fields may not be present in every UPDATE message):
-
-      +-----------------------------------------------------+
-      |   Withdrawn Routes Length (2 octets)                |
-      +-----------------------------------------------------+
-      |   Withdrawn Routes (variable)                       |
-      +-----------------------------------------------------+
-      |   Total Path Attribute Length (2 octets)            |
-      +-----------------------------------------------------+
-      |   Path Attributes (variable)                        |
-      +-----------------------------------------------------+
-      |   Network Layer Reachability Information (variable) |
-      +-----------------------------------------------------+
-
-      Withdrawn Routes Length:
+   some of the shown fields may not be present in every UPDATE message):</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Withdrawn Routes Length (2 octets)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Withdrawn Routes (variable)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Total Path Attribute Length (2 octets)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Path Attributes (variable)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Network Layer Reachability Information (variable)</div></div></div>
+</figure><pre>      Withdrawn Routes Length:
 
          This 2-octets unsigned integer indicates the total length of
          the Withdrawn Routes field in octets.  Its value allows the
@@ -969,25 +925,15 @@ Table of Contents
          This is a variable-length field that contains a list of IP
          address prefixes for the routes that are being withdrawn from
          service.  Each IP address prefix is encoded as a 2-tuple of the
-         form &lt;length, prefix&gt;, whose fields are described below:
-
-                  +---------------------------+
-                  |   Length (1 octet)        |
-                  +---------------------------+
-                  |   Prefix (variable)       |
-                  +---------------------------+
-
-
-
-
-
-<span>Rekhter, et al.             Standards Track                    [Page 15]</span></pre>
+         form &lt;length, prefix&gt;, whose fields are described below:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Length (1 octet)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Prefix (variable)</div></div></div>
+</figure><pre>Rekhter, et al.             Standards Track                    [Page 15]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 16</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc4271">RFC 4271</a>                         BGP-4                      January 2006</span>
+  <pre>RFC 4271                         BGP-4                      January 2006
 
 
          The use and the meaning of these fields are as follows:
@@ -1029,19 +975,16 @@ Table of Contents
          Attribute Flags octet, followed by the Attribute Type Code
          octet.
 
-               0                   1
-               0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5
-               +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-               |  Attr. Flags  |Attr. Type Code|
-               +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-         The high-order bit (bit 0) of the Attribute Flags octet is the
+               0                   1</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Attr. Flags</div><div class="modern-diagram-cell">Attr. Type Code</div></div></div>
+</figure><pre>         The high-order bit (bit 0) of the Attribute Flags octet is the
          Optional bit.  It defines whether the attribute is optional (if
          set to 1) or well-known (if set to 0).
 
 
 
-<span>Rekhter, et al.             Standards Track                    [Page 16]</span></pre>
+Rekhter, et al.             Standards Track                    [Page 16]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 17</span>
@@ -1226,8 +1169,7 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 20</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc4271">RFC 4271</a>                         BGP-4                      January 2006</span>
+  <pre>RFC 4271                         BGP-4                      January 2006
 
 
       Network Layer Reachability Information:
@@ -1248,15 +1190,10 @@ Table of Contents
          Withdrawn Routes Length field.
 
          Reachability information is encoded as one or more 2-tuples of
-         the form &lt;length, prefix&gt;, whose fields are described below:
-
-                  +---------------------------+
-                  |   Length (1 octet)        |
-                  +---------------------------+
-                  |   Prefix (variable)       |
-                  +---------------------------+
-
-         The use and the meaning of these fields are as follows:
+         the form &lt;length, prefix&gt;, whose fields are described below:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Length (1 octet)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Prefix (variable)</div></div></div>
+</figure><pre>         The use and the meaning of these fields are as follows:
 
          a) Length:
 
@@ -1281,7 +1218,7 @@ Table of Contents
 
 
 
-<span>Rekhter, et al.             Standards Track                    [Page 20]</span></pre>
+Rekhter, et al.             Standards Track                    [Page 20]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 21</span>
@@ -1346,37 +1283,33 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 22</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc4271">RFC 4271</a>                         BGP-4                      January 2006</span>
+  <pre>RFC 4271                         BGP-4                      January 2006
 
 
    In addition to the fixed-size BGP header, the NOTIFICATION message
    contains the following fields:
 
-      0                   1                   2                   3
-      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      | Error code    | Error subcode |   Data (variable)             |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-      Error Code:
+      0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Error code</div><div class="modern-diagram-cell">Error subcode</div><div class="modern-diagram-cell">Data (variable)</div></div></div>
+</figure><pre>      Error Code:
 
          This 1-octet unsigned integer indicates the type of
          NOTIFICATION.  The following Error Codes have been defined:
 
             Error Code       Symbolic Name               Reference
 
-              1         Message Header Error             <a href="#section-6.1">Section 6.1</a>
+              1         Message Header Error             Section 6.1
 
-              2         OPEN Message Error               <a href="#section-6.2">Section 6.2</a>
+              2         OPEN Message Error               Section 6.2
 
-              3         UPDATE Message Error             <a href="#section-6.3">Section 6.3</a>
+              3         UPDATE Message Error             Section 6.3
 
-              4         Hold Timer Expired               <a href="#section-6.5">Section 6.5</a>
+              4         Hold Timer Expired               Section 6.5
 
-              5         Finite State Machine Error       <a href="#section-6.6">Section 6.6</a>
+              5         Finite State Machine Error       Section 6.6
 
-              6         Cease                            <a href="#section-6.7">Section 6.7</a>
+              6         Cease                            Section 6.7
 
       Error subcode:
 
@@ -1401,7 +1334,7 @@ Table of Contents
 
 
 
-<span>Rekhter, et al.             Standards Track                    [Page 22]</span></pre>
+Rekhter, et al.             Standards Track                    [Page 22]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Appendix</span>

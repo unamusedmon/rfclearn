@@ -2508,8 +2508,7 @@ APPENDICES
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 42</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1011">RFC 1011</a> - Official Internet Protocols                          May 1987</span>
+  <pre>RFC 1011 - Official Internet Protocols                          May 1987
 
 
 
@@ -2517,7 +2516,7 @@ APPENDICES
 
       STATUS:  Recommended
 
-      SPECIFICATION: <a href="./rfc895">RFC 895</a> (in DPH)
+      SPECIFICATION: RFC 895 (in DPH)
 
       COMMENTS:
 
@@ -2533,7 +2532,7 @@ APPENDICES
 
       COMMENTS:
 
-         At an ad hoc special session on "IEEE 802 Networks and ARP"
+         At an ad hoc special session on &quot;IEEE 802 Networks and ARP&quot;
          held during the TCP Vendors Workshop (August 1986), an approach
          to a consistent way to sent DOD-IP datagrams and other IP
          related protocols on 802 networks was developed.
@@ -2542,41 +2541,27 @@ APPENDICES
          to provide for a standard way to do additional DOD-IP related
          protocols (such as Address Resolution Protocol (ARP)) on IEEE
          802 networks, the following new policy is established, which
-         will replace the current policy (see <a href="./rfc990">RFC-990</a> section on IEEE
-         802 Numbers of Interest, and <a href="./rfc948">RFC-948</a>).
+         will replace the current policy (see RFC-990 section on IEEE
+         802 Numbers of Interest, and RFC-948).
 
          The policy is for DDN and Internet community to use IEEE 802.2
          encapsulation on 802.3, 802.4, and 802.5 networks by using the
          SNAP with an organization code indicating that the following 16
          bits specify the Ethertype code (where IP = 2048 (0800 hex),
-         see <a href="./rfc1010">RFC-1010</a>  section on Ethernet Numbers of Interest).
+         see RFC-1010  section on Ethernet Numbers of Interest).
 
-                                                                  Header
-
-            ...--------+--------+--------+
-             MAC Header|      Length     |               802.{3/4/5} MAC
-            ...--------+--------+--------+
-
-            +--------+--------+--------+
-            | Dsap=K1| Ssap=K1| control|                       802.2 SAP
-            +--------+--------+--------+
-
-
-<span>Reynolds &amp; Postel                                              [Page 42]</span></pre>
+                                                                  Header</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">MAC Header</div><div class="modern-diagram-cell">Length</div><div class="modern-diagram-cell">802.{3/4/5} MAC</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Dsap=K1</div><div class="modern-diagram-cell">Ssap=K1</div><div class="modern-diagram-cell">control</div><div class="modern-diagram-cell">802.2 SAP</div></div></div>
+</figure><pre>Reynolds &amp; Postel                                              [Page 42]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 43</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1011">RFC 1011</a> - Official Internet Protocols                          May 1987</span>
-
-
-
-            +--------+--------+---------+--------+--------+
-            |protocol id or org code =K2|    Ether Type   |   802.2 SNAP
-            +--------+--------+---------+--------+--------+
-
-         The total length of the SAP Header and the SNAP header is
+  <pre>RFC 1011 - Official Internet Protocols                          May 1987</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">protocol id or org code =K2</div><div class="modern-diagram-cell">Ether Type</div><div class="modern-diagram-cell">802.2 SNAP</div></div></div>
+</figure><pre>         The total length of the SAP Header and the SNAP header is
          8-octets, making the 802.2 protocol overhead come out on a nice
          boundary.
 
@@ -2587,7 +2572,7 @@ APPENDICES
 
          K2 is 0 (zero).
 
-         Note:  The method described in <a href="./rfc948">RFC 948</a> (in DPH) is no longer to
+         Note:  The method described in RFC 948 (in DPH) is no longer to
          be used.
 
       OTHER REFERENCES:
@@ -2598,7 +2583,7 @@ APPENDICES
 
       STATUS:  Required
 
-      SPECIFICATION: <a href="./rfc950">RFC 950</a>
+      SPECIFICATION: RFC 950
 
       COMMENTS:
 
@@ -2608,8 +2593,8 @@ APPENDICES
          Specifies procedures for the use of subnets, which are logical
          sub-sections of a single Internet network.
 
-      OTHER REFERENCES:  <a href="./rfc940">RFC 940</a>, <a href="./rfc917">RFC 917</a>, <a href="./rfc925">RFC 925</a>, <a href="./rfc932">RFC 932</a>, <a href="./rfc936">RFC 936</a>,
-      <a href="./rfc922">RFC 922</a>
+      OTHER REFERENCES:  RFC 940, RFC 917, RFC 925, RFC 932, RFC 936,
+      RFC 922
 
       DEPENDENCIES:
 
@@ -2621,7 +2606,7 @@ APPENDICES
 
 
 
-<span>Reynolds &amp; Postel                                              [Page 43]</span></pre>
+Reynolds &amp; Postel                                              [Page 43]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 44</span>

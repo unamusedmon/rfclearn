@@ -626,52 +626,20 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 10</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc5890">RFC 5890</a>                    IDNA Definitions                 August 2010</span>
+  <pre>RFC 5890                    IDNA Definitions                 August 2010
 
 
                                     ASCII Label
-      __________________________________________________________________
-      |                                                                |
-      |     ____________________ LDH Label (1) (4) ________________    |
-      |    |  ___________________________________                  |   |
-      |    |  |IDN Reserved LDH Labels          |                  |   |
-      |    |  | ("??--") or R-LDH Labels        | _______________  |   |
-      |    |  | _______________________________ | |NON-RESERVED |  |   |
-      |    |  | |       XN-labels             | | | LDH Labels  |  |   |
-      |    |  | | _____________   ___________ | | | (NR-LDH     |  |   |
-      |    |  | | | A-labels  |   | Fake (3) || | |   labels)   |  |   |
-      |    |  | | | "xn--"(2) |   | A-labels || | |_____________|  |   |
-      |    |  | | |___________|   |__________|| |                  |   |
-      |    |  | |_____________________________| |                  |   |
-      |    |  |_________________________________|                  |   |
-      |    |_______________________________________________________|   |
-      |                                                                |
-      |       _____________NON-LDH label________                       |
-      |       |      ______________________    |                       |
-      |       |      | Underscore labels  |    |                       |
-      |       |      |  e.g., _tcp        |    |                       |
-      |       |      |____________________|    |                       |
-      |       |      | Labels with leading|    |                       |
-      |       |      | or trailing        |    |                       |
-      |       |      | hyphens "-abcd"    |    |                       |
-      |       |      | or "xyz-"          |    |                       |
-      |       |      | or "-uvw-"         |    |                       |
-      |       |      |____________________|    |                       |
-      |       |      | Labels with other  |    |                       |
-      |       |      | non-LDH ASCII chars|    |                       |
-      |       |      | e.g., #$%_         |    |                       |
-      |       |      |____________________|    |                       |
-      |       |________________________________|                       |
-      |________________________________________________________________|
-
-             (1) ASCII letters (uppercase and lowercase), digits,
+      __________________________________________________________________</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">____________________ LDH Label (1) (4) ________________</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">IDN Reserved LDH Labels</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">(&quot;??--&quot;) or R-LDH Labels</div><div class="modern-diagram-cell">_______________</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">_______________________________</div><div class="modern-diagram-cell">NON-RESERVED</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">XN-labels</div><div class="modern-diagram-cell">LDH Labels</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">_____________   ___________</div><div class="modern-diagram-cell">(NR-LDH</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">A-labels</div><div class="modern-diagram-cell">Fake (3)</div><div class="modern-diagram-cell">labels)</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">&quot;xn--&quot;(2)</div><div class="modern-diagram-cell">A-labels</div><div class="modern-diagram-cell">_____________</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">_____________NON-LDH label________</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Underscore labels</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">e.g., _tcp</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Labels with leading</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">or trailing</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">hyphens &quot;-abcd&quot;</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">or &quot;xyz-&quot;</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">or &quot;-uvw-&quot;</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Labels with other</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">non-LDH ASCII chars</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">e.g., #$%_</div></div></div>
+</figure><pre>             (1) ASCII letters (uppercase and lowercase), digits,
                     hyphen.  Hyphen may not appear in first or last
                     position.  No more than 63 octets.
-             (2) Note that the string following "xn--" must
+             (2) Note that the string following &quot;xn--&quot; must
                     be the valid output of the Punycode algorithm
                     and must be convertible into valid U-label form.
-             (3) Note that a Fake A-label has a prefix "xn--"
+             (3) Note that a Fake A-label has a prefix &quot;xn--&quot;
                     but the remainder of the label is NOT the valid
                     output of the Punycode algorithm.
              (4) LDH label subtypes are indistinguishable to
@@ -681,47 +649,32 @@ Table of Contents
 
 
 
-<span>Klensin                      Standards Track                   [Page 10]</span></pre>
+Klensin                      Standards Track                   [Page 10]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 11</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc5890">RFC 5890</a>                    IDNA Definitions                 August 2010</span>
+  <pre>RFC 5890                    IDNA Definitions                 August 2010
 
 
-                        __________________________
-                        |  Non-ASCII             |
-                        |                        |
-                        |    ___________________ |
-                        |    | U-label (5)     | |
-                        |    |_________________| |
-                        |    |                 | |
-                        |    |  Binary Label   | |
-                        |    | (including      | |
-                        |    |  high bit on)   | |
-                        |    |_________________| |
-                        |    |                 | |
-                        |    | Bit String      | |
-                        |    |   Label         | |
-                        |    |_________________| |
-                        |________________________|
-
-             (5) To applications that are not IDNA-aware, U-labels
+                        __________________________</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Non-ASCII</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">U-label (5)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Binary Label</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">(including</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">high bit on)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Bit String</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Label</div></div></div>
+</figure><pre>             (5) To applications that are not IDNA-aware, U-labels
                     are indistinguishable from Binary ones.
 
                         Figure 2: Non-ASCII Labels
 
-<span><a href="#section-2.3.2">2.3.2</a>.  Terms for IDN Label Codings</span>
+2.3.2.  Terms for IDN Label Codings
 
-<span><a href="#section-2.3.2.1">2.3.2.1</a>.  IDNA-valid strings, A-label, and U-label</span>
+2.3.2.1.  IDNA-valid strings, A-label, and U-label
 
    For IDNA-aware applications, the three types of valid labels are
-   "A-labels", "U-labels", and "NR-LDH labels", each of which is defined
+   &quot;A-labels&quot;, &quot;U-labels&quot;, and &quot;NR-LDH labels&quot;, each of which is defined
    below.  The relationships among them are illustrated in Figure 1 and
    Figure 2.
 
-   o  A string is "IDNA-valid" if it meets all of the requirements of
+   o  A string is &quot;IDNA-valid&quot; if it meets all of the requirements of
       these specifications for an IDNA label.  IDNA-valid strings may
       appear in either of the two forms defined immediately below, or
       may be drawn from the NR-LDH label subset.  IDNA-valid strings
@@ -729,19 +682,19 @@ Table of Contents
       documents make specific reference to the form appropriate to any
       context in which the distinction is important.
 
-   o  An "A-label" is the ASCII-Compatible Encoding (ACE, see
-      <a href="#section-2.3.2.5">Section 2.3.2.5</a>) form of an IDNA-valid string.  It must be a
+   o  An &quot;A-label&quot; is the ASCII-Compatible Encoding (ACE, see
+      Section 2.3.2.5) form of an IDNA-valid string.  It must be a
       complete label: IDNA is defined for labels, not for parts of them
       and not for complete domain names.  This means, by definition,
-      that every A-label will begin with the IDNA ACE prefix, "xn--"
-      (see <a href="#section-2.3.2.5">Section 2.3.2.5</a>), followed by a string that is a valid output
-      of the Punycode algorithm [<a href="./rfc3492" title="&quot;Punycode: A Bootstring encoding of Unicode for Internationalized Domain Names in Applications (IDNA)&quot;">RFC3492</a>] and hence a maximum of 59
+      that every A-label will begin with the IDNA ACE prefix, &quot;xn--&quot;
+      (see Section 2.3.2.5), followed by a string that is a valid output
+      of the Punycode algorithm [RFC3492] and hence a maximum of 59
       ASCII characters in length.  The prefix and string together must
       conform to all requirements for a label that can be stored in the
 
 
 
-<span>Klensin                      Standards Track                   [Page 11]</span></pre>
+Klensin                      Standards Track                   [Page 11]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 12</span>

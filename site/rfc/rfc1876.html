@@ -146,31 +146,15 @@ Status of this Memo
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 2</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1876">RFC 1876</a>            Location Information in the DNS         January 1996</span>
+  <pre>RFC 1876            Location Information in the DNS         January 1996
 
 
-<span><a href="#section-2">2</a>. RDATA Format</span>
+2. RDATA Format
 
-       MSB                                           LSB
-       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-      0|        VERSION        |         SIZE          |
-       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-      2|       HORIZ PRE       |       VERT PRE        |
-       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-      4|                   LATITUDE                    |
-       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-      6|                   LATITUDE                    |
-       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-      8|                   LONGITUDE                   |
-       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-     10|                   LONGITUDE                   |
-       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-     12|                   ALTITUDE                    |
-       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-     14|                   ALTITUDE                    |
-       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-   (octet)
+       MSB                                           LSB</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">VERSION</div><div class="modern-diagram-cell">SIZE</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">2</div><div class="modern-diagram-cell">HORIZ PRE</div><div class="modern-diagram-cell">VERT PRE</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">4</div><div class="modern-diagram-cell">LATITUDE</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">6</div><div class="modern-diagram-cell">LATITUDE</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">8</div><div class="modern-diagram-cell">LONGITUDE</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">10</div><div class="modern-diagram-cell">LONGITUDE</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">12</div><div class="modern-diagram-cell">ALTITUDE</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">14</div><div class="modern-diagram-cell">ALTITUDE</div></div></div>
+</figure><pre>   (octet)
 
 where:
 
@@ -193,15 +177,15 @@ SIZE         The diameter of a sphere enclosing the described entity, in
              Since 20000000m (represented by the value 0x29) is greater
              than the equatorial diameter of the WGS 84 ellipsoid
              (12756274m), it is therefore suitable for use as a
-             "worldwide" size.
+             &quot;worldwide&quot; size.
 
 HORIZ PRE    The horizontal precision of the data, in centimeters,
              expressed using the same representation as SIZE.  This is
-             the diameter of the horizontal "circle of error", rather
+             the diameter of the horizontal &quot;circle of error&quot;, rather
 
 
 
-<span>Davis, et al                  Experimental                      [Page 2]</span></pre>
+Davis, et al                  Experimental                      [Page 2]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 3</span>

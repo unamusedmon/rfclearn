@@ -266,16 +266,15 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 4</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc4034">RFC 4034</a>                DNSSEC Resource Records               March 2005</span>
+  <pre>RFC 4034                DNSSEC Resource Records               March 2005
 
 
-<span><a href="#section-2">2</a>.  The DNSKEY Resource Record</span>
+2.  The DNSKEY Resource Record
 
    DNSSEC uses public key cryptography to sign and authenticate DNS
    resource record sets (RRsets).  The public keys are stored in DNSKEY
    resource records and are used in the DNSSEC authentication process
-   described in [<a href="./rfc4035" title="&quot;Protocol Modifications for the DNS Security Extensions&quot;">RFC4035</a>]: A zone signs its authoritative RRsets by
+   described in [RFC4035]: A zone signs its authoritative RRsets by
    using a private key and stores the corresponding public key in a
    DNSKEY RR.  A resolver can then use the public key to validate
    signatures covering the RRsets in the zone, and thus to authenticate
@@ -291,37 +290,30 @@ Table of Contents
 
    The DNSKEY RR has no special TTL requirements.
 
-<span><a href="#section-2.1">2.1</a>.  DNSKEY RDATA Wire Format</span>
+2.1.  DNSKEY RDATA Wire Format
 
    The RDATA for a DNSKEY RR consists of a 2 octet Flags Field, a 1
    octet Protocol Field, a 1 octet Algorithm Field, and the Public Key
-   Field.
-
-                        1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 3 3
-    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |              Flags            |    Protocol   |   Algorithm   |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   /                                                               /
+   Field.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 3 3</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Flags</div><div class="modern-diagram-cell">Protocol</div><div class="modern-diagram-cell">Algorithm</div></div></div>
+</figure><pre>   /                                                               /
    /                            Public Key                         /
-   /                                                               /
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-<span><a href="#section-2.1.1">2.1.1</a>.  The Flags Field</span>
+   /                                                               /</pre><pre>   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>2.1.1.  The Flags Field
 
    Bit 7 of the Flags field is the Zone Key flag.  If bit 7 has value 1,
-   then the DNSKEY record holds a DNS zone key, and the DNSKEY RR's
+   then the DNSKEY record holds a DNS zone key, and the DNSKEY RR&#x27;s
    owner name MUST be the name of a zone.  If bit 7 has value 0, then
    the DNSKEY record holds some other type of DNS public key and MUST
    NOT be used to verify RRSIGs that cover RRsets.
 
    Bit 15 of the Flags field is the Secure Entry Point flag, described
-   in [<a href="./rfc3757" title="&quot;Domain Name System KEY (DNSKEY) Resource Record (RR) Secure Entry Point (SEP) Flag&quot;">RFC3757</a>].  If bit 15 has value 1, then the DNSKEY record holds a
+   in [RFC3757].  If bit 15 has value 1, then the DNSKEY record holds a
    key intended for use as a secure entry point.  This flag is only
 
 
 
-<span>Arends, et al.              Standards Track                     [Page 4]</span></pre>
+Arends, et al.              Standards Track                     [Page 4]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Appendix</span>
@@ -446,8 +438,7 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 7</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc4034">RFC 4034</a>                DNSSEC Resource Records               March 2005</span>
+  <pre>RFC 4034                DNSSEC Resource Records               March 2005
 
 
    The Type value for the RRSIG RR type is 46.
@@ -457,40 +448,23 @@ Table of Contents
    An RRSIG RR MUST have the same class as the RRset it covers.
 
    The TTL value of an RRSIG RR MUST match the TTL value of the RRset it
-   covers.  This is an exception to the [<a href="./rfc2181" title="&quot;Clarifications to the DNS Specification&quot;">RFC2181</a>] rules for TTL values
+   covers.  This is an exception to the [RFC2181] rules for TTL values
    of individual RRs within a RRset: individual RRSIG RRs with the same
    owner name will have different TTL values if the RRsets they cover
    have different TTL values.
 
-<span><a href="#section-3.1">3.1</a>.  RRSIG RDATA Wire Format</span>
+3.1.  RRSIG RDATA Wire Format
 
    The RDATA for an RRSIG RR consists of a 2 octet Type Covered field, a
    1 octet Algorithm field, a 1 octet Labels field, a 4 octet Original
    TTL field, a 4 octet Signature Expiration field, a 4 octet Signature
-   Inception field, a 2 octet Key tag, the Signer's Name field, and the
-   Signature field.
-
-                        1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 3 3
-    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |        Type Covered           |  Algorithm    |     Labels    |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                         Original TTL                          |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                      Signature Expiration                     |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                      Signature Inception                      |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |            Key Tag            |                               /
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+         Signer's Name         /
-   /                                                               /
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   /                                                               /
+   Inception field, a 2 octet Key tag, the Signer&#x27;s Name field, and the
+   Signature field.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 3 3</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Type Covered</div><div class="modern-diagram-cell">Algorithm</div><div class="modern-diagram-cell">Labels</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Original TTL</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Signature Expiration</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Signature Inception</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Key Tag</div><div class="modern-diagram-cell">/</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+         Signer&#x27;s Name         /</div></div></div>
+</figure><pre>   /                                                               /</pre><pre>   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>   /                                                               /
    /                            Signature                          /
-   /                                                               /
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-<span><a href="#section-3.1.1">3.1.1</a>.  The Type Covered Field</span>
+   /                                                               /</pre><pre>   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>3.1.1.  The Type Covered Field
 
    The Type Covered field identifies the type of the RRset that is
    covered by this RRSIG record.
@@ -501,7 +475,7 @@ Table of Contents
 
 
 
-<span>Arends, et al.              Standards Track                     [Page 7]</span></pre>
+Arends, et al.              Standards Track                     [Page 7]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Appendix</span>
@@ -806,30 +780,22 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 13</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc4034">RFC 4034</a>                DNSSEC Resource Records               March 2005</span>
+  <pre>RFC 4034                DNSSEC Resource Records               March 2005
 
 
-<span><a href="#section-4.1">4.1</a>.  NSEC RDATA Wire Format</span>
+4.1.  NSEC RDATA Wire Format
 
-   The RDATA of the NSEC RR is as shown below:
-
-                        1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 3 3
-    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   /                      Next Domain Name                         /
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   /                       Type Bit Maps                           /
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-<span><a href="#section-4.1.1">4.1.1</a>.  The Next Domain Name Field</span>
+   The RDATA of the NSEC RR is as shown below:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 3 3</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div></div>
+</figure><pre>   /                      Next Domain Name                         /</pre><pre>   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>   /                       Type Bit Maps                           /</pre><pre>   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>4.1.1.  The Next Domain Name Field
 
    The Next Domain field contains the next owner name (in the canonical
    ordering of the zone) that has authoritative data or contains a
-   delegation point NS RRset; see <a href="#section-6.1">Section 6.1</a> for an explanation of
+   delegation point NS RRset; see Section 6.1 for an explanation of
    canonical ordering.  The value of the Next Domain Name field in the
    last NSEC record in the zone is the name of the zone apex (the owner
-   name of the zone's SOA RR).  This indicates that the owner name of
+   name of the zone&#x27;s SOA RR).  This indicates that the owner name of
    the NSEC RR is the last name in the canonical ordering of the zone.
 
    A sender MUST NOT use DNS name compression on the Next Domain Name
@@ -840,28 +806,24 @@ Table of Contents
    unless at least one authoritative RRset exists at the same owner
    name.
 
-<span><a href="#section-4.1.2">4.1.2</a>.  The Type Bit Maps Field</span>
+4.1.2.  The Type Bit Maps Field
 
    The Type Bit Maps field identifies the RRset types that exist at the
-   NSEC RR's owner name.
+   NSEC RR&#x27;s owner name.
 
    The RR type space is split into 256 window blocks, each representing
    the low-order 8 bits of the 16-bit RR type space.  Each block that
    has at least one active RR type is encoded using a single octet
    window number (from 0 to 255), a single octet bitmap length (from 1
-   to 32) indicating the number of octets used for the window block's
+   to 32) indicating the number of octets used for the window block&#x27;s
    bitmap, and up to 32 octets (256 bits) of bitmap.
 
    Blocks are present in the NSEC RR RDATA in increasing numerical
-   order.
-
-      Type Bit Maps Field = ( Window Block # | Bitmap Length | Bitmap )+
-
-      where "|" denotes concatenation.
+   order.</pre><pre>      Type Bit Maps Field = ( Window Block # | Bitmap Length | Bitmap )+</pre><pre>      where &quot;|&quot; denotes concatenation.
 
 
 
-<span>Arends, et al.              Standards Track                    [Page 13]</span></pre>
+Arends, et al.              Standards Track                    [Page 13]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 14</span>
@@ -986,15 +948,14 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Appendix</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc4034">RFC 4034</a>                DNSSEC Resource Records               March 2005</span>
+  <pre>RFC 4034                DNSSEC Resource Records               March 2005
 
 
-   "example.com" zone (the child zone).  The corresponding DNSKEY RR is
-   stored in the "example.com" zone (the child zone).  This simplifies
+   &quot;example.com&quot; zone (the child zone).  The corresponding DNSKEY RR is
+   stored in the &quot;example.com&quot; zone (the child zone).  This simplifies
    DNS zone management and zone signing but introduces special response
    processing requirements for the DS RR; these are described in
-   [<a href="./rfc4035" title="&quot;Protocol Modifications for the DNS Security Extensions&quot;">RFC4035</a>].
+   [RFC4035].
 
    The type number for the DS record is 43.
 
@@ -1002,36 +963,29 @@ Table of Contents
 
    The DS RR has no special TTL requirements.
 
-<span><a href="#section-5.1">5.1</a>.  DS RDATA Wire Format</span>
+5.1.  DS RDATA Wire Format
 
    The RDATA for a DS RR consists of a 2 octet Key Tag field, a 1 octet
-   Algorithm field, a 1 octet Digest Type field, and a Digest field.
-
-                        1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 3 3
-    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |           Key Tag             |  Algorithm    |  Digest Type  |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   /                                                               /
+   Algorithm field, a 1 octet Digest Type field, and a Digest field.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 3 3</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Key Tag</div><div class="modern-diagram-cell">Algorithm</div><div class="modern-diagram-cell">Digest Type</div></div></div>
+</figure><pre>   /                                                               /
    /                            Digest                             /
-   /                                                               /
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-<span><a href="#section-5.1.1">5.1.1</a>.  The Key Tag Field</span>
+   /                                                               /</pre><pre>   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>5.1.1.  The Key Tag Field
 
    The Key Tag field lists the key tag of the DNSKEY RR referred to by
    the DS record, in network byte order.
 
    The Key Tag used by the DS RR is identical to the Key Tag used by
-   RRSIG RRs.  <a href="#appendix-B">Appendix B</a> describes how to compute a Key Tag.
+   RRSIG RRs.  Appendix B describes how to compute a Key Tag.
 
-<span><a href="#section-5.1.2">5.1.2</a>.  The Algorithm Field</span>
+5.1.2.  The Algorithm Field
 
    The Algorithm field lists the algorithm number of the DNSKEY RR
    referred to by the DS record.
 
    The algorithm number used by the DS RR is identical to the algorithm
-   number used by RRSIG and DNSKEY RRs.  <a href="#appendix-A.1">Appendix A.1</a> lists the
+   number used by RRSIG and DNSKEY RRs.  Appendix A.1 lists the
    algorithm number types.
 
 
@@ -1041,7 +995,7 @@ Table of Contents
 
 
 
-<span>Arends, et al.              Standards Track                    [Page 16]</span></pre>
+Arends, et al.              Standards Track                    [Page 16]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Appendix</span>

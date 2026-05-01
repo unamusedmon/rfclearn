@@ -1046,46 +1046,39 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 17</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2616">RFC 2616</a>                        HTTP/1.1                       June 1999</span>
+  <pre>RFC 2616                        HTTP/1.1                       June 1999
 
 
    Many HTTP/1.1 header field values consist of words separated by LWS
    or special characters. These special characters MUST be in a quoted
-   string to be used within a parameter value (as defined in <a href="#section-3.6">section</a>
-   <a href="#section-3.6">3.6</a>).
+   string to be used within a parameter value (as defined in section
+   3.6).
 
-       token          = 1*&lt;any CHAR except CTLs or separators&gt;
-       separators     = "(" | ")" | "&lt;" | "&gt;" | "@"
-                      | "," | ";" | ":" | "\" | &lt;"&gt;
-                      | "/" | "[" | "]" | "?" | "="
-                      | "{" | "}" | SP | HT
-
-   Comments can be included in some HTTP header fields by surrounding
+       token          = 1*&lt;any CHAR except CTLs or separators&gt;</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">separators     = &quot;(&quot;</div><div class="modern-diagram-cell">&quot;)&quot;</div><div class="modern-diagram-cell">&quot;&lt;&quot;</div><div class="modern-diagram-cell">&quot;&gt;&quot;</div><div class="modern-diagram-cell">&quot;@&quot;</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">&quot;{&quot;</div><div class="modern-diagram-cell">&quot;}&quot;</div><div class="modern-diagram-cell">SP</div><div class="modern-diagram-cell">HT</div></div></div>
+</figure><pre>   Comments can be included in some HTTP header fields by surrounding
    the comment text with parentheses. Comments are only allowed in
-   fields containing "comment" as part of their field value definition.
+   fields containing &quot;comment&quot; as part of their field value definition.
    In all other fields, parentheses are considered part of the field
-   value.
-
-       comment        = "(" *( ctext | quoted-pair | comment ) ")"
-       ctext          = &lt;any TEXT excluding "(" and ")"&gt;
+   value.</pre><pre>       comment        = &quot;(&quot; *( ctext | quoted-pair | comment ) &quot;)&quot;</pre><pre>       ctext          = &lt;any TEXT excluding &quot;(&quot; and &quot;)&quot;&gt;
 
    A string of text is parsed as a single word if it is quoted using
    double-quote marks.
 
-       quoted-string  = ( &lt;"&gt; *(qdtext | quoted-pair ) &lt;"&gt; )
-       qdtext         = &lt;any TEXT except &lt;"&gt;&gt;
+       quoted-string  = ( &lt;&quot;&gt; *(qdtext | quoted-pair ) &lt;&quot;&gt; )
+       qdtext         = &lt;any TEXT except &lt;&quot;&gt;&gt;
 
-   The backslash character ("\") MAY be used as a single-character
+   The backslash character (&quot;\&quot;) MAY be used as a single-character
    quoting mechanism only within quoted-string and comment constructs.
 
-       quoted-pair    = "\" CHAR
+       quoted-pair    = &quot;\&quot; CHAR
 
-<span><a href="#section-3">3</a> Protocol Parameters</span>
+3 Protocol Parameters
 
-<span><a href="#section-3.1">3.1</a> HTTP Version</span>
+3.1 HTTP Version
 
-   HTTP uses a "&lt;major&gt;.&lt;minor&gt;" numbering scheme to indicate versions
+   HTTP uses a &quot;&lt;major&gt;.&lt;minor&gt;&quot; numbering scheme to indicate versions
    of the protocol. The protocol versioning policy is intended to allow
    the sender to indicate the format of a message and its capacity for
    understanding further HTTP communication, rather than the features
@@ -1097,11 +1090,11 @@ Table of Contents
    algorithm, but which may add to the message semantics and imply
    additional capabilities of the sender. The &lt;major&gt; number is
    incremented when the format of a message within the protocol is
-   changed. See <a href="./rfc2145">RFC 2145</a> [<a href="#ref-36" title="&quot;Use and Interpretation of HTTP Version Numbers&quot;">36</a>] for a fuller explanation.
+   changed. See RFC 2145 [36] for a fuller explanation.
 
 
 
-<span>Fielding, et al.            Standards Track                    [Page 17]</span></pre>
+Fielding, et al.            Standards Track                    [Page 17]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 18</span>
@@ -1286,45 +1279,35 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 21</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2616">RFC 2616</a>                        HTTP/1.1                       June 1999</span>
+  <pre>RFC 2616                        HTTP/1.1                       June 1999
 
 
    All HTTP date/time stamps MUST be represented in Greenwich Mean Time
    (GMT), without exception. For the purposes of HTTP, GMT is exactly
    equal to UTC (Coordinated Universal Time). This is indicated in the
-   first two formats by the inclusion of "GMT" as the three-letter
+   first two formats by the inclusion of &quot;GMT&quot; as the three-letter
    abbreviation for time zone, and MUST be assumed when reading the
    asctime format. HTTP-date is case sensitive and MUST NOT include
    additional LWS beyond that specifically included as SP in the
-   grammar.
-
-       HTTP-date    = <a href="./rfc1123">rfc1123</a>-date | <a href="./rfc850">rfc850</a>-date | asctime-date
-       <a href="./rfc1123">rfc1123</a>-date = wkday "," SP date1 SP time SP "GMT"
-       <a href="./rfc850">rfc850</a>-date  = weekday "," SP date2 SP time SP "GMT"
+   grammar.</pre><pre>       HTTP-date    = rfc1123-date | rfc850-date | asctime-date</pre><pre>       rfc1123-date = wkday &quot;,&quot; SP date1 SP time SP &quot;GMT&quot;
+       rfc850-date  = weekday &quot;,&quot; SP date2 SP time SP &quot;GMT&quot;
        asctime-date = wkday SP date3 SP time SP 4DIGIT
        date1        = 2DIGIT SP month SP 4DIGIT
                       ; day month year (e.g., 02 Jun 1982)
-       date2        = 2DIGIT "-" month "-" 2DIGIT
+       date2        = 2DIGIT &quot;-&quot; month &quot;-&quot; 2DIGIT
                       ; day-month-year (e.g., 02-Jun-82)
        date3        = month SP ( 2DIGIT | ( SP 1DIGIT ))
                       ; month day (e.g., Jun  2)
-       time         = 2DIGIT ":" 2DIGIT ":" 2DIGIT
-                      ; 00:00:00 - 23:59:59
-       wkday        = "Mon" | "Tue" | "Wed"
-                    | "Thu" | "Fri" | "Sat" | "Sun"
-       weekday      = "Monday" | "Tuesday" | "Wednesday"
-                    | "Thursday" | "Friday" | "Saturday" | "Sunday"
-       month        = "Jan" | "Feb" | "Mar" | "Apr"
-                    | "May" | "Jun" | "Jul" | "Aug"
-                    | "Sep" | "Oct" | "Nov" | "Dec"
-
-      Note: HTTP requirements for the date/time stamp format apply only
+       time         = 2DIGIT &quot;:&quot; 2DIGIT &quot;:&quot; 2DIGIT
+                      ; 00:00:00 - 23:59:59</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">wkday        = &quot;Mon&quot;</div><div class="modern-diagram-cell">&quot;Tue&quot;</div><div class="modern-diagram-cell">&quot;Wed&quot;</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">&quot;Thu&quot;</div><div class="modern-diagram-cell">&quot;Fri&quot;</div><div class="modern-diagram-cell">&quot;Sat&quot;</div><div class="modern-diagram-cell">&quot;Sun&quot;</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">weekday      = &quot;Monday&quot;</div><div class="modern-diagram-cell">&quot;Tuesday&quot;</div><div class="modern-diagram-cell">&quot;Wednesday&quot;</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">&quot;Thursday&quot;</div><div class="modern-diagram-cell">&quot;Friday&quot;</div><div class="modern-diagram-cell">&quot;Saturday&quot;</div><div class="modern-diagram-cell">&quot;Sunday&quot;</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">month        = &quot;Jan&quot;</div><div class="modern-diagram-cell">&quot;Feb&quot;</div><div class="modern-diagram-cell">&quot;Mar&quot;</div><div class="modern-diagram-cell">&quot;Apr&quot;</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">&quot;May&quot;</div><div class="modern-diagram-cell">&quot;Jun&quot;</div><div class="modern-diagram-cell">&quot;Jul&quot;</div><div class="modern-diagram-cell">&quot;Aug&quot;</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">&quot;Sep&quot;</div><div class="modern-diagram-cell">&quot;Oct&quot;</div><div class="modern-diagram-cell">&quot;Nov&quot;</div><div class="modern-diagram-cell">&quot;Dec&quot;</div></div></div>
+</figure><pre>      Note: HTTP requirements for the date/time stamp format apply only
       to their usage within the protocol stream. Clients and servers are
       not required to use these formats for user presentation, request
       logging, etc.
 
-<span><a href="#section-3.3.2">3.3.2</a> Delta Seconds</span>
+3.3.2 Delta Seconds
 
    Some HTTP header fields allow a time value to be specified as an
    integer number of seconds, represented in decimal, after the time
@@ -1332,16 +1315,16 @@ Table of Contents
 
        delta-seconds  = 1*DIGIT
 
-<span><a href="#section-3.4">3.4</a> Character Sets</span>
+3.4 Character Sets
 
-   HTTP uses the same definition of the term "character set" as that
+   HTTP uses the same definition of the term &quot;character set&quot; as that
    described for MIME:
 
 
 
 
 
-<span>Fielding, et al.            Standards Track                    [Page 21]</span></pre>
+Fielding, et al.            Standards Track                    [Page 21]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 22</span>

@@ -266,25 +266,15 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 4</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc3757">RFC 3757</a>                   DNSKEY RR SEP Flag                 April 2004</span>
+  <pre>RFC 3757                   DNSKEY RR SEP Flag                 April 2004
 
 
-<span><a href="#section-2">2</a>.  The Secure Entry Point (SEP) Flag</span>
-
-                        1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 3 3
-    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |              flags          |S|   protocol    |   algorithm   |
-   |                             |E|               |               |
-   |                             |P|               |               |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                                                               /
+2.  The Secure Entry Point (SEP) Flag</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 3 3</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">flags</div><div class="modern-diagram-cell">S</div><div class="modern-diagram-cell">protocol</div><div class="modern-diagram-cell">algorithm</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">E</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">P</div></div></div>
+</figure><pre>   |                                                               /
    /                        public key                             /
-   /                                                               /
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-                          DNSKEY RR Format
+   /                                                               /</pre><pre>   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>                          DNSKEY RR Format
    This document assigns the 15th bit in the flags field as the secure
    entry point (SEP) bit.  If the bit is set to 1 the key is intended to
    be used as secure entry point key.  One SHOULD NOT assign special
@@ -292,7 +282,7 @@ Table of Contents
    the secure entry point key by the even or odd-ness of the decimal
    representation of the flag field.
 
-<span><a href="#section-3">3</a>.  DNSSEC Protocol Changes</span>
+3.  DNSSEC Protocol Changes
 
    The bit MUST NOT be used during the resolving and verification
    process.  The SEP flag is only used to provide a hint about the
@@ -300,7 +290,7 @@ Table of Contents
    of the SEP flag does not change the DNS resolution protocol or the
    resolution process.
 
-<span><a href="#section-4">4</a>.  Operational Guidelines</span>
+4.  Operational Guidelines
 
    The SEP bit is set by the key-pair-generator and MAY be used by the
    zone signer to decide whether the public part of the key pair is to
@@ -312,7 +302,7 @@ Table of Contents
 
    When a key pair is created, the operator needs to indicate whether
    the SEP bit is to be set in the DNSKEY RR.  As the SEP bit is within
-   the data that is used to compute the 'key tag field' in the SIG RR,
+   the data that is used to compute the &#x27;key tag field&#x27; in the SIG RR,
    changing the SEP bit will change the identity of the key within DNS.
    In other words, once a key is used to generate signatures, the
    setting of the SEP bit is to remain constant.  If not, a verifier
@@ -321,7 +311,7 @@ Table of Contents
 
 
 
-<span>Kolkman, et al.              Standard Track                     [Page 4]</span></pre>
+Kolkman, et al.              Standard Track                     [Page 4]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 5</span>

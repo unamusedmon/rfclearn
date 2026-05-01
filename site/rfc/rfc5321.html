@@ -446,28 +446,20 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 7</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc5321">RFC 5321</a>                          SMTP                      October 2008</span>
+  <pre>RFC 5321                          SMTP                      October 2008
 
 
    illustrative examples that should not actually be used in either code
    or configuration files.
 
-<span><a href="#section-2">2</a>.  The SMTP Model</span>
+2.  The SMTP Model
 
-<span><a href="#section-2.1">2.1</a>.  Basic Structure</span>
+2.1.  Basic Structure
 
-   The SMTP design can be pictured as:
-
-                  +----------+                +----------+
-      +------+    |          |                |          |
-      | User |&lt;--&gt;|          |      SMTP      |          |
-      +------+    |  Client- |Commands/Replies| Server-  |
-      +------+    |   SMTP   |&lt;--------------&gt;|    SMTP  |    +------+
-      | File |&lt;--&gt;|          |    and Mail    |          |&lt;--&gt;| File |
-      |System|    |          |                |          |    |System|
-      +------+    +----------+                +----------+    +------+
-                   SMTP client                SMTP server
+   The SMTP design can be pictured as:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">User</div><div class="modern-diagram-cell">&lt;--&gt;</div><div class="modern-diagram-cell">SMTP</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">+------+</div><div class="modern-diagram-cell">Client-</div><div class="modern-diagram-cell">Commands/Replies</div><div class="modern-diagram-cell">Server-</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">+------+</div><div class="modern-diagram-cell">SMTP</div><div class="modern-diagram-cell">&lt;--------------&gt;</div><div class="modern-diagram-cell">SMTP</div><div class="modern-diagram-cell">+------+</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">File</div><div class="modern-diagram-cell">&lt;--&gt;</div><div class="modern-diagram-cell">and Mail</div><div class="modern-diagram-cell">&lt;--&gt;</div><div class="modern-diagram-cell">File</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">System</div><div class="modern-diagram-cell">System</div></div></div>
+</figure><pre>                   SMTP client                SMTP server
 
    When an SMTP client has a message to transmit, it establishes a two-
    way transmission channel to an SMTP server.  The responsibility of an
@@ -475,13 +467,13 @@ Table of Contents
    or report its failure to do so.
 
    The means by which a mail message is presented to an SMTP client, and
-   how that client determines the identifier(s) ("names") of the
+   how that client determines the identifier(s) (&quot;names&quot;) of the
    domain(s) to which mail messages are to be transferred, is a local
    matter, and is not addressed by this document.  In some cases, the
    designated domain(s), or those determined by an SMTP client, will
    identify the final destination(s) of the mail message.  In other
    cases, common with SMTP clients associated with implementations of
-   the POP (<a href="./rfc937">RFC 937</a> [<a href="#ref-15" title="&quot;Post Office Protocol: Version 2&quot;">15</a>], <a href="./rfc1939">RFC 1939</a> [<a href="#ref-16" title="&quot;Post Office Protocol - Version 3&quot;">16</a>]) or IMAP (<a href="./rfc3501">RFC 3501</a> [<a href="#ref-17" title="&quot;INTERNET MESSAGE ACCESS PROTOCOL - VERSION 4rev1&quot;">17</a>])
+   the POP (RFC 937 [15], RFC 1939 [16]) or IMAP (RFC 3501 [17])
    protocols, or when the SMTP client is inside an isolated transport
    service environment, the domain determined will identify an
    intermediate destination through which all mail messages are to be
@@ -495,13 +487,13 @@ Table of Contents
    queuing, retrying, and alternate address functions discussed in this
    specification.  In many situations and configurations, the less-
    capable clients discussed above SHOULD be using the message
-   submission protocol (<a href="./rfc4409">RFC 4409</a> [<a href="#ref-18" title="&quot;Message Submission for Mail&quot;">18</a>]) rather than SMTP.
+   submission protocol (RFC 4409 [18]) rather than SMTP.
 
 
 
 
 
-<span>Klensin                     Standards Track                     [Page 7]</span></pre>
+Klensin                     Standards Track                     [Page 7]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 8</span>

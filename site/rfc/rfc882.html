@@ -94,27 +94,10 @@
 Request for Comments:  882                                           ISI
                                                            November 1983
 
-                 <span>DOMAIN NAMES - CONCEPTS and FACILITIES</span>
-
-        +-----------------------------------------------------+
-        |                                                     |
-        | This RFC introduces domain style names, their use   |
-        | for ARPA Internet mail and host address support,    |
-        | and the protocols and servers used to implement     |
-        | domain name facilities.                             |
-        |                                                     |
-        | This memo describes the conceptual framework of the |
-        | domain system and some uses, but it omits many      |
-        | uses, fields, and implementation details.  A        |
-        | complete specification of formats, timeouts, etc.   |
-        | is presented in <a href="./rfc883">RFC 883</a>, "Domain Names -            |
-        | Implementation and Specification".  That RFC        |
-        | assumes that the reader is familiar with the        |
-        | concepts discussed in this memo.                    |
-        |                                                     |
-        +-----------------------------------------------------+
-
-INTRODUCTION
+                 DOMAIN NAMES - CONCEPTS and FACILITIES</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">This RFC introduces domain style names, their use</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">for ARPA Internet mail and host address support,</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">and the protocols and servers used to implement</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">domain name facilities.</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">This memo describes the conceptual framework of the</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">domain system and some uses, but it omits many</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">uses, fields, and implementation details.  A</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">complete specification of formats, timeouts, etc.</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">is presented in RFC 883, &quot;Domain Names -</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Implementation and Specification&quot;.  That RFC</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">assumes that the reader is familiar with the</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">concepts discussed in this memo.</div></div></div>
+</figure><pre>INTRODUCTION
 
    The need for domain names
 
@@ -135,7 +118,7 @@ INTRODUCTION
       mechanisms.  Currently hosts in the ARPA Internet are registered
       with the Network Information Center (NIC) and listed in a global
       table (available as the file &lt;NETINFO&gt;HOSTS.TXT on the SRI-NIC
-      host) [<a href="#ref-1" title="&quot;DOD Internet Host Table Specification&quot;">1</a>].  The size of this table, and especially the frequency
+      host) [1].  The size of this table, and especially the frequency
       of updates to the table are near the limit of manageability.  What
       is needed is a distributed database that performs the same
       function, and hence avoids the problems caused by a centralized
@@ -145,7 +128,7 @@ INTRODUCTION
       implementers long ago recognized the impossibility of centralizing
 
 
-<span>Mockapetris                                                     [Page 1]</span></pre>
+Mockapetris                                                     [Page 1]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 2</span>
@@ -455,23 +438,22 @@ DOMAIN NAME SPACE
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 7</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc882">RFC 882</a>                                                    November 1983</span>
+  <pre>RFC 882                                                    November 1983
                                   Domain Names - Concepts and Facilities
 
 
       representations can use a length byte of zero to terminate a
       domain name.  When domain names are printed, labels in a path are
-      separated by dots (".").  The root label and its associated dot
+      separated by dots (&quot;.&quot;).  The root label and its associated dot
       are omitted from printed domain names, but the root can be named
-      by a null domain name (" " in this memo).
+      by a null domain name (&quot; &quot; in this memo).
 
       To simplify implementations, the total number of octets that
       represent label octets and label lengths is limited to 255.  Thus
       a printed domain name can be up to 254 characters.
 
       A special label is defined that matches any other label.  This
-      label is the asterisk or "*".  An asterisk matches a single label.
+      label is the asterisk or &quot;*&quot;.  An asterisk matches a single label.
       Thus *.ARPA matches FOO.ARPA, but does not match FOO.BAR.ARPA.
       The asterisk is mainly used to create default resource records at
       the boundary between protocol families, and requires prudence in
@@ -481,9 +463,9 @@ DOMAIN NAME SPACE
       of the domain name space that is at or below the domain name which
       specifies the domain.  A domain is a subdomain of another domain
       if it is contained within that domain.  This relationship can be
-      tested by seeing if the subdomain's name has the containing
-      domain's name as the right part of its name.  For example, A.B.C.D
-      is a subdomain of B.C.D, C.D, D, and " ".
+      tested by seeing if the subdomain&#x27;s name has the containing
+      domain&#x27;s name as the right part of its name.  For example, A.B.C.D
+      is a subdomain of B.C.D, C.D, D, and &quot; &quot;.
 
       This tree structure is intended to parallel the administrative
       organization and delegation of authority.  Potentially, each node
@@ -493,25 +475,20 @@ DOMAIN NAME SPACE
 
       The following figure shows an example of a domain name space.
 
-                                   |
-                +------------------+------------------+
-                |                  |                  |
-              COLORS            FLAVORS             TRUTH
-                |                  |
-          +-----+-----+            |
-          |     |     |         NATURAL
-         RED  BLUE  GREEN          |
-                                   |
-                   +---------------+---------------+
-                   |               |               |
-               CHOCOLATE        VANILLA        STRAWBERRY
+                                   |</pre><pre>                +------------------+------------------+
+                |                  |                  |</pre><pre>              COLORS            FLAVORS             TRUTH</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">NATURAL</div></div></div>
+</figure><pre>         RED  BLUE  GREEN          |
+                                   |</pre><pre>                   +---------------+---------------+
+                   |               |               |</pre><pre>               CHOCOLATE        VANILLA        STRAWBERRY
 
       In this example, the root domain has three immediate subdomains:
       COLORS, FLAVORS, and TRUTH.  The FLAVORS domain has one immediate
       subdomain named NATURAL.FLAVORS.  All of the leaves are also
 
 
-<span>Mockapetris                                                     [Page 7]</span></pre>
+Mockapetris                                                     [Page 7]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 8</span>
@@ -577,8 +554,7 @@ DOMAIN NAME SPACE
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 9</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc882">RFC 882</a>                                                    November 1983</span>
+  <pre>RFC 882                                                    November 1983
                                   Domain Names - Concepts and Facilities
 
 
@@ -586,7 +562,7 @@ DOMAIN NAME SPACE
          data can be determined given the type and class fields, but
          always starts with a two octet length field that allows a name
          server or resolver to determine the boundaries of the resource
-         data in any transaction, even if it cannot "understand" the
+         data in any transaction, even if it cannot &quot;understand&quot; the
          resource data itself.  Thus name servers and resolvers can hold
          and pass on records which they cannot interpret.  The format of
          the internal data is restricted only by the maximum length of
@@ -623,23 +599,15 @@ DOMAIN NAME SPACE
          CS - the CSNET system
 
       The first type of resource record holds a host name to host
-      address binding.  Its fields are:
-
-  +--------+--------+--------+--------------//----------------------+
-  |&lt;owner&gt; |   A    | &lt;class&gt;| &lt;class specific address&gt;information  |
-  +--------+--------+--------+--------------//----------------------+
-
-
-
-
-
-<span>Mockapetris                                                     [Page 9]</span></pre>
+      address binding.  Its fields are:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">&lt;owner&gt;</div><div class="modern-diagram-cell">A</div><div class="modern-diagram-cell">&lt;class&gt;</div><div class="modern-diagram-cell">&lt;class specific address&gt;information</div></div></div>
+</figure><pre>Mockapetris                                                     [Page 9]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 10</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc882">RFC 882</a>                                                    November 1983</span>
+  <pre>RFC 882                                                    November 1983
                                   Domain Names - Concepts and Facilities
 
 
@@ -647,44 +615,33 @@ DOMAIN NAME SPACE
       the value in the CLASS field; for the ARPA Internet, it is the 32
       bit ARPA Internet address of the host, for the CSNET it might be
       the phone number of the host.  For example, F.ISI.ARPA might have
-      two A records of the form:
-
-       +----------+--------+--------+----------------------------+
-       |F.ISI.ARPA|   A    |   IN   |          10.2.0.52         |
-       +----------+--------+--------+----------------------------+
-                                  and
-       +----------+--------+--------+----------------------------+
-       |F.ISI.ARPA|   A    |   CS   |         213-822-2112       |
-       +----------+--------+--------+----------------------------+
-
-      Note that the data formats for the A type are class dependent, and
+      two A records of the form:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">F.ISI.ARPA</div><div class="modern-diagram-cell">A</div><div class="modern-diagram-cell">IN</div><div class="modern-diagram-cell">10.2.0.52</div></div></div>
+</figure><pre>                                  and</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">F.ISI.ARPA</div><div class="modern-diagram-cell">A</div><div class="modern-diagram-cell">CS</div><div class="modern-diagram-cell">213-822-2112</div></div></div>
+</figure><pre>      Note that the data formats for the A type are class dependent, and
       the Internet address and phone number formats shown above are for
       purposes of illustration only.  The actual data formats are
-      specified in [<a href="#ref-14" title="&quot;Domain Names - Implementation and Specification&quot;">14</a>].  For example, CS class data for type A records
+      specified in [14].  For example, CS class data for type A records
       might actually be a list of Internet addresses, phone numbers and
       TELENET addresses.
 
       The mail forwarder (MF) and mail delivery (MD) records have the
-      following format:
-
-        +--------+--------+--------+----------------------------+
-        |&lt;owner&gt; | MD/MF  | &lt;class&gt;|       &lt;domain name&gt;        |
-        +--------+--------+--------+----------------------------+
-
-      The &lt;domain name&gt; field is a domain name of the host that will
+      following format:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">&lt;owner&gt;</div><div class="modern-diagram-cell">MD/MF</div><div class="modern-diagram-cell">&lt;class&gt;</div><div class="modern-diagram-cell">&lt;domain name&gt;</div></div></div>
+</figure><pre>      The &lt;domain name&gt; field is a domain name of the host that will
       handle mail; note that this domain name may be completely
       different from the domain name which names the resource record.
-      For example, F.ISI.ARPA might have two records of the form:
-
-       +----------+--------+--------+----------------------------+
-       |F.ISI.ARPA|  MD    |   IN   |         F.ISI.ARPA         |
-       +----------+--------+--------+----------------------------+
-                                  and
-       +----------+--------+--------+----------------------------+
-       |F.ISI.ARPA|  MF    |   IN   |         B.ISI.ARPA         |
-       +----------+--------+--------+----------------------------+
-
-      These records mean that mail for F.ISI.ARPA can either be
+      For example, F.ISI.ARPA might have two records of the form:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">F.ISI.ARPA</div><div class="modern-diagram-cell">MD</div><div class="modern-diagram-cell">IN</div><div class="modern-diagram-cell">F.ISI.ARPA</div></div></div>
+</figure><pre>                                  and</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">F.ISI.ARPA</div><div class="modern-diagram-cell">MF</div><div class="modern-diagram-cell">IN</div><div class="modern-diagram-cell">B.ISI.ARPA</div></div></div>
+</figure><pre>      These records mean that mail for F.ISI.ARPA can either be
       delivered to the host F.ISI.ARPA or forwarded to B.ISI.ARPA, which
       will accept responsibility for its eventual delivery.  In
       principle, an additional name lookup is required to map the domain
@@ -694,13 +651,12 @@ DOMAIN NAME SPACE
       The SOA and NS types of resource records are used to define limits
 
 
-<span>Mockapetris                                                    [Page 10]</span></pre>
+Mockapetris                                                    [Page 10]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 11</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc882">RFC 882</a>                                                    November 1983</span>
+  <pre>RFC 882                                                    November 1983
                                   Domain Names - Concepts and Facilities
 
 
@@ -711,17 +667,10 @@ DOMAIN NAME SPACE
       Except in the case where a name server delegates authority to
       itself, the SOA identifies the top limit of authority, and NS
       records define the first name outside of a zone.  These resource
-      records have a standard format for all of the name space:
-
-      +----------+--------+--------+-----------------------------+
-      | &lt;owner&gt;  |   SOA  | &lt;class&gt;|       &lt;domain name, etc&gt;    |
-      +----------+--------+--------+-----------------------------+
-
-      +----------+--------+--------+-----------------------------+
-      | &lt;owner&gt;  |   NS   | &lt;class&gt;|       &lt;domain name&gt;         |
-      +----------+--------+--------+-----------------------------+
-
-      The SOA record marks the start of a zone when it is present in a
+      records have a standard format for all of the name space:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">&lt;owner&gt;</div><div class="modern-diagram-cell">SOA</div><div class="modern-diagram-cell">&lt;class&gt;</div><div class="modern-diagram-cell">&lt;domain name, etc&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">&lt;owner&gt;</div><div class="modern-diagram-cell">NS</div><div class="modern-diagram-cell">&lt;class&gt;</div><div class="modern-diagram-cell">&lt;domain name&gt;</div></div></div>
+</figure><pre>      The SOA record marks the start of a zone when it is present in a
       database; the NS record both marks the end of a zone started by an
       SOA (if a higher SOA is present) and also points to a name server
       that has a copy of the zone specified by the &lt;owner. field of the
@@ -755,13 +704,12 @@ DOMAIN NAME SPACE
 
 
 
-<span>Mockapetris                                                    [Page 11]</span></pre>
+Mockapetris                                                    [Page 11]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 12</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc882">RFC 882</a>                                                    November 1983</span>
+  <pre>RFC 882                                                    November 1983
                                   Domain Names - Concepts and Facilities
 
 
@@ -774,7 +722,7 @@ DOMAIN NAME SPACE
       server may return RRs that point toward a name server that has the
       desired information or RRs that are expected to be useful in
       interpreting the relevant RRs.  For example a name server that
-      doesn't have the requested information may know a name server that
+      doesn&#x27;t have the requested information may know a name server that
       does; a name server that returns a domain name in a relevant RR
       may also return the RR that binds that domain name to an address.
 
@@ -789,22 +737,14 @@ DOMAIN NAME SPACE
       For purposes of exposition, the following name space is used for
       the remainder of this memo:
 
-                                    |
-                 +------------------+------------------+
-                 |                  |                  |
-                DDN               ARPA               CSNET
-                 |                  |                  |
+                                    |</pre><pre>                 +------------------+------------------+
+                 |                  |                  |</pre><pre>                DDN               ARPA               CSNET</pre><div class="modern-diagram-fallback">                 |                  |                  |
            +-----+-----+            |            +-----+-----+
-           |     |     |            |            |           |
-          JCS  ARMY  NAVY           |           UDEL        UCI
-                                    |
-           +--------+---------------+---------------+--------+
-           |        |               |               |        |
-          DTI      MIT             ISI             UDEL     NBS
-                    |               |
+           |     |     |            |            |           |</div><pre>          JCS  ARMY  NAVY           |           UDEL        UCI
+                                    |</pre><pre>           +--------+---------------+---------------+--------+
+           |        |               |               |        |</pre><pre>          DTI      MIT             ISI             UDEL     NBS</pre><div class="modern-diagram-fallback">                    |               |
                 +---+---+       +---+---+
-                |       |       |   |   |
-               DMS     AI       A   B   F
+                |       |       |   |   |</div><pre>               DMS     AI       A   B   F
 
 
 
@@ -816,7 +756,7 @@ DOMAIN NAME SPACE
 
 
 
-<span>Mockapetris                                                    [Page 12]</span></pre>
+Mockapetris                                                    [Page 12]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 13</span>
@@ -1248,8 +1188,7 @@ NAME SERVERS
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 20</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc882">RFC 882</a>                                                    November 1983</span>
+  <pre>RFC 882                                                    November 1983
                                   Domain Names - Concepts and Facilities
 
 
@@ -1260,22 +1199,16 @@ NAME SERVERS
       domains.  We might allocate name servers as follows:
 
                                    |(B.ISI.ARPA)
-                                   |(UDEL.CSNET)
-                +------------------+------------------+
-                |                  |                  |
-               DDN               ARPA               CSNET
-                |(JCS.DDN)         |(F.ISI.ARPA)      |(UDEL.ARPA)
-          +-----+-----+            |(A.ISI.ARPA)+-----+-----+
-          |     |     |            |            |           |
-         JCS  ARMY  NAVY           |           UDEL        UCI
-                                   |
-          +--------+---------------+---------------+--------+
-          |        |               |               |        |
-         DTI      MIT             ISI             UDEL     NBS
-                   |(AI.MIT.ARPA)  |(F.ISI.ARPA)
-               +---+---+       +---+---+
-               |       |       |   |   |
-              DMS     AI       A   B   F
+                                   |(UDEL.CSNET)</pre><pre>                +------------------+------------------+
+                |                  |                  |</pre><pre>               DDN               ARPA               CSNET</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">(JCS.DDN)</div><div class="modern-diagram-cell">(F.ISI.ARPA)</div><div class="modern-diagram-cell">(UDEL.ARPA)</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">+-----+-----+</div><div class="modern-diagram-cell">(A.ISI.ARPA)+-----+-----+</div></div></div>
+</figure><pre>         JCS  ARMY  NAVY           |           UDEL        UCI
+                                   |</pre><pre>          +--------+---------------+---------------+--------+
+          |        |               |               |        |</pre><pre>         DTI      MIT             ISI             UDEL     NBS</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">(AI.MIT.ARPA)</div><div class="modern-diagram-cell">(F.ISI.ARPA)</div></div></div>
+</figure><pre>              DMS     AI       A   B   F
 
       In this example the authoritative name server is shown in
       parentheses at the point in the domain tree at which is assumes
@@ -1304,7 +1237,7 @@ NAME SERVERS
 
 
 
-<span>Mockapetris                                                    [Page 20]</span></pre>
+Mockapetris                                                    [Page 20]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 21</span>

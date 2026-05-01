@@ -266,28 +266,27 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 4</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8042">RFC 8042</a>                  OSPF Two-Part Metric             December 2016</span>
+  <pre>RFC 8042                  OSPF Two-Part Metric             December 2016
 
 
    Note that while the example uses the satellite as the relay point at
    the radio level (layer 2), the satellite does not participate in
    packet forwarding at layer 3.  In fact, the satellite does not need
    to run any layer-3 protocol.  Therefore, for generality, the metric
-   is abstracted as to/from the "network" rather than specifically to/
-   from the "satellite".
+   is abstracted as to/from the &quot;network&quot; rather than specifically to/
+   from the &quot;satellite&quot;.
 
-<span><a href="#section-3">3</a>.  Specifications</span>
+3.  Specifications
 
    The following specifications are added to or modified from the base
    OSPF protocol.  If an area contains one or more two-part metric
    networks, then all routers in the area MUST support the extensions
    specified herein.  This is ensured by procedures described in
-   <a href="#section-3.7">Section 3.7</a>.
+   Section 3.7.
 
-<span><a href="#section-3.1">3.1</a>.  Router Interface Parameters</span>
+3.1.  Router Interface Parameters
 
-   The "Router interface parameters" have the following additions:
+   The &quot;Router interface parameters&quot; have the following additions:
 
    o  Two-part metric: TRUE if the interface connects to a multi-access
       network that uses a two-part metric.  All routers connected to the
@@ -295,33 +294,30 @@ Table of Contents
       corresponding interfaces.
 
    o  Interface input cost: Link-state metric from the two-part-metric
-      network to this router.  Defaults to "Interface output cost" but
+      network to this router.  Defaults to &quot;Interface output cost&quot; but
       is not valid for normal networks using a single metric.  May be
       configured or dynamically adjusted to a value different from the
-      "Interface output cost".
+      &quot;Interface output cost&quot;.
 
-<span><a href="#section-3.2">3.2</a>.  Advertising Network-to-Router Metric in OSPFv2</span>
+3.2.  Advertising Network-to-Router Metric in OSPFv2
 
    For OSPFv2, the Network-to-Router metric is encoded in an OSPF
-   Extended Link TLV Sub-TLV [<a href="./rfc7684" title="&quot;OSPFv2 Prefix/Link Attribute Advertisement&quot;">RFC7684</a>], defined in this document as the
+   Extended Link TLV Sub-TLV [RFC7684], defined in this document as the
    Network-to-Router Metric Sub-TLV.  The type of the sub-TLV is 4.  The
    length of the sub-TLV is 4 (for the value part only).  The value part
    of the sub-TLV is defined as follows:
 
-       0                   1                   2                   3
-       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |      MT-ID    |        0      |          MT Metric            |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-   Multiple such sub-TLVs can exist in a single OSPF Extended Link TLV,
-   one for each topology [<a href="./rfc4915" title="&quot;Multi-Topology (MT) Routing in OSPF&quot;">RFC4915</a>].  Each sub-TLV will have a unique
+       0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">MT-ID</div><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">MT Metric</div></div></div>
+</figure><pre>   Multiple such sub-TLVs can exist in a single OSPF Extended Link TLV,
+   one for each topology [RFC4915].  Each sub-TLV will have a unique
    Multi-Topology Identifier (MT-ID) and will adhere to the
-   advertisement rules defined in <a href="./rfc4915#section-3.4">Section&nbsp;3.4 of [RFC4915]</a>.  The OSPF
+   advertisement rules defined in Section 3.4 of [RFC4915].  The OSPF
 
 
 
-<span>Zhang, et al.                Standards Track                    [Page 4]</span></pre>
+Zhang, et al.                Standards Track                    [Page 4]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 5</span>

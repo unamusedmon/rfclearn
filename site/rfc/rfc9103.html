@@ -674,37 +674,10 @@
 <p>The figure below provides an outline of an AXFR mechanism including NOTIFYs.<a href="#section-5.1-1">¶</a></p>
 <span></span><div>
 <figure>
-          <div></div><pre>
-   Secondary                            Primary
-
-       |              NOTIFY               |
-       | &lt;-------------------------------- |  UDP
-       | --------------------------------&gt; |
-       |          NOTIFY Response          |
-       |                                   |
-       |                                   |
-       |            SOA Request            |
-       | --------------------------------&gt; |  UDP (or part of
-       | &lt;-------------------------------- |  a TCP session)
-       |           SOA Response            |
-       |                                   |
-       |                                   |
-       |                                   |
-       |            AXFR Request           | ---
-       | --------------------------------&gt; |   |
-       | &lt;-------------------------------- |   |
-       |          AXFR Response 1          |   |
-       |             (Zone data)           |   |
-       |                                   |   |
-       | &lt;-------------------------------- |   | TCP
-       |          AXFR Response 2          |   | Session
-       |             (Zone data)           |   |
-       |                                   |   |
-       | &lt;-------------------------------- |   |
-       |          AXFR Response 3          |   |
-       |             (Zone data)           | ---
-       |                                   |
-</pre>
+          <div></div><pre>   Secondary                            Primary</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">NOTIFY</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">&lt;--------------------------------</div><div class="modern-diagram-cell">UDP</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">NOTIFY Response</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">SOA Request</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">--------------------------------&gt;</div><div class="modern-diagram-cell">UDP (or part of</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">&lt;--------------------------------</div><div class="modern-diagram-cell">a TCP session)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">SOA Response</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">AXFR Request</div><div class="modern-diagram-cell">---</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">AXFR Response 1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">(Zone data)</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">&lt;--------------------------------</div><div class="modern-diagram-cell">TCP</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">AXFR Response 2</div><div class="modern-diagram-cell">Session</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">(Zone data)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">AXFR Response 3</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">(Zone data)</div><div class="modern-diagram-cell">---</div></div></div>
+</figure>
 </div>
 <figcaption><a href="#figure-1">Figure 1</a>:
 <a href="#name-axfr-mechanism-2">AXFR Mechanism</a>
@@ -750,35 +723,10 @@ connection.<a href="#section-5.1-5">¶</a></p>
 <span></span><div>
 <figure>
           <div>
-<pre>
-   Secondary                            Primary
-
-       |              NOTIFY               |
-       | &lt;-------------------------------- |  UDP
-       | --------------------------------&gt; |
-       |          NOTIFY Response          |
-       |                                   |
-       |                                   |
-       |            SOA Request            |
-       | --------------------------------&gt; |  UDP or TCP
-       | &lt;-------------------------------- |
-       |           SOA Response            |
-       |                                   |
-       |                                   |
-       |                                   |
-       |            IXFR Request           |
-       | --------------------------------&gt; |  UDP or TCP
-       | &lt;-------------------------------- |
-       |            IXFR Response          |
-       |             (Zone data)           |
-       |                                   |
-       |                                   | ---
-       |            IXFR Request           |    |
-       | --------------------------------&gt; |    | Retry over
-       | &lt;-------------------------------- |    | TCP if
-       |            IXFR Response          |    | required
-       |             (Zone data)           | ---
-</pre>
+<pre>   Secondary                            Primary</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">NOTIFY</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">&lt;--------------------------------</div><div class="modern-diagram-cell">UDP</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">NOTIFY Response</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">SOA Request</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">--------------------------------&gt;</div><div class="modern-diagram-cell">UDP or TCP</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">SOA Response</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">IXFR Request</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">--------------------------------&gt;</div><div class="modern-diagram-cell">UDP or TCP</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">IXFR Response</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">(Zone data)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">IXFR Request</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">--------------------------------&gt;</div><div class="modern-diagram-cell">Retry over</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">&lt;--------------------------------</div><div class="modern-diagram-cell">TCP if</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">IXFR Response</div><div class="modern-diagram-cell">required</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">(Zone data)</div><div class="modern-diagram-cell">---</div></div></div>
+</figure>
 </div>
 <figcaption><a href="#figure-2">Figure 2</a>:
 <a href="#name-ixfr-mechanism-2">IXFR Mechanism</a>
@@ -1164,37 +1112,10 @@ valid TSIG key), the extended DNS error code 18 - Prohibited can also be sent.<a
 <span></span><div>
 <figure>
           <div>
-<pre>
-   Secondary                            Primary
-
-       |              NOTIFY               |
-       | &lt;-------------------------------- |  UDP
-       | --------------------------------&gt; |
-       |          NOTIFY Response          |
-       |                                   |
-       |                                   |
-       |            SOA Request            |
-       | --------------------------------&gt; |  UDP (or part of
-       | &lt;-------------------------------- |  a TCP/TLS session)
-       |           SOA Response            |
-       |                                   |
-       |                                   |
-       |                                   |
-       |            AXFR Request           | ---
-       | --------------------------------&gt; |   |
-       | &lt;-------------------------------- |   |
-       |          AXFR Response 1          |   |
-       |             (Zone data)           |   |
-       |                                   |   |
-       | &lt;-------------------------------- |   | TLS
-       |          AXFR Response 2          |   | Session
-       |             (Zone data)           |   |
-       |                                   |   |
-       | &lt;-------------------------------- |   |
-       |          AXFR Response 3          |   |
-       |             (Zone data)           | ---
-       |                                   |
-</pre>
+<pre>   Secondary                            Primary</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">NOTIFY</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">&lt;--------------------------------</div><div class="modern-diagram-cell">UDP</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">NOTIFY Response</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">SOA Request</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">--------------------------------&gt;</div><div class="modern-diagram-cell">UDP (or part of</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">&lt;--------------------------------</div><div class="modern-diagram-cell">a TCP/TLS session)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">SOA Response</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">AXFR Request</div><div class="modern-diagram-cell">---</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">AXFR Response 1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">(Zone data)</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">&lt;--------------------------------</div><div class="modern-diagram-cell">TLS</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">AXFR Response 2</div><div class="modern-diagram-cell">Session</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">(Zone data)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">AXFR Response 3</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">(Zone data)</div><div class="modern-diagram-cell">---</div></div></div>
+</figure>
 </div>
 <figcaption><a href="#figure-3">Figure 3</a>:
 <a href="#name-axot-mechanism">AXoT Mechanism</a>
@@ -1204,35 +1125,10 @@ valid TSIG key), the extended DNS error code 18 - Prohibited can also be sent.<a
 <span></span><div>
 <figure>
           <div>
-<pre>
-   Secondary                            Primary
-
-       |              NOTIFY               |
-       | &lt;-------------------------------- |  UDP
-       | --------------------------------&gt; |
-       |          NOTIFY Response          |
-       |                                   |
-       |                                   |
-       |            SOA Request            |
-       | --------------------------------&gt; |  UDP (or part of
-       | &lt;-------------------------------- |  a TCP/TLS session)
-       |           SOA Response            |
-       |                                   |
-       |                                   |
-       |                                   |
-       |            IXFR Request           | ---
-       | --------------------------------&gt; |    |
-       | &lt;-------------------------------- |    |
-       |            IXFR Response          |    |
-       |             (Zone data)           |    |
-       |                                   |    | TLS
-       |                                   |    | session
-       |            IXFR Request           |    |
-       | --------------------------------&gt; |    |
-       | &lt;-------------------------------- |    |
-       |            IXFR Response          |    |
-       |             (Zone data)           | ---
-</pre>
+<pre>   Secondary                            Primary</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">NOTIFY</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">&lt;--------------------------------</div><div class="modern-diagram-cell">UDP</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">NOTIFY Response</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">SOA Request</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">--------------------------------&gt;</div><div class="modern-diagram-cell">UDP (or part of</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">&lt;--------------------------------</div><div class="modern-diagram-cell">a TCP/TLS session)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">SOA Response</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">IXFR Request</div><div class="modern-diagram-cell">---</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">IXFR Response</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">(Zone data)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">TLS</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">session</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">IXFR Request</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">IXFR Response</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">(Zone data)</div><div class="modern-diagram-cell">---</div></div></div>
+</figure>
 </div>
 <figcaption><a href="#figure-4">Figure 4</a>:
 <a href="#name-ixot-mechanism">IXoT Mechanism</a>

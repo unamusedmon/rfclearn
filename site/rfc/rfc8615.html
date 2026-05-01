@@ -566,54 +566,39 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 9</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8615">RFC 8615</a>                     Well-Known URIs                    May 2019</span>
+  <pre>RFC 8615                     Well-Known URIs                    May 2019
 
 
-<span><a href="#section-5.2">5.2</a>.  The Uniform Resource Identifier (URI) Schemes Registry</span>
+5.2.  The Uniform Resource Identifier (URI) Schemes Registry
 
    This specification adds a field to the registration template of the
-   "Uniform Resource Identifier (URI) Schemes" registry, with the name
-   "Well-Known URI Support" and a default value of "-".
+   &quot;Uniform Resource Identifier (URI) Schemes&quot; registry, with the name
+   &quot;Well-Known URI Support&quot; and a default value of &quot;-&quot;.
 
    If a URI scheme explicitly has been specified to use well-known URIs
-   as per <a href="#section-3">Section 3</a>, the value changes to a reference to that
-   specification.  Initial values not equal to "-" are given in Table 1.
+   as per Section 3, the value changes to a reference to that
+   specification.  Initial values not equal to &quot;-&quot; are given in Table 1.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">URI Scheme</div><div class="modern-diagram-cell">Well-Known URI Support</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">coap</div><div class="modern-diagram-cell">[RFC7252]</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">coap+tcp</div><div class="modern-diagram-cell">[RFC8323]</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">coap+ws</div><div class="modern-diagram-cell">[RFC8323]</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">coaps</div><div class="modern-diagram-cell">[RFC7252]</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">coaps+tcp</div><div class="modern-diagram-cell">[RFC8323]</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">coaps+ws</div><div class="modern-diagram-cell">[RFC8323]</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">[RFC8615]</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">https</div><div class="modern-diagram-cell">[RFC8615]</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">ws</div><div class="modern-diagram-cell">[RFC8307]</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">wss</div><div class="modern-diagram-cell">[RFC8307]</div></div></div>
+</figure><pre>       Table 1: Rows in URI Scheme Registry with Nonempty New Column
 
-                  +------------+------------------------+
-                  | URI Scheme | Well-Known URI Support |
-                  +------------+------------------------+
-                  | coap       | [<a href="./rfc7252" title="&quot;The Constrained Application Protocol (CoAP)&quot;">RFC7252</a>]              |
-                  | coap+tcp   | [<a href="./rfc8323" title="&quot;CoAP (Constrained Application Protocol) over TCP, TLS, and WebSockets&quot;">RFC8323</a>]              |
-                  | coap+ws    | [<a href="./rfc8323" title="&quot;CoAP (Constrained Application Protocol) over TCP, TLS, and WebSockets&quot;">RFC8323</a>]              |
-                  | coaps      | [<a href="./rfc7252" title="&quot;The Constrained Application Protocol (CoAP)&quot;">RFC7252</a>]              |
-                  | coaps+tcp  | [<a href="./rfc8323" title="&quot;CoAP (Constrained Application Protocol) over TCP, TLS, and WebSockets&quot;">RFC8323</a>]              |
-                  | coaps+ws   | [<a href="./rfc8323" title="&quot;CoAP (Constrained Application Protocol) over TCP, TLS, and WebSockets&quot;">RFC8323</a>]              |
-                  | http       | [<a href="./rfc8615">RFC8615</a>]              |
-                  | https      | [<a href="./rfc8615">RFC8615</a>]              |
-                  | ws         | [<a href="./rfc8307" title="&quot;Well-Known URIs for the WebSocket Protocol&quot;">RFC8307</a>]              |
-                  | wss        | [<a href="./rfc8307" title="&quot;Well-Known URIs for the WebSocket Protocol&quot;">RFC8307</a>]              |
-                  +------------+------------------------+
+6.  References
 
-       Table 1: Rows in URI Scheme Registry with Nonempty New Column
+6.1.  Normative References
 
-<span><a href="#section-6">6</a>.  References</span>
-
-<span><a href="#section-6.1">6.1</a>.  Normative References</span>
-
-   [<a>RFC2119</a>]  Bradner, S., "Key words for use in RFCs to Indicate
-              Requirement Levels", <a>BCP 14</a>, <a href="./rfc2119">RFC 2119</a>,
+   [RFC2119]  Bradner, S., &quot;Key words for use in RFCs to Indicate
+              Requirement Levels&quot;, BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
-              &lt;<a>https://www.rfc-editor.org/info/rfc2119</a>&gt;.
+              &lt;https://www.rfc-editor.org/info/rfc2119&gt;.
 
-   [<a>RFC3986</a>]  Berners-Lee, T., Fielding, R., and L. Masinter, "Uniform
-              Resource Identifier (URI): Generic Syntax", STD 66,
-              <a href="./rfc3986">RFC 3986</a>, DOI 10.17487/RFC3986, January 2005,
-              &lt;<a>https://www.rfc-editor.org/info/rfc3986</a>&gt;.
+   [RFC3986]  Berners-Lee, T., Fielding, R., and L. Masinter, &quot;Uniform
+              Resource Identifier (URI): Generic Syntax&quot;, STD 66,
+              RFC 3986, DOI 10.17487/RFC3986, January 2005,
+              &lt;https://www.rfc-editor.org/info/rfc3986&gt;.
 
-   [<a>RFC6454</a>]  Barth, A., "The Web Origin Concept", <a href="./rfc6454">RFC 6454</a>,
+   [RFC6454]  Barth, A., &quot;The Web Origin Concept&quot;, RFC 6454,
               DOI 10.17487/RFC6454, December 2011,
-              &lt;<a>https://www.rfc-editor.org/info/rfc6454</a>&gt;.
+              &lt;https://www.rfc-editor.org/info/rfc6454&gt;.
 
 
 
@@ -621,7 +606,7 @@ Table of Contents
 
 
 
-<span>Nottingham                   Standards Track                    [Page 9]</span></pre>
+Nottingham                   Standards Track                    [Page 9]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 10</span>

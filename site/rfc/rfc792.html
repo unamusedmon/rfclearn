@@ -280,29 +280,21 @@ September 1981
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 4</span>
   </div>
-  <pre><span ></span>
-<span>                                                          September 1981</span>
-<a href="./rfc792">RFC 792</a>
+  <pre>                                                          September 1981
+RFC 792
 
 
 
 Destination Unreachable Message
 
-    0                   1                   2                   3
-    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |     Type      |     Code      |          Checksum             |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                             unused                            |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |      Internet Header + 64 bits of Original Data Datagram      |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-   IP Fields:
+    0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Type</div><div class="modern-diagram-cell">Code</div><div class="modern-diagram-cell">Checksum</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">unused</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Internet Header + 64 bits of Original Data Datagram</div></div></div>
+</figure><pre>   IP Fields:
 
    Destination Address
 
-      The source network and address from the original datagram's data.
+      The source network and address from the original datagram&#x27;s data.
 
    ICMP Fields:
 
@@ -326,7 +318,7 @@ Destination Unreachable Message
 
    Checksum
 
-      The checksum is the 16-bit ones's complement of the one's
+      The checksum is the 16-bit ones&#x27;s complement of the one&#x27;s
       complement sum of the ICMP message starting with the ICMP Type.
       For computing the checksum , the checksum field should be zero.
       This checksum may be replaced in the future.
@@ -402,29 +394,21 @@ September 1981
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 6</span>
   </div>
-  <pre><span ></span>
-<span>                                                          September 1981</span>
-<a href="./rfc792">RFC 792</a>
+  <pre>                                                          September 1981
+RFC 792
 
 
 
 Time Exceeded Message
 
-    0                   1                   2                   3
-    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |     Type      |     Code      |          Checksum             |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                             unused                            |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |      Internet Header + 64 bits of Original Data Datagram      |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-   IP Fields:
+    0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Type</div><div class="modern-diagram-cell">Code</div><div class="modern-diagram-cell">Checksum</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">unused</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Internet Header + 64 bits of Original Data Datagram</div></div></div>
+</figure><pre>   IP Fields:
 
    Destination Address
 
-      The source network and address from the original datagram's data.
+      The source network and address from the original datagram&#x27;s data.
 
    ICMP Fields:
 
@@ -440,7 +424,7 @@ Time Exceeded Message
 
    Checksum
 
-      The checksum is the 16-bit ones's complement of the one's
+      The checksum is the 16-bit ones&#x27;s complement of the one&#x27;s
       complement sum of the ICMP message starting with the ICMP Type.
       For computing the checksum , the checksum field should be zero.
       This checksum may be replaced in the future.
@@ -448,10 +432,10 @@ Time Exceeded Message
    Internet Header + 64 bits of Data Datagram
 
       The internet header plus the first 64 bits of the original
-      datagram's data.  This data is used by the host to match the
+      datagram&#x27;s data.  This data is used by the host to match the
       message to the appropriate process.  If a higher level protocol
       uses port numbers, they are assumed to be in the first 64 data
-      bits of the original datagram's data.
+      bits of the original datagram&#x27;s data.
 
    Description
 
@@ -524,29 +508,21 @@ September 1981
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 8</span>
   </div>
-  <pre><span ></span>
-<span>                                                          September 1981</span>
-<a href="./rfc792">RFC 792</a>
+  <pre>                                                          September 1981
+RFC 792
 
 
 
 Parameter Problem Message
 
-    0                   1                   2                   3
-    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |     Type      |     Code      |          Checksum             |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |    Pointer    |                   unused                      |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |      Internet Header + 64 bits of Original Data Datagram      |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-   IP Fields:
+    0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Type</div><div class="modern-diagram-cell">Code</div><div class="modern-diagram-cell">Checksum</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Pointer</div><div class="modern-diagram-cell">unused</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Internet Header + 64 bits of Original Data Datagram</div></div></div>
+</figure><pre>   IP Fields:
 
    Destination Address
 
-      The source network and address from the original datagram's data.
+      The source network and address from the original datagram&#x27;s data.
 
    ICMP Fields:
 
@@ -560,7 +536,7 @@ Parameter Problem Message
 
    Checksum
 
-      The checksum is the 16-bit ones's complement of the one's
+      The checksum is the 16-bit ones&#x27;s complement of the one&#x27;s
       complement sum of the ICMP message starting with the ICMP Type.
       For computing the checksum , the checksum field should be zero.
       This checksum may be replaced in the future.
@@ -572,10 +548,10 @@ Parameter Problem Message
    Internet Header + 64 bits of Data Datagram
 
       The internet header plus the first 64 bits of the original
-      datagram's data.  This data is used by the host to match the
+      datagram&#x27;s data.  This data is used by the host to match the
       message to the appropriate process.  If a higher level protocol
       uses port numbers, they are assumed to be in the first 64 data
-      bits of the original datagram's data.
+      bits of the original datagram&#x27;s data.
 
 
 
@@ -646,29 +622,21 @@ September 1981
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 10</span>
   </div>
-  <pre><span ></span>
-<span>                                                          September 1981</span>
-<a href="./rfc792">RFC 792</a>
+  <pre>                                                          September 1981
+RFC 792
 
 
 
 Source Quench Message
 
-    0                   1                   2                   3
-    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |     Type      |     Code      |          Checksum             |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                             unused                            |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |      Internet Header + 64 bits of Original Data Datagram      |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-   IP Fields:
+    0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Type</div><div class="modern-diagram-cell">Code</div><div class="modern-diagram-cell">Checksum</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">unused</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Internet Header + 64 bits of Original Data Datagram</div></div></div>
+</figure><pre>   IP Fields:
 
    Destination Address
 
-      The source network and address of the original datagram's data.
+      The source network and address of the original datagram&#x27;s data.
 
    ICMP Fields:
 
@@ -682,7 +650,7 @@ Source Quench Message
 
    Checksum
 
-      The checksum is the 16-bit ones's complement of the one's
+      The checksum is the 16-bit ones&#x27;s complement of the one&#x27;s
       complement sum of the ICMP message starting with the ICMP Type.
       For computing the checksum , the checksum field should be zero.
       This checksum may be replaced in the future.
@@ -690,10 +658,10 @@ Source Quench Message
    Internet Header + 64 bits of Data Datagram
 
       The internet header plus the first 64 bits of the original
-      datagram's data.  This data is used by the host to match the
+      datagram&#x27;s data.  This data is used by the host to match the
       message to the appropriate process.  If a higher level protocol
       uses port numbers, they are assumed to be in the first 64 data
-      bits of the original datagram's data.
+      bits of the original datagram&#x27;s data.
 
    Description
 
@@ -768,29 +736,21 @@ September 1981
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 12</span>
   </div>
-  <pre><span ></span>
-<span>                                                          September 1981</span>
-<a href="./rfc792">RFC 792</a>
+  <pre>                                                          September 1981
+RFC 792
 
 
 
 Redirect Message
 
-    0                   1                   2                   3
-    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |     Type      |     Code      |          Checksum             |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                 Gateway Internet Address                      |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |      Internet Header + 64 bits of Original Data Datagram      |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-   IP Fields:
+    0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Type</div><div class="modern-diagram-cell">Code</div><div class="modern-diagram-cell">Checksum</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Gateway Internet Address</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Internet Header + 64 bits of Original Data Datagram</div></div></div>
+</figure><pre>   IP Fields:
 
    Destination Address
 
-      The source network and address of the original datagram's data.
+      The source network and address of the original datagram&#x27;s data.
 
    ICMP Fields:
 
@@ -810,7 +770,7 @@ Redirect Message
 
    Checksum
 
-      The checksum is the 16-bit ones's complement of the one's
+      The checksum is the 16-bit ones&#x27;s complement of the one&#x27;s
       complement sum of the ICMP message starting with the ICMP Type.
       For computing the checksum , the checksum field should be zero.
       This checksum may be replaced in the future.
@@ -819,7 +779,7 @@ Redirect Message
 
       Address of the gateway to which traffic for the network specified
       in the internet destination network field of the original
-      datagram's data should be sent.
+      datagram&#x27;s data should be sent.
 
 
 
@@ -890,25 +850,17 @@ September 1981
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 14</span>
   </div>
-  <pre><span ></span>
-<span>                                                          September 1981</span>
-<a href="./rfc792">RFC 792</a>
+  <pre>                                                          September 1981
+RFC 792
 
 
 
 Echo or Echo Reply Message
 
-    0                   1                   2                   3
-    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |     Type      |     Code      |          Checksum             |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |           Identifier          |        Sequence Number        |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |     Data ...
-   +-+-+-+-+-
-
-   IP Fields:
+    0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Type</div><div class="modern-diagram-cell">Code</div><div class="modern-diagram-cell">Checksum</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Identifier</div><div class="modern-diagram-cell">Sequence Number</div></div></div>
+</figure><pre>   |     Data ...</pre><pre>   +-+-+-+-+-</pre><pre>   IP Fields:
 
    Addresses
 
@@ -931,7 +883,7 @@ Echo or Echo Reply Message
 
    Checksum
 
-      The checksum is the 16-bit ones's complement of the one's
+      The checksum is the 16-bit ones&#x27;s complement of the one&#x27;s
       complement sum of the ICMP message starting with the ICMP Type.
       For computing the checksum , the checksum field should be zero.
       If the total length is odd, the received data is padded with one
@@ -1012,29 +964,17 @@ September 1981
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 16</span>
   </div>
-  <pre><span ></span>
-<span>                                                          September 1981</span>
-<a href="./rfc792">RFC 792</a>
+  <pre>                                                          September 1981
+RFC 792
 
 
 
 Timestamp or Timestamp Reply Message
 
-    0                   1                   2                   3
-    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |     Type      |      Code     |          Checksum             |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |           Identifier          |        Sequence Number        |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |     Originate Timestamp                                       |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |     Receive Timestamp                                         |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |     Transmit Timestamp                                        |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-   IP Fields:
+    0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Type</div><div class="modern-diagram-cell">Code</div><div class="modern-diagram-cell">Checksum</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Identifier</div><div class="modern-diagram-cell">Sequence Number</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Originate Timestamp</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Receive Timestamp</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Transmit Timestamp</div></div></div>
+</figure><pre>   IP Fields:
 
    Addresses
 
@@ -1058,7 +998,7 @@ Timestamp or Timestamp Reply Message
 
    Checksum
 
-      The checksum is the 16-bit ones's complement of the one's
+      The checksum is the 16-bit ones&#x27;s complement of the one&#x27;s
       complement sum of the ICMP message starting with the ICMP Type.
       For computing the checksum , the checksum field should be zero.
       This checksum may be replaced in the future.
@@ -1134,23 +1074,17 @@ September 1981
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 18</span>
   </div>
-  <pre><span ></span>
-<span>                                                          September 1981</span>
-<a href="./rfc792">RFC 792</a>
+  <pre>                                                          September 1981
+RFC 792
 
 
 
 Information Request or Information Reply Message
 
-    0                   1                   2                   3
-    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |     Type      |      Code     |          Checksum             |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |           Identifier          |        Sequence Number        |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-   IP Fields:
+    0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Type</div><div class="modern-diagram-cell">Code</div><div class="modern-diagram-cell">Checksum</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Identifier</div><div class="modern-diagram-cell">Sequence Number</div></div></div>
+</figure><pre>   IP Fields:
 
    Addresses
 
@@ -1174,7 +1108,7 @@ Information Request or Information Reply Message
 
    Checksum
 
-      The checksum is the 16-bit ones's complement of the one's
+      The checksum is the 16-bit ones&#x27;s complement of the one&#x27;s
       complement sum of the ICMP message starting with the ICMP Type.
       For computing the checksum , the checksum field should be zero.
       This checksum may be replaced in the future.

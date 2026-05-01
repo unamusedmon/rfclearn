@@ -446,8 +446,7 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 7</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2474">RFC 2474</a>             Differentiated Services Field         December 1998</span>
+  <pre>RFC 2474             Differentiated Services Field         December 1998
 
 
    applying traffic conditioning to create behavior aggregates which
@@ -459,8 +458,8 @@ Table of Contents
    which packets are to be added to behavior aggregates.  Aggregates
    receive differentiated treatment in a DS domain and traffic
    conditioners MAY alter the temporal characteristics of the aggregate
-   to conform to some requirements.  A packet's DS field is used to
-   designate the packet's behavior aggregate and is subsequently used to
+   to conform to some requirements.  A packet&#x27;s DS field is used to
+   designate the packet&#x27;s behavior aggregate and is subsequently used to
    determine which forwarding treatment the packet receives.  A behavior
    aggregate classifier which can select a PHB, for example a
    differential output queue servicing discipline, based on the
@@ -470,13 +469,13 @@ Table of Contents
    specification, a matter of administrative policy outside the scope of
    this document.
 
-   Additional differentiated services definitions are given in [<a href="#ref-ARCH" title="&quot;An Architecture for Differentiated Services&quot;">ARCH</a>].
+   Additional differentiated services definitions are given in [ARCH].
 
-<span><a href="#section-3">3</a>.  Differentiated Services Field Definition</span>
+3.  Differentiated Services Field Definition
 
    A replacement header field, called the DS field, is defined, which is
    intended to supersede the existing definitions of the IPv4 TOS octet
-   [<a href="./rfc791" title="&quot;Internet Protocol&quot;">RFC791</a>] and the IPv6 Traffic Class octet [<a href="#ref-IPv6" title="&quot;Internet Protocol, Version 6 (IPv6) Specification&quot;">IPv6</a>].
+   [RFC791] and the IPv6 Traffic Class octet [IPv6].
 
    Six bits of the DS field are used as a codepoint (DSCP) to select the
    PHB a packet experiences at each node.  A two-bit currently unused
@@ -485,15 +484,10 @@ Table of Contents
    ignored by differentiated services-compliant nodes when determining
    the per-hop behavior to apply to a received packet.
 
-   The DS field structure is presented below:
-
-
-        0   1   2   3   4   5   6   7
-      +---+---+---+---+---+---+---+---+
-      |         DSCP          |  CU   |
-      +---+---+---+---+---+---+---+---+
-
-        DSCP: differentiated services codepoint
+   The DS field structure is presented below:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0   1   2   3   4   5   6   7</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">DSCP</div><div class="modern-diagram-cell">CU</div></div></div>
+</figure><pre>        DSCP: differentiated services codepoint
         CU:   currently unused
 
 
@@ -501,7 +495,7 @@ Table of Contents
 
 
 
-<span>Nichols, et. al.            Standards Track                     [Page 7]</span></pre>
+Nichols, et. al.            Standards Track                     [Page 7]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 8</span>

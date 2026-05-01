@@ -386,48 +386,24 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 6</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc7474">RFC 7474</a>               OSPF Manual Key Management             April 2015</span>
+  <pre>RFC 7474               OSPF Manual Key Management             April 2015
 
 
-        0                   1                   2                   3
-        0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |  Version #  |     Type        |       Packet length           |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                          Router ID                            |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                           Area ID                             |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |           Checksum            | Instance ID   |  AuType       |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                               0               | Auth Data Len |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                         Key ID                                |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                                                               |
-       |                   OSPF Protocol Packet                        |
-       ~                                                               ~
-       |                                                               |
-       |                                                               |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |     Sequence Number (Boot Count)                              |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |     Sequence Number (Strictly Increasing Packet Counter)      |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                                                               |
-       ~                Authentication Data                            ~
-       |                                                               |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+        0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Version #</div><div class="modern-diagram-cell">Type</div><div class="modern-diagram-cell">Packet length</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Router ID</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Area ID</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Checksum</div><div class="modern-diagram-cell">Instance ID</div><div class="modern-diagram-cell">AuType</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">Auth Data Len</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Key ID</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">OSPF Protocol Packet</div></div></div>
+</figure><pre>       ~                                                               ~</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Sequence Number (Boot Count)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Sequence Number (Strictly Increasing Packet Counter)</div></div></div>
+</figure><pre>       ~                Authentication Data                            ~</pre><pre>       |                                                               |
+       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>           Figure 1: Extended Sequence Number Packet Extensions
 
-           Figure 1: Extended Sequence Number Packet Extensions
-
-<span><a href="#section-4">4</a>.  OSPF Packet Key Selection</span>
+4.  OSPF Packet Key Selection
 
    This section describes how this security solution selects long-lived
-   keys from key tables.  [<a href="./rfc7210" title="&quot;Database of Long-Lived Symmetric Cryptographic Keys&quot;">RFC7210</a>].  In this context, we are selecting
+   keys from key tables.  [RFC7210].  In this context, we are selecting
    the key and corresponding Security Association (SA) as defined in
-   <a href="./rfc5709#section-3.2">Section&nbsp;3.2 of [RFC5709]</a>.  Generally, a key used for OSPFv2 packet
+   Section 3.2 of [RFC5709].  Generally, a key used for OSPFv2 packet
    authentication should satisfy the following requirements:
 
    o  For packet transmission, the key validity interval as defined by
@@ -441,7 +417,7 @@ Table of Contents
 
 
 
-<span>Bhatia, et al.               Standards Track                    [Page 6]</span></pre>
+Bhatia, et al.               Standards Track                    [Page 6]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 7</span>

@@ -446,31 +446,19 @@ Abstract
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 7</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1771">RFC 1771</a>                         BGP-4                        March 1995</span>
+  <pre>RFC 1771                         BGP-4                        March 1995
 
 
-<span><a href="#section-4.1">4.1</a> Message Header Format</span>
+4.1 Message Header Format
 
    Each message has a fixed-size header.  There may or may not be a data
    portion following the header, depending on the message type.  The
    layout of these fields is shown below:
 
-       0                   1                   2                   3
-       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                                                               |
-      +                                                               +
-      |                                                               |
-      +                                                               +
-      |                           Marker                              |
-      +                                                               +
-      |                                                               |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |          Length               |      Type     |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-      Marker:
+       0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Marker</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Length</div><div class="modern-diagram-cell">Type</div></div></div>
+</figure><pre>      Marker:
 
          This 16-octet field contains a value that the receiver of the
          message can predict.  If the Type of the message is OPEN, or if
@@ -491,7 +479,7 @@ Abstract
          field of the) next message.  The value of the Length field must
          always be at least 19 and no greater than 4096, and may be
          further constrained, depending on the message type.  No
-         "padding" of extra data after the message is allowed, so the
+         &quot;padding&quot; of extra data after the message is allowed, so the
          Length field must have the smallest value required given the
          rest of the message.
 
@@ -501,13 +489,12 @@ Abstract
 
 
 
-<span>Rekhter &amp; Li                                                    [Page 7]</span></pre>
+Rekhter &amp; Li                                                    [Page 7]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 8</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1771">RFC 1771</a>                         BGP-4                        March 1995</span>
+  <pre>RFC 1771                         BGP-4                        March 1995
 
 
       Type:
@@ -520,7 +507,7 @@ Abstract
                                     3 - NOTIFICATION
                                     4 - KEEPALIVE
 
-<span><a href="#section-4.2">4.2</a> OPEN Message Format</span>
+4.2 OPEN Message Format
 
    After a transport protocol connection is established, the first
    message sent by each side is an OPEN message.  If the OPEN message is
@@ -531,25 +518,10 @@ Abstract
    In addition to the fixed-size BGP header, the OPEN message contains
    the following fields:
 
-        0                   1                   2                   3
-       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-       +-+-+-+-+-+-+-+-+
-       |    Version    |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |     My Autonomous System      |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |           Hold Time           |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                         BGP Identifier                        |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       | Opt Parm Len  |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                                                               |
-       |                       Optional Parameters                     |
-       |                                                               |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-      Version:
+        0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Version</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">My Autonomous System</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Hold Time</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">BGP Identifier</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Opt Parm Len</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Optional Parameters</div></div></div>
+</figure><pre>      Version:
 
          This 1-octet unsigned integer indicates the protocol version
          number of the message.  The current BGP version number is 4.
@@ -561,13 +533,12 @@ Abstract
 
 
 
-<span>Rekhter &amp; Li                                                    [Page 8]</span></pre>
+Rekhter &amp; Li                                                    [Page 8]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 9</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1771">RFC 1771</a>                         BGP-4                        March 1995</span>
+  <pre>RFC 1771                         BGP-4                        March 1995
 
 
       Hold Time:
@@ -603,13 +574,10 @@ Abstract
          each parameter is encoded as a &lt;Parameter Type, Parameter
          Length, Parameter Value&gt; triplet.
 
-          0                   1
-          0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5
-         +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-...
-         |  Parm. Type   | Parm. Length  |  Parameter Value (variable)
-         +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-...
-
-         Parameter Type is a one octet field that unambiguously
+          0                   1</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Parm. Type</div><div class="modern-diagram-cell">Parm. Length</div><div class="modern-diagram-cell">Parameter Value (variable)</div></div></div>
+</figure><pre>         Parameter Type is a one octet field that unambiguously
          identifies individual parameters. Parameter Length is a one
          octet field that contains the length of the Parameter Value
          field in octets.  Parameter Value is a variable length field
@@ -621,13 +589,12 @@ Abstract
 
 
 
-<span>Rekhter &amp; Li                                                    [Page 9]</span></pre>
+Rekhter &amp; Li                                                    [Page 9]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 10</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1771">RFC 1771</a>                         BGP-4                        March 1995</span>
+  <pre>RFC 1771                         BGP-4                        March 1995
 
 
          This document defines the following Optional Parameters:
@@ -637,18 +604,10 @@ Abstract
             This optional parameter may be used to authenticate a BGP
             peer. The Parameter Value field contains a 1-octet
             Authentication Code followed by a variable length
-            Authentication Data.
-
-                0 1 2 3 4 5 6 7 8
-                +-+-+-+-+-+-+-+-+
-                |  Auth. Code   |
-                +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-                |                                                     |
-                |              Authentication Data                    |
-                |                                                     |
-                +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-               Authentication Code:
+            Authentication Data.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Auth. Code</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Authentication Data</div></div></div>
+</figure><pre>               Authentication Code:
 
                   This 1-octet unsigned integer indicates the
                   authentication mechanism being used.  Whenever an
@@ -681,16 +640,15 @@ Abstract
 
 
 
-<span>Rekhter &amp; Li                                                   [Page 10]</span></pre>
+Rekhter &amp; Li                                                   [Page 10]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 11</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1771">RFC 1771</a>                         BGP-4                        March 1995</span>
+  <pre>RFC 1771                         BGP-4                        March 1995
 
 
-<span><a href="#section-4.3">4.3</a> UPDATE Message Format</span>
+4.3 UPDATE Message Format
 
    UPDATE messages are used to transfer routing information between BGP
    peers.  The information in the UPDATE packet can be used to construct
@@ -704,21 +662,10 @@ Abstract
    3.1). An UPDATE message may simultaneously advertise a feasible route
    and withdraw multiple unfeasible routes from service.  The UPDATE
    message always includes the fixed-size BGP header, and can optionally
-   include the other fields as shown below:
-
-      +-----------------------------------------------------+
-      |   Unfeasible Routes Length (2 octets)               |
-      +-----------------------------------------------------+
-      |  Withdrawn Routes (variable)                        |
-      +-----------------------------------------------------+
-      |   Total Path Attribute Length (2 octets)            |
-      +-----------------------------------------------------+
-      |    Path Attributes (variable)                       |
-      +-----------------------------------------------------+
-      |   Network Layer Reachability Information (variable) |
-      +-----------------------------------------------------+
-
-      Unfeasible Routes Length:
+   include the other fields as shown below:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Unfeasible Routes Length (2 octets)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Withdrawn Routes (variable)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Total Path Attribute Length (2 octets)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Path Attributes (variable)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Network Layer Reachability Information (variable)</div></div></div>
+</figure><pre>      Unfeasible Routes Length:
 
          This 2-octets unsigned integer indicates the total length of
          the Withdrawn Routes field in octets.  Its value must allow the
@@ -741,22 +688,15 @@ Abstract
 
 
 
-<span>Rekhter &amp; Li                                                   [Page 11]</span></pre>
+Rekhter &amp; Li                                                   [Page 11]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 12</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1771">RFC 1771</a>                         BGP-4                        March 1995</span>
-
-
-                  +---------------------------+
-                  |   Length (1 octet)        |
-                  +---------------------------+
-                  |   Prefix (variable)       |
-                  +---------------------------+
-
-         The use and the meaning of these fields are as follows:
+  <pre>RFC 1771                         BGP-4                        March 1995</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Length (1 octet)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Prefix (variable)</div></div></div>
+</figure><pre>         The use and the meaning of these fields are as follows:
 
          a) Length:
 
@@ -792,16 +732,10 @@ Abstract
          Attribute Flags octet followed by the Attribute Type Code
          octet.
 
-                0                   1
-                0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5
-               +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-               |  Attr. Flags  |Attr. Type Code|
-               +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-
-
-
-<span>Rekhter &amp; Li                                                   [Page 12]</span></pre>
+                0                   1</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Attr. Flags</div><div class="modern-diagram-cell">Attr. Type Code</div></div></div>
+</figure><pre>Rekhter &amp; Li                                                   [Page 12]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 13</span>
@@ -986,8 +920,7 @@ Abstract
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 16</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1771">RFC 1771</a>                         BGP-4                        March 1995</span>
+  <pre>RFC 1771                         BGP-4                        March 1995
 
 
          f) ATOMIC_AGGREGATE (Type Code 6)
@@ -1026,22 +959,10 @@ Abstract
          Unfeasible Routes Length field.
 
          Reachability information is encoded as one or more 2-tuples of
-         the form &lt;length, prefix&gt;, whose fields are described below:
-
-                  +---------------------------+
-                  |   Length (1 octet)        |
-                  +---------------------------+
-                  |   Prefix (variable)       |
-                  +---------------------------+
-
-
-
-
-
-
-
-
-<span>Rekhter &amp; Li                                                   [Page 16]</span></pre>
+         the form &lt;length, prefix&gt;, whose fields are described below:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Length (1 octet)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Prefix (variable)</div></div></div>
+</figure><pre>Rekhter &amp; Li                                                   [Page 16]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 17</span>
@@ -1106,8 +1027,7 @@ Abstract
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 18</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1771">RFC 1771</a>                         BGP-4                        March 1995</span>
+  <pre>RFC 1771                         BGP-4                        March 1995
 
 
    messages as a function of the Hold Time interval.
@@ -1118,7 +1038,7 @@ Abstract
    KEEPALIVE message consists of only message header and has a length of
    19 octets.
 
-<span><a href="#section-4.5">4.5</a> NOTIFICATION Message Format</span>
+4.5 NOTIFICATION Message Format
 
    A NOTIFICATION message is sent when an error condition is detected.
    The BGP connection is closed immediately after sending it.
@@ -1126,32 +1046,27 @@ Abstract
    In addition to the fixed-size BGP header, the NOTIFICATION message
    contains the following fields:
 
-        0                   1                   2                   3
-        0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       | Error code    | Error subcode |           Data                |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+                               +
-       |                                                               |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-      Error Code:
+        0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Error code</div><div class="modern-diagram-cell">Error subcode</div><div class="modern-diagram-cell">Data</div></div></div>
+</figure><pre>      Error Code:
 
          This 1-octet unsigned integer indicates the type of
          NOTIFICATION.  The following Error Codes have been defined:
 
             Error Code       Symbolic Name               Reference
 
-              1         Message Header Error             <a href="#section-6.1">Section 6.1</a>
+              1         Message Header Error             Section 6.1
 
-              2         OPEN Message Error               <a href="#section-6.2">Section 6.2</a>
+              2         OPEN Message Error               Section 6.2
 
-              3         UPDATE Message Error             <a href="#section-6.3">Section 6.3</a>
+              3         UPDATE Message Error             Section 6.3
 
-              4         Hold Timer Expired               <a href="#section-6.5">Section 6.5</a>
+              4         Hold Timer Expired               Section 6.5
 
-              5         Finite State Machine Error       <a href="#section-6.6">Section 6.6</a>
+              5         Finite State Machine Error       Section 6.6
 
-              6         Cease                            <a href="#section-6.7">Section 6.7</a>
+              6         Cease                            Section 6.7
 
       Error subcode:
 
@@ -1161,7 +1076,7 @@ Abstract
 
 
 
-<span>Rekhter &amp; Li                                                   [Page 18]</span></pre>
+Rekhter &amp; Li                                                   [Page 18]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 19</span>
@@ -3086,47 +3001,17 @@ Appendix 1.  BGP FSM State Transitions and Actions.
   <div class="rfc-page-top">
     <span class="rfc-page-label">Appendix</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1771">RFC 1771</a>                         BGP-4                        March 1995</span>
+  <pre>RFC 1771                         BGP-4                        March 1995
 
 
       The following is a condensed version of the above state transition
-      table.
+      table.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 7"><div class="modern-diagram-cell">Events</div><div class="modern-diagram-cell">Idle</div><div class="modern-diagram-cell">Connect</div><div class="modern-diagram-cell">Active</div><div class="modern-diagram-cell">OpenSent</div><div class="modern-diagram-cell">OpenConfirm</div><div class="modern-diagram-cell">Estab</div></div><div class="modern-diagram-row" style="--cell-count: 6"><div class="modern-diagram-cell">(1)</div><div class="modern-diagram-cell">(2)</div><div class="modern-diagram-cell">(3)</div><div class="modern-diagram-cell">(4)</div><div class="modern-diagram-cell">(5)</div><div class="modern-diagram-cell">(6)</div></div><div class="modern-diagram-row" style="--cell-count: 7"><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">2</div><div class="modern-diagram-cell">2</div><div class="modern-diagram-cell">3</div><div class="modern-diagram-cell">4</div><div class="modern-diagram-cell">5</div><div class="modern-diagram-cell">6</div></div><div class="modern-diagram-row" style="--cell-count: 7"><div class="modern-diagram-cell">2</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1</div></div><div class="modern-diagram-row" style="--cell-count: 7"><div class="modern-diagram-cell">3</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">4</div><div class="modern-diagram-cell">4</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1</div></div><div class="modern-diagram-row" style="--cell-count: 7"><div class="modern-diagram-cell">4</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">3</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1</div></div><div class="modern-diagram-row" style="--cell-count: 7"><div class="modern-diagram-cell">5</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">3</div><div class="modern-diagram-cell">3</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1</div></div><div class="modern-diagram-row" style="--cell-count: 7"><div class="modern-diagram-cell">6</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1</div></div><div class="modern-diagram-row" style="--cell-count: 7"><div class="modern-diagram-cell">7</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">2</div><div class="modern-diagram-cell">2</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1</div></div><div class="modern-diagram-row" style="--cell-count: 7"><div class="modern-diagram-cell">8</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1</div></div><div class="modern-diagram-row" style="--cell-count: 7"><div class="modern-diagram-cell">9</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">5</div><div class="modern-diagram-cell">6</div></div><div class="modern-diagram-row" style="--cell-count: 7"><div class="modern-diagram-cell">10</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1 or 5</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1</div></div><div class="modern-diagram-row" style="--cell-count: 7"><div class="modern-diagram-cell">11</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">6</div><div class="modern-diagram-cell">6</div></div><div class="modern-diagram-row" style="--cell-count: 7"><div class="modern-diagram-cell">12</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1 or 6</div></div><div class="modern-diagram-row" style="--cell-count: 7"><div class="modern-diagram-cell">13</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">1</div></div></div>
+</figure><pre>         ---------------------------------------------------------------
 
 
-   Events| Idle | Connect | Active | OpenSent | OpenConfirm | Estab
-         | (1)  |   (2)   |  (3)   |    (4)   |     (5)     |   (6)
-         |--------------------------------------------------------------
-    1    |  2   |    2    |   3    |     4    |      5      |    6
-         |      |         |        |          |             |
-    2    |  1   |    1    |   1    |     1    |      1      |    1
-         |      |         |        |          |             |
-    3    |  1   |    4    |   4    |     1    |      1      |    1
-         |      |         |        |          |             |
-    4    |  1   |    1    |   1    |     3    |      1      |    1
-         |      |         |        |          |             |
-    5    |  1   |    3    |   3    |     1    |      1      |    1
-         |      |         |        |          |             |
-    6    |  1   |    1    |   1    |     1    |      1      |    1
-         |      |         |        |          |             |
-    7    |  1   |    2    |   2    |     1    |      1      |    1
-         |      |         |        |          |             |
-    8    |  1   |    1    |   1    |     1    |      1      |    1
-         |      |         |        |          |             |
-    9    |  1   |    1    |   1    |     1    |      5      |    6
-         |      |         |        |          |             |
-   10    |  1   |    1    |   1    |  1 or 5  |      1      |    1
-         |      |         |        |          |             |
-   11    |  1   |    1    |   1    |     1    |      6      |    6
-         |      |         |        |          |             |
-   12    |  1   |    1    |   1    |     1    |      1      | 1 or 6
-         |      |         |        |          |             |
-   13    |  1   |    1    |   1    |     1    |      1      |    1
-         |      |         |        |          |             |
-         ---------------------------------------------------------------
-
-
-Appendix 2. Comparison with <a href="./rfc1267">RFC1267</a>
+Appendix 2. Comparison with RFC1267
 
    BGP-4 is capable of operating in an environment where a set of
    reachable destinations may be expressed via a single IP prefix.  The
@@ -3134,14 +3019,14 @@ Appendix 2. Comparison with <a href="./rfc1267">RFC1267</a>
    accommodate these capabilities BGP-4 changes semantics and encoding
    associated with the AS_PATH attribute. New text has been added to
    define semantics associated with IP prefixes.  These abilities allow
-   BGP-4 to support the proposed supernetting scheme [<a href="#ref-9" title="&quot;An Architecture for IP Address Allocation with CIDR&quot;">9</a>].
+   BGP-4 to support the proposed supernetting scheme [9].
 
    To simplify configuration this version introduces a new attribute,
    LOCAL_PREF, that facilitates route selection procedures.
 
 
 
-<span>Rekhter &amp; Li                                                   [Page 51]</span></pre>
+Rekhter &amp; Li                                                   [Page 51]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Appendix</span>

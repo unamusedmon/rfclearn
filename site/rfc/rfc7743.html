@@ -266,49 +266,34 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 4</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc7743">RFC 7743</a>            MPLS LSP Ping Relayed Echo Reply        January 2016</span>
+  <pre>RFC 7743            MPLS LSP Ping Relayed Echo Reply        January 2016
 
 
    detect a path break, as the Echo Reply messages would not be
    received.  Then, localization of the actual fault would not be
    possible.
 
-   Note that throughout the document, "routable address" means that it
+   Note that throughout the document, &quot;routable address&quot; means that it
    is possible to route an IP packet to this address using the normal
    information exchanged by the IGP and BGP (or EGP) operating in the
-   AS.
-
-   +-------+   +-------+   +------+   +------+   +------+   +------+
-   |       |   |       |   |      |   |      |   |      |   |      |
-   |  PE1  +---+   P1  +---+ ASBR1+---+ ASBR2+---+  P2  +---+  PE2 |
-   |       |   |       |   |      |   |      |   |      |   |      |
-   +-------+   +-------+   +------+   +------+   +------+   +------+
-   &lt;---------------AS1-------------&gt;&lt;---------------AS2------------&gt;
+   AS.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">PE1  +---+   P1  +---+ ASBR1+---+ ASBR2+---+  P2  +---+  PE2</div></div></div>
+</figure><pre>   &lt;---------------AS1-------------&gt;&lt;---------------AS2------------&gt;
    &lt;---------------------------- LSP ------------------------------&gt;
 
                 Figure 1: Simple Inter-AS LSP Configuration
 
-   A second example that illustrates how [<a href="./rfc4379" title="&quot;Detecting Multi-Protocol Label Switched (MPLS) Data Plane Failures&quot;">RFC4379</a>] would be insufficient
+   A second example that illustrates how [RFC4379] would be insufficient
    would be the inter-area situation in a seamless MPLS architecture
-   [<a href="#ref-MPLSARCH" title="&quot;Seamless MPLS Architecture&quot;">MPLSARCH</a>] as shown below in Figure 2.  In this example, LSRs in the
+   [MPLSARCH] as shown below in Figure 2.  In this example, LSRs in the
    core network would not have an IP-reachable route to any of the
    access nodes (ANs).  When tracing an LSP from one AN to the remote
    AN, the LSR1/LSR2 node cannot send the Echo Reply either, like the P2
-   node in the inter-AS scenario in Figure 1.
-
-              +-------+   +-------+   +------+   +------+
-              |       |   |       |   |      |   |      |
-           +--+ AGN11 +---+ AGN21 +---+ ABR1 +---+ LSR1 +--&gt; to AGN
-          /   |       |  /|       |   |      |   |      |
-   +----+/    +-------+\/ +-------+   +------+  /+------+
-   | AN |              /\                     \/
-   +----+\    +-------+  \+-------+   +------+/\ +------+
-          \   |       |   |       |   |      |  \|      |
-           +--+ AGN12 +---+ AGN22 +---+ ABR2 +---+ LSR2 +--&gt; to AGN
-              |       |   |       |   |      |   |      |
-              +-------+   +-------+   +------+   +------+
-   static route    IS-IS L1 LDP            IS-IS L2 LDP
+   node in the inter-AS scenario in Figure 1.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">+--+ AGN11 +---+ AGN21 +---+ ABR1 +---+ LSR1 +--&gt; to AGN</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">AN</div><div class="modern-diagram-cell">/\                     \/</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">+--+ AGN12 +---+ AGN22 +---+ ABR2 +---+ LSR2 +--&gt; to AGN</div></div></div>
+</figure><pre>   static route    IS-IS L1 LDP            IS-IS L2 LDP
    &lt;-Access-&gt;&lt;--Aggregation Domain--&gt;&lt;---------Core---------&gt;
 
    AGN: aggregation node
@@ -321,7 +306,7 @@ Table of Contents
 
 
 
-<span>Luo, et al.                  Standards Track                    [Page 4]</span></pre>
+Luo, et al.                  Standards Track                    [Page 4]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 5</span>
@@ -386,41 +371,28 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 6</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc7743">RFC 7743</a>            MPLS LSP Ping Relayed Echo Reply        January 2016</span>
+  <pre>RFC 7743            MPLS LSP Ping Relayed Echo Reply        January 2016
 
 
-   The use of TCP and UDP port number 3503 is described in [<a href="./rfc4379" title="&quot;Detecting Multi-Protocol Label Switched (MPLS) Data Plane Failures&quot;">RFC4379</a>] and
+   The use of TCP and UDP port number 3503 is described in [RFC4379] and
    has been allocated by IANA for LSP Ping messages.  The Relayed Echo
    Reply message will use the same port number.
 
-<span><a href="#section-3.2">3.2</a>.  Relay Node Address Stack</span>
+3.2.  Relay Node Address Stack
 
    The Relay Node Address Stack TLV is an optional TLV.  It MUST be
    carried in the Echo Request, Echo Reply, and Relayed Echo Reply
    messages if the Echo Reply relayed mechanism described in this
    document is required.  Figure 3 illustrates the TLV format.
 
-      0                   1                   2                   3
-      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |                Type           |               Length          |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |   Initiator Source Port       | Reply Add Type|   Reserved    |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |    Source Address of Replying Router (0, 4, or 16 octets)     |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |  Destination Address Offset   |   Number of Relayed Addresses |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |                                                               |
-     ~                Stack of Relayed Addresses                     ~
-     |                                                               |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-                  Figure 3: Relay Node Address Stack TLV
+      0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Type</div><div class="modern-diagram-cell">Length</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Initiator Source Port</div><div class="modern-diagram-cell">Reply Add Type</div><div class="modern-diagram-cell">Reserved</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Source Address of Replying Router (0, 4, or 16 octets)</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Destination Address Offset</div><div class="modern-diagram-cell">Number of Relayed Addresses</div></div></div>
+</figure><pre>     ~                Stack of Relayed Addresses                     ~</pre><pre>     |                                                               |
+     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>                  Figure 3: Relay Node Address Stack TLV
 
    -  Type: Value is 32768.  The value has been assigned by IANA from
-      the 32768-49161 range as suggested by <a href="./rfc4379#section-3">[RFC4379], Section&nbsp;3</a>.
+      the 32768-49161 range as suggested by [RFC4379], Section 3.
 
    -  Length: The length of the value field in octets.
 
@@ -441,13 +413,12 @@ Table of Contents
 
 
 
-<span>Luo, et al.                  Standards Track                    [Page 6]</span></pre>
+Luo, et al.                  Standards Track                    [Page 6]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 7</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc7743">RFC 7743</a>            MPLS LSP Ping Relayed Echo Reply        January 2016</span>
+  <pre>RFC 7743            MPLS LSP Ping Relayed Echo Reply        January 2016
 
 
    -  Reserved: This field is reserved and MUST be set to zero.
@@ -457,7 +428,7 @@ Table of Contents
 
    -  Destination Address Offset: The offset in octets from the top-of-
       stack to the destination address entry.  Each entry size has been
-      listed in this section.  Please also refer to <a href="#section-4.2">Section 4.2</a> for more
+      listed in this section.  Please also refer to Section 4.2 for more
       detail of the operation.
 
    -  Number of Relayed Addresses: An integer indicating the number of
@@ -466,19 +437,14 @@ Table of Contents
    -  Stack of Relayed Addresses: A list of relay node address entries.
       This stack grows downward, with relay node addresses that are
       further along the LSP appearing lower down in the stack.  Please
-      refer to <a href="#section-4.2">Section 4.2</a> for the relay node discovery mechanism.
+      refer to Section 4.2 for the relay node discovery mechanism.
 
    The format of each relay node address entry is as below:
 
-      0                   1                   2                   3
-      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     | Address  Type |K|  Reserved   |          Reserved             |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     ~           Relayed Address (0, 4, or 16 octets)                ~
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-                    Figure 4: Relay Node Address Entry
+      0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Address  Type</div><div class="modern-diagram-cell">K</div><div class="modern-diagram-cell">Reserved</div><div class="modern-diagram-cell">Reserved</div></div></div>
+</figure><pre>     ~           Relayed Address (0, 4, or 16 octets)                ~</pre><pre>     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>                    Figure 4: Relay Node Address Entry
 
    Type#   Address Type   Address Length   Size of the Entry
    ----    ------------   ------------     -----------------
@@ -490,9 +456,9 @@ Table of Contents
 
    K bit: If the K bit is set to 1, then this address stack entry MUST
    NOT be stripped from the Relay Node Address Stack during the
-   processing described in <a href="#section-4.2">Section 4.2</a>.  If the K bit is clear, the
+   processing described in Section 4.2.  If the K bit is clear, the
    entry might be stripped according to the processing described in
-   <a href="#section-4.2">Section 4.2</a>.
+   Section 4.2.
 
    Having the K bit set in the relay node address entry causes that
    entry to be preserved in the Relay Node Address Stack TLV for the
@@ -501,7 +467,7 @@ Table of Contents
 
 
 
-<span>Luo, et al.                  Standards Track                    [Page 7]</span></pre>
+Luo, et al.                  Standards Track                    [Page 7]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 8</span>
@@ -806,43 +772,38 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 13</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc7743">RFC 7743</a>            MPLS LSP Ping Relayed Echo Reply        January 2016</span>
+  <pre>RFC 7743            MPLS LSP Ping Relayed Echo Reply        January 2016
 
 
-<span><a href="#section-5">5</a>.  LSP Ping Relayed Echo Reply Example</span>
+5.  LSP Ping Relayed Echo Reply Example
 
    Considering the inter-AS scenario in Figure 5 below, AS1 and AS2 are
    two independent address domains.  In the example, an LSP has been
    created between PE1 to PE2, but PE1 in AS1 is not reachable by P2 in
-   AS2.
-
-   +-------+   +-------+   +------+   +------+   +------+   +------+
-   |       |   |       |   |      |   |      |   |      |   |      |
-   |  PE1  +---+   P1  +---+ ASBR1+---+ ASBR2+---+  P2  +---+  PE2 |
-   |       |   |       |   |      |   |      |   |      |   |      |
-   +-------+   +-------+   +------+   +------+   +------+   +------+
-   &lt;---------------AS1-------------&gt;&lt;---------------AS2------------&gt;
+   AS2.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">PE1  +---+   P1  +---+ ASBR1+---+ ASBR2+---+  P2  +---+  PE2</div></div></div>
+</figure><pre>   &lt;---------------AS1-------------&gt;&lt;---------------AS2------------&gt;
    &lt;--------------------------- LSP -------------------------------&gt;
 
                       Figure 5: Example Inter-AS LSP
 
    When performing LSP traceroute on the LSP, the first Echo Request
    sent by PE1 with outermost label TTL=1 contains the Relay Node
-   Address Stack TLV with PE1's address as the first relayed address.
+   Address Stack TLV with PE1&#x27;s address as the first relayed address.
 
-   After being processed by P1, P1's interface address facing ASBR1
+   After being processed by P1, P1&#x27;s interface address facing ASBR1
    without the K bit set will be added in the Relay Node Address Stack
-   TLV address list following PE1's address in the Echo Reply.
+   TLV address list following PE1&#x27;s address in the Echo Reply.
 
    PE1 copies the Relay Node Address Stack TLV into the next Echo
    Request when receiving the Echo Reply.
 
    Upon receiving the Echo Request, ASBR1 checks the address list in the
-   Relay Node Address Stack TLV and determines that PE1's address is the
-   next relay address.  Then it deletes P1's address, and adds its
+   Relay Node Address Stack TLV and determines that PE1&#x27;s address is the
+   next relay address.  Then it deletes P1&#x27;s address, and adds its
    interface address facing ASBR2 with the K bit set.  As a result,
-   there will be PE1's address followed by ASBR1's interface address
+   there will be PE1&#x27;s address followed by ASBR1&#x27;s interface address
    facing ASBR2 in the Relay Node Address Stack TLV of the Echo Reply
    sent by ASBR1.
 
@@ -850,7 +811,7 @@ Table of Contents
    the Relay Node Address Stack TLV copied from the received Echo Reply
    message.  Upon receiving the Echo Request message, ASBR2 checks the
    address list in the Relay Node Address Stack TLV and determines that
-   ASBR1's interface address is the next relay address in the stack TLV.
+   ASBR1&#x27;s interface address is the next relay address in the stack TLV.
    ASBR2 adds its interface address facing P2 with the K bit set.  Then
    ASBR2 sets the next relay address as the destination address of the
    Relayed Echo Reply and sends the Relayed Echo Reply to ASBR1.
@@ -861,7 +822,7 @@ Table of Contents
 
 
 
-<span>Luo, et al.                  Standards Track                   [Page 13]</span></pre>
+Luo, et al.                  Standards Track                   [Page 13]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 14</span>

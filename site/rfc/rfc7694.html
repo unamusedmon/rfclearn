@@ -326,122 +326,101 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 5</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc7694">RFC 7694</a>                        HTTP CICE                  November 2015</span>
+  <pre>RFC 7694                        HTTP CICE                  November 2015
 
 
    Servers that do support some content codings are required to fail
    requests with unsupported content codings as well.  To be compliant
    with this specification, servers will need to use the status code 415
    (Unsupported Media Type) to signal the problem and will have to
-   include an "Accept-Encoding" header field that enumerates the content
+   include an &quot;Accept-Encoding&quot; header field that enumerates the content
    codings that are supported.  As the set of supported content codings
    is usually static and small, adding the header field ought to be
    trivial.
 
-<span><a href="#section-6">6</a>.  Security Considerations</span>
+6.  Security Considerations
 
    This specification only adds discovery of supported content codings
    and diagnostics for requests failing due to unsupported content
-   codings.  As such, it doesn't introduce any new security
-   considerations over those already present in HTTP/1.1 (<a href="./rfc7231#section-9">Section&nbsp;9 of
-   [RFC7231]</a>) and HTTP/2 (<a href="./rfc7540#section-10">Section&nbsp;10 of [RFC7540]</a>).
+   codings.  As such, it doesn&#x27;t introduce any new security
+   considerations over those already present in HTTP/1.1 (Section 9 of
+   [RFC7231]) and HTTP/2 (Section 10 of [RFC7540]).
 
    However, the point of better discoverability and diagnostics is to
    make it easier to use content codings in requests.  This might lead
-   to increased usage of compression codings such as gzip (<a href="./rfc7230#section-4.2">Section&nbsp;4.2
-   of [RFC7230]</a>), which, when used over a secure channel, can enable
-   side-channel attacks such as BREACH (see <a href="./rfc7540#section-10.6">Section&nbsp;10.6 of [RFC7540]</a>
-   and [<a href="#ref-BREACH" title="&quot;BREACH: Reviving the CRIME Attack&quot;">BREACH</a>]).  At the time of publication, it was unclear how
+   to increased usage of compression codings such as gzip (Section 4.2
+   of [RFC7230]), which, when used over a secure channel, can enable
+   side-channel attacks such as BREACH (see Section 10.6 of [RFC7540]
+   and [BREACH]).  At the time of publication, it was unclear how
    BREACH-like attacks can be applied to compression in HTTP requests.
 
-<span><a href="#section-7">7</a>.  IANA Considerations</span>
+7.  IANA Considerations
 
-<span><a href="#section-7.1">7.1</a>.  Header Field Registry</span>
+7.1.  Header Field Registry
 
-   HTTP header fields are registered within the "Message Headers"
-   registry located at &lt;<a>http://www.iana.org/assignments/</a>
-   <a>message-headers</a>&gt;, as defined by [<a href="#ref-BCP90" title="&quot;Registration Procedures for Message Header Fields&quot;">BCP90</a>].
+   HTTP header fields are registered within the &quot;Message Headers&quot;
+   registry located at &lt;http://www.iana.org/assignments/
+   message-headers&gt;, as defined by [BCP90].
 
-   This document updates the definition of the "Accept-Encoding" header
-   field.  The "Permanent Message Header Field Names" registry has been
-   updated as follows:
-
-   +-----------------+----------+----------+---------------------------+
-   | Header Field    | Protocol | Status   | Reference                 |
-   | Name            |          |          |                           |
-   +-----------------+----------+----------+---------------------------+
-   | Accept-Encoding | http     | standard | <a href="#section-5.3.4">Section 5.3.4</a> of          |
-   |                 |          |          | [<a href="./rfc7231" title="&quot;Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content&quot;">RFC7231</a>] and <a href="#section-3">Section 3</a>   |
-   |                 |          |          | of this document          |
-   +-----------------+----------+----------+---------------------------+
-
-
-
-
-
-
-<span>Reschke                      Standards Track                    [Page 5]</span></pre>
+   This document updates the definition of the &quot;Accept-Encoding&quot; header
+   field.  The &quot;Permanent Message Header Field Names&quot; registry has been
+   updated as follows:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Header Field</div><div class="modern-diagram-cell">Protocol</div><div class="modern-diagram-cell">Status</div><div class="modern-diagram-cell">Reference</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Name</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Accept-Encoding</div><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">standard</div><div class="modern-diagram-cell">Section 5.3.4 of</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">[RFC7231] and Section 3</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">of this document</div></div></div>
+</figure><pre>Reschke                      Standards Track                    [Page 5]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 6</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc7694">RFC 7694</a>                        HTTP CICE                  November 2015</span>
+  <pre>RFC 7694                        HTTP CICE                  November 2015
 
 
-<span><a href="#section-7.2">7.2</a>.  Status Code Registry</span>
+7.2.  Status Code Registry
 
-   HTTP status codes are registered within the "HTTP Status Codes"
-   registry located at &lt;<a>http://www.iana.org/assignments/</a>
-   <a>http-status-codes</a>&gt;.
+   HTTP status codes are registered within the &quot;HTTP Status Codes&quot;
+   registry located at &lt;http://www.iana.org/assignments/
+   http-status-codes&gt;.
 
    This document updates the definition of the status code 415
-   (Unsupported Media Type).  The "HTTP Status Codes" registry has been
-   updated as follows:
+   (Unsupported Media Type).  The &quot;HTTP Status Codes&quot; registry has been
+   updated as follows:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Value</div><div class="modern-diagram-cell">Description</div><div class="modern-diagram-cell">Reference</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">415</div><div class="modern-diagram-cell">Unsupported</div><div class="modern-diagram-cell">Section 6.5.13 of [RFC7231] and Section</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Media Type</div><div class="modern-diagram-cell">3 of this document</div></div></div>
+</figure><pre>8.  References
 
-   +-------+-----------------+-----------------------------------------+
-   | Value | Description     | Reference                               |
-   +-------+-----------------+-----------------------------------------+
-   | 415   | Unsupported     | <a href="./rfc7231#section-6.5.13">Section&nbsp;6.5.13 of [RFC7231]</a> and Section |
-   |       | Media Type      | 3 of this document                      |
-   +-------+-----------------+-----------------------------------------+
+8.1.  Normative References
 
-<span><a href="#section-8">8</a>.  References</span>
-
-<span><a href="#section-8.1">8.1</a>.  Normative References</span>
-
-   [<a>RFC2119</a>]  Bradner, S., "Key words for use in RFCs to Indicate
-              Requirement Levels", <a>BCP 14</a>, <a href="./rfc2119">RFC 2119</a>,
+   [RFC2119]  Bradner, S., &quot;Key words for use in RFCs to Indicate
+              Requirement Levels&quot;, BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
-              &lt;<a>http://www.rfc-editor.org/info/rfc2119</a>&gt;.
+              &lt;http://www.rfc-editor.org/info/rfc2119&gt;.
 
-   [<a>RFC7230</a>]  Fielding, R., Ed. and J. Reschke, Ed., "Hypertext Transfer
-              Protocol (HTTP/1.1): Message Syntax and Routing",
-              <a href="./rfc7230">RFC 7230</a>, DOI 10.17487/RFC7230, June 2014,
-              &lt;<a>http://www.rfc-editor.org/info/rfc7230</a>&gt;.
+   [RFC7230]  Fielding, R., Ed. and J. Reschke, Ed., &quot;Hypertext Transfer
+              Protocol (HTTP/1.1): Message Syntax and Routing&quot;,
+              RFC 7230, DOI 10.17487/RFC7230, June 2014,
+              &lt;http://www.rfc-editor.org/info/rfc7230&gt;.
 
-   [<a>RFC7231</a>]  Fielding, R., Ed. and J. Reschke, Ed., "Hypertext Transfer
-              Protocol (HTTP/1.1): Semantics and Content", <a href="./rfc7231">RFC 7231</a>,
+   [RFC7231]  Fielding, R., Ed. and J. Reschke, Ed., &quot;Hypertext Transfer
+              Protocol (HTTP/1.1): Semantics and Content&quot;, RFC 7231,
               DOI 10.17487/RFC7231, June 2014,
-              &lt;<a>http://www.rfc-editor.org/info/rfc7231</a>&gt;.
+              &lt;http://www.rfc-editor.org/info/rfc7231&gt;.
 
-<span><a href="#section-8.2">8.2</a>.  Informative References</span>
+8.2.  Informative References
 
-   [<a>BCP90</a>]    Klyne, G., Nottingham, M., and J. Mogul, "Registration
-              Procedures for Message Header Fields", <a>BCP 90</a>, <a href="./rfc3864">RFC 3864</a>,
-              September 2004, &lt;<a>http://www.rfc-editor.org/info/bcp90</a>&gt;.
+   [BCP90]    Klyne, G., Nottingham, M., and J. Mogul, &quot;Registration
+              Procedures for Message Header Fields&quot;, BCP 90, RFC 3864,
+              September 2004, &lt;http://www.rfc-editor.org/info/bcp90&gt;.
 
-   [<a>BREACH</a>]   Gluck, Y., Harris, N., and A. Prado, "BREACH: Reviving the
-              CRIME Attack", July 2013,
-              &lt;<a>http://breachattack.com/resources/</a>
+   [BREACH]   Gluck, Y., Harris, N., and A. Prado, &quot;BREACH: Reviving the
+              CRIME Attack&quot;, July 2013,
+              &lt;http://breachattack.com/resources/
               BREACH%20-%20SSL,%20gone%20in%2030%20seconds.pdf&gt;.
 
 
 
 
 
-<span>Reschke                      Standards Track                    [Page 6]</span></pre>
+Reschke                      Standards Track                    [Page 6]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 7</span>

@@ -568,27 +568,17 @@
 </dd>
         <dd></dd>
 </dl>
-<div></div><pre>
-                         1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 3 3
-     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    /                         Algorithm Name                        /
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                                                               |
-    |          Time Signed          +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                               |            Fudge              |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |          MAC Size             |                               /
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+             MAC               /
-    /                                                               /
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |          Original ID          |            Error              |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |          Other Len            |                               /
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+           Other Data          /
-    /                                                               /
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-</pre><a href="#section-4.2-3">¶</a>
+<div>
+<figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 3 3</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div></div>
+</figure></div><pre>    /                         Algorithm Name                        /</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Time Signed          +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Fudge</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">MAC Size</div><div class="modern-diagram-cell">/</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+             MAC               /</div></div></div>
+</figure><pre>    /                                                               /</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Original ID</div><div class="modern-diagram-cell">Error</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Other Len</div><div class="modern-diagram-cell">/</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+           Other Data          /</div></div></div>
+</figure><pre>    /                                                               /</pre><pre>    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><a href="#section-4.2-3">¶</a>
 </div>
 <p>The contents of the RDATA fields are:<a href="#section-4.2-4">¶</a></p>
 <span></span><dl>

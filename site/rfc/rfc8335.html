@@ -326,11 +326,10 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 5</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8335">RFC 8335</a>                          PROBE                    February 2018</span>
+  <pre>RFC 8335                          PROBE                    February 2018
 
 
-<span><a href="#section-2">2</a>.  ICMP Extended Echo Request</span>
+2.  ICMP Extended Echo Request
 
    The ICMP Extended Echo Request message is defined for both ICMPv4 and
    ICMPv6.  Like any ICMP message, the ICMP Extended Echo Request
@@ -340,14 +339,10 @@ Table of Contents
 
    Figure 1 depicts the ICMP Extended Echo Request message.
 
-       0                   1                   2                   3
-       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |     Type      |     Code      |          Checksum             |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |           Identifier          |Sequence Number|   Reserved  |L|
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |   ICMP Extension Structure
+       0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Type</div><div class="modern-diagram-cell">Code</div><div class="modern-diagram-cell">Checksum</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Identifier</div><div class="modern-diagram-cell">Sequence Number</div><div class="modern-diagram-cell">Reserved</div><div class="modern-diagram-cell">L</div></div></div>
+</figure><pre>      |   ICMP Extension Structure
 
                Figure 1: ICMP Extended Echo Request Message
 
@@ -366,7 +361,7 @@ Table of Contents
 
    o  Code: MUST be set to 0 and MUST be ignored upon receipt.
 
-   o  Checksum: For ICMPv4, see <a href="./rfc792">RFC 792</a>.  For ICMPv6, see <a href="./rfc4443">RFC 4443</a>.
+   o  Checksum: For ICMPv4, see RFC 792.  For ICMPv6, see RFC 4443.
 
    o  Identifier: An Identifier to aid in matching Extended Echo Replies
       to Extended Echo Requests.  May be 0.
@@ -381,7 +376,7 @@ Table of Contents
 
 
 
-<span>Bonica, et al.               Standards Track                    [Page 5]</span></pre>
+Bonica, et al.               Standards Track                    [Page 5]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 6</span>
@@ -446,29 +441,26 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 7</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8335">RFC 8335</a>                          PROBE                    February 2018</span>
+  <pre>RFC 8335                          PROBE                    February 2018
 
 
    If the Interface Identification Object identifies the probed
    interface by name, the Object Payload MUST be the interface name as
-   defined in [<a href="./rfc7223" title="&quot;A YANG Data Model for Interface Management&quot;">RFC7223</a>].  If the Object Payload would not otherwise
+   defined in [RFC7223].  If the Object Payload would not otherwise
    terminate on a 32-bit boundary, it MUST be padded with ASCII NULL
    characters.
 
    If the Interface Identification Object identifies the probed
    interface by index, the length is equal to 8 and the payload contains
-   the if-index [<a href="./rfc7223" title="&quot;A YANG Data Model for Interface Management&quot;">RFC7223</a>].
+   the if-index [RFC7223].
 
    If the Interface Identification Object identifies the probed
    interface by address, the payload is as depicted in Figure 2.
 
-    0                   1                   2                   3
-    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |            AFI                | Address Length|   Reserved    |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                Address   ....
+    0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">AFI</div><div class="modern-diagram-cell">Address Length</div><div class="modern-diagram-cell">Reserved</div></div></div>
+</figure><pre>   |                Address   ....
 
        Figure 2: Interface Identification Object - C-Type 3 Payload
 
@@ -477,7 +469,7 @@ Table of Contents
    o  Address Family Identifier (AFI): This 16-bit field identifies the
       type of address represented by the Address field.  All values
       found in the IANA registry of Address Family Numbers (available
-      from &lt;<a>https://www.iana.org/assignments/address-family-numbers</a>&gt;)
+      from &lt;https://www.iana.org/assignments/address-family-numbers&gt;)
       are valid in this field.
 
    o  Address Length: Number of significant bytes contained by the
@@ -491,7 +483,7 @@ Table of Contents
       not otherwise terminate on a 32-bit boundary, it MUST be padded
       with zeroes.
 
-<span><a href="#section-3">3</a>.  ICMP Extended Echo Reply</span>
+3.  ICMP Extended Echo Reply
 
    The ICMP Extended Echo Reply message is defined for both ICMPv4 and
    ICMPv6.  Like any ICMP message, the ICMP Extended Echo Reply message
@@ -501,26 +493,20 @@ Table of Contents
 
 
 
-<span>Bonica, et al.               Standards Track                    [Page 7]</span></pre>
+Bonica, et al.               Standards Track                    [Page 7]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 8</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8335">RFC 8335</a>                          PROBE                    February 2018</span>
+  <pre>RFC 8335                          PROBE                    February 2018
 
 
    Figure 3 depicts the ICMP Extended Echo Reply message.
 
-       0                   1                   2                   3
-       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |     Type      |     Code      |          Checksum             |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |           Identifier          |Sequence Number|State|Res|A|4|6|
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-                Figure 3: ICMP Extended Echo Reply Message
+       0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Type</div><div class="modern-diagram-cell">Code</div><div class="modern-diagram-cell">Checksum</div></div><div class="modern-diagram-row" style="--cell-count: 7"><div class="modern-diagram-cell">Identifier</div><div class="modern-diagram-cell">Sequence Number</div><div class="modern-diagram-cell">State</div><div class="modern-diagram-cell">Res</div><div class="modern-diagram-cell">A</div><div class="modern-diagram-cell">4</div><div class="modern-diagram-cell">6</div></div></div>
+</figure><pre>                Figure 3: ICMP Extended Echo Reply Message
 
    IP Header fields:
 
@@ -539,7 +525,7 @@ Table of Contents
       Interface, (3) No Such Table Entry, and (4) Multiple Interfaces
       Satisfy Query.
 
-   o  Checksum: For ICMPv4, see <a href="./rfc792">RFC 792</a>.  For ICMPv6, see <a href="./rfc4443">RFC 4443</a>.
+   o  Checksum: For ICMPv4, see RFC 792.  For ICMPv6, see RFC 4443.
 
    o  Identifier: Copied from the Identifier field of the invoking
       Extended Echo Request packet.
@@ -561,7 +547,7 @@ Table of Contents
 
 
 
-<span>Bonica, et al.               Standards Track                    [Page 8]</span></pre>
+Bonica, et al.               Standards Track                    [Page 8]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 9</span>

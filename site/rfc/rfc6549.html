@@ -206,17 +206,16 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 3</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc6549">RFC 6549</a>            OSPFv2 Multi-Instance Extensions          March 2012</span>
+  <pre>RFC 6549            OSPFv2 Multi-Instance Extensions          March 2012
 
 
-<span><a href="#section-1.1">1.1</a>.  Requirements Notation</span>
+1.1.  Requirements Notation
 
-   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
-   "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
-   document are to be interpreted as described in [<a href="#ref-RFC-KEYWORDS">RFC-KEYWORDS</a>].
+   The key words &quot;MUST&quot;, &quot;MUST NOT&quot;, &quot;REQUIRED&quot;, &quot;SHALL&quot;, &quot;SHALL NOT&quot;,
+   &quot;SHOULD&quot;, &quot;SHOULD NOT&quot;, &quot;RECOMMENDED&quot;, &quot;MAY&quot;, and &quot;OPTIONAL&quot; in this
+   document are to be interpreted as described in [RFC-KEYWORDS].
 
-<span><a href="#section-2">2</a>.  OSPFv2 Instance Packet Encoding</span>
+2.  OSPFv2 Instance Packet Encoding
 
    This document extends OSPFv2 with a mechanism to differentiate
    packets for different instances sent and received on the same
@@ -224,25 +223,12 @@ Table of Contents
    format with the Authentication Type field split into an Instance ID
    and AuType.
 
-       0                   1                   2                   3
-       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |   Version #   |     Type      |         Packet length         |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                         Router ID                             |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                          Area ID                              |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |          Checksum             |  Instance ID  |  AuType       |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                     Authentication                            |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                     Authentication                            |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+       0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Version #</div><div class="modern-diagram-cell">Type</div><div class="modern-diagram-cell">Packet length</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Router ID</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Area ID</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Checksum</div><div class="modern-diagram-cell">Instance ID</div><div class="modern-diagram-cell">AuType</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Authentication</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Authentication</div></div></div>
+</figure><pre>                           The OSPFv2 Packet Header
 
-                           The OSPFv2 Packet Header
-
-   All fields are as defined in [<a href="#ref-OSPFV2" title="&quot;OSPF Version 2&quot;">OSPFV2</a>] except that the Instance ID
+   All fields are as defined in [OSPFV2] except that the Instance ID
    field is new, and the AuType field is reduced to 8 bits from 16 bits
    without any change in meaning.  The Instance ID field is defined as
    follows:
@@ -261,7 +247,7 @@ Table of Contents
 
 
 
-<span>Lindem, et al.               Standards Track                    [Page 3]</span></pre>
+Lindem, et al.               Standards Track                    [Page 3]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 4</span>
@@ -386,51 +372,33 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 6</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc6549">RFC 6549</a>            OSPFv2 Multi-Instance Extensions          March 2012</span>
+  <pre>RFC 6549            OSPFv2 Multi-Instance Extensions          March 2012
 
 
-<span><a href="#section-7">7</a>.  Security Considerations</span>
+7.  Security Considerations
 
-   The enhancement described herein doesn't include additional security
+   The enhancement described herein doesn&#x27;t include additional security
    considerations to OSPFv2.  Security considerations for OSPFv2 are
-   described in [<a href="#ref-OSPFV2" title="&quot;OSPF Version 2&quot;">OSPFV2</a>].
+   described in [OSPFV2].
 
    Given that only three OSPFv2 authentication types have been
    standardized, it seems reasonable to reduce the OSPFv2 packet header
    field to 8 bits.
 
-<span><a href="#section-8">8</a>.  IANA Considerations</span>
+8.  IANA Considerations
 
    The size of the AuType field is reduced from 16 octets to 8 octets.
    This changes the OSPF Authentication Codes registry in that the
    values 256-65535 are no longer defined and are therefore deprecated.
    There is no backward compatibility issue since this range of values
-   was previously defined as "Reserved and should not be assigned".
+   was previously defined as &quot;Reserved and should not be assigned&quot;.
 
    A new registry has been created for OSPFv2 Instance IDs.  The initial
    allocation of OSPFv2 Instance IDs is described below.  Refer to
-   <a href="#section-3.2">Section 3.2</a> for more information.
-
-      +-------------+----------------------+--------------------+
-      | Value/Range | Designation          | Assignment Policy  |
-      +-------------+----------------------+--------------------+
-      | 0           | Base IPv4 Unicast    | Assigned           |
-      |             | Instance             |                    |
-      |             |                      |                    |
-      | 1           | Base IPv4 Multicast  | Assigned           |
-      |             | Instance             |                    |
-      |             |                      |                    |
-      | 2           | Base IPv4 In-band    | Assigned           |
-      |             | Management Instance  |                    |
-      |             |                      |                    |
-      | 3-127       | Private Use          | Reserved for local |
-      |             |                      | policy assignment  |
-      |             |                      |                    |
-      | 128-255     | Unassigned           | Standards Action   |
-      +-------------+----------------------+--------------------+
-
-                      OSPFv2 Instance ID
+   Section 3.2 for more information.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Value/Range</div><div class="modern-diagram-cell">Designation</div><div class="modern-diagram-cell">Assignment Policy</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">Base IPv4 Unicast</div><div class="modern-diagram-cell">Assigned</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Instance</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">Base IPv4 Multicast</div><div class="modern-diagram-cell">Assigned</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Instance</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">2</div><div class="modern-diagram-cell">Base IPv4 In-band</div><div class="modern-diagram-cell">Assigned</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Management Instance</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">3-127</div><div class="modern-diagram-cell">Private Use</div><div class="modern-diagram-cell">Reserved for local</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">policy assignment</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">128-255</div><div class="modern-diagram-cell">Unassigned</div><div class="modern-diagram-cell">Standards Action</div></div></div>
+</figure><pre>                      OSPFv2 Instance ID
 
 
 
@@ -441,7 +409,7 @@ Table of Contents
 
 
 
-<span>Lindem, et al.               Standards Track                    [Page 6]</span></pre>
+Lindem, et al.               Standards Track                    [Page 6]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 7</span>

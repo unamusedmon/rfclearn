@@ -266,62 +266,46 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 4</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc3645">RFC 3645</a>                        GSS-TSIG                    October 2003</span>
+  <pre>RFC 3645                        GSS-TSIG                    October 2003</pre><pre>                              +----------+
+                              |          |</pre><pre>                              V          |</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Uninitialized</div></div></div>
+</figure><pre>                              V          |</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Negotiating</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Context</div></div></div>
+</figure><pre>                              V          |</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Context</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Established</div></div></div>
+</figure><pre>   Every connection begins in the uninitialized state.
 
-
-                              +----------+
-                              |          |
-                              V          |
-                      +---------------+  |
-                      | Uninitialized |  |
-                      |               |  |
-                      +---------------+  |
-                              |          |
-                              V          |
-                      +---------------+  |
-                      | Negotiating   |  |
-                      | Context       |  |
-                      +---------------+  |
-                              |          |
-                              V          |
-                      +---------------+  |
-                      | Context       |  |
-                      | Established   |  |
-                      +---------------+  |
-                              |          |
-                              +----------+
-
-   Every connection begins in the uninitialized state.
-
-<span><a href="#section-2.1">2.1</a>.  GSS Details</span>
+2.1.  GSS Details
 
    Client and server MUST be locally authenticated and have acquired
    default credentials before using this protocol as specified in
-   <a href="#section-1.1.1">Section 1.1.1</a> "Credentials" in <a href="./rfc2743">RFC 2743</a> [<a href="./rfc2743" title="&quot;Generic Security Service Application Program Interface, Version 2 , Update 1&quot;">RFC2743</a>].
+   Section 1.1.1 &quot;Credentials&quot; in RFC 2743 [RFC2743].
 
    The GSS-TSIG algorithm consists of two stages:
 
    I.  Establish security context.  The Client and Server use the
        GSS_Init_sec_context and GSS_Accept_sec_context APIs to generate
-       the tokens that they pass to each other using [<a href="./rfc2930" title="&quot;Secret Key Establishment for DNS (TKEY RR)&quot;">RFC2930</a>] as a
+       the tokens that they pass to each other using [RFC2930] as a
        transport mechanism.
 
    II. Once the security context is established it is used to generate
        and verify signatures using GSS_GetMIC and GSS_VerifyMIC APIs.
        These signatures are exchanged by the Client and Server as a part
        of the TSIG records exchanged in DNS messages sent between the
-       Client and Server, as described in [<a href="./rfc2845" title="&quot;Secret Key Transaction Authentication for DNS (TSIG)&quot;">RFC2845</a>].
+       Client and Server, as described in [RFC2845].
 
-<span><a href="#section-2.2">2.2</a>.  Modifications to the TSIG protocol (<a href="./rfc2845">RFC 2845</a>)</span>
+2.2.  Modifications to the TSIG protocol (RFC 2845)
 
-   Modification to <a href="./rfc2845">RFC 2845</a> allows use of TSIG through signing server's
+   Modification to RFC 2845 allows use of TSIG through signing server&#x27;s
    response in an explicitly specified place in multi message exchange
-   between two DNS entities even if client's request wasn't signed.
+   between two DNS entities even if client&#x27;s request wasn&#x27;t signed.
 
 
 
-<span>Kwan, et al.                Standards Track                     [Page 4]</span></pre>
+Kwan, et al.                Standards Track                     [Page 4]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 5</span>

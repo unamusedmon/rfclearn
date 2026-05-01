@@ -206,28 +206,23 @@ Abstract
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 3</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc3225">RFC 3225</a>         Indicating Resolver Support of DNSSEC     December 2001</span>
+  <pre>RFC 3225         Indicating Resolver Support of DNSSEC     December 2001
 
 
-<span><a href="#section-3">3</a>. Protocol Changes</span>
+3. Protocol Changes
 
    The mechanism chosen for the explicit notification of the ability of
    the client to accept (if not understand) DNSSEC security RRs is using
    the most significant bit of the Z field on the EDNS0 OPT header in
-   the query.  This bit is referred to as the "DNSSEC OK" (DO) bit.  In
+   the query.  This bit is referred to as the &quot;DNSSEC OK&quot; (DO) bit.  In
    the context of the EDNS0 OPT meta-RR, the DO bit is the first bit of
-   the third and fourth bytes of the "extended RCODE and flags" portion
+   the third and fourth bytes of the &quot;extended RCODE and flags&quot; portion
    of the EDNS0 OPT meta-RR, structured as follows:
 
-                +0 (MSB)                +1 (LSB)
-         +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-      0: |   EXTENDED-RCODE      |       VERSION         |
-         +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-      2: |DO|                    Z                       |
-         +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-
-   Setting the DO bit to one in a query indicates to the server that the
+                +0 (MSB)                +1 (LSB)</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">0:</div><div class="modern-diagram-cell">EXTENDED-RCODE</div><div class="modern-diagram-cell">VERSION</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">2:</div><div class="modern-diagram-cell">DO</div><div class="modern-diagram-cell">Z</div></div></div>
+</figure><pre>   Setting the DO bit to one in a query indicates to the server that the
    resolver is able to accept DNSSEC security RRs.  The DO bit cleared
    (set to zero) indicates the resolver is unprepared to handle DNSSEC
    security RRs and those RRs MUST NOT be returned in the response
@@ -235,7 +230,7 @@ Abstract
    of the query MUST be copied in the response.
 
    More explicitly, DNSSEC-aware nameservers MUST NOT insert SIG, KEY,
-   or NXT RRs to authenticate a response as specified in [<a href="./rfc2535" title="&quot;Domain Name System Security Extensions&quot;">RFC2535</a>]
+   or NXT RRs to authenticate a response as specified in [RFC2535]
    unless the DO bit was set on the request.  Security records that
    match an explicit SIG, KEY, NXT, or ANY query, or are part of the
    zone data for an AXFR or IXFR query, are included whether or not the
@@ -251,7 +246,7 @@ Abstract
    In the event a server returns a NOTIMP, FORMERR or SERVFAIL response
    to a query that has the DO bit set, the resolver SHOULD NOT expect
    DNSSEC security RRs and SHOULD retry the query without EDNS0 in
-   accordance with <a href="./rfc2671#section-5.3">section&nbsp;5.3 of [RFC2671]</a>.
+   accordance with section 5.3 of [RFC2671].
 
 
 
@@ -261,13 +256,12 @@ Abstract
 
 
 
-<span>Conrad                      Standards Track                     [Page 3]</span></pre>
+Conrad                      Standards Track                     [Page 3]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 4</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc3225">RFC 3225</a>         Indicating Resolver Support of DNSSEC     December 2001</span>
+  <pre>RFC 3225         Indicating Resolver Support of DNSSEC     December 2001
 
 
 Security Considerations
@@ -279,22 +273,18 @@ Security Considerations
 
 IANA Considerations
 
-   EDNS0 [<a href="./rfc2671" title="&quot;Extension Mechanisms for DNS (EDNS0)&quot;">RFC2671</a>] defines 16 bits as extended flags in the OPT record,
-   these bits are encoded into the TTL field of the OPT record (<a href="./rfc2671#section-4.6">RFC2671
-   section&nbsp;4.6</a>).
+   EDNS0 [RFC2671] defines 16 bits as extended flags in the OPT record,
+   these bits are encoded into the TTL field of the OPT record (RFC2671
+   section 4.6).
 
    This document reserves one of these bits as the OK bit.  It is
    requested that the left most bit be allocated.  Thus the USE of the
    OPT record TTL field would look like
 
-                +0 (MSB)                +1 (LSB)
-         +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-      0: |   EXTENDED-RCODE      |       VERSION         |
-         +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-      2: |DO|                    Z                       |
-         +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-
-Acknowledgements
+                +0 (MSB)                +1 (LSB)</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">0:</div><div class="modern-diagram-cell">EXTENDED-RCODE</div><div class="modern-diagram-cell">VERSION</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">2:</div><div class="modern-diagram-cell">DO</div><div class="modern-diagram-cell">Z</div></div></div>
+</figure><pre>Acknowledgements
 
    This document is based on a rough draft by Bob Halley with input from
    Olafur Gudmundsson, Andreas Gustafsson, Brian Wellington, Randy Bush,
@@ -302,26 +292,26 @@ Acknowledgements
 
 References
 
-   [<a>RFC1034</a>] Mockapetris, P., "Domain Names - Concepts and Facilities",
-             STD 13, <a href="./rfc1034">RFC 1034</a>, November 1987.
+   [RFC1034] Mockapetris, P., &quot;Domain Names - Concepts and Facilities&quot;,
+             STD 13, RFC 1034, November 1987.
 
-   [<a>RFC1035</a>] Mockapetris, P., "Domain Names - Implementation and
-             Specifications", STD 13, <a href="./rfc1035">RFC 1035</a>, November 1987.
+   [RFC1035] Mockapetris, P., &quot;Domain Names - Implementation and
+             Specifications&quot;, STD 13, RFC 1035, November 1987.
 
-   [<a>RFC2119</a>] Bradner, S., "Key words for use in RFCs to Indicate
-             Requirement Levels", <a>BCP 14</a>, <a href="./rfc2119">RFC 2119</a>, March 1997.
+   [RFC2119] Bradner, S., &quot;Key words for use in RFCs to Indicate
+             Requirement Levels&quot;, BCP 14, RFC 2119, March 1997.
 
-   [<a>RFC2535</a>] Eastlake, D., "Domain Name System Security Extensions", <a href="./rfc2535">RFC</a>
-             <a href="rfc2535.html" class="rfc-local">2535</a>, March 1999.
+   [RFC2535] Eastlake, D., &quot;Domain Name System Security Extensions&quot;, RFC
+             2535, March 1999.
 
-   [<a>RFC2671</a>] Vixie, P., "Extension Mechanisms for DNS (EDNS0)", <a href="./rfc2671">RFC</a>
-             <a href="https://www.rfc-editor.org/rfc/rfc2671.html" class="rfc-external">2671</a>, August 1999.
-
-
+   [RFC2671] Vixie, P., &quot;Extension Mechanisms for DNS (EDNS0)&quot;, RFC
+             2671, August 1999.
 
 
 
-<span>Conrad                      Standards Track                     [Page 4]</span></pre>
+
+
+Conrad                      Standards Track                     [Page 4]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 5</span>

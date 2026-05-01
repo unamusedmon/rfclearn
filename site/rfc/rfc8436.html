@@ -206,22 +206,11 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 3</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8436">RFC 8436</a>      IANA Registration Procedures for DSCP Pool 3   August 2018</span>
-
-
-                  +------+-----------------+
-                  | Pool | Codepoint Space |
-                  +------+-----------------+
-                  |  1   |      xxxxx0     |
-                  +------+-----------------+
-                  |  2   |      xxxx11     |
-                  +------+-----------------+
-                  |  3   |      xxxx01     |
-                  +------+-----------------+
-
-    Figure 1: Format of the Field for Codepoints Allocated in the Three
-            IANA Pools (Where "x" Refers to Either "0" or "1")
+  <pre>RFC 8436      IANA Registration Procedures for DSCP Pool 3   August 2018</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Pool</div><div class="modern-diagram-cell">Codepoint Space</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">xxxxx0</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">2</div><div class="modern-diagram-cell">xxxx11</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">3</div><div class="modern-diagram-cell">xxxx01</div></div></div>
+</figure><pre>    Figure 1: Format of the Field for Codepoints Allocated in the Three
+            IANA Pools (Where &quot;x&quot; Refers to Either &quot;0&quot; or &quot;1&quot;)
 
    At the time of writing this document, 22 of the 32 Pool 1 codepoints
    have been assigned.
@@ -230,11 +219,11 @@ Table of Contents
    need to assign codepoints for particular PHBs that are unable to use
    any of the unassigned values in Pool 1.  This document changes the
    IANA registration policy of Pool 3 to assignment by Standards Action.
-   (<a href="./rfc8126#section-4.9">Section&nbsp;4.9 of [RFC8126]</a> defines this as "assigned only through
-   Standards Track or Best Current Practice RFCs in the IETF Stream".)
+   (Section 4.9 of [RFC8126] defines this as &quot;assigned only through
+   Standards Track or Best Current Practice RFCs in the IETF Stream&quot;.)
 
    An example is the need to assign a suitable recommended default
-   codepoint for the Lower Effort (LE) PHB [<a href="#ref-LE-PHB" title="&quot;A Lower Effort Per-Hop Behavior (LE PHB)&quot;">LE-PHB</a>].  The LE PHB is
+   codepoint for the Lower Effort (LE) PHB [LE-PHB].  The LE PHB is
    designed to protect best-effort (BE) traffic (packets forwarded with
    the default PHB) from LE traffic in congestion situations (when
    resources become scarce, best-effort traffic has precedence over LE
@@ -246,7 +235,7 @@ Table of Contents
    the former TOS byte (now the upper part of the DSCP field) to become
    zero.  Therefore, there is a need to avoid this remapping of the DSCP
    for the LE PHB by assigning a codepoint that already has a zero value
-   in the first three bits [<a href="#ref-LE-PHB" title="&quot;A Lower Effort Per-Hop Behavior (LE PHB)&quot;">LE-PHB</a>].
+   in the first three bits [LE-PHB].
 
    Furthermore, if the LE PHB were to have been assigned one of the
    currently unused Pool 1 codepoints with a zero value in the first
@@ -261,7 +250,7 @@ Table of Contents
 
 
 
-<span>Fairhurst                    Standards Track                    [Page 3]</span></pre>
+Fairhurst                    Standards Track                    [Page 3]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 4</span>

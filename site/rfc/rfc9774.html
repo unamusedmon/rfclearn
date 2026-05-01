@@ -637,41 +637,39 @@
        to the contributing ASes, i.e., AS 64501, AS 64502, AS 64503, and AS 64504.
        Instead, as further illustrated, p1/24, p2/24, and p4/24 are announced to AS 64503.
        The routing tables (post aggregation) of each of the ASes are depicted in the diagram below.<a href="#appendix-A-1">¶</a></p>
-<div></div><pre>
- (       )     (       )           (       )     (       )
+<div></div><pre> (       )     (       )           (       )     (       )
 ( AS64501 )   ( AS64502 )         ( AS64503 )   ( AS64504 )
  (       )     (       )           (       )     (       )
-   p1/24         p2/24               p3/24         p4/24
-     |             |                   |             |
-     |             +--&gt;  (       )  &lt;--+             |
-     |                  ( AS64505 )                  |
-     +----------------&gt;  (       )  &lt;----------------+
+   p1/24         p2/24               p3/24         p4/24</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">( AS64505 )</div></div></div>
+</figure><pre>     +----------------&gt;  (       )  &lt;----------------+
                             p/22
                              |
                              V
 
 AS 64501                      AS 64502
 ==========================    ==========================
-p1/24 AS_PATH ""              p1/24 AS_PATH "64505 64501"
-p2/24 AS_PATH "64505 64502"   p2/24 AS_PATH ""
-p3/24 AS_PATH "64505 64503"   p3/24 AS_PATH "64505 64503"
-p4/24 AS_PATH "64505 64504"   p4/24 AS_PATH "64505 64504"
+p1/24 AS_PATH &quot;&quot;              p1/24 AS_PATH &quot;64505 64501&quot;
+p2/24 AS_PATH &quot;64505 64502&quot;   p2/24 AS_PATH &quot;&quot;
+p3/24 AS_PATH &quot;64505 64503&quot;   p3/24 AS_PATH &quot;64505 64503&quot;
+p4/24 AS_PATH &quot;64505 64504&quot;   p4/24 AS_PATH &quot;64505 64504&quot;
 
 
 AS 64503                      AS 64504
 ==========================    ==========================
-p1/24 AS_PATH "64505 64501"   p1/24 AS_PATH "64505 64501"
-p2/24 AS_PATH "64505 64502"   p2/24 AS_PATH "64505 64502"
-p3/24 AS_PATH ""              p3/24 AS_PATH "64505 64503"
-p4/24 AS_PATH "64505 64504"   p4/24 AS_PATH ""
+p1/24 AS_PATH &quot;64505 64501&quot;   p1/24 AS_PATH &quot;64505 64501&quot;
+p2/24 AS_PATH &quot;64505 64502&quot;   p2/24 AS_PATH &quot;64505 64502&quot;
+p3/24 AS_PATH &quot;&quot;              p3/24 AS_PATH &quot;64505 64503&quot;
+p4/24 AS_PATH &quot;64505 64504&quot;   p4/24 AS_PATH &quot;&quot;
 
 AS 64505
 ==========================
-p/22  AS_PATH "" AGGREGATOR 64505 ATOMIC_AGGREGATE
-p1/24 AS_PATH "64501"
-p2/24 AS_PATH "64502"
-p3/24 AS_PATH "64503"
-p4/24 AS_PATH "64504"</pre><a href="#appendix-A-2">¶</a>
+p/22  AS_PATH &quot;&quot; AGGREGATOR 64505 ATOMIC_AGGREGATE
+p1/24 AS_PATH &quot;64501&quot;
+p2/24 AS_PATH &quot;64502&quot;
+p3/24 AS_PATH &quot;64503&quot;
+p4/24 AS_PATH &quot;64504&quot;</pre><a href="#appendix-A-2">¶</a>
 </div>
 </section>
 </div>
@@ -687,29 +685,19 @@ p4/24 AS_PATH "64504"</pre><a href="#appendix-A-2">¶</a>
 <p>Consider the following scenarios where brief aggregation is done
       by AS 64500 and what the resultant origin ASes would be.<a href="#appendix-B-3">¶</a></p>
 <div>
-<pre>
-Routes:
-R1 - 192.0.2.0/26   AS_PATH "64501"
-R2 - 192.0.2.64/26  AS_PATH "64502"
-R3 - 192.0.2.128/26 AS_PATH "64504 64502"
-R4 - 192.0.2.192/26 AS_PATH "64504 64501"
+<pre>Routes:
+R1 - 192.0.2.0/26   AS_PATH &quot;64501&quot;
+R2 - 192.0.2.64/26  AS_PATH &quot;64502&quot;
+R3 - 192.0.2.128/26 AS_PATH &quot;64504 64502&quot;
+R4 - 192.0.2.192/26 AS_PATH &quot;64504 64501&quot;
 
            (       )                        (       )
           ( AS64501 )                      ( AS64502 )
            (       )                        (       )
-192.0.2.0/26    192.0.2.192/26    192.0.2.128/26  192.0.2.64/26
-     |                      |      |                 |
-     |                      |      |                 |
-     |                      \/    \/                 |
-     |                     (        )                |
-     |                    (  AS64504 )               |
-     |                     (        )                |
-     |                      |      |                 |
-     |                   R4 |      | R3              |
-     |                      |      |                 |
-     |                      \/    \/                 |
-     |             R1      (         )      R2       |
-     +-------------------&gt;(  AS64500  )&lt;-------------+
+192.0.2.0/26    192.0.2.192/26    192.0.2.128/26  192.0.2.64/26</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">(  AS64504 )</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">R4</div><div class="modern-diagram-cell">R3</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">R1      (         )      R2</div></div></div>
+</figure><pre>     +-------------------&gt;(  AS64500  )&lt;-------------+
                            (         )
                                 |
                                 | (announcing

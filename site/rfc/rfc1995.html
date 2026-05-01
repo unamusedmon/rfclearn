@@ -326,8 +326,7 @@ Abstract
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 5</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1995">RFC 1995</a>            Incremental Zone Transfer in DNS         August 1996</span>
+  <pre>RFC 1995            Incremental Zone Transfer in DNS         August 1996
 
 
    One of the IP addresses of JAIN-BB.JAIN.AD.JP. is changed.
@@ -339,132 +338,38 @@ Abstract
       JAIN-BB.JAIN.AD.JP. IN A   133.69.136.3
                           IN A   192.41.197.2
 
-   The following IXFR query
-
-                 +---------------------------------------------------+
-      Header     | OPCODE=SQUERY                                     |
-                 +---------------------------------------------------+
-      Question   | QNAME=JAIN.AD.JP., QCLASS=IN, QTYPE=IXFR          |
-                 +---------------------------------------------------+
-      Answer     | &lt;empty&gt;                                           |
-                 +---------------------------------------------------+
-      Authority  | JAIN.AD.JP.         IN SOA serial=1               |
-                 +---------------------------------------------------+
-      Additional | &lt;empty&gt;                                           |
-                 +---------------------------------------------------+
-
-   could be replied to with the following full zone transfer message:
-
-                 +---------------------------------------------------+
-      Header     | OPCODE=SQUERY, RESPONSE                           |
-                 +---------------------------------------------------+
-      Question   | QNAME=JAIN.AD.JP., QCLASS=IN, QTYPE=IXFR          |
-                 +---------------------------------------------------+
-      Answer     | JAIN.AD.JP.         IN SOA serial=3               |
-                 | JAIN.AD.JP.         IN NS  NS.JAIN.AD.JP.         |
-                 | NS.JAIN.AD.JP.      IN A   133.69.136.1           |
-                 | JAIN-BB.JAIN.AD.JP. IN A   133.69.136.3           |
-                 | JAIN-BB.JAIN.AD.JP. IN A   192.41.197.2           |
-                 | JAIN.AD.JP.         IN SOA serial=3               |
-                 +---------------------------------------------------+
-      Authority  | &lt;empty&gt;                                           |
-                 +---------------------------------------------------+
-      Additional | &lt;empty&gt;                                           |
-                 +---------------------------------------------------+
-
-
-
-
-
-
-
-
-
-
-<span>Ohta                        Standards Track                     [Page 5]</span></pre>
+   The following IXFR query</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Header</div><div class="modern-diagram-cell">OPCODE=SQUERY</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Question</div><div class="modern-diagram-cell">QNAME=JAIN.AD.JP., QCLASS=IN, QTYPE=IXFR</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Answer</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Authority</div><div class="modern-diagram-cell">JAIN.AD.JP.         IN SOA serial=1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Additional</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div></div>
+</figure><pre>   could be replied to with the following full zone transfer message:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Header</div><div class="modern-diagram-cell">OPCODE=SQUERY, RESPONSE</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Question</div><div class="modern-diagram-cell">QNAME=JAIN.AD.JP., QCLASS=IN, QTYPE=IXFR</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Answer</div><div class="modern-diagram-cell">JAIN.AD.JP.         IN SOA serial=3</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">JAIN.AD.JP.         IN NS  NS.JAIN.AD.JP.</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">NS.JAIN.AD.JP.      IN A   133.69.136.1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">JAIN-BB.JAIN.AD.JP. IN A   133.69.136.3</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">JAIN-BB.JAIN.AD.JP. IN A   192.41.197.2</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">JAIN.AD.JP.         IN SOA serial=3</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Authority</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Additional</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div></div>
+</figure><pre>Ohta                        Standards Track                     [Page 5]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 6</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1995">RFC 1995</a>            Incremental Zone Transfer in DNS         August 1996</span>
+  <pre>RFC 1995            Incremental Zone Transfer in DNS         August 1996
 
 
-   or with the following incremental message:
-
-                 +---------------------------------------------------+
-      Header     | OPCODE=SQUERY, RESPONSE                           |
-                 +---------------------------------------------------+
-      Question   | QNAME=JAIN.AD.JP., QCLASS=IN, QTYPE=IXFR          |
-                 +---------------------------------------------------+
-      Answer     | JAIN.AD.JP.         IN SOA serial=3               |
-                 | JAIN.AD.JP.         IN SOA serial=1               |
-                 | NEZU.JAIN.AD.JP.    IN A   133.69.136.5           |
-                 | JAIN.AD.JP.         IN SOA serial=2               |
-                 | JAIN-BB.JAIN.AD.JP. IN A   133.69.136.4           |
-                 | JAIN-BB.JAIN.AD.JP. IN A   192.41.197.2           |
-                 | JAIN.AD.JP.         IN SOA serial=2               |
-                 | JAIN-BB.JAIN.AD.JP. IN A   133.69.136.4           |
-                 | JAIN.AD.JP.         IN SOA serial=3               |
-                 | JAIN-BB.JAIN.AD.JP. IN A   133.69.136.3           |
-                 | JAIN.AD.JP.         IN SOA serial=3               |
-                 +---------------------------------------------------+
-      Authority  | &lt;empty&gt;                                           |
-                 +---------------------------------------------------+
-      Additional | &lt;empty&gt;                                           |
-                 +---------------------------------------------------+
-
-   or with the following condensed incremental message:
-
-                 +---------------------------------------------------+
-      Header     | OPCODE=SQUERY, RESPONSE                           |
-                 +---------------------------------------------------+
-      Question   | QNAME=JAIN.AD.JP., QCLASS=IN, QTYPE=IXFR          |
-                 +---------------------------------------------------+
-      Answer     | JAIN.AD.JP.         IN SOA serial=3               |
-                 | JAIN.AD.JP.         IN SOA serial=1               |
-                 | NEZU.JAIN.AD.JP.    IN A   133.69.136.5           |
-                 | JAIN.AD.JP.         IN SOA serial=3               |
-                 | JAIN-BB.JAIN.AD.JP. IN A   133.69.136.3           |
-                 | JAIN-BB.JAIN.AD.JP. IN A   192.41.197.2           |
-                 | JAIN.AD.JP.         IN SOA serial=3               |
-                 +---------------------------------------------------+
-      Authority  | &lt;empty&gt;                                           |
-                 +---------------------------------------------------+
-      Additional | &lt;empty&gt;                                           |
-                 +---------------------------------------------------+
-
-
-
-
-
-
-
-
-<span>Ohta                        Standards Track                     [Page 6]</span></pre>
+   or with the following incremental message:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Header</div><div class="modern-diagram-cell">OPCODE=SQUERY, RESPONSE</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Question</div><div class="modern-diagram-cell">QNAME=JAIN.AD.JP., QCLASS=IN, QTYPE=IXFR</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Answer</div><div class="modern-diagram-cell">JAIN.AD.JP.         IN SOA serial=3</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">JAIN.AD.JP.         IN SOA serial=1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">NEZU.JAIN.AD.JP.    IN A   133.69.136.5</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">JAIN.AD.JP.         IN SOA serial=2</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">JAIN-BB.JAIN.AD.JP. IN A   133.69.136.4</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">JAIN-BB.JAIN.AD.JP. IN A   192.41.197.2</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">JAIN.AD.JP.         IN SOA serial=2</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">JAIN-BB.JAIN.AD.JP. IN A   133.69.136.4</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">JAIN.AD.JP.         IN SOA serial=3</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">JAIN-BB.JAIN.AD.JP. IN A   133.69.136.3</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">JAIN.AD.JP.         IN SOA serial=3</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Authority</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Additional</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div></div>
+</figure><pre>   or with the following condensed incremental message:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Header</div><div class="modern-diagram-cell">OPCODE=SQUERY, RESPONSE</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Question</div><div class="modern-diagram-cell">QNAME=JAIN.AD.JP., QCLASS=IN, QTYPE=IXFR</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Answer</div><div class="modern-diagram-cell">JAIN.AD.JP.         IN SOA serial=3</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">JAIN.AD.JP.         IN SOA serial=1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">NEZU.JAIN.AD.JP.    IN A   133.69.136.5</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">JAIN.AD.JP.         IN SOA serial=3</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">JAIN-BB.JAIN.AD.JP. IN A   133.69.136.3</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">JAIN-BB.JAIN.AD.JP. IN A   192.41.197.2</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">JAIN.AD.JP.         IN SOA serial=3</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Authority</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Additional</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div></div>
+</figure><pre>Ohta                        Standards Track                     [Page 6]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 7</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1995">RFC 1995</a>            Incremental Zone Transfer in DNS         August 1996</span>
+  <pre>RFC 1995            Incremental Zone Transfer in DNS         August 1996
 
 
-   or, if UDP packet overflow occurs, with the following message:
-
-                 +---------------------------------------------------+
-      Header     | OPCODE=SQUERY, RESPONSE                           |
-                 +---------------------------------------------------+
-      Question   | QNAME=JAIN.AD.JP., QCLASS=IN, QTYPE=IXFR          |
-                 +---------------------------------------------------+
-      Answer     | JAIN.AD.JP.         IN SOA serial=3               |
-                 +---------------------------------------------------+
-      Authority  | &lt;empty&gt;                                           |
-                 +---------------------------------------------------+
-      Additional | &lt;empty&gt;                                           |
-                 +---------------------------------------------------+
-
-<span><a href="#section-8">8</a>. Acknowledgements</span>
+   or, if UDP packet overflow occurs, with the following message:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Header</div><div class="modern-diagram-cell">OPCODE=SQUERY, RESPONSE</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Question</div><div class="modern-diagram-cell">QNAME=JAIN.AD.JP., QCLASS=IN, QTYPE=IXFR</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Answer</div><div class="modern-diagram-cell">JAIN.AD.JP.         IN SOA serial=3</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Authority</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Additional</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div></div>
+</figure><pre>8. Acknowledgements
 
    The original idea of IXFR was conceived by Anant Kumar, Steve Hotz
    and Jon Postel.
@@ -474,15 +379,15 @@ Abstract
    Austein, Paul Vixie, Randy Bush, Mark Andrews, Robert Elz and the
    members of the IETF DNSIND working group.
 
-<span><a href="#section-9">9</a>. References</span>
+9. References
 
-   [<a>NOTIFY</a>] Vixie, P., "DNS NOTIFY: A Mechanism for Prompt
-   Notification of Zone Changes", <a href="./rfc1996">RFC 1996</a>, August 1996.
+   [NOTIFY] Vixie, P., &quot;DNS NOTIFY: A Mechanism for Prompt
+   Notification of Zone Changes&quot;, RFC 1996, August 1996.
 
-   [<a>STD13</a>] Mockapetris, P., "Domain Name System", STD 13, <a href="./rfc1034">RFC 1034</a> and
-   <a href="./rfc1035">RFC 1035</a>), November 1987.
+   [STD13] Mockapetris, P., &quot;Domain Name System&quot;, STD 13, RFC 1034 and
+   RFC 1035), November 1987.
 
-<span><a href="#section-10">10</a>. Security Considerations</span>
+10. Security Considerations
 
    Though DNS is related to several security problems, no attempt is
    made to fix them in this document.
@@ -501,7 +406,7 @@ Abstract
 
 
 
-<span>Ohta                        Standards Track                     [Page 7]</span></pre>
+Ohta                        Standards Track                     [Page 7]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 8</span>

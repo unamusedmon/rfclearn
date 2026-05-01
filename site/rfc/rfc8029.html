@@ -506,8 +506,7 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 8</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8029">RFC 8029</a>           Detecting MPLS Data-Plane Failures         March 2017</span>
+  <pre>RFC 8029           Detecting MPLS Data-Plane Failures         March 2017
 
 
    An LSP traceroute may cross a tunneled or stitched LSP en route to
@@ -518,11 +517,10 @@ Table of Contents
    a simple case.
 
    A          B          C           D           E
-   o -------- o -------- o --------- o --------- o
-     \_____/  | \______/   \______/  | \______/
-       LDP    |   RSVP       RSVP    |    LDP
-              |                      |
-               \____________________/
+   o -------- o -------- o --------- o --------- o</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">LDP</div><div class="modern-diagram-cell">RSVP       RSVP</div><div class="modern-diagram-cell">LDP</div></div></div>
+</figure><pre>               \____________________/
                        LDP
 
    When an LSP traceroute is initiated from Router A to Router E, the
@@ -540,7 +538,7 @@ Table of Contents
    control plane; however, this places a greater burden on transit LSRs
    and thus should be used with caution.
 
-<span><a href="#section-2.1">2.1</a>.  Use of Address Range 127/8</span>
+2.1.  Use of Address Range 127/8
 
    As described above, LSP ping is intended as a diagnostic tool.  It is
    intended to enable providers of an MPLS-based service to isolate
@@ -561,7 +559,7 @@ Table of Contents
 
 
 
-<span>Kompella, et al.             Standards Track                    [Page 8]</span></pre>
+Kompella, et al.             Standards Track                    [Page 8]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 9</span>
@@ -686,42 +684,21 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 11</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8029">RFC 8029</a>           Detecting MPLS Data-Plane Failures         March 2017</span>
+  <pre>RFC 8029           Detecting MPLS Data-Plane Failures         March 2017
 
 
-<span><a href="#section-3">3</a>.  Packet Format</span>
+3.  Packet Format
 
    An MPLS echo request/reply is a (possibly labeled) IPv4 or IPv6 UDP
    packet; the contents of the UDP packet have the following format:
 
-       0                   1                   2                   3
-       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |         Version Number        |         Global Flags          |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |  Message Type |   Reply Mode  |  Return Code  | Return Subcode|
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                        Sender's Handle                        |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                        Sequence Number                        |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                    TimeStamp Sent (seconds)                   |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                TimeStamp Sent (seconds fraction)              |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                  TimeStamp Received (seconds)                 |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |              TimeStamp Received (seconds fraction)            |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                            TLVs ...                           |
+       0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Version Number</div><div class="modern-diagram-cell">Global Flags</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Message Type</div><div class="modern-diagram-cell">Reply Mode</div><div class="modern-diagram-cell">Return Code</div><div class="modern-diagram-cell">Return Subcode</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Sender&#x27;s Handle</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Sequence Number</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">TimeStamp Sent (seconds)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">TimeStamp Sent (seconds fraction)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">TimeStamp Received (seconds)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">TimeStamp Received (seconds fraction)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">TLVs ...</div></div></div>
+</figure><pre>      .                                                               .
       .                                                               .
-      .                                                               .
-      .                                                               .
-      |                                                               |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-   The Version Number is currently 1.  (Note: the version number is to
+      .                                                               .</pre><pre>      |                                                               |
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>   The Version Number is currently 1.  (Note: the version number is to
    be incremented whenever a change is made that affects the ability of
    an implementation to correctly parse or process an MPLS echo request/
    reply.  These changes include any syntactic or semantic changes made
@@ -741,24 +718,20 @@ Table of Contents
 
 
 
-<span>Kompella, et al.             Standards Track                   [Page 11]</span></pre>
+Kompella, et al.             Standards Track                   [Page 11]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 12</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8029">RFC 8029</a>           Detecting MPLS Data-Plane Failures         March 2017</span>
+  <pre>RFC 8029           Detecting MPLS Data-Plane Failures         March 2017
 
 
    The Global Flags field is a bit vector with the following format:
 
-       0                   1
-       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |           MBZ           |R|T|V|
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-   At the time of writing, three flags are defined: the R, T, and V
+       0                   1</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">MBZ</div><div class="modern-diagram-cell">R</div><div class="modern-diagram-cell">T</div><div class="modern-diagram-cell">V</div></div></div>
+</figure><pre>   At the time of writing, three flags are defined: the R, T, and V
    bits; the rest MUST be set to zero when sending and ignored on
    receipt.
 
@@ -773,12 +746,12 @@ Table of Contents
    and MUST NOT send any echo reply to the sender.  This flag MUST NOT
    be set in the echo reply packet.  If this flag is set in an echo
    reply packet, then it MUST be ignored.  The T flag is defined in
-   <a href="./rfc6425#section-3.4">Section&nbsp;3.4 of [RFC6425]</a>.
+   Section 3.4 of [RFC6425].
 
-   The R (Validate Reverse Path) flag is defined in [<a href="./rfc6426" title="&quot;MPLS On-Demand Connectivity Verification and Route Tracing&quot;">RFC6426</a>].  When
+   The R (Validate Reverse Path) flag is defined in [RFC6426].  When
    this flag is set in the echo request, the Responder SHOULD return
-   reverse-path FEC information, as described in <a href="./rfc6426#section-3.4.2">Section&nbsp;3.4.2 of
-   [RFC6426]</a>.
+   reverse-path FEC information, as described in Section 3.4.2 of
+   [RFC6426].
 
    The Message Type is one of the following:
 
@@ -801,7 +774,7 @@ Table of Contents
 
 
 
-<span>Kompella, et al.             Standards Track                   [Page 12]</span></pre>
+Kompella, et al.             Standards Track                   [Page 12]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 13</span>
@@ -866,25 +839,18 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 14</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8029">RFC 8029</a>           Detecting MPLS Data-Plane Failures         March 2017</span>
+  <pre>RFC 8029           Detecting MPLS Data-Plane Failures         March 2017
 
 
    TLVs (Type-Length-Value tuples) have the following format:
 
-       0                   1                   2                   3
-       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |             Type              |            Length             |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                             Value                             |
+       0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Type</div><div class="modern-diagram-cell">Length</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Value</div></div></div>
+</figure><pre>      .                                                               .
       .                                                               .
-      .                                                               .
-      .                                                               .
-      |                                                               |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-   Types are defined below; Length is the length of the Value field in
+      .                                                               .</pre><pre>      |                                                               |
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>   Types are defined below; Length is the length of the Value field in
    octets.  The Value field depends on the Type; it is zero padded to
    align to a 4-octet boundary.  TLVs may be nested within other TLVs,
    in which case the nested TLVs are called sub-TLVs.  Sub-TLVs have
@@ -893,69 +859,25 @@ Table of Contents
    Two examples of how TLV and sub-TLV lengths are computed, and how
    sub-TLVs are padded to be 4-octet aligned, are as follows:
 
-       0                   1                   2                   3
-       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |    Type = 1 (LDP IPv4 FEC)    |          Length = 5           |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                          IPv4 prefix                          |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      | Prefix Length |         Must Be Zero                          |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<span>Kompella, et al.             Standards Track                   [Page 14]</span></pre>
+       0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Type = 1 (LDP IPv4 FEC)</div><div class="modern-diagram-cell">Length = 5</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">IPv4 prefix</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Prefix Length</div><div class="modern-diagram-cell">Must Be Zero</div></div></div>
+</figure><pre>Kompella, et al.             Standards Track                   [Page 14]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 15</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8029">RFC 8029</a>           Detecting MPLS Data-Plane Failures         March 2017</span>
+  <pre>RFC 8029           Detecting MPLS Data-Plane Failures         March 2017
 
 
    The Length for this TLV is 5.  A Target FEC Stack TLV that contains
    an LDP IPv4 FEC sub-TLV and a VPN IPv4 prefix sub-TLV has the
    following format:
 
-       0                   1                   2                   3
-       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |      Type = 1 (FEC TLV)       |          Length = 32          |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |  Sub-Type = 1 (LDP IPv4 FEC)  |          Length = 5           |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                          IPv4 prefix                          |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      | Prefix Length |         Must Be Zero                          |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      | Sub-Type = 6 (VPN IPv4 prefix)|          Length = 13          |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                      Route Distinguisher                      |
-      |                          (8 octets)                           |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                         IPv4 prefix                           |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      | Prefix Length |                 Must Be Zero                  |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-   A description of the Types and Values of the top-level TLVs for LSP
+       0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Type = 1 (FEC TLV)</div><div class="modern-diagram-cell">Length = 32</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Sub-Type = 1 (LDP IPv4 FEC)</div><div class="modern-diagram-cell">Length = 5</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">IPv4 prefix</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Prefix Length</div><div class="modern-diagram-cell">Must Be Zero</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Sub-Type = 6 (VPN IPv4 prefix)</div><div class="modern-diagram-cell">Length = 13</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Route Distinguisher</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">(8 octets)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">IPv4 prefix</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Prefix Length</div><div class="modern-diagram-cell">Must Be Zero</div></div></div>
+</figure><pre>   A description of the Types and Values of the top-level TLVs for LSP
    ping are given below:
 
           Type #                  Value Field
@@ -974,14 +896,14 @@ Table of Contents
 
    Types less than 32768 (i.e., with the high-order bit equal to 0) are
    mandatory TLVs that MUST either be supported by an implementation or
-   result in the Return Code of 2 ("One or more of the TLVs was not
-   understood") being sent in the echo response.
+   result in the Return Code of 2 (&quot;One or more of the TLVs was not
+   understood&quot;) being sent in the echo response.
 
 
 
 
 
-<span>Kompella, et al.             Standards Track                   [Page 15]</span></pre>
+Kompella, et al.             Standards Track                   [Page 15]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 16</span>
@@ -1166,154 +1088,83 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 19</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8029">RFC 8029</a>           Detecting MPLS Data-Plane Failures         March 2017</span>
+  <pre>RFC 8029           Detecting MPLS Data-Plane Failures         March 2017
 
 
-<span><a href="#section-3.2.1">3.2.1</a>.  LDP IPv4 Prefix</span>
+3.2.1.  LDP IPv4 Prefix
 
-   The IPv4 Prefix FEC is defined in [<a href="./rfc5036" title="&quot;LDP Specification&quot;">RFC5036</a>].  When an LDP IPv4 prefix
+   The IPv4 Prefix FEC is defined in [RFC5036].  When an LDP IPv4 prefix
    is encoded in a label stack, the following format is used.  The value
    consists of 4 octets of an IPv4 prefix followed by 1 octet of prefix
    length in bits; the format is given below.  The IPv4 prefix is in
    network byte order; if the prefix is shorter than 32 bits, trailing
-   bits SHOULD be set to zero.  See [<a href="./rfc5036" title="&quot;LDP Specification&quot;">RFC5036</a>] for an example of a
+   bits SHOULD be set to zero.  See [RFC5036] for an example of a
    Mapping for an IPv4 FEC.
 
-       0                   1                   2                   3
-       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                          IPv4 prefix                          |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      | Prefix Length |         Must Be Zero                          |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+       0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">IPv4 prefix</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Prefix Length</div><div class="modern-diagram-cell">Must Be Zero</div></div></div>
+</figure><pre>3.2.2.  LDP IPv6 Prefix
 
-<span><a href="#section-3.2.2">3.2.2</a>.  LDP IPv6 Prefix</span>
-
-   The IPv6 Prefix FEC is defined in [<a href="./rfc5036" title="&quot;LDP Specification&quot;">RFC5036</a>].  When an LDP IPv6 prefix
+   The IPv6 Prefix FEC is defined in [RFC5036].  When an LDP IPv6 prefix
    is encoded in a label stack, the following format is used.  The value
    consists of 16 octets of an IPv6 prefix followed by 1 octet of prefix
    length in bits; the format is given below.  The IPv6 prefix is in
    network byte order; if the prefix is shorter than 128 bits, the
-   trailing bits SHOULD be set to zero.  See [<a href="./rfc5036" title="&quot;LDP Specification&quot;">RFC5036</a>] for an example of
+   trailing bits SHOULD be set to zero.  See [RFC5036] for an example of
    a Mapping for an IPv6 FEC.
 
-       0                   1                   2                   3
-       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                          IPv6 prefix                          |
-      |                          (16 octets)                          |
-      |                                                               |
-      |                                                               |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      | Prefix Length |         Must Be Zero                          |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-
-
-
-
-
-
-
-
-
-
-
-
-<span>Kompella, et al.             Standards Track                   [Page 19]</span></pre>
+       0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">IPv6 prefix</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">(16 octets)</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Prefix Length</div><div class="modern-diagram-cell">Must Be Zero</div></div></div>
+</figure><pre>Kompella, et al.             Standards Track                   [Page 19]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 20</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8029">RFC 8029</a>           Detecting MPLS Data-Plane Failures         March 2017</span>
+  <pre>RFC 8029           Detecting MPLS Data-Plane Failures         March 2017
 
 
-<span><a href="#section-3.2.3">3.2.3</a>.  RSVP IPv4 LSP</span>
+3.2.3.  RSVP IPv4 LSP
 
-   The value has the format below.  The Value fields are taken from <a href="./rfc3209">RFC</a>
-   <a href="https://www.rfc-editor.org/rfc/rfc3209.html" class="rfc-external">3209</a> [<a href="./rfc3209" title="&quot;RSVP-TE: Extensions to RSVP for LSP Tunnels&quot;">RFC3209</a>], Sections <a href="#section-4.6.1.1">4.6.1.1</a> and <a href="#section-4.6.2.1">4.6.2.1</a>.
+   The value has the format below.  The Value fields are taken from RFC
+   3209 [RFC3209], Sections 4.6.1.1 and 4.6.2.1.
 
-       0                   1                   2                   3
-       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                 IPv4 Tunnel Endpoint Address                  |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |          Must Be Zero         |     Tunnel ID                 |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                       Extended Tunnel ID                      |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                   IPv4 Tunnel Sender Address                  |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |          Must Be Zero         |            LSP ID             |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+       0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">IPv4 Tunnel Endpoint Address</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Must Be Zero</div><div class="modern-diagram-cell">Tunnel ID</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Extended Tunnel ID</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">IPv4 Tunnel Sender Address</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Must Be Zero</div><div class="modern-diagram-cell">LSP ID</div></div></div>
+</figure><pre>3.2.4.  RSVP IPv6 LSP
 
-<span><a href="#section-3.2.4">3.2.4</a>.  RSVP IPv6 LSP</span>
+   The value has the format below.  The Value fields are taken from RFC
+   3209 [RFC3209], Sections 4.6.1.2 and 4.6.2.2.
 
-   The value has the format below.  The Value fields are taken from <a href="./rfc3209">RFC</a>
-   <a href="https://www.rfc-editor.org/rfc/rfc3209.html" class="rfc-external">3209</a> [<a href="./rfc3209" title="&quot;RSVP-TE: Extensions to RSVP for LSP Tunnels&quot;">RFC3209</a>], Sections <a href="#section-4.6.1.2">4.6.1.2</a> and <a href="#section-4.6.2.2">4.6.2.2</a>.
-
-       0                   1                   2                   3
-       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                 IPv6 Tunnel Endpoint Address                  |
-      |                                                               |
-      |                                                               |
-      |                                                               |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |          Must Be Zero         |          Tunnel ID            |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                       Extended Tunnel ID                      |
-      |                                                               |
-      |                                                               |
-      |                                                               |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                   IPv6 Tunnel Sender Address                  |
-      |                                                               |
-      |                                                               |
-      |                                                               |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |          Must Be Zero         |            LSP ID             |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-
-
-
-
-<span>Kompella, et al.             Standards Track                   [Page 20]</span></pre>
+       0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">IPv6 Tunnel Endpoint Address</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Must Be Zero</div><div class="modern-diagram-cell">Tunnel ID</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Extended Tunnel ID</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">IPv6 Tunnel Sender Address</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Must Be Zero</div><div class="modern-diagram-cell">LSP ID</div></div></div>
+</figure><pre>Kompella, et al.             Standards Track                   [Page 20]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 21</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8029">RFC 8029</a>           Detecting MPLS Data-Plane Failures         March 2017</span>
+  <pre>RFC 8029           Detecting MPLS Data-Plane Failures         March 2017
 
 
-<span><a href="#section-3.2.5">3.2.5</a>.  VPN IPv4 Prefix</span>
+3.2.5.  VPN IPv4 Prefix
 
    VPN-IPv4 Network Layer Routing Information (NLRI) is defined in
-   [<a href="./rfc4365" title="&quot;Applicability Statement for BGP/MPLS IP Virtual Private Networks (VPNs)&quot;">RFC4365</a>].  This document uses the term VPN IPv4 prefix for a
+   [RFC4365].  This document uses the term VPN IPv4 prefix for a
    VPN-IPv4 NLRI that has been advertised with an MPLS label in BGP.
-   See [<a href="./rfc3107" title="&quot;Carrying Label Information in BGP-4&quot;">RFC3107</a>].
+   See [RFC3107].
 
    When a VPN IPv4 prefix is encoded in a label stack, the following
    format is used.  The Value field consists of the RD advertised with
    the VPN IPv4 prefix, the IPv4 prefix (with trailing 0 bits to make 32
    bits in all), and a prefix length, as follows:
 
-       0                   1                   2                   3
-       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                      Route Distinguisher                      |
-      |                          (8 octets)                           |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                         IPv4 prefix                           |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      | Prefix Length |                 Must Be Zero                  |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-   The RD is an 8-octet identifier; it does not contain any inherent
+       0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Route Distinguisher</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">(8 octets)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">IPv4 prefix</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Prefix Length</div><div class="modern-diagram-cell">Must Be Zero</div></div></div>
+</figure><pre>   The RD is an 8-octet identifier; it does not contain any inherent
    information.  The purpose of the RD is solely to allow one to create
    distinct routes to a common IPv4 address prefix.  The encoding of the
    RD is not important here.  When matching this field to the local FEC
@@ -1341,43 +1192,31 @@ Table of Contents
 
 
 
-<span>Kompella, et al.             Standards Track                   [Page 21]</span></pre>
+Kompella, et al.             Standards Track                   [Page 21]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 22</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8029">RFC 8029</a>           Detecting MPLS Data-Plane Failures         March 2017</span>
+  <pre>RFC 8029           Detecting MPLS Data-Plane Failures         March 2017
 
 
-<span><a href="#section-3.2.6">3.2.6</a>.  VPN IPv6 Prefix</span>
+3.2.6.  VPN IPv6 Prefix
 
-   VPN-IPv6 NLRI is defined in [<a href="./rfc4365" title="&quot;Applicability Statement for BGP/MPLS IP Virtual Private Networks (VPNs)&quot;">RFC4365</a>].  This document uses the term
+   VPN-IPv6 NLRI is defined in [RFC4365].  This document uses the term
    VPN IPv6 prefix for a VPN-IPv6 NLRI that has been advertised with an
-   MPLS label in BGP.  See [<a href="./rfc3107" title="&quot;Carrying Label Information in BGP-4&quot;">RFC3107</a>].
+   MPLS label in BGP.  See [RFC3107].
 
    When a VPN IPv6 prefix is encoded in a label stack, the following
    format is used.  The Value field consists of the RD advertised with
    the VPN IPv6 prefix, the IPv6 prefix (with trailing 0 bits to make
    128 bits in all), and a prefix length, as follows:
 
-       0                   1                   2                   3
-       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                      Route Distinguisher                      |
-      |                          (8 octets)                           |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                         IPv6 prefix                           |
-      |                                                               |
-      |                                                               |
-      |                                                               |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      | Prefix Length |                 Must Be Zero                  |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-   The RD is identical to the VPN IPv4 Prefix RD, except that it
+       0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Route Distinguisher</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">(8 octets)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">IPv6 prefix</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Prefix Length</div><div class="modern-diagram-cell">Must Be Zero</div></div></div>
+</figure><pre>   The RD is identical to the VPN IPv4 Prefix RD, except that it
    functions here to allow the creation of distinct routes to IPv6
-   prefixes.  See <a href="#section-3.2.5">Section 3.2.5</a>.  When matching this field to local FEC
+   prefixes.  See Section 3.2.5.  When matching this field to local FEC
    information, it is treated as an opaque value.
 
 
@@ -1401,19 +1240,18 @@ Table of Contents
 
 
 
-<span>Kompella, et al.             Standards Track                   [Page 22]</span></pre>
+Kompella, et al.             Standards Track                   [Page 22]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Appendix</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8029">RFC 8029</a>           Detecting MPLS Data-Plane Failures         March 2017</span>
+  <pre>RFC 8029           Detecting MPLS Data-Plane Failures         March 2017
 
 
-<span><a href="#section-3.2.7">3.2.7</a>.  L2 VPN Endpoint</span>
+3.2.7.  L2 VPN Endpoint
 
    VPLS stands for Virtual Private LAN Service.  The terms VPLS BGP NLRI
-   and VPLS Edge Identifier (VE ID) are defined in [<a href="./rfc4761" title="&quot;Virtual Private LAN Service (VPLS) Using BGP for Auto-Discovery and Signaling&quot;">RFC4761</a>].  This
+   and VPLS Edge Identifier (VE ID) are defined in [RFC4761].  This
    document uses the simpler term L2 VPN endpoint when referring to a
    VPLS BGP NLRI.  The RD is an 8-octet identifier used to distinguish
    information about various L2 VPNs advertised by a node.  The VE ID is
@@ -1422,27 +1260,19 @@ Table of Contents
    these two identifiers is unimportant here; when matching these fields
    to local FEC information, they are treated as opaque values.  The
    encapsulation type is identical to the Pseudowire (PW) Type in
-   <a href="#section-3.2.9">Section 3.2.9</a>.
+   Section 3.2.9.
 
    When an L2 VPN endpoint is encoded in a label stack, the following
    format is used.  The Value field consists of an RD (8 octets), the
-   sender's (of the ping) VE ID (2 octets), the receiver's VE ID (2
+   sender&#x27;s (of the ping) VE ID (2 octets), the receiver&#x27;s VE ID (2
    octets), and an encapsulation type (2 octets), formatted as follows:
 
-       0                   1                   2                   3
-       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                      Route Distinguisher                      |
-      |                          (8 octets)                           |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |         Sender's VE ID        |       Receiver's VE ID        |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |      Encapsulation Type       |         Must Be Zero          |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+       0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Route Distinguisher</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">(8 octets)</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Sender&#x27;s VE ID</div><div class="modern-diagram-cell">Receiver&#x27;s VE ID</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Encapsulation Type</div><div class="modern-diagram-cell">Must Be Zero</div></div></div>
+</figure><pre>3.2.8.  FEC 128 Pseudowire - IPv4 (Deprecated)
 
-<span><a href="#section-3.2.8">3.2.8</a>.  FEC 128 Pseudowire - IPv4 (Deprecated)</span>
-
-   See <a href="#appendix-A.1.1">Appendix A.1.1</a> for details.
+   See Appendix A.1.1 for details.
 
 
 
@@ -1461,82 +1291,50 @@ Table of Contents
 
 
 
-<span>Kompella, et al.             Standards Track                   [Page 23]</span></pre>
+Kompella, et al.             Standards Track                   [Page 23]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 24</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8029">RFC 8029</a>           Detecting MPLS Data-Plane Failures         March 2017</span>
+  <pre>RFC 8029           Detecting MPLS Data-Plane Failures         March 2017
 
 
-<span><a href="#section-3.2.9">3.2.9</a>.  FEC 128 Pseudowire - IPv4 (Current)</span>
+3.2.9.  FEC 128 Pseudowire - IPv4 (Current)
 
-   FEC 128 (0x80) is defined in [<a href="./rfc8077" title="&quot;Pseudowire Setup and Maintenance Using the Label Distribution Protocol (LDP)&quot;">RFC8077</a>], as are the terms PW ID
+   FEC 128 (0x80) is defined in [RFC8077], as are the terms PW ID
    (Pseudowire ID) and PW Type (Pseudowire Type).  A PW ID is a non-zero
    32-bit connection ID.  The PW Type is a 15-bit number indicating the
    encapsulation type.  It is carried right justified in the field below
-   termed "encapsulation type" with the high-order bit set to zero.
+   termed &quot;encapsulation type&quot; with the high-order bit set to zero.
 
    Both of these fields are treated in this protocol as opaque values.
    When matching these fields to the local FEC information, the match
    MUST be exact.
 
    When a FEC 128 is encoded in a label stack, the following format is
-   used.  The Value field consists of the Sender's Provider Edge (PE)
+   used.  The Value field consists of the Sender&#x27;s Provider Edge (PE)
    IPv4 Address (the source address of the targeted LDP session), the
    Remote PE IPv4 Address (the destination address of the targeted LDP
    session), the PW ID, and the encapsulation type as follows:
 
-       0                   1                   2                   3
-       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                     Sender's PE IPv4 Address                  |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                      Remote PE IPv4 Address                   |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                             PW ID                             |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |            PW Type            |          Must Be Zero         |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<span>Kompella, et al.             Standards Track                   [Page 24]</span></pre>
+       0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Sender&#x27;s PE IPv4 Address</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Remote PE IPv4 Address</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">PW ID</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">PW Type</div><div class="modern-diagram-cell">Must Be Zero</div></div></div>
+</figure><pre>Kompella, et al.             Standards Track                   [Page 24]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 25</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8029">RFC 8029</a>           Detecting MPLS Data-Plane Failures         March 2017</span>
+  <pre>RFC 8029           Detecting MPLS Data-Plane Failures         March 2017
 
 
-<span><a href="#section-3.2.10">3.2.10</a>.  FEC 129 Pseudowire - IPv4</span>
+3.2.10.  FEC 129 Pseudowire - IPv4
 
    FEC 129 (0x81) and the terms PW Type, Attachment Group Identifier
    (AGI), Attachment Group Identifier Type (AGI Type), Attachment
    Individual Identifier Type (AII Type), Source Attachment Individual
    Identifier (SAII), and Target Attachment Individual Identifier (TAII)
-   are defined in [<a href="./rfc8077" title="&quot;Pseudowire Setup and Maintenance Using the Label Distribution Protocol (LDP)&quot;">RFC8077</a>].  The PW Type is a 15-bit number indicating
+   are defined in [RFC8077].  The PW Type is a 15-bit number indicating
    the encapsulation type.  It is carried right justified in the field
    below PW Type with the high-order bit set to zero.  All the other
    fields are treated as opaque values and copied directly from the FEC
@@ -1549,79 +1347,48 @@ Table of Contents
    length.  Padding is used to make the total length a multiple of 4;
    the length of the padding is not included in the Length field.
 
-       0                   1                   2                   3
-       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                     Sender's PE IPv4 Address                  |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                      Remote PE IPv4 Address                   |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |            PW Type            |   AGI Type    |  AGI Length   |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      ~                           AGI Value                           ~
-      |                                                               |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |   AII Type    |  SAII Length  |      SAII Value               |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      ~                    SAII Value (continued)                     ~
-      |                                                               |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |   AII Type    |  TAII Length  |      TAII Value               |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      ~                    TAII Value (continued)                     ~
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |  TAII (cont.) |  0-3 octets of zero padding                   |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-
-
-
-
-
-
-
-
-<span>Kompella, et al.             Standards Track                   [Page 25]</span></pre>
+       0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Sender&#x27;s PE IPv4 Address</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Remote PE IPv4 Address</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">PW Type</div><div class="modern-diagram-cell">AGI Type</div><div class="modern-diagram-cell">AGI Length</div></div></div>
+</figure><pre>      ~                           AGI Value                           ~</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">AII Type</div><div class="modern-diagram-cell">SAII Length</div><div class="modern-diagram-cell">SAII Value</div></div></div>
+</figure><pre>      ~                    SAII Value (continued)                     ~</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">AII Type</div><div class="modern-diagram-cell">TAII Length</div><div class="modern-diagram-cell">TAII Value</div></div></div>
+</figure><pre>      ~                    TAII Value (continued)                     ~</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">TAII (cont.)</div><div class="modern-diagram-cell">0-3 octets of zero padding</div></div></div>
+</figure><pre>Kompella, et al.             Standards Track                   [Page 25]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 26</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8029">RFC 8029</a>           Detecting MPLS Data-Plane Failures         March 2017</span>
+  <pre>RFC 8029           Detecting MPLS Data-Plane Failures         March 2017
 
 
-<span><a href="#section-3.2.11">3.2.11</a>.  FEC 128 Pseudowire - IPv6</span>
+3.2.11.  FEC 128 Pseudowire - IPv6
 
    The FEC 128 Pseudowire IPv6 sub-TLV has a structure consistent with
-   the FEC 128 Pseudowire IPv4 sub-TLV as described in <a href="#section-3.2.9">Section 3.2.9</a>.
-   The Value field consists of the Sender's PE IPv6 Address (the source
+   the FEC 128 Pseudowire IPv4 sub-TLV as described in Section 3.2.9.
+   The Value field consists of the Sender&#x27;s PE IPv6 Address (the source
    address of the targeted LDP session), the Remote PE IPv6 Address (the
    destination address of the targeted LDP session), the PW ID, and the
    encapsulation type as follows:
 
-       0                   1                   2                   3
-       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      ~                     Sender's PE IPv6 Address                  ~
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      ~                      Remote PE IPv6 Address                   ~
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                             PW ID                             |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |            PW Type            |          Must Be Zero         |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-   Sender's PE IPv6 Address: The source IP address of the target IPv6
+       0                   1                   2                   3</pre><pre>       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>      ~                     Sender&#x27;s PE IPv6 Address                  ~</pre><pre>      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>      ~                      Remote PE IPv6 Address                   ~</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">PW ID</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">PW Type</div><div class="modern-diagram-cell">Must Be Zero</div></div></div>
+</figure><pre>   Sender&#x27;s PE IPv6 Address: The source IP address of the target IPv6
    LDP session. 16 octets.
 
    Remote PE IPv6 Address: The destination IP address of the target IPv6
    LDP session. 16 octets.
 
-   PW ID: Same as FEC 128 Pseudowire IPv4 in <a href="#section-3.2.9">Section 3.2.9</a>.
+   PW ID: Same as FEC 128 Pseudowire IPv4 in Section 3.2.9.
 
-   PW Type: Same as FEC 128 Pseudowire IPv4 in <a href="#section-3.2.9">Section 3.2.9</a>.
-
-
+   PW Type: Same as FEC 128 Pseudowire IPv4 in Section 3.2.9.
 
 
 
@@ -1641,19 +1408,20 @@ Table of Contents
 
 
 
-<span>Kompella, et al.             Standards Track                   [Page 26]</span></pre>
+
+
+Kompella, et al.             Standards Track                   [Page 26]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 27</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8029">RFC 8029</a>           Detecting MPLS Data-Plane Failures         March 2017</span>
+  <pre>RFC 8029           Detecting MPLS Data-Plane Failures         March 2017
 
 
-<span><a href="#section-3.2.12">3.2.12</a>.  FEC 129 Pseudowire - IPv6</span>
+3.2.12.  FEC 129 Pseudowire - IPv6
 
    The FEC 129 Pseudowire IPv6 sub-TLV has a structure consistent with
-   the FEC 129 Pseudowire IPv4 sub-TLV as described in <a href="#section-3.2.10">Section 3.2.10</a>.
+   the FEC 129 Pseudowire IPv4 sub-TLV as described in Section 3.2.10.
    When a FEC 129 is encoded in a label stack, the following format is
    used.  The length of this TLV is 40 + AGI (Attachment Group
    Identifier) length + SAII (Source Attachment Individual Identifier)
@@ -1661,36 +1429,27 @@ Table of Contents
    Padding is used to make the total length a multiple of 4; the length
    of the padding is not included in the Length field.
 
-        0                   1                   2                   3
-        0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       ~                   Sender's PE IPv6 Address                    ~
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       ~                    Remote PE IPv6 Address                     ~
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |            PW Type            |   AGI Type    |  AGI Length   |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       ~                           AGI Value                           ~
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |   AII Type    |  SAII Length  |      SAII Value               |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       ~                    SAII Value (continued)                     ~
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |   AII Type    |  TAII Length  |      TAII Value               |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       ~                    TAII Value (continued)                     ~
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |  TAII (cont.) |  0-3 octets of zero padding                   |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-   Sender's PE IPv6 Address: The source IP address of the target IPv6
+        0                   1                   2                   3</pre><pre>        0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>       ~                   Sender&#x27;s PE IPv6 Address                    ~</pre><pre>       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>       ~                    Remote PE IPv6 Address                     ~</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">PW Type</div><div class="modern-diagram-cell">AGI Type</div><div class="modern-diagram-cell">AGI Length</div></div></div>
+</figure><pre>       ~                           AGI Value                           ~</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">AII Type</div><div class="modern-diagram-cell">SAII Length</div><div class="modern-diagram-cell">SAII Value</div></div></div>
+</figure><pre>       ~                    SAII Value (continued)                     ~</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">AII Type</div><div class="modern-diagram-cell">TAII Length</div><div class="modern-diagram-cell">TAII Value</div></div></div>
+</figure><pre>       ~                    TAII Value (continued)                     ~</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">TAII (cont.)</div><div class="modern-diagram-cell">0-3 octets of zero padding</div></div></div>
+</figure><pre>   Sender&#x27;s PE IPv6 Address: The source IP address of the target IPv6
    LDP session. 16 octets.
 
    Remote PE IPv6 Address: The destination IP address of the target IPv6
    LDP session. 16 octets.
 
    The other fields are the same as FEC 129 Pseudowire IPv4 in
-   <a href="#section-3.2.10">Section 3.2.10</a>.
+   Section 3.2.10.
 
 
 
@@ -1701,76 +1460,45 @@ Table of Contents
 
 
 
-<span>Kompella, et al.             Standards Track                   [Page 27]</span></pre>
+Kompella, et al.             Standards Track                   [Page 27]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 28</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8029">RFC 8029</a>           Detecting MPLS Data-Plane Failures         March 2017</span>
+  <pre>RFC 8029           Detecting MPLS Data-Plane Failures         March 2017
 
 
-<span><a href="#section-3.2.13">3.2.13</a>.  BGP Labeled IPv4 Prefix</span>
+3.2.13.  BGP Labeled IPv4 Prefix
 
-   BGP labeled IPv4 prefixes are defined in [<a href="./rfc3107" title="&quot;Carrying Label Information in BGP-4&quot;">RFC3107</a>].  When a BGP
+   BGP labeled IPv4 prefixes are defined in [RFC3107].  When a BGP
    labeled IPv4 prefix is encoded in a label stack, the following format
    is used.  The Value field consists of the IPv4 prefix (with trailing
    0 bits to make 32 bits in all) and the prefix length, as follows:
 
-       0                   1                   2                   3
-       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                          IPv4 prefix                          |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      | Prefix Length |                 Must Be Zero                  |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+       0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">IPv4 prefix</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Prefix Length</div><div class="modern-diagram-cell">Must Be Zero</div></div></div>
+</figure><pre>3.2.14.  BGP Labeled IPv6 Prefix
 
-<span><a href="#section-3.2.14">3.2.14</a>.  BGP Labeled IPv6 Prefix</span>
-
-   BGP labeled IPv6 prefixes are defined in [<a href="./rfc3107" title="&quot;Carrying Label Information in BGP-4&quot;">RFC3107</a>].  When a BGP
+   BGP labeled IPv6 prefixes are defined in [RFC3107].  When a BGP
    labeled IPv6 prefix is encoded in a label stack, the following format
    is used.  The value consists of 16 octets of an IPv6 prefix followed
    by 1 octet of prefix length in bits; the format is given below.  The
    IPv6 prefix is in network byte order; if the prefix is shorter than
    128 bits, the trailing bits SHOULD be set to zero.
 
-       0                   1                   2                   3
-       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                          IPv6 prefix                          |
-      |                          (16 octets)                          |
-      |                                                               |
-      |                                                               |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      | Prefix Length |         Must Be Zero                          |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<span>Kompella, et al.             Standards Track                   [Page 28]</span></pre>
+       0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">IPv6 prefix</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">(16 octets)</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Prefix Length</div><div class="modern-diagram-cell">Must Be Zero</div></div></div>
+</figure><pre>Kompella, et al.             Standards Track                   [Page 28]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 29</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8029">RFC 8029</a>           Detecting MPLS Data-Plane Failures         March 2017</span>
+  <pre>RFC 8029           Detecting MPLS Data-Plane Failures         March 2017
 
 
-<span><a href="#section-3.2.15">3.2.15</a>.  Generic IPv4 Prefix</span>
+3.2.15.  Generic IPv4 Prefix
 
    The value consists of 4 octets of an IPv4 prefix followed by 1 octet
    of prefix length in bits; the format is given below.  The IPv4 prefix
@@ -1778,37 +1506,24 @@ Table of Contents
    trailing bits SHOULD be set to zero.  This FEC is used if the
    protocol advertising the label is unknown or may change during the
    course of the LSP.  An example is an inter-AS LSP that may be
-   signaled by LDP in one Autonomous System (AS), by RSVP-TE [<a href="./rfc3209" title="&quot;RSVP-TE: Extensions to RSVP for LSP Tunnels&quot;">RFC3209</a>]
+   signaled by LDP in one Autonomous System (AS), by RSVP-TE [RFC3209]
    in another AS, and by BGP between the ASes, such as is common for
    inter-AS VPNs.
 
-       0                   1                   2                   3
-       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                          IPv4 prefix                          |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      | Prefix Length |         Must Be Zero                          |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-<span><a href="#section-3.2.16">3.2.16</a>.  Generic IPv6 Prefix</span>
+       0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">IPv4 prefix</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Prefix Length</div><div class="modern-diagram-cell">Must Be Zero</div></div></div>
+</figure><pre>3.2.16.  Generic IPv6 Prefix
 
    The value consists of 16 octets of an IPv6 prefix followed by 1 octet
    of prefix length in bits; the format is given below.  The IPv6 prefix
    is in network byte order; if the prefix is shorter than 128 bits, the
    trailing bits SHOULD be set to zero.
 
-       0                   1                   2                   3
-       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                          IPv6 prefix                          |
-      |                          (16 octets)                          |
-      |                                                               |
-      |                                                               |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      | Prefix Length |         Must Be Zero                          |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-<span><a href="#section-3.2.17">3.2.17</a>.  Nil FEC</span>
+       0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">IPv6 prefix</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">(16 octets)</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Prefix Length</div><div class="modern-diagram-cell">Must Be Zero</div></div></div>
+</figure><pre>3.2.17.  Nil FEC
 
    At times, labels from the reserved range, e.g., Router Alert and
    Explicit-null, may be added to the label stack for various diagnostic
@@ -1821,31 +1536,27 @@ Table of Contents
 
 
 
-<span>Kompella, et al.             Standards Track                   [Page 29]</span></pre>
+Kompella, et al.             Standards Track                   [Page 29]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Appendix</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8029">RFC 8029</a>           Detecting MPLS Data-Plane Failures         March 2017</span>
+  <pre>RFC 8029           Detecting MPLS Data-Plane Failures         March 2017
 
 
    The Length is 4.  Labels are 20-bit values treated as numbers.
 
-       0                   1                   2                   3
-       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                 Label                 |          MBZ          |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-   Label is the actual label value inserted in the label stack; the MBZ
+       0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Label</div><div class="modern-diagram-cell">MBZ</div></div></div>
+</figure><pre>   Label is the actual label value inserted in the label stack; the MBZ
    fields MUST be zero when sent and ignored on receipt.
 
-<span><a href="#section-3.3">3.3</a>.  Downstream Mapping (Deprecated)</span>
+3.3.  Downstream Mapping (Deprecated)
 
-   See <a href="#appendix-A.2">Appendix A.2</a> for more details.
+   See Appendix A.2 for more details.
 
-<span><a href="#section-3.4">3.4</a>.  Downstream Detailed Mapping TLV</span>
+3.4.  Downstream Detailed Mapping TLV
 
    The Downstream Detailed Mapping object is a TLV that MAY be included
    in an MPLS echo request message.  Only one Downstream Detailed
@@ -1857,41 +1568,24 @@ Table of Contents
    MPLS echo reply.  Otherwise, the replying router SHOULD include a
    Downstream Detailed Mapping object for each interface over which this
    FEC could be forwarded.  For a more precise definition of the notion
-   of "downstream", see <a href="#section-3.4.2">Section 3.4.2</a>, "Downstream Router and
-   Interface".
+   of &quot;downstream&quot;, see Section 3.4.2, &quot;Downstream Router and
+   Interface&quot;.
 
-        0                   1                   2                   3
-        0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |               MTU             | Address Type  |    DS Flags   |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |               Downstream Address (4 or 16 octets)             |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |         Downstream Interface Address (4 or 16 octets)         |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |  Return Code  | Return Subcode|        Sub-TLV Length         |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       .                                                               .
+        0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">MTU</div><div class="modern-diagram-cell">Address Type</div><div class="modern-diagram-cell">DS Flags</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Downstream Address (4 or 16 octets)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Downstream Interface Address (4 or 16 octets)</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Return Code</div><div class="modern-diagram-cell">Return Subcode</div><div class="modern-diagram-cell">Sub-TLV Length</div></div></div>
+</figure><pre>       .                                                               .
        .                      List of Sub-TLVs                         .
-       .                                                               .
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-
-
-
-
-
-<span>Kompella, et al.             Standards Track                   [Page 30]</span></pre>
+       .                                                               .</pre><pre>       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>Kompella, et al.             Standards Track                   [Page 30]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Appendix</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8029">RFC 8029</a>           Detecting MPLS Data-Plane Failures         March 2017</span>
+  <pre>RFC 8029           Detecting MPLS Data-Plane Failures         March 2017
 
 
    The Downstream Detailed Mapping TLV format is derived from the
-   deprecated Downstream Mapping TLV format (see <a href="#appendix-A.2">Appendix A.2</a>.)  The key
+   deprecated Downstream Mapping TLV format (see Appendix A.2.)  The key
    change is that variable length and optional fields have been
    converted into sub-TLVs.
 
@@ -1917,14 +1611,10 @@ Table of Contents
    DS Flags
 
       The DS Flags field is a bit vector of various flags with the
-      following format:
-
-        0 1 2 3 4 5 6 7
-       +-+-+-+-+-+-+-+-+
-       | Rsvd(MBZ) |I|N|
-       +-+-+-+-+-+-+-+-+
-
-      Two flags are defined currently, I and N.  The remaining flags
+      following format:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Rsvd(MBZ)</div><div class="modern-diagram-cell">I</div><div class="modern-diagram-cell">N</div></div></div>
+</figure><pre>      Two flags are defined currently, I and N.  The remaining flags
       MUST be set to zero when sending and ignored on receipt.
 
        Flag  Name and Meaning
@@ -1941,7 +1631,7 @@ Table of Contents
 
 
 
-<span>Kompella, et al.             Standards Track                   [Page 31]</span></pre>
+Kompella, et al.             Standards Track                   [Page 31]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 32</span>
@@ -2066,11 +1756,10 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 34</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8029">RFC 8029</a>           Detecting MPLS Data-Plane Failures         March 2017</span>
+  <pre>RFC 8029           Detecting MPLS Data-Plane Failures         March 2017
 
 
-<span><a href="#section-3.4.1">3.4.1</a>.  Sub-TLVs</span>
+3.4.1.  Sub-TLVs
 
    This section defines the sub-TLVs that MAY be included as part of the
    Downstream Detailed Mapping TLV.
@@ -2081,19 +1770,12 @@ Table of Contents
              2         Label stack
              3         FEC stack change
 
-<span><a href="#section-3.4.1.1">3.4.1.1</a>.  Multipath Data Sub-TLV</span>
+3.4.1.1.  Multipath Data Sub-TLV
 
-       0                   1                   2                   3
-       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |Multipath Type |       Multipath Length        |Reserved (MBZ) |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                                                               |
-      |                  (Multipath Information)                      |
-      |                                                               |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-   The multipath data sub-TLV includes Multipath Information.
+       0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Multipath Type</div><div class="modern-diagram-cell">Multipath Length</div><div class="modern-diagram-cell">Reserved (MBZ)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">(Multipath Information)</div></div></div>
+</figure><pre>   The multipath data sub-TLV includes Multipath Information.
 
    Multipath Type
 
@@ -2121,13 +1803,12 @@ Table of Contents
 
 
 
-<span>Kompella, et al.             Standards Track                   [Page 34]</span></pre>
+Kompella, et al.             Standards Track                   [Page 34]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 35</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8029">RFC 8029</a>           Detecting MPLS Data-Plane Failures         March 2017</span>
+  <pre>RFC 8029           Detecting MPLS Data-Plane Failures         March 2017
 
 
    Multipath Length
@@ -2141,10 +1822,10 @@ Table of Contents
    Multipath Information
 
       Encoded multipath data (e.g., encoded address or label values),
-      according to the Multipath Type.  See <a href="#section-3.4.1.1.1">Section 3.4.1.1.1</a> for
+      according to the Multipath Type.  See Section 3.4.1.1.1 for
       encoding details.
 
-<span><a href="#section-3.4.1.1.1">3.4.1.1.1</a>.  Multipath Information Encoding</span>
+3.4.1.1.1.  Multipath Information Encoding
 
    The Multipath Information encodes labels or addresses that will
    exercise this path.  The Multipath Information depends on the
@@ -2166,47 +1847,23 @@ Table of Contents
    127.2.1.0, 127.2.1.5-127.2.1.15, and 127.2.1.20-127.2.1.29 would be
    encoded as follows:
 
-    0                   1                   2                   3
-    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |0 1 1 1 1 1 1 1 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0|
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |1 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 1 1 1 1 1 1 1 1 1 1 0 0|
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-
-
-
-
-
-
-
-<span>Kompella, et al.             Standards Track                   [Page 35]</span></pre>
+    0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 1 1 1 1 1 1 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">1 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 1 1 1 1 1 1 1 1 1 1 0 0</div></div></div>
+</figure><pre>Kompella, et al.             Standards Track                   [Page 35]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 36</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8029">RFC 8029</a>           Detecting MPLS Data-Plane Failures         March 2017</span>
+  <pre>RFC 8029           Detecting MPLS Data-Plane Failures         March 2017
 
 
    Those same addresses embedded in IPv6 would be encoded as follows:
 
-    0                   1                   2                   3
-    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0|
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0|
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1|
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |0 1 1 1 1 1 1 1 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0|
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |1 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 1 1 1 1 1 1 1 1 1 1 0 0|
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-   Type 9 allows a more dense encoding of labels.  The label prefix is
+    0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 1 1 1 1 1 1 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">1 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 1 1 1 1 1 1 1 1 1 1 0 0</div></div></div>
+</figure><pre>   Type 9 allows a more dense encoding of labels.  The label prefix is
    formatted as a base label value with the non-prefix low-order bits
    set to zero.  The maximum prefix (including leading zeros due to
    encoding) length is 27.  Following the prefix is a mask of length
@@ -2216,21 +1873,10 @@ Table of Contents
    zero.  Label values of all the odd numbers between 1152 and 1279
    would be encoded as follows:
 
-    0                   1                   2                   3
-    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 0 0 0 0 0 0 0|
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1|
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1|
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1|
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1|
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-   If the received Multipath Information is non-null, the labels and IP
+    0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 0 0 0 0 0 0 0</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1</div></div></div>
+</figure><pre>   If the received Multipath Information is non-null, the labels and IP
    addresses MUST be picked from the set provided.  If none of these
    labels or addresses map to a particular downstream interface, then
    for that interface, the type MUST be set to 0.  If the received
@@ -2241,13 +1887,12 @@ Table of Contents
 
 
 
-<span>Kompella, et al.             Standards Track                   [Page 36]</span></pre>
+Kompella, et al.             Standards Track                   [Page 36]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 37</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8029">RFC 8029</a>           Detecting MPLS Data-Plane Failures         March 2017</span>
+  <pre>RFC 8029           Detecting MPLS Data-Plane Failures         March 2017
 
 
    For example, suppose LSR X at hop 10 has two downstream LSRs, Y and
@@ -2277,21 +1922,17 @@ Table of Contents
    Layer 2 ECMP over Link Aggregation Group (LAG) interfaces will be
    defined in a different document.
 
-<span><a href="#section-3.4.1.2">3.4.1.2</a>.  Label Stack Sub-TLV</span>
+3.4.1.2.  Label Stack Sub-TLV
 
-       0                   1                   2                   3
-       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |               Downstream Label                |    Protocol   |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+       0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Downstream Label</div><div class="modern-diagram-cell">Protocol</div></div></div>
+</figure><pre>      .                                                               .
       .                                                               .
-      .                                                               .
-      .                                                               .
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |               Downstream Label                |    Protocol   |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-   The Label Stack sub-TLV contains the set of labels in the label stack
+      .                                                               .</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Downstream Label</div><div class="modern-diagram-cell">Protocol</div></div></div>
+</figure><pre>   The Label Stack sub-TLV contains the set of labels in the label stack
    as it would have appeared if this router were forwarding the packet
    through this interface.  Any Implicit Null labels are explicitly
    included.  The number of label/protocol pairs present in the sub-TLV
@@ -2301,20 +1942,19 @@ Table of Contents
 
 
 
-<span>Kompella, et al.             Standards Track                   [Page 37]</span></pre>
+Kompella, et al.             Standards Track                   [Page 37]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 38</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8029">RFC 8029</a>           Detecting MPLS Data-Plane Failures         March 2017</span>
+  <pre>RFC 8029           Detecting MPLS Data-Plane Failures         March 2017
 
 
    Downstream Label
 
       A downstream label is 24 bits, in the same format as an MPLS label
       minus the TTL field, i.e., the MSBit of the label is bit 0, the
-      LSBit is bit 19, the TC field [<a href="./rfc5462" title="&quot;Multiprotocol Label Switching (MPLS) Label Stack Entry: &quot;">RFC5462</a>] is bits 20-22, and S is
+      LSBit is bit 19, the TC field [RFC5462] is bits 20-22, and S is
       bit 23.  The replying router SHOULD fill in the TC field and S
       bit; the LSR receiving the echo reply MAY choose to ignore these.
 
@@ -2331,7 +1971,7 @@ Table of Contents
                3        LDP
                4        RSVP-TE
 
-<span><a href="#section-3.4.1.3">3.4.1.3</a>.  FEC Stack Change Sub-TLV</span>
+3.4.1.3.  FEC Stack Change Sub-TLV
 
    A router MUST include the FEC stack change sub-TLV when the
    downstream node in the echo reply has a different FEC Stack than the
@@ -2339,29 +1979,12 @@ Table of Contents
    sub-TLVs MAY be present in the Downstream Detailed Mapping TLV.  The
    format is as below.
 
-    0                   1                   2                   3
-    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |Operation Type | Address Type  | FEC-tlv length|  Reserved     |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |           Remote Peer Address (0, 4, or 16 octets)            |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   .                                                               .
+    0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Operation Type</div><div class="modern-diagram-cell">Address Type</div><div class="modern-diagram-cell">FEC-tlv length</div><div class="modern-diagram-cell">Reserved</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Remote Peer Address (0, 4, or 16 octets)</div></div></div>
+</figure><pre>   .                                                               .
    .                         FEC TLV                               .
-   .                                                               .
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-
-
-
-
-
-
-
-
-
-
-<span>Kompella, et al.             Standards Track                   [Page 38]</span></pre>
+   .                                                               .</pre><pre>   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>Kompella, et al.             Standards Track                   [Page 38]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 39</span>
@@ -2546,11 +2169,10 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 42</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8029">RFC 8029</a>           Detecting MPLS Data-Plane Failures         March 2017</span>
+  <pre>RFC 8029           Detecting MPLS Data-Plane Failures         March 2017
 
 
-<span><a href="#section-3.7">3.7</a>.  Interface and Label Stack</span>
+3.7.  Interface and Label Stack
 
    The Interface and Label Stack TLV MAY be included in a reply message
    to report the interface on which the request message was received and
@@ -2563,29 +2185,20 @@ Table of Contents
    stack.  Values for K are found in the description of Address Type
    below.  The Value field of this TLV has the following format:
 
-       0                   1                   2                   3
-       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      | Address Type  |             Must Be Zero                      |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                   IP Address (4 or 16 octets)                 |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                   Interface (4 or 16 octets)                  |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      .                                                               .
+       0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Address Type</div><div class="modern-diagram-cell">Must Be Zero</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">IP Address (4 or 16 octets)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Interface (4 or 16 octets)</div></div></div>
+</figure><pre>      .                                                               .
       .                                                               .
       .                          Label Stack                          .
       .                                                               .
       .                                                               .
-      .                                                               .
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-   Address Type
+      .                                                               .</pre><pre>      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>   Address Type
 
       The Address Type indicates if the interface is numbered or
       unnumbered.  It also determines the length of the IP Address and
       Interface fields.  The resulting total for the initial part of the
-      TLV is listed in the table below as "K Octets".  The Address Type
+      TLV is listed in the table below as &quot;K Octets&quot;.  The Address Type
       is set to one of the following values:
 
          Type #        Address Type           K Octets
@@ -2601,13 +2214,12 @@ Table of Contents
 
 
 
-<span>Kompella, et al.             Standards Track                   [Page 42]</span></pre>
+Kompella, et al.             Standards Track                   [Page 42]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 43</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8029">RFC 8029</a>           Detecting MPLS Data-Plane Failures         March 2017</span>
+  <pre>RFC 8029           Detecting MPLS Data-Plane Failures         March 2017
 
 
    IP Address and Interface
@@ -2617,13 +2229,13 @@ Table of Contents
 
       If the interface upon which the echo request message was received
       is numbered, then the Address Type MUST be set to IPv4 or IPv6,
-      the IP Address MUST be set to either the LSR's Router ID or the
+      the IP Address MUST be set to either the LSR&#x27;s Router ID or the
       interface address, and the Interface MUST be set to the interface
       address.
 
       If the interface is unnumbered, the Address Type MUST be either
       IPv4 Unnumbered or IPv6 Unnumbered, the IP Address MUST be the
-      LSR's Router ID, and the Interface MUST be set to the index
+      LSR&#x27;s Router ID, and the Interface MUST be set to the index
       assigned to the interface.
 
    Label Stack
@@ -2631,7 +2243,7 @@ Table of Contents
       The label stack of the received echo request message.  If any TTL
       values have been changed by this router, they SHOULD be restored.
 
-<span><a href="#section-3.8">3.8</a>.  Errored TLVs</span>
+3.8.  Errored TLVs
 
    The following TLV is a TLV that MAY be included in an echo reply to
    inform the sender of an echo request of mandatory TLVs either not
@@ -2640,53 +2252,34 @@ Table of Contents
    The Value field contains the TLVs that were not understood, encoded
    as sub-TLVs.
 
-       0                   1                   2                   3
-       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |             Type = 9          |            Length             |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                             Value                             |
+       0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Type = 9</div><div class="modern-diagram-cell">Length</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Value</div></div></div>
+</figure><pre>      .                                                               .
       .                                                               .
-      .                                                               .
-      .                                                               .
-      |                                                               |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-
-
-
-
-
-
-
-
-
-<span>Kompella, et al.             Standards Track                   [Page 43]</span></pre>
+      .                                                               .</pre><pre>      |                                                               |
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>Kompella, et al.             Standards Track                   [Page 43]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 44</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8029">RFC 8029</a>           Detecting MPLS Data-Plane Failures         March 2017</span>
+  <pre>RFC 8029           Detecting MPLS Data-Plane Failures         March 2017
 
 
-<span><a href="#section-3.9">3.9</a>.  Reply TOS Octet TLV</span>
+3.9.  Reply TOS Octet TLV
 
    This TLV MAY be used by the originator of the echo request to request
    that an echo reply be sent with the IP header Type of Service (TOS)
    octet set to the value specified in the TLV.  This TLV has a length
    of 4 with the following Value field.
 
-       0                   1                   2                   3
-       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      | Reply-TOS Byte|                 Must Be Zero                  |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-<span><a href="#section-4">4</a>.  Theory of Operation</span>
+       0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Reply-TOS Byte</div><div class="modern-diagram-cell">Must Be Zero</div></div></div>
+</figure><pre>4.  Theory of Operation
 
    An MPLS echo request is used to test a particular LSP.  The LSP to be
-   tested is identified by the "FEC Stack"; for example, if the LSP was
+   tested is identified by the &quot;FEC Stack&quot;; for example, if the LSP was
    set up via LDP, and a label is mapped to an egress IP address of
    198.51.100.1, the FEC Stack contains a single element, namely, an LDP
    IPv4 prefix sub-TLV with value 198.51.100.1/32.  If the LSP being
@@ -2705,14 +2298,14 @@ Table of Contents
    When an MPLS echo request is received, the receiver is expected to
    verify that the control plane and data plane are both healthy (for
    the FEC Stack being pinged), and that the two planes are in sync.
-   The procedures for this are in <a href="#section-4.4">Section 4.4</a>.
+   The procedures for this are in Section 4.4.
 
-<span><a href="#section-4.1">4.1</a>.  Dealing with Equal-Cost Multipath (ECMP)</span>
+4.1.  Dealing with Equal-Cost Multipath (ECMP)
 
    LSPs need not be simple point-to-point tunnels.  Frequently, a single
    LSP may originate at several ingresses and terminate at several
    egresses; this is very common with LDP LSPs.  LSPs for a given FEC
-   may also have multiple "next hops" at transit LSRs.  At an ingress,
+   may also have multiple &quot;next hops&quot; at transit LSRs.  At an ingress,
    there may also be several different LSPs to choose from to get to the
    desired endpoint.  Finally, LSPs may have backup paths, detour paths,
    and other alternative paths to take should the primary LSP go down.
@@ -2721,7 +2314,7 @@ Table of Contents
 
 
 
-<span>Kompella, et al.             Standards Track                   [Page 44]</span></pre>
+Kompella, et al.             Standards Track                   [Page 44]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 45</span>
@@ -3866,14 +3459,13 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 64</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8029">RFC 8029</a>           Detecting MPLS Data-Plane Failures         March 2017</span>
+  <pre>RFC 8029           Detecting MPLS Data-Plane Failures         March 2017
 
 
-<span><a href="#section-6.2.3">6.2.3</a>.  Global Flags</span>
+6.2.3.  Global Flags
 
-   IANA has created a "Global Flags" subregistry of the "Multiprotocol
-   Label Switching (MPLS) Label Switched Paths (LSPs) Ping Parameters"
+   IANA has created a &quot;Global Flags&quot; subregistry of the &quot;Multiprotocol
+   Label Switching (MPLS) Label Switched Paths (LSPs) Ping Parameters&quot;
    registry.
 
    This registry tracks the assignment of 16 flags in the Global Flags
@@ -3882,18 +3474,12 @@ Table of Contents
 
    New entries are assigned by Standards Action.
 
-   Initial entries in the registry are as follows:
+   Initial entries in the registry are as follows:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Bit number</div><div class="modern-diagram-cell">Name</div><div class="modern-diagram-cell">Reference</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">15</div><div class="modern-diagram-cell">V Flag</div><div class="modern-diagram-cell">[RFC8029]</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">14</div><div class="modern-diagram-cell">T Flag</div><div class="modern-diagram-cell">[RFC6425]</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">13</div><div class="modern-diagram-cell">R Flag</div><div class="modern-diagram-cell">[RFC6426]</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">12-0</div><div class="modern-diagram-cell">Unassigned</div><div class="modern-diagram-cell">[RFC8029]</div></div></div>
+</figure><pre>6.2.4.  Downstream Detailed Mapping Address Type
 
-      Bit number  |  Name                      | Reference
-      ------------+----------------------------+--------------
-        15        |  V Flag                    | [<a href="./rfc8029">RFC8029</a>]
-        14        |  T Flag                    | [<a href="./rfc6425" title="&quot;Detecting Data-Plane Failures in Point-to-Multipoint MPLS - Extensions to LSP Ping&quot;">RFC6425</a>]
-        13        |  R Flag                    | [<a href="./rfc6426" title="&quot;MPLS On-Demand Connectivity Verification and Route Tracing&quot;">RFC6426</a>]
-        12-0      |  Unassigned                | [<a href="./rfc8029">RFC8029</a>]
-
-<span><a href="#section-6.2.4">6.2.4</a>.  Downstream Detailed Mapping Address Type</span>
-
-   This document extends <a href="./rfc4379">RFC 4379</a> by defining a new address type for use
+   This document extends RFC 4379 by defining a new address type for use
    with the Downstream Mapping and Downstream Detailed Mapping TLVs.
    IANA has established a registry to assign address types for use with
    the Downstream Mapping and Downstream Detailed Mapping TLVs, which
@@ -3901,16 +3487,16 @@ Table of Contents
 
       Type #     Address Type      K Octets    Reference
       ------     ------------      --------    ---------
-           1     IPv4 Numbered           16    [<a href="./rfc8029">RFC8029</a>]
-           2     IPv4 Unnumbered         16    [<a href="./rfc8029">RFC8029</a>]
-           3     IPv6 Numbered           40    [<a href="./rfc8029">RFC8029</a>]
-           4     IPv6 Unnumbered         28    [<a href="./rfc8029">RFC8029</a>]
-           5     Non IP                  12    [<a href="./rfc6426" title="&quot;MPLS On-Demand Connectivity Verification and Route Tracing&quot;">RFC6426</a>]
+           1     IPv4 Numbered           16    [RFC8029]
+           2     IPv4 Unnumbered         16    [RFC8029]
+           3     IPv6 Numbered           40    [RFC8029]
+           4     IPv6 Unnumbered         28    [RFC8029]
+           5     Non IP                  12    [RFC6426]
 
              Downstream Detailed Mapping Address Type Registry
 
    Because the field in this case is an 8-bit field, the allocation
-   policy for this registry is "Standards Action".
+   policy for this registry is &quot;Standards Action&quot;.
 
 
 
@@ -3921,7 +3507,7 @@ Table of Contents
 
 
 
-<span>Kompella, et al.             Standards Track                   [Page 64]</span></pre>
+Kompella, et al.             Standards Track                   [Page 64]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 65</span>
@@ -4346,21 +3932,20 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Appendix</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8029">RFC 8029</a>           Detecting MPLS Data-Plane Failures         March 2017</span>
+  <pre>RFC 8029           Detecting MPLS Data-Plane Failures         March 2017
 
 
-<span><a href="#appendix-A">Appendix A</a>.  Deprecated TLVs and Sub-TLVs (Non-normative)</span>
+Appendix A.  Deprecated TLVs and Sub-TLVs (Non-normative)
 
    This appendix describes deprecated elements, which are non-normative
    for an implementation.  They are included in this document for
    historical and informational purposes.
 
-<span><a href="#appendix-A.1">A.1</a>.  Target FEC Stack</span>
+A.1.  Target FEC Stack
 
-<span><a href="#appendix-A.1.1">A.1.1</a>.  FEC 128 Pseudowire - IPv4 (Deprecated)</span>
+A.1.1.  FEC 128 Pseudowire - IPv4 (Deprecated)
 
-   FEC 128 (0x80) is defined in [<a href="./rfc4447">RFC4447</a>], as are the terms PW ID
+   FEC 128 (0x80) is defined in [RFC4447], as are the terms PW ID
    (Pseudowire ID) and PW Type (Pseudowire Type).  A PW ID is a non-zero
    32-bit connection ID.  The PW Type is a 15-bit number indicating the
    encapsulation type.  It is carried right justified in the field below
@@ -4372,25 +3957,18 @@ Table of Contents
    destination address of the targeted LDP session), the PW ID, and the
    encapsulation type as follows:
 
-       0                   1                   2                   3
-       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                      Remote PE IPv4 Address                   |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                             PW ID                             |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |            PW Type            |          Must Be Zero         |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-   This FEC is deprecated and is retained only for backward
+       0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Remote PE IPv4 Address</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">PW ID</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">PW Type</div><div class="modern-diagram-cell">Must Be Zero</div></div></div>
+</figure><pre>   This FEC is deprecated and is retained only for backward
    compatibility.  Implementations of LSP ping SHOULD accept and process
    this TLV, but SHOULD send LSP ping echo requests with the new TLV
-   (see <a href="#section-3.2.9">Section 3.2.9</a>), unless explicitly configured to use the old TLV.
+   (see Section 3.2.9), unless explicitly configured to use the old TLV.
 
    An LSR receiving this TLV SHOULD use the source IP address of the LSP
-   echo request to infer the sender's PE address.
+   echo request to infer the sender&#x27;s PE address.
 
-<span><a href="#appendix-A.2">A.2</a>.  Downstream Mapping (Deprecated)</span>
+A.2.  Downstream Mapping (Deprecated)
 
    The Downstream Mapping object is a TLV that MAY be included in an
    echo request message.  Only one Downstream Mapping object may appear
@@ -4401,50 +3979,38 @@ Table of Contents
 
 
 
-<span>Kompella, et al.             Standards Track                   [Page 72]</span></pre>
+Kompella, et al.             Standards Track                   [Page 72]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 73</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8029">RFC 8029</a>           Detecting MPLS Data-Plane Failures         March 2017</span>
+  <pre>RFC 8029           Detecting MPLS Data-Plane Failures         March 2017
 
 
    Otherwise, the replying router SHOULD include a Downstream Mapping
    object for each interface over which this FEC could be forwarded.
-   For a more precise definition of the notion of "downstream", see
-   <a href="#section-3.4.2">Section 3.4.2</a>, "Downstream Router and Interface".
+   For a more precise definition of the notion of &quot;downstream&quot;, see
+   Section 3.4.2, &quot;Downstream Router and Interface&quot;.
 
    The Length is K + M + 4*N octets, where M is the Multipath Length,
    and N is the number of downstream labels.  Values for K are found in
    the description of Address Type below.  The Value field of a
    Downstream Mapping has the following format:
 
-       0                   1                   2                   3
-       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |               MTU             | Address Type  |    DS Flags   |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |             Downstream IP Address (4 or 16 octets)            |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |         Downstream Interface Address (4 or 16 octets)         |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      | Multipath Type| Depth Limit   |        Multipath Length       |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      .                                                               .
+       0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">MTU</div><div class="modern-diagram-cell">Address Type</div><div class="modern-diagram-cell">DS Flags</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Downstream IP Address (4 or 16 octets)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Downstream Interface Address (4 or 16 octets)</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Multipath Type</div><div class="modern-diagram-cell">Depth Limit</div><div class="modern-diagram-cell">Multipath Length</div></div></div>
+</figure><pre>      .                                                               .
       .                     (Multipath Information)                   .
+      .                                                               .</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Downstream Label</div><div class="modern-diagram-cell">Protocol</div></div></div>
+</figure><pre>      .                                                               .
       .                                                               .
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |               Downstream Label                |    Protocol   |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      .                                                               .
-      .                                                               .
-      .                                                               .
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |               Downstream Label                |    Protocol   |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-   Maximum Transmission Unit (MTU)
+      .                                                               .</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Downstream Label</div><div class="modern-diagram-cell">Protocol</div></div></div>
+</figure><pre>   Maximum Transmission Unit (MTU)
 
       The MTU is the size in octets of the largest MPLS frame (including
       label stack) that fits on the interface to the downstream LSR.
@@ -4461,13 +4027,12 @@ Table of Contents
 
 
 
-<span>Kompella, et al.             Standards Track                   [Page 73]</span></pre>
+Kompella, et al.             Standards Track                   [Page 73]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 74</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8029">RFC 8029</a>           Detecting MPLS Data-Plane Failures         March 2017</span>
+  <pre>RFC 8029           Detecting MPLS Data-Plane Failures         March 2017
 
 
    Address Type
@@ -4475,8 +4040,8 @@ Table of Contents
       The Address Type indicates if the interface is numbered or
       unnumbered.  It also determines the length of the Downstream IP
       Address and Downstream Interface fields.  The resulting total for
-      the initial part of the TLV is listed in the table below as "K
-      Octets".  The Address Type is set to one of the following values:
+      the initial part of the TLV is listed in the table below as &quot;K
+      Octets&quot;.  The Address Type is set to one of the following values:
 
        Type #        Address Type           K Octets
        ------        ------------           --------
@@ -4488,14 +4053,10 @@ Table of Contents
 
    DS Flags
 
-      The DS Flags field is a bit vector with the following format:
-
-        0 1 2 3 4 5 6 7
-       +-+-+-+-+-+-+-+-+
-       | Rsvd(MBZ) |I|N|
-       +-+-+-+-+-+-+-+-+
-
-   Two flags are defined currently, I and N.  The remaining flags MUST
+      The DS Flags field is a bit vector with the following format:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Rsvd(MBZ)</div><div class="modern-diagram-cell">I</div><div class="modern-diagram-cell">N</div></div></div>
+</figure><pre>   Two flags are defined currently, I and N.  The remaining flags MUST
    be set to zero when sending and ignored on receipt.
 
    Flag  Name and Meaning
@@ -4521,7 +4082,7 @@ Table of Contents
 
 
 
-<span>Kompella, et al.             Standards Track                   [Page 74]</span></pre>
+Kompella, et al.             Standards Track                   [Page 74]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 75</span>

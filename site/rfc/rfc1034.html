@@ -626,8 +626,7 @@ concatenating the two to form a single domain name.  Thus the mailbox
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 10</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1034">RFC 1034</a>             Domain Concepts and Facilities        November 1987</span>
+  <pre>RFC 1034             Domain Concepts and Facilities        November 1987
 
 
 HOSTMASTER@SRI-NIC.ARPA is represented as a domain name by
@@ -643,45 +642,36 @@ features when defining the rules.  The way the DNS is used to support
 some object is often more crucial than the restrictions inherent in the
 DNS.
 
-<span><a href="#section-3.4">3.4</a>. Example name space</span>
+3.4. Example name space
 
 The following figure shows a part of the current domain name space, and
 is used in many examples in this RFC.  Note that the tree is a very
 small subset of the actual name space.
 
                                    |
-                                   |
-             +---------------------+------------------+
-             |                     |                  |
-            MIL                   EDU                ARPA
-             |                     |                  |
+                                   |</pre><pre>             +---------------------+------------------+
+             |                     |                  |</pre><pre>            MIL                   EDU                ARPA</pre><div class="modern-diagram-fallback">             |                     |                  |
              |                     |                  |
        +-----+-----+               |     +------+-----+-----+
-       |     |     |               |     |      |           |
-      BRL  NOSC  DARPA             |  IN-ADDR  SRI-NIC     ACC
-                                   |
-       +--------+------------------+---------------+--------+
-       |        |                  |               |        |
-      UCI      MIT                 |              UDEL     YALE
-                |                 ISI
-                |                  |
-            +---+---+              |
-            |       |              |
-           LCS  ACHILLES  +--+-----+-----+--------+
-            |             |  |     |     |        |
-            XX            A  C   VAXA  VENERA Mockapetris
+       |     |     |               |     |      |           |</div><pre>      BRL  NOSC  DARPA             |  IN-ADDR  SRI-NIC     ACC
+                                   |</pre><pre>       +--------+------------------+---------------+--------+
+       |        |                  |               |        |</pre><pre>      UCI      MIT                 |              UDEL     YALE
+                |                 ISI</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">LCS  ACHILLES  +--+-----+-----+--------+</div></div></div>
+</figure><pre>            XX            A  C   VAXA  VENERA Mockapetris
 
 In this example, the root domain has three immediate subdomains: MIL,
 EDU, and ARPA.  The LCS.MIT.EDU domain has one immediate subdomain named
 XX.LCS.MIT.EDU.  All of the leaves are also domains.
 
-<span><a href="#section-3.5">3.5</a>. Preferred name syntax</span>
+3.5. Preferred name syntax
 
 The DNS specifications attempt to be as general as possible in the rules
 
 
 
-<span>Mockapetris                                                    [Page 10]</span></pre>
+Mockapetris                                                    [Page 10]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 11</span>
@@ -2186,8 +2176,7 @@ response matches the query it sent using the ID field in the response.
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 36</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1034">RFC 1034</a>             Domain Concepts and Facilities        November 1987</span>
+  <pre>RFC 1034             Domain Concepts and Facilities        November 1987
 
 
 The ideal answer is one from a server authoritative for the query which
@@ -2196,7 +2185,7 @@ to the user and entered in the cache for future use if its TTL is
 greater than zero.
 
 If the response shows a delegation, the resolver should check to see
-that the delegation is "closer" to the answer than the servers in SLIST
+that the delegation is &quot;closer&quot; to the answer than the servers in SLIST
 are.  This can be done by comparing the match count in SLIST with that
 computed from SNAME and the NS RRs in the delegation.  If not, the reply
 is bogus and should be ignored.  If the delegation is valid the NS
@@ -2207,9 +2196,9 @@ If the response contains a CNAME, the search is restarted at the CNAME
 unless the response has the data for the canonical name or if the CNAME
 is the answer itself.
 
-Details and implementation hints can be found in [<a href="./rfc1035">RFC-1035</a>].
+Details and implementation hints can be found in [RFC-1035].
 
-<span><a href="#section-6">6</a>. A SCENARIO</span>
+6. A SCENARIO
 
 In our sample domain space, suppose we wanted separate administrative
 control for the root, MIL, EDU, MIT.EDU and ISI.EDU zones.  We might
@@ -2217,31 +2206,22 @@ allocate name servers as follows:
 
 
                                    |(C.ISI.EDU,SRI-NIC.ARPA
-                                   | A.ISI.EDU)
-             +---------------------+------------------+
-             |                     |                  |
-            MIL                   EDU                ARPA
-             |(SRI-NIC.ARPA,       |(SRI-NIC.ARPA,    |
-             | A.ISI.EDU           | C.ISI.EDU)       |
-       +-----+-----+               |     +------+-----+-----+
-       |     |     |               |     |      |           |
-      BRL  NOSC  DARPA             |  IN-ADDR  SRI-NIC     ACC
-                                   |
-       +--------+------------------+---------------+--------+
-       |        |                  |               |        |
-      UCI      MIT                 |              UDEL     YALE
-                |(XX.LCS.MIT.EDU, ISI
-                |ACHILLES.MIT.EDU) |(VAXA.ISI.EDU,VENERA.ISI.EDU,
-            +---+---+              | A.ISI.EDU)
-            |       |              |
-           LCS   ACHILLES +--+-----+-----+--------+
-            |             |  |     |     |        |
-            XX            A  C   VAXA  VENERA Mockapetris
+                                   | A.ISI.EDU)</pre><pre>             +---------------------+------------------+
+             |                     |                  |</pre><pre>            MIL                   EDU                ARPA</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">(SRI-NIC.ARPA,</div><div class="modern-diagram-cell">(SRI-NIC.ARPA,</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">A.ISI.EDU</div><div class="modern-diagram-cell">C.ISI.EDU)</div></div></div>
+</figure><pre>      BRL  NOSC  DARPA             |  IN-ADDR  SRI-NIC     ACC
+                                   |</pre><pre>       +--------+------------------+---------------+--------+
+       |        |                  |               |        |</pre><pre>      UCI      MIT                 |              UDEL     YALE
+                |(XX.LCS.MIT.EDU, ISI</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">ACHILLES.MIT.EDU)</div><div class="modern-diagram-cell">(VAXA.ISI.EDU,VENERA.ISI.EDU,</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">+---+---+</div><div class="modern-diagram-cell">A.ISI.EDU)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">LCS   ACHILLES +--+-----+-----+--------+</div></div></div>
+</figure><pre>            XX            A  C   VAXA  VENERA Mockapetris
 
 
 
 
-<span>Mockapetris                                                    [Page 36]</span></pre>
+Mockapetris                                                    [Page 36]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 37</span>
@@ -2426,42 +2406,18 @@ requester.
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 40</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1034">RFC 1034</a>             Domain Concepts and Facilities        November 1987</span>
+  <pre>RFC 1034             Domain Concepts and Facilities        November 1987
 
 
-<span><a href="#section-6.2.1">6.2.1</a>. QNAME=SRI-NIC.ARPA, QTYPE=A</span>
+6.2.1. QNAME=SRI-NIC.ARPA, QTYPE=A
 
-The query would look like:
-
-               +---------------------------------------------------+
-    Header     | OPCODE=SQUERY                                     |
-               +---------------------------------------------------+
-    Question   | QNAME=SRI-NIC.ARPA., QCLASS=IN, QTYPE=A           |
-               +---------------------------------------------------+
-    Answer     | &lt;empty&gt;                                           |
-               +---------------------------------------------------+
-    Authority  | &lt;empty&gt;                                           |
-               +---------------------------------------------------+
-    Additional | &lt;empty&gt;                                           |
-               +---------------------------------------------------+
-
-The response from C.ISI.EDU would be:
-
-               +---------------------------------------------------+
-    Header     | OPCODE=SQUERY, RESPONSE, AA                       |
-               +---------------------------------------------------+
-    Question   | QNAME=SRI-NIC.ARPA., QCLASS=IN, QTYPE=A           |
-               +---------------------------------------------------+
-    Answer     | SRI-NIC.ARPA. 86400 IN A 26.0.0.73                |
-               |               86400 IN A 10.0.0.51                |
-               +---------------------------------------------------+
-    Authority  | &lt;empty&gt;                                           |
-               +---------------------------------------------------+
-    Additional | &lt;empty&gt;                                           |
-               +---------------------------------------------------+
-
-The header of the response looks like the header of the query, except
+The query would look like:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Header</div><div class="modern-diagram-cell">OPCODE=SQUERY</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Question</div><div class="modern-diagram-cell">QNAME=SRI-NIC.ARPA., QCLASS=IN, QTYPE=A</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Answer</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Authority</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Additional</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div></div>
+</figure><pre>The response from C.ISI.EDU would be:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Header</div><div class="modern-diagram-cell">OPCODE=SQUERY, RESPONSE, AA</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Question</div><div class="modern-diagram-cell">QNAME=SRI-NIC.ARPA., QCLASS=IN, QTYPE=A</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Answer</div><div class="modern-diagram-cell">SRI-NIC.ARPA. 86400 IN A 26.0.0.73</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">86400 IN A 10.0.0.51</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Authority</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Additional</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div></div>
+</figure><pre>The header of the response looks like the header of the query, except
 that the RESPONSE bit is set, indicating that this message is a
 response, not a query, and the Authoritative Answer (AA) bit is set
 indicating that the address RRs in the answer section are from
@@ -2481,106 +2437,47 @@ question section of the query.
 
 
 
-<span>Mockapetris                                                    [Page 40]</span></pre>
+Mockapetris                                                    [Page 40]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 41</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1034">RFC 1034</a>             Domain Concepts and Facilities        November 1987</span>
+  <pre>RFC 1034             Domain Concepts and Facilities        November 1987
 
 
 If the same query was sent to some other server which was not
-authoritative for SRI-NIC.ARPA, the response might be:
-
-               +---------------------------------------------------+
-    Header     | OPCODE=SQUERY,RESPONSE                            |
-               +---------------------------------------------------+
-    Question   | QNAME=SRI-NIC.ARPA., QCLASS=IN, QTYPE=A           |
-               +---------------------------------------------------+
-    Answer     | SRI-NIC.ARPA. 1777 IN A 10.0.0.51                 |
-               |               1777 IN A 26.0.0.73                 |
-               +---------------------------------------------------+
-    Authority  | &lt;empty&gt;                                           |
-               +---------------------------------------------------+
-    Additional | &lt;empty&gt;                                           |
-               +---------------------------------------------------+
-
-This response is different from the previous one in two ways: the header
+authoritative for SRI-NIC.ARPA, the response might be:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Header</div><div class="modern-diagram-cell">OPCODE=SQUERY,RESPONSE</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Question</div><div class="modern-diagram-cell">QNAME=SRI-NIC.ARPA., QCLASS=IN, QTYPE=A</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Answer</div><div class="modern-diagram-cell">SRI-NIC.ARPA. 1777 IN A 10.0.0.51</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">1777 IN A 26.0.0.73</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Authority</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Additional</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div></div>
+</figure><pre>This response is different from the previous one in two ways: the header
 does not have AA set, and the TTLs are different.  The inference is that
 the data did not come from a zone, but from a cache.  The difference
 between the authoritative TTL and the TTL here is due to aging of the
 data in a cache.  The difference in ordering of the RRs in the answer
 section is not significant.
 
-<span><a href="#section-6.2.2">6.2.2</a>. QNAME=SRI-NIC.ARPA, QTYPE=*</span>
+6.2.2. QNAME=SRI-NIC.ARPA, QTYPE=*
 
 A query similar to the previous one, but using a QTYPE of *, would
-receive the following response from C.ISI.EDU:
-
-               +---------------------------------------------------+
-    Header     | OPCODE=SQUERY, RESPONSE, AA                       |
-               +---------------------------------------------------+
-    Question   | QNAME=SRI-NIC.ARPA., QCLASS=IN, QTYPE=*           |
-               +---------------------------------------------------+
-    Answer     | SRI-NIC.ARPA. 86400 IN  A     26.0.0.73           |
-               |                         A     10.0.0.51           |
-               |                         MX    0 SRI-NIC.ARPA.     |
-               |                         HINFO DEC-2060 TOPS20     |
-               +---------------------------------------------------+
-    Authority  | &lt;empty&gt;                                           |
-               +---------------------------------------------------+
-    Additional | &lt;empty&gt;                                           |
-               +---------------------------------------------------+
-
-
-
-
-
-
-
-
-
-<span>Mockapetris                                                    [Page 41]</span></pre>
+receive the following response from C.ISI.EDU:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Header</div><div class="modern-diagram-cell">OPCODE=SQUERY, RESPONSE, AA</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Question</div><div class="modern-diagram-cell">QNAME=SRI-NIC.ARPA., QCLASS=IN, QTYPE=*</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Answer</div><div class="modern-diagram-cell">SRI-NIC.ARPA. 86400 IN  A     26.0.0.73</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">A     10.0.0.51</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">MX    0 SRI-NIC.ARPA.</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">HINFO DEC-2060 TOPS20</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Authority</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Additional</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div></div>
+</figure><pre>Mockapetris                                                    [Page 41]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 42</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1034">RFC 1034</a>             Domain Concepts and Facilities        November 1987</span>
+  <pre>RFC 1034             Domain Concepts and Facilities        November 1987
 
 
 If a similar query was directed to two name servers which are not
-authoritative for SRI-NIC.ARPA, the responses might be:
-
-               +---------------------------------------------------+
-    Header     | OPCODE=SQUERY, RESPONSE                           |
-               +---------------------------------------------------+
-    Question   | QNAME=SRI-NIC.ARPA., QCLASS=IN, QTYPE=*           |
-               +---------------------------------------------------+
-    Answer     | SRI-NIC.ARPA. 12345 IN     A       26.0.0.73      |
-               |                            A       10.0.0.51      |
-               +---------------------------------------------------+
-    Authority  | &lt;empty&gt;                                           |
-               +---------------------------------------------------+
-    Additional | &lt;empty&gt;                                           |
-               +---------------------------------------------------+
-
-and
-
-               +---------------------------------------------------+
-    Header     | OPCODE=SQUERY, RESPONSE                           |
-               +---------------------------------------------------+
-    Question   | QNAME=SRI-NIC.ARPA., QCLASS=IN, QTYPE=*           |
-               +---------------------------------------------------+
-    Answer     | SRI-NIC.ARPA. 1290 IN HINFO  DEC-2060 TOPS20      |
-               +---------------------------------------------------+
-    Authority  | &lt;empty&gt;                                           |
-               +---------------------------------------------------+
-    Additional | &lt;empty&gt;                                           |
-               +---------------------------------------------------+
-
-Neither of these answers have AA set, so neither response comes from
+authoritative for SRI-NIC.ARPA, the responses might be:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Header</div><div class="modern-diagram-cell">OPCODE=SQUERY, RESPONSE</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Question</div><div class="modern-diagram-cell">QNAME=SRI-NIC.ARPA., QCLASS=IN, QTYPE=*</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Answer</div><div class="modern-diagram-cell">SRI-NIC.ARPA. 12345 IN     A       26.0.0.73</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">A       10.0.0.51</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Authority</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Additional</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div></div>
+</figure><pre>and</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Header</div><div class="modern-diagram-cell">OPCODE=SQUERY, RESPONSE</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Question</div><div class="modern-diagram-cell">QNAME=SRI-NIC.ARPA., QCLASS=IN, QTYPE=*</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Answer</div><div class="modern-diagram-cell">SRI-NIC.ARPA. 1290 IN HINFO  DEC-2060 TOPS20</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Authority</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Additional</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div></div>
+</figure><pre>Neither of these answers have AA set, so neither response comes from
 authoritative data.  The different contents and different TTLs suggest
 that the two servers cached data at different times, and that the first
 server cached the response to a QTYPE=A query and the second cached the
@@ -2601,117 +2498,66 @@ response to a HINFO query.
 
 
 
-<span>Mockapetris                                                    [Page 42]</span></pre>
+Mockapetris                                                    [Page 42]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 43</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1034">RFC 1034</a>             Domain Concepts and Facilities        November 1987</span>
+  <pre>RFC 1034             Domain Concepts and Facilities        November 1987
 
 
-<span><a href="#section-6.2.3">6.2.3</a>. QNAME=SRI-NIC.ARPA, QTYPE=MX</span>
+6.2.3. QNAME=SRI-NIC.ARPA, QTYPE=MX
 
 This type of query might be result from a mailer trying to look up
 routing information for the mail destination HOSTMASTER@SRI-NIC.ARPA.
-The response from C.ISI.EDU would be:
-
-               +---------------------------------------------------+
-    Header     | OPCODE=SQUERY, RESPONSE, AA                       |
-               +---------------------------------------------------+
-    Question   | QNAME=SRI-NIC.ARPA., QCLASS=IN, QTYPE=MX          |
-               +---------------------------------------------------+
-    Answer     | SRI-NIC.ARPA. 86400 IN     MX      0 SRI-NIC.ARPA.|
-               +---------------------------------------------------+
-    Authority  | &lt;empty&gt;                                           |
-               +---------------------------------------------------+
-    Additional | SRI-NIC.ARPA. 86400 IN     A       26.0.0.73      |
-               |                            A       10.0.0.51      |
-               +---------------------------------------------------+
-
-This response contains the MX RR in the answer section of the response.
+The response from C.ISI.EDU would be:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Header</div><div class="modern-diagram-cell">OPCODE=SQUERY, RESPONSE, AA</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Question</div><div class="modern-diagram-cell">QNAME=SRI-NIC.ARPA., QCLASS=IN, QTYPE=MX</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Answer</div><div class="modern-diagram-cell">SRI-NIC.ARPA. 86400 IN     MX      0 SRI-NIC.ARPA.</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Authority</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Additional</div><div class="modern-diagram-cell">SRI-NIC.ARPA. 86400 IN     A       26.0.0.73</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">A       10.0.0.51</div></div></div>
+</figure><pre>This response contains the MX RR in the answer section of the response.
 The additional section contains the address RRs because the name server
 at C.ISI.EDU guesses that the requester will need the addresses in order
 to properly use the information carried by the MX.
 
-<span><a href="#section-6.2.4">6.2.4</a>. QNAME=SRI-NIC.ARPA, QTYPE=NS</span>
+6.2.4. QNAME=SRI-NIC.ARPA, QTYPE=NS
 
-C.ISI.EDU would reply to this query with:
-
-               +---------------------------------------------------+
-    Header     | OPCODE=SQUERY, RESPONSE, AA                       |
-               +---------------------------------------------------+
-    Question   | QNAME=SRI-NIC.ARPA., QCLASS=IN, QTYPE=NS          |
-               +---------------------------------------------------+
-    Answer     | &lt;empty&gt;                                           |
-               +---------------------------------------------------+
-    Authority  | &lt;empty&gt;                                           |
-               +---------------------------------------------------+
-    Additional | &lt;empty&gt;                                           |
-               +---------------------------------------------------+
-
-The only difference between the response and the query is the AA and
+C.ISI.EDU would reply to this query with:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Header</div><div class="modern-diagram-cell">OPCODE=SQUERY, RESPONSE, AA</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Question</div><div class="modern-diagram-cell">QNAME=SRI-NIC.ARPA., QCLASS=IN, QTYPE=NS</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Answer</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Authority</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Additional</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div></div>
+</figure><pre>The only difference between the response and the query is the AA and
 RESPONSE bits in the header.  The interpretation of this response is
 that the server is authoritative for the name, and the name exists, but
 no RRs of type NS are present there.
 
-<span><a href="#section-6.2.5">6.2.5</a>. QNAME=SIR-NIC.ARPA, QTYPE=A</span>
+6.2.5. QNAME=SIR-NIC.ARPA, QTYPE=A
 
 If a user mistyped a host name, we might see this type of query.
 
 
 
-<span>Mockapetris                                                    [Page 43]</span></pre>
+Mockapetris                                                    [Page 43]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 44</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1034">RFC 1034</a>             Domain Concepts and Facilities        November 1987</span>
+  <pre>RFC 1034             Domain Concepts and Facilities        November 1987
 
 
-C.ISI.EDU would answer it with:
-
-               +---------------------------------------------------+
-    Header     | OPCODE=SQUERY, RESPONSE, AA, RCODE=NE             |
-               +---------------------------------------------------+
-    Question   | QNAME=SIR-NIC.ARPA., QCLASS=IN, QTYPE=A           |
-               +---------------------------------------------------+
-    Answer     | &lt;empty&gt;                                           |
-               +---------------------------------------------------+
-    Authority  | . SOA SRI-NIC.ARPA. HOSTMASTER.SRI-NIC.ARPA.      |
-               |       870611 1800 300 604800 86400                |
-               +---------------------------------------------------+
-    Additional | &lt;empty&gt;                                           |
-               +---------------------------------------------------+
-
-This response states that the name does not exist.  This condition is
+C.ISI.EDU would answer it with:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Header</div><div class="modern-diagram-cell">OPCODE=SQUERY, RESPONSE, AA, RCODE=NE</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Question</div><div class="modern-diagram-cell">QNAME=SIR-NIC.ARPA., QCLASS=IN, QTYPE=A</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Answer</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Authority</div><div class="modern-diagram-cell">. SOA SRI-NIC.ARPA. HOSTMASTER.SRI-NIC.ARPA.</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">870611 1800 300 604800 86400</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Additional</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div></div>
+</figure><pre>This response states that the name does not exist.  This condition is
 signalled in the response code (RCODE) section of the header.
 
 The SOA RR in the authority section is the optional negative caching
 information which allows the resolver using this response to assume that
 the name will not exist for the SOA MINIMUM (86400) seconds.
 
-<span><a href="#section-6.2.6">6.2.6</a>. QNAME=BRL.MIL, QTYPE=A</span>
+6.2.6. QNAME=BRL.MIL, QTYPE=A
 
-If this query is sent to C.ISI.EDU, the reply would be:
-
-               +---------------------------------------------------+
-    Header     | OPCODE=SQUERY, RESPONSE                           |
-               +---------------------------------------------------+
-    Question   | QNAME=BRL.MIL, QCLASS=IN, QTYPE=A                 |
-               +---------------------------------------------------+
-    Answer     | &lt;empty&gt;                                           |
-               +---------------------------------------------------+
-    Authority  | MIL.             86400 IN NS       SRI-NIC.ARPA.  |
-               |                  86400    NS       A.ISI.EDU.     |
-               +---------------------------------------------------+
-    Additional | A.ISI.EDU.                A        26.3.0.103     |
-               | SRI-NIC.ARPA.             A        26.0.0.73      |
-               |                           A        10.0.0.51      |
-               +---------------------------------------------------+
-
-This response has an empty answer section, but is not authoritative, so
+If this query is sent to C.ISI.EDU, the reply would be:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Header</div><div class="modern-diagram-cell">OPCODE=SQUERY, RESPONSE</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Question</div><div class="modern-diagram-cell">QNAME=BRL.MIL, QCLASS=IN, QTYPE=A</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Answer</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Authority</div><div class="modern-diagram-cell">MIL.             86400 IN NS       SRI-NIC.ARPA.</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">86400    NS       A.ISI.EDU.</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Additional</div><div class="modern-diagram-cell">A.ISI.EDU.                A        26.3.0.103</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">SRI-NIC.ARPA.             A        26.0.0.73</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">A        10.0.0.51</div></div></div>
+</figure><pre>This response has an empty answer section, but is not authoritative, so
 it is a referral.  The name server on C.ISI.EDU, realizing that it is
 not authoritative for the MIL domain, has referred the requester to
 servers on A.ISI.EDU and SRI-NIC.ARPA, which it knows are authoritative
@@ -2721,33 +2567,20 @@ for the MIL domain.
 
 
 
-<span>Mockapetris                                                    [Page 44]</span></pre>
+Mockapetris                                                    [Page 44]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 45</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1034">RFC 1034</a>             Domain Concepts and Facilities        November 1987</span>
+  <pre>RFC 1034             Domain Concepts and Facilities        November 1987
 
 
-<span><a href="#section-6.2.7">6.2.7</a>. QNAME=USC-ISIC.ARPA, QTYPE=A</span>
+6.2.7. QNAME=USC-ISIC.ARPA, QTYPE=A
 
-The response to this query from A.ISI.EDU would be:
-
-               +---------------------------------------------------+
-    Header     | OPCODE=SQUERY, RESPONSE, AA                       |
-               +---------------------------------------------------+
-    Question   | QNAME=USC-ISIC.ARPA., QCLASS=IN, QTYPE=A          |
-               +---------------------------------------------------+
-    Answer     | USC-ISIC.ARPA. 86400 IN CNAME      C.ISI.EDU.     |
-               | C.ISI.EDU.     86400 IN A          10.0.0.52      |
-               +---------------------------------------------------+
-    Authority  | &lt;empty&gt;                                           |
-               +---------------------------------------------------+
-    Additional | &lt;empty&gt;                                           |
-               +---------------------------------------------------+
-
-Note that the AA bit in the header guarantees that the data matching
+The response to this query from A.ISI.EDU would be:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Header</div><div class="modern-diagram-cell">OPCODE=SQUERY, RESPONSE, AA</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Question</div><div class="modern-diagram-cell">QNAME=USC-ISIC.ARPA., QCLASS=IN, QTYPE=A</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Answer</div><div class="modern-diagram-cell">USC-ISIC.ARPA. 86400 IN CNAME      C.ISI.EDU.</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">C.ISI.EDU.     86400 IN A          10.0.0.52</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Authority</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Additional</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div></div>
+</figure><pre>Note that the AA bit in the header guarantees that the data matching
 QNAME is authoritative, but does not say anything about whether the data
 for C.ISI.EDU is authoritative.  This complete reply is possible because
 A.ISI.EDU happens to be authoritative for both the ARPA domain where
@@ -2781,67 +2614,37 @@ be:
 
 
 
-<span>Mockapetris                                                    [Page 45]</span></pre>
+Mockapetris                                                    [Page 45]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 46</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1034">RFC 1034</a>             Domain Concepts and Facilities        November 1987</span>
-
-
-               +---------------------------------------------------+
-    Header     | OPCODE=SQUERY, RESPONSE, AA                       |
-               +---------------------------------------------------+
-    Question   | QNAME=USC-ISIC.ARPA., QCLASS=IN, QTYPE=A          |
-               +---------------------------------------------------+
-    Answer     | USC-ISIC.ARPA.   86400 IN CNAME   C.ISI.EDU.      |
-               +---------------------------------------------------+
-    Authority  | ISI.EDU.        172800 IN NS      VAXA.ISI.EDU.   |
-               |                           NS      A.ISI.EDU.      |
-               |                           NS      VENERA.ISI.EDU. |
-               +---------------------------------------------------+
-    Additional | VAXA.ISI.EDU.   172800    A       10.2.0.27       |
-               |                 172800    A       128.9.0.33      |
-               | VENERA.ISI.EDU. 172800    A       10.1.0.52       |
-               |                 172800    A       128.9.0.32      |
-               | A.ISI.EDU.      172800    A       26.3.0.103      |
-               +---------------------------------------------------+
-
-This reply contains an authoritative reply for the alias USC-ISIC.ARPA,
+  <pre>RFC 1034             Domain Concepts and Facilities        November 1987</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Header</div><div class="modern-diagram-cell">OPCODE=SQUERY, RESPONSE, AA</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Question</div><div class="modern-diagram-cell">QNAME=USC-ISIC.ARPA., QCLASS=IN, QTYPE=A</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Answer</div><div class="modern-diagram-cell">USC-ISIC.ARPA.   86400 IN CNAME   C.ISI.EDU.</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Authority</div><div class="modern-diagram-cell">ISI.EDU.        172800 IN NS      VAXA.ISI.EDU.</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">NS      A.ISI.EDU.</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">NS      VENERA.ISI.EDU.</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Additional</div><div class="modern-diagram-cell">VAXA.ISI.EDU.   172800    A       10.2.0.27</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">172800    A       128.9.0.33</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">VENERA.ISI.EDU. 172800    A       10.1.0.52</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">172800    A       128.9.0.32</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">A.ISI.EDU.      172800    A       26.3.0.103</div></div></div>
+</figure><pre>This reply contains an authoritative reply for the alias USC-ISIC.ARPA,
 plus a referral to the name servers for ISI.EDU.  This sort of reply
-isn't very likely given that the query is for the host name of the name
+isn&#x27;t very likely given that the query is for the host name of the name
 server being asked, but would be common for other aliases.
 
-<span><a href="#section-6.2.8">6.2.8</a>. QNAME=USC-ISIC.ARPA, QTYPE=CNAME</span>
+6.2.8. QNAME=USC-ISIC.ARPA, QTYPE=CNAME
 
 If this query is sent to either A.ISI.EDU or C.ISI.EDU, the reply would
-be:
-
-               +---------------------------------------------------+
-    Header     | OPCODE=SQUERY, RESPONSE, AA                       |
-               +---------------------------------------------------+
-    Question   | QNAME=USC-ISIC.ARPA., QCLASS=IN, QTYPE=A          |
-               +---------------------------------------------------+
-    Answer     | USC-ISIC.ARPA. 86400 IN CNAME      C.ISI.EDU.     |
-               +---------------------------------------------------+
-    Authority  | &lt;empty&gt;                                           |
-               +---------------------------------------------------+
-    Additional | &lt;empty&gt;                                           |
-               +---------------------------------------------------+
-
-Because QTYPE=CNAME, the CNAME RR itself answers the query, and the name
-server doesn't attempt to look up anything for C.ISI.EDU.  (Except
+be:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Header</div><div class="modern-diagram-cell">OPCODE=SQUERY, RESPONSE, AA</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Question</div><div class="modern-diagram-cell">QNAME=USC-ISIC.ARPA., QCLASS=IN, QTYPE=A</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Answer</div><div class="modern-diagram-cell">USC-ISIC.ARPA. 86400 IN CNAME      C.ISI.EDU.</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Authority</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Additional</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div></div>
+</figure><pre>Because QTYPE=CNAME, the CNAME RR itself answers the query, and the name
+server doesn&#x27;t attempt to look up anything for C.ISI.EDU.  (Except
 possibly for the additional section.)
 
-<span><a href="#section-6.3">6.3</a>. Example resolution</span>
+6.3. Example resolution
 
 The following examples illustrate the operations a resolver must perform
 for its client.  We assume that the resolver is starting without a
 
 
 
-<span>Mockapetris                                                    [Page 46]</span></pre>
+Mockapetris                                                    [Page 46]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 47</span>
@@ -2906,46 +2709,16 @@ then send off a query of the form:
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 48</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1034">RFC 1034</a>             Domain Concepts and Facilities        November 1987</span>
-
-
-               +---------------------------------------------------+
-    Header     | OPCODE=SQUERY                                     |
-               +---------------------------------------------------+
-    Question   | QNAME=ISI.EDU., QCLASS=IN, QTYPE=MX               |
-               +---------------------------------------------------+
-    Answer     | &lt;empty&gt;                                           |
-               +---------------------------------------------------+
-    Authority  | &lt;empty&gt;                                           |
-               +---------------------------------------------------+
-    Additional | &lt;empty&gt;                                           |
-               +---------------------------------------------------+
-
-The resolver would then wait for a response to its query or a timeout.
+  <pre>RFC 1034             Domain Concepts and Facilities        November 1987</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Header</div><div class="modern-diagram-cell">OPCODE=SQUERY</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Question</div><div class="modern-diagram-cell">QNAME=ISI.EDU., QCLASS=IN, QTYPE=MX</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Answer</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Authority</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Additional</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div></div>
+</figure><pre>The resolver would then wait for a response to its query or a timeout.
 If the timeout occurs, it would try different servers, then different
 addresses of the same servers, lastly retrying addresses already tried.
-It might eventually receive a reply from SRI-NIC.ARPA:
-
-               +---------------------------------------------------+
-    Header     | OPCODE=SQUERY, RESPONSE                           |
-               +---------------------------------------------------+
-    Question   | QNAME=ISI.EDU., QCLASS=IN, QTYPE=MX               |
-               +---------------------------------------------------+
-    Answer     | &lt;empty&gt;                                           |
-               +---------------------------------------------------+
-    Authority  | ISI.EDU.        172800 IN NS       VAXA.ISI.EDU.  |
-               |                           NS       A.ISI.EDU.     |
-               |                           NS       VENERA.ISI.EDU.|
-               +---------------------------------------------------+
-    Additional | VAXA.ISI.EDU.   172800    A        10.2.0.27      |
-               |                 172800    A        128.9.0.33     |
-               | VENERA.ISI.EDU. 172800    A        10.1.0.52      |
-               |                 172800    A        128.9.0.32     |
-               | A.ISI.EDU.      172800    A        26.3.0.103     |
-               +---------------------------------------------------+
-
-The resolver would notice that the information in the response gave a
+It might eventually receive a reply from SRI-NIC.ARPA:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Header</div><div class="modern-diagram-cell">OPCODE=SQUERY, RESPONSE</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Question</div><div class="modern-diagram-cell">QNAME=ISI.EDU., QCLASS=IN, QTYPE=MX</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Answer</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Authority</div><div class="modern-diagram-cell">ISI.EDU.        172800 IN NS       VAXA.ISI.EDU.</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">NS       A.ISI.EDU.</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">NS       VENERA.ISI.EDU.</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Additional</div><div class="modern-diagram-cell">VAXA.ISI.EDU.   172800    A        10.2.0.27</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">172800    A        128.9.0.33</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">VENERA.ISI.EDU. 172800    A        10.1.0.52</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">172800    A        128.9.0.32</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">A.ISI.EDU.      172800    A        26.3.0.103</div></div></div>
+</figure><pre>The resolver would notice that the information in the response gave a
 closer delegation to ISI.EDU than its existing SLIST (since it matches
 three labels).  The resolver would then cache the information in this
 response and use it to set up a new SLIST:
@@ -2961,35 +2734,18 @@ waiting for responses.  Eventually it would get an answer:
 
 
 
-<span>Mockapetris                                                    [Page 48]</span></pre>
+Mockapetris                                                    [Page 48]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 49</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1034">RFC 1034</a>             Domain Concepts and Facilities        November 1987</span>
-
-
-               +---------------------------------------------------+
-    Header     | OPCODE=SQUERY, RESPONSE, AA                       |
-               +---------------------------------------------------+
-    Question   | QNAME=ISI.EDU., QCLASS=IN, QTYPE=MX               |
-               +---------------------------------------------------+
-    Answer     | ISI.EDU.                MX 10 VENERA.ISI.EDU.     |
-               |                         MX 20 VAXA.ISI.EDU.       |
-               +---------------------------------------------------+
-    Authority  | &lt;empty&gt;                                           |
-               +---------------------------------------------------+
-    Additional | VAXA.ISI.EDU.   172800  A  10.2.0.27              |
-               |                 172800  A  128.9.0.33             |
-               | VENERA.ISI.EDU. 172800  A  10.1.0.52              |
-               |                 172800  A  128.9.0.32             |
-               +---------------------------------------------------+
-
-The resolver would add this information to its cache, and return the MX
+  <pre>RFC 1034             Domain Concepts and Facilities        November 1987</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Header</div><div class="modern-diagram-cell">OPCODE=SQUERY, RESPONSE, AA</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Question</div><div class="modern-diagram-cell">QNAME=ISI.EDU., QCLASS=IN, QTYPE=MX</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Answer</div><div class="modern-diagram-cell">ISI.EDU.                MX 10 VENERA.ISI.EDU.</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">MX 20 VAXA.ISI.EDU.</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Authority</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Additional</div><div class="modern-diagram-cell">VAXA.ISI.EDU.   172800  A  10.2.0.27</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">172800  A  128.9.0.33</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">VENERA.ISI.EDU. 172800  A  10.1.0.52</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">172800  A  128.9.0.32</div></div></div>
+</figure><pre>The resolver would add this information to its cache, and return the MX
 RRs to its client.
 
-<span><a href="#section-6.3.2">6.3.2</a>. Get the host name for address 26.6.0.65</span>
+6.3.2. Get the host name for address 26.6.0.65
 
 The resolver would translate this into a request for PTR RRs for
 65.0.6.26.IN-ADDR.ARPA.  This information is not in the cache, so the
@@ -3021,28 +2777,15 @@ SBELT, eventually one would return:
 
 
 
-<span>Mockapetris                                                    [Page 49]</span></pre>
+Mockapetris                                                    [Page 49]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 50</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1034">RFC 1034</a>             Domain Concepts and Facilities        November 1987</span>
-
-
-               +---------------------------------------------------+
-    Header     | OPCODE=SQUERY, RESPONSE, AA                       |
-               +---------------------------------------------------+
-    Question   | QNAME=65.0.6.26.IN-ADDR.ARPA.,QCLASS=IN,QTYPE=PTR |
-               +---------------------------------------------------+
-    Answer     | 65.0.6.26.IN-ADDR.ARPA.    PTR     ACC.ARPA.      |
-               +---------------------------------------------------+
-    Authority  | &lt;empty&gt;                                           |
-               +---------------------------------------------------+
-    Additional | &lt;empty&gt;                                           |
-               +---------------------------------------------------+
-
-<span><a href="#section-6.3.3">6.3.3</a>. Get the host address of poneria.ISI.EDU</span>
+  <pre>RFC 1034             Domain Concepts and Facilities        November 1987</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Header</div><div class="modern-diagram-cell">OPCODE=SQUERY, RESPONSE, AA</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Question</div><div class="modern-diagram-cell">QNAME=65.0.6.26.IN-ADDR.ARPA.,QCLASS=IN,QTYPE=PTR</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Answer</div><div class="modern-diagram-cell">65.0.6.26.IN-ADDR.ARPA.    PTR     ACC.ARPA.</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Authority</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Additional</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div></div>
+</figure><pre>6.3.3. Get the host address of poneria.ISI.EDU
 
 This request would translate into a type A request for poneria.ISI.EDU.
 The resolver would not find any cached data for this name, but would
@@ -3061,14 +2804,14 @@ choices by preference, and A.ISI.EDU is on the same network.
 
 One of these servers would answer the query.
 
-<span><a href="#section-7">7</a>. REFERENCES and BIBLIOGRAPHY</span>
+7. REFERENCES and BIBLIOGRAPHY
 
-[Dyer 87]       Dyer, S., and F. Hsu, "Hesiod", Project Athena
+[Dyer 87]       Dyer, S., and F. Hsu, &quot;Hesiod&quot;, Project Athena
                 Technical Plan - Name Service, April 1987, version 1.9.
 
                 Describes the fundamentals of the Hesiod name service.
 
-[<a>IEN-116</a>]       J. Postel, "Internet Name Server", IEN-116,
+[IEN-116]       J. Postel, &quot;Internet Name Server&quot;, IEN-116,
                 USC/Information Sciences Institute, August 1979.
 
                 A name service obsoleted by the Domain Name System, but
@@ -3081,7 +2824,7 @@ One of these servers would answer the query.
 
 
 
-<span>Mockapetris                                                    [Page 50]</span></pre>
+Mockapetris                                                    [Page 50]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 51</span>

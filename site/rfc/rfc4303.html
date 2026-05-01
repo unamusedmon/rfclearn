@@ -326,19 +326,27 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 5</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc4303">RFC 4303</a>        IP Encapsulating Security Payload (ESP)    December 2005</span>
+  <pre>RFC 4303        IP Encapsulating Security Payload (ESP)    December 2005
 
 
-   <a href="#section-7">Section 7</a> provides a brief review of the differences between this
-   document and <a href="./rfc2406">RFC 2406</a>.
+   Section 7 provides a brief review of the differences between this
+   document and RFC 2406.
 
-<span><a href="#section-2">2</a>.  Encapsulating Security Payload Packet Format</span>
+2.  Encapsulating Security Payload Packet Format
 
-   The (outer) protocol header (IPv4, IPv6, or Extension) that
+</pre><details class="header-reference-panel inline-header-reference" open>
+  <summary><span>Header field quick-reference</span><strong>RFC 4303 ESP Header &amp; Trailer</strong></summary>
+  <p class="header-note">ESP hides payloads, so SPI, sequence behavior, and policy context become the hunting surface.</p>
+  <div class="bit-axis">Bit positions 0-31</div>
+  <div class="header-diagram-wrap"><svg class="header-bit-layout" viewBox="0 0 320 258" role="img" aria-label="0-31 bit layout diagram" xmlns="http://www.w3.org/2000/svg"><desc>0-31 bit positions across each row; fields are drawn as blocks spanning their bit widths.</desc><text x="0" y="14" class="bit-label">0</text><text x="40" y="14" class="bit-label">4</text><text x="80" y="14" class="bit-label">8</text><text x="120" y="14" class="bit-label">12</text><text x="160" y="14" class="bit-label">16</text><text x="200" y="14" class="bit-label">20</text><text x="240" y="14" class="bit-label">24</text><text x="280" y="14" class="bit-label">28</text><text x="320" y="14" text-anchor="end" class="bit-label">31</text><line x1="0" y1="22" x2="0" y2="250" class="bit-grid" /><line x1="40" y1="22" x2="40" y2="250" class="bit-grid" /><line x1="80" y1="22" x2="80" y2="250" class="bit-grid" /><line x1="120" y1="22" x2="120" y2="250" class="bit-grid" /><line x1="160" y1="22" x2="160" y2="250" class="bit-grid" /><line x1="200" y1="22" x2="200" y2="250" class="bit-grid" /><line x1="240" y1="22" x2="240" y2="250" class="bit-grid" /><line x1="280" y1="22" x2="280" y2="250" class="bit-grid" /><line x1="320" y1="22" x2="320" y2="250" class="bit-grid" /><g><rect x="0" y="22" width="320" height="34" rx="7" class="field-block field-0" /><text x="160.0" y="44" text-anchor="middle" class="field-label">SPI</text><title>SPI: bits 0-31 in row 1</title></g><g><rect x="0" y="60" width="320" height="34" rx="7" class="field-block field-1" /><text x="160.0" y="82" text-anchor="middle" class="field-label">Sequence</text><title>Sequence: bits 0-31 in row 2</title></g><g><rect x="0" y="98" width="320" height="34" rx="7" class="field-block field-2" /><text x="160.0" y="120" text-anchor="middle" class="field-label">Payload</text><title>Payload: bits 0-31 in row 3</title></g><g><rect x="0" y="136" width="320" height="34" rx="7" class="field-block field-3" /><text x="160.0" y="158" text-anchor="middle" class="field-label">Padding</text><title>Padding: bits 0-31 in row 4</title></g><g><rect x="0" y="174" width="80" height="34" rx="7" class="field-block field-4" /><text x="40.0" y="196" text-anchor="middle" class="field-label">Pad Length</text><title>Pad Length: bits 0-7 in row 5</title></g><g><rect x="80" y="174" width="80" height="34" rx="7" class="field-block field-0" /><text x="120.0" y="196" text-anchor="middle" class="field-label">Next Header</text><title>Next Header: bits 8-15 in row 5</title></g><g><rect x="160" y="174" width="160" height="34" rx="7" class="field-block field-1" /><text x="240.0" y="196" text-anchor="middle" class="field-label">ICV</text><title>ICV: bits 16-31 in row 5 segment</title></g><g><rect x="0" y="212" width="160" height="34" rx="7" class="field-block field-2" /><text x="80.0" y="234" text-anchor="middle" class="field-label">ICV</text><title>ICV: bits 0-15 in row 6 segment</title></g></svg></div>
+  <table class="header-field-table">
+    <thead><tr><th>Field</th><th>Bits</th><th>Hunting meaning / abnormal</th></tr></thead>
+    <tbody><tr><td>SPI</td><td>32</td><td>Security Parameters Index; unknown or reused SPIs can indicate rogue tunnels.</td></tr><tr><td>Sequence</td><td>32</td><td>Anti-replay value; resets or gaps suggest replay attempts or failover confusion.</td></tr><tr><td>Payload</td><td>32</td><td>Encrypted data; size and timing are key signals when contents are opaque.</td></tr><tr><td>Padding</td><td>32</td><td>Alignment bytes; unusual patterns can fingerprint implementations.</td></tr><tr><td>Pad Length</td><td>8</td><td>Number of padding bytes; impossible values indicate malformed ESP.</td></tr><tr><td>Next Header</td><td>8</td><td>Protected inner protocol; visible after decryption; useful for policy validation.</td></tr><tr><td>ICV</td><td>32</td><td>Integrity Check Value; failures indicate tampering or wrong keys.</td></tr></tbody>
+  </table>
+</details><pre>   The (outer) protocol header (IPv4, IPv6, or Extension) that
    immediately precedes the ESP header SHALL contain the value 50 in its
    Protocol (IPv4) or Next Header (IPv6, Extension) field (see IANA web
-   page at <a>http://www.iana.org/assignments/protocol-numbers</a>).  Figure 1
+   page at http://www.iana.org/assignments/protocol-numbers).  Figure 1
    illustrates the top-level format of an ESP packet.  The packet begins
    with two 4-byte fields (Security Parameters Index (SPI) and Sequence
    Number).  Following these fields is the Payload Data, which has
@@ -348,30 +356,14 @@ Table of Contents
    and the Next Header field.  The optional Integrity Check Value (ICV)
    field completes the packet.
 
- 0                   1                   2                   3
- 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ ----
-|               Security Parameters Index (SPI)                 | ^Int.
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ |Cov-
-|                      Sequence Number                          | |ered
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ | ----
-|                    Payload Data* (variable)                   | |   ^
-~                                                               ~ |   |
-|                                                               | |Conf.
-+               +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ |Cov-
-|               |     Padding (0-255 bytes)                     | |ered*
-+-+-+-+-+-+-+-+-+               +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ |   |
-|                               |  Pad Length   | Next Header   | v   v
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ ------
-|         Integrity Check Value-ICV   (variable)                |
-~                                                               ~
-|                                                               |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-            Figure 1.  Top-Level Format of an ESP Packet
+ 0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Security Parameters Index (SPI)</div><div class="modern-diagram-cell">^Int.</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</div><div class="modern-diagram-cell">Cov-</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Sequence Number</div><div class="modern-diagram-cell">ered</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Payload Data* (variable)</div><div class="modern-diagram-cell">^</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Conf.</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">+               +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</div><div class="modern-diagram-cell">Cov-</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Padding (0-255 bytes)</div><div class="modern-diagram-cell">ered*</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Pad Length</div><div class="modern-diagram-cell">Next Header</div><div class="modern-diagram-cell">v   v</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Integrity Check Value-ICV   (variable)</div></div></div>
+</figure><pre>~                                                               ~</pre><pre>|                                                               |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>            Figure 1.  Top-Level Format of an ESP Packet
 
     * If included in the Payload field, cryptographic synchronization
-      data, e.g., an Initialization Vector (IV, see <a href="#section-2.3">Section 2.3</a>),
+      data, e.g., an Initialization Vector (IV, see Section 2.3),
       usually is not encrypted per se, although it often is referred
       to as being part of the ciphertext.
 
@@ -381,7 +373,7 @@ Table of Contents
 
 
 
-<span>Kent                        Standards Track                     [Page 5]</span></pre>
+Kent                        Standards Track                     [Page 5]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 6</span>
@@ -446,47 +438,29 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 7</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc4303">RFC 4303</a>        IP Encapsulating Security Payload (ESP)    December 2005</span>
+  <pre>RFC 4303        IP Encapsulating Security Payload (ESP)    December 2005
 
 
    diagram shows bits-on-the-wire.  So even if extended sequence numbers
    are being used, only 32 bits of the Sequence Number will be
-   transmitted (see <a href="#section-2.2.1">Section 2.2.1</a>).)
+   transmitted (see Section 2.2.1).)
 
-     0                   1                   2                   3
-     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |               Security Parameters Index (SPI)                 |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                      Sequence Number                          |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+---
-   |                    IV (optional)                              | ^ p
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ | a
-   |                    Rest of Payload Data  (variable)           | | y
-   ~                                                               ~ | l
-   |                                                               | | o
-   +               +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ | a
-   |               |         TFC Padding * (optional, variable)    | v d
-   +-+-+-+-+-+-+-+-+         +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+---
-   |                         |        Padding (0-255 bytes)        |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                               |  Pad Length   | Next Header   |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |         Integrity Check Value-ICV   (variable)                |
-   ~                                                               ~
-   |                                                               |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-               Figure 2. Substructure of Payload Data
+     0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Security Parameters Index (SPI)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Sequence Number</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">IV (optional)</div><div class="modern-diagram-cell">^ p</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</div><div class="modern-diagram-cell">a</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Rest of Payload Data  (variable)</div><div class="modern-diagram-cell">y</div></div></div>
+</figure><pre>   ~                                                               ~ | l</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">o</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">+               +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</div><div class="modern-diagram-cell">a</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">TFC Padding * (optional, variable)</div><div class="modern-diagram-cell">v d</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Padding (0-255 bytes)</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Pad Length</div><div class="modern-diagram-cell">Next Header</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Integrity Check Value-ICV   (variable)</div></div></div>
+</figure><pre>   ~                                                               ~</pre><pre>   |                                                               |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>               Figure 2. Substructure of Payload Data
 
          * If tunnel mode is being used, then the IPsec implementation
            can add Traffic Flow Confidentiality (TFC) padding (see
-           <a href="#section-2.4">Section 2.4</a>)  after the Payload Data and before the Padding
+           Section 2.4)  after the Payload Data and before the Padding
            (0-255 bytes) field.
 
    If a combined algorithm mode is employed, the explicit ICV shown in
-   Figures 1 and 2 may be omitted (see <a href="#section-3.3.2.2">Section 3.3.2.2</a> below).  Because
+   Figures 1 and 2 may be omitted (see Section 3.3.2.2 below).  Because
    algorithms and modes are fixed when an SA is established, the
    detailed format of ESP packets for a given SA (including the Payload
    Data substructure) is fixed, for all traffic on the SA.
@@ -501,7 +475,7 @@ Table of Contents
 
 
 
-<span>Kent                        Standards Track                     [Page 7]</span></pre>
+Kent                        Standards Track                     [Page 7]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 8</span>
@@ -2796,15 +2770,6 @@ Kent                        Standards Track                    [Page 44]
       </div>
     </div>
   </div>
-</details><details class="header-reference-panel" open>
-  <summary><span>Header field quick-reference</span><strong>RFC 4303 ESP Header &amp; Trailer</strong></summary>
-  <p class="header-note">ESP hides payloads, so SPI, sequence behavior, and policy context become the hunting surface.</p>
-  <div class="bit-axis">Bit positions 0-31</div>
-  <div class="header-diagram-wrap"><svg class="header-bit-layout" viewBox="0 0 320 258" role="img" aria-label="0-31 bit layout diagram" xmlns="http://www.w3.org/2000/svg"><desc>0-31 bit positions across each row; fields are drawn as blocks spanning their bit widths.</desc><text x="0" y="14" class="bit-label">0</text><text x="40" y="14" class="bit-label">4</text><text x="80" y="14" class="bit-label">8</text><text x="120" y="14" class="bit-label">12</text><text x="160" y="14" class="bit-label">16</text><text x="200" y="14" class="bit-label">20</text><text x="240" y="14" class="bit-label">24</text><text x="280" y="14" class="bit-label">28</text><text x="320" y="14" text-anchor="end" class="bit-label">31</text><line x1="0" y1="22" x2="0" y2="250" class="bit-grid" /><line x1="40" y1="22" x2="40" y2="250" class="bit-grid" /><line x1="80" y1="22" x2="80" y2="250" class="bit-grid" /><line x1="120" y1="22" x2="120" y2="250" class="bit-grid" /><line x1="160" y1="22" x2="160" y2="250" class="bit-grid" /><line x1="200" y1="22" x2="200" y2="250" class="bit-grid" /><line x1="240" y1="22" x2="240" y2="250" class="bit-grid" /><line x1="280" y1="22" x2="280" y2="250" class="bit-grid" /><line x1="320" y1="22" x2="320" y2="250" class="bit-grid" /><g><rect x="0" y="22" width="320" height="34" rx="7" class="field-block field-0" /><text x="160.0" y="44" text-anchor="middle" class="field-label">SPI</text><title>SPI: bits 0-31 in row 1</title></g><g><rect x="0" y="60" width="320" height="34" rx="7" class="field-block field-1" /><text x="160.0" y="82" text-anchor="middle" class="field-label">Sequence</text><title>Sequence: bits 0-31 in row 2</title></g><g><rect x="0" y="98" width="320" height="34" rx="7" class="field-block field-2" /><text x="160.0" y="120" text-anchor="middle" class="field-label">Payload</text><title>Payload: bits 0-31 in row 3</title></g><g><rect x="0" y="136" width="320" height="34" rx="7" class="field-block field-3" /><text x="160.0" y="158" text-anchor="middle" class="field-label">Padding</text><title>Padding: bits 0-31 in row 4</title></g><g><rect x="0" y="174" width="80" height="34" rx="7" class="field-block field-4" /><text x="40.0" y="196" text-anchor="middle" class="field-label">Pad Length</text><title>Pad Length: bits 0-7 in row 5</title></g><g><rect x="80" y="174" width="80" height="34" rx="7" class="field-block field-0" /><text x="120.0" y="196" text-anchor="middle" class="field-label">Next Header</text><title>Next Header: bits 8-15 in row 5</title></g><g><rect x="160" y="174" width="160" height="34" rx="7" class="field-block field-1" /><text x="240.0" y="196" text-anchor="middle" class="field-label">ICV</text><title>ICV: bits 16-31 in row 5 segment</title></g><g><rect x="0" y="212" width="160" height="34" rx="7" class="field-block field-2" /><text x="80.0" y="234" text-anchor="middle" class="field-label">ICV</text><title>ICV: bits 0-15 in row 6 segment</title></g></svg></div>
-  <table class="header-field-table">
-    <thead><tr><th>Field</th><th>Bits</th><th>Hunting meaning / abnormal</th></tr></thead>
-    <tbody><tr><td>SPI</td><td>32</td><td>Security Parameters Index; unknown or reused SPIs can indicate rogue tunnels.</td></tr><tr><td>Sequence</td><td>32</td><td>Anti-replay value; resets or gaps suggest replay attempts or failover confusion.</td></tr><tr><td>Payload</td><td>32</td><td>Encrypted data; size and timing are key signals when contents are opaque.</td></tr><tr><td>Padding</td><td>32</td><td>Alignment bytes; unusual patterns can fingerprint implementations.</td></tr><tr><td>Pad Length</td><td>8</td><td>Number of padding bytes; impossible values indicate malformed ESP.</td></tr><tr><td>Next Header</td><td>8</td><td>Protected inner protocol; visible after decryption; useful for policy validation.</td></tr><tr><td>ICV</td><td>32</td><td>Integrity Check Value; failures indicate tampering or wrong keys.</td></tr></tbody>
-  </table>
 </details><h2>On this RFC</h2><div id="toc-links"></div></aside></section>
 </main>
 <script src="../assets/doc.js"></script>

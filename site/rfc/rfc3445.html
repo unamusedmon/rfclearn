@@ -326,8 +326,7 @@ Abstract
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 5</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc3445">RFC 3445</a>         Limiting the KEY Resource Record (RR)     December 2002</span>
+  <pre>RFC 3445         Limiting the KEY Resource Record (RR)     December 2002
 
 
    attacker can forge data from the effected zone and for any of its
@@ -344,27 +343,19 @@ Abstract
    meaning to DNS administrators or resolvers.  These two different
    types of data do not belong in the same resource record.
 
-<span><a href="#section-3">3</a>. Definition of the KEY RR</span>
+3. Definition of the KEY RR
 
    The KEY RR uses type 25 and is used as resource record for storing
    DNSSEC keys.  The RDATA for a KEY RR consists of flags, a protocol
    octet, the algorithm number octet, and the public key itself.  The
    format is as follows:
 
-   ---------------------------------------------------------------------
-
-
-                        1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 3 3
-    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |              flags            |   protocol    |   algorithm   |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                                                               /
+   ---------------------------------------------------------------------</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 3 3</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">flags</div><div class="modern-diagram-cell">protocol</div><div class="modern-diagram-cell">algorithm</div></div></div>
+</figure><pre>   |                                                               /
    /                        public key                             /
-   /                                                               /
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-                             KEY RR Format
+   /                                                               /</pre><pre>   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>                             KEY RR Format
 
    ---------------------------------------------------------------------
 
@@ -381,7 +372,7 @@ Abstract
 
 
 
-<span>Massey &amp; Rose               Standards Track                     [Page 5]</span></pre>
+Massey &amp; Rose               Standards Track                     [Page 5]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 6</span>

@@ -94,58 +94,10 @@
 Request for Comments:  883                                           ISI
                                                            November 1983
 
-            <span>DOMAIN NAMES - IMPLEMENTATION and SPECIFICATION</span>
-
-        +-----------------------------------------------------+
-        |                                                     |
-        | This memo discusses the implementation of domain    |
-        | name servers and resolvers, specifies the format of |
-        | transactions, and discusses the use of domain names |
-        | in the context of existing mail systems and other   |
-        | network software.                                   |
-        |                                                     |
-        | This memo assumes that the reader is familiar with  |
-        | <a href="./rfc882">RFC 882</a>, "Domain Names - Concepts and Facilities"   |
-        | which discusses the basic principles of domain      |
-        | names and their use.                                |
-        |                                                     |
-        | The algorithms and internal data structures used in |
-        | this memo are offered as suggestions rather than    |
-        | requirements; implementers are free to design their |
-        | own structures so long as the same external         |
-        | behavior is achieved.                               |
-        |                                                     |
-        +-----------------------------------------------------+
-
-
-
-
-           +-----------------------------------------------+
-           |                                               |
-           |             *****  WARNING  *****             |
-           |                                               |
-           | This RFC contains format specifications which |
-           | are preliminary and are included for purposes |
-           | of explanation only.  Do not attempt to use   |
-           | this information for actual implementations.  |
-           |                                               |
-           +-----------------------------------------------+
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<span>Mockapetris                                                     [Page i]</span></pre>
+            DOMAIN NAMES - IMPLEMENTATION and SPECIFICATION</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">This memo discusses the implementation of domain</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">name servers and resolvers, specifies the format of</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">transactions, and discusses the use of domain names</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">in the context of existing mail systems and other</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">network software.</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">This memo assumes that the reader is familiar with</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">RFC 882, &quot;Domain Names - Concepts and Facilities&quot;</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">which discusses the basic principles of domain</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">names and their use.</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">The algorithms and internal data structures used in</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">this memo are offered as suggestions rather than</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">requirements; implementers are free to design their</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">own structures so long as the same external</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">behavior is achieved.</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">*****  WARNING  *****</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">This RFC contains format specifications which</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">are preliminary and are included for purposes</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">of explanation only.  Do not attempt to use</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">this information for actual implementations.</div></div></div>
+</figure><pre>Mockapetris                                                     [Page i]</pre>
 </section><section class="rfc-page is-contents">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Contents</span>
@@ -272,8 +224,7 @@ INTRODUCTION
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 4</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc883">RFC 883</a>                                                    November 1983</span>
+  <pre>RFC 883                                                    November 1983
                          Domain Names - Implementation and Specification
 
 
@@ -287,22 +238,10 @@ INTRODUCTION
       is shown below:
 
                    Local Host                        |  Foreign
-                                                     |
-      +---------+               +----------+         |  +--------+
-      |         | user queries  |          |queries  |  |        |
-      |  User   |--------------&gt;|          |---------|-&gt;|Foreign |
-      | Program |               | Resolver |         |  |  Name  |
-      |         |&lt;--------------|          |&lt;--------|--| Server |
-      |         | user responses|          |responses|  |        |
-      +---------+               +----------+         |  +--------+
-                                  |     A            |
-                  cache additions |     | references |
-                                  V     |            |
-                                +----------+         |
-                                | database |         |
-                                +----------+         |
-
-      User programs interact with the domain name space through
+                                                     |</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">user queries</div><div class="modern-diagram-cell">queries</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">User</div><div class="modern-diagram-cell">--------------&gt;</div><div class="modern-diagram-cell">---------</div><div class="modern-diagram-cell">-&gt;</div><div class="modern-diagram-cell">Foreign</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Program</div><div class="modern-diagram-cell">Resolver</div><div class="modern-diagram-cell">Name</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">&lt;--------------</div><div class="modern-diagram-cell">&lt;--------</div><div class="modern-diagram-cell">--</div><div class="modern-diagram-cell">Server</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">user responses</div><div class="modern-diagram-cell">responses</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">A</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">cache additions</div><div class="modern-diagram-cell">references</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">V</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">database</div></div></div>
+</figure><pre>      User programs interact with the domain name space through
       resolvers; the format of user queries and user responses is
       specific to the host and its operating system.  User queries will
       typically be operating system calls, and the resolver and its
@@ -328,13 +267,12 @@ INTRODUCTION
 
 
 
-<span>Mockapetris                                                     [Page 2]</span></pre>
+Mockapetris                                                     [Page 2]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 5</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc883">RFC 883</a>                                                    November 1983</span>
+  <pre>RFC 883                                                    November 1983
                          Domain Names - Implementation and Specification
 
 
@@ -343,18 +281,10 @@ INTRODUCTION
       a large timeshared host.  A simple configuration might be:
 
                    Local Host                        |  Foreign
-                                                     |
-        +---------+                                  |
-       /         /|                                  |
-      +---------+ |             +----------+         |  +--------+
-      |         | |             |          |responses|  |        |
-      |         | |             |   Name   |---------|-&gt;|Foreign |
-      |  Master |--------------&gt;|  Server  |         |  |Resolver|
-      |  files  | |             |          |&lt;--------|--|        |
-      |         |/              |          | queries |  +--------+
-      +---------+               +----------+         |
-
-      Here the name server acquires information about one or more zones
+                                                     |</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">responses</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Name</div><div class="modern-diagram-cell">---------</div><div class="modern-diagram-cell">-&gt;</div><div class="modern-diagram-cell">Foreign</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Master</div><div class="modern-diagram-cell">--------------&gt;</div><div class="modern-diagram-cell">Server</div><div class="modern-diagram-cell">Resolver</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">files</div><div class="modern-diagram-cell">&lt;--------</div><div class="modern-diagram-cell">--</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">/</div><div class="modern-diagram-cell">queries</div><div class="modern-diagram-cell">+--------+</div></div></div>
+</figure><pre>      Here the name server acquires information about one or more zones
       by reading master files from its local file system, and answers
       queries about those zones that arrive from foreign resolvers.
 
@@ -363,24 +293,10 @@ INTRODUCTION
       shown below:
 
                    Local Host                        |  Foreign
-                                                     |
-        +---------+                                  |
-       /         /|                                  |
-      +---------+ |             +----------+         |  +--------+
-      |         | |             |          |responses|  |        |
-      |         | |             |   Name   |---------|-&gt;|Foreign |
-      |  Master |--------------&gt;|  Server  |         |  |Resolver|
-      |  files  | |             |          |&lt;--------|--|        |
-      |         |/              |          | queries |  +--------+
-      +---------+               +----------+         |
-                                  A     |maintenance |  +--------+
-                                  |     \------------|-&gt;|        |
-                                  |      queries     |  |Foreign |
-                                  |                  |  |  Name  |
-                                  \------------------|--| Server |
-                               maintenance responses |  +--------+
-
-      In this configuration, the name server periodically establishes a
+                                                     |</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">responses</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Name</div><div class="modern-diagram-cell">---------</div><div class="modern-diagram-cell">-&gt;</div><div class="modern-diagram-cell">Foreign</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Master</div><div class="modern-diagram-cell">--------------&gt;</div><div class="modern-diagram-cell">Server</div><div class="modern-diagram-cell">Resolver</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">files</div><div class="modern-diagram-cell">&lt;--------</div><div class="modern-diagram-cell">--</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">/</div><div class="modern-diagram-cell">queries</div><div class="modern-diagram-cell">+--------+</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">A</div><div class="modern-diagram-cell">maintenance</div><div class="modern-diagram-cell">+--------+</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">queries</div><div class="modern-diagram-cell">Foreign</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Name</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">\------------------</div><div class="modern-diagram-cell">--</div><div class="modern-diagram-cell">Server</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">maintenance responses</div><div class="modern-diagram-cell">+--------+</div></div></div>
+</figure><pre>      In this configuration, the name server periodically establishes a
       virtual circuit to a foreign name server to acquire a copy of a
       zone or to check that an existing copy has not changed.  The
       messages sent for these maintenance activities follow the same
@@ -389,13 +305,12 @@ INTRODUCTION
 
 
 
-<span>Mockapetris                                                     [Page 3]</span></pre>
+Mockapetris                                                     [Page 3]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 6</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc883">RFC 883</a>                                                    November 1983</span>
+  <pre>RFC 883                                                    November 1983
                          Domain Names - Implementation and Specification
 
 
@@ -403,39 +318,10 @@ INTRODUCTION
       domain name system is shown below:
 
                    Local Host                        |  Foreign
-                                                     |
-      +---------+               +----------+         |  +--------+
-      |         | user queries  |          |queries  |  |        |
-      |  User   |--------------&gt;|          |---------|-&gt;|Foreign |
-      | Program |               | Resolver |         |  |  Name  |
-      |         |&lt;--------------|          |&lt;--------|--| Server |
-      |         | user responses|          |responses|  |        |
-      +---------+               +----------+         |  +--------+
-                                  |     A            |
-                  cache additions |     | references |
-                                  V     |            |
-                                +----------+         |
-                                |  Shared  |         |
-                                | database |         |
-                                +----------+         |
-                                  A     |            |
-        +---------+     refreshes |     | references |
-       /         /|               |     V            |
-      +---------+ |             +----------+         |  +--------+
-      |         | |             |          |responses|  |        |
-      |         | |             |   Name   |---------|-&gt;|Foreign |
-      |  Master |--------------&gt;|  Server  |         |  |Resolver|
-      |  files  | |             |          |&lt;--------|--|        |
-      |         |/              |          | queries |  +--------+
-      +---------+               +----------+         |
-                                  A     |maintenance |  +--------+
-                                  |     \------------|-&gt;|        |
-                                  |      queries     |  |Foreign |
-                                  |                  |  |  Name  |
-                                  \------------------|--| Server |
-                               maintenance responses |  +--------+
-
-      The shared database holds domain space data for the local name
+                                                     |</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">user queries</div><div class="modern-diagram-cell">queries</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">User</div><div class="modern-diagram-cell">--------------&gt;</div><div class="modern-diagram-cell">---------</div><div class="modern-diagram-cell">-&gt;</div><div class="modern-diagram-cell">Foreign</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Program</div><div class="modern-diagram-cell">Resolver</div><div class="modern-diagram-cell">Name</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">&lt;--------------</div><div class="modern-diagram-cell">&lt;--------</div><div class="modern-diagram-cell">--</div><div class="modern-diagram-cell">Server</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">user responses</div><div class="modern-diagram-cell">responses</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">A</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">cache additions</div><div class="modern-diagram-cell">references</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">V</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Shared</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">database</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">A</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">+---------+     refreshes</div><div class="modern-diagram-cell">references</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">/         /</div><div class="modern-diagram-cell">V</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">responses</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Name</div><div class="modern-diagram-cell">---------</div><div class="modern-diagram-cell">-&gt;</div><div class="modern-diagram-cell">Foreign</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Master</div><div class="modern-diagram-cell">--------------&gt;</div><div class="modern-diagram-cell">Server</div><div class="modern-diagram-cell">Resolver</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">files</div><div class="modern-diagram-cell">&lt;--------</div><div class="modern-diagram-cell">--</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">/</div><div class="modern-diagram-cell">queries</div><div class="modern-diagram-cell">+--------+</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">A</div><div class="modern-diagram-cell">maintenance</div><div class="modern-diagram-cell">+--------+</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">queries</div><div class="modern-diagram-cell">Foreign</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Name</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">\------------------</div><div class="modern-diagram-cell">--</div><div class="modern-diagram-cell">Server</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">maintenance responses</div><div class="modern-diagram-cell">+--------+</div></div></div>
+</figure><pre>      The shared database holds domain space data for the local name
       server and resolver.  The contents of the shared database will
       typically be a mixture of authoritative data maintained by the
       periodic refresh operations of the name server and cached data
@@ -450,7 +336,7 @@ INTRODUCTION
 
 
 
-<span>Mockapetris                                                     [Page 4]</span></pre>
+Mockapetris                                                     [Page 4]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 7</span>
@@ -516,8 +402,7 @@ INTRODUCTION
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 8</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc883">RFC 883</a>                                                    November 1983</span>
+  <pre>RFC 883                                                    November 1983
                          Domain Names - Implementation and Specification
 
 
@@ -538,30 +423,18 @@ INTRODUCTION
       they are numbered.
 
 
-                    0                   1
-                    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5
-                   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-                   |       1       |       2       |
-                   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-                   |       3       |       4       |
-                   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-                   |       5       |       6       |
-                   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-                      Transmission Order of Bytes
+                    0                   1</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">2</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">3</div><div class="modern-diagram-cell">4</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">5</div><div class="modern-diagram-cell">6</div></div></div>
+</figure><pre>                      Transmission Order of Bytes
 
       Whenever an octet represents a numeric quantity the left most bit
       in the diagram is the high order or most significant bit.  That
       is, the bit labeled 0 is the most significant bit.  For example,
-      the following diagram represents the value 170 (decimal).
-
-
-                            0 1 2 3 4 5 6 7
-                           +-+-+-+-+-+-+-+-+
-                           |1 0 1 0 1 0 1 0|
-                           +-+-+-+-+-+-+-+-+
-
-                          Significance of Bits
+      the following diagram represents the value 170 (decimal).</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">1 0 1 0 1 0 1 0</div></div></div>
+</figure><pre>                          Significance of Bits
 
       Similarly, whenever a multi-octet field represents a numeric
       quantity the left most bit of the whole field is the most
@@ -572,7 +445,7 @@ INTRODUCTION
 
 
 
-<span>Mockapetris                                                     [Page 6]</span></pre>
+Mockapetris                                                     [Page 6]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 9</span>
@@ -943,8 +816,7 @@ NAME SERVER TRANSACTIONS
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 15</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc883">RFC 883</a>                                                    November 1983</span>
+  <pre>RFC 883                                                    November 1983
                          Domain Names - Implementation and Specification
 
 
@@ -971,21 +843,10 @@ NAME SERVER TRANSACTIONS
    Overall message format
 
       All messages sent by the domain system are divided into 5 sections
-      (some of which are empty in certain cases) shown below:
-
-       +---------------------+
-       |        Header       |
-       +---------------------+
-       |       Question      | the question for the name server
-       +---------------------+
-       |        Answer       | answering resource records (RRs)
-       +---------------------+
-       |      Authority      | RRs pointing toward an authority
-       +---------------------+
-       |      Additional     | RRs holding pertinent information
-       +---------------------+
-
-      The header section is always present.  The header includes fields
+      (some of which are empty in certain cases) shown below:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Header</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Question</div><div class="modern-diagram-cell">the question for the name server</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Answer</div><div class="modern-diagram-cell">answering resource records (RRs)</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Authority</div><div class="modern-diagram-cell">RRs pointing toward an authority</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Additional</div><div class="modern-diagram-cell">RRs holding pertinent information</div></div></div>
+</figure><pre>      The header section is always present.  The header includes fields
       that specify which of the remaining sections are present, and also
       specify whether the message is a query, inverse query, completion
       query, or response.
@@ -999,7 +860,7 @@ NAME SERVER TRANSACTIONS
       contains RRs that answer the question; the authority section
 
 
-<span>Mockapetris                                                    [Page 13]</span></pre>
+Mockapetris                                                    [Page 13]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 16</span>
@@ -1065,8 +926,7 @@ NAME SERVER TRANSACTIONS
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 17</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc883">RFC 883</a>                                                    November 1983</span>
+  <pre>RFC 883                                                    November 1983
                          Domain Names - Implementation and Specification
 
 
@@ -1093,21 +953,10 @@ NAME SERVER TRANSACTIONS
    Standard query and response example
 
       The overall structure of a query for retrieving information for
-      Internet mail for domain F.ISI.ARPA is shown below:
-
-                          +-----------------------------------------+
-            Header        |          OPCODE=QUERY, ID=2304          |
-                          +-----------------------------------------+
-           Question       |QTYPE=MAILA, QCLASS=IN, QNAME=F.ISI.ARPA |
-                          +-----------------------------------------+
-            Answer        |                 &lt;empty&gt;                 |
-                          +-----------------------------------------+
-           Authority      |                 &lt;empty&gt;                 |
-                          +-----------------------------------------+
-          Additional      |                 &lt;empty&gt;                 |
-                          +-----------------------------------------+
-
-      The header includes an opcode field that specifies that this
+      Internet mail for domain F.ISI.ARPA is shown below:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Header</div><div class="modern-diagram-cell">OPCODE=QUERY, ID=2304</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Question</div><div class="modern-diagram-cell">QTYPE=MAILA, QCLASS=IN, QNAME=F.ISI.ARPA</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Answer</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Authority</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Additional</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div></div>
+</figure><pre>      The header includes an opcode field that specifies that this
       datagram is a query, and an ID field that will be used to
       associate replies with the original query.  (Some additional
       header fields have been omitted for clarity.)  The question
@@ -1121,35 +970,19 @@ NAME SERVER TRANSACTIONS
 
 
 
-<span>Mockapetris                                                    [Page 15]</span></pre>
+Mockapetris                                                    [Page 15]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 18</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc883">RFC 883</a>                                                    November 1983</span>
+  <pre>RFC 883                                                    November 1983
                          Domain Names - Implementation and Specification
 
 
-      One possible response to this query might be:
-
-                          +-----------------------------------------+
-            Header        |        OPCODE=RESPONSE, ID=2304         |
-                          +-----------------------------------------+
-           Question       |QTYPE=MAILA, QCLASS=IN, QNAME=F.ISI.ARPA |
-                          +-----------------------------------------+
-            Answer        |                 &lt;empty&gt;                 |
-                          +-----------------------------------------+
-           Authority      |          ARPA NS IN A.ISI.ARPA          |
-                          |                 -------                 |
-                          |          ARPA NS IN F.ISI.ARPA          |
-                          +-----------------------------------------+
-           Additional     |        F.ISI.ARPA A IN 10.2.0.52        |
-                          |                 -------                 |
-                          |        A.ISI.ARPA A IN 10.1.0.22        |
-                          +-----------------------------------------+
-
-      This type of response would be returned by a name server that was
+      One possible response to this query might be:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Header</div><div class="modern-diagram-cell">OPCODE=RESPONSE, ID=2304</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Question</div><div class="modern-diagram-cell">QTYPE=MAILA, QCLASS=IN, QNAME=F.ISI.ARPA</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Answer</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Authority</div><div class="modern-diagram-cell">ARPA NS IN A.ISI.ARPA</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">ARPA NS IN F.ISI.ARPA</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Additional</div><div class="modern-diagram-cell">F.ISI.ARPA A IN 10.2.0.52</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">A.ISI.ARPA A IN 10.1.0.22</div></div></div>
+</figure><pre>      This type of response would be returned by a name server that was
       not an authority for the domain name F.ISI.ARPA.  The header field
       specifies that the datagram is a response to a query with an ID of
       2304.  The question section is copied from the question section in
@@ -1182,35 +1015,19 @@ NAME SERVER TRANSACTIONS
 
 
 
-<span>Mockapetris                                                    [Page 16]</span></pre>
+Mockapetris                                                    [Page 16]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 19</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc883">RFC 883</a>                                                    November 1983</span>
+  <pre>RFC 883                                                    November 1983
                          Domain Names - Implementation and Specification
 
 
-      The name server on A.ISI.ARPA might return a response:
-
-                          +-----------------------------------------+
-            Header        |        OPCODE=RESPONSE, ID=2305         |
-                          +-----------------------------------------+
-           Question       |QTYPE=MAILA, QCLASS=IN, QNAME=F.ISI.ARPA |
-                          +-----------------------------------------+
-            Answer        |       F.ISI.ARPA MD IN F.ISI.ARPA       |
-                          |                 -------                 |
-                          |       F.ISI.ARPA MF IN A.ISI.ARPA       |
-                          +-----------------------------------------+
-           Authority      |                 &lt;empty&gt;                 |
-                          +-----------------------------------------+
-          Additional      |        F.ISI.ARPA A IN 10.2.0.52        |
-                          |                 -------                 |
-                          |        A.ISI.ARPA A IN 10.1.0.22        |
-                          +-----------------------------------------+
-
-      This query was directed to an authoritative name server, and hence
+      The name server on A.ISI.ARPA might return a response:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Header</div><div class="modern-diagram-cell">OPCODE=RESPONSE, ID=2305</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Question</div><div class="modern-diagram-cell">QTYPE=MAILA, QCLASS=IN, QNAME=F.ISI.ARPA</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Answer</div><div class="modern-diagram-cell">F.ISI.ARPA MD IN F.ISI.ARPA</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">F.ISI.ARPA MF IN A.ISI.ARPA</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Authority</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Additional</div><div class="modern-diagram-cell">F.ISI.ARPA A IN 10.2.0.52</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">A.ISI.ARPA A IN 10.1.0.22</div></div></div>
+</figure><pre>      This query was directed to an authoritative name server, and hence
       the response includes an answer but no authority records.  In this
       case, the answer section specifies that mail for F.ISI.ARPA can
       either be delivered to F.ISI.ARPA or forwarded to A.ISI.ARPA.  The
@@ -1237,19 +1054,18 @@ NAME SERVER TRANSACTIONS
       queries; it is anticipated that most name servers will support
       address to domain name conversions, but no other inverse mappings.
       If a name server receives an inverse query that it does not
-      support, it returns an error response with the "Not Implemented"
+      support, it returns an error response with the &quot;Not Implemented&quot;
       error set in the header.  While inverse query support is optional,
       all name servers must be at least able to return the error
       response.
 
 
-<span>Mockapetris                                                    [Page 17]</span></pre>
+Mockapetris                                                    [Page 17]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 20</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc883">RFC 883</a>                                                    November 1983</span>
+  <pre>RFC 883                                                    November 1983
                          Domain Names - Implementation and Specification
 
 
@@ -1258,45 +1074,23 @@ NAME SERVER TRANSACTIONS
          1. zero, one, or multiple domain names for the specified
          resource
 
-         2. an error code indicating that the name server doesn't
+         2. an error code indicating that the name server doesn&#x27;t
             support inverse mapping of the specified resource type.
 
    Inverse query and response example
 
       The overall structure of an inverse query for retrieving the
       domain name that corresponds to Internet address 10.2.0.52 is
-      shown below:
-
-                          +-----------------------------------------+
-            Header        |          OPCODE=IQUERY, ID=997          |
-                          +-----------------------------------------+
-           Question       |                 &lt;empty&gt;                 |
-                          +-----------------------------------------+
-            Answer        |        &lt;anyname&gt; A IN 10.2.0.52         |
-                          +-----------------------------------------+
-           Authority      |                 &lt;empty&gt;                 |
-                          +-----------------------------------------+
-          Additional      |                 &lt;empty&gt;                 |
-                          +-----------------------------------------+
-
-      This query asks for a question whose answer is the Internet style
+      shown below:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Header</div><div class="modern-diagram-cell">OPCODE=IQUERY, ID=997</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Question</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Answer</div><div class="modern-diagram-cell">&lt;anyname&gt; A IN 10.2.0.52</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Authority</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Additional</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div></div>
+</figure><pre>      This query asks for a question whose answer is the Internet style
       address 10.2.0.52.  Since the owner name is not known, any domain
       name can be used as a placeholder (and is ignored).  The response
-      to this query might be:
-
-                          +-----------------------------------------+
-            Header        |         OPCODE=RESPONSE, ID=997         |
-                          +-----------------------------------------+
-           Question       |   QTYPE=A, QCLASS=IN, QNAME=F.ISI.ARPA  |
-                          +-----------------------------------------+
-            Answer        |       F.ISI.ARPA A IN 10.2.0.52         |
-                          +-----------------------------------------+
-           Authority      |                 &lt;empty&gt;                 |
-                          +-----------------------------------------+
-          Additional      |                 &lt;empty&gt;                 |
-                          +-----------------------------------------+
-
-      Note that the QTYPE in a response to an inverse query is the same
+      to this query might be:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Header</div><div class="modern-diagram-cell">OPCODE=RESPONSE, ID=997</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Question</div><div class="modern-diagram-cell">QTYPE=A, QCLASS=IN, QNAME=F.ISI.ARPA</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Answer</div><div class="modern-diagram-cell">F.ISI.ARPA A IN 10.2.0.52</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Authority</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Additional</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div></div>
+</figure><pre>      Note that the QTYPE in a response to an inverse query is the same
       as the TYPE field in the answer section of the inverse query.
       Responses to inverse queries may contain multiple questions when
       the inverse is not unique.
@@ -1304,7 +1098,7 @@ NAME SERVER TRANSACTIONS
 
 
 
-<span>Mockapetris                                                    [Page 18]</span></pre>
+Mockapetris                                                    [Page 18]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 21</span>
@@ -1492,8 +1286,7 @@ NAME SERVER TRANSACTIONS
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 24</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc883">RFC 883</a>                                                    November 1983</span>
+  <pre>RFC 883                                                    November 1983
                          Domain Names - Implementation and Specification
 
 
@@ -1501,43 +1294,21 @@ NAME SERVER TRANSACTIONS
 
       Suppose that the completion service was used by a TELNET program
       to allow a user to specify a partial domain name for the desired
-      host.  Thus a user might ask to be connected to "B".  Assuming
+      host.  Thus a user might ask to be connected to &quot;B&quot;.  Assuming
       that the query originated from an ISI machine, the query might
-      look like:
-
-                          +-----------------------------------------+
-            Header        |         OPCODE=CQUERYU, ID=409          |
-                          +-----------------------------------------+
-           Question       |       QTYPE=A, QCLASS=IN, QNAME=B       |
-                          +-----------------------------------------+
-            Answer        |                 &lt;empty&gt;                 |
-                          +-----------------------------------------+
-           Authority      |                 &lt;empty&gt;                 |
-                          +-----------------------------------------+
-          Additional      |             ISI.ARPA NULL IN            |
-                          +-----------------------------------------+
-
-      The partial name in the query is "B", the mappings of interest are
+      look like:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Header</div><div class="modern-diagram-cell">OPCODE=CQUERYU, ID=409</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Question</div><div class="modern-diagram-cell">QTYPE=A, QCLASS=IN, QNAME=B</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Answer</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Authority</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Additional</div><div class="modern-diagram-cell">ISI.ARPA NULL IN</div></div></div>
+</figure><pre>      The partial name in the query is &quot;B&quot;, the mappings of interest are
       ARPA Internet address records, and the target domain is ISI.ARPA.
       Note that NULL is a special type of NULL resource record that is
       used as a placeholder and has no significance; NULL RRs obey the
       standard format but have no other function.
 
-      The response to this completion query might be:
-
-                          +-----------------------------------------+
-            Header        |         OPCODE=RESPONSE, ID=409         |
-                          +-----------------------------------------+
-           Question       |       QTYPE=A, QCLASS=IN, QNAME=B       |
-                          +-----------------------------------------+
-            Answer        |        B.ISI.ARPA A IN 10.3.0.52        |
-                          +-----------------------------------------+
-           Authority      |                 &lt;empty&gt;                 |
-                          +-----------------------------------------+
-          Additional      |             ISI.ARPA NULL IN            |
-                          +-----------------------------------------+
-
-      This response has completed B to mean B.ISI.ARPA.
+      The response to this completion query might be:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Header</div><div class="modern-diagram-cell">OPCODE=RESPONSE, ID=409</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Question</div><div class="modern-diagram-cell">QTYPE=A, QCLASS=IN, QNAME=B</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Answer</div><div class="modern-diagram-cell">B.ISI.ARPA A IN 10.3.0.52</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Authority</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Additional</div><div class="modern-diagram-cell">ISI.ARPA NULL IN</div></div></div>
+</figure><pre>      This response has completed B to mean B.ISI.ARPA.
 
 
 
@@ -1548,51 +1319,24 @@ NAME SERVER TRANSACTIONS
 
 
 
-<span>Mockapetris                                                    [Page 22]</span></pre>
+Mockapetris                                                    [Page 22]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 25</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc883">RFC 883</a>                                                    November 1983</span>
+  <pre>RFC 883                                                    November 1983
                          Domain Names - Implementation and Specification
 
 
-      Another query might be:
-
-                          +-----------------------------------------+
-            Header        |         OPCODE=CQUERYM, ID=410          |
-                          +-----------------------------------------+
-           Question       |       QTYPE=A, QCLASS=IN, QNAME=B       |
-                          +-----------------------------------------+
-            Answer        |                 &lt;empty&gt;                 |
-                          +-----------------------------------------+
-           Authority      |                 &lt;empty&gt;                 |
-                          +-----------------------------------------+
-          Additional      |               ARPA NULL IN              |
-                          +-----------------------------------------+
-
-      This query is similar to the previous one, but specifies a target
+      Another query might be:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Header</div><div class="modern-diagram-cell">OPCODE=CQUERYM, ID=410</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Question</div><div class="modern-diagram-cell">QTYPE=A, QCLASS=IN, QNAME=B</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Answer</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Authority</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Additional</div><div class="modern-diagram-cell">ARPA NULL IN</div></div></div>
+</figure><pre>      This query is similar to the previous one, but specifies a target
       of ARPA rather than ISI.ARPA.  It also allows multiple matches.
-      In this case the same name server might return:
-
-                          +-----------------------------------------+
-            Header        |         OPCODE=RESPONSE, ID=410         |
-                          +-----------------------------------------+
-           Question       |       QTYPE=A, QCLASS=IN, QNAME=B       |
-                          +-----------------------------------------+
-            Answer        |        B.ISI.ARPA A IN 10.3.0.52        |
-                          |                    -                    |
-                          |        B.BBN.ARPA A IN 10.0.0.49        |
-                          |                    -                    |
-                          |        B.BBNCC.ARPA A IN 8.1.0.2        |
-                          +-----------------------------------------+
-           Authority      |                 &lt;empty&gt;                 |
-                          +-----------------------------------------+
-          Additional      |               ARPA NULL IN              |
-                          +-----------------------------------------+
-
-      This response contains three answers, B.ISI.ARPA, B.BBN.ARPA, and
+      In this case the same name server might return:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Header</div><div class="modern-diagram-cell">OPCODE=RESPONSE, ID=410</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Question</div><div class="modern-diagram-cell">QTYPE=A, QCLASS=IN, QNAME=B</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Answer</div><div class="modern-diagram-cell">B.ISI.ARPA A IN 10.3.0.52</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">B.BBN.ARPA A IN 10.0.0.49</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">B.BBNCC.ARPA A IN 8.1.0.2</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Authority</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Additional</div><div class="modern-diagram-cell">ARPA NULL IN</div></div></div>
+</figure><pre>      This response contains three answers, B.ISI.ARPA, B.BBN.ARPA, and
       B.BBNCC.ARPA.
 
 
@@ -1609,7 +1353,7 @@ NAME SERVER TRANSACTIONS
 
 
 
-<span>Mockapetris                                                    [Page 23]</span></pre>
+Mockapetris                                                    [Page 23]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 26</span>
@@ -1736,45 +1480,19 @@ NAME SERVER TRANSACTIONS
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 28</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc883">RFC 883</a>                                                    November 1983</span>
+  <pre>RFC 883                                                    November 1983
                          Domain Names - Implementation and Specification
 
 
-   Header section format
+   Header section format</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">*****  WARNING  *****</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">The following format is preliminary and is</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">included for purposes of explanation only. In</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">particular, the size and position of the</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">OPCODE, RCODE fields and the number and</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">meaning of the single bit fields are subject</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">to change.</div></div></div>
+</figure><pre>      The header contains the following fields:
 
-           +-----------------------------------------------+
-           |                                               |
-           |             *****  WARNING  *****             |
-           |                                               |
-           |  The following format is preliminary and is   |
-           | included for purposes of explanation only. In |
-           | particular, the size and position of the      |
-           | OPCODE, RCODE fields and the number and       |
-           | meaning of the single bit fields are subject  |
-           | to change.                                    |
-           |                                               |
-           +-----------------------------------------------+
-
-      The header contains the following fields:
-
-                                           1  1  1  1  1  1
-             0  1  2  3  4  5  6  7  8  9  0  1  2  3  4  5
-           +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-           |                      ID                       |
-           +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-           |QR|   Opcode  |AA|TC|RD|RA|        |   RCODE   |
-           +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-           |                    QDCOUNT                    |
-           +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-           |                    ANCOUNT                    |
-           +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-           |                    NSCOUNT                    |
-           +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-           |                    ARCOUNT                    |
-           +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-
-      where:
+                                           1  1  1  1  1  1</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0  1  2  3  4  5  6  7  8  9  0  1  2  3  4  5</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">ID</div></div><div class="modern-diagram-row" style="--cell-count: 7"><div class="modern-diagram-cell">QR</div><div class="modern-diagram-cell">Opcode</div><div class="modern-diagram-cell">AA</div><div class="modern-diagram-cell">TC</div><div class="modern-diagram-cell">RD</div><div class="modern-diagram-cell">RA</div><div class="modern-diagram-cell">RCODE</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">QDCOUNT</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">ANCOUNT</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">NSCOUNT</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">ARCOUNT</div></div></div>
+</figure><pre>      where:
 
       ID      - A 16 bit identifier assigned by the program that
                 generates any kind of query.  This identifier is copied
@@ -1792,7 +1510,7 @@ NAME SERVER TRANSACTIONS
 
 
 
-<span>Mockapetris                                                    [Page 26]</span></pre>
+Mockapetris                                                    [Page 26]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 29</span>
@@ -1919,8 +1637,7 @@ NAME SERVER TRANSACTIONS
   <div class="rfc-page-top">
     <span class="rfc-page-label">Appendix</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc883">RFC 883</a>                                                    November 1983</span>
+  <pre>RFC 883                                                    November 1983
                          Domain Names - Implementation and Specification
 
 
@@ -1931,19 +1648,14 @@ NAME SERVER TRANSACTIONS
       may contain multiple entries; for all other responses it contains
       a single entry.  Each entry has the following format:
 
-                                           1  1  1  1  1  1
-             0  1  2  3  4  5  6  7  8  9  0  1  2  3  4  5
-           +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-           |                                               |
-           /                     QNAME                     /
-           /                                               /
-           +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-           |                     QTYPE                     |
-           +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-           |                     QCLASS                    |
-           +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-
-      where:
+                                           1  1  1  1  1  1</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0  1  2  3  4  5  6  7  8  9  0  1  2  3  4  5</div></div></div>
+</figure><pre>           /                     QNAME                     /
+           /                                               /</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">QTYPE</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">QCLASS</div></div></div>
+</figure><pre>      where:
 
       QNAME -   a variable number of octets that specify a domain name.
                 This field uses the compressed domain name format
@@ -1975,13 +1687,12 @@ NAME SERVER TRANSACTIONS
 
 
 
-<span>Mockapetris                                                    [Page 29]</span></pre>
+Mockapetris                                                    [Page 29]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Appendix</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc883">RFC 883</a>                                                    November 1983</span>
+  <pre>RFC 883                                                    November 1983
                          Domain Names - Implementation and Specification
 
 
@@ -1992,27 +1703,15 @@ NAME SERVER TRANSACTIONS
       records is specified in the corresponding count field in the
       header.  Each resource record has the following format:
 
-                                           1  1  1  1  1  1
-             0  1  2  3  4  5  6  7  8  9  0  1  2  3  4  5
-           +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-           |                                               |
-           /                                               /
-           /                      NAME                     /
-           |                                               |
-           +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-           |                      TYPE                     |
-           +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-           |                     CLASS                     |
-           +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-           |                      TTL                      |
-           +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-           |                   RDLENGTH                    |
-           +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--|
-           /                     RDATA                     /
-           /                                               /
-           +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-
-      where:
+                                           1  1  1  1  1  1</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0  1  2  3  4  5  6  7  8  9  0  1  2  3  4  5</div></div></div>
+</figure><pre>           /                                               /
+           /                      NAME                     /</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">TYPE</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">CLASS</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">TTL</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">RDLENGTH</div></div></div>
+</figure><pre>           /                     RDATA                     /
+           /                                               /</pre><pre>           +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+</pre><pre>      where:
 
       NAME    - a compressed domain name to which this resource record
                 pertains.
@@ -2036,7 +1735,7 @@ NAME SERVER TRANSACTIONS
 
 
 
-<span>Mockapetris                                                    [Page 30]</span></pre>
+Mockapetris                                                    [Page 30]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Appendix</span>
@@ -2163,42 +1862,11 @@ NAME SERVER TRANSACTIONS
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 35</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc883">RFC 883</a>                                                    November 1983</span>
-                         Domain Names - Implementation and Specification
-
-
-             +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-          20 |           1           |           F           |
-             +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-          22 |           3           |           I           |
-             +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-          24 |           S           |           I           |
-             +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-          26 |           4           |           A           |
-             +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-          28 |           R           |           P           |
-             +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-          30 |           A           |           0           |
-             +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-
-             +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-          40 |           3           |           F           |
-             +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-          42 |           O           |           O           |
-             +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-          44 | 1  1|                20                       |
-             +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-
-             +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-          64 | 1  1|                26                       |
-             +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-
-             +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-          92 |           0           |                       |
-             +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-
-      The domain name for F.ISI.ARPA is shown at offset 20.  The domain
+  <pre>RFC 883                                                    November 1983
+                         Domain Names - Implementation and Specification</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">20</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">F</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">22</div><div class="modern-diagram-cell">3</div><div class="modern-diagram-cell">I</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">24</div><div class="modern-diagram-cell">S</div><div class="modern-diagram-cell">I</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">26</div><div class="modern-diagram-cell">4</div><div class="modern-diagram-cell">A</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">28</div><div class="modern-diagram-cell">R</div><div class="modern-diagram-cell">P</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">30</div><div class="modern-diagram-cell">A</div><div class="modern-diagram-cell">0</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">40</div><div class="modern-diagram-cell">3</div><div class="modern-diagram-cell">F</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">42</div><div class="modern-diagram-cell">O</div><div class="modern-diagram-cell">O</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">44</div><div class="modern-diagram-cell">1  1</div><div class="modern-diagram-cell">20</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">64</div><div class="modern-diagram-cell">1  1</div><div class="modern-diagram-cell">26</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">92</div><div class="modern-diagram-cell">0</div></div></div>
+</figure><pre>      The domain name for F.ISI.ARPA is shown at offset 20.  The domain
       name FOO.F.ISI.ARPA is shown at offset 40; this definition uses a
       pointer to concatenate a label for FOO to the previously defined
       F.ISI.ARPA.  The domain name ARPA is defined at offset 64 using a
@@ -2219,7 +1887,7 @@ NAME SERVER TRANSACTIONS
       cache tree has different management procedures.
 
 
-<span>Mockapetris                                                    [Page 33]</span></pre>
+Mockapetris                                                    [Page 33]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 36</span>
@@ -3627,26 +3295,14 @@ Appendix 1 - Domain Name Syntax Specification
   <div class="rfc-page-top">
     <span class="rfc-page-label">Appendix</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc883">RFC 883</a>                                                    November 1983</span>
+  <pre>RFC 883                                                    November 1983
                          Domain Names - Implementation and Specification
 
 
-Appendix 2 - Field formats and encodings
-
-           +-----------------------------------------------+
-           |                                               |
-           |             *****  WARNING  *****             |
-           |                                               |
-           |  The following formats are preliminary and    |
-           | are included for purposes of explanation only.|
-           | In particular, new RR types will be added,    |
-           | and the size, position, and encoding of       |
-           | fields are subject to change.                 |
-           |                                               |
-           +-----------------------------------------------+
-
-   TYPE values
+Appendix 2 - Field formats and encodings</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">*****  WARNING  *****</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">The following formats are preliminary and</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">are included for purposes of explanation only.</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">In particular, new RR types will be added,</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">and the size, position, and encoding of</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">fields are subject to change.</div></div></div>
+</figure><pre>   TYPE values
 
       TYPE fields are used in resource records.  Note that these types
       are not the same as the QTYPE fields used in queries, although the
@@ -3683,7 +3339,7 @@ Appendix 2 - Field formats and encodings
       MINFO 14   mailbox or mail list information
 
 
-<span>Mockapetris                                                    [Page 57]</span></pre>
+Mockapetris                                                    [Page 57]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 60</span>
@@ -3749,8 +3405,7 @@ Appendix 2 - Field formats and encodings
   <div class="rfc-page-top">
     <span class="rfc-page-label">Appendix</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc883">RFC 883</a>                                                    November 1983</span>
+  <pre>RFC 883                                                    November 1983
                          Domain Names - Implementation and Specification
 
 
@@ -3758,27 +3413,15 @@ Appendix 2 - Field formats and encodings
 
       All RRs have the same top level format shown below:
 
-                                           1  1  1  1  1  1
-             0  1  2  3  4  5  6  7  8  9  0  1  2  3  4  5
-           +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-           |                                               |
-           /                                               /
-           /                      NAME                     /
-           |                                               |
-           +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-           |                      TYPE                     |
-           +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-           |                     CLASS                     |
-           +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-           |                      TTL                      |
-           +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-           |                   RDLENGTH                    |
-           +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--|
-           /                     RDATA                     /
-           /                                               /
-           +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-
-         where:
+                                           1  1  1  1  1  1</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0  1  2  3  4  5  6  7  8  9  0  1  2  3  4  5</div></div></div>
+</figure><pre>           /                                               /
+           /                      NAME                     /</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">TYPE</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">CLASS</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">TTL</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">RDLENGTH</div></div></div>
+</figure><pre>           /                     RDATA                     /
+           /                                               /</pre><pre>           +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+</pre><pre>         where:
 
          NAME    - a compressed domain name to which this resource
                    record pertains.
@@ -3805,7 +3448,7 @@ Appendix 2 - Field formats and encodings
 
 
 
-<span>Mockapetris                                                    [Page 59]</span></pre>
+Mockapetris                                                    [Page 59]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 62</span>
@@ -4115,34 +3758,15 @@ Appendix 2 - Field formats and encodings
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 67</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc883">RFC 883</a>                                                    November 1983</span>
+  <pre>RFC 883                                                    November 1983
                          Domain Names - Implementation and Specification
 
 
-      SOA RDATA format
-
-           +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-           /                     MNAME                     /
-           /                                               /
-           +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-           /                     RNAME                     /
-           +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-           |                    SERIAL                     |
-           +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-           |                    REFRESH                    |
-           |                                               |
-           +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-           |                     RETRY                     |
-           |                                               |
-           +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-           |                    EXPIRE                     |
-           |                                               |
-           +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-           |                    MINIMUM                    |
-           +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-
-         where:
+      SOA RDATA format</pre><pre>           +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+</pre><pre>           /                     MNAME                     /
+           /                                               /</pre><pre>           +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+</pre><pre>           /                     RNAME                     /</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">SERIAL</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">REFRESH</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">RETRY</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">EXPIRE</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">MINIMUM</div></div></div>
+</figure><pre>         where:
 
          MNAME   - The domain name of the name server that was the
                    original source of data for this zone.
@@ -4171,7 +3795,7 @@ Appendix 2 - Field formats and encodings
          SOA records cause no additional section processing.  The RDATA
 
 
-<span>Mockapetris                                                    [Page 65]</span></pre>
+Mockapetris                                                    [Page 65]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 68</span>
@@ -4237,8 +3861,7 @@ Appendix 2 - Field formats and encodings
   <div class="rfc-page-top">
     <span class="rfc-page-label">Appendix</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc883">RFC 883</a>                                                    November 1983</span>
+  <pre>RFC 883                                                    November 1983
                          Domain Names - Implementation and Specification
 
 
@@ -4246,31 +3869,17 @@ Appendix 3 - Internet specific field formats and operations
 
    Message transport
 
-      The Internet supports name server access using TCP [<a href="#ref-10" title="&quot;Transmission Control Protocol&quot;">10</a>] on server
-      port 53 (decimal) as well as datagram access using UDP [<a href="#ref-11" title="&quot;User Datagram Protocol&quot;">11</a>] on UDP
+      The Internet supports name server access using TCP [10] on server
+      port 53 (decimal) as well as datagram access using UDP [11] on UDP
       port 53 (decimal).  Messages sent over TCP virtual circuits are
       preceded by an unsigned 16 bit length field which describes the
-      length of the message, excluding the length field itself.
-
-           +-----------------------------------------------+
-           |                                               |
-           |             *****  WARNING  *****             |
-           |                                               |
-           |  The following formats are preliminary and    |
-           | are included for purposes of explanation only.|
-           | In particular, new RR types will be added,    |
-           | and the size, position, and encoding of       |
-           | fields are subject to change.                 |
-           |                                               |
-           +-----------------------------------------------+
-
-   A RDATA format
-
-           +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-           |                    ADDRESS                    |
-           +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-
-      where:
+      length of the message, excluding the length field itself.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">*****  WARNING  *****</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">The following formats are preliminary and</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">are included for purposes of explanation only.</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">In particular, new RR types will be added,</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">and the size, position, and encoding of</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">fields are subject to change.</div></div></div>
+</figure><pre>   A RDATA format</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">ADDRESS</div></div></div>
+</figure><pre>      where:
 
       ADDRESS   - A 32 bit ARPA internet address
 
@@ -4280,7 +3889,7 @@ Appendix 3 - Internet specific field formats and operations
       A records cause no additional section processing.  The RDATA
       section of an A line in a master file is an Internet address
       expressed as four decimal numbers separated by dots without any
-      imbedded spaces (e.g., "10.2.0.52" or "192.0.5.6").
+      imbedded spaces (e.g., &quot;10.2.0.52&quot; or &quot;192.0.5.6&quot;).
 
 
 
@@ -4293,29 +3902,20 @@ Appendix 3 - Internet specific field formats and operations
 
 
 
-<span>Mockapetris                                                    [Page 67]</span></pre>
+Mockapetris                                                    [Page 67]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 70</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc883">RFC 883</a>                                                    November 1983</span>
+  <pre>RFC 883                                                    November 1983
                          Domain Names - Implementation and Specification
 
 
-   WKS RDATA format
-
-           +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-           |                    ADDRESS                    |
-           +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-           |       PROTOCOL        |                       |
-           +--+--+--+--+--+--+--+--+                       |
-           |                                               |
-           /                   &lt;BIT MAP&gt;                   /
-           /                                               /
-           +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-
-      where:
+   WKS RDATA format</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">ADDRESS</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">PROTOCOL</div></div></div>
+</figure><pre>           /                   &lt;BIT MAP&gt;                   /
+           /                                               /</pre><pre>           +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+</pre><pre>      where:
 
       ADDRESS   - An 32 bit ARPA Internet address
 
@@ -4331,7 +3931,7 @@ Appendix 3 - Internet specific field formats and operations
       first bit corresponds to port 0, the second to port 1, etc.  If
       less than 256 bits are present, the remainder are assumed to be
       zero.  The appropriate values for ports and protocols are
-      specified in [<a href="#ref-13" title="&quot;Assigned Numbers&quot;">13</a>].
+      specified in [13].
 
       For example, if PROTOCOL=TCP (6), the 26th bit corresponds to TCP
       port 25 (SMTP).  If this bit is set, a SMTP server should be
@@ -4354,7 +3954,7 @@ Appendix 3 - Internet specific field formats and operations
       this domain is to allow queries to locate all gateways on a
 
 
-<span>Mockapetris                                                    [Page 68]</span></pre>
+Mockapetris                                                    [Page 68]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 71</span>

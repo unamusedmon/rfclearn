@@ -506,49 +506,33 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 8</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc5936">RFC 5936</a>            DNS Zone Transfer Protocol (AXFR)          June 2010</span>
-
-
-             0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15
-           +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-           |                      ID                       |
-           +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-           |QR|   OpCode  |AA|TC|RD|RA| Z|AD|CD|   RCODE   |
-           +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-           |                QDCOUNT/ZOCOUNT                |
-           +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-           |                ANCOUNT/PRCOUNT                |
-           +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-           |                NSCOUNT/UPCOUNT                |
-           +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-           |                    ARCOUNT                    |
-           +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-
-   This document makes use of the field names as they appear in this
+  <pre>RFC 5936            DNS Zone Transfer Protocol (AXFR)          June 2010</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">ID</div></div><div class="modern-diagram-row" style="--cell-count: 10"><div class="modern-diagram-cell">QR</div><div class="modern-diagram-cell">OpCode</div><div class="modern-diagram-cell">AA</div><div class="modern-diagram-cell">TC</div><div class="modern-diagram-cell">RD</div><div class="modern-diagram-cell">RA</div><div class="modern-diagram-cell">Z</div><div class="modern-diagram-cell">AD</div><div class="modern-diagram-cell">CD</div><div class="modern-diagram-cell">RCODE</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">QDCOUNT/ZOCOUNT</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">ANCOUNT/PRCOUNT</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">NSCOUNT/UPCOUNT</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">ARCOUNT</div></div></div>
+</figure><pre>   This document makes use of the field names as they appear in this
    diagram.  The names of sections in the body of DNS messages are
-   capitalized in this document for clarity, e.g., "Additional section".
+   capitalized in this document for clarity, e.g., &quot;Additional section&quot;.
 
-   The DNS message size limit from [<a href="./rfc1035" title="&quot;Domain names - implementation and specification&quot;">RFC1035</a>] for DNS over UDP (and its
-   extension via the EDNS0 mechanism specified in [<a href="./rfc2671" title="&quot;Extension Mechanisms for DNS (EDNS0)&quot;">RFC2671</a>]) is not
-   relevant for AXFR, as explained in <a href="#section-4">Section 4</a>.  The upper limit on the
+   The DNS message size limit from [RFC1035] for DNS over UDP (and its
+   extension via the EDNS0 mechanism specified in [RFC2671]) is not
+   relevant for AXFR, as explained in Section 4.  The upper limit on the
    permissible size of a DNS message over TCP is only restricted by the
-   TCP framing defined in <a href="./rfc1035#section-4.2.2">Section&nbsp;4.2.2 of RFC 1035</a>, which specifies a
+   TCP framing defined in Section 4.2.2 of RFC 1035, which specifies a
    two-octet message length field, understood to be unsigned, and thus
    causing a limit of 65535 octets.  This limit is not changed by EDNS0.
 
    Note that the TC (truncation) bit is never set by an AXFR server nor
    considered/read by an AXFR client.
 
-<span><a href="#section-2.1">2.1</a>.  AXFR Query</span>
+2.1.  AXFR Query
 
    An AXFR query is sent by a client whenever there is a reason to ask.
    This might be because of scheduled or triggered zone maintenance
-   activities (see <a href="./rfc1034#section-4.3.5">Section&nbsp;4.3.5 of RFC 1034</a> and DNS NOTIFY [<a href="./rfc1996" title="&quot;A Mechanism for Prompt Notification of Zone Changes (DNS NOTIFY)&quot;">RFC1996</a>],
+   activities (see Section 4.3.5 of RFC 1034 and DNS NOTIFY [RFC1996],
    respectively) or as a result of a command line request, say for
    debugging.
 
-<span><a href="#section-2.1.1">2.1.1</a>.  Header Values</span>
+2.1.1.  Header Values
 
    These are the DNS message header values for an AXFR query.
 
@@ -561,7 +545,7 @@ Table of Contents
 
 
 
-<span>Lewis &amp; Hoenes               Standards Track                    [Page 8]</span></pre>
+Lewis &amp; Hoenes               Standards Track                    [Page 8]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 9</span>

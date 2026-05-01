@@ -806,28 +806,15 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 13</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc7011">RFC 7011</a>              IPFIX Protocol Specification        September 2013</span>
+  <pre>RFC 7011              IPFIX Protocol Specification        September 2013
 
 
-<span><a href="#section-2.1">2.1</a>.  Terminology Summary Table</span>
+2.1.  Terminology Summary Table
 
-   Figure A shows a summary of IPFIX terminology.
-
-    +------------------+---------------------------------------------+
-    |                  |                 Contents                    |
-    |                  +--------------------+------------------------+
-    |       Set        |      Template      |         Record         |
-    +------------------+--------------------+------------------------+
-    |     Data Set     |          /         |     Data Record(s)     |
-    +------------------+--------------------+------------------------+
-    |   Template Set   | Template Record(s) |           /            |
-    +------------------+--------------------+------------------------+
-    | Options Template |  Options Template  |           /            |
-    |       Set        |      Record(s)     |                        |
-    +------------------+--------------------+------------------------+
-
-                    Figure A: Terminology Summary Table
+   Figure A shows a summary of IPFIX terminology.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Contents</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Set</div><div class="modern-diagram-cell">Template</div><div class="modern-diagram-cell">Record</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Data Set</div><div class="modern-diagram-cell">/</div><div class="modern-diagram-cell">Data Record(s)</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Template Set</div><div class="modern-diagram-cell">Template Record(s)</div><div class="modern-diagram-cell">/</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Options Template</div><div class="modern-diagram-cell">Options Template</div><div class="modern-diagram-cell">/</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Set</div><div class="modern-diagram-cell">Record(s)</div></div></div>
+</figure><pre>                    Figure A: Terminology Summary Table
 
    A Data Set is composed of Data Record(s).  No Template Record is
    included.  A Template Record or an Options Template Record defines
@@ -837,82 +824,53 @@ Table of Contents
 
    An Options Template Set contains only Options Template Record(s).
 
-<span><a href="#section-3">3</a>.  IPFIX Message Format</span>
+3.  IPFIX Message Format
 
    An IPFIX Message consists of a Message Header, followed by zero or
    more Sets.  The Sets can be any of these three possible types:
    Data Set, Template Set, or Options Template Set.
 
-   The format of the IPFIX Message is shown in Figure B.
-
-         +----------------------------------------------------+
-         | Message Header                                     |
-         +----------------------------------------------------+
-         | Set                                                |
-         +----------------------------------------------------+
-         | Set                                                |
-         +----------------------------------------------------+
-           ...
-         +----------------------------------------------------+
-         | Set                                                |
-         +----------------------------------------------------+
-
-                      Figure B: IPFIX Message Format
+   The format of the IPFIX Message is shown in Figure B.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Message Header</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Set</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Set</div></div></div>
+</figure><pre>           ...</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Set</div></div></div>
+</figure><pre>                      Figure B: IPFIX Message Format
 
 
 
-<span>Claise, et al.               Standards Track                   [Page 13]</span></pre>
+Claise, et al.               Standards Track                   [Page 13]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 14</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc7011">RFC 7011</a>              IPFIX Protocol Specification        September 2013</span>
+  <pre>RFC 7011              IPFIX Protocol Specification        September 2013
 
 
    Following are some examples of IPFIX Messages:
 
    1. An IPFIX Message consisting of interleaved Template, Data, and
       Options Template Sets, as shown in Figure C.  Here, Template and
-      Options Template Sets are transmitted "on demand", before the
-      first Data Set whose structure they define.
-
-     +--------+--------------------------------------------------------+
-     |        | +----------+ +---------+     +-----------+ +---------+ |
-     |Message | | Template | | Data    |     | Options   | | Data    | |
-     | Header | | Set      | | Set     | ... | Template  | | Set     | |
-     |        | |          | |         |     | Set       | |         | |
-     |        | +----------+ +---------+     +-----------+ +---------+ |
-     +--------+--------------------------------------------------------+
-
-                     Figure C: IPFIX Message: Example 1
+      Options Template Sets are transmitted &quot;on demand&quot;, before the
+      first Data Set whose structure they define.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">Message</div><div class="modern-diagram-cell">Template</div><div class="modern-diagram-cell">Data</div><div class="modern-diagram-cell">Options</div><div class="modern-diagram-cell">Data</div></div><div class="modern-diagram-row" style="--cell-count: 6"><div class="modern-diagram-cell">Header</div><div class="modern-diagram-cell">Set</div><div class="modern-diagram-cell">Set</div><div class="modern-diagram-cell">...</div><div class="modern-diagram-cell">Template</div><div class="modern-diagram-cell">Set</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Set</div></div></div>
+</figure><pre>                     Figure C: IPFIX Message: Example 1
 
    2. An IPFIX Message consisting entirely of Data Sets, sent after the
       appropriate Template Records have been defined and transmitted to
-      the Collecting Process, as shown in Figure D.
-
-       +--------+----------------------------------------------+
-       |        | +---------+     +---------+      +---------+ |
-       |Message | | Data    |     | Data    |      | Data    | |
-       | Header | | Set     | ... | Set     | ...  | Set     | |
-       |        | +---------+     +---------+      +---------+ |
-       +--------+----------------------------------------------+
-
-                    Figure D: IPFIX Message: Example 2
+      the Collecting Process, as shown in Figure D.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Message</div><div class="modern-diagram-cell">Data</div><div class="modern-diagram-cell">Data</div><div class="modern-diagram-cell">Data</div></div><div class="modern-diagram-row" style="--cell-count: 6"><div class="modern-diagram-cell">Header</div><div class="modern-diagram-cell">Set</div><div class="modern-diagram-cell">...</div><div class="modern-diagram-cell">Set</div><div class="modern-diagram-cell">...</div><div class="modern-diagram-cell">Set</div></div></div>
+</figure><pre>                    Figure D: IPFIX Message: Example 2
 
    3. An IPFIX Message consisting entirely of Template and Options
       Template Sets, as shown in Figure E.  Such a message can be used
-      to define or redefine Templates and Options Templates in bulk.
-
-      +--------+-------------------------------------------------+
-      |        | +----------+     +----------+      +----------+ |
-      |Message | | Template |     | Template |      | Options  | |
-      | Header | | Set      | ... | Set      | ...  | Template | |
-      |        | |          |     |          |      | Set      | |
-      |        | +----------+     +----------+      +----------+ |
-      +--------+-------------------------------------------------+
-
-                    Figure E: IPFIX Message: Example 3
+      to define or redefine Templates and Options Templates in bulk.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Message</div><div class="modern-diagram-cell">Template</div><div class="modern-diagram-cell">Template</div><div class="modern-diagram-cell">Options</div></div><div class="modern-diagram-row" style="--cell-count: 6"><div class="modern-diagram-cell">Header</div><div class="modern-diagram-cell">Set</div><div class="modern-diagram-cell">...</div><div class="modern-diagram-cell">Set</div><div class="modern-diagram-cell">...</div><div class="modern-diagram-cell">Template</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Set</div></div></div>
+</figure><pre>                    Figure E: IPFIX Message: Example 3
 
 
 
@@ -921,32 +879,22 @@ Table of Contents
 
 
 
-<span>Claise, et al.               Standards Track                   [Page 14]</span></pre>
+Claise, et al.               Standards Track                   [Page 14]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 15</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc7011">RFC 7011</a>              IPFIX Protocol Specification        September 2013</span>
+  <pre>RFC 7011              IPFIX Protocol Specification        September 2013
 
 
-<span><a href="#section-3.1">3.1</a>.  Message Header Format</span>
+3.1.  Message Header Format
 
    The format of the IPFIX Message Header is shown in Figure F.
 
-      0                   1                   2                   3
-      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |       Version Number          |            Length             |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |                           Export Time                         |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |                       Sequence Number                         |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |                    Observation Domain ID                      |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-                   Figure F: IPFIX Message Header Format
+      0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Version Number</div><div class="modern-diagram-cell">Length</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Export Time</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Sequence Number</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Observation Domain ID</div></div></div>
+</figure><pre>                   Figure F: IPFIX Message Header Format
 
    Each Message Header field is exported in network byte order.  The
    fields are defined as follows:
@@ -956,7 +904,7 @@ Table of Contents
       Version of IPFIX to which this Message conforms.  The value of
       this field is 0x000a for the current version, incrementing by one
       the version used in the NetFlow services export version 9
-      [<a href="./rfc3954" title="&quot;Cisco Systems NetFlow Services Export Version 9&quot;">RFC3954</a>].
+      [RFC3954].
 
    Length
 
@@ -981,7 +929,7 @@ Table of Contents
 
 
 
-<span>Claise, et al.               Standards Track                   [Page 15]</span></pre>
+Claise, et al.               Standards Track                   [Page 15]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Appendix</span>
@@ -1046,21 +994,15 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 17</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc7011">RFC 7011</a>              IPFIX Protocol Specification        September 2013</span>
+  <pre>RFC 7011              IPFIX Protocol Specification        September 2013
 
 
    The Field Specifier format is shown in Figure G.
 
-     0                   1                   2                   3
-     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |E|  Information Element ident. |        Field Length           |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |                      Enterprise Number                        |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-                     Figure G: Field Specifier Format
+     0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">E</div><div class="modern-diagram-cell">Information Element ident.</div><div class="modern-diagram-cell">Field Length</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Enterprise Number</div></div></div>
+</figure><pre>                     Figure G: Field Specifier Format
 
    Where:
 
@@ -1068,7 +1010,7 @@ Table of Contents
 
       Enterprise bit.  This is the first bit of the Field Specifier.  If
       this bit is zero, the Information Element identifier identifies an
-      Information Element in [<a href="#ref-IANA-IPFIX">IANA-IPFIX</a>], and the four-octet Enterprise
+      Information Element in [IANA-IPFIX], and the four-octet Enterprise
       Number field MUST NOT be present.  If this bit is one, the
       Information Element identifier identifies an enterprise-specific
       Information Element, and the Enterprise Number field MUST be
@@ -1077,19 +1019,19 @@ Table of Contents
    Information Element identifier
 
       A numeric value that represents the Information Element.  Refer to
-      [<a href="#ref-IANA-IPFIX">IANA-IPFIX</a>].
+      [IANA-IPFIX].
 
    Field Length
 
       The length of the corresponding encoded Information Element, in
-      octets.  Refer to [<a href="#ref-IANA-IPFIX">IANA-IPFIX</a>].  The Field Length may be smaller
-      than that listed in [<a href="#ref-IANA-IPFIX">IANA-IPFIX</a>] if the reduced-size encoding is
-      used (see <a href="#section-6.2">Section 6.2</a>).  The value 65535 is reserved for variable-
-      length Information Elements (see <a href="#section-7">Section 7</a>).
+      octets.  Refer to [IANA-IPFIX].  The Field Length may be smaller
+      than that listed in [IANA-IPFIX] if the reduced-size encoding is
+      used (see Section 6.2).  The value 65535 is reserved for variable-
+      length Information Elements (see Section 7).
 
    Enterprise Number
 
-      IANA enterprise number [<a href="#ref-IANA-PEN">IANA-PEN</a>] of the authority defining the
+      IANA enterprise number [IANA-PEN] of the authority defining the
       Information Element identifier in this Template Record.
 
 
@@ -1101,16 +1043,15 @@ Table of Contents
 
 
 
-<span>Claise, et al.               Standards Track                   [Page 17]</span></pre>
+Claise, et al.               Standards Track                   [Page 17]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 18</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc7011">RFC 7011</a>              IPFIX Protocol Specification        September 2013</span>
+  <pre>RFC 7011              IPFIX Protocol Specification        September 2013
 
 
-<span><a href="#section-3.3">3.3</a>.  Set and Set Header Format</span>
+3.3.  Set and Set Header Format
 
    A Set is a generic term for a collection of records that have a
    similar structure.  There are three different types of Sets: Template
@@ -1118,31 +1059,21 @@ Table of Contents
    consists of a Set Header and one or more records.  The Set Format and
    the Set Header Format are defined in the following sections.
 
-<span><a href="#section-3.3.1">3.3.1</a>.  Set Format</span>
+3.3.1.  Set Format
 
    A Set has the format shown in Figure H.  The record types can be
    either Template Records, Options Template Records, or Data Records.
-   The record types MUST NOT be mixed within a Set.
-
-           +--------------------------------------------------+
-           | Set Header                                       |
-           +--------------------------------------------------+
-           | record                                           |
-           +--------------------------------------------------+
-           | record                                           |
-           +--------------------------------------------------+
-            ...
-           +--------------------------------------------------+
-           | record                                           |
-           +--------------------------------------------------+
-           | Padding (opt.)                                   |
-           +--------------------------------------------------+
-
-                           Figure H: Set Format
+   The record types MUST NOT be mixed within a Set.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Set Header</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">record</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">record</div></div></div>
+</figure><pre>            ...</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">record</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Padding (opt.)</div></div></div>
+</figure><pre>                           Figure H: Set Format
 
    Set Header
 
-      The Set Header Format is defined in <a href="#section-3.3.2">Section 3.3.2</a>.
+      The Set Header Format is defined in Section 3.3.2.
 
    Record
 
@@ -1157,17 +1088,16 @@ Table of Contents
       value zero (0).  The padding length MUST be shorter than any
       allowable record in this Set.  If padding of the IPFIX Message is
       desired in combination with very short records, then the padding
-      Information Element 'paddingOctets' can be used for padding
+      Information Element &#x27;paddingOctets&#x27; can be used for padding
 
 
 
-<span>Claise, et al.               Standards Track                   [Page 18]</span></pre>
+Claise, et al.               Standards Track                   [Page 18]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 19</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc7011">RFC 7011</a>              IPFIX Protocol Specification        September 2013</span>
+  <pre>RFC 7011              IPFIX Protocol Specification        September 2013
 
 
       records such that their length is increased to a multiple of 4 or
@@ -1175,18 +1105,15 @@ Table of Contents
       definition, padding is only needed in the case of other
       alignments, e.g., on 8-octet boundaries.
 
-<span><a href="#section-3.3.2">3.3.2</a>.  Set Header Format</span>
+3.3.2.  Set Header Format
 
    Every Set contains a common header.  This header is defined in
    Figure I.
 
-      0                   1                   2                   3
-      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |          Set ID               |          Length               |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-                        Figure I: Set Header Format
+      0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Set ID</div><div class="modern-diagram-cell">Length</div></div></div>
+</figure><pre>                        Figure I: Set Header Format
 
    Each Set Header field is exported in network format.  The fields are
    defined as follows:
@@ -1197,7 +1124,7 @@ Table of Contents
       A value of 3 is reserved for Options Template Sets.  Values from 4
       to 255 are reserved for future use.  Values 256 and above are used
       for Data Sets.  The Set ID values of 0 and 1 are not used, for
-      historical reasons [<a href="./rfc3954" title="&quot;Cisco Systems NetFlow Services Export Version 9&quot;">RFC3954</a>].
+      historical reasons [RFC3954].
 
    Length
 
@@ -1221,22 +1148,21 @@ Table of Contents
 
 
 
-<span>Claise, et al.               Standards Track                   [Page 19]</span></pre>
+Claise, et al.               Standards Track                   [Page 19]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 20</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc7011">RFC 7011</a>              IPFIX Protocol Specification        September 2013</span>
+  <pre>RFC 7011              IPFIX Protocol Specification        September 2013
 
 
-<span><a href="#section-3.4">3.4</a>.  Record Format</span>
+3.4.  Record Format
 
    IPFIX defines three record formats, as defined in the next sections:
    the Template Record format, the Options Template Record format, and
    the Data Record format.
 
-<span><a href="#section-3.4.1">3.4.1</a>.  Template Record Format</span>
+3.4.1.  Template Record Format
 
    One of the essential elements in the IPFIX record format is the
    Template Record.  Templates greatly enhance the flexibility of the
@@ -1247,31 +1173,20 @@ Table of Contents
 
    The format of the Template Record is shown in Figure J.  It consists
    of a Template Record Header and one or more Field Specifiers.  Field
-   Specifiers are defined in Figure G above.
-
-           +--------------------------------------------------+
-           | Template Record Header                           |
-           +--------------------------------------------------+
-           | Field Specifier                                  |
-           +--------------------------------------------------+
-           | Field Specifier                                  |
-           +--------------------------------------------------+
-            ...
-           +--------------------------------------------------+
-           | Field Specifier                                  |
-           +--------------------------------------------------+
-
-                     Figure J: Template Record Format
+   Specifiers are defined in Figure G above.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Template Record Header</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Field Specifier</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Field Specifier</div></div></div>
+</figure><pre>            ...</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Field Specifier</div></div></div>
+</figure><pre>                     Figure J: Template Record Format
 
    The format of the Template Record Header is shown in Figure K.
 
-     0                   1                   2                   3
-     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |      Template ID (&gt; 255)      |         Field Count           |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-                  Figure K: Template Record Header Format
+     0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Template ID (&gt; 255)</div><div class="modern-diagram-cell">Field Count</div></div></div>
+</figure><pre>                  Figure K: Template Record Header Format
 
 
 
@@ -1281,7 +1196,7 @@ Table of Contents
 
 
 
-<span>Claise, et al.               Standards Track                   [Page 20]</span></pre>
+Claise, et al.               Standards Track                   [Page 20]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 21</span>
@@ -1346,53 +1261,19 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 22</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc7011">RFC 7011</a>              IPFIX Protocol Specification        September 2013</span>
+  <pre>RFC 7011              IPFIX Protocol Specification        September 2013
 
 
    The example in Figure L shows a Template Set with mixed IANA-assigned
    and enterprise-specific Information Elements.  It consists of a Set
    Header, a Template Header, and several Field Specifiers.
 
-      0                   1                   2                   3
-      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |          Set ID = 2           |          Length               |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |      Template ID = 256        |         Field Count = N       |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |1| Information Element id. 1.1 |        Field Length 1.1       |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |                    Enterprise Number  1.1                     |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |0| Information Element id. 1.2 |        Field Length 1.2       |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |             ...               |              ...              |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |1| Information Element id. 1.N |        Field Length 1.N       |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |                    Enterprise Number  1.N                     |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |      Template ID = 257        |         Field Count = M       |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |0| Information Element id. 2.1 |        Field Length 2.1       |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |1| Information Element id. 2.2 |        Field Length 2.2       |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |                    Enterprise Number  2.2                     |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |             ...               |              ...              |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |1| Information Element id. 2.M |        Field Length 2.M       |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |                    Enterprise Number  2.M                     |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |                          Padding (opt)                        |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Set ID = 2</div><div class="modern-diagram-cell">Length</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Template ID = 256</div><div class="modern-diagram-cell">Field Count = N</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">Information Element id. 1.1</div><div class="modern-diagram-cell">Field Length 1.1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Enterprise Number  1.1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">Information Element id. 1.2</div><div class="modern-diagram-cell">Field Length 1.2</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">Information Element id. 1.N</div><div class="modern-diagram-cell">Field Length 1.N</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Enterprise Number  1.N</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Template ID = 257</div><div class="modern-diagram-cell">Field Count = M</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">Information Element id. 2.1</div><div class="modern-diagram-cell">Field Length 2.1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">Information Element id. 2.2</div><div class="modern-diagram-cell">Field Length 2.2</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Enterprise Number  2.2</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">Information Element id. 2.M</div><div class="modern-diagram-cell">Field Length 2.M</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Enterprise Number  2.M</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Padding (opt)</div></div></div>
+</figure><pre>                      Figure L: Template Set Example
 
-                      Figure L: Template Set Example
-
-   Information Element id.s 1.2 and 2.1 appear in [<a href="#ref-IANA-IPFIX">IANA-IPFIX</a>]
+   Information Element id.s 1.2 and 2.1 appear in [IANA-IPFIX]
    (Enterprise bit = 0) and therefore do not need an Enterprise Number
    to identify them.
 
@@ -1401,7 +1282,7 @@ Table of Contents
 
 
 
-<span>Claise, et al.               Standards Track                   [Page 22]</span></pre>
+Claise, et al.               Standards Track                   [Page 22]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 23</span>
@@ -1466,45 +1347,31 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 24</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc7011">RFC 7011</a>              IPFIX Protocol Specification        September 2013</span>
+  <pre>RFC 7011              IPFIX Protocol Specification        September 2013
 
 
-<span><a href="#section-3.4.2.2">3.4.2.2</a>.  Options Template Record Format</span>
+3.4.2.2.  Options Template Record Format
 
    An Options Template Record contains any combination of IANA-assigned
    and/or enterprise-specific Information Element identifiers.
 
    The format of the Options Template Record is shown in Figure M.  It
    consists of an Options Template Record Header and one or more Field
-   Specifiers.  Field Specifiers are defined in Figure G above.
-
-           +--------------------------------------------------+
-           | Options Template Record Header                   |
-           +--------------------------------------------------+
-           | Field Specifier                                  |
-           +--------------------------------------------------+
-           | Field Specifier                                  |
-           +--------------------------------------------------+
-            ...
-           +--------------------------------------------------+
-           | Field Specifier                                  |
-           +--------------------------------------------------+
-
-                 Figure M: Options Template Record Format
+   Specifiers.  Field Specifiers are defined in Figure G above.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Options Template Record Header</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Field Specifier</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Field Specifier</div></div></div>
+</figure><pre>            ...</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Field Specifier</div></div></div>
+</figure><pre>                 Figure M: Options Template Record Format
 
    The format of the Options Template Record Header is shown in
    Figure N.
 
-      0                   1                   2                   3
-      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |         Template ID (&gt; 255)   |         Field Count           |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |      Scope Field Count        |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-              Figure N: Options Template Record Header Format
+      0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Template ID (&gt; 255)</div><div class="modern-diagram-cell">Field Count</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Scope Field Count</div></div></div>
+</figure><pre>              Figure N: Options Template Record Header Format
 
 
 
@@ -1521,7 +1388,7 @@ Table of Contents
 
 
 
-<span>Claise, et al.               Standards Track                   [Page 24]</span></pre>
+Claise, et al.               Standards Track                   [Page 24]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 25</span>
@@ -1586,8 +1453,7 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 26</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc7011">RFC 7011</a>              IPFIX Protocol Specification        September 2013</span>
+  <pre>RFC 7011              IPFIX Protocol Specification        September 2013
 
 
    The example in Figure O shows an Options Template Set with mixed
@@ -1595,35 +1461,10 @@ Table of Contents
    consists of a Set Header, an Options Template Header, and several
    Field Specifiers.
 
-      0                   1                   2                   3
-      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |          Set ID = 3           |          Length               |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |         Template ID = 258     |         Field Count = N + M   |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |     Scope Field Count = N     |0|  Scope 1 Infor. Element id. |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |     Scope 1 Field Length      |0|  Scope 2 Infor. Element id. |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |     Scope 2 Field Length      |             ...               |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |            ...                |1|  Scope N Infor. Element id. |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |     Scope N Field Length      |   Scope N Enterprise Number  ...
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    ...  Scope N Enterprise Number   |1| Option 1 Infor. Element id. |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |    Option 1 Field Length      |  Option 1 Enterprise Number  ...
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    ... Option 1 Enterprise Number   |              ...              |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |             ...               |0| Option M Infor. Element id. |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |     Option M Field Length     |      Padding (optional)       |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-                  Figure O: Options Template Set Example
+      0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Set ID = 3</div><div class="modern-diagram-cell">Length</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Template ID = 258</div><div class="modern-diagram-cell">Field Count = N + M</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Scope Field Count = N</div><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">Scope 1 Infor. Element id.</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Scope 1 Field Length</div><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">Scope 2 Infor. Element id.</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Scope 2 Field Length</div><div class="modern-diagram-cell">...</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">...</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">Scope N Infor. Element id.</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Scope N Field Length</div><div class="modern-diagram-cell">Scope N Enterprise Number  ...</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">...  Scope N Enterprise Number</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">Option 1 Infor. Element id.</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Option 1 Field Length</div><div class="modern-diagram-cell">Option 1 Enterprise Number  ...</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">... Option 1 Enterprise Number</div><div class="modern-diagram-cell">...</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">...</div><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">Option M Infor. Element id.</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Option M Field Length</div><div class="modern-diagram-cell">Padding (optional)</div></div></div>
+</figure><pre>                  Figure O: Options Template Set Example
 
 
 
@@ -1641,37 +1482,30 @@ Table of Contents
 
 
 
-<span>Claise, et al.               Standards Track                   [Page 26]</span></pre>
+Claise, et al.               Standards Track                   [Page 26]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 27</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc7011">RFC 7011</a>              IPFIX Protocol Specification        September 2013</span>
+  <pre>RFC 7011              IPFIX Protocol Specification        September 2013
 
 
-<span><a href="#section-3.4.3">3.4.3</a>.  Data Record Format</span>
+3.4.3.  Data Record Format
 
    The Data Records are sent in Data Sets.  The format of the Data
    Record is shown in Figure P.  It consists only of one or more Field
    Values.  The Template ID to which the Field Values belong is encoded
-   in the Set Header field "Set ID", i.e., "Set ID" = "Template ID".
-
-           +--------------------------------------------------+
-           | Field Value                                      |
-           +--------------------------------------------------+
-           | Field Value                                      |
-           +--------------------------------------------------+
-            ...
-           +--------------------------------------------------+
-           | Field Value                                      |
-           +--------------------------------------------------+
-
-                       Figure P: Data Record Format
+   in the Set Header field &quot;Set ID&quot;, i.e., &quot;Set ID&quot; = &quot;Template ID&quot;.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Field Value</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Field Value</div></div></div>
+</figure><pre>            ...</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Field Value</div></div></div>
+</figure><pre>                       Figure P: Data Record Format
 
    Note that Field Values do not necessarily have a length of 16 bits.
    Field Values are encoded according to their data type as specified in
-   [<a href="./rfc7012" title="&quot;Information Model for IP Flow Information Export (IPFIX)&quot;">RFC7012</a>].
+   [RFC7012].
 
    Interpretation of the Data Record format can be done only if the
    Template Record corresponding to the Template ID is available at the
@@ -1701,41 +1535,23 @@ Table of Contents
 
 
 
-<span>Claise, et al.               Standards Track                   [Page 27]</span></pre>
+Claise, et al.               Standards Track                   [Page 27]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 28</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc7011">RFC 7011</a>              IPFIX Protocol Specification        September 2013</span>
+  <pre>RFC 7011              IPFIX Protocol Specification        September 2013
 
 
    The example in Figure Q shows a Data Set.  It consists of a Set
    Header and several Field Values.
 
-     0                   1                   2                   3
-     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |   Set ID = Template ID        |          Length               |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |   Record 1 - Field Value 1    |   Record 1 - Field Value 2    |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |   Record 1 - Field Value 3    |             ...               |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |   Record 2 - Field Value 1    |   Record 2 - Field Value 2    |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |   Record 2 - Field Value 3    |             ...               |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |   Record 3 - Field Value 1    |   Record 3 - Field Value 2    |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |   Record 3 - Field Value 3    |             ...               |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |              ...              |      Padding (optional)       |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+     0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Set ID = Template ID</div><div class="modern-diagram-cell">Length</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Record 1 - Field Value 1</div><div class="modern-diagram-cell">Record 1 - Field Value 2</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Record 1 - Field Value 3</div><div class="modern-diagram-cell">...</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Record 2 - Field Value 1</div><div class="modern-diagram-cell">Record 2 - Field Value 2</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Record 2 - Field Value 3</div><div class="modern-diagram-cell">...</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Record 3 - Field Value 1</div><div class="modern-diagram-cell">Record 3 - Field Value 2</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Record 3 - Field Value 3</div><div class="modern-diagram-cell">...</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">...</div><div class="modern-diagram-cell">Padding (optional)</div></div></div>
+</figure><pre>                Figure Q: Data Set, Containing Data Records
 
-                Figure Q: Data Set, Containing Data Records
-
-<span><a href="#section-4">4</a>.  Specific Reporting Requirements</span>
+4.  Specific Reporting Requirements
 
    Some specific Options Templates and Options Template Records are
    necessary to provide extra information about the Flow Records and
@@ -1761,7 +1577,7 @@ Table of Contents
 
 
 
-<span>Claise, et al.               Standards Track                   [Page 28]</span></pre>
+Claise, et al.               Standards Track                   [Page 28]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 29</span>
@@ -2306,8 +2122,7 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 38</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc7011">RFC 7011</a>              IPFIX Protocol Specification        September 2013</span>
+  <pre>RFC 7011              IPFIX Protocol Specification        September 2013
 
 
    In most cases, the length of the Information Element will be less
@@ -2316,15 +2131,10 @@ Table of Contents
    common case.  The length is carried in the octet before the
    Information Element, as shown in Figure R.
 
-      0                   1                   2                   3
-      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     | Length (&lt; 255)|          Information Element                  |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |                      ... continuing as needed                 |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-            Figure R: Variable-Length Information Element (IE)
+      0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Length (&lt; 255)</div><div class="modern-diagram-cell">Information Element</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">... continuing as needed</div></div></div>
+</figure><pre>            Figure R: Variable-Length Information Element (IE)
                            (Length &lt; 255 Octets)
 
    The length may also be encoded into 3 octets before the Information
@@ -2333,22 +2143,17 @@ Table of Contents
    Length field MUST be 255, and the length is carried in the second and
    third octets, as shown in Figure S.
 
-     0                   1                   2                   3
-     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |      255      |      Length (0 to 65535)      |       IE      |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                      ... continuing as needed                 |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-            Figure S: Variable-Length Information Element (IE)
+     0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">255</div><div class="modern-diagram-cell">Length (0 to 65535)</div><div class="modern-diagram-cell">IE</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">... continuing as needed</div></div></div>
+</figure><pre>            Figure S: Variable-Length Information Element (IE)
                         (Length 0 to 65535 Octets)
 
    The octets carrying the length (either the first or the first
    three octets) MUST NOT be included in the length of the Information
    Element.
 
-<span><a href="#section-8">8</a>.  Template Management</span>
+8.  Template Management
 
    This section describes the management of Templates and Options
    Templates at the Exporting and Collecting Processes.  The goal of
@@ -2361,7 +2166,7 @@ Table of Contents
 
 
 
-<span>Claise, et al.               Standards Track                   [Page 38]</span></pre>
+Claise, et al.               Standards Track                   [Page 38]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 39</span>
@@ -2426,8 +2231,7 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 40</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc7011">RFC 7011</a>              IPFIX Protocol Specification        September 2013</span>
+  <pre>RFC 7011              IPFIX Protocol Specification        September 2013
 
 
    subsequent IPFIX Message(s).  However, a Collecting Process MUST NOT
@@ -2440,7 +2244,7 @@ Table of Contents
    Process restart over UDP.  In these cases, the Collecting Process MAY
    buffer Data Records for which it has no Templates, to wait for
    Template Records describing them; however, note that in the presence
-   of Template withdrawal and redefinition (<a href="#section-8.1">Section 8.1</a>) this may lead
+   of Template withdrawal and redefinition (Section 8.1) this may lead
    to incorrect interpretation of Data Records.
 
    Different Observation Domains within a Transport Session MAY use the
@@ -2448,46 +2252,36 @@ Table of Contents
    Processes MUST properly handle this case.
 
    Options Templates and Templates that are related or interdependent
-   (e.g., by sharing common properties as described in [<a href="./rfc5473" title="&quot;Reducing Redundancy in IP Flow Information Export (IPFIX) and Packet Sampling (PSAMP) Reports&quot;">RFC5473</a>]) SHOULD
+   (e.g., by sharing common properties as described in [RFC5473]) SHOULD
    be sent together in the same IPFIX Message.
 
-<span><a href="#section-8.1">8.1</a>.  Template Withdrawal and Redefinition</span>
+8.1.  Template Withdrawal and Redefinition
 
    Templates that will not be used further by an Exporting Process MAY
    be withdrawn by sending a Template Withdrawal.  After receiving a
    Template Withdrawal, a Collecting Process MUST stop using the
    Template to interpret subsequently exported Data Sets.  Note that
    this mechanism does not apply when UDP is used to transport IPFIX
-   Messages; for that case, see <a href="#section-8.4">Section 8.4</a>.
+   Messages; for that case, see Section 8.4.
 
    A Template Withdrawal consists of a Template Record for the Template
    ID to be withdrawn, with a Field Count of 0.  The format of a
    Template Withdrawal is shown in Figure T.
 
-     0                   1                   2                   3
-     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |       Set ID = (2 or 3)       |          Length = 16          |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |          Template ID N        |        Field Count = 0        |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |          Template ID ...      |        Field Count = 0        |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |          Template ID M        |        Field Count = 0        |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-                   Figure T: Template Withdrawal Format
+     0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Set ID = (2 or 3)</div><div class="modern-diagram-cell">Length = 16</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Template ID N</div><div class="modern-diagram-cell">Field Count = 0</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Template ID ...</div><div class="modern-diagram-cell">Field Count = 0</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Template ID M</div><div class="modern-diagram-cell">Field Count = 0</div></div></div>
+</figure><pre>                   Figure T: Template Withdrawal Format
 
 
 
 
-<span>Claise, et al.               Standards Track                   [Page 40]</span></pre>
+Claise, et al.               Standards Track                   [Page 40]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 41</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc7011">RFC 7011</a>              IPFIX Protocol Specification        September 2013</span>
+  <pre>RFC 7011              IPFIX Protocol Specification        September 2013
 
 
    The Set ID field MUST contain the value 2 for Template Set Withdrawal
@@ -2502,14 +2296,14 @@ Table of Contents
    IPFIX Message.  An Exporting Process SHOULD NOT send a Template
    Withdrawal until sufficient time has elapsed to allow receipt and
    processing of any Data Records described by the withdrawn Templates;
-   see <a href="#section-8.2">Section 8.2</a> for details regarding the sequencing of Template
+   see Section 8.2 for details regarding the sequencing of Template
    management actions.
 
    The end of a Transport Session implicitly withdraws all the Templates
    used within the Transport Session, and Templates must be resent
    during subsequent Transport Sessions between an Exporting Process and
    Collecting Process.  This applies to SCTP and TCP only; see
-   Sections <a href="#section-8.4">8.4</a> and <a href="#section-10.3.4">10.3.4</a> for discussions of Transport Session and
+   Sections 8.4 and 10.3.4 for discussions of Transport Session and
    Template lifetime over UDP.
 
    All Templates for a given Observation Domain MAY also be withdrawn
@@ -2517,31 +2311,21 @@ Table of Contents
    Templates for a given Observation Domain MAY likewise be withdrawn
    using an All Options Templates Withdrawal, as shown in Figure V.
 
-      0                   1                   2                   3
-      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |             Set ID = 2        |          Length = 8           |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |         Template ID = 2       |        Field Count = 0        |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Set ID = 2</div><div class="modern-diagram-cell">Length = 8</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Template ID = 2</div><div class="modern-diagram-cell">Field Count = 0</div></div></div>
+</figure><pre>               Figure U: All Templates Withdrawal Set Format
 
-               Figure U: All Templates Withdrawal Set Format
-
-      0                   1                   2                   3
-      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |             Set ID = 3        |          Length = 8           |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |         Template ID = 3       |        Field Count = 0        |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-           Figure V: All Options Templates Withdrawal Set Format
+      0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Set ID = 3</div><div class="modern-diagram-cell">Length = 8</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Template ID = 3</div><div class="modern-diagram-cell">Field Count = 0</div></div></div>
+</figure><pre>           Figure V: All Options Templates Withdrawal Set Format
 
 
 
 
 
-<span>Claise, et al.               Standards Track                   [Page 41]</span></pre>
+Claise, et al.               Standards Track                   [Page 41]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 42</span>
@@ -3746,340 +3530,190 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Appendix</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc7011">RFC 7011</a>              IPFIX Protocol Specification        September 2013</span>
+  <pre>RFC 7011              IPFIX Protocol Specification        September 2013
 
 
-<span><a href="#appendix-A">Appendix A</a>.  IPFIX Encoding Examples</span>
+Appendix A.  IPFIX Encoding Examples
 
    This appendix, which is a not a normative reference, contains IPFIX
    encoding examples.
 
-   Let's consider the example of an IPFIX Message composed of a Template
+   Let&#x27;s consider the example of an IPFIX Message composed of a Template
    Set, a Data Set (which contains three Data Records), an Options
    Template Set, and another Data Set (which contains two Data Records
    related to the previous Options Template Record).
 
-   IPFIX Message:
+   IPFIX Message:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Message</div><div class="modern-diagram-cell">Template</div><div class="modern-diagram-cell">Data</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Header</div><div class="modern-diagram-cell">Set</div><div class="modern-diagram-cell">Set</div><div class="modern-diagram-cell">. . .</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">(1 Template)</div><div class="modern-diagram-cell">(3 Data Records)</div></div></div>
+</figure><pre>         . . .-------------------------------------------+</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Options</div><div class="modern-diagram-cell">Data</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">. . .</div><div class="modern-diagram-cell">Template Set</div><div class="modern-diagram-cell">Set</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">(1 Template)</div><div class="modern-diagram-cell">(2 Data Records)</div></div></div>
+</figure><pre>         . . .-------------------------------------------+
 
-    +--------+------------------------------------------. . .
-    |        | +--------------+ +------------------+
-    |Message | | Template     | | Data             |
-    | Header | | Set          | | Set              |   . . .
-    |        | | (1 Template) | | (3 Data Records) |
-    |        | +--------------+ +------------------+
-    +--------+------------------------------------------. . .
-
-         . . .-------------------------------------------+
-               +------------------+ +------------------+ |
-               | Options          | | Data             | |
-        . . .  | Template Set     | | Set              | |
-               | (1 Template)     | | (2 Data Records) | |
-               +------------------+ +------------------+ |
-         . . .-------------------------------------------+
-
-<span><a href="#appendix-A.1">A.1</a>.  Message Header Example</span>
+A.1.  Message Header Example
 
    The Message Header is composed of:
 
-    0                   1                   2                   3
-    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |     Version = 0x000a          |         Length = 152          |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                          Export Time                          |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                        Sequence Number                        |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                     Observation Domain ID                     |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-
-
-
-
-
-
-
-<span>Claise, et al.               Standards Track                   [Page 62]</span></pre>
+    0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Version = 0x000a</div><div class="modern-diagram-cell">Length = 152</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Export Time</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Sequence Number</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Observation Domain ID</div></div></div>
+</figure><pre>Claise, et al.               Standards Track                   [Page 62]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 63</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc7011">RFC 7011</a>              IPFIX Protocol Specification        September 2013</span>
+  <pre>RFC 7011              IPFIX Protocol Specification        September 2013
 
 
-<span><a href="#appendix-A.2">A.2</a>.  Template Set Examples</span>
+A.2.  Template Set Examples
 
-<span><a href="#appendix-A.2.1">A.2.1</a>.  Template Set Using IANA Information Elements</span>
+A.2.1.  Template Set Using IANA Information Elements
 
    We want to report the following Information Elements:
 
-   - IPv4 source IP address: sourceIPv4Address [<a href="#ref-IANA-IPFIX">IANA-IPFIX</a>], with a
+   - IPv4 source IP address: sourceIPv4Address [IANA-IPFIX], with a
      length of 4 octets
 
-   - IPv4 destination IP address: destinationIPv4Address [<a href="#ref-IANA-IPFIX">IANA-IPFIX</a>],
+   - IPv4 destination IP address: destinationIPv4Address [IANA-IPFIX],
      with a length of 4 octets
 
-   - Next-hop IP address (IPv4): ipNextHopIPv4Address [<a href="#ref-IANA-IPFIX">IANA-IPFIX</a>], with
+   - Next-hop IP address (IPv4): ipNextHopIPv4Address [IANA-IPFIX], with
      a length of 4 octets
 
-   - Number of packets of the Flow: packetDeltaCount [<a href="#ref-IANA-IPFIX">IANA-IPFIX</a>], with
+   - Number of packets of the Flow: packetDeltaCount [IANA-IPFIX], with
      a length of 4 octets
 
-   - Number of octets of the Flow: octetDeltaCount [<a href="#ref-IANA-IPFIX">IANA-IPFIX</a>], with a
+   - Number of octets of the Flow: octetDeltaCount [IANA-IPFIX], with a
      length of 4 octets
 
    Therefore, the Template Set will be composed of the following:
 
-    0                   1                   2                   3
-    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |         Set ID = 2            |      Length = 28 octets       |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |       Template ID 256         |       Field Count = 5         |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |0|    sourceIPv4Address = 8    |       Field Length = 4        |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |0| destinationIPv4Address = 12 |       Field Length = 4        |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |0|  ipNextHopIPv4Address = 15  |       Field Length = 4        |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |0|    packetDeltaCount = 2     |       Field Length = 4        |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |0|    octetDeltaCount = 1      |       Field Length = 4        |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-
-
-
-
-
-
-
-
-
-
-<span>Claise, et al.               Standards Track                   [Page 63]</span></pre>
+    0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Set ID = 2</div><div class="modern-diagram-cell">Length = 28 octets</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Template ID 256</div><div class="modern-diagram-cell">Field Count = 5</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">sourceIPv4Address = 8</div><div class="modern-diagram-cell">Field Length = 4</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">destinationIPv4Address = 12</div><div class="modern-diagram-cell">Field Length = 4</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">ipNextHopIPv4Address = 15</div><div class="modern-diagram-cell">Field Length = 4</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">packetDeltaCount = 2</div><div class="modern-diagram-cell">Field Length = 4</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">octetDeltaCount = 1</div><div class="modern-diagram-cell">Field Length = 4</div></div></div>
+</figure><pre>Claise, et al.               Standards Track                   [Page 63]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 64</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc7011">RFC 7011</a>              IPFIX Protocol Specification        September 2013</span>
+  <pre>RFC 7011              IPFIX Protocol Specification        September 2013
 
 
-<span><a href="#appendix-A.2.2">A.2.2</a>.  Template Set Using Enterprise-Specific Information Elements</span>
+A.2.2.  Template Set Using Enterprise-Specific Information Elements
 
    We want to report the following Information Elements:
 
-   - IPv4 source IP address: sourceIPv4Address [<a href="#ref-IANA-IPFIX">IANA-IPFIX</a>], with a
+   - IPv4 source IP address: sourceIPv4Address [IANA-IPFIX], with a
      length of 4 octets
 
-   - IPv4 destination IP address: destinationIPv4Address [<a href="#ref-IANA-IPFIX">IANA-IPFIX</a>],
+   - IPv4 destination IP address: destinationIPv4Address [IANA-IPFIX],
      with a length of 4 octets
 
    - An enterprise-specific Information Element representing proprietary
      information, with a type of 15 and a length of 4 octets
 
-   - Number of packets of the Flow: packetDeltaCount [<a href="#ref-IANA-IPFIX">IANA-IPFIX</a>], with
+   - Number of packets of the Flow: packetDeltaCount [IANA-IPFIX], with
      a length of 4 octets
 
-   - Number of octets of the Flow: octetDeltaCount [<a href="#ref-IANA-IPFIX">IANA-IPFIX</a>], with a
+   - Number of octets of the Flow: octetDeltaCount [IANA-IPFIX], with a
      length of 4 octets
 
    Therefore, the Template Set will be composed of the following:
 
-    0                   1                   2                   3
-    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |         Set ID = 2            |      Length = 32 octets       |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |       Template ID 257         |       Field Count = 5         |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |0|    sourceIPv4Address = 8    |       Field Length = 4        |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |0| destinationIPv4Address = 12 |       Field Length = 4        |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |1| Information Element id. = 15|       Field Length = 4        |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                       Enterprise number                       |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |0|    packetDeltaCount = 2     |       Field Length = 4        |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |0|    octetDeltaCount = 1      |       Field Length = 4        |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-
-
-
-
-
-
-
-
-
-
-<span>Claise, et al.               Standards Track                   [Page 64]</span></pre>
+    0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Set ID = 2</div><div class="modern-diagram-cell">Length = 32 octets</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Template ID 257</div><div class="modern-diagram-cell">Field Count = 5</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">sourceIPv4Address = 8</div><div class="modern-diagram-cell">Field Length = 4</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">destinationIPv4Address = 12</div><div class="modern-diagram-cell">Field Length = 4</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">Information Element id. = 15</div><div class="modern-diagram-cell">Field Length = 4</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Enterprise number</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">packetDeltaCount = 2</div><div class="modern-diagram-cell">Field Length = 4</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">octetDeltaCount = 1</div><div class="modern-diagram-cell">Field Length = 4</div></div></div>
+</figure><pre>Claise, et al.               Standards Track                   [Page 64]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 65</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc7011">RFC 7011</a>              IPFIX Protocol Specification        September 2013</span>
+  <pre>RFC 7011              IPFIX Protocol Specification        September 2013
 
 
-<span><a href="#appendix-A.3">A.3</a>.  Data Set Example</span>
+A.3.  Data Set Example
 
-   In this example, we report the following three Flow Records:
-
-     Src IP Addr. | Dst IP Addr.  | Next-Hop Addr. | Packet | Octets
-                  |               |                | Number | Number
-     ----------------------------------------------------------------
-     192.0.2.12   | 192.0.2.254   | 192.0.2.1      | 5009   | 5344385
-     192.0.2.27   | 192.0.2.23    | 192.0.2.2      | 748    | 388934
-     192.0.2.56   | 192.0.2.65    | 192.0.2.3      | 5      | 6534
-
-      0                   1                   2                   3
-      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |          Set ID = 256         |          Length = 64          |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |                          192.0.2.12                           |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |                          192.0.2.254                          |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |                          192.0.2.1                            |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |                             5009                              |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |                            5344385                            |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |                          192.0.2.27                           |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |                          192.0.2.23                           |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |                          192.0.2.2                            |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |                              748                              |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |                             388934                            |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |                          192.0.2.56                           |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |                          192.0.2.65                           |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |                          192.0.2.3                            |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |                               5                               |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |                              6534                             |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-   Note that padding is not necessary in this example.
+   In this example, we report the following three Flow Records:</pre><pre>     Src IP Addr. | Dst IP Addr.  | Next-Hop Addr. | Packet | Octets
+                  |               |                | Number | Number</pre><pre>     ----------------------------------------------------------------</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">192.0.2.12</div><div class="modern-diagram-cell">192.0.2.254</div><div class="modern-diagram-cell">192.0.2.1</div><div class="modern-diagram-cell">5009</div><div class="modern-diagram-cell">5344385</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">192.0.2.27</div><div class="modern-diagram-cell">192.0.2.23</div><div class="modern-diagram-cell">192.0.2.2</div><div class="modern-diagram-cell">748</div><div class="modern-diagram-cell">388934</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">192.0.2.56</div><div class="modern-diagram-cell">192.0.2.65</div><div class="modern-diagram-cell">192.0.2.3</div><div class="modern-diagram-cell">5</div><div class="modern-diagram-cell">6534</div></div></div>
+</figure><pre>      0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Set ID = 256</div><div class="modern-diagram-cell">Length = 64</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">192.0.2.12</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">192.0.2.254</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">192.0.2.1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">5009</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">5344385</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">192.0.2.27</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">192.0.2.23</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">192.0.2.2</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">748</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">388934</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">192.0.2.56</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">192.0.2.65</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">192.0.2.3</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">5</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">6534</div></div></div>
+</figure><pre>   Note that padding is not necessary in this example.
 
 
 
-<span>Claise, et al.               Standards Track                   [Page 65]</span></pre>
+Claise, et al.               Standards Track                   [Page 65]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 66</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc7011">RFC 7011</a>              IPFIX Protocol Specification        September 2013</span>
+  <pre>RFC 7011              IPFIX Protocol Specification        September 2013
 
 
-<span><a href="#appendix-A.4">A.4</a>.  Options Template Set Examples</span>
+A.4.  Options Template Set Examples
 
-<span><a href="#appendix-A.4.1">A.4.1</a>.  Options Template Set Using IANA Information Elements</span>
+A.4.1.  Options Template Set Using IANA Information Elements
 
    Per line card (the router being composed of two line cards), we want
    to report the following Information Elements:
 
    - Total number of IPFIX Messages: exportedMessageTotalCount
-     [<a href="#ref-IANA-IPFIX">IANA-IPFIX</a>], with a length of 2 octets
+     [IANA-IPFIX], with a length of 2 octets
 
    - Total number of exported Flows: exportedFlowRecordTotalCount
-     [<a href="#ref-IANA-IPFIX">IANA-IPFIX</a>], with a length of 2 octets
+     [IANA-IPFIX], with a length of 2 octets
 
    The line card, which is represented by the lineCardId Information
-   Element [<a href="#ref-IANA-IPFIX">IANA-IPFIX</a>], is used as the Scope Field.
+   Element [IANA-IPFIX], is used as the Scope Field.
 
    Therefore, the Options Template Set will be:
 
-      0                   1                   2                   3
-      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |         Set ID = 3            |          Length = 24          |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |       Template ID 258         |        Field Count = 3        |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |     Scope Field Count = 1     |0|     lineCardId = 141        |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |   Scope 1 Field Length = 4    |0|exportedMessageTotalCount=41 |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |       Field Length = 2        |0|exportedFlowRecordTotalCo.=42|
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |       Field Length = 2        |           Padding             |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-<span><a href="#appendix-A.4.2">A.4.2</a>.  Options Template Set Using Enterprise-Specific Information</span>
+      0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Set ID = 3</div><div class="modern-diagram-cell">Length = 24</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Template ID 258</div><div class="modern-diagram-cell">Field Count = 3</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Scope Field Count = 1</div><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">lineCardId = 141</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Scope 1 Field Length = 4</div><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">exportedMessageTotalCount=41</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Field Length = 2</div><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">exportedFlowRecordTotalCo.=42</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Field Length = 2</div><div class="modern-diagram-cell">Padding</div></div></div>
+</figure><pre>A.4.2.  Options Template Set Using Enterprise-Specific Information
         Elements
 
    Per line card (the router being composed of two line cards), we want
    to report the following Information Elements:
 
    - Total number of IPFIX Messages: exportedMessageTotalCount
-     [<a href="#ref-IANA-IPFIX">IANA-IPFIX</a>], with a length of 2 octets
+     [IANA-IPFIX], with a length of 2 octets
 
    - An enterprise-specific number of exported Flows, with a type of 42
      and a length of 4 octets
 
    The line card, which is represented by the lineCardId Information
-   Element [<a href="#ref-IANA-IPFIX">IANA-IPFIX</a>], is used as the Scope Field.
+   Element [IANA-IPFIX], is used as the Scope Field.
 
 
 
-<span>Claise, et al.               Standards Track                   [Page 66]</span></pre>
+Claise, et al.               Standards Track                   [Page 66]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Appendix</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc7011">RFC 7011</a>              IPFIX Protocol Specification        September 2013</span>
+  <pre>RFC 7011              IPFIX Protocol Specification        September 2013
 
 
    The format of the Options Template Set is as follows:
 
-      0                   1                   2                   3
-      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |         Set ID = 3            |          Length = 28          |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |       Template ID 259         |        Field Count = 3        |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |     Scope Field Count = 1     |0|     lineCardId = 141        |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |   Scope 1 Field Length = 4    |0|exportedMessageTotalCount=41 |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |       Field Length = 2        |1|Information Element id. = 42 |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |       Field Length = 4        |       Enterprise number      ...
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    ...       Enterprise number      |           Padding             |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-<span><a href="#appendix-A.4.3">A.4.3</a>.  Options Template Set Using an Enterprise-Specific Scope</span>
+      0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Set ID = 3</div><div class="modern-diagram-cell">Length = 28</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Template ID 259</div><div class="modern-diagram-cell">Field Count = 3</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Scope Field Count = 1</div><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">lineCardId = 141</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Scope 1 Field Length = 4</div><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">exportedMessageTotalCount=41</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Field Length = 2</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">Information Element id. = 42</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Field Length = 4</div><div class="modern-diagram-cell">Enterprise number      ...</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">...       Enterprise number</div><div class="modern-diagram-cell">Padding</div></div></div>
+</figure><pre>A.4.3.  Options Template Set Using an Enterprise-Specific Scope
 
    In this example, we want to export the same information as in the
-   example in <a href="#appendix-A.4.1">Appendix A.4.1</a>:
+   example in Appendix A.4.1:
 
    - Total number of IPFIX Messages: exportedMessageTotalCount
-     [<a href="#ref-IANA-IPFIX">IANA-IPFIX</a>], with a length of 2 octets
+     [IANA-IPFIX], with a length of 2 octets
 
    - Total number of exported Flows: exportedFlowRecordTotalCount
-     [<a href="#ref-IANA-IPFIX">IANA-IPFIX</a>], with a length of 2 octets
+     [IANA-IPFIX], with a length of 2 octets
 
    But this time, the information pertains to a proprietary scope,
    identified by enterprise-specific Information Element number 123.
@@ -4101,127 +3735,51 @@ Table of Contents
 
 
 
-<span>Claise, et al.               Standards Track                   [Page 67]</span></pre>
+Claise, et al.               Standards Track                   [Page 67]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 68</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc7011">RFC 7011</a>              IPFIX Protocol Specification        September 2013</span>
+  <pre>RFC 7011              IPFIX Protocol Specification        September 2013
 
 
    The format of the Options Template Set is now as follows:
 
-      0                   1                   2                   3
-      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |         Set ID = 3            |          Length = 28          |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |       Template ID 260         |        Field Count = 3        |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |     Scope Field Count = 1     |1|Scope 1 Infor. El. id. = 123 |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |    Scope 1 Field Length = 4   |       Enterprise Number      ...
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    ...       Enterprise Number      |0|exportedMessageTotalCount=41 |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |       Field Length = 2        |0|exportedFlowRecordTotalCo.=42|
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |       Field Length = 2        |           Padding             |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Set ID = 3</div><div class="modern-diagram-cell">Length = 28</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Template ID 260</div><div class="modern-diagram-cell">Field Count = 3</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Scope Field Count = 1</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">Scope 1 Infor. El. id. = 123</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Scope 1 Field Length = 4</div><div class="modern-diagram-cell">Enterprise Number      ...</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">...       Enterprise Number</div><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">exportedMessageTotalCount=41</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Field Length = 2</div><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">exportedFlowRecordTotalCo.=42</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Field Length = 2</div><div class="modern-diagram-cell">Padding</div></div></div>
+</figure><pre>A.4.4.  Data Set Using an Enterprise-Specific Scope
 
-<span><a href="#appendix-A.4.4">A.4.4</a>.  Data Set Using an Enterprise-Specific Scope</span>
-
-   In this example, we report the following two Data Records:
-
-     Enterprise field 123   | IPFIX Message  | Exported Flow Records
-     ---------------------------------------------------------------
-     1                      | 345            | 10201
-     2                      | 690            | 20402
-
-     0                   1                   2                   3
-     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |      Set ID = 260             |         Length = 20           |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                               1                               |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |             345               |            10201              |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                               2                               |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |             690               |            20402              |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-
-
-
-
-
-
-
-
-<span>Claise, et al.               Standards Track                   [Page 68]</span></pre>
+   In this example, we report the following two Data Records:</pre><pre>     Enterprise field 123   | IPFIX Message  | Exported Flow Records</pre><pre>     ---------------------------------------------------------------</pre><pre>     1                      | 345            | 10201
+     2                      | 690            | 20402</pre><pre>     0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Set ID = 260</div><div class="modern-diagram-cell">Length = 20</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">345</div><div class="modern-diagram-cell">10201</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">2</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">690</div><div class="modern-diagram-cell">20402</div></div></div>
+</figure><pre>Claise, et al.               Standards Track                   [Page 68]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 69</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc7011">RFC 7011</a>              IPFIX Protocol Specification        September 2013</span>
+  <pre>RFC 7011              IPFIX Protocol Specification        September 2013
 
 
-<span><a href="#appendix-A.5">A.5</a>.  Variable-Length Information Element Examples</span>
+A.5.  Variable-Length Information Element Examples
 
-<span><a href="#appendix-A.5.1">A.5.1</a>.  Example of Variable-Length Information Element with Length</span>
+A.5.1.  Example of Variable-Length Information Element with Length
         Less Than 255 Octets
 
-     0                   1                   2                   3
-     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |       5       |          5-octet Information Element          |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                               |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-<span><a href="#appendix-A.5.2">A.5.2</a>.  Example of Variable-Length Information Element with 3-Octet</span>
+     0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">5</div><div class="modern-diagram-cell">5-octet Information Element</div></div></div>
+</figure><pre>A.5.2.  Example of Variable-Length Information Element with 3-Octet
         Length Encoding
 
-     0                   1                   2                   3
-     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |      255      |             1000              |    IE ...     |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                1000-octet Information Element                 |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    :                              ...                              :
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                             ... IE            |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<span>Claise, et al.               Standards Track                   [Page 69]</span></pre>
+     0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">255</div><div class="modern-diagram-cell">1000</div><div class="modern-diagram-cell">IE ...</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">1000-octet Information Element</div></div></div>
+</figure><pre>    :                              ...                              :</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">... IE</div></div></div>
+</figure><pre>Claise, et al.               Standards Track                   [Page 69]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 70</span>

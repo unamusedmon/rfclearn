@@ -391,18 +391,17 @@ interface to programs or users that require its services.
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 6</span>
   </div>
-  <pre><span ></span>
-<span>                                                          September 1981</span>
+  <pre>                                                          September 1981
 Transmission Control Protocol
 Introduction
 
 
 
-  TCP is based on concepts first described by Cerf and Kahn in [<a href="#ref-1" title="&quot;A Protocol for Packet Network Intercommunication&quot;">1</a>].  The
+  TCP is based on concepts first described by Cerf and Kahn in [1].  The
   TCP fits into a layered protocol architecture just above a basic
-  Internet Protocol [<a href="#ref-2" title="&quot;Internet Protocol - DARPA Internet Program Protocol Specification&quot;">2</a>] which provides a way for the TCP to send and
+  Internet Protocol [2] which provides a way for the TCP to send and
   receive variable-length segments of information enclosed in internet
-  datagram "envelopes".  The internet datagram provides a means for
+  datagram &quot;envelopes&quot;.  The internet datagram provides a means for
   addressing source and destination TCPs in different networks.  The
   internet protocol also deals with any fragmentation or reassembly of
   the TCP segments required to achieve transport and delivery through
@@ -411,19 +410,10 @@ Introduction
   and compartmentation of the TCP segments, so this information can be
   communicated end-to-end across multiple networks.
 
-                           Protocol Layering
-
-                        +---------------------+
-                        |     higher-level    |
-                        +---------------------+
-                        |        TCP          |
-                        +---------------------+
-                        |  internet protocol  |
-                        +---------------------+
-                        |communication network|
-                        +---------------------+
-
-                                Figure 1
+                           Protocol Layering</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">higher-level</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">TCP</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">internet protocol</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">communication network</div></div></div>
+</figure><pre>                                Figure 1
 
   Much of this document is written in the context of TCP implementations
   which are co-resident with higher level protocols in the host
@@ -434,14 +424,14 @@ Introduction
   implementable even for the front-end case, as long as a suitable
   host-to-front end protocol is implemented.
 
-<span><a href="#section-1.2">1.2</a>.  Scope</span>
+1.2.  Scope
 
   The TCP is intended to provide a reliable process-to-process
   communication service in a multinetwork environment.  The TCP is
   intended to be a host-to-host protocol in common use in multiple
   networks.
 
-<span><a href="#section-1.3">1.3</a>.  About this Document</span>
+1.3.  About this Document
 
   This document represents a specification of the behavior required of
   any TCP implementation, both in its interactions with higher level
@@ -825,14 +815,13 @@ Philosophy
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 13</span>
   </div>
-  <pre><span ></span>
-September 1981
+  <pre>September 1981
                                            Transmission Control Protocol
                                                               Philosophy
 
 
 
-<span><a href="#section-2.4">2.4</a>.  Interfaces</span>
+2.4.  Interfaces
 
   The TCP/user interface provides for calls made by the user on the TCP
   to OPEN or CLOSE a connection, to SEND or RECEIVE data, or to obtain
@@ -845,29 +834,16 @@ September 1981
   system.  These calls have parameters for passing the address, type of
   service, precedence, security, and other control information.
 
-<span><a href="#section-2.5">2.5</a>.  Relation to Other Protocols</span>
+2.5.  Relation to Other Protocols
 
   The following diagram illustrates the place of the TCP in the protocol
-  hierarchy:
-
-
-       +------+ +-----+ +-----+       +-----+
-       |Telnet| | FTP | |Voice|  ...  |     |  Application Level
-       +------+ +-----+ +-----+       +-----+
-             |   |         |             |
-            +-----+     +-----+       +-----+
-            | TCP |     | RTP |  ...  |     |  Host Level
-            +-----+     +-----+       +-----+
-               |           |             |
-            +-------------------------------+
-            |    Internet Protocol &amp; ICMP   |  Gateway Level
-            +-------------------------------+
-                           |
-              +---------------------------+
-              |   Local Network Protocol  |    Network Level
-              +---------------------------+
-
-                         Protocol Relationships
+  hierarchy:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">Telnet</div><div class="modern-diagram-cell">FTP</div><div class="modern-diagram-cell">Voice</div><div class="modern-diagram-cell">...</div><div class="modern-diagram-cell">Application Level</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">TCP</div><div class="modern-diagram-cell">RTP</div><div class="modern-diagram-cell">...</div><div class="modern-diagram-cell">Host Level</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Internet Protocol &amp; ICMP</div><div class="modern-diagram-cell">Gateway Level</div></div></div>
+</figure><pre>                           |</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Local Network Protocol</div><div class="modern-diagram-cell">Network Level</div></div></div>
+</figure><pre>                         Protocol Relationships
 
                                Figure 2.
 
@@ -875,14 +851,14 @@ September 1981
   protocols efficiently.  It should be easy to interface higher level
   protocols like the ARPANET Telnet or AUTODIN II THP to the TCP.
 
-<span><a href="#section-2.6">2.6</a>.  Reliable Communication</span>
+2.6.  Reliable Communication
 
   A stream of data sent on a TCP connection is delivered reliably and in
   order at the destination.
 
 
 
-<span>                                                                [Page 9]</span></pre>
+                                                                [Page 9]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 14</span>
@@ -1197,19 +1173,18 @@ Transmission Control Protocol
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 19</span>
   </div>
-  <pre><span ></span>
-September 1981
+  <pre>September 1981
                                            Transmission Control Protocol
 
 
 
                       3.  FUNCTIONAL SPECIFICATION
 
-<span><a href="#section-3.1">3.1</a>.  Header Format</span>
+3.1.  Header Format
 
   TCP segments are sent as internet datagrams.  The Internet Protocol
   header carries several information fields, including the source and
-  destination host addresses [<a href="#ref-2" title="&quot;Internet Protocol - DARPA Internet Program Protocol Specification&quot;">2</a>].  A TCP header follows the internet
+  destination host addresses [2].  A TCP header follows the internet
   header, supplying information specific to the TCP protocol.  This
   division allows for the existence of host level protocols other than
   TCP.
@@ -1226,27 +1201,10 @@ September 1981
     <tbody><tr><td>Source Port</td><td>16</td><td>Client or service port; suspicious reuse or odd pairings can reveal scans or spoofing.</td></tr><tr><td>Destination Port</td><td>16</td><td>Target service; hunt for unauthorized services, fan-out scans, or policy bypass.</td></tr><tr><td>Sequence Number</td><td>32</td><td>Byte-stream position; repeated or out-of-window values may indicate injection or spoofing.</td></tr><tr><td>Acknowledgment Number</td><td>32</td><td>Next expected byte; impossible ACKs reveal scans, desync, or spoofed packets.</td></tr><tr><td>Data Offset</td><td>4</td><td>Header length; large values mean options, while invalid small values are malformed.</td></tr><tr><td>Reserved</td><td>6</td><td>Should be zero; non-zero reserved bits often indicate crafted or evasive traffic.</td></tr><tr><td>TCP Flags</td><td>6</td><td>SYN/ACK/RST/FIN combinations; watch for illegal flag combos, floods, and RST injection.</td></tr><tr><td>Window</td><td>16</td><td>Advertised receive window; zero-window abuse or odd scaling can stand out.</td></tr><tr><td>Checksum</td><td>16</td><td>Integrity check; invalid values can be offload artifacts or crafted packet evidence.</td></tr><tr><td>Urgent Pointer</td><td>16</td><td>Only meaningful with URG; unexpected use can indicate evasion or legacy attacks.</td></tr><tr><td>Options/Padding</td><td>32</td><td>MSS, SACK, timestamps; odd combinations can fingerprint tools or evasions.</td></tr></tbody>
   </table>
 </details><pre>
-    0                   1                   2                   3
-    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |          Source Port          |       Destination Port        |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                        Sequence Number                        |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                    Acknowledgment Number                      |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |  Data |           |U|A|P|R|S|F|                               |
-   | Offset| Reserved  |R|C|S|S|Y|I|            Window             |
-   |       |           |G|K|H|T|N|N|                               |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |           Checksum            |         Urgent Pointer        |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                    Options                    |    Padding    |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                             data                              |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-                            TCP Header Format
+    0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Source Port</div><div class="modern-diagram-cell">Destination Port</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Sequence Number</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Acknowledgment Number</div></div><div class="modern-diagram-row" style="--cell-count: 7"><div class="modern-diagram-cell">Data</div><div class="modern-diagram-cell">U</div><div class="modern-diagram-cell">A</div><div class="modern-diagram-cell">P</div><div class="modern-diagram-cell">R</div><div class="modern-diagram-cell">S</div><div class="modern-diagram-cell">F</div></div><div class="modern-diagram-row" style="--cell-count: 9"><div class="modern-diagram-cell">Offset</div><div class="modern-diagram-cell">Reserved</div><div class="modern-diagram-cell">R</div><div class="modern-diagram-cell">C</div><div class="modern-diagram-cell">S</div><div class="modern-diagram-cell">S</div><div class="modern-diagram-cell">Y</div><div class="modern-diagram-cell">I</div><div class="modern-diagram-cell">Window</div></div><div class="modern-diagram-row" style="--cell-count: 6"><div class="modern-diagram-cell">G</div><div class="modern-diagram-cell">K</div><div class="modern-diagram-cell">H</div><div class="modern-diagram-cell">T</div><div class="modern-diagram-cell">N</div><div class="modern-diagram-cell">N</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Checksum</div><div class="modern-diagram-cell">Urgent Pointer</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Options</div><div class="modern-diagram-cell">Padding</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">data</div></div></div>
+</figure><pre>                            TCP Header Format
 
           Note that one tick mark represents one bit position.
 
@@ -1263,7 +1221,7 @@ September 1981
 
 
 
-<span>                                                               [Page 15]</span></pre>
+                                                               [Page 15]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 20</span>
@@ -1330,8 +1288,7 @@ Functional Specification
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 21</span>
   </div>
-  <pre><span ></span>
-September 1981
+  <pre>September 1981
                                            Transmission Control Protocol
                                                 Functional Specification
 
@@ -1342,17 +1299,10 @@ September 1981
     This gives the TCP protection against misrouted segments.  This
     information is carried in the Internet Protocol and is transferred
     across the TCP/Network interface in the arguments or results of
-    calls by the TCP on the IP.
-
-                     +--------+--------+--------+--------+
-                     |           Source Address          |
-                     +--------+--------+--------+--------+
-                     |         Destination Address       |
-                     +--------+--------+--------+--------+
-                     |  zero  |  PTCL  |    TCP Length   |
-                     +--------+--------+--------+--------+
-
-      The TCP Length is the TCP header length plus the data length in
+    calls by the TCP on the IP.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Source Address</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Destination Address</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">zero</div><div class="modern-diagram-cell">PTCL</div><div class="modern-diagram-cell">TCP Length</div></div></div>
+</figure><pre>      The TCP Length is the TCP header length plus the data length in
       octets (this is not an explicitly transmitted quantity, but is
       computed), and it does not count the 12 octets of the pseudo
       header.
@@ -1387,13 +1337,12 @@ September 1981
     A TCP must implement all options.
 
 
-<span>                                                               [Page 17]</span></pre>
+                                                               [Page 17]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 22</span>
   </div>
-  <pre><span ></span>
-<span>                                                          September 1981</span>
+  <pre>                                                          September 1981
 Transmission Control Protocol
 Functional Specification
 
@@ -1410,12 +1359,7 @@ Functional Specification
 
     Specific Option Definitions
 
-      End of Option List
-
-        +--------+
-        |00000000|
-        +--------+
-         Kind=0
+      End of Option List</pre><pre>        +--------+</pre><pre>        |00000000|</pre><pre>        +--------+</pre><pre>         Kind=0
 
         This option code indicates the end of the option list.  This
         might not coincide with the end of the TCP header according to
@@ -1424,12 +1368,7 @@ Functional Specification
         the options would not otherwise coincide with the end of the TCP
         header.
 
-      No-Operation
-
-        +--------+
-        |00000001|
-        +--------+
-         Kind=1
+      No-Operation</pre><pre>        +--------+</pre><pre>        |00000001|</pre><pre>        +--------+</pre><pre>         Kind=1
 
         This option code may be used between options, for example, to
         align the beginning of a subsequent option on a word boundary.
@@ -1437,12 +1376,10 @@ Functional Specification
         receivers must be prepared to process options even if they do
         not begin on a word boundary.
 
-      Maximum Segment Size
-
-        +--------+--------+---------+--------+
-        |00000010|00000100|   max seg size   |
-        +--------+--------+---------+--------+
-         Kind=2   Length=4
+      Maximum Segment Size</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">00000010</div><div class="modern-diagram-cell">00000100</div><div class="modern-diagram-cell">max seg size</div></div></div>
+</figure><pre>         Kind=2   Length=4
 
 
 
@@ -1702,64 +1639,31 @@ Functional Specification
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 27</span>
   </div>
-  <pre><span ></span>
-September 1981
+  <pre>September 1981
                                            Transmission Control Protocol
-                                                Functional Specification
-
-
-
-
-                              +---------+ ---------\      active OPEN
-                              |  CLOSED |            \    -----------
-                              +---------+&lt;---------\   \   create TCB
-                                |     ^              \   \  snd SYN
-                   passive OPEN |     |   CLOSE        \   \
-                   ------------ |     | ----------       \   \
-                    create TCB  |     | delete TCB         \   \
-                                V     |                      \   \
-                              +---------+            CLOSE    |    \
-                              |  LISTEN |          ---------- |     |
-                              +---------+          delete TCB |     |
-                   rcv SYN      |     |     SEND              |     |
-                  -----------   |     |    -------            |     V
- +---------+      snd SYN,ACK  /       \   snd SYN          +---------+
- |         |&lt;-----------------           ------------------&gt;|         |
- |   SYN   |                    rcv SYN                     |   SYN   |
- |   RCVD  |&lt;-----------------------------------------------|   SENT  |
- |         |                    snd ACK                     |         |
- |         |------------------           -------------------|         |
- +---------+   rcv ACK of SYN  \       /  rcv SYN,ACK       +---------+
-   |           --------------   |     |   -----------
-   |                  x         |     |     snd ACK
-   |                            V     V
-   |  CLOSE                   +---------+
-   | -------                  |  ESTAB  |
-   | snd FIN                  +---------+
-   |                   CLOSE    |     |    rcv FIN
-   V                  -------   |     |    -------
- +---------+          snd FIN  /       \   snd ACK          +---------+
- |  FIN    |&lt;-----------------           ------------------&gt;|  CLOSE  |
- | WAIT-1  |------------------                              |   WAIT  |
- +---------+          rcv FIN  \                            +---------+
-   | rcv ACK of FIN   -------   |                            CLOSE  |
-   | --------------   snd ACK   |                           ------- |
-   V        x                   V                           snd FIN V
- +---------+                  +---------+                   +---------+
- |FINWAIT-2|                  | CLOSING |                   | LAST-ACK|
- +---------+                  +---------+                   +---------+
-   |                rcv ACK of FIN |                 rcv ACK of FIN |
-   |  rcv FIN       -------------- |    Timeout=2MSL -------------- |
-   |  -------              x       V    ------------        x       V
-    \ snd ACK                 +---------+delete TCB         +---------+
-     ------------------------&gt;|TIME WAIT|------------------&gt;| CLOSED  |
-                              +---------+                   +---------+
-
-                      TCP Connection State Diagram
+                                                Functional Specification</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">+---------+ ---------\      active OPEN</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">CLOSED</div><div class="modern-diagram-cell">\    -----------</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">+---------+&lt;---------\   \   create TCB</div></div></div>
+</figure><pre>                                |     ^              \   \  snd SYN</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">passive OPEN</div><div class="modern-diagram-cell">CLOSE        \   \</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">create TCB</div><div class="modern-diagram-cell">delete TCB         \   \</div></div></div>
+</figure><pre>                                V     |                      \   \</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">+---------+            CLOSE</div><div class="modern-diagram-cell">\</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">LISTEN</div><div class="modern-diagram-cell">----------</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">+---------+          delete TCB</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">rcv SYN</div><div class="modern-diagram-cell">SEND</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">-----------</div><div class="modern-diagram-cell">-------</div><div class="modern-diagram-cell">V</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">+---------+      snd SYN,ACK  /       \   snd SYN          +---------+</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">SYN</div><div class="modern-diagram-cell">rcv SYN</div><div class="modern-diagram-cell">SYN</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">RCVD</div><div class="modern-diagram-cell">&lt;-----------------------------------------------</div><div class="modern-diagram-cell">SENT</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">snd ACK</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">+---------+   rcv ACK of SYN  \       /  rcv SYN,ACK       +---------+</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">x</div><div class="modern-diagram-cell">snd ACK</div></div></div>
+</figure><pre>   |                            V     V</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">CLOSE                   +---------+</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">-------</div><div class="modern-diagram-cell">ESTAB</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">snd FIN                  +---------+</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">CLOSE</div><div class="modern-diagram-cell">rcv FIN</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">V                  -------</div><div class="modern-diagram-cell">-------</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">+---------+          snd FIN  /       \   snd ACK          +---------+</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">FIN</div><div class="modern-diagram-cell">&lt;-----------------           ------------------&gt;</div><div class="modern-diagram-cell">CLOSE</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">WAIT-1</div><div class="modern-diagram-cell">------------------</div><div class="modern-diagram-cell">WAIT</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">+---------+          rcv FIN  \                            +---------+</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">rcv ACK of FIN   -------</div><div class="modern-diagram-cell">CLOSE</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">--------------   snd ACK</div><div class="modern-diagram-cell">-------</div></div></div>
+</figure><pre>   V        x                   V                           snd FIN V</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">FINWAIT-2</div><div class="modern-diagram-cell">CLOSING</div><div class="modern-diagram-cell">LAST-ACK</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">rcv ACK of FIN</div><div class="modern-diagram-cell">rcv ACK of FIN</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">rcv FIN       --------------</div><div class="modern-diagram-cell">Timeout=2MSL --------------</div></div></div>
+</figure><pre>   |  -------              x       V    ------------        x       V</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">\ snd ACK                 +---------+delete TCB         +---------+</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">------------------------&gt;</div><div class="modern-diagram-cell">TIME WAIT</div><div class="modern-diagram-cell">------------------&gt;</div><div class="modern-diagram-cell">CLOSED</div></div></div>
+</figure><pre>                      TCP Connection State Diagram
                                Figure 6.
 
 
-<span>                                                               [Page 23]</span></pre>
+                                                               [Page 23]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 28</span>

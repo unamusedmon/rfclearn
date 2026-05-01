@@ -386,8 +386,7 @@ Abstract
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 6</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc3396">RFC 3396</a>            Encoding Long Options in DHCPv4        November 2002</span>
+  <pre>RFC 3396            Encoding Long Options in DHCPv4        November 2002
 
 
    In the case that a decoding agent finds a split option, it MUST treat
@@ -395,7 +394,7 @@ Abstract
    be reassembled in the order that was described above under encoding
    agent behavior.
 
-   The decoding agent should ensure that when the option's value is
+   The decoding agent should ensure that when the option&#x27;s value is
    used, any alignment issues that are particular to the machine
    architecture on which the decoding agent is running are accounted for
    - there is no requirement that the encoding agent align the options
@@ -407,41 +406,31 @@ Abstract
    object, and MUST NOT treat each split portion of the option as a
    separate object.
 
-<span><a href="#section-8">8</a>. Example</span>
+8. Example
 
    Consider an option, Bootfile name (option code 67), with a value of
-   "/diskless/foo".  Normally, this would be encoded as a single option,
-   as follows:
-
-      +----+----+---+---+---+---+---+---+---+---+---+---+---+---+---+
-      | 67 | 13 | / | d | i | s | k | l | e | s | s | / | f | o | o |
-      +----+----+---+---+---+---+---+---+---+---+---+---+---+---+---+
-
-   If an encoding agent needed to split the option in order to fit it
+   &quot;/diskless/foo&quot;.  Normally, this would be encoded as a single option,
+   as follows:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 15"><div class="modern-diagram-cell">67</div><div class="modern-diagram-cell">13</div><div class="modern-diagram-cell">/</div><div class="modern-diagram-cell">d</div><div class="modern-diagram-cell">i</div><div class="modern-diagram-cell">s</div><div class="modern-diagram-cell">k</div><div class="modern-diagram-cell">l</div><div class="modern-diagram-cell">e</div><div class="modern-diagram-cell">s</div><div class="modern-diagram-cell">s</div><div class="modern-diagram-cell">/</div><div class="modern-diagram-cell">f</div><div class="modern-diagram-cell">o</div><div class="modern-diagram-cell">o</div></div></div>
+</figure><pre>   If an encoding agent needed to split the option in order to fit it
    into the option buffer, it could encode it as two separate options,
    as follows, and store it in the aggregate option buffer in the
-   following sequence:
-
-      +----+---+---+---+---+---+---+---+---+
-      | 67 | 7 | / | d | i | s | k | l | e |
-      +----+---+---+---+---+---+---+---+---+
-
-      +----+---+---+---+---+---+---+---+
-      | 67 | 6 | s | s | / | f | o | o |
-      +----+---+---+---+---+---+---+---+
-
-<span><a href="#section-9">9</a>. Security Considerations</span>
+   following sequence:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 9"><div class="modern-diagram-cell">67</div><div class="modern-diagram-cell">7</div><div class="modern-diagram-cell">/</div><div class="modern-diagram-cell">d</div><div class="modern-diagram-cell">i</div><div class="modern-diagram-cell">s</div><div class="modern-diagram-cell">k</div><div class="modern-diagram-cell">l</div><div class="modern-diagram-cell">e</div></div><div class="modern-diagram-row" style="--cell-count: 8"><div class="modern-diagram-cell">67</div><div class="modern-diagram-cell">6</div><div class="modern-diagram-cell">s</div><div class="modern-diagram-cell">s</div><div class="modern-diagram-cell">/</div><div class="modern-diagram-cell">f</div><div class="modern-diagram-cell">o</div><div class="modern-diagram-cell">o</div></div></div>
+</figure><pre>9. Security Considerations
 
    This document raises no new security issues.  Potential exposures to
-   attack in the DHCP protocol are discussed in <a href="#section-7">section 7</a> of the DHCP
-   protocol specification [<a href="#ref-3" title="&quot;Dynamic Host Configuration Protocol&quot;">3</a>] and in Authentication for DHCP Messages
-   [<a href="#ref-5" title="&quot;Authentication for DHCP Messages&quot;">5</a>].
+   attack in the DHCP protocol are discussed in section 7 of the DHCP
+   protocol specification [3] and in Authentication for DHCP Messages
+   [5].
 
 
 
 
 
-<span>Lemon &amp; Cheshire            Standards Track                     [Page 6]</span></pre>
+Lemon &amp; Cheshire            Standards Track                     [Page 6]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 7</span>

@@ -566,8 +566,7 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 9</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8611">RFC 8611</a>                    LSP Ping for LAG                   June 2019</span>
+  <pre>RFC 8611                    LSP Ping for LAG                   June 2019
 
 
    Based on the procedures described above, every LAG member link will
@@ -588,27 +587,11 @@ Table of Contents
    A responder LSR possessing a LAG interface with two member links
    would send the following DDMAP for this LAG interface:
 
-      0                   1                   2                   3
-      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     ~  DDMAP fields describing LAG interface (DS Flags with G set)  ~
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     | Local Interface Index Sub-TLV of LAG member link #1           |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     | Remote Interface Index Sub-TLV of LAG member link #1          |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     | Multipath Data Sub-TLV LAG member link #1                     |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     | Local Interface Index Sub-TLV of LAG member link #2           |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     | Remote Interface Index Sub-TLV of LAG member link #2          |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     | Multipath Data Sub-TLV LAG member link #2                     |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |                       Label Stack Sub-TLV                     |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-               Figure 2: Example of DDMAP in MPLS Echo Reply
+      0                   1                   2                   3</pre><pre>      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>     ~  DDMAP fields describing LAG interface (DS Flags with G set)  ~</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Local Interface Index Sub-TLV of LAG member link #1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Remote Interface Index Sub-TLV of LAG member link #1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Multipath Data Sub-TLV LAG member link #1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Local Interface Index Sub-TLV of LAG member link #2</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Remote Interface Index Sub-TLV of LAG member link #2</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Multipath Data Sub-TLV LAG member link #2</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Label Stack Sub-TLV</div></div></div>
+</figure><pre>               Figure 2: Example of DDMAP in MPLS Echo Reply
 
    When none of the received multipath information maps to a particular
    LAG member link, then the responder LSR MUST still place the Local
@@ -621,7 +604,7 @@ Table of Contents
 
 
 
-<span>Akiya, et al.                Standards Track                    [Page 9]</span></pre>
+Akiya, et al.                Standards Track                    [Page 9]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 10</span>
@@ -686,8 +669,7 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 11</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8611">RFC 8611</a>                    LSP Ping for LAG                   June 2019</span>
+  <pre>RFC 8611                    LSP Ping for LAG                   June 2019
 
 
    Figure 3 is an example that shows how to use the DDMAP TLV to send a
@@ -695,33 +677,25 @@ Table of Contents
    chosen to send the MPLS echo request message to the next downstream
    LSR:
 
-      0                   1                   2                   3
-      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     ~  DDMAP fields describing LAG interface (DS Flags with G set)  ~
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |[OPTIONAL] Remote Interface Index Sub-TLV of LAG member link #1|
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |             Multipath Data Sub-TLV LAG member link #1         |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |                       Label Stack Sub-TLV                     |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      0                   1                   2                   3</pre><pre>      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>     ~  DDMAP fields describing LAG interface (DS Flags with G set)  ~</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">[OPTIONAL] Remote Interface Index Sub-TLV of LAG member link #1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Multipath Data Sub-TLV LAG member link #1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Label Stack Sub-TLV</div></div></div>
+</figure><pre>              Figure 3: Example of DDMAP in MPLS Echo Request
 
-              Figure 3: Example of DDMAP in MPLS Echo Request
+5.  Mechanism to Validate L2 ECMP Traversal
 
-<span><a href="#section-5">5</a>.  Mechanism to Validate L2 ECMP Traversal</span>
-
-   <a href="#section-4">Section 4</a> defines the responder LSR procedures to construct a DDMAP
+   Section 4 defines the responder LSR procedures to construct a DDMAP
    for a downstream LAG.  The Remote Interface Index Sub-TLV that
    describes the incoming LAG member links of the downstream LSR is
    optional, because this information from the downstream LSR is often
    not available on the responder LSR.  In such case, the traversal of
    LAG member links can be validated with procedures described in
-   <a href="#section-5.1">Section 5.1</a>.  If LSRs can provide the Remote Interface Index Sub-
-   TLVs, then the validation procedures described in <a href="#section-5.2">Section 5.2</a> can be
+   Section 5.1.  If LSRs can provide the Remote Interface Index Sub-
+   TLVs, then the validation procedures described in Section 5.2 can be
    used.
 
-<span><a href="#section-5.1">5.1</a>.  Incoming LAG Member Links Verification</span>
+5.1.  Incoming LAG Member Links Verification
 
    Without downstream LSRs returning Remote Interface Index Sub-TLVs in
    the DDMAP, validation of the LAG member link traversal requires that
@@ -731,7 +705,7 @@ Table of Contents
    the downstream LSRs and describes the additional logic in the
    initiator LSR to validate the L2 ECMP traversal.
 
-<span><a href="#section-5.1.1">5.1.1</a>.  Initiator LSR Procedures</span>
+5.1.1.  Initiator LSR Procedures
 
    An MPLS echo request carrying a DDMAP TLV with the Interface and
    Label Stack Object Request flag and LAG Description Indicator flag
@@ -741,7 +715,7 @@ Table of Contents
 
 
 
-<span>Akiya, et al.                Standards Track                   [Page 11]</span></pre>
+Akiya, et al.                Standards Track                   [Page 11]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 12</span>
@@ -866,24 +840,23 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 14</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8611">RFC 8611</a>                    LSP Ping for LAG                   June 2019</span>
+  <pre>RFC 8611                    LSP Ping for LAG                   June 2019
 
 
-<span><a href="#section-5.2">5.2</a>.  Individual End-to-End Path Verification</span>
+5.2.  Individual End-to-End Path Verification
 
    When the Remote Interface Index Sub-TLVs are available from an LSR
    with TTL=n, then the validation of LAG member link traversal can be
    performed by the downstream LSR of TTL=n+1.  The initiator LSR
-   follows the procedures described in <a href="#section-4.3">Section 4.3</a>.
+   follows the procedures described in Section 4.3.
 
    The DDMAP validation procedures for the downstream responder LSR are
    then updated to include the comparison of the incoming LAG member
    link to the interface index described in the Remote Interface Index
    Sub-TLV in the DDMAP TLV.  Failure of this comparison results in the
-   return code being set to "Downstream Mapping Mismatch (5)".
+   return code being set to &quot;Downstream Mapping Mismatch (5)&quot;.
 
-<span><a href="#section-6">6</a>.  LSR Capability TLV</span>
+6.  LSR Capability TLV
 
    This document defines a new TLV that is referred to as the LSR
    Capability TLV.  It MAY be included in the MPLS echo request message
@@ -899,15 +872,10 @@ Table of Contents
    LSR Capability TLV Type is 4.  Length is 4.  The LSR Capability TLV
    has the following format:
 
-      0                   1                   2                   3
-      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |             Type              |            Length             |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |                      LSR Capability Flags                     |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-                       Figure 4: LSR Capability TLV
+      0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Type</div><div class="modern-diagram-cell">Length</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">LSR Capability Flags</div></div></div>
+</figure><pre>                       Figure 4: LSR Capability TLV
 
    Where:
 
@@ -921,25 +889,21 @@ Table of Contents
 
 
 
-<span>Akiya, et al.                Standards Track                   [Page 14]</span></pre>
+Akiya, et al.                Standards Track                   [Page 14]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 15</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8611">RFC 8611</a>                    LSP Ping for LAG                   June 2019</span>
+  <pre>RFC 8611                    LSP Ping for LAG                   June 2019
 
 
       The LSR Capability Flags field is 4 octets in length; this
       document defines the following flags:
 
-      0                   1                   2                   3
-      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |                 Reserved (Must Be Zero)                   |U|D|
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-      This document defines two flags.  The unallocated flags MUST be
+      0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Reserved (Must Be Zero)</div><div class="modern-diagram-cell">U</div><div class="modern-diagram-cell">D</div></div></div>
+</figure><pre>      This document defines two flags.  The unallocated flags MUST be
       set to zero when sending and ignored on receipt.  Both the U and
       the D flag MUST be cleared in the MPLS echo request message when
       sending and ignored on receipt.  Zero, one, or both of the flags
@@ -961,7 +925,7 @@ Table of Contents
             the Multipath Data Sub-TLV in the Downstream Detailed
             Mapping TLV.
 
-<span><a href="#section-7">7</a>.  LAG Description Indicator Flag: G</span>
+7.  LAG Description Indicator Flag: G
 
    This document defines a new flag, the G flag (LAG Description
    Indicator), in the DS Flags field of the DDMAP TLV.
@@ -981,25 +945,20 @@ Table of Contents
 
 
 
-<span>Akiya, et al.                Standards Track                   [Page 15]</span></pre>
+Akiya, et al.                Standards Track                   [Page 15]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 16</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8611">RFC 8611</a>                    LSP Ping for LAG                   June 2019</span>
+  <pre>RFC 8611                    LSP Ping for LAG                   June 2019
 
 
    The G flag is defined as below:
 
-      The Bit Number is 3.
-
-       0 1 2 3 4 5 6 7
-      +-+-+-+-+-+-+-+-+
-      | MBZ |G|E|L|I|N|
-      +-+-+-+-+-+-+-+-+
-
-   Flag  Name and Meaning
+      The Bit Number is 3.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7</div></div><div class="modern-diagram-row" style="--cell-count: 6"><div class="modern-diagram-cell">MBZ</div><div class="modern-diagram-cell">G</div><div class="modern-diagram-cell">E</div><div class="modern-diagram-cell">L</div><div class="modern-diagram-cell">I</div><div class="modern-diagram-cell">N</div></div></div>
+</figure><pre>   Flag  Name and Meaning
    ----  ----------------
 
       G  LAG Description Indicator
@@ -1009,7 +968,7 @@ Table of Contents
          When this flag is set in the MPLS echo reply, the corresponding
          DDMAP TLV describes a LAG interface.
 
-<span><a href="#section-8">8</a>.  Local Interface Index Sub-TLV</span>
+8.  Local Interface Index Sub-TLV
 
    The Local Interface Index Sub-TLV describes the interface index
    assigned by the local LSR to an egress interface.  One or more Local
@@ -1017,15 +976,10 @@ Table of Contents
 
    The format of the Local Interface Index Sub-TLV is below:
 
-      0                   1                   2                   3
-      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |             Type              |            Length             |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |                     Local Interface Index                     |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-                  Figure 5: Local Interface Index Sub-TLV
+      0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Type</div><div class="modern-diagram-cell">Length</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Local Interface Index</div></div></div>
+</figure><pre>                  Figure 5: Local Interface Index Sub-TLV
 
    Where:
 
@@ -1035,22 +989,21 @@ Table of Contents
 
    o  The Local Interface Index field is 4 octets in length; it is an
       interface index assigned by a local LSR to an egress interface.
-      It's normally an unsigned integer and in network byte order.
+      It&#x27;s normally an unsigned integer and in network byte order.
 
 
 
 
 
-<span>Akiya, et al.                Standards Track                   [Page 16]</span></pre>
+Akiya, et al.                Standards Track                   [Page 16]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 17</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8611">RFC 8611</a>                    LSP Ping for LAG                   June 2019</span>
+  <pre>RFC 8611                    LSP Ping for LAG                   June 2019
 
 
-<span><a href="#section-9">9</a>.  Remote Interface Index Sub-TLV</span>
+9.  Remote Interface Index Sub-TLV
 
    The Remote Interface Index Sub-TLV is an optional TLV; it describes
    the interface index assigned by a downstream LSR to an ingress
@@ -1059,15 +1012,10 @@ Table of Contents
 
    The format of the Remote Interface Index Sub-TLV is below:
 
-      0                   1                   2                   3
-      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |             Type              |            Length             |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |                    Remote Interface Index                     |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-                 Figure 6: Remote Interface Index Sub-TLV
+      0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Type</div><div class="modern-diagram-cell">Length</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Remote Interface Index</div></div></div>
+</figure><pre>                 Figure 6: Remote Interface Index Sub-TLV
 
    Where:
 
@@ -1077,10 +1025,10 @@ Table of Contents
 
    o  The Remote Interface Index field is 4 octets in length; it is an
       interface index assigned by a downstream LSR to an ingress
-      interface.  It's normally an unsigned integer and in network byte
+      interface.  It&#x27;s normally an unsigned integer and in network byte
       order.
 
-<span><a href="#section-10">10</a>.  Detailed Interface and Label Stack TLV</span>
+10.  Detailed Interface and Label Stack TLV
 
    The Detailed Interface and Label Stack TLV MAY be included in an MPLS
    echo reply message to report the interface on which the MPLS echo
@@ -1101,39 +1049,27 @@ Table of Contents
 
 
 
-<span>Akiya, et al.                Standards Track                   [Page 17]</span></pre>
+Akiya, et al.                Standards Track                   [Page 17]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 18</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8611">RFC 8611</a>                    LSP Ping for LAG                   June 2019</span>
+  <pre>RFC 8611                    LSP Ping for LAG                   June 2019
 
 
-      0                   1                   2                   3
-      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |             Type              |            Length             |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     | Address Type  |             Reserved (Must Be Zero)           |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |                   IP Address (4 or 16 octets)                 |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |                   Interface (4 or 16 octets)                  |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     .                                                               .
+      0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Type</div><div class="modern-diagram-cell">Length</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Address Type</div><div class="modern-diagram-cell">Reserved (Must Be Zero)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">IP Address (4 or 16 octets)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Interface (4 or 16 octets)</div></div></div>
+</figure><pre>     .                                                               .
      .                      List of Sub-TLVs                         .
-     .                                                               .
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-             Figure 7: Detailed Interface and Label Stack TLV
+     .                                                               .</pre><pre>     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>             Figure 7: Detailed Interface and Label Stack TLV
 
    The Detailed Interface and Label Stack TLV format is derived from the
-   Interface and Label Stack TLV format (from [<a href="./rfc8029" title="&quot;Detecting Multiprotocol Label Switched (MPLS) Data-Plane Failures&quot;">RFC8029</a>]).  Two changes
+   Interface and Label Stack TLV format (from [RFC8029]).  Two changes
    are introduced.  The first is that the label stack is converted into
    a sub-TLV.  The second is that a new sub-TLV is added to describe an
    interface index.  The other fields of the Detailed Interface and
-   Label Stack TLV have the same use and meaning as in [<a href="./rfc8029" title="&quot;Detecting Multiprotocol Label Switched (MPLS) Data-Plane Failures&quot;">RFC8029</a>].  A
+   Label Stack TLV have the same use and meaning as in [RFC8029].  A
    summary of these fields is as below:
 
       Address Type
@@ -1141,7 +1077,7 @@ Table of Contents
          The Address Type indicates if the interface is numbered or
          unnumbered.  It also determines the length of the IP Address
          and Interface fields.  The resulting total length of the
-         initial part of the TLV is listed as "K Octets".  The Address
+         initial part of the TLV is listed as &quot;K Octets&quot;.  The Address
          Type is set to one of the following values:
 
             Type #        Address Type           K Octets
@@ -1161,30 +1097,29 @@ Table of Contents
 
 
 
-<span>Akiya, et al.                Standards Track                   [Page 18]</span></pre>
+Akiya, et al.                Standards Track                   [Page 18]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 19</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8611">RFC 8611</a>                    LSP Ping for LAG                   June 2019</span>
+  <pre>RFC 8611                    LSP Ping for LAG                   June 2019
 
 
          Numbered or IPv6 Numbered, the IP Address MUST be set to either
-         the LSR's Router ID or the interface address, and the Interface
+         the LSR&#x27;s Router ID or the interface address, and the Interface
          MUST be set to the interface address.
 
          If the interface is unnumbered, the Address Type MUST be either
          IPv4 Unnumbered or IPv6 Unnumbered, the IP Address MUST be the
-         LSR's Router ID, and the Interface MUST be set to the index
+         LSR&#x27;s Router ID, and the Interface MUST be set to the index
          assigned to the interface.
 
-         Note: Usage of IPv6 Unnumbered has the same issue as [<a href="./rfc8029" title="&quot;Detecting Multiprotocol Label Switched (MPLS) Data-Plane Failures&quot;">RFC8029</a>],
-         which is described in <a href="./rfc7439#section-3.4.2">Section&nbsp;3.4.2 of [RFC7439]</a>.  A solution
-         should be considered and applied to both [<a href="./rfc8029" title="&quot;Detecting Multiprotocol Label Switched (MPLS) Data-Plane Failures&quot;">RFC8029</a>] and this
+         Note: Usage of IPv6 Unnumbered has the same issue as [RFC8029],
+         which is described in Section 3.4.2 of [RFC7439].  A solution
+         should be considered and applied to both [RFC8029] and this
          document.
 
-<span><a href="#section-10.1">10.1</a>.  Sub-TLVs</span>
+10.1.  Sub-TLVs
 
    This section defines the sub-TLVs that MAY be included as part of the
    Detailed Interface and Label Stack TLV.  Two sub-TLVs are defined:
@@ -1194,7 +1129,7 @@ Table of Contents
              1         Incoming Label Stack
              2         Incoming Interface Index
 
-<span><a href="#section-10.1.1">10.1.1</a>.  Incoming Label Stack Sub-TLV</span>
+10.1.1.  Incoming Label Stack Sub-TLV
 
    The Incoming Label Stack Sub-TLV contains the label stack as received
    by an LSR.  If any TTL values have been changed by this LSR, they
@@ -1203,34 +1138,27 @@ Table of Contents
    Incoming Label Stack Sub-TLV Type is 1.  Length is variable, and its
    format is as below:
 
-      0                   1                   2                   3
-      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |             Type              |            Length             |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |                 Label                 | TC  |S|      TTL      |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Type</div><div class="modern-diagram-cell">Length</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Label</div><div class="modern-diagram-cell">TC</div><div class="modern-diagram-cell">S</div><div class="modern-diagram-cell">TTL</div></div></div>
+</figure><pre>     .                                                               .
      .                                                               .
-     .                                                               .
-     .                                                               .
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |                 Label                 | TC  |S|      TTL      |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-                  Figure 8: Incoming Label Stack Sub-TLV
+     .                                                               .</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Label</div><div class="modern-diagram-cell">TC</div><div class="modern-diagram-cell">S</div><div class="modern-diagram-cell">TTL</div></div></div>
+</figure><pre>                  Figure 8: Incoming Label Stack Sub-TLV
 
 
 
-<span>Akiya, et al.                Standards Track                   [Page 19]</span></pre>
+Akiya, et al.                Standards Track                   [Page 19]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 20</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8611">RFC 8611</a>                    LSP Ping for LAG                   June 2019</span>
+  <pre>RFC 8611                    LSP Ping for LAG                   June 2019
 
 
-<span><a href="#section-10.1.2">10.1.2</a>.  Incoming Interface Index Sub-TLV</span>
+10.1.2.  Incoming Interface Index Sub-TLV
 
    The Incoming Interface Index Sub-TLV MAY be included in a Detailed
    Interface and Label Stack TLV.  The Incoming Interface Index Sub-TLV
@@ -1240,30 +1168,20 @@ Table of Contents
    Incoming Interface Index Sub-TLV Type is 2.  Length is 8, and its
    format is as below:
 
-      0                   1                   2                   3
-      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |             Type              |            Length             |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |    Interface Index Flags      |       Reserved (Must Be Zero) |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |                   Incoming Interface Index                    |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-                Figure 9: Incoming Interface Index Sub-TLV
+      0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Type</div><div class="modern-diagram-cell">Length</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Interface Index Flags</div><div class="modern-diagram-cell">Reserved (Must Be Zero)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Incoming Interface Index</div></div></div>
+</figure><pre>                Figure 9: Incoming Interface Index Sub-TLV
 
    Interface Index Flags
 
       The Interface Index Flags field is a bit vector with following
       format.
 
-      0                   1
-      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |   Reserved (Must Be Zero)   |M|
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-      One flag is defined: M.  The remaining flags MUST be set to zero
+      0                   1</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Reserved (Must Be Zero)</div><div class="modern-diagram-cell">M</div></div></div>
+</figure><pre>      One flag is defined: M.  The remaining flags MUST be set to zero
       when sending and ignored on receipt.
 
      Flag  Name and Meaning
@@ -1276,12 +1194,12 @@ Table of Contents
 
    Incoming Interface Index
 
-      An Index assigned by the LSR to this interface.  It's normally an
+      An Index assigned by the LSR to this interface.  It&#x27;s normally an
       unsigned integer and in network byte order.
 
 
 
-<span>Akiya, et al.                Standards Track                   [Page 20]</span></pre>
+Akiya, et al.                Standards Track                   [Page 20]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 21</span>

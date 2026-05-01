@@ -266,24 +266,23 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 4</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc6944">RFC 6944</a>             DNSSEC DNSKEY Algorithm Status           April 2013</span>
+  <pre>RFC 6944             DNSSEC DNSKEY Algorithm Status           April 2013
 
 
    Optional:  The algorithm MAY be implemented, but all implementations
       MUST be prepared to interoperate with implementations that do or
       do not implement this algorithm.
 
-<span><a href="#section-2.2">2.2</a>.  Algorithm Implementation Status Assignment Rationale</span>
+2.2.  Algorithm Implementation Status Assignment Rationale
 
    RSASHA1 has an implementation status of Must Implement, consistent
-   with [<a href="./rfc4034" title="&quot;Resource Records for the DNS Security Extensions&quot;">RFC4034</a>].  RSAMD5 has an implementation status of Must Not
+   with [RFC4034].  RSAMD5 has an implementation status of Must Not
    Implement because of known weaknesses in MD5.
 
    The status of RSASHA1-NSEC3-SHA1 is set to Recommended to Implement
    as many deployments use NSEC3.  The status of RSA/SHA-256 and RSA/
    SHA-512 are also set to Recommended to Implement as major deployments
-   (such as the root zone) use these algorithms [<a href="#ref-ROOTDPS" title="&quot;DNSSEC Practice Statement for the Root Zone KSK Operator&quot;">ROOTDPS</a>].  It is
+   (such as the root zone) use these algorithms [ROOTDPS].  It is
    believed that RSA/SHA-256 or RSA/SHA-512 algorithms will replace
    older algorithms (e.g., RSA/SHA-1) that have a perceived weakness.
 
@@ -296,32 +295,14 @@ Table of Contents
    All other algorithms used in DNSSEC specified without an
    implementation status are currently set to Optional.
 
-<span><a href="#section-2.3">2.3</a>.  DNSSEC Implementation Status Table</span>
+2.3.  DNSSEC Implementation Status Table
 
    The DNSSEC algorithm implementation status table is listed below.
    Only the algorithms already specified for use with DNSSEC at the time
-   of writing are listed.
-
-    +------------+------------+-------------------+-------------------+
-    |    Must    |  Must Not  |    Recommended    |      Optional     |
-    |  Implement | Implement  |   to Implement    |                   |
-    +------------+------------+-------------------+-------------------+
-    |            |            |                   |                   |
-    |   RSASHA1  |   RSAMD5   |   RSASHA256       |   Any             |
-    |            |            |   RSASHA1-NSEC3   |   registered      |
-    |            |            |    -SHA1          |   algorithm       |
-    |            |            |   RSASHA512       |   not listed in   |
-    |            |            |   ECDSAP256SHA256 |   this table      |
-    |            |            |   ECDSAP384SHA384 |                   |
-    +------------+------------+-------------------+-------------------+
-
-
-
-
-
-
-
-<span>Rose                         Standards Track                    [Page 4]</span></pre>
+   of writing are listed.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Must</div><div class="modern-diagram-cell">Must Not</div><div class="modern-diagram-cell">Recommended</div><div class="modern-diagram-cell">Optional</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Implement</div><div class="modern-diagram-cell">Implement</div><div class="modern-diagram-cell">to Implement</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">RSASHA1</div><div class="modern-diagram-cell">RSAMD5</div><div class="modern-diagram-cell">RSASHA256</div><div class="modern-diagram-cell">Any</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">RSASHA1-NSEC3</div><div class="modern-diagram-cell">registered</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">-SHA1</div><div class="modern-diagram-cell">algorithm</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">RSASHA512</div><div class="modern-diagram-cell">not listed in</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">ECDSAP256SHA256</div><div class="modern-diagram-cell">this table</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">ECDSAP384SHA384</div></div></div>
+</figure><pre>Rose                         Standards Track                    [Page 4]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 5</span>

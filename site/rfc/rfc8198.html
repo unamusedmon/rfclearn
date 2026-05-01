@@ -506,8 +506,7 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 8</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8198">RFC 8198</a>                    NSEC/NSEC3 Usage                   July 2017</span>
+  <pre>RFC 8198                    NSEC/NSEC3 Usage                   July 2017
 
 
    Decreased authoritative server load:  Because recursive servers can
@@ -519,11 +518,11 @@ Table of Contents
    The scale of the benefit depends upon multiple factors, including the
    query distribution.  For example, at the time of this writing, around
    65% of queries to root name servers result in NXDOMAIN responses (see
-   statistics from [<a href="#ref-ROOT-SERVERS">ROOT-SERVERS</a>]); this technique will eliminate a
+   statistics from [ROOT-SERVERS]); this technique will eliminate a
    sizable quantity of these.
 
    The technique described in this document may also mitigate so-called
-   "random QNAME attacks", in which attackers send many queries for
+   &quot;random QNAME attacks&quot;, in which attackers send many queries for
    random subdomains to resolvers.  As the resolver will not have the
    answers cached, it has to ask external servers for each random query,
    leading to a DoS on the authoritative servers (and often resolvers).
@@ -537,31 +536,20 @@ Table of Contents
    As these benefits are only accrued by those using DNSSEC, it is hoped
    that these techniques will lead to more DNSSEC deployment.
 
-<span><a href="#section-7">7</a>.  Update to <a href="./rfc4035">RFC 4035</a></span>
+7.  Update to RFC 4035
 
-   <a href="./rfc4035#section-4.5">Section&nbsp;4.5 of [RFC4035]</a> shows that "In theory, a resolver could use
+   Section 4.5 of [RFC4035] shows that &quot;In theory, a resolver could use
    wildcards or NSEC RRs to generate positive and negative responses
    (respectively) until the TTL or signatures on the records in question
    expire.  However, it seems prudent for resolvers to avoid blocking
    new authoritative data or synthesizing new data on their own.
    Resolvers that follow this recommendation will have a more consistent
-   view of the namespace".
+   view of the namespace&quot;.
 
-   The paragraph is updated as follows:
-
-   +-----------------------------------------------------------------+
-   |  Once the records are validated, DNSSEC-enabled validating      |
-   |  resolvers SHOULD use wildcards and NSEC/NSEC3 resource records |
-   |  to generate positive and negative responses until the          |
-   |  effective TTLs or signatures for those records expire.         |
-   +-----------------------------------------------------------------+
-
-
-
-
-
-
-<span>Fujiwara, et al.             Standards Track                    [Page 8]</span></pre>
+   The paragraph is updated as follows:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Once the records are validated, DNSSEC-enabled validating</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">resolvers SHOULD use wildcards and NSEC/NSEC3 resource records</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">to generate positive and negative responses until the</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">effective TTLs or signatures for those records expire.</div></div></div>
+</figure><pre>Fujiwara, et al.             Standards Track                    [Page 8]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 9</span>

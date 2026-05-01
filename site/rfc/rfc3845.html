@@ -206,34 +206,26 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 3</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc3845">RFC 3845</a>                DNSSEC NSEC RDATA Format             August 2004</span>
+  <pre>RFC 3845                DNSSEC NSEC RDATA Format             August 2004
 
 
    The NSEC RR RDATA format is class independent and defined for all
    classes.
 
    The NSEC RR SHOULD have the same TTL value as the SOA minimum TTL
-   field.  This is in the spirit of negative caching [<a href="#ref-8" title="&quot;Negative Caching of DNS Queries (DNS NCACHE)&quot;">8</a>].
+   field.  This is in the spirit of negative caching [8].
 
-<span><a href="#section-2.1">2.1</a>.  NSEC RDATA Wire Format</span>
+2.1.  NSEC RDATA Wire Format
 
-   The RDATA of the NSEC RR is as shown below:
-
-                         1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 3 3
-     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    /                      Next Domain Name                         /
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    /                   List of Type Bit Map(s)                     /
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-<span><a href="#section-2.1.1">2.1.1</a>.  The Next Domain Name Field</span>
+   The RDATA of the NSEC RR is as shown below:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 3 3</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div></div>
+</figure><pre>    /                      Next Domain Name                         /</pre><pre>    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>    /                   List of Type Bit Map(s)                     /</pre><pre>    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>2.1.1.  The Next Domain Name Field
 
    The Next Domain Name field contains the owner name of the next RR in
    the canonical ordering of the zone.  The value of the Next Domain
    Name field in the last NSEC record in the zone is the name of the
-   zone apex (the owner name of the zone's SOA RR).
+   zone apex (the owner name of the zone&#x27;s SOA RR).
 
    A sender MUST NOT use DNS name compression on the Next Domain Name
    field when transmitting an NSEC RR.
@@ -243,25 +235,19 @@ Table of Contents
    unless at least one authoritative RRset exists at the same owner
    name.
 
-<span><a href="#section-2.1.2">2.1.2</a>.  The List of Type Bit Map(s) Field</span>
+2.1.2.  The List of Type Bit Map(s) Field
 
    The RR type space is split into 256 window blocks, each representing
    the low-order 8 bits of the 16-bit RR type space.  Each block that
    has at least one active RR type is encoded using a single octet
    window number (from 0 to 255), a single octet bitmap length (from 1
-   to 32) indicating the number of octets used for the window block's
+   to 32) indicating the number of octets used for the window block&#x27;s
    bitmap, and up to 32 octets (256 bits) of bitmap.
 
    Window blocks are present in the NSEC RR RDATA in increasing
    numerical order.
 
-   "|" denotes concatenation
-
-   Type Bit Map(s) Field = ( Window Block # | Bitmap Length | Bitmap ) +
-
-
-
-<span>Schlyter, Ed.               Standards Track                     [Page 3]</span></pre>
+   &quot;|&quot; denotes concatenation</pre><pre>   Type Bit Map(s) Field = ( Window Block # | Bitmap Length | Bitmap ) +</pre><pre>Schlyter, Ed.               Standards Track                     [Page 3]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 4</span>

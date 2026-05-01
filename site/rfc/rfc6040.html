@@ -386,45 +386,36 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 6</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc6040">RFC 6040</a>                     ECN Tunnelling                November 2010</span>
+  <pre>RFC 6040                     ECN Tunnelling                November 2010
 
 
-   [<a>RFC2983</a>] is a comprehensive primer on differentiated services and
+   [RFC2983] is a comprehensive primer on differentiated services and
    tunnels.  Given ECN raises similar issues to differentiated services
-   when interacting with tunnels, useful concepts introduced in <a href="./rfc2983">RFC 2983</a>
+   when interacting with tunnels, useful concepts introduced in RFC 2983
    are used throughout, with brief recaps of the explanations where
    necessary.
 
-<span><a href="#section-2">2</a>.  Terminology</span>
+2.  Terminology
 
-   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
-   "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
-   document are to be interpreted as described in <a href="./rfc2119">RFC 2119</a> [<a href="./rfc2119" title="&quot;Key words for use in RFCs to Indicate Requirement Levels&quot;">RFC2119</a>].
+   The key words &quot;MUST&quot;, &quot;MUST NOT&quot;, &quot;REQUIRED&quot;, &quot;SHALL&quot;, &quot;SHALL NOT&quot;,
+   &quot;SHOULD&quot;, &quot;SHOULD NOT&quot;, &quot;RECOMMENDED&quot;, &quot;MAY&quot;, and &quot;OPTIONAL&quot; in this
+   document are to be interpreted as described in RFC 2119 [RFC2119].
 
-   Table 1 recaps the names of the ECN codepoints [<a href="./rfc3168" title="&quot;The Addition of Explicit Congestion Notification (ECN) to IP&quot;">RFC3168</a>].
-
-     +------------------+----------------+---------------------------+
-     | Binary codepoint | Codepoint name | Meaning                   |
-     +------------------+----------------+---------------------------+
-     |        00        | Not-ECT        | Not ECN-capable transport |
-     |        01        | ECT(1)         | ECN-capable transport     |
-     |        10        | ECT(0)         | ECN-capable transport     |
-     |        11        | CE             | Congestion experienced    |
-     +------------------+----------------+---------------------------+
-
-          Table 1: Recap of Codepoints of the ECN Field [<a href="./rfc3168" title="&quot;The Addition of Explicit Congestion Notification (ECN) to IP&quot;">RFC3168</a>]
+   Table 1 recaps the names of the ECN codepoints [RFC3168].</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Binary codepoint</div><div class="modern-diagram-cell">Codepoint name</div><div class="modern-diagram-cell">Meaning</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">00</div><div class="modern-diagram-cell">Not-ECT</div><div class="modern-diagram-cell">Not ECN-capable transport</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">01</div><div class="modern-diagram-cell">ECT(1)</div><div class="modern-diagram-cell">ECN-capable transport</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">10</div><div class="modern-diagram-cell">ECT(0)</div><div class="modern-diagram-cell">ECN-capable transport</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">11</div><div class="modern-diagram-cell">CE</div><div class="modern-diagram-cell">Congestion experienced</div></div></div>
+</figure><pre>          Table 1: Recap of Codepoints of the ECN Field [RFC3168]
                              in the IP Header
 
    Further terminology used within this document:
 
    Encapsulator:  The tunnel endpoint function that adds an outer IP
-      header to tunnel a packet (also termed the 'ingress tunnel
-      endpoint' or just the 'ingress' where the context is clear).
+      header to tunnel a packet (also termed the &#x27;ingress tunnel
+      endpoint&#x27; or just the &#x27;ingress&#x27; where the context is clear).
 
    Decapsulator:  The tunnel endpoint function that removes an outer IP
-      header from a tunnelled packet (also termed the 'egress tunnel
-      endpoint' or just the 'egress' where the context is clear).
+      header from a tunnelled packet (also termed the &#x27;egress tunnel
+      endpoint&#x27; or just the &#x27;egress&#x27; where the context is clear).
 
    Incoming header:  The header of an arriving packet before
       encapsulation.
@@ -441,7 +432,7 @@ Table of Contents
 
 
 
-<span>Briscoe                      Standards Track                    [Page 6]</span></pre>
+Briscoe                      Standards Track                    [Page 6]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Appendix</span>
@@ -506,37 +497,23 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 8</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc6040">RFC 6040</a>                     ECN Tunnelling                November 2010</span>
+  <pre>RFC 6040                     ECN Tunnelling                November 2010
 
 
    Neither Limited Functionality mode nor Full Functionality mode are
-   used by an <a href="./rfc4301">RFC 4301</a> IPsec encapsulator, which simply copies the
+   used by an RFC 4301 IPsec encapsulator, which simply copies the
    incoming ECN field into the outer header.  An earlier key-exchange
-   phase ensures an <a href="./rfc4301">RFC 4301</a> ingress will not have to interwork with a
+   phase ensures an RFC 4301 ingress will not have to interwork with a
    legacy egress that does not support ECN.
 
-   These pre-existing behaviours are summarised in Figure 1.
+   These pre-existing behaviours are summarised in Figure 1.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Incoming Header</div><div class="modern-diagram-cell">Departing Outer Header</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">(also equal to  +---------------+---------------+---------------+</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">departing Inner</div><div class="modern-diagram-cell">RFC 3168 ECN</div><div class="modern-diagram-cell">RFC 3168 ECN</div><div class="modern-diagram-cell">RFC 4301 IPsec</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Header)</div><div class="modern-diagram-cell">Limited</div><div class="modern-diagram-cell">Full</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Functionality</div><div class="modern-diagram-cell">Functionality</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Not-ECT</div><div class="modern-diagram-cell">Not-ECT</div><div class="modern-diagram-cell">Not-ECT</div><div class="modern-diagram-cell">Not-ECT</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">ECT(0)</div><div class="modern-diagram-cell">Not-ECT</div><div class="modern-diagram-cell">ECT(0)</div><div class="modern-diagram-cell">ECT(0)</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">ECT(1)</div><div class="modern-diagram-cell">Not-ECT</div><div class="modern-diagram-cell">ECT(1)</div><div class="modern-diagram-cell">ECT(1)</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">CE</div><div class="modern-diagram-cell">Not-ECT</div><div class="modern-diagram-cell">ECT(0)</div><div class="modern-diagram-cell">CE</div></div></div>
+</figure><pre>    Figure 1: IP-in-IP Encapsulation: Recap of Pre-Existing Behaviours
 
-    +-----------------+-----------------------------------------------+
-    | Incoming Header |             Departing Outer Header            |
-    | (also equal to  +---------------+---------------+---------------+
-    | departing Inner |  <a href="./rfc3168">RFC 3168</a> ECN |  <a href="./rfc3168">RFC 3168</a> ECN | <a href="./rfc4301">RFC 4301</a> IPsec|
-    |     Header)     |    Limited    |     Full      |               |
-    |                 | Functionality | Functionality |               |
-    +-----------------+---------------+---------------+---------------+
-    |    Not-ECT      |   Not-ECT     |   Not-ECT     |   Not-ECT     |
-    |     ECT(0)      |   Not-ECT     |    ECT(0)     |    ECT(0)     |
-    |     ECT(1)      |   Not-ECT     |    ECT(1)     |    ECT(1)     |
-    |       CE        |   Not-ECT     |    ECT(0)     |      CE       |
-    +-----------------+---------------+---------------+---------------+
+3.2.  Decapsulation at Tunnel Egress
 
-
-    Figure 1: IP-in-IP Encapsulation: Recap of Pre-Existing Behaviours
-
-<span><a href="#section-3.2">3.2</a>.  Decapsulation at Tunnel Egress</span>
-
-   <a href="./rfc3168">RFC 3168</a> and <a href="./rfc4301">RFC 4301</a> specify the decapsulation behaviour summarised
+   RFC 3168 and RFC 4301 specify the decapsulation behaviour summarised
    in Figure 2.  The ECN field in the outgoing header is set to the
    codepoint at the intersection of the appropriate arriving inner
    header (row) and arriving outer header (column).
@@ -561,39 +538,26 @@ Table of Contents
 
 
 
-<span>Briscoe                      Standards Track                    [Page 8]</span></pre>
+Briscoe                      Standards Track                    [Page 8]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 9</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc6040">RFC 6040</a>                     ECN Tunnelling                November 2010</span>
-
-
-            +---------+------------------------------------------------+
-            |Arriving |            Arriving Outer Header               |
-            |   Inner +---------+------------+------------+------------+
-            |  Header | Not-ECT | ECT(0)     | ECT(1)     |     CE     |
-            +---------+---------+------------+------------+------------+
-  <a href="./rfc3168">RFC 3168</a>-&gt;| Not-ECT | Not-ECT |Not-ECT     |Not-ECT     |  &lt;drop&gt;    |
-  <a href="./rfc4301">RFC 4301</a>-&gt;| Not-ECT | Not-ECT |Not-ECT     |Not-ECT     |Not-ECT     |
-            |  ECT(0) |  ECT(0) | ECT(0)     | ECT(0)     |     CE     |
-            |  ECT(1) |  ECT(1) | ECT(1)     | ECT(1)     |     CE     |
-            |    CE   |      CE |     CE     |     CE     |     CE     |
-            +---------+---------+------------+------------+------------+
-
-   In pre-existing RFCs, the ECN field in the outgoing header was set to
+  <pre>RFC 6040                     ECN Tunnelling                November 2010</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Arriving</div><div class="modern-diagram-cell">Arriving Outer Header</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Inner +---------+------------+------------+------------+</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">Header</div><div class="modern-diagram-cell">Not-ECT</div><div class="modern-diagram-cell">ECT(0)</div><div class="modern-diagram-cell">ECT(1)</div><div class="modern-diagram-cell">CE</div></div><div class="modern-diagram-row" style="--cell-count: 6"><div class="modern-diagram-cell">RFC 3168-&gt;</div><div class="modern-diagram-cell">Not-ECT</div><div class="modern-diagram-cell">Not-ECT</div><div class="modern-diagram-cell">Not-ECT</div><div class="modern-diagram-cell">Not-ECT</div><div class="modern-diagram-cell">&lt;drop&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 6"><div class="modern-diagram-cell">RFC 4301-&gt;</div><div class="modern-diagram-cell">Not-ECT</div><div class="modern-diagram-cell">Not-ECT</div><div class="modern-diagram-cell">Not-ECT</div><div class="modern-diagram-cell">Not-ECT</div><div class="modern-diagram-cell">Not-ECT</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">ECT(0)</div><div class="modern-diagram-cell">ECT(0)</div><div class="modern-diagram-cell">ECT(0)</div><div class="modern-diagram-cell">ECT(0)</div><div class="modern-diagram-cell">CE</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">ECT(1)</div><div class="modern-diagram-cell">ECT(1)</div><div class="modern-diagram-cell">ECT(1)</div><div class="modern-diagram-cell">ECT(1)</div><div class="modern-diagram-cell">CE</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">CE</div><div class="modern-diagram-cell">CE</div><div class="modern-diagram-cell">CE</div><div class="modern-diagram-cell">CE</div><div class="modern-diagram-cell">CE</div></div></div>
+</figure><pre>   In pre-existing RFCs, the ECN field in the outgoing header was set to
    the codepoint at the intersection of the appropriate arriving inner
    header (row) and arriving outer header (column), or the packet was
    dropped where indicated.
 
      Figure 2: IP in IP Decapsulation; Recap of Pre-Existing Behaviour
 
-   The behaviour in the table derives from the logic given in <a href="./rfc3168">RFC 3168</a>
-   and <a href="./rfc4301">RFC 4301</a>, briefly recapped as follows:
+   The behaviour in the table derives from the logic given in RFC 3168
+   and RFC 4301, briefly recapped as follows:
 
    o  On decapsulation, if the inner ECN field is Not-ECT the outer is
-      ignored.  <a href="./rfc3168">RFC 3168</a> (but not <a href="./rfc4301">RFC 4301</a>) also specified that the
+      ignored.  RFC 3168 (but not RFC 4301) also specified that the
       decapsulator must drop a packet with a Not-ECT inner and CE in the
       outer.
 
@@ -601,33 +565,32 @@ Table of Contents
       set to CE; otherwise, the outer is ignored and the inner is used
       for the outgoing ECN field.
 
-   <a href="./rfc3168#section-9.2.2">Section&nbsp;9.2.2 of RFC 3168</a> also made it an auditable event for an
-   IPsec tunnel "if the ECN Field is changed inappropriately within an
-   IPsec tunnel...".  Inappropriate changes were not specifically
-   enumerated.  <a href="./rfc4301">RFC 4301</a> did not mention inappropriate ECN changes.
+   Section 9.2.2 of RFC 3168 also made it an auditable event for an
+   IPsec tunnel &quot;if the ECN Field is changed inappropriately within an
+   IPsec tunnel...&quot;.  Inappropriate changes were not specifically
+   enumerated.  RFC 4301 did not mention inappropriate ECN changes.
 
-<span><a href="#section-4">4</a>.  New ECN Tunnelling Rules</span>
+4.  New ECN Tunnelling Rules
 
-   The standards actions below in <a href="#section-4.1">Section 4.1</a> (ingress encapsulation)
-   and <a href="#section-4.2">Section 4.2</a> (egress decapsulation) define new default ECN tunnel
+   The standards actions below in Section 4.1 (ingress encapsulation)
+   and Section 4.2 (egress decapsulation) define new default ECN tunnel
    processing rules for any IP packet (v4 or v6) with any Diffserv
    codepoint.
 
    If these defaults do not meet a particular requirement, an alternate
    ECN tunnelling scheme can be introduced as part of the definition of
    an alternate congestion marking scheme used by a specific Diffserv
-   PHB (see [<a href="./rfc4774" title="&quot;Specifying Alternate Semantics for the Explicit Congestion Notification (ECN) Field&quot;">RFC4774</a>] and <a href="./rfc3168#section-5">Section&nbsp;5 of [RFC3168]</a>).  When designing such
-   alternate ECN tunnelling schemes, the principles in <a href="#section-7">Section 7</a> should
+   PHB (see [RFC4774] and Section 5 of [RFC3168]).  When designing such
+   alternate ECN tunnelling schemes, the principles in Section 7 should
 
 
 
-<span>Briscoe                      Standards Track                    [Page 9]</span></pre>
+Briscoe                      Standards Track                    [Page 9]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 10</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc6040">RFC 6040</a>                     ECN Tunnelling                November 2010</span>
+  <pre>RFC 6040                     ECN Tunnelling                November 2010
 
 
    be followed.  However, alternate ECN tunnelling schemes SHOULD be
@@ -637,13 +600,13 @@ Table of Contents
    to state anything about ECN tunnelling behaviour if the default
    behaviour in the present specification is sufficient.
 
-<span><a href="#section-4.1">4.1</a>.  Default Tunnel Ingress Behaviour</span>
+4.1.  Default Tunnel Ingress Behaviour
 
-   Two modes of encapsulation are defined here; a REQUIRED 'normal mode'
-   and a 'compatibility mode', which is for backward compatibility with
+   Two modes of encapsulation are defined here; a REQUIRED &#x27;normal mode&#x27;
+   and a &#x27;compatibility mode&#x27;, which is for backward compatibility with
    tunnel decapsulators that do not understand ECN.  Note that these are
    modes of the ingress tunnel endpoint only, not the whole tunnel.
-   <a href="#section-4.3">Section 4.3</a> explains why two modes are necessary and specifies the
+   Section 4.3 explains why two modes are necessary and specifies the
    circumstances in which it is sufficient to solely implement normal
    mode.
 
@@ -655,23 +618,12 @@ Table of Contents
    two-bit ECN field of the incoming IP header.  In compatibility mode,
    it clears the ECN field in the outer header to the Not-ECT codepoint
    (the IPv4 header checksum also changes whenever the ECN field is
-   changed).  These rules are tabulated for convenience in Figure 3.
+   changed).  These rules are tabulated for convenience in Figure 3.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Incoming Header</div><div class="modern-diagram-cell">Departing Outer Header</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">(also equal to  +---------------+---------------+</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">departing Inner</div><div class="modern-diagram-cell">Compatibility</div><div class="modern-diagram-cell">Normal</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Header)</div><div class="modern-diagram-cell">Mode</div><div class="modern-diagram-cell">Mode</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Not-ECT</div><div class="modern-diagram-cell">Not-ECT</div><div class="modern-diagram-cell">Not-ECT</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">ECT(0)</div><div class="modern-diagram-cell">Not-ECT</div><div class="modern-diagram-cell">ECT(0)</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">ECT(1)</div><div class="modern-diagram-cell">Not-ECT</div><div class="modern-diagram-cell">ECT(1)</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">CE</div><div class="modern-diagram-cell">Not-ECT</div><div class="modern-diagram-cell">CE</div></div></div>
+</figure><pre>              Figure 3: New IP in IP Encapsulation Behaviours
 
-            +-----------------+-------------------------------+
-            | Incoming Header |    Departing Outer Header     |
-            | (also equal to  +---------------+---------------+
-            | departing Inner | Compatibility |    Normal     |
-            |     Header)     |     Mode      |     Mode      |
-            +-----------------+---------------+---------------+
-            |    Not-ECT      |   Not-ECT     |   Not-ECT     |
-            |     ECT(0)      |   Not-ECT     |    ECT(0)     |
-            |     ECT(1)      |   Not-ECT     |    ECT(1)     |
-            |       CE        |   Not-ECT     |      CE       |
-            +-----------------+---------------+---------------+
-
-              Figure 3: New IP in IP Encapsulation Behaviours
-
-<span><a href="#section-4.2">4.2</a>.  Default Tunnel Egress Behaviour</span>
+4.2.  Default Tunnel Egress Behaviour
 
    To decapsulate the inner header at the tunnel egress, a compliant
    tunnel egress MUST set the outgoing ECN field to the codepoint at the
@@ -681,35 +633,24 @@ Table of Contents
 
 
 
-<span>Briscoe                      Standards Track                   [Page 10]</span></pre>
+Briscoe                      Standards Track                   [Page 10]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 11</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc6040">RFC 6040</a>                     ECN Tunnelling                November 2010</span>
+  <pre>RFC 6040                     ECN Tunnelling                November 2010
 
 
    whenever the ECN field is changed).  There is no need for more than
    one mode of decapsulation, as these rules cater for all known
-   requirements.
-
-            +---------+------------------------------------------------+
-            |Arriving |            Arriving Outer Header               |
-            |   Inner +---------+------------+------------+------------+
-            |  Header | Not-ECT | ECT(0)     | ECT(1)     |     CE     |
-            +---------+---------+------------+------------+------------+
-            | Not-ECT | Not-ECT |Not-ECT(!!!)|Not-ECT(!!!)| &lt;drop&gt;(!!!)|
-            |  ECT(0) |  ECT(0) | ECT(0)     | ECT(1)     |     CE     |
-            |  ECT(1) |  ECT(1) | ECT(1) (!) | ECT(1)     |     CE     |
-            |    CE   |      CE |     CE     |     CE(!!!)|     CE     |
-            +---------+---------+------------+------------+------------+
-
-    The ECN field in the outgoing header is set to the codepoint at the
+   requirements.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Arriving</div><div class="modern-diagram-cell">Arriving Outer Header</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Inner +---------+------------+------------+------------+</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">Header</div><div class="modern-diagram-cell">Not-ECT</div><div class="modern-diagram-cell">ECT(0)</div><div class="modern-diagram-cell">ECT(1)</div><div class="modern-diagram-cell">CE</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">Not-ECT</div><div class="modern-diagram-cell">Not-ECT</div><div class="modern-diagram-cell">Not-ECT(!!!)</div><div class="modern-diagram-cell">Not-ECT(!!!)</div><div class="modern-diagram-cell">&lt;drop&gt;(!!!)</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">ECT(0)</div><div class="modern-diagram-cell">ECT(0)</div><div class="modern-diagram-cell">ECT(0)</div><div class="modern-diagram-cell">ECT(1)</div><div class="modern-diagram-cell">CE</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">ECT(1)</div><div class="modern-diagram-cell">ECT(1)</div><div class="modern-diagram-cell">ECT(1) (!)</div><div class="modern-diagram-cell">ECT(1)</div><div class="modern-diagram-cell">CE</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">CE</div><div class="modern-diagram-cell">CE</div><div class="modern-diagram-cell">CE</div><div class="modern-diagram-cell">CE(!!!)</div><div class="modern-diagram-cell">CE</div></div></div>
+</figure><pre>    The ECN field in the outgoing header is set to the codepoint at the
       intersection of the appropriate arriving inner header (row) and
       arriving outer header (column), or the packet is dropped where
-   indicated.  Currently unused combinations are indicated by '(!!!)' or
-                                   '(!)'
+   indicated.  Currently unused combinations are indicated by &#x27;(!!!)&#x27; or
+                                   &#x27;(!)&#x27;
 
               Figure 4: New IP in IP Decapsulation Behaviour
 
@@ -720,7 +661,7 @@ Table of Contents
       propagate any other ECN codepoint onwards.  This is because the
       inner Not-ECT marking is set by transports that rely on dropped
       packets as an indication of congestion and would not understand or
-      respond to any other ECN codepoint [<a href="./rfc4774" title="&quot;Specifying Alternate Semantics for the Explicit Congestion Notification (ECN) Field&quot;">RFC4774</a>].  Specifically:
+      respond to any other ECN codepoint [RFC4774].  Specifically:
 
       *  If the inner ECN field is Not-ECT and the outer ECN field is
          CE, the decapsulator MUST drop the packet.
@@ -741,7 +682,7 @@ Table of Contents
 
 
 
-<span>Briscoe                      Standards Track                   [Page 11]</span></pre>
+Briscoe                      Standards Track                   [Page 11]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Appendix</span>
@@ -1826,62 +1767,58 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 30</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc6040">RFC 6040</a>                     ECN Tunnelling                November 2010</span>
+  <pre>RFC 6040                     ECN Tunnelling                November 2010
 
 
    physically protected domains across the public Internet.  In this
    case, there are certain management advantages to using IPsec in
    tunnel mode solely across the publicly accessible part of the path.
-   The path followed by a packet then crosses security 'domains'; the
+   The path followed by a packet then crosses security &#x27;domains&#x27;; the
    ones protected by physical or other means before and after the tunnel
    and the one protected by an IPsec tunnel across the otherwise
    unprotected domain.  The scenario in Figure 5 will be used where
-   endpoints 'A' and 'B' communicate through a tunnel.  The tunnel
-   ingress 'I' and egress 'E' are within physically protected edge
+   endpoints &#x27;A&#x27; and &#x27;B&#x27; communicate through a tunnel.  The tunnel
+   ingress &#x27;I&#x27; and egress &#x27;E&#x27; are within physically protected edge
    domains, while the tunnel spans an unprotected internetwork where
-   there may be 'men in the middle', M.
+   there may be &#x27;men in the middle&#x27;, M.
 
                 physically       unprotected     physically
-            &lt;-protected domain-&gt;&lt;--domain--&gt;&lt;-protected domain-&gt;
-            +------------------+            +------------------+
-            |                  |      M     |                  |
-            |    A--------&gt;I=========&gt;==========&gt;E--------&gt;B   |
-            |                  |            |                  |
-            +------------------+            +------------------+
-                           &lt;----IPsec secured----&gt;
+            &lt;-protected domain-&gt;&lt;--domain--&gt;&lt;-protected domain-&gt;</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">M</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">A--------&gt;I=========&gt;==========&gt;E--------&gt;B</div></div></div>
+</figure><pre>                           &lt;----IPsec secured----&gt;
                                    tunnel
 
                       Figure 5: IPsec Tunnel Scenario
 
-   IPsec encryption is typically used to prevent 'M' seeing messages
-   from 'A' to 'B'.  IPsec authentication is used to prevent 'M'
-   masquerading as the sender of messages from 'A' to 'B' or altering
-   their contents.  'I' can use IPsec tunnel mode to allow 'A' to
-   communicate with 'B', but impose encryption to prevent 'A' leaking
-   information to 'M'.  Or 'E' can insist that 'I' uses tunnel mode
-   authentication to prevent 'M' communicating information to 'B'.
+   IPsec encryption is typically used to prevent &#x27;M&#x27; seeing messages
+   from &#x27;A&#x27; to &#x27;B&#x27;.  IPsec authentication is used to prevent &#x27;M&#x27;
+   masquerading as the sender of messages from &#x27;A&#x27; to &#x27;B&#x27; or altering
+   their contents.  &#x27;I&#x27; can use IPsec tunnel mode to allow &#x27;A&#x27; to
+   communicate with &#x27;B&#x27;, but impose encryption to prevent &#x27;A&#x27; leaking
+   information to &#x27;M&#x27;.  Or &#x27;E&#x27; can insist that &#x27;I&#x27; uses tunnel mode
+   authentication to prevent &#x27;M&#x27; communicating information to &#x27;B&#x27;.
 
    Mutable IP header fields such as the ECN field (as well as the Time
    to Live (TTL) / Hop Limit and DS fields) cannot be included in the
-   cryptographic calculations of IPsec.  Therefore, if 'I' copies these
+   cryptographic calculations of IPsec.  Therefore, if &#x27;I&#x27; copies these
    mutable fields into the outer header that is exposed across the
-   tunnel it will have allowed a covert channel from 'A' to 'M' that
-   bypasses its encryption of the inner header.  And if 'E' copies these
+   tunnel it will have allowed a covert channel from &#x27;A&#x27; to &#x27;M&#x27; that
+   bypasses its encryption of the inner header.  And if &#x27;E&#x27; copies these
    fields from the outer header to the outgoing, even if it validates
-   authentication from 'I', it will have allowed a covert channel from
-   'M' to 'B'.
+   authentication from &#x27;I&#x27;, it will have allowed a covert channel from
+   &#x27;M&#x27; to &#x27;B&#x27;.
 
    ECN at the IP layer is designed to carry information about congestion
    from a congested resource towards downstream nodes.  Typically, a
    downstream transport might feed the information back somehow to the
    point upstream of the congestion that can regulate the load on the
-   congested resource, but other actions are possible [<a href="./rfc3168" title="&quot;The Addition of Explicit Congestion Notification (ECN) to IP&quot;">RFC3168</a>], <a href="#section-6">Section</a>
-   <a href="#section-6">6</a>.  In terms of the above unicast scenario, ECN effectively intends
+   congested resource, but other actions are possible [RFC3168], Section
+   6.  In terms of the above unicast scenario, ECN effectively intends
 
 
 
-<span>Briscoe                      Standards Track                   [Page 30]</span></pre>
+Briscoe                      Standards Track                   [Page 30]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 31</span>
@@ -2066,8 +2003,7 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Appendix</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc6040">RFC 6040</a>                     ECN Tunnelling                November 2010</span>
+  <pre>RFC 6040                     ECN Tunnelling                November 2010
 
 
    Figure 7 illustrates this in a combinatorial probability diagram.
@@ -2076,29 +2012,24 @@ Table of Contents
    side represents marking introduced across the tunnel.
 
         ^ outer header marking
-        |
-   100% +-----+---------+       The large square
-        |     |         |       represents 100 packets
-        | 30  |         |
-        |     |         |   p_t = 12/(100-30)
-    p_t +     +---------+       = 12/70
-        |     |   12    |       = 17%
-      0 +-----+---------+---&gt;
-        0    30%       100%  inner header marking
+        |</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">100% +-----+---------+       The large square</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">represents 100 packets</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">30</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">p_t = 12/(100-30)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">p_t +     +---------+       = 12/70</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">12</div><div class="modern-diagram-cell">= 17%</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 +-----+---------+---&gt;</div></div></div>
+</figure><pre>        0    30%       100%  inner header marking
 
        Figure 7: Tunnel Marking of Packets Already Marked at Ingress
 
-<span><a href="#appendix-D">Appendix D</a>.  Compromise on Decap with ECT(1) Inner and ECT(0) Outer</span>
+Appendix D.  Compromise on Decap with ECT(1) Inner and ECT(0) Outer
 
    A packet with an ECT(1) inner and an ECT(0) outer should never arise
-   from any known IETF protocol.  Without giving a reason, <a href="./rfc3168">RFC 3168</a> and
-   <a href="./rfc4301">RFC 4301</a> both say the outer should be ignored when decapsulating such
+   from any known IETF protocol.  Without giving a reason, RFC 3168 and
+   RFC 4301 both say the outer should be ignored when decapsulating such
    a packet.  This appendix explains why it was decided not to change
    this advice.
 
-   In summary, ECT(0) always means 'not congested' and ECT(1) may imply
-   the same [<a href="./rfc3168" title="&quot;The Addition of Explicit Congestion Notification (ECN) to IP&quot;">RFC3168</a>] or it may imply a higher severity congestion
-   signal [<a href="./rfc4774" title="&quot;Specifying Alternate Semantics for the Explicit Congestion Notification (ECN) Field&quot;">RFC4774</a>], [<a href="#ref-PCN3in1" title="&quot;Encoding 3 PCN- States in the IP header using a single DSCP&quot;">PCN3in1</a>], depending on the transport in use.
+   In summary, ECT(0) always means &#x27;not congested&#x27; and ECT(1) may imply
+   the same [RFC3168] or it may imply a higher severity congestion
+   signal [RFC4774], [PCN3in1], depending on the transport in use.
    Whether or not they mean the same, at the ingress the outer should
    have started the same as the inner, and only a broken or compromised
    router could have changed the outer to ECT(0).
@@ -2121,7 +2052,7 @@ Table of Contents
 
 
 
-<span>Briscoe                      Standards Track                   [Page 34]</span></pre>
+Briscoe                      Standards Track                   [Page 34]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Appendix</span>

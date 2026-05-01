@@ -266,42 +266,16 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 4</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc4724">RFC 4724</a>           Graceful Restart Mechanism for BGP       January 2007</span>
-
-
-         +--------------------------------------------------+
-         | Restart Flags (4 bits)                           |
-         +--------------------------------------------------+
-         | Restart Time in seconds (12 bits)                |
-         +--------------------------------------------------+
-         | Address Family Identifier (16 bits)              |
-         +--------------------------------------------------+
-         | Subsequent Address Family Identifier (8 bits)    |
-         +--------------------------------------------------+
-         | Flags for Address Family (8 bits)                |
-         +--------------------------------------------------+
-         | ...                                              |
-         +--------------------------------------------------+
-         | Address Family Identifier (16 bits)              |
-         +--------------------------------------------------+
-         | Subsequent Address Family Identifier (8 bits)    |
-         +--------------------------------------------------+
-         | Flags for Address Family (8 bits)                |
-         +--------------------------------------------------+
-
-   The use and meaning of the fields are as follows:
+  <pre>RFC 4724           Graceful Restart Mechanism for BGP       January 2007</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Restart Flags (4 bits)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Restart Time in seconds (12 bits)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Address Family Identifier (16 bits)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Subsequent Address Family Identifier (8 bits)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Flags for Address Family (8 bits)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Address Family Identifier (16 bits)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Subsequent Address Family Identifier (8 bits)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Flags for Address Family (8 bits)</div></div></div>
+</figure><pre>   The use and meaning of the fields are as follows:
 
       Restart Flags:
 
          This field contains bit flags related to restart.
 
-             0 1 2 3
-            +-+-+-+-+
-            |R|Resv.|
-            +-+-+-+-+
-
-         The most significant bit is defined as the Restart State (R)
+             0 1 2 3</pre><pre>            +-+-+-+-+</pre><pre>            |R|Resv.|</pre><pre>            +-+-+-+-+</pre><pre>         The most significant bit is defined as the Restart State (R)
          bit, which can be used to avoid possible deadlock caused by
          waiting for the End-of-RIB marker when multiple BGP speakers
          peering with each other restart.  When set (value 1), this bit
@@ -321,13 +295,12 @@ Table of Contents
 
 
 
-<span>Sangli, et al.              Standards Track                     [Page 4]</span></pre>
+Sangli, et al.              Standards Track                     [Page 4]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 5</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc4724">RFC 4724</a>           Graceful Restart Mechanism for BGP       January 2007</span>
+  <pre>RFC 4724           Graceful Restart Mechanism for BGP       January 2007
 
 
       Address Family Identifier (AFI), Subsequent Address Family
@@ -336,21 +309,17 @@ Table of Contents
          The AFI and SAFI, taken in combination, indicate that Graceful
          Restart is supported for routes that are advertised with the
          same AFI and SAFI.  Routes may be explicitly associated with a
-         particular AFI and SAFI using the encoding of [<a href="#ref-BGP-MP" title="&quot;Multiprotocol Extensions for BGP-4&quot;">BGP-MP</a>] or
+         particular AFI and SAFI using the encoding of [BGP-MP] or
          implicitly associated with &lt;AFI=IPv4, SAFI=Unicast&gt; if using
-         the encoding of [<a href="#ref-BGP-4" title="&quot;A Border Gateway Protocol 4 (BGP-4)&quot;">BGP-4</a>].
+         the encoding of [BGP-4].
 
       Flags for Address Family:
 
          This field contains bit flags relating to routes that were
-         advertised with the given AFI and SAFI.
-
-             0 1 2 3 4 5 6 7
-            +-+-+-+-+-+-+-+-+
-            |F|   Reserved  |
-            +-+-+-+-+-+-+-+-+
-
-         The most significant bit is defined as the Forwarding State (F)
+         advertised with the given AFI and SAFI.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">F</div><div class="modern-diagram-cell">Reserved</div></div></div>
+</figure><pre>         The most significant bit is defined as the Forwarding State (F)
          bit, which can be used to indicate whether the forwarding state
          for routes that were advertised with the given AFI and SAFI has
          indeed been preserved during the previous BGP restart.  When
@@ -363,12 +332,12 @@ Table of Contents
    When a sender of this capability does not include any &lt;AFI, SAFI&gt; in
    the capability, it means that the sender is not capable of preserving
    its forwarding state during BGP restart, but supports procedures for
-   the Receiving Speaker (as defined in <a href="#section-4.2">Section 4.2</a> of this document).
-   In that case, the value of the "Restart Time" field advertised by the
+   the Receiving Speaker (as defined in Section 4.2 of this document).
+   In that case, the value of the &quot;Restart Time&quot; field advertised by the
    sender is irrelevant.
 
    A BGP speaker MUST NOT include more than one instance of the Graceful
-   Restart Capability in the capability advertisement [<a href="#ref-BGP-CAP" title="&quot;Capabilities Advertisement with BGP-4&quot;">BGP-CAP</a>].  If
+   Restart Capability in the capability advertisement [BGP-CAP].  If
    more than one instance of the Graceful Restart Capability is carried
    in the capability advertisement, the receiver of the advertisement
    MUST ignore all but the last instance of the Graceful Restart
@@ -376,12 +345,12 @@ Table of Contents
 
    Including &lt;AFI=IPv4, SAFI=unicast&gt; in the Graceful Restart Capability
    does not imply that the IPv4 unicast routing information should be
-   carried by using the BGP multiprotocol extensions [<a href="#ref-BGP-MP" title="&quot;Multiprotocol Extensions for BGP-4&quot;">BGP-MP</a>] -- it
+   carried by using the BGP multiprotocol extensions [BGP-MP] -- it
    could be carried in the NLRI field of the BGP UPDATE message.
 
 
 
-<span>Sangli, et al.              Standards Track                     [Page 5]</span></pre>
+Sangli, et al.              Standards Track                     [Page 5]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 6</span>

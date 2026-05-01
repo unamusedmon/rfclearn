@@ -506,15 +506,14 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 8</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc6425">RFC 6425</a>            P2MP MPLS Extensions to LSP PING       November 2011</span>
+  <pre>RFC 6425            P2MP MPLS Extensions to LSP PING       November 2011
 
 
-<span><a href="#section-3.1">3.1</a>.  Identifying the LSP Under Test</span>
+3.1.  Identifying the LSP Under Test
 
-<span><a href="#section-3.1.1">3.1.1</a>.  Identifying a P2MP MPLS TE LSP</span>
+3.1.1.  Identifying a P2MP MPLS TE LSP
 
-   [<a>RFC4379</a>] defines how an MPLS TE LSP under test may be identified in
+   [RFC4379] defines how an MPLS TE LSP under test may be identified in
    an echo request.  A Target FEC Stack TLV is used to carry either an
    RSVP IPv4 Session or an RSVP IPv6 Session sub-TLV.
 
@@ -523,7 +522,7 @@ Table of Contents
    carry exactly one of two new sub-TLVs: either an RSVP P2MP IPv4
    Session sub-TLV or an RSVP P2MP IPv6 Session sub-TLV.  These sub-TLVs
    carry fields from the RSVP-TE P2MP SESSION and SENDER_TEMPLATE
-   objects [<a href="./rfc4875" title="&quot;Extensions to Resource Reservation Protocol - Traffic Engineering (RSVP-TE) for Point-to- Multipoint TE Label Switched Paths (LSPs)&quot;">RFC4875</a>] and so provide sufficient information to uniquely
+   objects [RFC4875] and so provide sufficient information to uniquely
    identify the LSP.
 
    The new sub-TLVs are assigned Sub-Type identifiers as follows, and
@@ -534,73 +533,39 @@ Table of Contents
               17         20                RSVP P2MP IPv4 Session
               18         56                RSVP P2MP IPv6 Session
 
-<span><a href="#section-3.1.1.1">3.1.1.1</a>.  RSVP P2MP IPv4 Session Sub-TLV</span>
+3.1.1.1.  RSVP P2MP IPv4 Session Sub-TLV
 
    The format of the RSVP P2MP IPv4 Session sub-TLV value field is
    specified in the following figure.  The value fields are taken from
    the definitions of the P2MP IPv4 LSP SESSION Object and the P2MP IPv4
-   SENDER_TEMPLATE Object in Sections <a href="#section-19.1.1">19.1.1</a> and <a href="#section-19.2.1">19.2.1</a> of [<a href="./rfc4875" title="&quot;Extensions to Resource Reservation Protocol - Traffic Engineering (RSVP-TE) for Point-to- Multipoint TE Label Switched Paths (LSPs)&quot;">RFC4875</a>].
+   SENDER_TEMPLATE Object in Sections 19.1.1 and 19.2.1 of [RFC4875].
    Note that the Sub-Group ID of the SENDER_TEMPLATE is not required.
 
-       0                   1                   2                   3
-       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                           P2MP ID                             |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |          MUST Be Zero         |     Tunnel ID                 |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                       Extended Tunnel ID                      |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                   IPv4 Tunnel Sender Address                  |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |          MUST Be Zero         |            LSP ID             |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-
-
-
-
-
-<span>Saxena, et al.               Standards Track                    [Page 8]</span></pre>
+       0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">P2MP ID</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">MUST Be Zero</div><div class="modern-diagram-cell">Tunnel ID</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Extended Tunnel ID</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">IPv4 Tunnel Sender Address</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">MUST Be Zero</div><div class="modern-diagram-cell">LSP ID</div></div></div>
+</figure><pre>Saxena, et al.               Standards Track                    [Page 8]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 9</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc6425">RFC 6425</a>            P2MP MPLS Extensions to LSP PING       November 2011</span>
+  <pre>RFC 6425            P2MP MPLS Extensions to LSP PING       November 2011
 
 
-<span><a href="#section-3.1.1.2">3.1.1.2</a>.  RSVP P2MP IPv6 Session Sub-TLV</span>
+3.1.1.2.  RSVP P2MP IPv6 Session Sub-TLV
 
    The format of the RSVP P2MP IPv6 Session sub-TLV value field is
    specified in the following figure.  The value fields are taken from
    the definitions of the P2MP IPv6 LSP SESSION Object and the P2MP IPv6
-   SENDER_TEMPLATE Object in Sections <a href="#section-19.1.2">19.1.2</a> and <a href="#section-19.2.2">19.2.2</a> of [<a href="./rfc4875" title="&quot;Extensions to Resource Reservation Protocol - Traffic Engineering (RSVP-TE) for Point-to- Multipoint TE Label Switched Paths (LSPs)&quot;">RFC4875</a>].
+   SENDER_TEMPLATE Object in Sections 19.1.2 and 19.2.2 of [RFC4875].
    Note that the Sub-Group ID of the SENDER_TEMPLATE is not required.
 
-       0                   1                   2                   3
-       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                           P2MP ID                             |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |          MUST Be Zero         |     Tunnel ID                 |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                                                               |
-      |                       Extended Tunnel ID                      |
-      |                                                               |
-      |                                                               |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                                                               |
-      |                   IPv6 Tunnel Sender Address                  |
-      |                                                               |
-      |                                                               |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |          MUST Be Zero         |            LSP ID             |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+       0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">P2MP ID</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">MUST Be Zero</div><div class="modern-diagram-cell">Tunnel ID</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Extended Tunnel ID</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">IPv6 Tunnel Sender Address</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">MUST Be Zero</div><div class="modern-diagram-cell">LSP ID</div></div></div>
+</figure><pre>3.1.2.  Identifying a Multicast LDP LSP
 
-<span><a href="#section-3.1.2">3.1.2</a>.  Identifying a Multicast LDP LSP</span>
-
-   [<a>RFC4379</a>] defines how a P2P LDP LSP under test may be identified in
+   [RFC4379] defines how a P2P LDP LSP under test may be identified in
    an echo request.  A Target FEC Stack TLV is used to carry one or more
    sub-TLVs (for example, an IPv4 Prefix FEC sub-TLV) that identify the
    LSP.
@@ -609,7 +574,7 @@ Table of Contents
    message MUST carry a Target FEC Stack TLV, and this MUST carry
    exactly one of two new sub-TLVs: either a Multicast P2MP LDP FEC
    Stack sub-TLV or a Multicast MP2MP LDP FEC Stack sub-TLV.  These sub-
-   TLVs use fields from the multicast LDP messages [<a href="./rfc6388" title="&quot;Label Distribution Protocol Extensions for Point-to-Multipoint and Multipoint-to-Multipoint Label Switched Paths&quot;">RFC6388</a>] and so
+   TLVs use fields from the multicast LDP messages [RFC6388] and so
    provide sufficient information to uniquely identify the LSP.
 
    The new sub-TLVs are assigned sub-type identifiers as follows and are
@@ -621,13 +586,12 @@ Table of Contents
 
 
 
-<span>Saxena, et al.               Standards Track                    [Page 9]</span></pre>
+Saxena, et al.               Standards Track                    [Page 9]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 10</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc6425">RFC 6425</a>            P2MP MPLS Extensions to LSP PING       November 2011</span>
+  <pre>RFC 6425            P2MP MPLS Extensions to LSP PING       November 2011
 
 
       Sub-Type #       Length              Value Field
@@ -635,32 +599,25 @@ Table of Contents
               19       Variable            Multicast P2MP LDP FEC Stack
               20       Variable            Multicast MP2MP LDP FEC Stack
 
-<span><a href="#section-3.1.2.1">3.1.2.1</a>.  Multicast LDP FEC Stack Sub-TLVs</span>
+3.1.2.1.  Multicast LDP FEC Stack Sub-TLVs
 
    Both Multicast P2MP and MP2MP LDP FEC Stack have the same format, as
    specified in the following figure.
 
-    0                   1                   2                   3
-    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |        Address Family         | Address Length| Root LSR Addr |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                                                               |
-   ~                   Root LSR Address (Cont.)                    ~
-   |                                                               |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |        Opaque Length          |         Opaque Value ...      |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+                               +
-   ~                                                               ~
-   |                                                               |
+    0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Address Family</div><div class="modern-diagram-cell">Address Length</div><div class="modern-diagram-cell">Root LSR Addr</div></div></div>
+</figure><pre>   ~                   Root LSR Address (Cont.)                    ~</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Opaque Length</div><div class="modern-diagram-cell">Opaque Value ...</div></div></div>
+</figure><pre>   ~                                                               ~</pre><div class="modern-diagram-fallback">   |                                                               |
    |                               +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |                               |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-   Address Family
+</div><pre>   Address Family
 
       Two-octet quantity containing a value from ADDRESS FAMILY NUMBERS
-      in [<a href="#ref-IANA-AF">IANA-AF</a>] that encodes the address family for the Root LSR
+      in [IANA-AF] that encodes the address family for the Root LSR
       Address.
 
    Address Length
@@ -681,13 +638,12 @@ Table of Contents
 
 
 
-<span>Saxena, et al.               Standards Track                   [Page 10]</span></pre>
+Saxena, et al.               Standards Track                   [Page 10]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 11</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc6425">RFC 6425</a>            P2MP MPLS Extensions to LSP PING       November 2011</span>
+  <pre>RFC 6425            P2MP MPLS Extensions to LSP PING       November 2011
 
 
    Opaque Value
@@ -699,7 +655,7 @@ Table of Contents
    Address Family is IPv6, the Address Length MUST be 16.  No other
    Address Family values are defined at present.
 
-<span><a href="#section-3.1.2.2">3.1.2.2</a>.  Applicability to Multipoint-to-Multipoint LSPs</span>
+3.1.2.2.  Applicability to Multipoint-to-Multipoint LSPs
 
    The mechanisms defined in this document can be extended to include
    Multipoint-to-Multipoint (MP2MP) Multicast LSPs.  In an MP2MP LSP
@@ -709,22 +665,17 @@ Table of Contents
    like a P2MP head-end node.  When a leaf node is acting like a P2MP
    head-end node, the remaining leaf nodes act like egress or bud nodes.
 
-<span><a href="#section-3.2">3.2</a>.  Limiting the Scope of Responses</span>
+3.2.  Limiting the Scope of Responses
 
    A new TLV is defined for inclusion in the echo request message.
 
    The P2MP Responder Identifier TLV is assigned the TLV type value 11
    and is encoded as follows.
 
-       0                   1                   2                   3
-       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |Type = 11   (P2MP Responder ID)|       Length = Variable       |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      ~                          Sub-TLVs                             ~
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-      Sub-TLVs:
+       0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Type = 11   (P2MP Responder ID)</div><div class="modern-diagram-cell">Length = Variable</div></div></div>
+</figure><pre>      ~                          Sub-TLVs                             ~</pre><pre>      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>      Sub-TLVs:
 
          Zero, one, or more sub-TLVs as defined below.
 
@@ -741,13 +692,12 @@ Table of Contents
 
 
 
-<span>Saxena, et al.               Standards Track                   [Page 11]</span></pre>
+Saxena, et al.               Standards Track                   [Page 11]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 12</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc6425">RFC 6425</a>            P2MP MPLS Extensions to LSP PING       November 2011</span>
+  <pre>RFC 6425            P2MP MPLS Extensions to LSP PING       November 2011
 
 
    Four sub-TLVs are defined for inclusion in the P2MP Responder
@@ -764,34 +714,21 @@ Table of Contents
    Also defined is the intended behavior of the responding node upon
    receiving any of these sub-TLVs.
 
-<span><a href="#section-3.2.1">3.2.1</a>.  Egress Address P2MP Responder Sub-TLVs</span>
+3.2.1.  Egress Address P2MP Responder Sub-TLVs
 
    The encoding of the IPv4 Egress Address P2MP Responder sub-TLV is as
    follows:
 
-       0                   1                   2                   3
-       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |         Sub-Type = 1          |        Length = 4             |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                    32-bit IPv4 Address                        |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-   The encoding of the IPv6 Egress Address P2MP Responder sub-TLV is as
+       0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Sub-Type = 1</div><div class="modern-diagram-cell">Length = 4</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">32-bit IPv4 Address</div></div></div>
+</figure><pre>   The encoding of the IPv6 Egress Address P2MP Responder sub-TLV is as
    follows:
 
-       0                   1                   2                   3
-       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |         Sub-Type = 2          |        Length = 16            |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                                                               |
-      |                    128-bit IPv6 Address                       |
-      |                                                               |
-      |                                                               |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-   A node that receives an echo request with this sub-TLV present MUST
+       0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Sub-Type = 2</div><div class="modern-diagram-cell">Length = 16</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">128-bit IPv6 Address</div></div></div>
+</figure><pre>   A node that receives an echo request with this sub-TLV present MUST
    respond if the node lies on the path to the address in the sub-TLV
    and MUST NOT respond if it does not lie on the path to the address in
    the sub-TLV.  For this to be possible, the address in the sub-TLV
@@ -801,13 +738,12 @@ Table of Contents
 
 
 
-<span>Saxena, et al.               Standards Track                   [Page 12]</span></pre>
+Saxena, et al.               Standards Track                   [Page 12]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 13</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc6425">RFC 6425</a>            P2MP MPLS Extensions to LSP PING       November 2011</span>
+  <pre>RFC 6425            P2MP MPLS Extensions to LSP PING       November 2011
 
 
    field of the S2L_SUB_LSP object, when corresponding egress or bud
@@ -824,34 +760,21 @@ Table of Contents
    carrying Multicast LDP, then it will not respond since it is unaware
    of whether it lies on the path to the address in the sub-TLV.
 
-<span><a href="#section-3.2.2">3.2.2</a>.  Node Address P2MP Responder Sub-TLVs</span>
+3.2.2.  Node Address P2MP Responder Sub-TLVs
 
    The encoding of the IPv4 Node Address P2MP Responder sub-TLV is as
    follows:
 
-       0                   1                   2                   3
-       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |         Sub-Type = 3          |        Length = 4             |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                    32-bit IPv4 Address                        |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-   The encoding of the IPv6 Node Address P2MP Responder sub-TLV is as
+       0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Sub-Type = 3</div><div class="modern-diagram-cell">Length = 4</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">32-bit IPv4 Address</div></div></div>
+</figure><pre>   The encoding of the IPv6 Node Address P2MP Responder sub-TLV is as
    follows:
 
-       0                   1                   2                   3
-       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |         Sub-Type = 4          |        Length = 16            |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                                                               |
-      |                    128-bit IPv6 Address                       |
-      |                                                               |
-      |                                                               |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-   The IPv4 or IPv6 Node Address P2MP Responder sub-TLVs MAY be used in
+       0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Sub-Type = 4</div><div class="modern-diagram-cell">Length = 16</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">128-bit IPv6 Address</div></div></div>
+</figure><pre>   The IPv4 or IPv6 Node Address P2MP Responder sub-TLVs MAY be used in
    an echo request carrying either RSVP P2MP Session or Multicast LDP
    FEC Stack sub-TLVs.
 
@@ -861,13 +784,12 @@ Table of Contents
 
 
 
-<span>Saxena, et al.               Standards Track                   [Page 13]</span></pre>
+Saxena, et al.               Standards Track                   [Page 13]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 14</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc6425">RFC 6425</a>            P2MP MPLS Extensions to LSP PING       November 2011</span>
+  <pre>RFC 6425            P2MP MPLS Extensions to LSP PING       November 2011
 
 
    in the sub-TLV does not match any address that is local to the node.
@@ -878,22 +800,17 @@ Table of Contents
    egress node for that P2MP LSP.  The address of a node that is not on
    the P2MP LSP MAY be used as a check for that no reply is received.
 
-<span><a href="#section-3.3">3.3</a>.  Preventing Congestion of Echo Replies</span>
+3.3.  Preventing Congestion of Echo Replies
 
    A new TLV is defined for inclusion in the Echo request message.
 
    The Echo Jitter TLV is assigned the TLV type value 12 and is encoded
    as follows.
 
-       0                   1                   2                   3
-       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |      Type = 12 (Jitter TLV)   |          Length = 4           |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                          Jitter Time                          |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-      Jitter Time:
+       0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Type = 12 (Jitter TLV)</div><div class="modern-diagram-cell">Length = 4</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Jitter Time</div></div></div>
+</figure><pre>      Jitter Time:
 
          This field specifies the upper bound of the jitter period that
          should be applied by a responding node to determine how long to
@@ -906,22 +823,19 @@ Table of Contents
    The Echo Jitter TLV only has meaning on an echo request message.  If
    present on an echo reply message, it MUST be ignored.
 
-<span><a href="#section-3.4">3.4</a>.  Respond Only If TTL Expired Flag</span>
+3.4.  Respond Only If TTL Expired Flag
 
    A new flag is being introduced in the Global Flags field defined in
-   [<a href="./rfc4379" title="&quot;Detecting Multi-Protocol Label Switched (MPLS) Data Plane Failures&quot;">RFC4379</a>].  The new format of the Global Flags field is:
+   [RFC4379].  The new format of the Global Flags field is:
 
-       0                   1
-       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |             MBZ           |T|V|
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-   The V flag is described in [<a href="./rfc4379" title="&quot;Detecting Multi-Protocol Label Switched (MPLS) Data Plane Failures&quot;">RFC4379</a>].
+       0                   1</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">MBZ</div><div class="modern-diagram-cell">T</div><div class="modern-diagram-cell">V</div></div></div>
+</figure><pre>   The V flag is described in [RFC4379].
 
 
 
-<span>Saxena, et al.               Standards Track                   [Page 14]</span></pre>
+Saxena, et al.               Standards Track                   [Page 14]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 15</span>
@@ -1586,15 +1500,14 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 26</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc6425">RFC 6425</a>            P2MP MPLS Extensions to LSP PING       November 2011</span>
+  <pre>RFC 6425            P2MP MPLS Extensions to LSP PING       November 2011
 
 
-<span><a href="#section-7.3">7.3</a>.  New Global Flags Registry</span>
+7.3.  New Global Flags Registry
 
-   IANA has created a new sub-registry of the "Multi-Protocol Label
-   Switching (MPLS) Label Switched Paths (LSPs) Ping Parameters"
-   registry.  The sub-registry is called the "Global Flags" registry.
+   IANA has created a new sub-registry of the &quot;Multi-Protocol Label
+   Switching (MPLS) Label Switched Paths (LSPs) Ping Parameters&quot;
+   registry.  The sub-registry is called the &quot;Global Flags&quot; registry.
 
    This registry tracks the assignment of 16 flags in the Global Flags
    field of the MPLS LSP ping echo request message.  The flags are
@@ -1602,27 +1515,22 @@ Table of Contents
 
    New entries are assigned by Standards Action.
 
-   Initial entries in the registry are as follows:
-
-   Bit number  |  Name                      | Reference
-   ------------+----------------------------+--------------
-     15        |  V Flag                    | [<a href="./rfc4379" title="&quot;Detecting Multi-Protocol Label Switched (MPLS) Data Plane Failures&quot;">RFC4379</a>]
-     14        |  T Flag                    | [<a href="./rfc6425">RFC6425</a>]
-     13-0      |  Unassigned                |
-
-<span><a href="#section-8">8</a>.  Security Considerations</span>
+   Initial entries in the registry are as follows:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Bit number</div><div class="modern-diagram-cell">Name</div><div class="modern-diagram-cell">Reference</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">15</div><div class="modern-diagram-cell">V Flag</div><div class="modern-diagram-cell">[RFC4379]</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">14</div><div class="modern-diagram-cell">T Flag</div><div class="modern-diagram-cell">[RFC6425]</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">13-0</div><div class="modern-diagram-cell">Unassigned</div></div></div>
+</figure><pre>8.  Security Considerations
 
    This document does not introduce security concerns over and above
-   those described in [<a href="./rfc4379" title="&quot;Detecting Multi-Protocol Label Switched (MPLS) Data Plane Failures&quot;">RFC4379</a>].  Note that because of the scalability
+   those described in [RFC4379].  Note that because of the scalability
    implications of many egresses to P2MP MPLS LSPs, there is a stronger
    concern about regulating the LSP ping traffic passed to the control
    plane by the use of a rate limiter applied to the LSP ping well-known
    UDP port.  This rate limiting might lead to false indications of LSP
    failure.
 
-<span><a href="#section-9">9</a>.  Acknowledgements</span>
+9.  Acknowledgements
 
-   The authors would like to acknowledge the authors of [<a href="./rfc4379" title="&quot;Detecting Multi-Protocol Label Switched (MPLS) Data Plane Failures&quot;">RFC4379</a>] for
+   The authors would like to acknowledge the authors of [RFC4379] for
    their work, which is substantially re-used in this document.  Also,
    thanks to the members of the MBONED working group for their review of
    this material, to Daniel King and Mustapha Aissaoui for their
@@ -1641,7 +1549,7 @@ Table of Contents
 
 
 
-<span>Saxena, et al.               Standards Track                   [Page 26]</span></pre>
+Saxena, et al.               Standards Track                   [Page 26]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 27</span>

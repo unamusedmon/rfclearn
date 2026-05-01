@@ -206,8 +206,7 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 3</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2406">RFC 2406</a>           IP Encapsulating Security Payload       November 1998</span>
+  <pre>RFC 2406           IP Encapsulating Security Payload       November 1998
 
 
    confidentiality requires selection of tunnel mode, and is most
@@ -224,44 +223,28 @@ Table of Contents
    Header (AH), and the different key management options available for
    ESP and AH.  (With regard to the last topic, the current key
    management options required for both AH and ESP are manual keying and
-   automated keying via IKE [<a href="#ref-HC98" title="&quot;The Internet Key Exchange (IKE)&quot;">HC98</a>].)
+   automated keying via IKE [HC98].)
 
    The keywords MUST, MUST NOT, REQUIRED, SHALL, SHALL NOT, SHOULD,
    SHOULD NOT, RECOMMENDED, MAY, and OPTIONAL, when they appear in this
-   document, are to be interpreted as described in <a href="./rfc2119">RFC 2119</a> [<a href="#ref-Bra97" title="&quot;Key words for use in RFCs to Indicate Requirement Level&quot;">Bra97</a>].
+   document, are to be interpreted as described in RFC 2119 [Bra97].
 
-<span><a href="#section-2">2</a>.  Encapsulating Security Payload Packet Format</span>
+2.  Encapsulating Security Payload Packet Format
 
    The protocol header (IPv4, IPv6, or Extension) immediately preceding
    the ESP header will contain the value 50 in its Protocol (IPv4) or
-   Next Header (IPv6, Extension) field [<a href="#ref-STD-2" title="&quot;Assigned Numbers&quot;">STD-2</a>].
+   Next Header (IPv6, Extension) field [STD-2].
 
- 0                   1                   2                   3
- 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ ----
-|               Security Parameters Index (SPI)                 | ^Auth.
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ |Cov-
-|                      Sequence Number                          | |erage
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ | ----
-|                    Payload Data* (variable)                   | |   ^
-~                                                               ~ |   |
-|                                                               | |Conf.
-+               +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ |Cov-
-|               |     Padding (0-255 bytes)                     | |erage*
-+-+-+-+-+-+-+-+-+               +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ |   |
-|                               |  Pad Length   | Next Header   | v   v
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ ------
-|                 Authentication Data (variable)                |
-~                                                               ~
-|                                                               |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-        * If included in the Payload field, cryptographic
+ 0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Security Parameters Index (SPI)</div><div class="modern-diagram-cell">^Auth.</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</div><div class="modern-diagram-cell">Cov-</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Sequence Number</div><div class="modern-diagram-cell">erage</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Payload Data* (variable)</div><div class="modern-diagram-cell">^</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Conf.</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">+               +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</div><div class="modern-diagram-cell">Cov-</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Padding (0-255 bytes)</div><div class="modern-diagram-cell">erage*</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Pad Length</div><div class="modern-diagram-cell">Next Header</div><div class="modern-diagram-cell">v   v</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Authentication Data (variable)</div></div></div>
+</figure><pre>~                                                               ~</pre><pre>|                                                               |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>        * If included in the Payload field, cryptographic
           synchronization data, e.g., an Initialization Vector (IV, see
 
 
 
-<span>Kent &amp; Atkinson             Standards Track                     [Page 3]</span></pre>
+Kent &amp; Atkinson             Standards Track                     [Page 3]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 4</span>

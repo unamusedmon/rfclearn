@@ -926,8 +926,7 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 15</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc5336">RFC 5336</a>                   EAI SMTP Extension             September 2008</span>
+  <pre>RFC 5336                   EAI SMTP Extension             September 2008
 
 
    If the SMTP client does not support the UTF8SMTP extension, but
@@ -943,22 +942,17 @@ Table of Contents
    NOT include non-ASCII characters in replies except in the limited
    cases specifically permitted in this section.
 
-<span><a href="#section-4">4</a>.  IANA Considerations</span>
+4.  IANA Considerations
 
-   IANA has added a new value "UTF8SMTP" to the SMTP Service Extension
+   IANA has added a new value &quot;UTF8SMTP&quot; to the SMTP Service Extension
    subregistry of the Mail Parameters registry, according to the
-   following data:
-
-        +----------+---------------------------------+-----------+
-        | Keywords | Description                     | Reference |
-        +----------+---------------------------------+-----------+
-        | UTF8SMTP | Internationalized email address | [<a href="./rfc5336">RFC5336</a>] |
-        +----------+---------------------------------+-----------+
-
-   This document adds new values to the SMTP Enhanced Status Code
+   following data:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Keywords</div><div class="modern-diagram-cell">Description</div><div class="modern-diagram-cell">Reference</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">UTF8SMTP</div><div class="modern-diagram-cell">Internationalized email address</div><div class="modern-diagram-cell">[RFC5336]</div></div></div>
+</figure><pre>   This document adds new values to the SMTP Enhanced Status Code
    subregistry of the Mail Parameters registry, following the guidance
-   in Sections <a href="#section-3.5">3.5</a> and <a href="#section-3.7.4.2">3.7.4.2</a> of this document, and being based on
-   [<a href="./rfc5248" title="&quot;A Registry for SMTP Enhanced Mail System Status Codes&quot;">RFC5248</a>].  The registration data is as follows:
+   in Sections 3.5 and 3.7.4.2 of this document, and being based on
+   [RFC5248].  The registration data is as follows:
 
 
 
@@ -981,7 +975,7 @@ Table of Contents
 
 
 
-<span>Yao &amp; Mao                     Experimental                     [Page 15]</span></pre>
+Yao &amp; Mao                     Experimental                     [Page 15]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 16</span>
@@ -1046,35 +1040,23 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 17</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc5336">RFC 5336</a>                   EAI SMTP Extension             September 2008</span>
+  <pre>RFC 5336                   EAI SMTP Extension             September 2008
 
 
-   The "Mail Transmission Types" registry under the Mail Parameters
+   The &quot;Mail Transmission Types&quot; registry under the Mail Parameters
    registry is requested to be updated to include the following new
-   entries:
-
-   +---------------+----------------------------+----------------------+
-   | WITH protocol | Description                | Reference            |
-   | types         |                            |                      |
-   +---------------+----------------------------+----------------------+
-   | UTF8SMTP      | UTF8SMTP with Service      | [<a href="./rfc5336">RFC5336</a>]            |
-   |               | Extensions                 |                      |
-   | UTF8SMTPA     | UTF8SMTP with SMTP AUTH    | [<a href="./rfc4954" title="&quot;SMTP Service Extension for Authentication&quot;">RFC4954</a>] [<a href="./rfc5336">RFC5336</a>]  |
-   | UTF8SMTPS     | UTF8SMTP with STARTTLS     | [<a href="./rfc3207" title="&quot;SMTP Service Extension for Secure SMTP over Transport Layer Security&quot;">RFC3207</a>] [<a href="./rfc5336">RFC5336</a>]  |
-   | UTF8SMTPSA    | UTF8SMTP with both         | [<a href="./rfc3207" title="&quot;SMTP Service Extension for Secure SMTP over Transport Layer Security&quot;">RFC3207</a>] [<a href="./rfc4954" title="&quot;SMTP Service Extension for Authentication&quot;">RFC4954</a>]  |
-   |               | STARTTLS and SMTP AUTH     | [<a href="./rfc5336">RFC5336</a>]            |
-   +---------------+----------------------------+----------------------+
-
-<span><a href="#section-5">5</a>.  Security Considerations</span>
+   entries:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">WITH protocol</div><div class="modern-diagram-cell">Description</div><div class="modern-diagram-cell">Reference</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">types</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">UTF8SMTP</div><div class="modern-diagram-cell">UTF8SMTP with Service</div><div class="modern-diagram-cell">[RFC5336]</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Extensions</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">UTF8SMTPA</div><div class="modern-diagram-cell">UTF8SMTP with SMTP AUTH</div><div class="modern-diagram-cell">[RFC4954] [RFC5336]</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">UTF8SMTPS</div><div class="modern-diagram-cell">UTF8SMTP with STARTTLS</div><div class="modern-diagram-cell">[RFC3207] [RFC5336]</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">UTF8SMTPSA</div><div class="modern-diagram-cell">UTF8SMTP with both</div><div class="modern-diagram-cell">[RFC3207] [RFC4954]</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">STARTTLS and SMTP AUTH</div><div class="modern-diagram-cell">[RFC5336]</div></div></div>
+</figure><pre>5.  Security Considerations
 
    See the extended security considerations discussion in the framework
-   document [<a href="./rfc4952" title="&quot;Overview and Framework for Internationalized Email&quot;">RFC4952</a>].
+   document [RFC4952].
 
-<span><a href="#section-6">6</a>.  Acknowledgements</span>
+6.  Acknowledgements
 
    Much of the text in the initial version of this specification was
-   derived or copied from [<a href="#ref-Emailaddr" title="&quot;Internationalization of Email Addresses&quot;">Emailaddr</a>] with the permission of the author.
+   derived or copied from [Emailaddr] with the permission of the author.
    Significant comments and suggestions were received from Xiaodong LEE,
    Nai-Wen Hsu, Yangwoo KO, Yoshiro YONEYA, and other members of the JET
    team and were incorporated into the specification.  Additional
@@ -1101,7 +1083,7 @@ Table of Contents
 
 
 
-<span>Yao &amp; Mao                     Experimental                     [Page 17]</span></pre>
+Yao &amp; Mao                     Experimental                     [Page 17]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 18</span>

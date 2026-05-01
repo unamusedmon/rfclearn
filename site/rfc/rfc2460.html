@@ -266,8 +266,7 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 4</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2460">RFC 2460</a>                   IPv6 Specification              December 1998</span>
+  <pre>RFC 2460                   IPv6 Specification              December 1998
 
 
    path MTU    - the minimum link MTU of all the links in a path between
@@ -283,35 +282,24 @@ Table of Contents
    requirements for hosts when receiving packets from, and interacting
    with neighbors over, the latter (non-forwarding) interfaces.
 
-<span><a href="#section-3">3</a>.  IPv6 Header Format</span>
-
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |Version| Traffic Class |           Flow Label                  |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |         Payload Length        |  Next Header  |   Hop Limit   |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                                                               |
-   +                                                               +
-   |                                                               |
-   +                         Source Address                        +
-   |                                                               |
+3.  IPv6 Header Format</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Version</div><div class="modern-diagram-cell">Traffic Class</div><div class="modern-diagram-cell">Flow Label</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Payload Length</div><div class="modern-diagram-cell">Next Header</div><div class="modern-diagram-cell">Hop Limit</div></div></div>
+</figure><pre>   +                         Source Address                        +</pre><div class="modern-diagram-fallback">   |                                                               |
    +                                                               +
    |                                                               |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |                                                               |
    +                                                               +
-   |                                                               |
-   +                      Destination Address                      +
-   |                                                               |
+   |                                                               |</div><pre>   +                      Destination Address                      +</pre><div class="modern-diagram-fallback">   |                                                               |
    +                                                               +
    |                                                               |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+</div><pre>   Version              4-bit Internet Protocol version number = 6.
 
-   Version              4-bit Internet Protocol version number = 6.
+   Traffic Class        8-bit traffic class field.  See section 7.
 
-   Traffic Class        8-bit traffic class field.  See <a href="#section-7">section 7</a>.
-
-   Flow Label           20-bit flow label.  See <a href="#section-6">section 6</a>.
+   Flow Label           20-bit flow label.  See section 6.
 
    Payload Length       16-bit unsigned integer.  Length of the IPv6
                         payload, i.e., the rest of the packet following
@@ -321,7 +309,7 @@ Table of Contents
 
 
 
-<span>Deering &amp; Hinden            Standards Track                     [Page 4]</span></pre>
+Deering &amp; Hinden            Standards Track                     [Page 4]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 5</span>
@@ -386,11 +374,10 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 6</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2460">RFC 2460</a>                   IPv6 Specification              December 1998</span>
+  <pre>RFC 2460                   IPv6 Specification              December 1998
 
 
-<span><a href="#section-4">4</a>.  IPv6 Extension Headers</span>
+4.  IPv6 Extension Headers
 
    In IPv6, optional internet-layer information is encoded in separate
    headers that may be placed between the IPv6 header and the upper-
@@ -398,33 +385,11 @@ Table of Contents
    headers, each identified by a distinct Next Header value.  As
    illustrated in these examples, an IPv6 packet may carry zero, one, or
    more extension headers, each identified by the Next Header field of
-   the preceding header:
-
-   +---------------+------------------------
-   |  IPv6 header  | TCP header + data
-   |               |
-   | Next Header = |
-   |      TCP      |
-   +---------------+------------------------
-
-
-   +---------------+----------------+------------------------
-   |  IPv6 header  | Routing header | TCP header + data
-   |               |                |
-   | Next Header = |  Next Header = |
-   |    Routing    |      TCP       |
-   +---------------+----------------+------------------------
-
-
-   +---------------+----------------+-----------------+-----------------
-   |  IPv6 header  | Routing header | Fragment header | fragment of TCP
-   |               |                |                 |  header + data
-   | Next Header = |  Next Header = |  Next Header =  |
-   |    Routing    |    Fragment    |       TCP       |
-   +---------------+----------------+-----------------+-----------------
-
-   With one exception, extension headers are not examined or processed
-   by any node along a packet's delivery path, until the packet reaches
+   the preceding header:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">IPv6 header</div><div class="modern-diagram-cell">TCP header + data</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Next Header =</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">TCP</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">IPv6 header</div><div class="modern-diagram-cell">Routing header</div><div class="modern-diagram-cell">TCP header + data</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Next Header =</div><div class="modern-diagram-cell">Next Header =</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Routing</div><div class="modern-diagram-cell">TCP</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">IPv6 header</div><div class="modern-diagram-cell">Routing header</div><div class="modern-diagram-cell">Fragment header</div><div class="modern-diagram-cell">fragment of TCP</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">header + data</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Next Header =</div><div class="modern-diagram-cell">Next Header =</div><div class="modern-diagram-cell">Next Header =</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Routing</div><div class="modern-diagram-cell">Fragment</div><div class="modern-diagram-cell">TCP</div></div></div>
+</figure><pre>   With one exception, extension headers are not examined or processed
+   by any node along a packet&#x27;s delivery path, until the packet reaches
    the node (or each of the set of nodes, in the case of multicast)
    identified in the Destination Address field of the IPv6 header.
    There, normal demultiplexing on the Next Header field of the IPv6
@@ -441,7 +406,7 @@ Table of Contents
 
 
 
-<span>Deering &amp; Hinden            Standards Track                     [Page 6]</span></pre>
+Deering &amp; Hinden            Standards Track                     [Page 6]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 7</span>
@@ -566,22 +531,18 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 9</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2460">RFC 2460</a>                   IPv6 Specification              December 1998</span>
+  <pre>RFC 2460                   IPv6 Specification              December 1998
 
 
-<span><a href="#section-4.2">4.2</a>  Options</span>
+4.2  Options
 
    Two of the currently-defined extension headers -- the Hop-by-Hop
    Options header and the Destination Options header -- carry a variable
-   number of type-length-value (TLV) encoded "options", of the following
-   format:
-
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+- - - - - - - - -
-      |  Option Type  |  Opt Data Len |  Option Data
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+- - - - - - - - -
-
-      Option Type          8-bit identifier of the type of option.
+   number of type-length-value (TLV) encoded &quot;options&quot;, of the following
+   format:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Option Type</div><div class="modern-diagram-cell">Opt Data Len</div><div class="modern-diagram-cell">Option Data</div></div></div>
+</figure><pre>      Option Type          8-bit identifier of the type of option.
 
       Opt Data Len         8-bit unsigned integer.  Length of the Option
                            Data field of this option, in octets.
@@ -604,35 +565,34 @@ Table of Contents
       01 - discard the packet.
 
       10 - discard the packet and, regardless of whether or not the
-           packet's Destination Address was a multicast address, send an
-           ICMP Parameter Problem, Code 2, message to the packet's
+           packet&#x27;s Destination Address was a multicast address, send an
+           ICMP Parameter Problem, Code 2, message to the packet&#x27;s
            Source Address, pointing to the unrecognized Option Type.
 
-      11 - discard the packet and, only if the packet's Destination
+      11 - discard the packet and, only if the packet&#x27;s Destination
            Address was not a multicast address, send an ICMP Parameter
-           Problem, Code 2, message to the packet's Source Address,
+           Problem, Code 2, message to the packet&#x27;s Source Address,
            pointing to the unrecognized Option Type.
 
    The third-highest-order bit of the Option Type specifies whether or
    not the Option Data of that option can change en-route to the
-   packet's final destination.  When an Authentication header is present
+   packet&#x27;s final destination.  When an Authentication header is present
 
 
 
 
 
-<span>Deering &amp; Hinden            Standards Track                     [Page 9]</span></pre>
+Deering &amp; Hinden            Standards Track                     [Page 9]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 10</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2460">RFC 2460</a>                   IPv6 Specification              December 1998</span>
+  <pre>RFC 2460                   IPv6 Specification              December 1998
 
 
    in the packet, for any option whose data may change en-route, its
    entire Option Data field must be treated as zero-valued octets when
-   computing or verifying the packet's authenticating value.
+   computing or verifying the packet&#x27;s authenticating value.
 
       0 - Option Data does not change en-route
 
@@ -664,13 +624,10 @@ Table of Contents
    of 8 octets in length.  These padding options must be recognized by
    all IPv6 implementations:
 
-   Pad1 option  (alignment requirement: none)
-
-      +-+-+-+-+-+-+-+-+
-      |       0       |
-      +-+-+-+-+-+-+-+-+
-
-      NOTE! the format of the Pad1 option is a special case -- it does
+   Pad1 option  (alignment requirement: none)</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0</div></div></div>
+</figure><pre>      NOTE! the format of the Pad1 option is a special case -- it does
             not have length and value fields.
 
       The Pad1 option is used to insert one octet of padding into the
@@ -681,46 +638,36 @@ Table of Contents
 
 
 
-<span>Deering &amp; Hinden            Standards Track                    [Page 10]</span></pre>
+Deering &amp; Hinden            Standards Track                    [Page 10]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Appendix</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2460">RFC 2460</a>                   IPv6 Specification              December 1998</span>
+  <pre>RFC 2460                   IPv6 Specification              December 1998
 
 
-   PadN option  (alignment requirement: none)
-
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+- - - - - - - - -
-      |       1       |  Opt Data Len |  Option Data
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+- - - - - - - - -
-
-      The PadN option is used to insert two or more octets of padding
+   PadN option  (alignment requirement: none)</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">Opt Data Len</div><div class="modern-diagram-cell">Option Data</div></div></div>
+</figure><pre>      The PadN option is used to insert two or more octets of padding
       into the Options area of a header.  For N octets of padding, the
       Opt Data Len field contains the value N-2, and the Option Data
       consists of N-2 zero-valued octets.
 
-   <a href="#appendix-B">Appendix B</a> contains formatting guidelines for designing new options.
+   Appendix B contains formatting guidelines for designing new options.
 
-<span><a href="#section-4.3">4.3</a>  Hop-by-Hop Options Header</span>
+4.3  Hop-by-Hop Options Header
 
    The Hop-by-Hop Options header is used to carry optional information
-   that must be examined by every node along a packet's delivery path.
+   that must be examined by every node along a packet&#x27;s delivery path.
    The Hop-by-Hop Options header is identified by a Next Header value of
-   0 in the IPv6 header, and has the following format:
-
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |  Next Header  |  Hdr Ext Len  |                               |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+                               +
-    |                                                               |
-    .                                                               .
+   0 in the IPv6 header, and has the following format:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Next Header</div><div class="modern-diagram-cell">Hdr Ext Len</div></div></div>
+</figure><pre>    .                                                               .
     .                            Options                            .
-    .                                                               .
-    |                                                               |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-   Next Header          8-bit selector.  Identifies the type of header
+    .                                                               .</pre><pre>    |                                                               |
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>   Next Header          8-bit selector.  Identifies the type of header
                         immediately following the Hop-by-Hop Options
                         header.  Uses the same values as the IPv4
                         Protocol field [RFC-1700 et seq.].
@@ -732,44 +679,37 @@ Table of Contents
    Options              Variable-length field, of length such that the
                         complete Hop-by-Hop Options header is an integer
                         multiple of 8 octets long.  Contains one or more
-                        TLV-encoded options, as described in <a href="#section-4.2">section</a>
-                        <a href="#section-4.2">4.2</a>.
+                        TLV-encoded options, as described in section
+                        4.2.
 
    The only hop-by-hop options defined in this document are the Pad1 and
-   PadN options specified in <a href="#section-4.2">section 4.2</a>.
+   PadN options specified in section 4.2.
 
 
 
 
-<span>Deering &amp; Hinden            Standards Track                    [Page 11]</span></pre>
+Deering &amp; Hinden            Standards Track                    [Page 11]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 12</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2460">RFC 2460</a>                   IPv6 Specification              December 1998</span>
+  <pre>RFC 2460                   IPv6 Specification              December 1998
 
 
-<span><a href="#section-4.4">4.4</a>  Routing Header</span>
+4.4  Routing Header
 
    The Routing header is used by an IPv6 source to list one or more
-   intermediate nodes to be "visited" on the way to a packet's
-   destination.  This function is very similar to IPv4's Loose Source
+   intermediate nodes to be &quot;visited&quot; on the way to a packet&#x27;s
+   destination.  This function is very similar to IPv4&#x27;s Loose Source
    and Record Route option.  The Routing header is identified by a Next
    Header value of 43 in the immediately preceding header, and has the
-   following format:
-
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |  Next Header  |  Hdr Ext Len  |  Routing Type | Segments Left |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                                                               |
-    .                                                               .
+   following format:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Next Header</div><div class="modern-diagram-cell">Hdr Ext Len</div><div class="modern-diagram-cell">Routing Type</div><div class="modern-diagram-cell">Segments Left</div></div></div>
+</figure><pre>    .                                                               .
     .                       type-specific data                      .
-    .                                                               .
-    |                                                               |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-   Next Header          8-bit selector.  Identifies the type of header
+    .                                                               .</pre><pre>    |                                                               |
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>   Next Header          8-bit selector.  Identifies the type of header
                         immediately following the Routing header.  Uses
                         the same values as the IPv4 Protocol field
                         [RFC-1700 et seq.].
@@ -801,7 +741,7 @@ Table of Contents
 
 
 
-<span>Deering &amp; Hinden            Standards Track                    [Page 12]</span></pre>
+Deering &amp; Hinden            Standards Track                    [Page 12]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 13</span>
@@ -866,47 +806,31 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 14</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2460">RFC 2460</a>                   IPv6 Specification              December 1998</span>
+  <pre>RFC 2460                   IPv6 Specification              December 1998
 
 
-   The Type 0 Routing header has the following format:
-
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |  Next Header  |  Hdr Ext Len  | Routing Type=0| Segments Left |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                            Reserved                           |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                                                               |
-    +                                                               +
-    |                                                               |
-    +                           Address[1]                          +
-    |                                                               |
+   The Type 0 Routing header has the following format:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Next Header</div><div class="modern-diagram-cell">Hdr Ext Len</div><div class="modern-diagram-cell">Routing Type=0</div><div class="modern-diagram-cell">Segments Left</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Reserved</div></div></div>
+</figure><pre>    +                           Address[1]                          +</pre><div class="modern-diagram-fallback">    |                                                               |
     +                                                               +
     |                                                               |
     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
     |                                                               |
     +                                                               +
-    |                                                               |
-    +                           Address[2]                          +
-    |                                                               |
+    |                                                               |</div><pre>    +                           Address[2]                          +</pre><div class="modern-diagram-fallback">    |                                                               |
     +                                                               +
     |                                                               |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</div><pre>    .                               .                               .
     .                               .                               .
-    .                               .                               .
-    .                               .                               .
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    .                               .                               .</pre><div class="modern-diagram-fallback">    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
     |                                                               |
     +                                                               +
-    |                                                               |
-    +                           Address[n]                          +
-    |                                                               |
+    |                                                               |</div><pre>    +                           Address[n]                          +</pre><div class="modern-diagram-fallback">    |                                                               |
     +                                                               +
     |                                                               |
     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-   Next Header          8-bit selector.  Identifies the type of header
+</div><pre>   Next Header          8-bit selector.  Identifies the type of header
                         immediately following the Routing header.  Uses
                         the same values as the IPv4 Protocol field
                         [RFC-1700 et seq.].
@@ -921,7 +845,7 @@ Table of Contents
 
 
 
-<span>Deering &amp; Hinden            Standards Track                    [Page 14]</span></pre>
+Deering &amp; Hinden            Standards Track                    [Page 14]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 15</span>
@@ -1106,26 +1030,20 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 18</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2460">RFC 2460</a>                   IPv6 Specification              December 1998</span>
+  <pre>RFC 2460                   IPv6 Specification              December 1998
 
 
-<span><a href="#section-4.5">4.5</a>  Fragment Header</span>
+4.5  Fragment Header
 
    The Fragment header is used by an IPv6 source to send a packet larger
    than would fit in the path MTU to its destination.  (Note: unlike
    IPv4, fragmentation in IPv6 is performed only by source nodes, not by
-   routers along a packet's delivery path -- see <a href="#section-5">section 5</a>.)  The
+   routers along a packet&#x27;s delivery path -- see section 5.)  The
    Fragment header is identified by a Next Header value of 44 in the
-   immediately preceding header, and has the following format:
-
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |  Next Header  |   Reserved    |      Fragment Offset    |Res|M|
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                         Identification                        |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-   Next Header          8-bit selector.  Identifies the initial header
+   immediately preceding header, and has the following format:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">Next Header</div><div class="modern-diagram-cell">Reserved</div><div class="modern-diagram-cell">Fragment Offset</div><div class="modern-diagram-cell">Res</div><div class="modern-diagram-cell">M</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Identification</div></div></div>
+</figure><pre>   Next Header          8-bit selector.  Identifies the initial header
                         type of the Fragmentable Part of the original
                         packet (defined below).  Uses the same values as
                         the IPv4 Protocol field [RFC-1700 et seq.].
@@ -1161,40 +1079,35 @@ Table of Contents
 
 
 
-<span>Deering &amp; Hinden            Standards Track                    [Page 18]</span></pre>
+Deering &amp; Hinden            Standards Track                    [Page 18]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 19</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2460">RFC 2460</a>                   IPv6 Specification              December 1998</span>
+  <pre>RFC 2460                   IPv6 Specification              December 1998
 
 
-      * "recently" means within the maximum likely lifetime of a packet,
+      * &quot;recently&quot; means within the maximum likely lifetime of a packet,
         including transit time from source to destination and time spent
         awaiting reassembly with other fragments of the same packet.
         However, it is not required that a source node know the maximum
         packet lifetime.  Rather, it is assumed that the requirement can
         be met by maintaining the Identification value as a simple, 32-
-        bit, "wrap-around" counter, incremented each time a packet must
+        bit, &quot;wrap-around&quot; counter, incremented each time a packet must
         be fragmented.  It is an implementation choice whether to
         maintain a single counter for the node or multiple counters,
-        e.g., one for each of the node's possible source addresses, or
+        e.g., one for each of the node&#x27;s possible source addresses, or
         one for each active (source address, destination address)
         combination.
 
    The initial, large, unfragmented packet is referred to as the
-   "original packet", and it is considered to consist of two parts, as
+   &quot;original packet&quot;, and it is considered to consist of two parts, as
    illustrated:
 
-   original packet:
-
-   +------------------+----------------------//-----------------------+
-   |  Unfragmentable  |                 Fragmentable                  |
-   |       Part       |                     Part                      |
-   +------------------+----------------------//-----------------------+
-
-      The Unfragmentable Part consists of the IPv6 header plus any
+   original packet:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Unfragmentable</div><div class="modern-diagram-cell">Fragmentable</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Part</div><div class="modern-diagram-cell">Part</div></div></div>
+</figure><pre>      The Unfragmentable Part consists of the IPv6 header plus any
       extension headers that must be processed by nodes en route to the
       destination, that is, all headers up to and including the Routing
       header if present, else the Hop-by-Hop Options header if present,
@@ -1205,51 +1118,30 @@ Table of Contents
       destination node(s), plus the upper-layer header and data.
 
    The Fragmentable Part of the original packet is divided into
-   fragments, each, except possibly the last ("rightmost") one, being an
+   fragments, each, except possibly the last (&quot;rightmost&quot;) one, being an
    integer multiple of 8 octets long.  The fragments are transmitted in
-   separate "fragment packets" as illustrated:
+   separate &quot;fragment packets&quot; as illustrated:
 
-   original packet:
-
-   +------------------+--------------+--------------+--//--+----------+
-   |  Unfragmentable  |    first     |    second    |      |   last   |
-   |       Part       |   fragment   |   fragment   | .... | fragment |
-   +------------------+--------------+--------------+--//--+----------+
-
-
-
-
-
-
-<span>Deering &amp; Hinden            Standards Track                    [Page 19]</span></pre>
+   original packet:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Unfragmentable</div><div class="modern-diagram-cell">first</div><div class="modern-diagram-cell">second</div><div class="modern-diagram-cell">last</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">Part</div><div class="modern-diagram-cell">fragment</div><div class="modern-diagram-cell">fragment</div><div class="modern-diagram-cell">....</div><div class="modern-diagram-cell">fragment</div></div></div>
+</figure><pre>Deering &amp; Hinden            Standards Track                    [Page 19]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 20</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2460">RFC 2460</a>                   IPv6 Specification              December 1998</span>
+  <pre>RFC 2460                   IPv6 Specification              December 1998
 
 
-   fragment packets:
-
-   +------------------+--------+--------------+
-   |  Unfragmentable  |Fragment|    first     |
-   |       Part       | Header |   fragment   |
-   +------------------+--------+--------------+
-
-   +------------------+--------+--------------+
-   |  Unfragmentable  |Fragment|    second    |
-   |       Part       | Header |   fragment   |
-   +------------------+--------+--------------+
+   fragment packets:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Unfragmentable</div><div class="modern-diagram-cell">Fragment</div><div class="modern-diagram-cell">first</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Part</div><div class="modern-diagram-cell">Header</div><div class="modern-diagram-cell">fragment</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Unfragmentable</div><div class="modern-diagram-cell">Fragment</div><div class="modern-diagram-cell">second</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Part</div><div class="modern-diagram-cell">Header</div><div class="modern-diagram-cell">fragment</div></div></div>
+</figure><pre>                         o
                          o
-                         o
-                         o
-   +------------------+--------+----------+
-   |  Unfragmentable  |Fragment|   last   |
-   |       Part       | Header | fragment |
-   +------------------+--------+----------+
-
-   Each fragment packet is composed of:
+                         o</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Unfragmentable</div><div class="modern-diagram-cell">Fragment</div><div class="modern-diagram-cell">last</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Part</div><div class="modern-diagram-cell">Header</div><div class="modern-diagram-cell">fragment</div></div></div>
+</figure><pre>   Each fragment packet is composed of:
 
       (1) The Unfragmentable Part of the original packet, with the
           Payload Length of the original IPv6 header changed to contain
@@ -1265,10 +1157,10 @@ Table of Contents
                A Fragment Offset containing the offset of the fragment,
                in 8-octet units, relative to the start of the
                Fragmentable Part of the original packet.  The Fragment
-               Offset of the first ("leftmost") fragment is 0.
+               Offset of the first (&quot;leftmost&quot;) fragment is 0.
 
                An M flag value of 0 if the fragment is the last
-               ("rightmost") one, else an M flag value of 1.
+               (&quot;rightmost&quot;) one, else an M flag value of 1.
 
                The Identification value generated for the original
                packet.
@@ -1276,31 +1168,26 @@ Table of Contents
       (3) The fragment itself.
 
    The lengths of the fragments must be chosen such that the resulting
-   fragment packets fit within the MTU of the path to the packets'
+   fragment packets fit within the MTU of the path to the packets&#x27;
    destination(s).
 
 
 
-<span>Deering &amp; Hinden            Standards Track                    [Page 20]</span></pre>
+Deering &amp; Hinden            Standards Track                    [Page 20]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 21</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2460">RFC 2460</a>                   IPv6 Specification              December 1998</span>
+  <pre>RFC 2460                   IPv6 Specification              December 1998
 
 
    At the destination, fragment packets are reassembled into their
    original, unfragmented form, as illustrated:
 
-   reassembled original packet:
-
-   +------------------+----------------------//------------------------+
-   |  Unfragmentable  |                 Fragmentable                   |
-   |       Part       |                     Part                       |
-   +------------------+----------------------//------------------------+
-
-   The following rules govern reassembly:
+   reassembled original packet:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Unfragmentable</div><div class="modern-diagram-cell">Fragmentable</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Part</div><div class="modern-diagram-cell">Part</div></div></div>
+</figure><pre>   The following rules govern reassembly:
 
       An original packet is reassembled only from fragment packets that
       have the same Source Address, Destination Address, and Fragment
@@ -1313,7 +1200,7 @@ Table of Contents
 
          The Next Header field of the last header of the Unfragmentable
          Part is obtained from the Next Header field of the first
-         fragment's Fragment header.
+         fragment&#x27;s Fragment header.
 
          The Payload Length of the reassembled packet is computed from
          the length of the Unfragmentable Part and the length and offset
@@ -1335,13 +1222,13 @@ Table of Contents
       The Fragmentable Part of the reassembled packet is constructed
       from the fragments following the Fragment headers in each of the
       fragment packets.  The length of each fragment is computed by
-      subtracting from the packet's Payload Length the length of the
+      subtracting from the packet&#x27;s Payload Length the length of the
 
 
 
 
 
-<span>Deering &amp; Hinden            Standards Track                    [Page 21]</span></pre>
+Deering &amp; Hinden            Standards Track                    [Page 21]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 22</span>
@@ -1406,28 +1293,21 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 23</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2460">RFC 2460</a>                   IPv6 Specification              December 1998</span>
+  <pre>RFC 2460                   IPv6 Specification              December 1998
 
 
-<span><a href="#section-4.6">4.6</a>  Destination Options Header</span>
+4.6  Destination Options Header
 
    The Destination Options header is used to carry optional information
-   that need be examined only by a packet's destination node(s).  The
+   that need be examined only by a packet&#x27;s destination node(s).  The
    Destination Options header is identified by a Next Header value of 60
-   in the immediately preceding header, and has the following format:
-
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |  Next Header  |  Hdr Ext Len  |                               |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+                               +
-    |                                                               |
-    .                                                               .
+   in the immediately preceding header, and has the following format:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Next Header</div><div class="modern-diagram-cell">Hdr Ext Len</div></div></div>
+</figure><pre>    .                                                               .
     .                            Options                            .
-    .                                                               .
-    |                                                               |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-   Next Header          8-bit selector.  Identifies the type of header
+    .                                                               .</pre><pre>    |                                                               |
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>   Next Header          8-bit selector.  Identifies the type of header
                         immediately following the Destination Options
                         header.  Uses the same values as the IPv4
                         Protocol field [RFC-1700 et seq.].
@@ -1440,10 +1320,10 @@ Table of Contents
                         complete Destination Options header is an
                         integer multiple of 8 octets long.  Contains one
                         or  more TLV-encoded options, as described in
-                        <a href="#section-4.2">section 4.2</a>.
+                        section 4.2.
 
    The only destination options defined in this document are the Pad1
-   and PadN options specified in <a href="#section-4.2">section 4.2</a>.
+   and PadN options specified in section 4.2.
 
    Note that there are two possible ways to encode optional destination
    information in an IPv6 packet: either as an option in the Destination
@@ -1454,14 +1334,14 @@ Table of Contents
    information:
 
       o  If the desired action is for the destination node to discard
-         the packet and, only if the packet's Destination Address is not
+         the packet and, only if the packet&#x27;s Destination Address is not
          a multicast address, send an ICMP Unrecognized Type message to
-         the packet's Source Address, then the information may be
+         the packet&#x27;s Source Address, then the information may be
          encoded either as a separate header or as an option in the
 
 
 
-<span>Deering &amp; Hinden            Standards Track                    [Page 23]</span></pre>
+Deering &amp; Hinden            Standards Track                    [Page 23]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 24</span>
@@ -1646,43 +1526,30 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 27</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2460">RFC 2460</a>                   IPv6 Specification              December 1998</span>
+  <pre>RFC 2460                   IPv6 Specification              December 1998
 
 
-<span><a href="#section-8">8</a>. Upper-Layer Protocol Issues</span>
+8. Upper-Layer Protocol Issues
 
-<span><a href="#section-8.1">8.1</a> Upper-Layer Checksums</span>
+8.1 Upper-Layer Checksums
 
    Any transport or other upper-layer protocol that includes the
    addresses from the IP header in its checksum computation must be
    modified for use over IPv6, to include the 128-bit IPv6 addresses
    instead of 32-bit IPv4 addresses.  In particular, the following
-   illustration shows the TCP and UDP "pseudo-header" for IPv6:
-
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   illustration shows the TCP and UDP &quot;pseudo-header&quot; for IPv6:</pre><div class="modern-diagram-fallback">   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |                                                               |
    +                                                               +
-   |                                                               |
-   +                         Source Address                        +
-   |                                                               |
+   |                                                               |</div><pre>   +                         Source Address                        +</pre><div class="modern-diagram-fallback">   |                                                               |
    +                                                               +
    |                                                               |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |                                                               |
    +                                                               +
-   |                                                               |
-   +                      Destination Address                      +
-   |                                                               |
-   +                                                               +
-   |                                                               |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                   Upper-Layer Packet Length                   |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                      zero                     |  Next Header  |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-      o  If the IPv6 packet contains a Routing header, the Destination
+   |                                                               |</div><pre>   +                      Destination Address                      +</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Upper-Layer Packet Length</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">zero</div><div class="modern-diagram-cell">Next Header</div></div></div>
+</figure><pre>      o  If the IPv6 packet contains a Routing header, the Destination
          Address used in the pseudo-header is that of the final
          destination.  At the originating node, that address will be in
          the last element of the Routing header; at the recipient(s),
@@ -1701,7 +1568,7 @@ Table of Contents
 
 
 
-<span>Deering &amp; Hinden            Standards Track                    [Page 27]</span></pre>
+Deering &amp; Hinden            Standards Track                    [Page 27]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 28</span>
@@ -1946,15 +1813,14 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Appendix</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2460">RFC 2460</a>                   IPv6 Specification              December 1998</span>
+  <pre>RFC 2460                   IPv6 Specification              December 1998
 
 
-<span><a href="#appendix-B">Appendix B</a>. Formatting Guidelines for Options</span>
+Appendix B. Formatting Guidelines for Options
 
    This appendix gives some advice on how to lay out the fields when
    designing new options to be used in the Hop-by-Hop Options header or
-   the Destination Options header, as described in <a href="#section-4.2">section 4.2</a>.  These
+   the Destination Options header, as described in section 4.2.  These
    guidelines are based on the following assumptions:
 
       o  One desirable feature is that any multi-octet fields within the
@@ -1982,146 +1848,58 @@ Table of Contents
    Example 1
 
    If an option X required two data fields, one of length 8 octets and
-   one of length 4 octets, it would be laid out as follows:
-
-
-                                   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-                                   | Option Type=X |Opt Data Len=12|
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                         4-octet field                         |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                                                               |
-   +                         8-octet field                         +
-   |                                                               |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-
-
-
-
-
-
-<span>Deering &amp; Hinden            Standards Track                    [Page 32]</span></pre>
+   one of length 4 octets, it would be laid out as follows:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Option Type=X</div><div class="modern-diagram-cell">Opt Data Len=12</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">4-octet field</div></div></div>
+</figure><pre>   +                         8-octet field                         +</pre><pre>   |                                                               |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>Deering &amp; Hinden            Standards Track                    [Page 32]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 33</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2460">RFC 2460</a>                   IPv6 Specification              December 1998</span>
+  <pre>RFC 2460                   IPv6 Specification              December 1998
 
 
    Its alignment requirement is 8n+2, to ensure that the 8-octet field
    starts at a multiple-of-8 offset from the start of the enclosing
    header.  A complete Hop-by-Hop or Destination Options header
-   containing this one option would look as follows:
-
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |  Next Header  | Hdr Ext Len=1 | Option Type=X |Opt Data Len=12|
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                         4-octet field                         |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                                                               |
-   +                         8-octet field                         +
-   |                                                               |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-   Example 2
+   containing this one option would look as follows:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Next Header</div><div class="modern-diagram-cell">Hdr Ext Len=1</div><div class="modern-diagram-cell">Option Type=X</div><div class="modern-diagram-cell">Opt Data Len=12</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">4-octet field</div></div></div>
+</figure><pre>   +                         8-octet field                         +</pre><pre>   |                                                               |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>   Example 2
 
    If an option Y required three data fields, one of length 4 octets,
    one of length 2 octets, and one of length 1 octet, it would be laid
-   out as follows:
-
-                                                   +-+-+-+-+-+-+-+-+
-                                                   | Option Type=Y |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |Opt Data Len=7 | 1-octet field |         2-octet field         |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                         4-octet field                         |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-   Its alignment requirement is 4n+3, to ensure that the 4-octet field
+   out as follows:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Option Type=Y</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Opt Data Len=7</div><div class="modern-diagram-cell">1-octet field</div><div class="modern-diagram-cell">2-octet field</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">4-octet field</div></div></div>
+</figure><pre>   Its alignment requirement is 4n+3, to ensure that the 4-octet field
    starts at a multiple-of-4 offset from the start of the enclosing
    header.  A complete Hop-by-Hop or Destination Options header
-   containing this one option would look as follows:
-
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |  Next Header  | Hdr Ext Len=1 | Pad1 Option=0 | Option Type=Y |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |Opt Data Len=7 | 1-octet field |         2-octet field         |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                         4-octet field                         |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   | PadN Option=1 |Opt Data Len=2 |       0       |       0       |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-
-
-
-
-
-
-
-<span>Deering &amp; Hinden            Standards Track                    [Page 33]</span></pre>
+   containing this one option would look as follows:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Next Header</div><div class="modern-diagram-cell">Hdr Ext Len=1</div><div class="modern-diagram-cell">Pad1 Option=0</div><div class="modern-diagram-cell">Option Type=Y</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Opt Data Len=7</div><div class="modern-diagram-cell">1-octet field</div><div class="modern-diagram-cell">2-octet field</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">4-octet field</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">PadN Option=1</div><div class="modern-diagram-cell">Opt Data Len=2</div><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">0</div></div></div>
+</figure><pre>Deering &amp; Hinden            Standards Track                    [Page 33]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 34</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2460">RFC 2460</a>                   IPv6 Specification              December 1998</span>
+  <pre>RFC 2460                   IPv6 Specification              December 1998
 
 
    Example 3
 
    A Hop-by-Hop or Destination Options header containing both options X
    and Y from Examples 1 and 2 would have one of the two following
-   formats, depending on which option appeared first:
-
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |  Next Header  | Hdr Ext Len=3 | Option Type=X |Opt Data Len=12|
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                         4-octet field                         |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                                                               |
-   +                         8-octet field                         +
-   |                                                               |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   | PadN Option=1 |Opt Data Len=1 |       0       | Option Type=Y |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |Opt Data Len=7 | 1-octet field |         2-octet field         |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                         4-octet field                         |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   | PadN Option=1 |Opt Data Len=2 |       0       |       0       |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |  Next Header  | Hdr Ext Len=3 | Pad1 Option=0 | Option Type=Y |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |Opt Data Len=7 | 1-octet field |         2-octet field         |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                         4-octet field                         |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   | PadN Option=1 |Opt Data Len=4 |       0       |       0       |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |       0       |       0       | Option Type=X |Opt Data Len=12|
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                         4-octet field                         |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                                                               |
-   +                         8-octet field                         +
-   |                                                               |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-
-
-
-
-
-
-
-
-<span>Deering &amp; Hinden            Standards Track                    [Page 34]</span></pre>
+   formats, depending on which option appeared first:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Next Header</div><div class="modern-diagram-cell">Hdr Ext Len=3</div><div class="modern-diagram-cell">Option Type=X</div><div class="modern-diagram-cell">Opt Data Len=12</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">4-octet field</div></div></div>
+</figure><pre>   +                         8-octet field                         +</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">PadN Option=1</div><div class="modern-diagram-cell">Opt Data Len=1</div><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">Option Type=Y</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Opt Data Len=7</div><div class="modern-diagram-cell">1-octet field</div><div class="modern-diagram-cell">2-octet field</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">4-octet field</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">PadN Option=1</div><div class="modern-diagram-cell">Opt Data Len=2</div><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">0</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Next Header</div><div class="modern-diagram-cell">Hdr Ext Len=3</div><div class="modern-diagram-cell">Pad1 Option=0</div><div class="modern-diagram-cell">Option Type=Y</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Opt Data Len=7</div><div class="modern-diagram-cell">1-octet field</div><div class="modern-diagram-cell">2-octet field</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">4-octet field</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">PadN Option=1</div><div class="modern-diagram-cell">Opt Data Len=4</div><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">0</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">Option Type=X</div><div class="modern-diagram-cell">Opt Data Len=12</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">4-octet field</div></div></div>
+</figure><pre>   +                         8-octet field                         +</pre><pre>   |                                                               |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>Deering &amp; Hinden            Standards Track                    [Page 34]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 35</span>

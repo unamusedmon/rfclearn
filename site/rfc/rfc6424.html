@@ -266,43 +266,41 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 4</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc6424">RFC 6424</a>               LSP Ping over MPLS Tunnels          November 2011</span>
+  <pre>RFC 6424               LSP Ping over MPLS Tunnels          November 2011
 
 
-<span><a href="#section-1">1</a>.  Introduction</span>
+1.  Introduction
 
    This documents describes methods for performing LSP ping (specified
-   in [<a href="./rfc4379" title="&quot;Detecting Multi-Protocol Label Switched (MPLS) Data Plane Failures&quot;">RFC4379</a>]) traceroute over MPLS tunnels.  The techniques in
-   [<a href="./rfc4379" title="&quot;Detecting Multi-Protocol Label Switched (MPLS) Data Plane Failures&quot;">RFC4379</a>] outline a traceroute mechanism that includes Forwarding
+   in [RFC4379]) traceroute over MPLS tunnels.  The techniques in
+   [RFC4379] outline a traceroute mechanism that includes Forwarding
    Equivalency Class (FEC) validation and Equal Cost Multi-Path (ECMP)
    path discovery.  Those mechanisms are insufficient and do not provide
    details when the FEC being traced traverses one or more MPLS tunnels
-   and when Label Switched Path (LSP) stitching [<a href="./rfc5150" title="&quot;Label Switched Path Stitching with Generalized Multiprotocol Label Switching Traffic Engineering (GMPLS TE)&quot;">RFC5150</a>] is in use.
-   This document deprecates the Downstream Mapping TLV [<a href="./rfc4379" title="&quot;Detecting Multi-Protocol Label Switched (MPLS) Data Plane Failures&quot;">RFC4379</a>],
+   and when Label Switched Path (LSP) stitching [RFC5150] is in use.
+   This document deprecates the Downstream Mapping TLV [RFC4379],
    introducing instead a new TLV that is more extensible and that
    enables retrieval of detailed information.  Using the new TLV format
-   along with the existing definitions of [<a href="./rfc4379" title="&quot;Detecting Multi-Protocol Label Switched (MPLS) Data Plane Failures&quot;">RFC4379</a>], this document
+   along with the existing definitions of [RFC4379], this document
    describes procedures by which a traceroute request can correctly
    traverse MPLS tunnels with proper FEC and label validations.
 
-<span><a href="#section-1.1">1.1</a>.  Conventions Used in This Document</span>
+1.1.  Conventions Used in This Document
 
-   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
-   "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
-   document are to be interpreted as described in [<a href="./rfc2119" title="&quot;Key words for use in RFCs to Indicate Requirement Levels&quot;">RFC2119</a>].
+   The key words &quot;MUST&quot;, &quot;MUST NOT&quot;, &quot;REQUIRED&quot;, &quot;SHALL&quot;, &quot;SHALL NOT&quot;,
+   &quot;SHOULD&quot;, &quot;SHOULD NOT&quot;, &quot;RECOMMENDED&quot;, &quot;MAY&quot;, and &quot;OPTIONAL&quot; in this
+   document are to be interpreted as described in [RFC2119].
 
-<span><a href="#section-2">2</a>.  Motivation</span>
+2.  Motivation
 
    An LSP ping traceroute may cross multiple MPLS tunnels en route to
    the destination.  Let us consider a simple case.
 
    A          B          C           D           E
-   o -------- o -------- o --------- o --------- o
-     \_____/  | \______/   \______/  | \______/
-       LDP    |   RSVP       RSVP    |    LDP
-              |                      |
-               \____________________/
+   o -------- o -------- o --------- o --------- o</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">LDP</div><div class="modern-diagram-cell">RSVP       RSVP</div><div class="modern-diagram-cell">LDP</div></div></div>
+</figure><pre>               \____________________/
                         LDP
 
                       Figure 1: LDP over RSVP Tunnel
@@ -321,7 +319,7 @@ Table of Contents
 
 
 
-<span>Bahadur, et al.              Standards Track                    [Page 4]</span></pre>
+Bahadur, et al.              Standards Track                    [Page 4]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 5</span>
@@ -446,11 +444,10 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 7</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc6424">RFC 6424</a>               LSP Ping over MPLS Tunnels          November 2011</span>
+  <pre>RFC 6424               LSP Ping over MPLS Tunnels          November 2011
 
 
-<span><a href="#section-3.3">3.3</a>.  Downstream Detailed Mapping TLV</span>
+3.3.  Downstream Detailed Mapping TLV
 
         Type #   Value Field
         ------   ------------
@@ -468,28 +465,17 @@ Table of Contents
    Downstream Detailed Mapping object for each interface over which this
    FEC could be forwarded.
 
-       0                   1                   2                   3
-       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |               MTU             | Address Type  |    DS Flags   |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |               Downstream Address (4 or 16 octets)             |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |         Downstream Interface Address (4 or 16 octets)         |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |  Return Code  | Return Subcode|        Sub-tlv Length         |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      .                                                               .
+       0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">MTU</div><div class="modern-diagram-cell">Address Type</div><div class="modern-diagram-cell">DS Flags</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Downstream Address (4 or 16 octets)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Downstream Interface Address (4 or 16 octets)</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Return Code</div><div class="modern-diagram-cell">Return Subcode</div><div class="modern-diagram-cell">Sub-tlv Length</div></div></div>
+</figure><pre>      .                                                               .
       .                      List of Sub-TLVs                         .
-      .                                                               .
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-                 Figure 3: Downstream Detailed Mapping TLV
+      .                                                               .</pre><pre>      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>                 Figure 3: Downstream Detailed Mapping TLV
 
    The Downstream Detailed Mapping TLV format is derived from the
    Downstream Mapping TLV format.  The key change is that variable
    length and optional fields have been converted into sub-TLVs.  The
-   fields have the same use and meaning as in [<a href="./rfc4379" title="&quot;Detecting Multi-Protocol Label Switched (MPLS) Data Plane Failures&quot;">RFC4379</a>].  A summary of
+   fields have the same use and meaning as in [RFC4379].  A summary of
    the fields taken from the Downstream Mapping TLV is as below:
 
    Maximum Transmission Unit (MTU)
@@ -501,7 +487,7 @@ Table of Contents
 
 
 
-<span>Bahadur, et al.              Standards Track                    [Page 7]</span></pre>
+Bahadur, et al.              Standards Track                    [Page 7]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 8</span>
@@ -566,13 +552,12 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 9</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc6424">RFC 6424</a>               LSP Ping over MPLS Tunnels          November 2011</span>
+  <pre>RFC 6424               LSP Ping over MPLS Tunnels          November 2011
 
 
       If the Return Code of the echo reply message is not set to either
-      "See DDM TLV for Return Code and Return Subcode" (<a href="#section-6.3">Section 6.3</a>) or
-      "Replying router is an egress for the FEC at stack-depth &lt;RSC&gt;",
+      &quot;See DDM TLV for Return Code and Return Subcode&quot; (Section 6.3) or
+      &quot;Replying router is an egress for the FEC at stack-depth &lt;RSC&gt;&quot;,
       then the Return Subcode specified in the Downstream Detailed
       Mapping TLV MUST be ignored.
 
@@ -580,7 +565,7 @@ Table of Contents
 
       Total length in bytes of the sub-TLVs associated with this TLV.
 
-<span><a href="#section-3.3.1">3.3.1</a>.  Sub-TLVs</span>
+3.3.1.  Sub-TLVs
 
    This section defines the sub-TLVs that MAY be included as part of the
    Downstream Detailed Mapping TLV.
@@ -591,22 +576,15 @@ Table of Contents
           2         Label stack
           3         FEC stack change
 
-<span><a href="#section-3.3.1.1">3.3.1.1</a>.  Multipath Data Sub-TLV</span>
+3.3.1.1.  Multipath Data Sub-TLV
 
-    0                   1                   2                   3
-    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |Multipath Type |       Multipath Length        |Reserved (MBZ) |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                                                               |
-   |                  (Multipath Information)                      |
-   |                                                               |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-                        Figure 4: Multipath Sub-TLV
+    0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Multipath Type</div><div class="modern-diagram-cell">Multipath Length</div><div class="modern-diagram-cell">Reserved (MBZ)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">(Multipath Information)</div></div></div>
+</figure><pre>                        Figure 4: Multipath Sub-TLV
 
    The multipath data sub-TLV includes Multipath Information.  The sub-
-   TLV fields and their usage is as defined in [<a href="./rfc4379" title="&quot;Detecting Multi-Protocol Label Switched (MPLS) Data Plane Failures&quot;">RFC4379</a>].  A brief
+   TLV fields and their usage is as defined in [RFC4379].  A brief
    summary of the fields is as below:
 
    Multipath Type
@@ -621,13 +599,12 @@ Table of Contents
 
 
 
-<span>Bahadur, et al.              Standards Track                    [Page 9]</span></pre>
+Bahadur, et al.              Standards Track                    [Page 9]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 10</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc6424">RFC 6424</a>               LSP Ping over MPLS Tunnels          November 2011</span>
+  <pre>RFC 6424               LSP Ping over MPLS Tunnels          November 2011
 
 
    MBZ
@@ -638,28 +615,24 @@ Table of Contents
 
       Encoded multipath data, according to the Multipath Type.
 
-<span><a href="#section-3.3.1.2">3.3.1.2</a>.  Label Stack Sub-TLV</span>
+3.3.1.2.  Label Stack Sub-TLV
 
-    0                   1                   2                   3
-    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |               Downstream Label                |    Protocol   |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Downstream Label</div><div class="modern-diagram-cell">Protocol</div></div></div>
+</figure><pre>   .                                                               .
    .                                                               .
-   .                                                               .
-   .                                                               .
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |               Downstream Label                |    Protocol   |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-                       Figure 5: Label Stack Sub-TLV
+   .                                                               .</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Downstream Label</div><div class="modern-diagram-cell">Protocol</div></div></div>
+</figure><pre>                       Figure 5: Label Stack Sub-TLV
 
    The Label stack sub-TLV contains the set of labels in the label stack
    as it would have appeared if this router were forwarding the packet
    through this interface.  Any Implicit Null labels are explicitly
    included.  The number of label/protocol pairs present in the sub-TLV
    is determined based on the sub-TLV data length.  The label format and
-   protocol type are as defined in [<a href="./rfc4379" title="&quot;Detecting Multi-Protocol Label Switched (MPLS) Data Plane Failures&quot;">RFC4379</a>].  When the Downstream
+   protocol type are as defined in [RFC4379].  When the Downstream
    Detailed Mapping TLV is sent in the echo reply, this sub-TLV MUST be
    included.
 
@@ -668,7 +641,7 @@ Table of Contents
       A Downstream label is 24 bits, in the same format as an MPLS label
       minus the Time to Live (TTL) field, i.e., the MSBit of the label
       is bit 0, the LSBit is bit 19, the Traffic Class (TC) field
-      [<a href="./rfc5462" title="&quot;Multiprotocol Label Switching (MPLS) Label Stack Entry: &quot;">RFC5462</a>] is bits 20-22, and S is bit 23.  The replying router
+      [RFC5462] is bits 20-22, and S is bit 23.  The replying router
       SHOULD fill in the TC field and S bit; the LSR receiving the echo
       reply MAY choose to ignore these.
 
@@ -681,16 +654,15 @@ Table of Contents
 
 
 
-<span>Bahadur, et al.              Standards Track                   [Page 10]</span></pre>
+Bahadur, et al.              Standards Track                   [Page 10]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 11</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc6424">RFC 6424</a>               LSP Ping over MPLS Tunnels          November 2011</span>
+  <pre>RFC 6424               LSP Ping over MPLS Tunnels          November 2011
 
 
-<span><a href="#section-3.3.1.3">3.3.1.3</a>.  FEC Stack Change Sub-TLV</span>
+3.3.1.3.  FEC Stack Change Sub-TLV
 
    A router MUST include the FEC stack change sub-TLV when the
    downstream node in the echo reply has a different FEC Stack than the
@@ -698,19 +670,12 @@ Table of Contents
    sub-TLVs MAY be present in the Downstream Detailed Mapping TLV.  The
    format is as below.
 
-   0                   1                   2                   3
-   0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |Operation Type | Address Type  | FEC-tlv length|  Reserved     |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |           Remote Peer Address (0, 4 or 16 octets)             |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   .                                                               .
+   0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Operation Type</div><div class="modern-diagram-cell">Address Type</div><div class="modern-diagram-cell">FEC-tlv length</div><div class="modern-diagram-cell">Reserved</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Remote Peer Address (0, 4 or 16 octets)</div></div></div>
+</figure><pre>   .                                                               .
    .                         FEC TLV                               .
-   .                                                               .
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-                    Figure 6: FEC Stack Change Sub-TLV
+   .                                                               .</pre><pre>   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>                    Figure 6: FEC Stack Change Sub-TLV
 
    Operation Type
 
@@ -725,7 +690,7 @@ Table of Contents
 
    Address Type
 
-      The Address Type indicates the remote peer's address type.  The
+      The Address Type indicates the remote peer&#x27;s address type.  The
       Address Type is set to one of the following values.  The length of
       the peer address is determined based on the address type.  The
       address type MAY be different from the address type included in
@@ -741,7 +706,7 @@ Table of Contents
 
 
 
-<span>Bahadur, et al.              Standards Track                   [Page 11]</span></pre>
+Bahadur, et al.              Standards Track                   [Page 11]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 12</span>
@@ -926,29 +891,26 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 15</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc6424">RFC 6424</a>               LSP Ping over MPLS Tunnels          November 2011</span>
+  <pre>RFC 6424               LSP Ping over MPLS Tunnels          November 2011
 
 
    operation SHOULD have the FEC TLV containing the Nil FEC.  The Return
-   Code SHOULD be set to "Label switched with FEC change".
+   Code SHOULD be set to &quot;Label switched with FEC change&quot;.
 
    If node C performs FEC hiding and node D also performs FEC hiding,
    then node D MAY choose to not send any FEC stack change sub-TLVs in
    the echo reply since the number of labels has not changed (for the
    downstream of node D) and the FEC type also has not changed (Nil
-   FEC).  In such a case, node D MUST NOT set the Return Code to "Label
-   switched with FEC change".  If node D performs FEC hiding, then node
+   FEC).  In such a case, node D MUST NOT set the Return Code to &quot;Label
+   switched with FEC change&quot;.  If node D performs FEC hiding, then node
    F will respond as IS_EGRESS for the Nil FEC.  The ingress (node A)
    will know that IS_EGRESS corresponds to the end-to-end LSP.
 
    A          B          C           D           E           F
-   o -------- o -------- o --------- o --------- o --------- o
-     \_____/  |\____________________/            |\_______/
-       LDP    |\       RSVP-A                    |    LDP
-              | \_______________________________/|
-              |       RSVP-B                     |
-               \________________________________/
+   o -------- o -------- o --------- o --------- o --------- o</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">LDP</div><div class="modern-diagram-cell">\       RSVP-A</div><div class="modern-diagram-cell">LDP</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">RSVP-B</div></div></div>
+</figure><pre>               \________________________________/
                                LDP
 
                         Figure 8: Hierarchical LSPs
@@ -981,7 +943,7 @@ Table of Contents
 
 
 
-<span>Bahadur, et al.              Standards Track                   [Page 15]</span></pre>
+Bahadur, et al.              Standards Track                   [Page 15]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 16</span>

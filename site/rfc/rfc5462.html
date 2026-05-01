@@ -266,8 +266,7 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 4</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc5462">RFC 5462</a>                MPLS TC Field Definition           February 2009</span>
+  <pre>RFC 5462                MPLS TC Field Definition           February 2009
 
 
    This paragraph is now changed to:
@@ -278,50 +277,44 @@ Table of Contents
       and the change of the name is applicable to all places it occurs
       in IETF RFCs and other IETF documents.
 
-      <a href="./rfc3270">RFC 3270</a> and <a href="./rfc5129">RFC 5129</a> update the definition of the TC field and
+      RFC 3270 and RFC 5129 update the definition of the TC field and
       describe how to use the field.
 
-   In Figure 1 on page 3 in <a href="./rfc3032">RFC 3032</a>, the format of a label stack entry
+   In Figure 1 on page 3 in RFC 3032, the format of a label stack entry
    is specified as:
 
-  0                   1                   2                   3
-  0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
- +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ Label
- |                Label                  | Exp |S|       TTL     | Stack
- +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ Entry
-
-                     Label:  Label Value, 20 bits
+  0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ Label</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">Label</div><div class="modern-diagram-cell">Exp</div><div class="modern-diagram-cell">S</div><div class="modern-diagram-cell">TTL</div><div class="modern-diagram-cell">Stack</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ Entry</div></div></div>
+</figure><pre>                     Label:  Label Value, 20 bits
                      Exp:    Experimental Use, 3 bits
                      S:      Bottom of Stack, 1 bit
                      TTL:    Time to Live, 8 bits
 
                               Figure 1
 
-   Figure 1 in <a href="./rfc3032">RFC 3032</a> is now changed to match the change of name to TC
+   Figure 1 in RFC 3032 is now changed to match the change of name to TC
    field:
 
-  0                   1                   2                   3
-  0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
- +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ Label
- |                Label                  | TC  |S|       TTL     | Stack
- +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ Entry
-
-                     Label:  Label Value, 20 bits
+  0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ Label</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">Label</div><div class="modern-diagram-cell">TC</div><div class="modern-diagram-cell">S</div><div class="modern-diagram-cell">TTL</div><div class="modern-diagram-cell">Stack</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ Entry</div></div></div>
+</figure><pre>                     Label:  Label Value, 20 bits
                      TC:     Traffic Class field, 3 bits
                      S:      Bottom of Stack, 1 bit
                      TTL:    Time to Live, 8 bits
 
                                Figure 1 (new)
 
-   Note: The designation of the picture above as "Figure 1 (new)" is
+   Note: The designation of the picture above as &quot;Figure 1 (new)&quot; is
    introduced as a way to distinguish the figures in this document.  It
-   will still be "Figure 1" in <a href="./rfc3032">RFC 3032</a>.
+   will still be &quot;Figure 1&quot; in RFC 3032.
 
 
 
 
 
-<span>Andersson &amp; Asati           Standards Track                     [Page 4]</span></pre>
+Andersson &amp; Asati           Standards Track                     [Page 4]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 5</span>

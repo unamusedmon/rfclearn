@@ -986,14 +986,13 @@ implied *LWS
   <div class="rfc-page-top">
     <span class="rfc-page-label">Appendix</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2068">RFC 2068</a>                        HTTP/1.1                    January 1997</span>
+  <pre>RFC 2068                        HTTP/1.1                    January 1997
 
 
    HTTP/1.1 defines the sequence CR LF as the end-of-line marker for all
    protocol elements except the entity-body (see appendix 19.3 for
    tolerant applications). The end-of-line marker within an entity-body
-   is defined by its associated media type, as described in <a href="#section-3.7">section 3.7</a>.
+   is defined by its associated media type, as described in section 3.7.
 
           CRLF           = CR LF
 
@@ -1006,42 +1005,34 @@ implied *LWS
    The TEXT rule is only used for descriptive field contents and values
    that are not intended to be interpreted by the message parser. Words
    of *TEXT may contain characters from character sets other than ISO
-   8859-1 [<a href="#ref-22" title="ISO 8859-2">22</a>] only when encoded according to the rules of <a href="./rfc1522">RFC 1522</a>
-   [<a href="#ref-14" title="&quot;MIME (Multipurpose Internet Mail Extensions) Part Three: Message Header Extensions for Non-ASCII Text&quot;">14</a>].
+   8859-1 [22] only when encoded according to the rules of RFC 1522
+   [14].
 
           TEXT           = &lt;any OCTET except CTLs,
                            but including LWS&gt;
 
-   Hexadecimal numeric characters are used in several protocol elements.
-
-          HEX            = "A" | "B" | "C" | "D" | "E" | "F"
-                         | "a" | "b" | "c" | "d" | "e" | "f" | DIGIT
-
-   Many HTTP/1.1 header field values consist of words separated by LWS
+   Hexadecimal numeric characters are used in several protocol elements.</pre><pre>          HEX            = &quot;A&quot; | &quot;B&quot; | &quot;C&quot; | &quot;D&quot; | &quot;E&quot; | &quot;F&quot;
+                         | &quot;a&quot; | &quot;b&quot; | &quot;c&quot; | &quot;d&quot; | &quot;e&quot; | &quot;f&quot; | DIGIT</pre><pre>   Many HTTP/1.1 header field values consist of words separated by LWS
    or special characters. These special characters MUST be in a quoted
    string to be used within a parameter value.
 
-          token          = 1*&lt;any CHAR except CTLs or tspecials&gt;
-
-          tspecials      = "(" | ")" | "&lt;" | "&gt;" | "@"
-                         | "," | ";" | ":" | "\" | &lt;"&gt;
-                         | "/" | "[" | "]" | "?" | "="
-                         | "{" | "}" | SP | HT
-
-   Comments can be included in some HTTP header fields by surrounding
+          token          = 1*&lt;any CHAR except CTLs or tspecials&gt;</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">tspecials      = &quot;(&quot;</div><div class="modern-diagram-cell">&quot;)&quot;</div><div class="modern-diagram-cell">&quot;&lt;&quot;</div><div class="modern-diagram-cell">&quot;&gt;&quot;</div><div class="modern-diagram-cell">&quot;@&quot;</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">&quot;{&quot;</div><div class="modern-diagram-cell">&quot;}&quot;</div><div class="modern-diagram-cell">SP</div><div class="modern-diagram-cell">HT</div></div></div>
+</figure><pre>   Comments can be included in some HTTP header fields by surrounding
    the comment text with parentheses. Comments are only allowed in
-   fields containing "comment" as part of their field value definition.
+   fields containing &quot;comment&quot; as part of their field value definition.
    In all other fields, parentheses are considered part of the field
    value.
 
-          comment        = "(" *( ctext | comment ) ")"
-          ctext          = &lt;any TEXT excluding "(" and ")"&gt;
+          comment        = &quot;(&quot; *( ctext | comment ) &quot;)&quot;
+          ctext          = &lt;any TEXT excluding &quot;(&quot; and &quot;)&quot;&gt;
 
 
 
 
 
-<span>Fielding, et. al.           Standards Track                    [Page 16]</span></pre>
+Fielding, et. al.           Standards Track                    [Page 16]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 17</span>
@@ -1166,49 +1157,35 @@ implied *LWS
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 19</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2068">RFC 2068</a>                        HTTP/1.1                    January 1997</span>
-
-
-          scheme         = 1*( ALPHA | DIGIT | "+" | "-" | "." )
-          net_loc        = *( pchar | ";" | "?" )
-
-          query          = *( uchar | reserved )
-          fragment       = *( uchar | reserved )
-
-          pchar          = uchar | ":" | "@" | "&amp;" | "=" | "+"
-          uchar          = unreserved | escape
-          unreserved     = ALPHA | DIGIT | safe | extra | national
-
-          escape         = "%" HEX HEX
-          reserved       = ";" | "/" | "?" | ":" | "@" | "&amp;" | "=" | "+"
-          extra          = "!" | "*" | "'" | "(" | ")" | ","
-          safe           = "$" | "-" | "_" | "."
-          unsafe         = CTL | SP | &lt;"&gt; | "#" | "%" | "&lt;" | "&gt;"
-          national       = &lt;any OCTET excluding ALPHA, DIGIT,
+  <pre>RFC 2068                        HTTP/1.1                    January 1997</pre><pre>          scheme         = 1*( ALPHA | DIGIT | &quot;+&quot; | &quot;-&quot; | &quot;.&quot; )
+          net_loc        = *( pchar | &quot;;&quot; | &quot;?&quot; )</pre><pre>          query          = *( uchar | reserved )
+          fragment       = *( uchar | reserved )</pre><pre>          pchar          = uchar | &quot;:&quot; | &quot;@&quot; | &quot;&amp;&quot; | &quot;=&quot; | &quot;+&quot;</pre><pre>          uchar          = unreserved | escape</pre><pre>          unreserved     = ALPHA | DIGIT | safe | extra | national</pre><pre>          escape         = &quot;%&quot; HEX HEX</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 8"><div class="modern-diagram-cell">reserved       = &quot;;&quot;</div><div class="modern-diagram-cell">&quot;/&quot;</div><div class="modern-diagram-cell">&quot;?&quot;</div><div class="modern-diagram-cell">&quot;:&quot;</div><div class="modern-diagram-cell">&quot;@&quot;</div><div class="modern-diagram-cell">&quot;&amp;&quot;</div><div class="modern-diagram-cell">&quot;=&quot;</div><div class="modern-diagram-cell">&quot;+&quot;</div></div><div class="modern-diagram-row" style="--cell-count: 6"><div class="modern-diagram-cell">extra          = &quot;!&quot;</div><div class="modern-diagram-cell">&quot;*&quot;</div><div class="modern-diagram-cell">&quot;&#x27;&quot;</div><div class="modern-diagram-cell">&quot;(&quot;</div><div class="modern-diagram-cell">&quot;)&quot;</div><div class="modern-diagram-cell">&quot;,&quot;</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">safe           = &quot;$&quot;</div><div class="modern-diagram-cell">&quot;-&quot;</div><div class="modern-diagram-cell">&quot;_&quot;</div><div class="modern-diagram-cell">&quot;.&quot;</div></div><div class="modern-diagram-row" style="--cell-count: 7"><div class="modern-diagram-cell">unsafe         = CTL</div><div class="modern-diagram-cell">SP</div><div class="modern-diagram-cell">&lt;&quot;&gt;</div><div class="modern-diagram-cell">&quot;#&quot;</div><div class="modern-diagram-cell">&quot;%&quot;</div><div class="modern-diagram-cell">&quot;&lt;&quot;</div><div class="modern-diagram-cell">&quot;&gt;&quot;</div></div></div>
+</figure><pre>          national       = &lt;any OCTET excluding ALPHA, DIGIT,
                            reserved, extra, safe, and unsafe&gt;
 
-   For definitive information on URL syntax and semantics, see <a href="./rfc1738">RFC 1738</a>
-   [<a href="#ref-4" title="&quot;Uniform Resource Locators (URL)&quot;">4</a>] and <a href="./rfc1808">RFC 1808</a> [<a href="#ref-11" title="&quot;Relative Uniform Resource Locators&quot;">11</a>]. The BNF above includes national characters not
-   allowed in valid URLs as specified by <a href="./rfc1738">RFC 1738</a>, since HTTP servers
+   For definitive information on URL syntax and semantics, see RFC 1738
+   [4] and RFC 1808 [11]. The BNF above includes national characters not
+   allowed in valid URLs as specified by RFC 1738, since HTTP servers
    are not restricted in the set of unreserved characters allowed to
    represent the rel_path part of addresses, and HTTP proxies may
-   receive requests for URIs not defined by <a href="./rfc1738">RFC 1738</a>.
+   receive requests for URIs not defined by RFC 1738.
 
    The HTTP protocol does not place any a priori limit on the length of
    a URI. Servers MUST be able to handle the URI of any resource they
    serve, and SHOULD be able to handle URIs of unbounded length if they
    provide GET-based forms that could generate such URIs. A server
    SHOULD return 414 (Request-URI Too Long) status if a URI is longer
-   than the server can handle (see <a href="#section-10.4.15">section 10.4.15</a>).
+   than the server can handle (see section 10.4.15).
 
      Note: Servers should be cautious about depending on URI lengths
      above 255 bytes, because some older client or proxy implementations
      may not properly support these lengths.
 
-<span><a href="#section-3.2.2">3.2.2</a> http URL</span>
+3.2.2 http URL
 
-   The "http" scheme is used to locate network resources via the HTTP
+   The &quot;http&quot; scheme is used to locate network resources via the HTTP
    protocol. This section defines the scheme-specific syntax and
    semantics for http URLs.
 
@@ -1221,7 +1198,7 @@ implied *LWS
 
 
 
-<span>Fielding, et. al.           Standards Track                    [Page 19]</span></pre>
+Fielding, et. al.           Standards Track                    [Page 19]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 20</span>
@@ -1346,23 +1323,15 @@ implied *LWS
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 22</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2068">RFC 2068</a>                        HTTP/1.1                    January 1997</span>
-
-
-          weekday      = "Monday" | "Tuesday" | "Wednesday"
-                       | "Thursday" | "Friday" | "Saturday" | "Sunday"
-
-          month        = "Jan" | "Feb" | "Mar" | "Apr"
-                       | "May" | "Jun" | "Jul" | "Aug"
-                       | "Sep" | "Oct" | "Nov" | "Dec"
-
-     Note: HTTP requirements for the date/time stamp format apply only
+  <pre>RFC 2068                        HTTP/1.1                    January 1997</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">weekday      = &quot;Monday&quot;</div><div class="modern-diagram-cell">&quot;Tuesday&quot;</div><div class="modern-diagram-cell">&quot;Wednesday&quot;</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">&quot;Thursday&quot;</div><div class="modern-diagram-cell">&quot;Friday&quot;</div><div class="modern-diagram-cell">&quot;Saturday&quot;</div><div class="modern-diagram-cell">&quot;Sunday&quot;</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">month        = &quot;Jan&quot;</div><div class="modern-diagram-cell">&quot;Feb&quot;</div><div class="modern-diagram-cell">&quot;Mar&quot;</div><div class="modern-diagram-cell">&quot;Apr&quot;</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">&quot;May&quot;</div><div class="modern-diagram-cell">&quot;Jun&quot;</div><div class="modern-diagram-cell">&quot;Jul&quot;</div><div class="modern-diagram-cell">&quot;Aug&quot;</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">&quot;Sep&quot;</div><div class="modern-diagram-cell">&quot;Oct&quot;</div><div class="modern-diagram-cell">&quot;Nov&quot;</div><div class="modern-diagram-cell">&quot;Dec&quot;</div></div></div>
+</figure><pre>     Note: HTTP requirements for the date/time stamp format apply only
      to their usage within the protocol stream. Clients and servers are
      not required to use these formats for user presentation, request
      logging, etc.
 
-<span><a href="#section-3.3.2">3.3.2</a> Delta Seconds</span>
+3.3.2 Delta Seconds
 
    Some HTTP header fields allow a time value to be specified as an
    integer number of seconds, represented in decimal, after the time
@@ -1370,12 +1339,12 @@ implied *LWS
 
           delta-seconds  = 1*DIGIT
 
-<span><a href="#section-3.4">3.4</a> Character Sets</span>
+3.4 Character Sets
 
-   HTTP uses the same definition of the term "character set" as that
+   HTTP uses the same definition of the term &quot;character set&quot; as that
    described for MIME:
 
-     The term "character set" is used in this document to refer to a
+     The term &quot;character set&quot; is used in this document to refer to a
      method used with one or more tables to convert a sequence of octets
      into a sequence of characters. Note that unconditional conversion
      in the other direction is not required, in that not all characters
@@ -1384,13 +1353,13 @@ implied *LWS
      character. This definition is intended to allow various kinds of
      character encodings, from simple single-table mappings such as US-
      ASCII to complex table switching methods such as those that use ISO
-     2022's techniques. However, the definition associated with a MIME
+     2022&#x27;s techniques. However, the definition associated with a MIME
      character set name MUST fully specify the mapping to be performed
      from octets to characters. In particular, use of external profiling
      information to determine the exact mapping is not permitted.
 
-     Note: This use of the term "character set" is more commonly
-     referred to as a "character encoding." However, since HTTP and MIME
+     Note: This use of the term &quot;character set&quot; is more commonly
+     referred to as a &quot;character encoding.&quot; However, since HTTP and MIME
      share the same registry, it is important that the terminology also
      be shared.
 
@@ -1401,7 +1370,7 @@ implied *LWS
 
 
 
-<span>Fielding, et. al.           Standards Track                    [Page 22]</span></pre>
+Fielding, et. al.           Standards Track                    [Page 22]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 23</span>

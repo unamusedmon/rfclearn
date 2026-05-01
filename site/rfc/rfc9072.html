@@ -290,25 +290,10 @@ does exceed 255, the OPEN message <span>MUST</span> be encoded according to the
 procedure below.<a href="#section-2-3">¶</a></p>
 <span></span><div>
 <figure>
-        <div></div><pre>
-        0                   1                   2                   3
-        0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-       +-+-+-+-+-+-+-+-+
-       |    Version    |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |     My Autonomous System      |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |           Hold Time           |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                         BGP Identifier                        |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |Non-Ext OP Len.|Non-Ext OP Type|  Extended Opt. Parm. Length   |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-       |                                                               |
-       |             Optional Parameters (variable)                    |
-       |                                                               |
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-</pre>
+        <div></div><pre>        0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Version</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">My Autonomous System</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Hold Time</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">BGP Identifier</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Non-Ext OP Len.</div><div class="modern-diagram-cell">Non-Ext OP Type</div><div class="modern-diagram-cell">Extended Opt. Parm. Length</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Optional Parameters (variable)</div></div></div>
+</figure>
 </div>
 <figcaption><a href="#figure-1">Figure 1</a>:
 <a href="#name-extended-encoding-open-form">Extended Encoding OPEN Format</a>
@@ -338,16 +323,11 @@ to be the following:<a href="#section-2-8">¶</a></p>
 <span></span><div>
 <figure>
         <div>
-<pre>
-     0                   1                   2
-     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |  Parm. Type   |        Parameter Length       |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    ~            Parameter Value (variable)         ~
-    |                                               |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-</pre>
+<pre>     0                   1                   2</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Parm. Type</div><div class="modern-diagram-cell">Parameter Length</div></div></div>
+</figure><pre>    ~            Parameter Value (variable)         ~</pre><pre>    |                                               |
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre>
 </div>
 <figcaption><a href="#figure-2">Figure 2</a>:
 <a href="#name-extended-parameters-format">Extended Parameters Format</a>

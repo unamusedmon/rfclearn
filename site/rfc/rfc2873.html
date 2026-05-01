@@ -146,8 +146,7 @@ Abstract
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 2</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2873">RFC 2873</a>           TCP and the IPv4 Precedence Field           June 2000</span>
+  <pre>RFC 2873           TCP and the IPv4 Precedence Field           June 2000
 
 
    and compartment, etc.  Both ends must agree on the setting of the
@@ -169,15 +168,15 @@ Abstract
    40, 66, 67, 71].
 
    With the advent of DiffServ, intermediate nodes may modify the
-   Differentiated Services Codepoint (DSCP) [<a href="./rfc2474" title="&quot;Definition of the Differentiated Services Field (DS Field) in the IPv4 and IPv6 Headers&quot;">RFC2474</a>] of the IP header
-   to indicate the desired Per-hop Behavior (PHB) [RFC2475, <a href="./rfc2597">RFC2597</a>,
-   <a href="./rfc2598">RFC2598</a>]. The DSCP includes the three bits formerly known as the
+   Differentiated Services Codepoint (DSCP) [RFC2474] of the IP header
+   to indicate the desired Per-hop Behavior (PHB) [RFC2475, RFC2597,
+   RFC2598]. The DSCP includes the three bits formerly known as the
    precedence field.  Because any modification to those three bits will
    be considered illegal by endpoints that are precedence-aware, they
    may cause failures in establishing connections, or may cause
    established connections to be reset.
 
-<span><a href="#section-2">2</a>. Terminology</span>
+2. Terminology
 
    Segment: the unit of data that TCP sends to IP
 
@@ -186,41 +185,28 @@ Abstract
    used to denote the precedence of the IP packet. There is no
    precedence field in the traffic class octet in IPv6.
 
-   TOS Field: bits 3-6 in the TOS octet of IPv4 header [<a href="./rfc1349">RFC 1349</a>].
+   TOS Field: bits 3-6 in the TOS octet of IPv4 header [RFC 1349].
 
    MBZ field: Must Be Zero
 
-   The structure of the TOS octet is depicted below:
-
-                   0     1     2     3     4     5     6     7
-                +-----+-----+-----+-----+-----+-----+-----+-----+
-                |   PRECEDENCE    |          TOS          | MBZ |
-                +-----+-----+-----+-----+-----+-----+-----+-----+
-
-
-
-
-
-<span>Xiao, et al.                Standards Track                     [Page 2]</span></pre>
+   The structure of the TOS octet is depicted below:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0     1     2     3     4     5     6     7</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">PRECEDENCE</div><div class="modern-diagram-cell">TOS</div><div class="modern-diagram-cell">MBZ</div></div></div>
+</figure><pre>Xiao, et al.                Standards Track                     [Page 2]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 3</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2873">RFC 2873</a>           TCP and the IPv4 Precedence Field           June 2000</span>
+  <pre>RFC 2873           TCP and the IPv4 Precedence Field           June 2000
 
 
    DS Field: the TOS octet of an IPv4 header is renamed the
    Differentiated Services (DS) Field by DiffServ.
 
-   The structure of the DS field is depicted below:
-
-                  0   1   2   3   4   5   6   7
-                +---+---+---+---+---+---+---+---+
-                |         DSCP          |  CU   |
-                +---+---+---+---+---+---+---+---+
-
-   DSCP: Differentiated Service Code Point, the leftmost 6 bits in the
+   The structure of the DS field is depicted below:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0   1   2   3   4   5   6   7</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">DSCP</div><div class="modern-diagram-cell">CU</div></div></div>
+</figure><pre>   DSCP: Differentiated Service Code Point, the leftmost 6 bits in the
    DS field.
 
    CU:   currently unused.
@@ -229,12 +215,12 @@ Abstract
    forwarding treatment applied at a differentiated services-compliant
    node to a behavior aggregate.
 
-<span><a href="#section-3">3</a>. Problem Description</span>
+3. Problem Description
 
    The manipulation of the DSCP to achieve the desired PHB by DiffServ-
-   capable nodes may conflict with TCP's use of the precedence field.
+   capable nodes may conflict with TCP&#x27;s use of the precedence field.
    This conflict can potentially cause problems for TCP implementations
-   that conform to <a href="./rfc793">RFC 793</a>.  First, page 36 of <a href="./rfc793">RFC 793</a> states:
+   that conform to RFC 793.  First, page 36 of RFC 793 states:
 
        If the connection is in any non-synchronized state (LISTEN, SYN-
        SENT, SYN-RECEIVED), and the incoming segment acknowledges
@@ -256,12 +242,12 @@ Abstract
        be sent.
 
    This leads to Problem #1:  For a precedence-aware TCP module, if
-   during TCP's synchronization process, the precedence fields of the
+   during TCP&#x27;s synchronization process, the precedence fields of the
    SYN and/or ACK packets are modified by the intermediate nodes,
 
 
 
-<span>Xiao, et al.                Standards Track                     [Page 3]</span></pre>
+Xiao, et al.                Standards Track                     [Page 3]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 4</span>

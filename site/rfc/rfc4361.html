@@ -386,13 +386,12 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 6</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc4361">RFC 4361</a>          Node-specific Identifiers for DHCPv4     February 2006</span>
+  <pre>RFC 4361          Node-specific Identifiers for DHCPv4     February 2006
 
 
    In order to satisfy the last requirement, we must use the DUID to
    identify the DHCPv4 client.  So, taking all the requirements
-   together, the DUID and IAID described in <a href="./rfc3315">RFC 3315</a> are the only
+   together, the DUID and IAID described in RFC 3315 are the only
    possible solution.
 
    By following these rules, a compliant DHCPv4 client will interoperate
@@ -402,46 +401,42 @@ Table of Contents
    compliant, the goals stated in the document are not met, but there is
    no loss of functionality.
 
-<span><a href="#section-6">6</a>.  Implementation</span>
+6.  Implementation
 
    Here we specify changes to the behavior of DHCPv4 clients and
-   servers.  We also specify changes to the wording in <a href="./rfc2131">RFC 2131</a> and <a href="./rfc2132">RFC</a>
-   <a href="https://www.rfc-editor.org/rfc/rfc2132.html" class="rfc-external">2132</a>.  DHCPv4 clients, servers, and relay agents that conform to this
-   specification must implement <a href="./rfc2131">RFC 2131</a> and <a href="./rfc2132">RFC 2132</a> with the wording
-   changes specified in sections <a href="#section-6.3">6.3</a> and <a href="#section-6.4">6.4</a>.
+   servers.  We also specify changes to the wording in RFC 2131 and RFC
+   2132.  DHCPv4 clients, servers, and relay agents that conform to this
+   specification must implement RFC 2131 and RFC 2132 with the wording
+   changes specified in sections 6.3 and 6.4.
 
-<span><a href="#section-6.1">6.1</a>.  DHCPv4 Client Behavior</span>
+6.1.  DHCPv4 Client Behavior
 
    DHCPv4 clients conforming to this specification MUST use stable
    DHCPv4 node identifiers in the dhcp-client-identifier option.  DHCPv4
    clients MUST NOT use client identifiers based solely on layer two
    addresses that are hard-wired to the layer two device (e.g., the
-   ethernet MAC address) as suggested in <a href="./rfc2131">RFC 2131</a>, except as allowed in
-   <a href="./rfc3315#section-9.2">section&nbsp;9.2 of RFC 3315</a>.  DHCPv4 clients MUST send a 'client
-   identifier' option containing an Identity Association Unique
-   Identifier, as defined in <a href="./rfc3315#section-10">section&nbsp;10 of RFC 3315</a>, and a DHCP Unique
-   Identifier, as defined in <a href="./rfc3315#section-9">section&nbsp;9 of RFC 3315</a>.  These together
-   constitute an <a href="./rfc3315">RFC 3315</a>-style binding identifier.
+   ethernet MAC address) as suggested in RFC 2131, except as allowed in
+   section 9.2 of RFC 3315.  DHCPv4 clients MUST send a &#x27;client
+   identifier&#x27; option containing an Identity Association Unique
+   Identifier, as defined in section 10 of RFC 3315, and a DHCP Unique
+   Identifier, as defined in section 9 of RFC 3315.  These together
+   constitute an RFC 3315-style binding identifier.
 
-   The general format of the DHCPv4 'client identifier' option is
-   defined in <a href="./rfc2132#section-9.14">section&nbsp;9.14 of RFC 2132</a>.
+   The general format of the DHCPv4 &#x27;client identifier&#x27; option is
+   defined in section 9.14 of RFC 2132.
 
-   To send an <a href="./rfc3315">RFC 3315</a>-style binding identifier in a DHCPv4 'client
-   identifier' option, the type of the 'client identifier' option is set
+   To send an RFC 3315-style binding identifier in a DHCPv4 &#x27;client
+   identifier&#x27; option, the type of the &#x27;client identifier&#x27; option is set
    to 255.  The type field is immediately followed by the IAID, which is
    an opaque 32-bit quantity.  The IAID is immediately followed by the
-   DUID, which consumes the remaining contents of the 'client
-   identifier' option.  The format of the 'client identifier' option is
+   DUID, which consumes the remaining contents of the &#x27;client
+   identifier&#x27; option.  The format of the &#x27;client identifier&#x27; option is
    as follows:
 
-       Code  Len  Type  IAID                DUID
-       +----+----+-----+----+----+----+----+----+----+---
-       | 61 | n  | 255 | i1 | i2 | i3 | i4 | d1 | d2 |...
-       +----+----+-----+----+----+----+----+----+----+---
-
-
-
-<span>Lemon &amp; Sommerfield         Standards Track                     [Page 6]</span></pre>
+       Code  Len  Type  IAID                DUID</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 10"><div class="modern-diagram-cell">61</div><div class="modern-diagram-cell">n</div><div class="modern-diagram-cell">255</div><div class="modern-diagram-cell">i1</div><div class="modern-diagram-cell">i2</div><div class="modern-diagram-cell">i3</div><div class="modern-diagram-cell">i4</div><div class="modern-diagram-cell">d1</div><div class="modern-diagram-cell">d2</div><div class="modern-diagram-cell">...</div></div></div>
+</figure><pre>Lemon &amp; Sommerfield         Standards Track                     [Page 6]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 7</span>

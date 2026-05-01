@@ -446,8 +446,7 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 7</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc6891">RFC 6891</a>                   EDNS(0) Extensions                 April 2013</span>
+  <pre>RFC 6891                   EDNS(0) Extensions                 April 2013
 
 
    The OPT RR has RR type 41.
@@ -468,7 +467,7 @@ Table of Contents
    the TSIG or SIG(0) RRs to be the last in the additional section
    whenever they are present.
 
-<span><a href="#section-6.1.2">6.1.2</a>.  Wire Format</span>
+6.1.2.  Wire Format
 
    An OPT RR has a fixed part and a variable set of options expressed as
    {attribute, value} pairs.  The fixed part holds some DNS metadata,
@@ -476,20 +475,10 @@ Table of Contents
    expect to be so popular that it would be a waste of wire space to
    encode them as {attribute, value} pairs.
 
-   The fixed part of an OPT RR is structured as follows:
-
-       +------------+--------------+------------------------------+
-       | Field Name | Field Type   | Description                  |
-       +------------+--------------+------------------------------+
-       | NAME       | domain name  | MUST be 0 (root domain)      |
-       | TYPE       | u_int16_t    | OPT (41)                     |
-       | CLASS      | u_int16_t    | requestor's UDP payload size |
-       | TTL        | u_int32_t    | extended RCODE and flags     |
-       | RDLEN      | u_int16_t    | length of all RDATA          |
-       | RDATA      | octet stream | {attribute,value} pairs      |
-       +------------+--------------+------------------------------+
-
-                               OPT RR Format
+   The fixed part of an OPT RR is structured as follows:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Field Name</div><div class="modern-diagram-cell">Field Type</div><div class="modern-diagram-cell">Description</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">NAME</div><div class="modern-diagram-cell">domain name</div><div class="modern-diagram-cell">MUST be 0 (root domain)</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">TYPE</div><div class="modern-diagram-cell">u_int16_t</div><div class="modern-diagram-cell">OPT (41)</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">CLASS</div><div class="modern-diagram-cell">u_int16_t</div><div class="modern-diagram-cell">requestor&#x27;s UDP payload size</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">TTL</div><div class="modern-diagram-cell">u_int32_t</div><div class="modern-diagram-cell">extended RCODE and flags</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">RDLEN</div><div class="modern-diagram-cell">u_int16_t</div><div class="modern-diagram-cell">length of all RDATA</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">RDATA</div><div class="modern-diagram-cell">octet stream</div><div class="modern-diagram-cell">{attribute,value} pairs</div></div></div>
+</figure><pre>                               OPT RR Format
 
 
 
@@ -501,31 +490,23 @@ Table of Contents
 
 
 
-<span>Damas, et al.                Standards Track                    [Page 7]</span></pre>
+Damas, et al.                Standards Track                    [Page 7]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 8</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc6891">RFC 6891</a>                   EDNS(0) Extensions                 April 2013</span>
+  <pre>RFC 6891                   EDNS(0) Extensions                 April 2013
 
 
    The variable part of an OPT RR may contain zero or more options in
    the RDATA.  Each option MUST be treated as a bit field.  Each option
    is encoded as:
 
-                  +0 (MSB)                            +1 (LSB)
-       +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-    0: |                          OPTION-CODE                          |
-       +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-    2: |                         OPTION-LENGTH                         |
-       +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-    4: |                                                               |
-       /                          OPTION-DATA                          /
-       /                                                               /
-       +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-
-   OPTION-CODE
+                  +0 (MSB)                            +1 (LSB)</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">0:</div><div class="modern-diagram-cell">OPTION-CODE</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">2:</div><div class="modern-diagram-cell">OPTION-LENGTH</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">4:</div></div></div>
+</figure><pre>       /                          OPTION-DATA                          /
+       /                                                               /</pre><pre>       +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+</pre><pre>   OPTION-CODE
       Assigned by the Expert Review process as defined by the DNSEXT
       working group and the IESG.
 
@@ -561,41 +542,36 @@ Table of Contents
 
 
 
-<span>Damas, et al.                Standards Track                    [Page 8]</span></pre>
+Damas, et al.                Standards Track                    [Page 8]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 9</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc6891">RFC 6891</a>                   EDNS(0) Extensions                 April 2013</span>
+  <pre>RFC 6891                   EDNS(0) Extensions                 April 2013
 
 
-<span><a href="#section-6.1.3">6.1.3</a>.  OPT Record TTL Field Use</span>
+6.1.3.  OPT Record TTL Field Use
 
    The extended RCODE and flags, which OPT stores in the RR Time to Live
    (TTL) field, are structured as follows:
 
-                  +0 (MSB)                            +1 (LSB)
-       +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-    0: |         EXTENDED-RCODE        |            VERSION            |
-       +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-    2: | DO|                           Z                               |
-       +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-
-   EXTENDED-RCODE
+                  +0 (MSB)                            +1 (LSB)</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">0:</div><div class="modern-diagram-cell">EXTENDED-RCODE</div><div class="modern-diagram-cell">VERSION</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">2:</div><div class="modern-diagram-cell">DO</div><div class="modern-diagram-cell">Z</div></div></div>
+</figure><pre>   EXTENDED-RCODE
       Forms the upper 8 bits of extended 12-bit RCODE (together with the
-      4 bits defined in [<a href="./rfc1035" title="&quot;Domain names - implementation and specification&quot;">RFC1035</a>].  Note that EXTENDED-RCODE value 0
+      4 bits defined in [RFC1035].  Note that EXTENDED-RCODE value 0
       indicates that an unextended RCODE is in use (values 0 through
       15).
 
    VERSION
       Indicates the implementation level of the setter.  Full
-      conformance with this specification is indicated by version '0'.
+      conformance with this specification is indicated by version &#x27;0&#x27;.
       Requestors are encouraged to set this to the lowest implemented
       level capable of expressing a transaction, to minimise the
       responder and network load of discovering the greatest common
       implementation level between requestor and responder.  A
-      requestor's version numbering strategy MAY ideally be a run-time
+      requestor&#x27;s version numbering strategy MAY ideally be a run-time
       configuration option.
       If a responder does not implement the VERSION level of the
       request, then it MUST respond with RCODE=BADVERS.  All responses
@@ -605,10 +581,10 @@ Table of Contents
       implementation level of a responder as a side effect of every
       response, including error responses and including RCODE=BADVERS.
 
-<span><a href="#section-6.1.4">6.1.4</a>.  Flags</span>
+6.1.4.  Flags
 
    DO
-      DNSSEC OK bit as defined by [<a href="./rfc3225" title="&quot;Indicating Resolver Support of DNSSEC&quot;">RFC3225</a>].
+      DNSSEC OK bit as defined by [RFC3225].
 
    Z
       Set to zero by senders and ignored by receivers, unless modified
@@ -621,7 +597,7 @@ Table of Contents
 
 
 
-<span>Damas, et al.                Standards Track                    [Page 9]</span></pre>
+Damas, et al.                Standards Track                    [Page 9]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 10</span>

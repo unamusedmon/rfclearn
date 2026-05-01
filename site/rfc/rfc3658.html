@@ -686,44 +686,24 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 11</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc3658">RFC 3658</a>      Delegation Signer (DS) Resource Record (RR)  December 2003</span>
+  <pre>RFC 3658      Delegation Signer (DS) Resource Record (RR)  December 2003
 
 
-<span><a href="#section-2.4">2.4</a>.  Wire Format of the DS record</span>
+2.4.  Wire Format of the DS record
 
    The DS (type=43) record contains these fields: key tag, algorithm,
    digest type, and the digest of a public key KEY record that is
-   allowed and/or used to sign the child's apex KEY RRset.  Other keys
-   MAY sign the child's apex KEY RRset.
-
-                        1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 3 3
-    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |           key tag             |  algorithm    |  Digest type  |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                digest  (length depends on type)               |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                (SHA-1 digest is 20 bytes)                     |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                                                               |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-|
-   |                                                               |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-|
-   |                                                               |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-   The key tag is calculated as specified in <a href="./rfc2535">RFC 2535</a>.  Algorithm MUST
+   allowed and/or used to sign the child&#x27;s apex KEY RRset.  Other keys
+   MAY sign the child&#x27;s apex KEY RRset.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 3 3</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">key tag</div><div class="modern-diagram-cell">algorithm</div><div class="modern-diagram-cell">Digest type</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">digest  (length depends on type)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">(SHA-1 digest is 20 bytes)</div></div></div>
+</figure><pre>   The key tag is calculated as specified in RFC 2535.  Algorithm MUST
    be allowed to sign DNS data.  The digest type is an identifier for
    the digest algorithm used.  The digest is calculated over the
    canonical name of the delegated domain name followed by the whole
    RDATA of the KEY record (all four fields).
 
-      digest = hash( canonical FQDN on KEY RR | KEY_RR_rdata)
-
-      KEY_RR_rdata = Flags | Protocol | Algorithm | Public Key
-
-   Digest type value 0 is reserved, value 1 is SHA-1, and reserving
+      digest = hash( canonical FQDN on KEY RR | KEY_RR_rdata)</pre><pre>      KEY_RR_rdata = Flags | Protocol | Algorithm | Public Key</pre><pre>   Digest type value 0 is reserved, value 1 is SHA-1, and reserving
    other types requires IETF standards action.  For interoperability
    reasons, keeping number of digest algorithms low is strongly
    RECOMMENDED.  The only reason to reserve additional digest types is
@@ -741,7 +721,7 @@ Table of Contents
 
 
 
-<span>Gudmundsson                 Standards Track                    [Page 11]</span></pre>
+Gudmundsson                 Standards Track                    [Page 11]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 12</span>

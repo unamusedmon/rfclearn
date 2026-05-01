@@ -146,26 +146,23 @@ Copyright Notice
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 2</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2673">RFC 2673</a>        Binary Labels in the Domain Name System      August 1999</span>
+  <pre>RFC 2673        Binary Labels in the Domain Name System      August 1999
 
 
    Among consecutive Bit-String Labels, the bits in the first-appearing
-   label are less significant or "at a lower level" than the bits in
+   label are less significant or &quot;at a lower level&quot; than the bits in
    subsequent Bit-String Labels, just as ASCII labels are ordered.
 
-<span><a href="#section-3.1">3.1</a>.  Encoding</span>
+3.1.  Encoding
 
       0                   1                   2
-      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2     . . .
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-//+-+-+-+-+-+-+
-     |0 1|    ELT    |     Count     |           Label ...         |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+//-+-+-+-+-+-+-+
-
-   (Each tic mark represents one bit.)
+      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2     . . .</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">0 1</div><div class="modern-diagram-cell">ELT</div><div class="modern-diagram-cell">Count</div><div class="modern-diagram-cell">Label ...</div></div></div>
+</figure><pre>   (Each tic mark represents one bit.)
 
 
-   ELT       000001 binary, the six-bit extended label type [<a href="#ref-EDNS0" title="&quot;Extension mechanisms for DNS (EDNS0)&quot;">EDNS0</a>]
+   ELT       000001 binary, the six-bit extended label type [EDNS0]
              assigned to the Bit-String Label.
 
    Count     The number of significant bits in the Label field.  A Count
@@ -188,20 +185,20 @@ Copyright Notice
    but the division points have no significance and need not be
    preserved.  An excessively clever server implementation might split
    Bit-String Labels so as to maximize the effectiveness of message
-   compression [<a href="#ref-DNSIS" title="&quot;Domain names - implementation and specification&quot;">DNSIS</a>].  A simpler server might divide Bit-String Labels
+   compression [DNSIS].  A simpler server might divide Bit-String Labels
    at zone boundaries, if any zone boundaries happen to fall between
    One-Bit Labels.
 
-<span><a href="#section-3.2">3.2</a>.  Textual Representation</span>
+3.2.  Textual Representation
 
    A Bit-String Label is represented in text -- in a zone file, for
-   example -- as a &lt;bit-spec&gt; surrounded by the delimiters "\[" and "]".
+   example -- as a &lt;bit-spec&gt; surrounded by the delimiters &quot;\[&quot; and &quot;]&quot;.
    The &lt;bit-spec&gt; is either a dotted quad or a base indicator and a
    sequence of digits appropriate to that base, optionally followed by a
 
 
 
-<span>Crawford                    Standards Track                     [Page 2]</span></pre>
+Crawford                    Standards Track                     [Page 2]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 3</span>

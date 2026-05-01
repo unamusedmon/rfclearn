@@ -746,8 +746,7 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 12</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc7540">RFC 7540</a>                         HTTP/2                         May 2015</span>
+  <pre>RFC 7540                         HTTP/2                         May 2015
 
 
    To avoid unnecessary latency, clients are permitted to send
@@ -762,31 +761,22 @@ Table of Contents
    additional frames, providing an opportunity to avoid this issue.
 
    Clients and servers MUST treat an invalid connection preface as a
-   connection error (<a href="#section-5.4.1">Section 5.4.1</a>) of type PROTOCOL_ERROR.  A GOAWAY
-   frame (<a href="#section-6.8">Section 6.8</a>) MAY be omitted in this case, since an invalid
+   connection error (Section 5.4.1) of type PROTOCOL_ERROR.  A GOAWAY
+   frame (Section 6.8) MAY be omitted in this case, since an invalid
    preface indicates that the peer is not using HTTP/2.
 
-<span><a href="#section-4">4</a>.  HTTP Frames</span>
+4.  HTTP Frames
 
    Once the HTTP/2 connection is established, endpoints can begin
    exchanging frames.
 
-<span><a href="#section-4.1">4.1</a>.  Frame Format</span>
+4.1.  Frame Format
 
    All frames begin with a fixed 9-octet header followed by a variable-
-   length payload.
-
-    +-----------------------------------------------+
-    |                 Length (24)                   |
-    +---------------+---------------+---------------+
-    |   Type (8)    |   Flags (8)   |
-    +-+-------------+---------------+-------------------------------+
-    |R|                 Stream Identifier (31)                      |
-    +=+=============================================================+
-    |                   Frame Payload (0...)                      ...
-    +---------------------------------------------------------------+
-
-                          Figure 1: Frame Layout
+   length payload.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Length (24)</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Type (8)</div><div class="modern-diagram-cell">Flags (8)</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">R</div><div class="modern-diagram-cell">Stream Identifier (31)</div></div></div>
+</figure><pre>    |                   Frame Payload (0...)                      ...</pre><pre>    +---------------------------------------------------------------+</pre><pre>                          Figure 1: Frame Layout
 
    The fields of the frame header are defined as:
 
@@ -801,7 +791,7 @@ Table of Contents
 
 
 
-<span>Belshe, et al.               Standards Track                   [Page 12]</span></pre>
+Belshe, et al.               Standards Track                   [Page 12]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 13</span>
@@ -986,44 +976,15 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 16</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc7540">RFC 7540</a>                         HTTP/2                         May 2015</span>
+  <pre>RFC 7540                         HTTP/2                         May 2015
 
 
-<span><a href="#section-5.1">5.1</a>.  Stream States</span>
+5.1.  Stream States
 
-   The lifecycle of a stream is shown in Figure 2.
-
-                                +--------+
-                        send PP |        | recv PP
-                       ,--------|  idle  |--------.
-                      /         |        |         \
-                     v          +--------+          v
-              +----------+          |           +----------+
-              |          |          | send H /  |          |
-       ,------| reserved |          | recv H    | reserved |------.
-       |      | (local)  |          |           | (remote) |      |
-       |      +----------+          v           +----------+      |
-       |          |             +--------+             |          |
-       |          |     recv ES |        | send ES     |          |
-       |   send H |     ,-------|  open  |-------.     | recv H   |
-       |          |    /        |        |        \    |          |
-       |          v   v         +--------+         v   v          |
-       |      +----------+          |           +----------+      |
-       |      |   half   |          |           |   half   |      |
-       |      |  closed  |          | send R /  |  closed  |      |
-       |      | (remote) |          | recv R    | (local)  |      |
-       |      +----------+          |           +----------+      |
-       |           |                |                 |           |
-       |           | send ES /      |       recv ES / |           |
-       |           | send R /       v        send R / |           |
-       |           | recv R     +--------+   recv R   |           |
-       | send R /  `-----------&gt;|        |&lt;-----------'  send R / |
-       | recv R                 | closed |               recv R   |
-       `-----------------------&gt;|        |&lt;----------------------'
-                                +--------+
-
-          send:   endpoint sends this frame
+   The lifecycle of a stream is shown in Figure 2.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">send PP</div><div class="modern-diagram-cell">recv PP</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">,--------</div><div class="modern-diagram-cell">idle</div><div class="modern-diagram-cell">--------.</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">v          +--------+          v</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">send H /</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">,------</div><div class="modern-diagram-cell">reserved</div><div class="modern-diagram-cell">recv H</div><div class="modern-diagram-cell">reserved</div><div class="modern-diagram-cell">------.</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">(local)</div><div class="modern-diagram-cell">(remote)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">+----------+          v           +----------+</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">recv ES</div><div class="modern-diagram-cell">send ES</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">send H</div><div class="modern-diagram-cell">,-------</div><div class="modern-diagram-cell">open</div><div class="modern-diagram-cell">-------.</div><div class="modern-diagram-cell">recv H</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">v   v         +--------+         v   v</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">half</div><div class="modern-diagram-cell">half</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">closed</div><div class="modern-diagram-cell">send R /</div><div class="modern-diagram-cell">closed</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">(remote)</div><div class="modern-diagram-cell">recv R</div><div class="modern-diagram-cell">(local)</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">send ES /</div><div class="modern-diagram-cell">recv ES /</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">send R /       v        send R /</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">recv R     +--------+   recv R</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">send R /  `-----------&gt;</div><div class="modern-diagram-cell">&lt;-----------&#x27;  send R /</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">recv R</div><div class="modern-diagram-cell">closed</div><div class="modern-diagram-cell">recv R</div></div></div>
+</figure><pre>          send:   endpoint sends this frame
           recv:   endpoint receives this frame
 
           H:  HEADERS frame (with implied CONTINUATIONs)
@@ -1041,7 +1002,7 @@ Table of Contents
 
 
 
-<span>Belshe, et al.               Standards Track                   [Page 16]</span></pre>
+Belshe, et al.               Standards Track                   [Page 16]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 17</span>
@@ -1886,15 +1847,14 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 31</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc7540">RFC 7540</a>                         HTTP/2                         May 2015</span>
+  <pre>RFC 7540                         HTTP/2                         May 2015
 
 
    a setting is used for extension negotiation, the initial value MUST
    be defined in such a fashion that the extension is initially
    disabled.
 
-<span><a href="#section-6">6</a>.  Frame Definitions</span>
+6.  Frame Definitions
 
    This specification defines a number of frame types, each identified
    by a unique 8-bit type code.  Each frame type serves a distinct
@@ -1908,7 +1868,7 @@ Table of Contents
    have a shared comprehension of how the state is affected by the use
    any given frame.
 
-<span><a href="#section-6.1">6.1</a>.  DATA</span>
+6.1.  DATA
 
    DATA frames (type=0x0) convey arbitrary, variable-length sequences of
    octets associated with a stream.  One or more DATA frames are used,
@@ -1916,23 +1876,16 @@ Table of Contents
 
    DATA frames MAY also contain padding.  Padding can be added to DATA
    frames to obscure the size of messages.  Padding is a security
-   feature; see <a href="#section-10.7">Section 10.7</a>.
-
-    +---------------+
-    |Pad Length? (8)|
-    +---------------+-----------------------------------------------+
-    |                            Data (*)                         ...
-    +---------------------------------------------------------------+
-    |                           Padding (*)                       ...
-    +---------------------------------------------------------------+
-
-                       Figure 6: DATA Frame Payload
+   feature; see Section 10.7.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Pad Length? (8)</div></div></div>
+</figure><pre>    |                            Data (*)                         ...</pre><pre>    +---------------------------------------------------------------+</pre><pre>    |                           Padding (*)                       ...</pre><pre>    +---------------------------------------------------------------+</pre><pre>                       Figure 6: DATA Frame Payload
 
    The DATA frame contains the following fields:
 
    Pad Length:  An 8-bit field containing the length of the frame
       padding in units of octets.  This field is conditional (as
-      signified by a "?" in the diagram) and is only present if the
+      signified by a &quot;?&quot; in the diagram) and is only present if the
       PADDED flag is set.
 
    Data:  Application data.  The amount of data is the remainder of the
@@ -1941,7 +1894,7 @@ Table of Contents
 
 
 
-<span>Belshe, et al.               Standards Track                   [Page 31]</span></pre>
+Belshe, et al.               Standards Track                   [Page 31]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 32</span>
@@ -2006,23 +1959,10 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 33</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc7540">RFC 7540</a>                         HTTP/2                         May 2015</span>
-
-
-    +---------------+
-    |Pad Length? (8)|
-    +-+-------------+-----------------------------------------------+
-    |E|                 Stream Dependency? (31)                     |
-    +-+-------------+-----------------------------------------------+
-    |  Weight? (8)  |
-    +-+-------------+-----------------------------------------------+
-    |                   Header Block Fragment (*)                 ...
-    +---------------------------------------------------------------+
-    |                           Padding (*)                       ...
-    +---------------------------------------------------------------+
-
-                      Figure 7: HEADERS Frame Payload
+  <pre>RFC 7540                         HTTP/2                         May 2015</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Pad Length? (8)</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">E</div><div class="modern-diagram-cell">Stream Dependency? (31)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Weight? (8)</div></div></div>
+</figure><pre>    |                   Header Block Fragment (*)                 ...</pre><pre>    +---------------------------------------------------------------+</pre><pre>    |                           Padding (*)                       ...</pre><pre>    +---------------------------------------------------------------+</pre><pre>                      Figure 7: HEADERS Frame Payload
 
    The HEADERS frame payload has the following fields:
 
@@ -2031,26 +1971,26 @@ Table of Contents
       PADDED flag is set.
 
    E: A single-bit flag indicating that the stream dependency is
-      exclusive (see <a href="#section-5.3">Section 5.3</a>).  This field is only present if the
+      exclusive (see Section 5.3).  This field is only present if the
       PRIORITY flag is set.
 
    Stream Dependency:  A 31-bit stream identifier for the stream that
-      this stream depends on (see <a href="#section-5.3">Section 5.3</a>).  This field is only
+      this stream depends on (see Section 5.3).  This field is only
       present if the PRIORITY flag is set.
 
    Weight:  An unsigned 8-bit integer representing a priority weight for
-      the stream (see <a href="#section-5.3">Section 5.3</a>).  Add one to the value to obtain a
+      the stream (see Section 5.3).  Add one to the value to obtain a
       weight between 1 and 256.  This field is only present if the
       PRIORITY flag is set.
 
-   Header Block Fragment:  A header block fragment (<a href="#section-4.3">Section 4.3</a>).
+   Header Block Fragment:  A header block fragment (Section 4.3).
 
    Padding:  Padding octets.
 
    The HEADERS frame defines the following flags:
 
    END_STREAM (0x1):  When set, bit 0 indicates that the header block
-      (<a href="#section-4.3">Section 4.3</a>) is the last that the endpoint will send for the
+      (Section 4.3) is the last that the endpoint will send for the
       identified stream.
 
       A HEADERS frame carries the END_STREAM flag that signals the end
@@ -2061,7 +2001,7 @@ Table of Contents
 
 
 
-<span>Belshe, et al.               Standards Track                   [Page 33]</span></pre>
+Belshe, et al.               Standards Track                   [Page 33]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 34</span>
@@ -2126,53 +2066,46 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 35</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc7540">RFC 7540</a>                         HTTP/2                         May 2015</span>
-
-
-    +-+-------------------------------------------------------------+
-    |E|                  Stream Dependency (31)                     |
-    +-+-------------+-----------------------------------------------+
-    |   Weight (8)  |
-    +-+-------------+
-
-                     Figure 8: PRIORITY Frame Payload
+  <pre>RFC 7540                         HTTP/2                         May 2015</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">E</div><div class="modern-diagram-cell">Stream Dependency (31)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Weight (8)</div></div></div>
+</figure><pre>                     Figure 8: PRIORITY Frame Payload
 
    The payload of a PRIORITY frame contains the following fields:
 
    E: A single-bit flag indicating that the stream dependency is
-      exclusive (see <a href="#section-5.3">Section 5.3</a>).
+      exclusive (see Section 5.3).
 
    Stream Dependency:  A 31-bit stream identifier for the stream that
-      this stream depends on (see <a href="#section-5.3">Section 5.3</a>).
+      this stream depends on (see Section 5.3).
 
    Weight:  An unsigned 8-bit integer representing a priority weight for
-      the stream (see <a href="#section-5.3">Section 5.3</a>).  Add one to the value to obtain a
+      the stream (see Section 5.3).  Add one to the value to obtain a
       weight between 1 and 256.
 
    The PRIORITY frame does not define any flags.
 
    The PRIORITY frame always identifies a stream.  If a PRIORITY frame
    is received with a stream identifier of 0x0, the recipient MUST
-   respond with a connection error (<a href="#section-5.4.1">Section 5.4.1</a>) of type
+   respond with a connection error (Section 5.4.1) of type
    PROTOCOL_ERROR.
 
    The PRIORITY frame can be sent on a stream in any state, though it
    cannot be sent between consecutive frames that comprise a single
-   header block (<a href="#section-4.3">Section 4.3</a>).  Note that this frame could arrive after
+   header block (Section 4.3).  Note that this frame could arrive after
    processing or frame sending has completed, which would cause it to
    have no effect on the identified stream.  For a stream that is in the
-   "half-closed (remote)" or "closed" state, this frame can only affect
+   &quot;half-closed (remote)&quot; or &quot;closed&quot; state, this frame can only affect
    processing of the identified stream and its dependent streams; it
    does not affect frame transmission on that stream.
 
-   The PRIORITY frame can be sent for a stream in the "idle" or "closed"
+   The PRIORITY frame can be sent for a stream in the &quot;idle&quot; or &quot;closed&quot;
    state.  This allows for the reprioritization of a group of dependent
    streams by altering the priority of an unused or closed parent
    stream.
 
    A PRIORITY frame with a length other than 5 octets MUST be treated as
-   a stream error (<a href="#section-5.4.2">Section 5.4.2</a>) of type FRAME_SIZE_ERROR.
+   a stream error (Section 5.4.2) of type FRAME_SIZE_ERROR.
 
 
 
@@ -2181,35 +2114,31 @@ Table of Contents
 
 
 
-<span>Belshe, et al.               Standards Track                   [Page 35]</span></pre>
+Belshe, et al.               Standards Track                   [Page 35]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 36</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc7540">RFC 7540</a>                         HTTP/2                         May 2015</span>
+  <pre>RFC 7540                         HTTP/2                         May 2015
 
 
-<span><a href="#section-6.4">6.4</a>.  RST_STREAM</span>
+6.4.  RST_STREAM
 
    The RST_STREAM frame (type=0x3) allows for immediate termination of a
    stream.  RST_STREAM is sent to request cancellation of a stream or to
-   indicate that an error condition has occurred.
-
-    +---------------------------------------------------------------+
-    |                        Error Code (32)                        |
-    +---------------------------------------------------------------+
-
-                    Figure 9: RST_STREAM Frame Payload
+   indicate that an error condition has occurred.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Error Code (32)</div></div></div>
+</figure><pre>                    Figure 9: RST_STREAM Frame Payload
 
    The RST_STREAM frame contains a single unsigned, 32-bit integer
-   identifying the error code (<a href="#section-7">Section 7</a>).  The error code indicates why
+   identifying the error code (Section 7).  The error code indicates why
    the stream is being terminated.
 
    The RST_STREAM frame does not define any flags.
 
    The RST_STREAM frame fully terminates the referenced stream and
-   causes it to enter the "closed" state.  After receiving a RST_STREAM
+   causes it to enter the &quot;closed&quot; state.  After receiving a RST_STREAM
    on a stream, the receiver MUST NOT send additional frames for that
    stream, with the exception of PRIORITY.  However, after sending the
    RST_STREAM, the sending endpoint MUST be prepared to receive and
@@ -2218,30 +2147,30 @@ Table of Contents
 
    RST_STREAM frames MUST be associated with a stream.  If a RST_STREAM
    frame is received with a stream identifier of 0x0, the recipient MUST
-   treat this as a connection error (<a href="#section-5.4.1">Section 5.4.1</a>) of type
+   treat this as a connection error (Section 5.4.1) of type
    PROTOCOL_ERROR.
 
-   RST_STREAM frames MUST NOT be sent for a stream in the "idle" state.
+   RST_STREAM frames MUST NOT be sent for a stream in the &quot;idle&quot; state.
    If a RST_STREAM frame identifying an idle stream is received, the
-   recipient MUST treat this as a connection error (<a href="#section-5.4.1">Section 5.4.1</a>) of
+   recipient MUST treat this as a connection error (Section 5.4.1) of
    type PROTOCOL_ERROR.
 
    A RST_STREAM frame with a length other than 4 octets MUST be treated
-   as a connection error (<a href="#section-5.4.1">Section 5.4.1</a>) of type FRAME_SIZE_ERROR.
+   as a connection error (Section 5.4.1) of type FRAME_SIZE_ERROR.
 
-<span><a href="#section-6.5">6.5</a>.  SETTINGS</span>
+6.5.  SETTINGS
 
    The SETTINGS frame (type=0x4) conveys configuration parameters that
    affect how endpoints communicate, such as preferences and constraints
    on peer behavior.  The SETTINGS frame is also used to acknowledge the
    receipt of those parameters.  Individually, a SETTINGS parameter can
-   also be referred to as a "setting".
+   also be referred to as a &quot;setting&quot;.
 
 
 
 
 
-<span>Belshe, et al.               Standards Track                   [Page 36]</span></pre>
+Belshe, et al.               Standards Track                   [Page 36]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 37</span>
@@ -2306,25 +2235,19 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 38</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc7540">RFC 7540</a>                         HTTP/2                         May 2015</span>
+  <pre>RFC 7540                         HTTP/2                         May 2015
 
 
-<span><a href="#section-6.5.1">6.5.1</a>.  SETTINGS Format</span>
+6.5.1.  SETTINGS Format
 
    The payload of a SETTINGS frame consists of zero or more parameters,
    each consisting of an unsigned 16-bit setting identifier and an
-   unsigned 32-bit value.
+   unsigned 32-bit value.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Identifier (16)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Value (32)</div></div></div>
+</figure><pre>                         Figure 10: Setting Format
 
-    +-------------------------------+
-    |       Identifier (16)         |
-    +-------------------------------+-------------------------------+
-    |                        Value (32)                             |
-    +---------------------------------------------------------------+
-
-                         Figure 10: Setting Format
-
-<span><a href="#section-6.5.2">6.5.2</a>.  Defined SETTINGS Parameters</span>
+6.5.2.  Defined SETTINGS Parameters
 
    The following parameters are defined:
 
@@ -2333,19 +2256,19 @@ Table of Contents
       table used to decode header blocks, in octets.  The encoder can
       select any size equal to or less than this value by using
       signaling specific to the header compression format inside a
-      header block (see [<a href="#ref-COMPRESSION" title="&quot;HPACK: Header Compression for HTTP/2&quot;">COMPRESSION</a>]).  The initial value is 4,096
+      header block (see [COMPRESSION]).  The initial value is 4,096
       octets.
 
    SETTINGS_ENABLE_PUSH (0x2):  This setting can be used to disable
-      server push (<a href="#section-8.2">Section 8.2</a>).  An endpoint MUST NOT send a
+      server push (Section 8.2).  An endpoint MUST NOT send a
       PUSH_PROMISE frame if it receives this parameter set to a value of
       0.  An endpoint that has both set this parameter to 0 and had it
       acknowledged MUST treat the receipt of a PUSH_PROMISE frame as a
-      connection error (<a href="#section-5.4.1">Section 5.4.1</a>) of type PROTOCOL_ERROR.
+      connection error (Section 5.4.1) of type PROTOCOL_ERROR.
 
       The initial value is 1, which indicates that server push is
       permitted.  Any value other than 0 or 1 MUST be treated as a
-      connection error (<a href="#section-5.4.1">Section 5.4.1</a>) of type PROTOCOL_ERROR.
+      connection error (Section 5.4.1) of type PROTOCOL_ERROR.
 
    SETTINGS_MAX_CONCURRENT_STREAMS (0x3):  Indicates the maximum number
       of concurrent streams that the sender will allow.  This limit is
@@ -2361,7 +2284,7 @@ Table of Contents
 
 
 
-<span>Belshe, et al.               Standards Track                   [Page 38]</span></pre>
+Belshe, et al.               Standards Track                   [Page 38]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 39</span>
@@ -2426,8 +2349,7 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 40</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc7540">RFC 7540</a>                         HTTP/2                         May 2015</span>
+  <pre>RFC 7540                         HTTP/2                         May 2015
 
 
    recipient MUST immediately emit a SETTINGS frame with the ACK flag
@@ -2437,28 +2359,19 @@ Table of Contents
 
    If the sender of a SETTINGS frame does not receive an acknowledgement
    within a reasonable amount of time, it MAY issue a connection error
-   (<a href="#section-5.4.1">Section 5.4.1</a>) of type SETTINGS_TIMEOUT.
+   (Section 5.4.1) of type SETTINGS_TIMEOUT.
 
-<span><a href="#section-6.6">6.6</a>.  PUSH_PROMISE</span>
+6.6.  PUSH_PROMISE
 
    The PUSH_PROMISE frame (type=0x5) is used to notify the peer endpoint
    in advance of streams the sender intends to initiate.  The
    PUSH_PROMISE frame includes the unsigned 31-bit identifier of the
    stream the endpoint plans to create along with a set of headers that
-   provide additional context for the stream.  <a href="#section-8.2">Section 8.2</a> contains a
-   thorough description of the use of PUSH_PROMISE frames.
-
-    +---------------+
-    |Pad Length? (8)|
-    +-+-------------+-----------------------------------------------+
-    |R|                  Promised Stream ID (31)                    |
-    +-+-----------------------------+-------------------------------+
-    |                   Header Block Fragment (*)                 ...
-    +---------------------------------------------------------------+
-    |                           Padding (*)                       ...
-    +---------------------------------------------------------------+
-
-                  Figure 11: PUSH_PROMISE Payload Format
+   provide additional context for the stream.  Section 8.2 contains a
+   thorough description of the use of PUSH_PROMISE frames.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Pad Length? (8)</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">R</div><div class="modern-diagram-cell">Promised Stream ID (31)</div></div></div>
+</figure><pre>    |                   Header Block Fragment (*)                 ...</pre><pre>    +---------------------------------------------------------------+</pre><pre>    |                           Padding (*)                       ...</pre><pre>    +---------------------------------------------------------------+</pre><pre>                  Figure 11: PUSH_PROMISE Payload Format
 
    The PUSH_PROMISE frame payload has the following fields:
 
@@ -2471,9 +2384,9 @@ Table of Contents
    Promised Stream ID:  An unsigned 31-bit integer that identifies the
       stream that is reserved by the PUSH_PROMISE.  The promised stream
       identifier MUST be a valid choice for the next stream sent by the
-      sender (see "new stream identifier" in <a href="#section-5.1.1">Section 5.1.1</a>).
+      sender (see &quot;new stream identifier&quot; in Section 5.1.1).
 
-   Header Block Fragment:  A header block fragment (<a href="#section-4.3">Section 4.3</a>)
+   Header Block Fragment:  A header block fragment (Section 4.3)
       containing request header fields.
 
    Padding:  Padding octets.
@@ -2481,7 +2394,7 @@ Table of Contents
 
 
 
-<span>Belshe, et al.               Standards Track                   [Page 40]</span></pre>
+Belshe, et al.               Standards Track                   [Page 40]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 41</span>
@@ -2546,42 +2459,36 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 42</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc7540">RFC 7540</a>                         HTTP/2                         May 2015</span>
+  <pre>RFC 7540                         HTTP/2                         May 2015
 
 
    Since PUSH_PROMISE reserves a stream, ignoring a PUSH_PROMISE frame
    causes the stream state to become indeterminate.  A receiver MUST
    treat the receipt of a PUSH_PROMISE on a stream that is neither
-   "open" nor "half-closed (local)" as a connection error
-   (<a href="#section-5.4.1">Section 5.4.1</a>) of type PROTOCOL_ERROR.  However, an endpoint that
+   &quot;open&quot; nor &quot;half-closed (local)&quot; as a connection error
+   (Section 5.4.1) of type PROTOCOL_ERROR.  However, an endpoint that
    has sent RST_STREAM on the associated stream MUST handle PUSH_PROMISE
    frames that might have been created before the RST_STREAM frame is
    received and processed.
 
    A receiver MUST treat the receipt of a PUSH_PROMISE that promises an
-   illegal stream identifier (<a href="#section-5.1.1">Section 5.1.1</a>) as a connection error
-   (<a href="#section-5.4.1">Section 5.4.1</a>) of type PROTOCOL_ERROR.  Note that an illegal stream
+   illegal stream identifier (Section 5.1.1) as a connection error
+   (Section 5.4.1) of type PROTOCOL_ERROR.  Note that an illegal stream
    identifier is an identifier for a stream that is not currently in the
-   "idle" state.
+   &quot;idle&quot; state.
 
    The PUSH_PROMISE frame can include padding.  Padding fields and flags
-   are identical to those defined for DATA frames (<a href="#section-6.1">Section 6.1</a>).
+   are identical to those defined for DATA frames (Section 6.1).
 
-<span><a href="#section-6.7">6.7</a>.  PING</span>
+6.7.  PING
 
    The PING frame (type=0x6) is a mechanism for measuring a minimal
    round-trip time from the sender, as well as determining whether an
    idle connection is still functional.  PING frames can be sent from
-   any endpoint.
-
-    +---------------------------------------------------------------+
-    |                                                               |
-    |                      Opaque Data (64)                         |
-    |                                                               |
-    +---------------------------------------------------------------+
-
-                      Figure 12: PING Payload Format
+   any endpoint.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Opaque Data (64)</div></div></div>
+</figure><pre>                      Figure 12: PING Payload Format
 
    In addition to the frame header, PING frames MUST contain 8 octets of
    opaque data in the payload.  A sender can include any value it
@@ -2601,7 +2508,7 @@ Table of Contents
 
 
 
-<span>Belshe, et al.               Standards Track                   [Page 42]</span></pre>
+Belshe, et al.               Standards Track                   [Page 42]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 43</span>
@@ -2666,30 +2573,22 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 44</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc7540">RFC 7540</a>                         HTTP/2                         May 2015</span>
+  <pre>RFC 7540                         HTTP/2                         May 2015
 
 
    A GOAWAY frame might not immediately precede closing of the
    connection; a receiver of a GOAWAY that has no more use for the
    connection SHOULD still send a GOAWAY frame before terminating the
-   connection.
-
-    +-+-------------------------------------------------------------+
-    |R|                  Last-Stream-ID (31)                        |
-    +-+-------------------------------------------------------------+
-    |                      Error Code (32)                          |
-    +---------------------------------------------------------------+
-    |                  Additional Debug Data (*)                    |
-    +---------------------------------------------------------------+
-
-                     Figure 13: GOAWAY Payload Format
+   connection.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">R</div><div class="modern-diagram-cell">Last-Stream-ID (31)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Error Code (32)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Additional Debug Data (*)</div></div></div>
+</figure><pre>                     Figure 13: GOAWAY Payload Format
 
    The GOAWAY frame does not define any flags.
 
    The GOAWAY frame applies to the connection, not a specific stream.
    An endpoint MUST treat a GOAWAY frame with a stream identifier other
-   than 0x0 as a connection error (<a href="#section-5.4.1">Section 5.4.1</a>) of type
+   than 0x0 as a connection error (Section 5.4.1) of type
    PROTOCOL_ERROR.
 
    The last stream identifier in the GOAWAY frame contains the highest-
@@ -2699,7 +2598,7 @@ Table of Contents
    processed in some way.  The last stream identifier can be set to 0 if
    no streams were processed.
 
-      Note: In this context, "processed" means that some data from the
+      Note: In this context, &quot;processed&quot; means that some data from the
       stream was passed to some higher layer of software that might have
       taken some action as a result.
 
@@ -2716,12 +2615,12 @@ Table of Contents
    Activity on streams numbered lower or equal to the last stream
    identifier might still complete successfully.  The sender of a GOAWAY
    frame might gracefully shut down a connection by sending a GOAWAY
-   frame, maintaining the connection in an "open" state until all in-
+   frame, maintaining the connection in an &quot;open&quot; state until all in-
    progress streams complete.
 
 
 
-<span>Belshe, et al.               Standards Track                   [Page 44]</span></pre>
+Belshe, et al.               Standards Track                   [Page 44]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 45</span>
@@ -2786,14 +2685,13 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 46</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc7540">RFC 7540</a>                         HTTP/2                         May 2015</span>
+  <pre>RFC 7540                         HTTP/2                         May 2015
 
 
-<span><a href="#section-6.9">6.9</a>.  WINDOW_UPDATE</span>
+6.9.  WINDOW_UPDATE
 
    The WINDOW_UPDATE frame (type=0x8) is used to implement flow control;
-   see <a href="#section-5.2">Section 5.2</a> for an overview.
+   see Section 5.2 for an overview.
 
    Flow control operates at two levels: on each individual stream and on
    the entire connection.
@@ -2809,15 +2707,12 @@ Table of Contents
    document, this includes only DATA frames.  Frames that are exempt
    from flow control MUST be accepted and processed, unless the receiver
    is unable to assign resources to handling the frame.  A receiver MAY
-   respond with a stream error (<a href="#section-5.4.2">Section 5.4.2</a>) or connection error
-   (<a href="#section-5.4.1">Section 5.4.1</a>) of type FLOW_CONTROL_ERROR if it is unable to accept
-   a frame.
-
-    +-+-------------------------------------------------------------+
-    |R|              Window Size Increment (31)                     |
-    +-+-------------------------------------------------------------+
-
-                  Figure 14: WINDOW_UPDATE Payload Format
+   respond with a stream error (Section 5.4.2) or connection error
+   (Section 5.4.1) of type FLOW_CONTROL_ERROR if it is unable to accept
+   a frame.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">R</div><div class="modern-diagram-cell">Window Size Increment (31)</div></div></div>
+</figure><pre>                  Figure 14: WINDOW_UPDATE Payload Format
 
    The payload of a WINDOW_UPDATE frame is one reserved bit plus an
    unsigned 31-bit integer indicating the number of octets that the
@@ -2828,20 +2723,20 @@ Table of Contents
    The WINDOW_UPDATE frame does not define any flags.
 
    The WINDOW_UPDATE frame can be specific to a stream or to the entire
-   connection.  In the former case, the frame's stream identifier
-   indicates the affected stream; in the latter, the value "0" indicates
+   connection.  In the former case, the frame&#x27;s stream identifier
+   indicates the affected stream; in the latter, the value &quot;0&quot; indicates
    that the entire connection is the subject of the frame.
 
    A receiver MUST treat the receipt of a WINDOW_UPDATE frame with an
-   flow-control window increment of 0 as a stream error (<a href="#section-5.4.2">Section 5.4.2</a>)
+   flow-control window increment of 0 as a stream error (Section 5.4.2)
    of type PROTOCOL_ERROR; errors on the connection flow-control window
-   MUST be treated as a connection error (<a href="#section-5.4.1">Section 5.4.1</a>).
+   MUST be treated as a connection error (Section 5.4.1).
 
 
 
 
 
-<span>Belshe, et al.               Standards Track                   [Page 46]</span></pre>
+Belshe, et al.               Standards Track                   [Page 46]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 47</span>
@@ -4526,20 +4421,19 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 75</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc7540">RFC 7540</a>                         HTTP/2                         May 2015</span>
+  <pre>RFC 7540                         HTTP/2                         May 2015
 
 
-   Identification Sequence:  0x68 0x32 0x63 ("h2c")
+   Identification Sequence:  0x68 0x32 0x63 (&quot;h2c&quot;)
 
    Specification:  This document
 
-<span><a href="#section-11.2">11.2</a>.  Frame Type Registry</span>
+11.2.  Frame Type Registry
 
    This document establishes a registry for HTTP/2 frame type codes.
-   The "HTTP/2 Frame Type" registry manages an 8-bit space.  The "HTTP/2
-   Frame Type" registry operates under either of the "IETF Review" or
-   "IESG Approval" policies [<a href="./rfc5226" title="">RFC5226</a>] for values between 0x00 and 0xef,
+   The &quot;HTTP/2 Frame Type&quot; registry manages an 8-bit space.  The &quot;HTTP/2
+   Frame Type&quot; registry operates under either of the &quot;IETF Review&quot; or
+   &quot;IESG Approval&quot; policies [RFC5226] for values between 0x00 and 0xef,
    with values between 0xf0 and 0xff being reserved for Experimental
    Use.
 
@@ -4554,40 +4448,25 @@ Table of Contents
       frame type uses, including any parts of the frame that are
       conditionally present based on the value of flags.
 
-   The entries in the following table are registered by this document.
-
-   +---------------+------+--------------+
-   | Frame Type    | Code | Section      |
-   +---------------+------+--------------+
-   | DATA          | 0x0  | <a href="#section-6.1">Section 6.1</a>  |
-   | HEADERS       | 0x1  | <a href="#section-6.2">Section 6.2</a>  |
-   | PRIORITY      | 0x2  | <a href="#section-6.3">Section 6.3</a>  |
-   | RST_STREAM    | 0x3  | <a href="#section-6.4">Section 6.4</a>  |
-   | SETTINGS      | 0x4  | <a href="#section-6.5">Section 6.5</a>  |
-   | PUSH_PROMISE  | 0x5  | <a href="#section-6.6">Section 6.6</a>  |
-   | PING          | 0x6  | <a href="#section-6.7">Section 6.7</a>  |
-   | GOAWAY        | 0x7  | <a href="#section-6.8">Section 6.8</a>  |
-   | WINDOW_UPDATE | 0x8  | <a href="#section-6.9">Section 6.9</a>  |
-   | CONTINUATION  | 0x9  | <a href="#section-6.10">Section 6.10</a> |
-   +---------------+------+--------------+
-
-<span><a href="#section-11.3">11.3</a>.  Settings Registry</span>
+   The entries in the following table are registered by this document.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Frame Type</div><div class="modern-diagram-cell">Code</div><div class="modern-diagram-cell">Section</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">DATA</div><div class="modern-diagram-cell">0x0</div><div class="modern-diagram-cell">Section 6.1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">HEADERS</div><div class="modern-diagram-cell">0x1</div><div class="modern-diagram-cell">Section 6.2</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">PRIORITY</div><div class="modern-diagram-cell">0x2</div><div class="modern-diagram-cell">Section 6.3</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">RST_STREAM</div><div class="modern-diagram-cell">0x3</div><div class="modern-diagram-cell">Section 6.4</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">SETTINGS</div><div class="modern-diagram-cell">0x4</div><div class="modern-diagram-cell">Section 6.5</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">PUSH_PROMISE</div><div class="modern-diagram-cell">0x5</div><div class="modern-diagram-cell">Section 6.6</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">PING</div><div class="modern-diagram-cell">0x6</div><div class="modern-diagram-cell">Section 6.7</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">GOAWAY</div><div class="modern-diagram-cell">0x7</div><div class="modern-diagram-cell">Section 6.8</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">WINDOW_UPDATE</div><div class="modern-diagram-cell">0x8</div><div class="modern-diagram-cell">Section 6.9</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">CONTINUATION</div><div class="modern-diagram-cell">0x9</div><div class="modern-diagram-cell">Section 6.10</div></div></div>
+</figure><pre>11.3.  Settings Registry
 
    This document establishes a registry for HTTP/2 settings.  The
-   "HTTP/2 Settings" registry manages a 16-bit space.  The "HTTP/2
-   Settings" registry operates under the "Expert Review" policy
-   [<a href="./rfc5226" title="">RFC5226</a>] for values in the range from 0x0000 to 0xefff, with values
+   &quot;HTTP/2 Settings&quot; registry manages a 16-bit space.  The &quot;HTTP/2
+   Settings&quot; registry operates under the &quot;Expert Review&quot; policy
+   [RFC5226] for values in the range from 0x0000 to 0xefff, with values
    between and 0xf000 and 0xffff being reserved for Experimental Use.
 
 
 
-<span>Belshe, et al.               Standards Track                   [Page 75]</span></pre>
+Belshe, et al.               Standards Track                   [Page 75]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 76</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc7540">RFC 7540</a>                         HTTP/2                         May 2015</span>
+  <pre>RFC 7540                         HTTP/2                         May 2015
 
 
    New registrations are advised to provide the following information:
@@ -4602,25 +4481,15 @@ Table of Contents
    Specification:  An optional reference to a specification that
       describes the use of the setting.
 
-   The entries in the following table are registered by this document.
-
-   +------------------------+------+---------------+---------------+
-   | Name                   | Code | Initial Value | Specification |
-   +------------------------+------+---------------+---------------+
-   | HEADER_TABLE_SIZE      | 0x1  | 4096          | <a href="#section-6.5.2">Section 6.5.2</a> |
-   | ENABLE_PUSH            | 0x2  | 1             | <a href="#section-6.5.2">Section 6.5.2</a> |
-   | MAX_CONCURRENT_STREAMS | 0x3  | (infinite)    | <a href="#section-6.5.2">Section 6.5.2</a> |
-   | INITIAL_WINDOW_SIZE    | 0x4  | 65535         | <a href="#section-6.5.2">Section 6.5.2</a> |
-   | MAX_FRAME_SIZE         | 0x5  | 16384         | <a href="#section-6.5.2">Section 6.5.2</a> |
-   | MAX_HEADER_LIST_SIZE   | 0x6  | (infinite)    | <a href="#section-6.5.2">Section 6.5.2</a> |
-   +------------------------+------+---------------+---------------+
-
-<span><a href="#section-11.4">11.4</a>.  Error Code Registry</span>
+   The entries in the following table are registered by this document.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Name</div><div class="modern-diagram-cell">Code</div><div class="modern-diagram-cell">Initial Value</div><div class="modern-diagram-cell">Specification</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">HEADER_TABLE_SIZE</div><div class="modern-diagram-cell">0x1</div><div class="modern-diagram-cell">4096</div><div class="modern-diagram-cell">Section 6.5.2</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">ENABLE_PUSH</div><div class="modern-diagram-cell">0x2</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">Section 6.5.2</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">MAX_CONCURRENT_STREAMS</div><div class="modern-diagram-cell">0x3</div><div class="modern-diagram-cell">(infinite)</div><div class="modern-diagram-cell">Section 6.5.2</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">INITIAL_WINDOW_SIZE</div><div class="modern-diagram-cell">0x4</div><div class="modern-diagram-cell">65535</div><div class="modern-diagram-cell">Section 6.5.2</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">MAX_FRAME_SIZE</div><div class="modern-diagram-cell">0x5</div><div class="modern-diagram-cell">16384</div><div class="modern-diagram-cell">Section 6.5.2</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">MAX_HEADER_LIST_SIZE</div><div class="modern-diagram-cell">0x6</div><div class="modern-diagram-cell">(infinite)</div><div class="modern-diagram-cell">Section 6.5.2</div></div></div>
+</figure><pre>11.4.  Error Code Registry
 
    This document establishes a registry for HTTP/2 error codes.  The
-   "HTTP/2 Error Code" registry manages a 32-bit space.  The "HTTP/2
-   Error Code" registry operates under the "Expert Review" policy
-   [<a href="./rfc5226" title="">RFC5226</a>].
+   &quot;HTTP/2 Error Code&quot; registry manages a 32-bit space.  The &quot;HTTP/2
+   Error Code&quot; registry operates under the &quot;Expert Review&quot; policy
+   [RFC5226].
 
    Registrations for error codes are required to include a description
    of the error code.  An expert reviewer is advised to examine new
@@ -4641,53 +4510,24 @@ Table of Contents
 
 
 
-<span>Belshe, et al.               Standards Track                   [Page 76]</span></pre>
+Belshe, et al.               Standards Track                   [Page 76]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 77</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc7540">RFC 7540</a>                         HTTP/2                         May 2015</span>
+  <pre>RFC 7540                         HTTP/2                         May 2015
 
 
    Specification:  An optional reference for a specification that
       defines the error code.
 
-   The entries in the following table are registered by this document.
-
-   +---------------------+------+----------------------+---------------+
-   | Name                | Code | Description          | Specification |
-   +---------------------+------+----------------------+---------------+
-   | NO_ERROR            | 0x0  | Graceful shutdown    | <a href="#section-7">Section 7</a>     |
-   | PROTOCOL_ERROR      | 0x1  | Protocol error       | <a href="#section-7">Section 7</a>     |
-   |                     |      | detected             |               |
-   | INTERNAL_ERROR      | 0x2  | Implementation fault | <a href="#section-7">Section 7</a>     |
-   | FLOW_CONTROL_ERROR  | 0x3  | Flow-control limits  | <a href="#section-7">Section 7</a>     |
-   |                     |      | exceeded             |               |
-   | SETTINGS_TIMEOUT    | 0x4  | Settings not         | <a href="#section-7">Section 7</a>     |
-   |                     |      | acknowledged         |               |
-   | STREAM_CLOSED       | 0x5  | Frame received for   | <a href="#section-7">Section 7</a>     |
-   |                     |      | closed stream        |               |
-   | FRAME_SIZE_ERROR    | 0x6  | Frame size incorrect | <a href="#section-7">Section 7</a>     |
-   | REFUSED_STREAM      | 0x7  | Stream not processed | <a href="#section-7">Section 7</a>     |
-   | CANCEL              | 0x8  | Stream cancelled     | <a href="#section-7">Section 7</a>     |
-   | COMPRESSION_ERROR   | 0x9  | Compression state    | <a href="#section-7">Section 7</a>     |
-   |                     |      | not updated          |               |
-   | CONNECT_ERROR       | 0xa  | TCP connection error | <a href="#section-7">Section 7</a>     |
-   |                     |      | for CONNECT method   |               |
-   | ENHANCE_YOUR_CALM   | 0xb  | Processing capacity  | <a href="#section-7">Section 7</a>     |
-   |                     |      | exceeded             |               |
-   | INADEQUATE_SECURITY | 0xc  | Negotiated TLS       | <a href="#section-7">Section 7</a>     |
-   |                     |      | parameters not       |               |
-   |                     |      | acceptable           |               |
-   | HTTP_1_1_REQUIRED   | 0xd  | Use HTTP/1.1 for the | <a href="#section-7">Section 7</a>     |
-   |                     |      | request              |               |
-   +---------------------+------+----------------------+---------------+
-
-<span><a href="#section-11.5">11.5</a>.  HTTP2-Settings Header Field Registration</span>
+   The entries in the following table are registered by this document.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Name</div><div class="modern-diagram-cell">Code</div><div class="modern-diagram-cell">Description</div><div class="modern-diagram-cell">Specification</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">NO_ERROR</div><div class="modern-diagram-cell">0x0</div><div class="modern-diagram-cell">Graceful shutdown</div><div class="modern-diagram-cell">Section 7</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">PROTOCOL_ERROR</div><div class="modern-diagram-cell">0x1</div><div class="modern-diagram-cell">Protocol error</div><div class="modern-diagram-cell">Section 7</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">detected</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">INTERNAL_ERROR</div><div class="modern-diagram-cell">0x2</div><div class="modern-diagram-cell">Implementation fault</div><div class="modern-diagram-cell">Section 7</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">FLOW_CONTROL_ERROR</div><div class="modern-diagram-cell">0x3</div><div class="modern-diagram-cell">Flow-control limits</div><div class="modern-diagram-cell">Section 7</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">exceeded</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">SETTINGS_TIMEOUT</div><div class="modern-diagram-cell">0x4</div><div class="modern-diagram-cell">Settings not</div><div class="modern-diagram-cell">Section 7</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">acknowledged</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">STREAM_CLOSED</div><div class="modern-diagram-cell">0x5</div><div class="modern-diagram-cell">Frame received for</div><div class="modern-diagram-cell">Section 7</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">closed stream</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">FRAME_SIZE_ERROR</div><div class="modern-diagram-cell">0x6</div><div class="modern-diagram-cell">Frame size incorrect</div><div class="modern-diagram-cell">Section 7</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">REFUSED_STREAM</div><div class="modern-diagram-cell">0x7</div><div class="modern-diagram-cell">Stream not processed</div><div class="modern-diagram-cell">Section 7</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">CANCEL</div><div class="modern-diagram-cell">0x8</div><div class="modern-diagram-cell">Stream cancelled</div><div class="modern-diagram-cell">Section 7</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">COMPRESSION_ERROR</div><div class="modern-diagram-cell">0x9</div><div class="modern-diagram-cell">Compression state</div><div class="modern-diagram-cell">Section 7</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">not updated</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">CONNECT_ERROR</div><div class="modern-diagram-cell">0xa</div><div class="modern-diagram-cell">TCP connection error</div><div class="modern-diagram-cell">Section 7</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">for CONNECT method</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">ENHANCE_YOUR_CALM</div><div class="modern-diagram-cell">0xb</div><div class="modern-diagram-cell">Processing capacity</div><div class="modern-diagram-cell">Section 7</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">exceeded</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">INADEQUATE_SECURITY</div><div class="modern-diagram-cell">0xc</div><div class="modern-diagram-cell">Negotiated TLS</div><div class="modern-diagram-cell">Section 7</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">parameters not</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">acceptable</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">HTTP_1_1_REQUIRED</div><div class="modern-diagram-cell">0xd</div><div class="modern-diagram-cell">Use HTTP/1.1 for the</div><div class="modern-diagram-cell">Section 7</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">request</div></div></div>
+</figure><pre>11.5.  HTTP2-Settings Header Field Registration
 
    This section registers the HTTP2-Settings header field in the
-   "Permanent Message Header Field Names" registry [<a href="#ref-BCP90" title="&quot;Registration Procedures for Message Header Fields&quot;">BCP90</a>].
+   &quot;Permanent Message Header Field Names&quot; registry [BCP90].
 
    Header field name:  HTTP2-Settings
 
@@ -4701,7 +4541,7 @@ Table of Contents
 
 
 
-<span>Belshe, et al.               Standards Track                   [Page 77]</span></pre>
+Belshe, et al.               Standards Track                   [Page 77]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 78</span>

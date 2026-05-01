@@ -718,14 +718,11 @@
         instead.<a href="#section-1.4-5">¶</a></p>
 <span></span><div>
 <figure>
-          <div></div><pre>
-  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15
-+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-|               |           | N | C | E | U | A | P | R | S | F |
-| Header Length | Reserved  | S | W | C | R | C | S | S | Y | I |
-|               |           |   | R | E | G | K | H | T | N | N |
-+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-</pre>
+          <div>
+<figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15</div></div><div class="modern-diagram-row" style="--cell-count: 9"><div class="modern-diagram-cell">N</div><div class="modern-diagram-cell">C</div><div class="modern-diagram-cell">E</div><div class="modern-diagram-cell">U</div><div class="modern-diagram-cell">A</div><div class="modern-diagram-cell">P</div><div class="modern-diagram-cell">R</div><div class="modern-diagram-cell">S</div><div class="modern-diagram-cell">F</div></div><div class="modern-diagram-row" style="--cell-count: 11"><div class="modern-diagram-cell">Header Length</div><div class="modern-diagram-cell">Reserved</div><div class="modern-diagram-cell">S</div><div class="modern-diagram-cell">W</div><div class="modern-diagram-cell">C</div><div class="modern-diagram-cell">R</div><div class="modern-diagram-cell">C</div><div class="modern-diagram-cell">S</div><div class="modern-diagram-cell">S</div><div class="modern-diagram-cell">Y</div><div class="modern-diagram-cell">I</div></div><div class="modern-diagram-row" style="--cell-count: 8"><div class="modern-diagram-cell">R</div><div class="modern-diagram-cell">E</div><div class="modern-diagram-cell">G</div><div class="modern-diagram-cell">K</div><div class="modern-diagram-cell">H</div><div class="modern-diagram-cell">T</div><div class="modern-diagram-cell">N</div><div class="modern-diagram-cell">N</div></div></div>
+</figure>
 </div>
 <figcaption><a href="#figure-1">Figure 1</a>:
 <a href="#name-tcp-header-flags-as-defined">TCP Header Flags as Defined Before the Nonce Sum Flag Reverted to Reserved</a>
@@ -969,14 +966,10 @@ Therefore, provided that an AccECN Option is
 <span></span><div>
 <figure>
             <div>
-<pre>
-  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15
-+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-|               |           | A | C | E | U | A | P | R | S | F |
-| Header Length | Reserved  | E | W | C | R | C | S | S | Y | I |
-|               |           |   | R | E | G | K | H | T | N | N |
-+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-</pre>
+<figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15</div></div><div class="modern-diagram-row" style="--cell-count: 9"><div class="modern-diagram-cell">A</div><div class="modern-diagram-cell">C</div><div class="modern-diagram-cell">E</div><div class="modern-diagram-cell">U</div><div class="modern-diagram-cell">A</div><div class="modern-diagram-cell">P</div><div class="modern-diagram-cell">R</div><div class="modern-diagram-cell">S</div><div class="modern-diagram-cell">F</div></div><div class="modern-diagram-row" style="--cell-count: 11"><div class="modern-diagram-cell">Header Length</div><div class="modern-diagram-cell">Reserved</div><div class="modern-diagram-cell">E</div><div class="modern-diagram-cell">W</div><div class="modern-diagram-cell">C</div><div class="modern-diagram-cell">R</div><div class="modern-diagram-cell">C</div><div class="modern-diagram-cell">S</div><div class="modern-diagram-cell">S</div><div class="modern-diagram-cell">Y</div><div class="modern-diagram-cell">I</div></div><div class="modern-diagram-row" style="--cell-count: 8"><div class="modern-diagram-cell">R</div><div class="modern-diagram-cell">E</div><div class="modern-diagram-cell">G</div><div class="modern-diagram-cell">K</div><div class="modern-diagram-cell">H</div><div class="modern-diagram-cell">T</div><div class="modern-diagram-cell">N</div><div class="modern-diagram-cell">N</div></div></div>
+</figure>
 </div>
 <figcaption><a href="#figure-2">Figure 2</a>:
 <a href="#name-the-new-definition-of-the-t">The New Definition of the TCP Header Flags During the TCP Three-Way Handshake</a>
@@ -1699,14 +1692,10 @@ it would be advisable to have a fall-back strategy that tries use of AccECN with
 <span></span><div>
 <figure>
             <div>
-<pre>
-  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15
-+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-|               |           |           | U | A | P | R | S | F |
-| Header Length | Reserved  |    ACE    | R | C | S | S | Y | I |
-|               |           |           | G | K | H | T | N | N |
-+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-</pre>
+<figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15</div></div><div class="modern-diagram-row" style="--cell-count: 6"><div class="modern-diagram-cell">U</div><div class="modern-diagram-cell">A</div><div class="modern-diagram-cell">P</div><div class="modern-diagram-cell">R</div><div class="modern-diagram-cell">S</div><div class="modern-diagram-cell">F</div></div><div class="modern-diagram-row" style="--cell-count: 9"><div class="modern-diagram-cell">Header Length</div><div class="modern-diagram-cell">Reserved</div><div class="modern-diagram-cell">ACE</div><div class="modern-diagram-cell">R</div><div class="modern-diagram-cell">C</div><div class="modern-diagram-cell">S</div><div class="modern-diagram-cell">S</div><div class="modern-diagram-cell">Y</div><div class="modern-diagram-cell">I</div></div><div class="modern-diagram-row" style="--cell-count: 6"><div class="modern-diagram-cell">G</div><div class="modern-diagram-cell">K</div><div class="modern-diagram-cell">H</div><div class="modern-diagram-cell">T</div><div class="modern-diagram-cell">N</div><div class="modern-diagram-cell">N</div></div></div>
+</figure>
 </div>
 <figcaption><a href="#figure-3">Figure 3</a>:
 <a href="#name-definition-of-the-ace-field">Definition of  the ACE Field Within Bytes 13 and 14 of the TCP Header (When AccECN Has Been Negotiated and SYN=0).</a>
@@ -2281,28 +2270,13 @@ Generic Receive Offload (GRO) as further described below.<a href="#section-3.2.2
           stands for 'Echo'.<a href="#section-3.2.3-1">¶</a></p>
 <span></span><div>
 <figure>
-            <div>
-<pre>
- 0                   1                   2                   3
- 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|  Kind = 172   |  Length = 11  |          EE0B field           |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-| EE0B (cont'd) |           ECEB field                          |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                  EE1B field                   |             Order 0
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
- 0                   1                   2                   3
- 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|  Kind = 174   |  Length = 11  |          EE1B field           |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-| EE1B (cont'd) |           ECEB field                          |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                  EE0B field                   |             Order 1
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-</pre>
+            <div></div><pre> 0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Kind = 172</div><div class="modern-diagram-cell">Length = 11</div><div class="modern-diagram-cell">EE0B field</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">EE0B (cont&#x27;d)</div><div class="modern-diagram-cell">ECEB field</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">EE1B field</div><div class="modern-diagram-cell">Order 0</div></div></div>
+</figure><pre> 0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Kind = 174</div><div class="modern-diagram-cell">Length = 11</div><div class="modern-diagram-cell">EE1B field</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">EE1B (cont&#x27;d)</div><div class="modern-diagram-cell">ECEB field</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">EE0B field</div><div class="modern-diagram-cell">Order 1</div></div></div>
+</figure>
 </div>
 <figcaption><a href="#figure-4">Figure 4</a>:
 <a href="#name-the-two-alternative-accecn-">The Two Alternative AccECN TCP Options</a>
@@ -3796,21 +3770,17 @@ be more easily identified.  However, it is expected that AccECN will become avai
 <p>The chart below shows when the above algorithm will
 replace dSafer.cep with d.cep as a safe enough estimate of the number of CE-marked packets:<a href="#appendix-A.2.2-3">¶</a></p>
 <div>
-<pre>
-                 ^
+<pre>                 ^
            sSafer|
                  |
               MSS+
                  |
                  |         dSafer.cep
-                 |                  is
-MSS/SAFETY_FACTOR+--------------+    safest
-                 |              |
-                 | d.cep is safe|
-                 |    enough    |
-                 +--------------------&gt;
-                               MSS     s
-</pre><a href="#appendix-A.2.2-4">¶</a>
+                 |                  is</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">MSS/SAFETY_FACTOR+--------------+    safest</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">d.cep is safe</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">enough</div></div></div>
+</figure><pre>                 +--------------------&gt;
+                               MSS     s</pre><a href="#appendix-A.2.2-4">¶</a>
 </div>
 <p>The following examples give the reasoning behind the algorithm,
           assuming MSS=1460 :<a href="#appendix-A.2.2-5">¶</a></p>

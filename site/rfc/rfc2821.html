@@ -326,8 +326,7 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 5</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2821">RFC 2821</a>             Simple Mail Transfer Protocol            April 2001</span>
+  <pre>RFC 2821             Simple Mail Transfer Protocol            April 2001
 
 
    SMTP, a process can transfer mail to another process on the same
@@ -336,25 +335,18 @@ Table of Contents
 
    In this way, a mail message may pass through a number of intermediate
    relay or gateway hosts on its path from sender to ultimate recipient.
-   The Mail eXchanger mechanisms of the domain name system [<a href="#ref-22" title="&quot;Domain names - implementation and specification&quot;">22</a>, <a href="#ref-27" title="&quot;Mail routing and the domain system&quot;">27</a>] (and
-   <a href="#section-5">section 5</a> of this document) are used to identify the appropriate
+   The Mail eXchanger mechanisms of the domain name system [22, 27] (and
+   section 5 of this document) are used to identify the appropriate
    next-hop destination for a message being transported.
 
-<span><a href="#section-2">2</a>. The SMTP Model</span>
+2. The SMTP Model
 
-<span><a href="#section-2.1">2.1</a> Basic Structure</span>
+2.1 Basic Structure
 
-   The SMTP design can be pictured as:
-
-               +----------+                +----------+
-   +------+    |          |                |          |
-   | User |&lt;--&gt;|          |      SMTP      |          |
-   +------+    |  Client- |Commands/Replies| Server-  |
-   +------+    |   SMTP   |&lt;--------------&gt;|    SMTP  |    +------+
-   | File |&lt;--&gt;|          |    and Mail    |          |&lt;--&gt;| File |
-   |System|    |          |                |          |    |System|
-   +------+    +----------+                +----------+    +------+
-                SMTP client                SMTP server
+   The SMTP design can be pictured as:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">User</div><div class="modern-diagram-cell">&lt;--&gt;</div><div class="modern-diagram-cell">SMTP</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">+------+</div><div class="modern-diagram-cell">Client-</div><div class="modern-diagram-cell">Commands/Replies</div><div class="modern-diagram-cell">Server-</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">+------+</div><div class="modern-diagram-cell">SMTP</div><div class="modern-diagram-cell">&lt;--------------&gt;</div><div class="modern-diagram-cell">SMTP</div><div class="modern-diagram-cell">+------+</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">File</div><div class="modern-diagram-cell">&lt;--&gt;</div><div class="modern-diagram-cell">and Mail</div><div class="modern-diagram-cell">&lt;--&gt;</div><div class="modern-diagram-cell">File</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">System</div><div class="modern-diagram-cell">System</div></div></div>
+</figure><pre>                SMTP client                SMTP server
 
    When an SMTP client has a message to transmit, it establishes a two-
    way transmission channel to an SMTP server.  The responsibility of an
@@ -367,7 +359,7 @@ Table of Contents
    document.  In some cases, the domain name(s) transferred to, or
    determined by, an SMTP client will identify the final destination(s)
    of the mail message.  In other cases, common with SMTP clients
-   associated with implementations of the POP [<a href="#ref-3" title="&quot;Post Office Protocol - version 2&quot;">3</a>, <a href="#ref-26" title="&quot;Post Office Protocol - Version 3&quot;">26</a>] or IMAP [<a href="#ref-6" title="&quot;Internet Message Access Protocol - Version 4&quot;">6</a>]
+   associated with implementations of the POP [3, 26] or IMAP [6]
    protocols, or when the SMTP client is inside an isolated transport
    service environment, the domain name determined will identify an
    intermediate destination through which all mail messages are to be
@@ -381,7 +373,7 @@ Table of Contents
 
 
 
-<span>Klensin                     Standards Track                     [Page 5]</span></pre>
+Klensin                     Standards Track                     [Page 5]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 6</span>

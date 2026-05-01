@@ -686,35 +686,26 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 11</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2535">RFC 2535</a>                DNS Security Extensions               March 1999</span>
-
-
-                        1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 3 3
-    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |             flags             |    protocol   |   algorithm   |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                                                               /
+  <pre>RFC 2535                DNS Security Extensions               March 1999</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 3 3</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">flags</div><div class="modern-diagram-cell">protocol</div><div class="modern-diagram-cell">algorithm</div></div></div>
+</figure><pre>   |                                                               /
    /                          public key                           /
-   /                                                               /
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-|
-
-   The KEY RR is not intended for storage of certificates and a separate
+   /                                                               /</pre><pre>   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-|</pre><pre>   The KEY RR is not intended for storage of certificates and a separate
    certificate RR has been developed for that purpose, defined in [RFC
    2538].
 
    The meaning of the KEY RR owner name, flags, and protocol octet are
-   described in Sections <a href="#section-3.1.1">3.1.1</a> through <a href="#section-3.1.5">3.1.5</a> below.  The flags and
+   described in Sections 3.1.1 through 3.1.5 below.  The flags and
    algorithm must be examined before any data following the algorithm
    octet as they control the existence and format of any following data.
-   The algorithm and public key fields are described in <a href="#section-3.2">Section 3.2</a>.
+   The algorithm and public key fields are described in Section 3.2.
    The format of the public key is algorithm dependent.
 
    KEY RRs do not specify their validity period but their authenticating
-   SIG RR(s) do as described in <a href="#section-4">Section 4</a> below.
+   SIG RR(s) do as described in Section 4 below.
 
-<span><a href="#section-3.1.1">3.1.1</a> Object Types, DNS Names, and Keys</span>
+3.1.1 Object Types, DNS Names, and Keys
 
    The public key in a KEY RR is for the object named in the owner name.
 
@@ -727,21 +718,17 @@ Table of Contents
    KEY RR MUST occur at the apex node of a secure zone and zone KEY RRs
    occur only at delegation points.
 
-<span><a href="#section-3.1.2">3.1.2</a> The KEY RR Flag Field</span>
+3.1.2 The KEY RR Flag Field
 
-   In the "flags" field:
-
-     0   1   2   3   4   5   6   7   8   9   0   1   2   3   4   5
-   +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-   |  A/C  | Z | XT| Z | Z | NAMTYP| Z | Z | Z | Z |      SIG      |
-   +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-
-   Bit 0 and 1 are the key "type" bits whose values have the following
+   In the &quot;flags&quot; field:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0   1   2   3   4   5   6   7   8   9   0   1   2   3   4   5</div></div><div class="modern-diagram-row" style="--cell-count: 11"><div class="modern-diagram-cell">A/C</div><div class="modern-diagram-cell">Z</div><div class="modern-diagram-cell">XT</div><div class="modern-diagram-cell">Z</div><div class="modern-diagram-cell">Z</div><div class="modern-diagram-cell">NAMTYP</div><div class="modern-diagram-cell">Z</div><div class="modern-diagram-cell">Z</div><div class="modern-diagram-cell">Z</div><div class="modern-diagram-cell">Z</div><div class="modern-diagram-cell">SIG</div></div></div>
+</figure><pre>   Bit 0 and 1 are the key &quot;type&quot; bits whose values have the following
    meanings:
 
 
 
-<span>Eastlake                    Standards Track                    [Page 11]</span></pre>
+Eastlake                    Standards Track                    [Page 11]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 12</span>
@@ -986,8 +973,7 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 16</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2535">RFC 2535</a>                DNS Security Extensions               March 1999</span>
+  <pre>RFC 2535                DNS Security Extensions               March 1999
 
 
    For any particular algorithm, zones can be (1) secure, indicating
@@ -1029,36 +1015,22 @@ Table of Contents
    experimentally secure, or unsecured, depending on the signed zone KEY
    RRs for Z;
 
-                      c e r t - a u t h . e x a m p l e
-
-        KEY RRs|   None    |  NoKeys   |  Mixed   |   Keys   |
-     S       --+-----------+-----------+----------+----------+
-     u  None   | illegal   | unsecured | experim. | secure   |
-     p       --+-----------+-----------+----------+----------+
-     e  NoKeys | unsecured | unsecured | experim. | secure   |
-     r       --+-----------+-----------+----------+----------+
-     Z  Mixed  | experim.  | experim.  | experim. | secure   |
-
-
-
-<span>Eastlake                    Standards Track                    [Page 16]</span></pre>
+                      c e r t - a u t h . e x a m p l e</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">KEY RRs</div><div class="modern-diagram-cell">None</div><div class="modern-diagram-cell">NoKeys</div><div class="modern-diagram-cell">Mixed</div><div class="modern-diagram-cell">Keys</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">S       --+-----------+-----------+----------+----------+</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">u  None</div><div class="modern-diagram-cell">illegal</div><div class="modern-diagram-cell">unsecured</div><div class="modern-diagram-cell">experim.</div><div class="modern-diagram-cell">secure</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">p       --+-----------+-----------+----------+----------+</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">e  NoKeys</div><div class="modern-diagram-cell">unsecured</div><div class="modern-diagram-cell">unsecured</div><div class="modern-diagram-cell">experim.</div><div class="modern-diagram-cell">secure</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">r       --+-----------+-----------+----------+----------+</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">Z  Mixed</div><div class="modern-diagram-cell">experim.</div><div class="modern-diagram-cell">experim.</div><div class="modern-diagram-cell">experim.</div><div class="modern-diagram-cell">secure</div></div></div>
+</figure><pre>Eastlake                    Standards Track                    [Page 16]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 17</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2535">RFC 2535</a>                DNS Security Extensions               March 1999</span>
-
-
-     o       --+-----------+-----------+----------+----------+
-     n  Keys   | secure    | secure    | secure   | secure   |
-     e         +-----------+-----------+----------+----------+
-
-<span><a href="#section-3.5">3.5</a> KEY RRs in the Construction of Responses</span>
+  <pre>RFC 2535                DNS Security Extensions               March 1999</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">o       --+-----------+-----------+----------+----------+</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">n  Keys</div><div class="modern-diagram-cell">secure</div><div class="modern-diagram-cell">secure</div><div class="modern-diagram-cell">secure</div><div class="modern-diagram-cell">secure</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">e         +-----------+-----------+----------+----------+</div></div></div>
+</figure><pre>3.5 KEY RRs in the Construction of Responses
 
    An explicit request for KEY RRs does not cause any special additional
    information processing except, of course, for the corresponding SIG
-   RR from a security aware server (see <a href="#section-4.2">Section 4.2</a>).
+   RR from a security aware server (see Section 4.2).
 
    Security aware DNS servers include KEY RRs as additional information
    in responses, where a KEY is available, in the following cases:
@@ -1076,21 +1048,21 @@ Table of Contents
    the KEY RRset with the same name should also be included but with
    lower priority than the A or AAAA RRs.
 
-<span><a href="#section-4">4</a>. The SIG Resource Record</span>
+4. The SIG Resource Record
 
-   The SIG or "signature" resource record (RR) is the fundamental way
+   The SIG or &quot;signature&quot; resource record (RR) is the fundamental way
    that data is authenticated in the secure Domain Name System (DNS). As
    such it is the heart of the security provided.
 
-   The SIG RR unforgably authenticates an RRset [<a href="./rfc2181">RFC 2181</a>] of a
+   The SIG RR unforgably authenticates an RRset [RFC 2181] of a
    particular type, class, and name and binds it to a time interval and
-   the signer's domain name.  This is done using cryptographic
-   techniques and the signer's private key.  The signer is frequently
+   the signer&#x27;s domain name.  This is done using cryptographic
+   techniques and the signer&#x27;s private key.  The signer is frequently
    the owner of the zone from which the RR originated.
 
    The type number for the SIG RR type is 24.
 
-<span><a href="#section-4.1">4.1</a> SIG RDATA Format</span>
+4.1 SIG RDATA Format
 
    The RDATA portion of a SIG RR is as shown below.  The integrity of
    the RDATA information is protected by the signature field.
@@ -1101,108 +1073,80 @@ Table of Contents
 
 
 
-<span>Eastlake                    Standards Track                    [Page 17]</span></pre>
+Eastlake                    Standards Track                    [Page 17]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 18</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2535">RFC 2535</a>                DNS Security Extensions               March 1999</span>
-
-
-                           1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 3 3
-       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |        type covered           |  algorithm    |     labels    |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                         original TTL                          |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                      signature expiration                     |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                      signature inception                      |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |            key  tag           |                               |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+         signer's name         +
-      |                                                               /
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-/
-      /                                                               /
+  <pre>RFC 2535                DNS Security Extensions               March 1999</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 3 3</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">type covered</div><div class="modern-diagram-cell">algorithm</div><div class="modern-diagram-cell">labels</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">original TTL</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">signature expiration</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">signature inception</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">key  tag</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+         signer&#x27;s name         +</div></div></div>
+</figure><pre>      |                                                               /</pre><pre>      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-/</pre><pre>      /                                                               /
       /                            signature                          /
-      /                                                               /
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      /                                                               /</pre><pre>      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>4.1.1 Type Covered Field
 
-<span><a href="#section-4.1.1">4.1.1</a> Type Covered Field</span>
+   The &quot;type covered&quot; is the type of the other RRs covered by this SIG.
 
-   The "type covered" is the type of the other RRs covered by this SIG.
+4.1.2 Algorithm Number Field
 
-<span><a href="#section-4.1.2">4.1.2</a> Algorithm Number Field</span>
+   This octet is as described in section 3.2.
 
-   This octet is as described in <a href="#section-3.2">section 3.2</a>.
+4.1.3 Labels Field
 
-<span><a href="#section-4.1.3">4.1.3</a> Labels Field</span>
-
-   The "labels" octet is an unsigned count of how many labels there are
+   The &quot;labels&quot; octet is an unsigned count of how many labels there are
    in the original SIG RR owner name not counting the null label for
-   root and not counting any initial "*" for a wildcard.  If a secured
+   root and not counting any initial &quot;*&quot; for a wildcard.  If a secured
    retrieval is the result of wild card substitution, it is necessary
    for the resolver to use the original form of the name in verifying
    the digital signature.  This field makes it easy to determine the
    original form.
 
    If, on retrieval, the RR appears to have a longer name than indicated
-   by "labels", the resolver can tell it is the result of wildcard
+   by &quot;labels&quot;, the resolver can tell it is the result of wildcard
    substitution.  If the RR owner name appears to be shorter than the
    labels count, the SIG RR must be considered corrupt and ignored.  The
    maximum number of labels allowed in the current DNS is 127 but the
    entire octet is reserved and would be required should DNS names ever
    be expanded to 255 labels.  The following table gives some examples.
-   The value of "labels" is at the top, the retrieved owner name on the
+   The value of &quot;labels&quot; is at the top, the retrieved owner name on the
    left, and the table entry is the name to use in signature
-   verification except that "bad" means the RR is corrupt.
+   verification except that &quot;bad&quot; means the RR is corrupt.
 
 
 
-<span>Eastlake                    Standards Track                    [Page 18]</span></pre>
+Eastlake                    Standards Track                    [Page 18]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 19</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2535">RFC 2535</a>                DNS Security Extensions               March 1999</span>
+  <pre>RFC 2535                DNS Security Extensions               March 1999</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 6"><div class="modern-diagram-cell">labels=</div><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">2</div><div class="modern-diagram-cell">3</div><div class="modern-diagram-cell">4</div></div><div class="modern-diagram-row" style="--cell-count: 6"><div class="modern-diagram-cell">.</div><div class="modern-diagram-cell">.</div><div class="modern-diagram-cell">bad</div><div class="modern-diagram-cell">bad</div><div class="modern-diagram-cell">bad</div><div class="modern-diagram-cell">bad</div></div><div class="modern-diagram-row" style="--cell-count: 6"><div class="modern-diagram-cell">d.</div><div class="modern-diagram-cell">*.</div><div class="modern-diagram-cell">d.</div><div class="modern-diagram-cell">bad</div><div class="modern-diagram-cell">bad</div><div class="modern-diagram-cell">bad</div></div><div class="modern-diagram-row" style="--cell-count: 6"><div class="modern-diagram-cell">c.d.</div><div class="modern-diagram-cell">*.</div><div class="modern-diagram-cell">*.d.</div><div class="modern-diagram-cell">c.d.</div><div class="modern-diagram-cell">bad</div><div class="modern-diagram-cell">bad</div></div><div class="modern-diagram-row" style="--cell-count: 6"><div class="modern-diagram-cell">b.c.d.</div><div class="modern-diagram-cell">*.</div><div class="modern-diagram-cell">*.d.</div><div class="modern-diagram-cell">*.c.d.</div><div class="modern-diagram-cell">b.c.d.</div><div class="modern-diagram-cell">bad</div></div><div class="modern-diagram-row" style="--cell-count: 6"><div class="modern-diagram-cell">a.b.c.d.</div><div class="modern-diagram-cell">*.</div><div class="modern-diagram-cell">*.d.</div><div class="modern-diagram-cell">*.c.d.</div><div class="modern-diagram-cell">*.b.c.d.</div><div class="modern-diagram-cell">a.b.c.d.</div></div></div>
+</figure><pre>4.1.4 Original TTL Field
 
-
-   labels= |  0  |   1  |    2   |      3   |      4   |
-   --------+-----+------+--------+----------+----------+
-          .|   . | bad  |  bad   |    bad   |    bad   |
-         d.|  *. |   d. |  bad   |    bad   |    bad   |
-       c.d.|  *. | *.d. |   c.d. |    bad   |    bad   |
-     b.c.d.|  *. | *.d. | *.c.d. |   b.c.d. |    bad   |
-   a.b.c.d.|  *. | *.d. | *.c.d. | *.b.c.d. | a.b.c.d. |
-
-<span><a href="#section-4.1.4">4.1.4</a> Original TTL Field</span>
-
-   The "original TTL" field is included in the RDATA portion to avoid
+   The &quot;original TTL&quot; field is included in the RDATA portion to avoid
    (1) authentication problems that caching servers would otherwise
    cause by decrementing the real TTL field and (2) security problems
    that unscrupulous servers could otherwise cause by manipulating the
    real TTL field.  This original TTL is protected by the signature
    while the current TTL field is not.
 
-   NOTE:  The "original TTL" must be restored into the covered RRs when
-   the signature is verified (see <a href="#section-8">Section 8</a>).  This generaly implies
+   NOTE:  The &quot;original TTL&quot; must be restored into the covered RRs when
+   the signature is verified (see Section 8).  This generaly implies
    that all RRs for a particular type, name, and class, that is, all the
    RRs in any particular RRset, must have the same TTL to start with.
 
-<span><a href="#section-4.1.5">4.1.5</a> Signature Expiration and Inception Fields</span>
+4.1.5 Signature Expiration and Inception Fields
 
-   The SIG is valid from the "signature inception" time until the
-   "signature expiration" time.  Both are unsigned numbers of seconds
+   The SIG is valid from the &quot;signature inception&quot; time until the
+   &quot;signature expiration&quot; time.  Both are unsigned numbers of seconds
    since the start of 1 January 1970, GMT, ignoring leap seconds.  (See
-   also <a href="#section-4.4">Section 4.4</a>.)  Ring arithmetic is used as for DNS SOA serial
-   numbers [<a href="./rfc1982">RFC 1982</a>] which means that these times can never be more
+   also Section 4.4.)  Ring arithmetic is used as for DNS SOA serial
+   numbers [RFC 1982] which means that these times can never be more
    than about 68 years in the past or the future.  This means that these
    times are ambiguous modulo ~136.09 years.  However there is no
    security flaw because keys are required to be changed to new random
-   keys by [<a href="./rfc2541">RFC 2541</a>] at least every five years.  This means that the
+   keys by [RFC 2541] at least every five years.  This means that the
    probability that the same key is in use N*136.09 years later should
    be the same as the probability that a random guess will work.
 
@@ -1211,7 +1155,7 @@ Table of Contents
    point and/or the signature is long lived.
 
    (To prevent misordering of network requests to update a zone
-   dynamically, monotonically increasing "signature inception" times may
+   dynamically, monotonically increasing &quot;signature inception&quot; times may
    be necessary.)
 
    A secure zone must be considered changed for SOA serial number
@@ -1221,7 +1165,7 @@ Table of Contents
 
 
 
-<span>Eastlake                    Standards Track                    [Page 19]</span></pre>
+Eastlake                    Standards Track                    [Page 19]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Appendix</span>
@@ -1526,17 +1470,16 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 25</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2535">RFC 2535</a>                DNS Security Extensions               March 1999</span>
+  <pre>RFC 2535                DNS Security Extensions               March 1999
 
 
-   The owner name of the NXT RR is an existing name in the zone.  It's
-   RDATA is a "next" name and a type bit map. Thus the NXT RRs in a zone
+   The owner name of the NXT RR is an existing name in the zone.  It&#x27;s
+   RDATA is a &quot;next&quot; name and a type bit map. Thus the NXT RRs in a zone
    create a chain of all of the literal owner names in that zone,
    including unexpanded wildcards but omitting the owner name of glue
    address records unless they would otherwise be included. This implies
    a canonical ordering of all domain names in a zone as described in
-   <a href="#section-8">Section 8</a>. The presence of the NXT RR means that no name between its
+   Section 8. The presence of the NXT RR means that no name between its
    owner name and the name in its RDATA area exists and that no other
    types exist under its owner name.
 
@@ -1548,27 +1491,20 @@ Table of Contents
    name in the RDATA of the last NXT in a zone.
 
    The NXT RRs for a zone SHOULD be automatically calculated and added
-   to the zone when SIGs are added.  The NXT RR's TTL SHOULD NOT exceed
+   to the zone when SIGs are added.  The NXT RR&#x27;s TTL SHOULD NOT exceed
    the zone minimum TTL.
 
    The type number for the NXT RR is 30.
 
    NXT RRs are only signed by zone level keys.
 
-<span><a href="#section-5.2">5.2</a> NXT RDATA Format</span>
+5.2 NXT RDATA Format
 
    The RDATA for an NXT RR consists simply of a domain name followed by
-   a bit map, as shown below.
-
-                        1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 3 3
-    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                  next domain name                             /
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                    type bit map                               /
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-   The NXT RR type bit map format currently defined is one bit per RR
+   a bit map, as shown below.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 3 3</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div></div>
+</figure><pre>   |                  next domain name                             /</pre><pre>   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>   |                    type bit map                               /</pre><pre>   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>   The NXT RR type bit map format currently defined is one bit per RR
    type present for the owner name.  A one bit indicates that at least
    one RR of that type is present for the owner name.  A zero indicates
    that no such RR is present.  All bits not specified because they are
@@ -1581,7 +1517,7 @@ Table of Contents
 
 
 
-<span>Eastlake                    Standards Track                    [Page 25]</span></pre>
+Eastlake                    Standards Track                    [Page 25]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 26</span>
@@ -1826,30 +1762,16 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 30</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2535">RFC 2535</a>                DNS Security Extensions               March 1999</span>
+  <pre>RFC 2535                DNS Security Extensions               March 1999
 
 
    These bits are allocated from the previously must-be-zero Z field as
    follows:
 
-                                           1  1  1  1  1  1
-             0  1  2  3  4  5  6  7  8  9  0  1  2  3  4  5
-            +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-            |                      ID                       |
-            +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-            |QR|   Opcode  |AA|TC|RD|RA| Z|AD|CD|   RCODE   |
-            +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-            |                    QDCOUNT                    |
-            +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-            |                    ANCOUNT                    |
-            +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-            |                    NSCOUNT                    |
-            +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-            |                    ARCOUNT                    |
-            +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-
-   These bits are zero in old servers and resolvers.  Thus the responses
+                                           1  1  1  1  1  1</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0  1  2  3  4  5  6  7  8  9  0  1  2  3  4  5</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">ID</div></div><div class="modern-diagram-row" style="--cell-count: 10"><div class="modern-diagram-cell">QR</div><div class="modern-diagram-cell">Opcode</div><div class="modern-diagram-cell">AA</div><div class="modern-diagram-cell">TC</div><div class="modern-diagram-cell">RD</div><div class="modern-diagram-cell">RA</div><div class="modern-diagram-cell">Z</div><div class="modern-diagram-cell">AD</div><div class="modern-diagram-cell">CD</div><div class="modern-diagram-cell">RCODE</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">QDCOUNT</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">ANCOUNT</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">NSCOUNT</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">ARCOUNT</div></div></div>
+</figure><pre>   These bits are zero in old servers and resolvers.  Thus the responses
    of old servers are not flagged as authenticated to security aware
    resolvers and queries from non-security aware resolvers do not assert
    the checking disabled bit and thus will be answered by security aware
@@ -1881,7 +1803,7 @@ Table of Contents
 
 
 
-<span>Eastlake                    Standards Track                    [Page 30]</span></pre>
+Eastlake                    Standards Track                    [Page 30]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 31</span>

@@ -986,20 +986,19 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 16</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc7233">RFC 7233</a>                 HTTP/1.1 Range Requests               June 2014</span>
+  <pre>RFC 7233                 HTTP/1.1 Range Requests               June 2014
 
 
-<span><a href="#section-5">5</a>.  IANA Considerations</span>
+5.  IANA Considerations
 
-<span><a href="#section-5.1">5.1</a>.  Range Unit Registry</span>
+5.1.  Range Unit Registry
 
-   The "HTTP Range Unit Registry" defines the namespace for the range
+   The &quot;HTTP Range Unit Registry&quot; defines the namespace for the range
    unit names and refers to their corresponding specifications.  The
    registry has been created and is now maintained at
-   &lt;<a>http://www.iana.org/assignments/http-parameters</a>&gt;.
+   &lt;http://www.iana.org/assignments/http-parameters&gt;.
 
-<span><a href="#section-5.1.1">5.1.1</a>.  Procedure</span>
+5.1.1.  Procedure
 
    Registration of an HTTP Range Unit MUST include the following fields:
 
@@ -1010,23 +1009,15 @@ Table of Contents
    o  Pointer to specification text
 
    Values to be added to this namespace require IETF Review (see
-   <a href="./rfc5226#section-4.1">[RFC5226], Section&nbsp;4.1</a>).
+   [RFC5226], Section 4.1).
 
-<span><a href="#section-5.1.2">5.1.2</a>.  Registrations</span>
+5.1.2.  Registrations
 
-   The initial range unit registry contains the registrations below:
-
-   +-------------+---------------------------------------+-------------+
-   | Range Unit  | Description                           | Reference   |
-   | Name        |                                       |             |
-   +-------------+---------------------------------------+-------------+
-   | bytes       | a range of octets                     | <a href="#section-2.1">Section 2.1</a> |
-   | none        | reserved as keyword, indicating no    | <a href="#section-2.3">Section 2.3</a> |
-   |             | ranges are supported                  |             |
-   +-------------+---------------------------------------+-------------+
-
-   The change controller is: "IETF (iesg@ietf.org) - Internet
-   Engineering Task Force".
+   The initial range unit registry contains the registrations below:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Range Unit</div><div class="modern-diagram-cell">Description</div><div class="modern-diagram-cell">Reference</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Name</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">bytes</div><div class="modern-diagram-cell">a range of octets</div><div class="modern-diagram-cell">Section 2.1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">none</div><div class="modern-diagram-cell">reserved as keyword, indicating no</div><div class="modern-diagram-cell">Section 2.3</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">ranges are supported</div></div></div>
+</figure><pre>   The change controller is: &quot;IETF (iesg@ietf.org) - Internet
+   Engineering Task Force&quot;.
 
 
 
@@ -1041,57 +1032,42 @@ Table of Contents
 
 
 
-<span>Fielding, et al.             Standards Track                   [Page 16]</span></pre>
+Fielding, et al.             Standards Track                   [Page 16]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 17</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc7233">RFC 7233</a>                 HTTP/1.1 Range Requests               June 2014</span>
+  <pre>RFC 7233                 HTTP/1.1 Range Requests               June 2014
 
 
-<span><a href="#section-5.2">5.2</a>.  Status Code Registration</span>
+5.2.  Status Code Registration
 
-   The "Hypertext Transfer Protocol (HTTP) Status Code Registry" located
-   at &lt;<a>http://www.iana.org/assignments/http-status-codes</a>&gt; has been
-   updated to include the registrations below:
+   The &quot;Hypertext Transfer Protocol (HTTP) Status Code Registry&quot; located
+   at &lt;http://www.iana.org/assignments/http-status-codes&gt; has been
+   updated to include the registrations below:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Value</div><div class="modern-diagram-cell">Description</div><div class="modern-diagram-cell">Reference</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">206</div><div class="modern-diagram-cell">Partial Content</div><div class="modern-diagram-cell">Section 4.1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">416</div><div class="modern-diagram-cell">Range Not Satisfiable</div><div class="modern-diagram-cell">Section 4.4</div></div></div>
+</figure><pre>5.3.  Header Field Registration
 
-   +-------+-----------------------+-------------+
-   | Value | Description           | Reference   |
-   +-------+-----------------------+-------------+
-   | 206   | Partial Content       | <a href="#section-4.1">Section 4.1</a> |
-   | 416   | Range Not Satisfiable | <a href="#section-4.4">Section 4.4</a> |
-   +-------+-----------------------+-------------+
-
-<span><a href="#section-5.3">5.3</a>.  Header Field Registration</span>
-
-   HTTP header fields are registered within the "Message Headers"
+   HTTP header fields are registered within the &quot;Message Headers&quot;
    registry maintained at
-   &lt;<a>http://www.iana.org/assignments/message-headers/</a>&gt;.
+   &lt;http://www.iana.org/assignments/message-headers/&gt;.
 
    This document defines the following HTTP header fields, so their
    associated registry entries have been updated according to the
-   permanent registrations below (see [<a href="#ref-BCP90" title="&quot;Registration Procedures for Message Header Fields&quot;">BCP90</a>]):
+   permanent registrations below (see [BCP90]):</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Header Field Name</div><div class="modern-diagram-cell">Protocol</div><div class="modern-diagram-cell">Status</div><div class="modern-diagram-cell">Reference</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Accept-Ranges</div><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">standard</div><div class="modern-diagram-cell">Section 2.3</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Content-Range</div><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">standard</div><div class="modern-diagram-cell">Section 4.2</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">If-Range</div><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">standard</div><div class="modern-diagram-cell">Section 3.2</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Range</div><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">standard</div><div class="modern-diagram-cell">Section 3.1</div></div></div>
+</figure><pre>   The change controller is: &quot;IETF (iesg@ietf.org) - Internet
+   Engineering Task Force&quot;.
 
-   +-------------------+----------+----------+-------------+
-   | Header Field Name | Protocol | Status   | Reference   |
-   +-------------------+----------+----------+-------------+
-   | Accept-Ranges     | http     | standard | <a href="#section-2.3">Section 2.3</a> |
-   | Content-Range     | http     | standard | <a href="#section-4.2">Section 4.2</a> |
-   | If-Range          | http     | standard | <a href="#section-3.2">Section 3.2</a> |
-   | Range             | http     | standard | <a href="#section-3.1">Section 3.1</a> |
-   +-------------------+----------+----------+-------------+
+5.4.  Internet Media Type Registration
 
-   The change controller is: "IETF (iesg@ietf.org) - Internet
-   Engineering Task Force".
-
-<span><a href="#section-5.4">5.4</a>.  Internet Media Type Registration</span>
-
-   IANA maintains the registry of Internet media types [<a href="#ref-BCP13" title="&quot;Media Type Specifications and Registration Procedures&quot;">BCP13</a>] at
-   &lt;<a>http://www.iana.org/assignments/media-types</a>&gt;.
+   IANA maintains the registry of Internet media types [BCP13] at
+   &lt;http://www.iana.org/assignments/media-types&gt;.
 
    This document serves as the specification for the Internet media type
-   "multipart/byteranges".  The following has been registered with IANA.
+   &quot;multipart/byteranges&quot;.  The following has been registered with IANA.
 
 
 
@@ -1101,7 +1077,7 @@ Table of Contents
 
 
 
-<span>Fielding, et al.             Standards Track                   [Page 17]</span></pre>
+Fielding, et al.             Standards Track                   [Page 17]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Appendix</span>

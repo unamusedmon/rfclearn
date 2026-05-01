@@ -1526,62 +1526,49 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 25</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8499">RFC 8499</a>                     DNS Terminology                January 2019</span>
+  <pre>RFC 8499                     DNS Terminology                January 2019
 
 
       Although glue is sometimes used today with this wider definition
-      in mind, the context surrounding the definition in [<a href="./rfc2181" title="&quot;Clarifications to the DNS Specification&quot;">RFC2181</a>]
+      in mind, the context surrounding the definition in [RFC2181]
       suggests it is intended to apply to the use of glue within the
       document itself and not necessarily beyond.
 
-   Bailiwick:  "In-bailiwick" is a modifier to describe a name server
+   Bailiwick:  &quot;In-bailiwick&quot; is a modifier to describe a name server
       whose name is either a subdomain of or (rarely) the same as the
       origin of the zone that contains the delegation to the name
       server.  In-bailiwick name servers may have glue records in their
-      parent zone (using the first of the definitions of "glue records"
-      in the definition above).  (The word "bailiwick" means the
+      parent zone (using the first of the definitions of &quot;glue records&quot;
+      in the definition above).  (The word &quot;bailiwick&quot; means the
       district or territory where a bailiff or policeman has
       jurisdiction.)
 
-      "In-bailiwick" names are divided into two types of names for name
-      servers: "in-domain" names and "sibling domain" names.
+      &quot;In-bailiwick&quot; names are divided into two types of names for name
+      servers: &quot;in-domain&quot; names and &quot;sibling domain&quot; names.
 
       *  In-domain: a modifier to describe a name server whose name is
          either subordinate to or (rarely) the same as the owner name of
          the NS resource records.  An in-domain name server name needs
          to have glue records or name resolution fails.  For example, a
-         delegation for "child.example.com" may have "in-domain" name
-         server name "ns.child.example.com".
+         delegation for &quot;child.example.com&quot; may have &quot;in-domain&quot; name
+         server name &quot;ns.child.example.com&quot;.
 
-      *  Sibling domain: a name server's name that is either subordinate
+      *  Sibling domain: a name server&#x27;s name that is either subordinate
          to or (rarely) the same as the zone origin and not subordinate
          to or the same as the owner name of the NS resource records.
          Glue records for sibling domains are allowed, but not
-         necessary.  For example, a delegation for "child.example.com"
-         in "example.com" zone may have "sibling" name server name
-         "ns.another.example.com".
+         necessary.  For example, a delegation for &quot;child.example.com&quot;
+         in &quot;example.com&quot; zone may have &quot;sibling&quot; name server name
+         &quot;ns.another.example.com&quot;.
 
-      "Out-of-bailiwick" is the antonym of "in-bailiwick".  It is a
+      &quot;Out-of-bailiwick&quot; is the antonym of &quot;in-bailiwick&quot;.  It is a
       modifier to describe a name server whose name is not subordinate
       to or the same as the zone origin.  Glue records for out-of-
       bailiwick name servers are useless.  The following table shows
-      examples of delegation types.
-
-   Delegation |Parent|Name Server Name  | Type
-   -----------+------+------------------+-----------------------------
-   com        | .    |a.gtld-servers.net|in-bailiwick / sibling domain
-   net        | .    |a.gtld-servers.net|in-bailiwick / in-domain
-   example.org| org  |ns.example.org    |in-bailiwick / in-domain
-   example.org| org  |ns.ietf.org       |in-bailiwick / sibling domain
-   example.org| org  |ns.example.com    |out-of-bailiwick
-   example.jp | jp   |ns.example.jp     |in-bailiwick / in-domain
-   example.jp | jp   |ns.example.ne.jp  |in-bailiwick / sibling domain
-   example.jp | jp   |ns.example.com    |out-of-bailiwick
-
-
-
-<span>Hoffman, et al.           Best Current Practice                [Page 25]</span></pre>
+      examples of delegation types.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Delegation</div><div class="modern-diagram-cell">Parent</div><div class="modern-diagram-cell">Name Server Name</div><div class="modern-diagram-cell">Type</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">com</div><div class="modern-diagram-cell">.</div><div class="modern-diagram-cell">a.gtld-servers.net</div><div class="modern-diagram-cell">in-bailiwick / sibling domain</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">net</div><div class="modern-diagram-cell">.</div><div class="modern-diagram-cell">a.gtld-servers.net</div><div class="modern-diagram-cell">in-bailiwick / in-domain</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">example.org</div><div class="modern-diagram-cell">org</div><div class="modern-diagram-cell">ns.example.org</div><div class="modern-diagram-cell">in-bailiwick / in-domain</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">example.org</div><div class="modern-diagram-cell">org</div><div class="modern-diagram-cell">ns.ietf.org</div><div class="modern-diagram-cell">in-bailiwick / sibling domain</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">example.org</div><div class="modern-diagram-cell">org</div><div class="modern-diagram-cell">ns.example.com</div><div class="modern-diagram-cell">out-of-bailiwick</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">example.jp</div><div class="modern-diagram-cell">jp</div><div class="modern-diagram-cell">ns.example.jp</div><div class="modern-diagram-cell">in-bailiwick / in-domain</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">example.jp</div><div class="modern-diagram-cell">jp</div><div class="modern-diagram-cell">ns.example.ne.jp</div><div class="modern-diagram-cell">in-bailiwick / sibling domain</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">example.jp</div><div class="modern-diagram-cell">jp</div><div class="modern-diagram-cell">ns.example.com</div><div class="modern-diagram-cell">out-of-bailiwick</div></div></div>
+</figure><pre>Hoffman, et al.           Best Current Practice                [Page 25]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 26</span>

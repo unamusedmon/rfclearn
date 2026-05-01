@@ -686,8 +686,7 @@ Full Copyright Statement..............................................<a href="#
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 11</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2401">RFC 2401</a>              Security Architecture for IP         November 1998</span>
+  <pre>RFC 2401              Security Architecture for IP         November 1998
 
 
    invoked to hide the size of the packets, further concealing the
@@ -699,15 +698,15 @@ Full Copyright Statement..............................................<a href="#
    vulnerable to traffic analysis than coarse granularity ones which are
    carrying traffic from many subscribers.
 
-<span><a href="#section-4.3">4.3</a> Combining Security Associations</span>
+4.3 Combining Security Associations
 
    The IP datagrams transmitted over an individual SA are afforded
    protection by exactly one security protocol, either AH or ESP, but
    not both.  Sometimes a security policy may call for a combination of
    services for a particular traffic flow that is not achievable with a
    single SA.  In such instances it will be necessary to employ multiple
-   SAs to implement the required security policy.  The term "security
-   association bundle" or "SA bundle" is applied to a sequence of SAs
+   SAs to implement the required security policy.  The term &quot;security
+   association bundle&quot; or &quot;SA bundle&quot; is applied to a sequence of SAs
    through which traffic must be processed to satisfy a security policy.
    The order of the sequence is defined by the policy.  (Note that the
    SAs that comprise a bundle may terminate at different endpoints. For
@@ -727,12 +726,10 @@ Full Copyright Statement..............................................<a href="#
              performed at one IPsec instance at the (ultimate)
              destination.
 
-             Host 1 --- Security ---- Internet -- Security --- Host 2
-              | |        Gwy 1                      Gwy 2        | |
-              | |                                                | |
-              | -----Security Association 1 (ESP transport)------- |
-              |                                                    |
-              -------Security Association 2 (AH transport)----------
+             Host 1 --- Security ---- Internet -- Security --- Host 2</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Gwy 1                      Gwy 2</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">-----Security Association 1 (ESP transport)-------</div></div></div>
+</figure><pre>              -------Security Association 2 (AH transport)----------
 
            o Iterated tunneling refers to the application of multiple
              layers of security protocols effected through IP tunneling.
@@ -741,19 +738,18 @@ Full Copyright Statement..............................................<a href="#
 
 
 
-<span>Kent &amp; Atkinson             Standards Track                    [Page 11]</span></pre>
+Kent &amp; Atkinson             Standards Track                    [Page 11]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 12</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2401">RFC 2401</a>              Security Architecture for IP         November 1998</span>
+  <pre>RFC 2401              Security Architecture for IP         November 1998
 
 
              site along the path.  No special treatment is expected for
              ISAKMP traffic at intermediate security gateways other than
              what can be specified through appropriate SPD entries (See
-             Case 3 in <a href="#section-4.5">Section 4.5</a>)
+             Case 3 in Section 4.5)
 
              There are 3 basic cases of iterated tunneling -- support is
              required only for cases 2 and 3.:
@@ -763,37 +759,31 @@ Full Copyright Statement..............................................<a href="#
                 is unlikely that Host 1 would specify both to be the
                 same, i.e., AH inside of AH or ESP inside of ESP.
 
-                Host 1 --- Security ---- Internet -- Security --- Host 2
-                 | |        Gwy 1                      Gwy 2        | |
-                 | |                                                | |
-                 | -------Security Association 1 (tunnel)---------- | |
-                 |                                                    |
-                 ---------Security Association 2 (tunnel)--------------
+                Host 1 --- Security ---- Internet -- Security --- Host 2</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Gwy 1                      Gwy 2</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">-------Security Association 1 (tunnel)----------</div></div></div>
+</figure><pre>                 ---------Security Association 2 (tunnel)--------------
 
              2. one endpoint of the SAs is the same -- The inner and
                 uter tunnels could each be either AH or ESP.
 
-                Host 1 --- Security ---- Internet -- Security --- Host 2
-                 | |        Gwy 1                      Gwy 2         |
-                 | |                                     |           |
-                 | ----Security Association 1 (tunnel)----           |
-                 |                                                   |
-                 ---------Security Association 2 (tunnel)-------------
+                Host 1 --- Security ---- Internet -- Security --- Host 2</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Gwy 1                      Gwy 2</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">----Security Association 1 (tunnel)----</div></div></div>
+</figure><pre>                 ---------Security Association 2 (tunnel)-------------
 
              3. neither endpoint is the same -- The inner and outer
                 tunnels could each be either AH or ESP.
 
-                Host 1 --- Security ---- Internet -- Security --- Host 2
-                 |          Gwy 1                      Gwy 2         |
-                 |            |                          |           |
-                 |            --Security Assoc 1 (tunnel)-           |
-                 |                                                   |
-                 -----------Security Association 2 (tunnel)-----------
+                Host 1 --- Security ---- Internet -- Security --- Host 2</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Gwy 1                      Gwy 2</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">--Security Assoc 1 (tunnel)-</div></div></div>
+</figure><pre>                 -----------Security Association 2 (tunnel)-----------
 
    These two approaches also can be combined, e.g., an SA bundle could
    be constructed from one tunnel mode SA and one or two transport mode
-   SAs, applied in sequence.  (See <a href="#section-4.5">Section 4.5</a> "Basic Combinations of
-   Security Associations.") Note that nested tunnels can also occur
+   SAs, applied in sequence.  (See Section 4.5 &quot;Basic Combinations of
+   Security Associations.&quot;) Note that nested tunnels can also occur
    where neither the source nor the destination endpoints of any of the
    tunnels are the same.  In that case, there would be no host or
    security gateway with a bundle corresponding to the nested tunnels.
@@ -801,7 +791,7 @@ Full Copyright Statement..............................................<a href="#
 
 
 
-<span>Kent &amp; Atkinson             Standards Track                    [Page 12]</span></pre>
+Kent &amp; Atkinson             Standards Track                    [Page 12]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 13</span>
@@ -1526,8 +1516,7 @@ Full Copyright Statement..............................................<a href="#
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 25</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2401">RFC 2401</a>              Security Architecture for IP         November 1998</span>
+  <pre>RFC 2401              Security Architecture for IP         November 1998
 
 
         Note that there is no requirement to support general nesting,
@@ -1538,13 +1527,10 @@ Full Copyright Statement..............................................<a href="#
    Case 2.  This case illustrates simple virtual private networks
         support.
 
-                       ===========================
-                       |                         |
-  ---------------------|----                  ---|-----------------------
-  |                    |   |                  |  |                      |
-  |  H1 -- (Local --- SG1* |--- (Internet) ---| SG2* --- (Local --- H2  |
-  |        Intranet)       |                  |          Intranet)      |
-  --------------------------                  ---------------------------
+                       ===========================</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">H1 -- (Local --- SG1*</div><div class="modern-diagram-cell">--- (Internet) ---</div><div class="modern-diagram-cell">SG2* --- (Local --- H2</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Intranet)</div><div class="modern-diagram-cell">Intranet)</div></div></div>
+</figure><pre>  --------------------------                  ---------------------------
       admin. boundary                               admin. boundary
 
         Only tunnel mode is required here.  So the headers in a packet
@@ -1561,50 +1547,38 @@ Full Copyright Statement..............................................<a href="#
         requirement for a security gateway to be configurable to pass
         IPsec traffic (including ISAKMP traffic) for hosts behind it.
 
-     ===============================================================
-     |                                                             |
-     |                 =========================                   |
-     |                 |                       |                   |
-  ---|-----------------|----                ---|-------------------|---
-  |  |                 |   |                |  |                   |  |
-  | H1* -- (Local --- SG1* |-- (Internet) --| SG2* --- (Local --- H2* |
-  |        Intranet)       |                |          Intranet)      |
-  --------------------------                ---------------------------
+     ===============================================================</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">H1* -- (Local --- SG1*</div><div class="modern-diagram-cell">-- (Internet) --</div><div class="modern-diagram-cell">SG2* --- (Local --- H2*</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Intranet)</div><div class="modern-diagram-cell">Intranet)</div></div></div>
+</figure><pre>  --------------------------                ---------------------------
        admin. boundary                            admin. boundary
 
    Case 4.  This covers the situation where a remote host (H1) uses the
-        Internet to reach an organization's firewall (SG2) and to then
+        Internet to reach an organization&#x27;s firewall (SG2) and to then
         gain access to some server or other machine (H2).  The remote
         host could be a mobile host (H1) dialing up to a local PPP/ARA
         server (not shown) on the Internet and then crossing the
-        Internet to the home organization's firewall (SG2), etc.  The
+        Internet to the home organization&#x27;s firewall (SG2), etc.  The
 
 
 
-<span>Kent &amp; Atkinson             Standards Track                    [Page 25]</span></pre>
+Kent &amp; Atkinson             Standards Track                    [Page 25]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 26</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2401">RFC 2401</a>              Security Architecture for IP         November 1998</span>
+  <pre>RFC 2401              Security Architecture for IP         November 1998
 
 
         details of support for this case, (how H1 locates SG2,
         authenticates it, and verifies its authorization to represent
-        H2) are discussed in <a href="#section-4.6.3">Section 4.6.3</a>, "Locating a Security
-        Gateway".
+        H2) are discussed in Section 4.6.3, &quot;Locating a Security
+        Gateway&quot;.
 
-        ======================================================
-        |                                                    |
-        |==============================                      |
-        ||                            |                      |
-        ||                         ---|----------------------|---
-        ||                         |  |                      |  |
-        H1* ----- (Internet) ------| SG2* ---- (Local ----- H2* |
-              ^                    |           Intranet)        |
-              |                    ------------------------------
-        could be dialup              admin. boundary (optional)
+        ======================================================</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">H1* ----- (Internet) ------</div><div class="modern-diagram-cell">SG2* ---- (Local ----- H2*</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">^</div><div class="modern-diagram-cell">Intranet)</div></div></div>
+</figure><pre>        could be dialup              admin. boundary (optional)
         to PPP/ARA server
 
         Only tunnel mode is required between H1 and SG2.  So the choices
@@ -1622,7 +1596,7 @@ Full Copyright Statement..............................................<a href="#
    optional.  Use of other, optional combinations may adversely affect
    interoperability.
 
-<span><a href="#section-4.6">4.6</a> SA and Key Management</span>
+4.6 SA and Key Management
 
    IPsec mandates support for both manual and automated SA and
    cryptographic key management.  The IPsec protocols, AH and ESP, are
@@ -1632,7 +1606,7 @@ Full Copyright Statement..............................................<a href="#
    replay services available for AH and ESP require automated SA
    management.  Moreover, the granularity of key distribution employed
    with IPsec determines the granularity of authentication provided.
-   (See also a discussion of this issue in <a href="#section-4.7">Section 4.7</a>.)  In general,
+   (See also a discussion of this issue in Section 4.7.)  In general,
    data origin authentication in AH and ESP is limited by the extent to
    which secrets used with the authentication algorithm (or with a key
    management protocol that creates such secrets) are shared among
@@ -1641,7 +1615,7 @@ Full Copyright Statement..............................................<a href="#
 
 
 
-<span>Kent &amp; Atkinson             Standards Track                    [Page 26]</span></pre>
+Kent &amp; Atkinson             Standards Track                    [Page 26]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 27</span>

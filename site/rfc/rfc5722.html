@@ -206,40 +206,26 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 3</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc5722">RFC 5722</a>         Handling of Overlapping IPv6 Fragments    December 2009</span>
+  <pre>RFC 5722         Handling of Overlapping IPv6 Fragments    December 2009
 
 
-<span><a href="#section-3">3</a>.  The Attack</span>
+3.  The Attack
 
    This attack describes how a malicious node can bypass a firewall
    using overlapping fragments.  Consider a sufficiently large IPv6
-   packet that needs to be fragmented.
-
-   +------------------+--------------------//-----------------------+
-   |  Unfragmentable  |                 Fragmentable                |
-   |       Part       |                     Part                    |
-   +------------------+--------------------//-----------------------+
-
-                     Figure 1: Large IPv6 Packet
+   packet that needs to be fragmented.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Unfragmentable</div><div class="modern-diagram-cell">Fragmentable</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Part</div><div class="modern-diagram-cell">Part</div></div></div>
+</figure><pre>                     Figure 1: Large IPv6 Packet
 
    This packet is split into several fragments by the sender so that the
-   packet can fit inside the path MTU.  Let's say the packet is split
-   into two fragments.
+   packet can fit inside the path MTU.  Let&#x27;s say the packet is split
+   into two fragments.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Unfragmentable</div><div class="modern-diagram-cell">Fragment</div><div class="modern-diagram-cell">first</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Part</div><div class="modern-diagram-cell">Header</div><div class="modern-diagram-cell">fragment</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Unfragmentable</div><div class="modern-diagram-cell">Fragment</div><div class="modern-diagram-cell">second</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Part</div><div class="modern-diagram-cell">Header</div><div class="modern-diagram-cell">fragment</div></div></div>
+</figure><pre>           Figure 2: Fragmented IPv6 Packet
 
-   +------------------+--------+--------------------+
-   |  Unfragmentable  |Fragment|       first        |
-   |       Part       | Header |      fragment      |
-   +------------------+--------+--------------------+
-
-   +------------------+--------+--------------------+
-   |  Unfragmentable  |Fragment|       second       |
-   |       Part       | Header |      fragment      |
-   +------------------+--------+--------------------+
-
-           Figure 2: Fragmented IPv6 Packet
-
-   Consider the first fragment.  Let's say it contains a destination
+   Consider the first fragment.  Let&#x27;s say it contains a destination
    options header (DOH) 80 octets long and is followed by a TCP header.
 
 
@@ -261,38 +247,20 @@ Table of Contents
 
 
 
-<span>Krishnan                    Standards Track                     [Page 3]</span></pre>
+Krishnan                    Standards Track                     [Page 3]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 4</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc5722">RFC 5722</a>         Handling of Overlapping IPv6 Fragments    December 2009</span>
-
-
- +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+&lt;==FH
- |NextHdr=DOH(60)|   Reserved    |   FragmentOffset = 0    |Res|1|
- +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
- |                Identification=aaaabbbb                        |
- +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+&lt;==DOH
- |NextHdr=TCP(6) | HdrExtLen = 9 |                               |
- +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+                               +
- |                                                               |
- .                                                               .
+  <pre>RFC 5722         Handling of Overlapping IPv6 Fragments    December 2009</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+&lt;==FH</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">NextHdr=DOH(60)</div><div class="modern-diagram-cell">Reserved</div><div class="modern-diagram-cell">FragmentOffset = 0</div><div class="modern-diagram-cell">Res</div><div class="modern-diagram-cell">1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Identification=aaaabbbb</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+&lt;==DOH</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">NextHdr=TCP(6)</div><div class="modern-diagram-cell">HdrExtLen = 9</div></div></div>
+</figure><pre> .                                                               .
  .                            Options                            .
- .                                                               .
- |                                                               |
- +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+&lt;==TCP
- |        Source Port            |       Destination Port        |
- +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
- |                       Sequence Number                         |
- +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
- |                    Acknowledgment Number                      |
- +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
- | Offset| Reserved  |U|A|P|R|S|F|           Window              |
- +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-                      Figure 3: First Fragment
+ .                                                               .</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+&lt;==TCP</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Source Port</div><div class="modern-diagram-cell">Destination Port</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Sequence Number</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Acknowledgment Number</div></div><div class="modern-diagram-row" style="--cell-count: 9"><div class="modern-diagram-cell">Offset</div><div class="modern-diagram-cell">Reserved</div><div class="modern-diagram-cell">U</div><div class="modern-diagram-cell">A</div><div class="modern-diagram-cell">P</div><div class="modern-diagram-cell">R</div><div class="modern-diagram-cell">S</div><div class="modern-diagram-cell">F</div><div class="modern-diagram-cell">Window</div></div></div>
+</figure><pre>                      Figure 3: First Fragment
 
    The TCP header has the following values of the flags: S(YN)=1 and
    A(CK)=1.  This may make an inspecting stateful firewall think that it
@@ -305,7 +273,7 @@ Table of Contents
    changes the flags and sets S(YN)=1 and A(CK)=0.  This can change the
    packet on the receiving end to consider the packet as a connection
    request instead of a response.  By doing this, the malicious node has
-   bypassed the firewall's access control to initiate a connection
+   bypassed the firewall&#x27;s access control to initiate a connection
    request to a node protected by a firewall.
 
 
@@ -321,37 +289,22 @@ Table of Contents
 
 
 
-<span>Krishnan                    Standards Track                     [Page 4]</span></pre>
+Krishnan                    Standards Track                     [Page 4]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 5</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc5722">RFC 5722</a>         Handling of Overlapping IPv6 Fragments    December 2009</span>
-
-
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+&lt;==FH
-|NextHdr=DOH(60)|   Reserved    |   FragmentOffset = 10   |Res|0|
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                Identification=aaaabbbb                        |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+&lt;==TCP
-|        Source Port            |       Destination Port        |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                       Sequence Number                         |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                    Acknowledgment Number                      |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-| Offset| Reserved  |U|A|P|R|S|F|           Window              |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-                    Figure 4: Second Fragment
+  <pre>RFC 5722         Handling of Overlapping IPv6 Fragments    December 2009</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+&lt;==FH</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">NextHdr=DOH(60)</div><div class="modern-diagram-cell">Reserved</div><div class="modern-diagram-cell">FragmentOffset = 10</div><div class="modern-diagram-cell">Res</div><div class="modern-diagram-cell">0</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Identification=aaaabbbb</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+&lt;==TCP</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Source Port</div><div class="modern-diagram-cell">Destination Port</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Sequence Number</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Acknowledgment Number</div></div><div class="modern-diagram-row" style="--cell-count: 9"><div class="modern-diagram-cell">Offset</div><div class="modern-diagram-cell">Reserved</div><div class="modern-diagram-cell">U</div><div class="modern-diagram-cell">A</div><div class="modern-diagram-cell">P</div><div class="modern-diagram-cell">R</div><div class="modern-diagram-cell">S</div><div class="modern-diagram-cell">F</div><div class="modern-diagram-cell">Window</div></div></div>
+</figure><pre>                    Figure 4: Second Fragment
 
    Note that this attack is much more serious in IPv6 than in IPv4.  In
    IPv4, the overlapping part of the TCP header does not include the
    source and destination ports.  In IPv6, the attack can easily work to
    replace the source or destination port with an overlapping fragment.
 
-<span><a href="#section-4">4</a>.  Node Behavior</span>
+4.  Node Behavior
 
    IPv6 nodes transmitting datagrams that need to be fragmented MUST NOT
    create overlapping fragments.  When reassembling an IPv6 datagram, if
@@ -364,13 +317,13 @@ Table of Contents
    packets, for instance, by implementing counters or alarms relating to
    these events.
 
-<span><a href="#section-5">5</a>.  Security Considerations</span>
+5.  Security Considerations
 
    This document discusses an attack that can be used to bypass IPv6
    firewalls using overlapping fragments.  It recommends disallowing
    overlapping fragments in order to prevent this attack.
 
-<span><a href="#section-6">6</a>.  Acknowledgements</span>
+6.  Acknowledgements
 
    The author would like to thank Thomas Narten, Doug Montgomery,
    Gabriel Montenegro, Remi Denis-Courmont, Marla Azinger, Arnaud
@@ -381,7 +334,7 @@ Table of Contents
 
 
 
-<span>Krishnan                    Standards Track                     [Page 5]</span></pre>
+Krishnan                    Standards Track                     [Page 5]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 6</span>

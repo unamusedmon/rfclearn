@@ -255,13 +255,12 @@ Replaces: <a href="./rfc788">RFC 788</a>, 780, 772                              
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 4</span>
   </div>
-  <pre><span ></span>
-<span>August 1982                                                      <a href="./rfc821">RFC 821</a></span>
+  <pre>August 1982                                                      RFC 821
 Simple Mail Transfer Protocol
 
 
 
-<span><a href="#section-2">2</a>.  THE SMTP MODEL</span>
+2.  THE SMTP MODEL
 
    The SMTP design is based on the following model of communication:  as
    the result of a user mail request, the sender-SMTP establishes a
@@ -284,20 +283,10 @@ Simple Mail Transfer Protocol
    the mail data it responds with an OK reply.  The dialog is purposely
    lock-step, one-at-a-time.
 
-     -------------------------------------------------------------
-
-
-               +----------+                +----------+
-   +------+    |          |                |          |
-   | User |&lt;--&gt;|          |      SMTP      |          |
-   +------+    |  Sender- |Commands/Replies| Receiver-|
-   +------+    |   SMTP   |&lt;--------------&gt;|    SMTP  |    +------+
-   | File |&lt;--&gt;|          |    and Mail    |          |&lt;--&gt;| File |
-   |System|    |          |                |          |    |System|
-   +------+    +----------+                +----------+    +------+
-
-
-                Sender-SMTP                Receiver-SMTP
+     -------------------------------------------------------------</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">User</div><div class="modern-diagram-cell">&lt;--&gt;</div><div class="modern-diagram-cell">SMTP</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">+------+</div><div class="modern-diagram-cell">Sender-</div><div class="modern-diagram-cell">Commands/Replies</div><div class="modern-diagram-cell">Receiver-</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">+------+</div><div class="modern-diagram-cell">SMTP</div><div class="modern-diagram-cell">&lt;--------------&gt;</div><div class="modern-diagram-cell">SMTP</div><div class="modern-diagram-cell">+------+</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">File</div><div class="modern-diagram-cell">&lt;--&gt;</div><div class="modern-diagram-cell">and Mail</div><div class="modern-diagram-cell">&lt;--&gt;</div><div class="modern-diagram-cell">File</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">System</div><div class="modern-diagram-cell">System</div></div></div>
+</figure><pre>                Sender-SMTP                Receiver-SMTP
 
                            Model for SMTP Use
 
@@ -306,7 +295,7 @@ Simple Mail Transfer Protocol
      -------------------------------------------------------------
 
    The SMTP provides mechanisms for the transmission of mail; directly
-   from the sending user's host to the receiving user's host when the
+   from the sending user&#x27;s host to the receiving user&#x27;s host when the
 
 
 
@@ -2475,8 +2464,7 @@ Simple Mail Transfer Protocol
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 41</span>
   </div>
-  <pre><span ></span>
-<a href="./rfc821">RFC 821</a>                                                      August 1982
+  <pre>RFC 821                                                      August 1982
                                            Simple Mail Transfer Protocol
 
 
@@ -2490,28 +2478,21 @@ Simple Mail Transfer Protocol
       command and then collecting together the commands with
       structurally identical models.
 
-      For each command there are three possible outcomes:  "success"
-      (S), "failure" (F), and "error" (E). In the state diagrams below
-      we use the symbol B for "begin", and the symbol W for "wait for
-      reply".
+      For each command there are three possible outcomes:  &quot;success&quot;
+      (S), &quot;failure&quot; (F), and &quot;error&quot; (E). In the state diagrams below
+      we use the symbol B for &quot;begin&quot;, and the symbol W for &quot;wait for
+      reply&quot;.
 
-      First, the diagram that represents most of the SMTP commands:
-
-
-                                  1,3    +---+
-                             -----------&gt;| E |
-                            |            +---+
-                            |
-         +---+    cmd    +---+    2      +---+
-         | B |----------&gt;| W |----------&gt;| S |
-         +---+           +---+           +---+
-                            |
-                            |     4,5    +---+
-                             -----------&gt;| F |
-                                         +---+
-
-
-         This diagram models the commands:
+      First, the diagram that represents most of the SMTP commands:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">1,3    +---+</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">-----------&gt;</div><div class="modern-diagram-cell">E</div></div></div>
+</figure><pre>                            |</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">+---+    cmd    +---+    2      +---+</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">B</div><div class="modern-diagram-cell">----------&gt;</div><div class="modern-diagram-cell">W</div><div class="modern-diagram-cell">----------&gt;</div><div class="modern-diagram-cell">S</div></div></div>
+</figure><pre>                            |</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">4,5    +---+</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">-----------&gt;</div><div class="modern-diagram-cell">F</div></div></div>
+</figure><pre>         This diagram models the commands:
 
             HELO, MAIL, RCPT, RSET, SEND, SOML, SAML, VRFY, EXPN, HELP,
             NOOP, QUIT, TURN.
@@ -2530,39 +2511,23 @@ Simple Mail Transfer Protocol
 
 
 
-<span>Postel                                                         [Page 39]</span></pre>
+Postel                                                         [Page 39]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 42</span>
   </div>
-  <pre><span ></span>
-<span>August 1982                                                      <a href="./rfc821">RFC 821</a></span>
+  <pre>August 1982                                                      RFC 821
 Simple Mail Transfer Protocol
 
 
 
-      A more complex diagram models the DATA command:
+      A more complex diagram models the DATA command:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">+---+   DATA    +---+ 1,2                 +---+</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">B</div><div class="modern-diagram-cell">----------&gt;</div><div class="modern-diagram-cell">W</div><div class="modern-diagram-cell">--------------------&gt;</div><div class="modern-diagram-cell">E</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">3</div><div class="modern-diagram-cell">4,5</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">----------     --------&gt;</div><div class="modern-diagram-cell">S</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">V           1,3</div><div class="modern-diagram-cell">2</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">+---+   data    +---+     ---------------&gt;+---+</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">----------&gt;</div><div class="modern-diagram-cell">W</div><div class="modern-diagram-cell">F</div></div></div>
+</figure><pre>                              4,5
 
 
-         +---+   DATA    +---+ 1,2                 +---+
-         | B |----------&gt;| W |--------------------&gt;| E |
-         +---+           +---+        ------------&gt;+---+
-                         3| |4,5     |
-                          | |        |
-            --------------   -----   |
-           |                      |  |             +---+
-           |               ----------     --------&gt;| S |
-           |              |       |      |         +---+
-           |              |  ------------
-           |              | |     |
-           V           1,3| |2    |
-         +---+   data    +---+     ---------------&gt;+---+
-         |   |----------&gt;| W |                     | F |
-         +---+           +---+--------------------&gt;+---+
-                              4,5
-
-
-         Note that the "data" here is a series of lines sent from the
+         Note that the &quot;data&quot; here is a series of lines sent from the
          sender to the receiver with no response expected until the last
          line is sent.
 

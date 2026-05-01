@@ -4112,105 +4112,11 @@ function setHeaderPanelDefault() {
   headerPanel.open = !matchMedia('(max-width: 780px)').matches;
 }
 
-function isAsciiDiagramLine(line) {
-  const trimmed = line.trim();
-  if (!trimmed) return false;
-  if (/^[+|\-:\s]+$/.test(trimmed) && /[+|]/.test(trimmed) && trimmed.length >= 8) return true;
-  if (/\+[-+=]{3,}\+/.test(trimmed)) return true;
-  if (/\|.*\|/.test(trimmed) && trimmed.length >= 12) return true;
-  if (/^(?:\d+\s+){6,}\d+$/.test(trimmed)) return true;
-  return false;
-}
-
-function renderModernAsciiDiagram(lines) {
-  const panel = document.createElement('figure');
-  panel.className = 'modern-ascii-diagram';
-  panel.setAttribute('role', 'img');
-  panel.setAttribute('aria-label', 'Modernized RFC packet diagram');
-
-  const kicker = document.createElement('figcaption');
-  kicker.className = 'modern-diagram-kicker';
-  kicker.textContent = 'Modernized packet graphic';
-  panel.appendChild(kicker);
-
-  const grid = document.createElement('div');
-  grid.className = 'modern-diagram-grid';
-  const rows = lines
-    .map(line => line.split('|').map(cell => cell.trim()).filter(Boolean))
-    .filter(cells => cells.length > 0 && cells.some(cell => /[A-Za-z0-9]/.test(cell)));
-
-  if (!rows.length) {
-    const fallback = document.createElement('div');
-    fallback.className = 'modern-diagram-fallback';
-    fallback.textContent = lines.join('\n');
-    grid.appendChild(fallback);
-  } else {
-    rows.forEach((cells) => {
-      const row = document.createElement('div');
-      row.className = 'modern-diagram-row';
-      row.style.setProperty('--cell-count', String(cells.length));
-      cells.forEach((label) => {
-        const cell = document.createElement('div');
-        cell.className = 'modern-diagram-cell';
-        cell.textContent = label.replace(/\s+/g, ' ');
-        row.appendChild(cell);
-      });
-      grid.appendChild(row);
-    });
-  }
-  panel.appendChild(grid);
-  return panel;
-}
-
-function modernizeAsciiGraphics() {
-  document.querySelectorAll('.rfc-source-shell pre').forEach((pre) => {
-    const lines = pre.textContent.split('\n');
-    const parts = [];
-    let index = 0;
-    let changed = false;
-    while (index < lines.length) {
-      if (!isAsciiDiagramLine(lines[index])) {
-        const start = index;
-        while (index < lines.length && !isAsciiDiagramLine(lines[index])) index++;
-        const text = lines.slice(start, index).join('\n');
-        if (text.trim()) parts.push({ type: 'text', lines: text });
-        continue;
-      }
-      const start = index;
-      let diagramCount = 0;
-      while (index < lines.length && (isAsciiDiagramLine(lines[index]) || !lines[index].trim())) {
-        if (isAsciiDiagramLine(lines[index])) diagramCount++;
-        index++;
-      }
-      const block = lines.slice(start, index);
-      if (diagramCount >= 3 && block.some(line => /\|.*\||\+[-+=]{3,}\+/.test(line))) {
-        parts.push({ type: 'diagram', lines: block });
-        changed = true;
-      } else {
-        parts.push({ type: 'text', lines: block.join('\n') });
-      }
-    }
-    if (!changed) return;
-    const fragment = document.createDocumentFragment();
-    parts.forEach((part) => {
-      if (part.type === 'diagram') {
-        fragment.appendChild(renderModernAsciiDiagram(part.lines));
-      } else if (part.lines.trim()) {
-        const textPre = document.createElement('pre');
-        textPre.textContent = part.lines.replace(/^\n+|\n+$/g, '');
-        fragment.appendChild(textPre);
-      }
-    });
-    pre.replaceWith(fragment);
-  });
-}
-
 addEventListener('scroll', updateProgress, { passive: true });
 if (focusBtn) focusBtn.addEventListener('click', () => body.classList.toggle('focus'));
 if (comfyBtn) comfyBtn.addEventListener('click', () => body.classList.toggle('comfy'));
 if (topBtn) topBtn.addEventListener('click', () => scrollTo({ top: 0, behavior: 'smooth' }));
 setHeaderPanelDefault();
-modernizeAsciiGraphics();
 const headings = makeToc();
 initActiveToc(headings);
 initAnnotations(headings);
@@ -4774,6 +4680,105 @@ def expand_collection(max_depth: int = 2) -> tuple[list[RFCBuild], int]:
     ordered = [builds[meta.num] for meta in RFCS if meta.num in builds]
     ordered.extend(builds[num] for num in sorted(builds) if num not in seed_nums)
     return ordered, sum(1 for num in builds if num not in seed_nums)
+
+
+def is_ascii_diagram_line(line: str) -> bool:
+    trimmed = line.strip()
+    if not trimmed:
+        return False
+    # bit numbers: 0 1 2 3 ...
+    if re.fullmatch(r"(?:\d+\s+){6,}\d+", trimmed):
+        return True
+    # +---+ or |   | or +---+
+    if re.fullmatch(r"[+|\-:\s]+", trimmed) and any(c in trimmed for c in "+|") and len(trimmed) >= 8:
+        return True
+    if re.search(r"\+[-+=]{3,}\+", trimmed):
+        return True
+    if re.search(r"\|.*\|", trimmed) and len(trimmed) >= 12:
+        return True
+    return False
+
+
+def render_modern_ascii_diagram(lines: list[str]) -> str:
+    rows = []
+    for line in lines:
+        # Split by | and filter out empty cells
+        cells = [c.strip() for c in line.split("|") if c.strip()]
+
+        if cells and any(re.search(r"[A-Za-z0-9]", c) for c in cells):
+            rows.append(cells)
+
+    if not rows:
+        diagram_text = "\n".join(lines)
+        return f'<div class="modern-diagram-fallback">{html.escape(diagram_text)}</div>'
+
+    grid_html = ['<div class="modern-diagram-grid">']
+    for row_cells in rows:
+        grid_html.append(f'<div class="modern-diagram-row" style="--cell-count: {len(row_cells)}">')
+        for cell in row_cells:
+            grid_html.append(f'<div class="modern-diagram-cell">{html.escape(cell)}</div>')
+        grid_html.append("</div>")
+    grid_html.append("</div>")
+
+    return f"""<figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  {"".join(grid_html)}
+</figure>"""
+
+
+def modernize_ascii_html(html_content: str) -> str:
+    def pre_repl(match: re.Match[str]) -> str:
+        pre_tag = match.group(1)
+        pre_body = match.group(2)
+
+        # Get raw text by stripping tags and unescaping
+        raw_text = re.sub(r"<[^>]+>", "", pre_body)
+        raw_text = html.unescape(raw_text)
+
+        lines = raw_text.split("\n")
+        parts = []
+        index = 0
+        changed = False
+
+        while index < len(lines):
+            if not is_ascii_diagram_line(lines[index]):
+                start = index
+                while index < len(lines) and not is_ascii_diagram_line(lines[index]):
+                    index += 1
+                text = "\n".join(lines[start:index])
+                if text.strip():
+                    parts.append({"type": "text", "content": text})
+                continue
+
+            start = index
+            diagram_count = 0
+            while index < len(lines) and (is_ascii_diagram_line(lines[index]) or not lines[index].strip()):
+                if is_ascii_diagram_line(lines[index]):
+                    diagram_count += 1
+                index += 1
+
+            block = lines[start:index]
+            if diagram_count >= 3 and any(re.search(r"\|.*\||\+[-+=]{3,}\+", line) for line in block):
+                parts.append({"type": "diagram", "lines": block})
+                changed = True
+            else:
+                parts.append({"type": "text", "content": "\n".join(block)})
+
+        if not changed:
+            return match.group(0)
+
+        result = []
+        for part in parts:
+            if part["type"] == "diagram":
+                result.append(render_modern_ascii_diagram(part["lines"]))
+            else:
+                content = part["content"].strip("\n")
+                if content:
+                    result.append(f"<pre>{html.escape(content)}</pre>")
+
+        return "".join(result)
+
+    return re.sub(r"(<pre[^>]*>)(.*?)(</pre>)", pre_repl, html_content, flags=re.S | re.I)
 
 
 def extract_body(raw: str) -> str:
@@ -5453,12 +5458,13 @@ def build_site(builds: list[RFCBuild]) -> None:
         inline_header_reference = False
         if build.html_ok and build.html_path:
             body = localize_rfc_links(extract_body(read_text(build.html_path)), local_nums)
+            body = modernize_ascii_html(body)
             body, inserted_enhancements = inject_all_enhancements(meta.num, body)
             inline_header_reference = "render_inline_header_reference" in inserted_enhancements
             body = format_rfc_source_body(body, "RFC Editor HTML")
         elif build.text_ok and build.text_path:
             linked_text = link_plain_metadata_refs(html.escape(read_text(build.text_path)), local_nums)
-            body = f"<pre>{linked_text}</pre>"
+            body = modernize_ascii_html(f"<pre>{linked_text}</pre>")
             body, inserted_enhancements = inject_all_enhancements(meta.num, body)
             inline_header_reference = "render_inline_header_reference" in inserted_enhancements
             body = format_rfc_source_body(body, "Plaintext fallback")
@@ -5531,9 +5537,10 @@ def chapter_content(build: RFCBuild, local_nums: set[int], include_category: boo
     meta = build.meta
     if build.html_ok and build.html_path:
         source = localize_rfc_links(html_to_epub_xhtml(read_text(build.html_path)), local_nums, local_ext=".xhtml")
+        source = modernize_ascii_html(source)
     elif build.text_ok and build.text_path:
         linked_text = link_plain_metadata_refs(html.escape(read_text(build.text_path)), local_nums, local_ext=".xhtml")
-        source = f"<pre>{linked_text}</pre>"
+        source = modernize_ascii_html(f"<pre>{linked_text}</pre>")
     else:
         source = "<p>RFC source could not be fetched.</p>"
     category = f"<p><strong>Categories:</strong> {html.escape(', '.join(meta.tags))}</p>" if include_category else ""
@@ -5588,6 +5595,12 @@ ul.index-list li { margin: .45em 0; }
 .svg-small { font-family: sans-serif; font-size: 11px; fill: #334155; }
 .checkpoint { border: 1px solid #bfdbfe; background: #f8fafc; padding: .8em 1em; margin: 1em 0; border-radius: .4em; }
 .answer { color: #334155; margin-top: .25em; }
+.modern-ascii-diagram { padding: 1.2em; border: 1px solid #cbd5e1; border-radius: .8em; background: #f1f5f9; margin: 1.2em 0; }
+.modern-diagram-kicker { font-size: .75em; font-weight: bold; text-transform: uppercase; color: #475569; margin-bottom: .8em; display: block; }
+.modern-diagram-grid { display: block; }
+.modern-diagram-row { display: table; width: 100%; table-layout: fixed; border-collapse: separate; border-spacing: 4px; }
+.modern-diagram-cell { display: table-cell; padding: .5em; border: 1px solid #94a3b8; border-radius: .4em; background: #fff; text-align: center; vertical-align: middle; font-size: .8em; font-weight: bold; }
+.modern-diagram-fallback { white-space: pre-wrap; font-family: monospace; font-size: .85em; }
 """
     nav_css = epub.EpubItem(uid="style_nav", file_name="style/nav.css", media_type="text/css", content=css)
     book.add_item(nav_css)

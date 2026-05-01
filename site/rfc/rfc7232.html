@@ -686,28 +686,19 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 11</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc7232">RFC 7232</a>              HTTP/1.1 Conditional Requests            June 2014</span>
+  <pre>RFC 7232              HTTP/1.1 Conditional Requests            June 2014
 
 
    The example below shows the results for a set of entity-tag pairs and
-   both the weak and strong comparison function results:
+   both the weak and strong comparison function results:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">ETag 1</div><div class="modern-diagram-cell">ETag 2</div><div class="modern-diagram-cell">Strong Comparison</div><div class="modern-diagram-cell">Weak Comparison</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">W/&quot;1&quot;</div><div class="modern-diagram-cell">W/&quot;1&quot;</div><div class="modern-diagram-cell">no match</div><div class="modern-diagram-cell">match</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">W/&quot;1&quot;</div><div class="modern-diagram-cell">W/&quot;2&quot;</div><div class="modern-diagram-cell">no match</div><div class="modern-diagram-cell">no match</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">W/&quot;1&quot;</div><div class="modern-diagram-cell">&quot;1&quot;</div><div class="modern-diagram-cell">no match</div><div class="modern-diagram-cell">match</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">&quot;1&quot;</div><div class="modern-diagram-cell">&quot;1&quot;</div><div class="modern-diagram-cell">match</div><div class="modern-diagram-cell">match</div></div></div>
+</figure><pre>2.3.3.  Example: Entity-Tags Varying on Content-Negotiated Resources
 
-   +--------+--------+-------------------+-----------------+
-   | ETag 1 | ETag 2 | Strong Comparison | Weak Comparison |
-   +--------+--------+-------------------+-----------------+
-   | W/"1"  | W/"1"  | no match          | match           |
-   | W/"1"  | W/"2"  | no match          | no match        |
-   | W/"1"  | "1"    | no match          | match           |
-   | "1"    | "1"    | match             | match           |
-   +--------+--------+-------------------+-----------------+
-
-<span><a href="#section-2.3.3">2.3.3</a>.  Example: Entity-Tags Varying on Content-Negotiated Resources</span>
-
-   Consider a resource that is subject to content negotiation (<a href="./rfc7231#section-3.4">Section</a>
-   <a href="./rfc7231#section-3.4">3.4 of [RFC7231]</a>), and where the representations sent in response to
+   Consider a resource that is subject to content negotiation (Section
+   3.4 of [RFC7231]), and where the representations sent in response to
    a GET request vary based on the Accept-Encoding request header field
-   (<a href="./rfc7231#section-5.3.4">Section&nbsp;5.3.4 of [RFC7231]</a>):
+   (Section 5.3.4 of [RFC7231]):
 
    &gt;&gt; Request:
 
@@ -723,7 +714,7 @@ Table of Contents
 
      HTTP/1.1 200 OK
      Date: Fri, 26 Mar 2010 00:05:00 GMT
-     ETag: "123-a"
+     ETag: &quot;123-a&quot;
      Content-Length: 70
      Vary: Accept-Encoding
      Content-Type: text/plain
@@ -741,7 +732,7 @@ Table of Contents
 
 
 
-<span>Fielding &amp; Reschke           Standards Track                   [Page 11]</span></pre>
+Fielding &amp; Reschke           Standards Track                   [Page 11]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 12</span>
@@ -1346,62 +1337,45 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 22</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc7232">RFC 7232</a>              HTTP/1.1 Conditional Requests            June 2014</span>
+  <pre>RFC 7232              HTTP/1.1 Conditional Requests            June 2014
 
 
-<span><a href="#section-7">7</a>.  IANA Considerations</span>
+7.  IANA Considerations
 
-<span><a href="#section-7.1">7.1</a>.  Status Code Registration</span>
+7.1.  Status Code Registration
 
-   The "Hypertext Transfer Protocol (HTTP) Status Code Registry" located
-   at &lt;<a>http://www.iana.org/assignments/http-status-codes</a>&gt; has been
-   updated with the registrations below:
+   The &quot;Hypertext Transfer Protocol (HTTP) Status Code Registry&quot; located
+   at &lt;http://www.iana.org/assignments/http-status-codes&gt; has been
+   updated with the registrations below:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Value</div><div class="modern-diagram-cell">Description</div><div class="modern-diagram-cell">Reference</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">304</div><div class="modern-diagram-cell">Not Modified</div><div class="modern-diagram-cell">Section 4.1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">412</div><div class="modern-diagram-cell">Precondition Failed</div><div class="modern-diagram-cell">Section 4.2</div></div></div>
+</figure><pre>7.2.  Header Field Registration
 
-   +-------+---------------------+-------------+
-   | Value | Description         | Reference   |
-   +-------+---------------------+-------------+
-   | 304   | Not Modified        | <a href="#section-4.1">Section 4.1</a> |
-   | 412   | Precondition Failed | <a href="#section-4.2">Section 4.2</a> |
-   +-------+---------------------+-------------+
-
-<span><a href="#section-7.2">7.2</a>.  Header Field Registration</span>
-
-   HTTP header fields are registered within the "Message Headers"
+   HTTP header fields are registered within the &quot;Message Headers&quot;
    registry maintained at
-   &lt;<a>http://www.iana.org/assignments/message-headers/</a>&gt;.
+   &lt;http://www.iana.org/assignments/message-headers/&gt;.
 
    This document defines the following HTTP header fields, so their
    associated registry entries have been updated according to the
-   permanent registrations below (see [<a href="#ref-BCP90" title="&quot;Registration Procedures for Message Header Fields&quot;">BCP90</a>]):
+   permanent registrations below (see [BCP90]):</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Header Field Name</div><div class="modern-diagram-cell">Protocol</div><div class="modern-diagram-cell">Status</div><div class="modern-diagram-cell">Reference</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">ETag</div><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">standard</div><div class="modern-diagram-cell">Section 2.3</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">If-Match</div><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">standard</div><div class="modern-diagram-cell">Section 3.1</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">If-Modified-Since</div><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">standard</div><div class="modern-diagram-cell">Section 3.3</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">If-None-Match</div><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">standard</div><div class="modern-diagram-cell">Section 3.2</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">If-Unmodified-Since</div><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">standard</div><div class="modern-diagram-cell">Section 3.4</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Last-Modified</div><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">standard</div><div class="modern-diagram-cell">Section 2.2</div></div></div>
+</figure><pre>   The change controller is: &quot;IETF (iesg@ietf.org) - Internet
+   Engineering Task Force&quot;.
 
-   +---------------------+----------+----------+-------------+
-   | Header Field Name   | Protocol | Status   | Reference   |
-   +---------------------+----------+----------+-------------+
-   | ETag                | http     | standard | <a href="#section-2.3">Section 2.3</a> |
-   | If-Match            | http     | standard | <a href="#section-3.1">Section 3.1</a> |
-   | If-Modified-Since   | http     | standard | <a href="#section-3.3">Section 3.3</a> |
-   | If-None-Match       | http     | standard | <a href="#section-3.2">Section 3.2</a> |
-   | If-Unmodified-Since | http     | standard | <a href="#section-3.4">Section 3.4</a> |
-   | Last-Modified       | http     | standard | <a href="#section-2.2">Section 2.2</a> |
-   +---------------------+----------+----------+-------------+
-
-   The change controller is: "IETF (iesg@ietf.org) - Internet
-   Engineering Task Force".
-
-<span><a href="#section-8">8</a>.  Security Considerations</span>
+8.  Security Considerations
 
    This section is meant to inform developers, information providers,
    and users of known security concerns specific to the HTTP conditional
    request mechanisms.  More general security considerations are
-   addressed in HTTP "Message Syntax and Routing" [<a href="./rfc7230" title="&quot;Hypertext Transfer Protocol (HTTP/1.1): Message Syntax and Routing&quot;">RFC7230</a>] and
-   "Semantics and Content" [<a href="./rfc7231" title="&quot;Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content&quot;">RFC7231</a>].
+   addressed in HTTP &quot;Message Syntax and Routing&quot; [RFC7230] and
+   &quot;Semantics and Content&quot; [RFC7231].
 
 
 
 
 
-<span>Fielding &amp; Reschke           Standards Track                   [Page 22]</span></pre>
+Fielding &amp; Reschke           Standards Track                   [Page 22]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 23</span>

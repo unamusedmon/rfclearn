@@ -686,8 +686,7 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 11</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2617">RFC 2617</a>                  HTTP Authentication                  June 1999</span>
+  <pre>RFC 2617                  HTTP Authentication                  June 1999
 
 
      descriptions below for calculating the response directive value for
@@ -698,35 +697,31 @@ Table of Contents
      This directive allows for future extensions. Any unrecognized
      directive MUST be ignored.
 
-<span><a href="#section-3.2.2">3.2.2</a> The Authorization Request Header</span>
+3.2.2 The Authorization Request Header
 
    The client is expected to retry the request, passing an Authorization
    header line, which is defined according to the framework above,
    utilized as follows.
 
-       credentials      = "Digest" digest-response
-       digest-response  = 1#( username | realm | nonce | digest-uri
-                       | response | [ algorithm ] | [cnonce] |
-                       [opaque] | [message-qop] |
-                           [nonce-count]  | [auth-param] )
+       credentials      = &quot;Digest&quot; digest-response</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">digest-response  = 1#( username</div><div class="modern-diagram-cell">realm</div><div class="modern-diagram-cell">nonce</div><div class="modern-diagram-cell">digest-uri</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">response</div><div class="modern-diagram-cell">[ algorithm ]</div><div class="modern-diagram-cell">[cnonce]</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">[opaque]</div><div class="modern-diagram-cell">[message-qop]</div></div></div>
+</figure><pre>                           [nonce-count]  | [auth-param] )
 
-       username         = "username" "=" username-value
+       username         = &quot;username&quot; &quot;=&quot; username-value
        username-value   = quoted-string
-       digest-uri       = "uri" "=" digest-uri-value
+       digest-uri       = &quot;uri&quot; &quot;=&quot; digest-uri-value
        digest-uri-value = request-uri   ; As specified by HTTP/1.1
-       message-qop      = "qop" "=" qop-value
-       cnonce           = "cnonce" "=" cnonce-value
+       message-qop      = &quot;qop&quot; &quot;=&quot; qop-value
+       cnonce           = &quot;cnonce&quot; &quot;=&quot; cnonce-value
        cnonce-value     = nonce-value
-       nonce-count      = "nc" "=" nc-value
+       nonce-count      = &quot;nc&quot; &quot;=&quot; nc-value
        nc-value         = 8LHEX
-       response         = "response" "=" request-digest
-       request-digest = &lt;"&gt; 32LHEX &lt;"&gt;
-       LHEX             =  "0" | "1" | "2" | "3" |
-                           "4" | "5" | "6" | "7" |
-                           "8" | "9" | "a" | "b" |
-                           "c" | "d" | "e" | "f"
-
-   The values of the opaque and algorithm fields must be those supplied
+       response         = &quot;response&quot; &quot;=&quot; request-digest
+       request-digest = &lt;&quot;&gt; 32LHEX &lt;&quot;&gt;</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">LHEX             =  &quot;0&quot;</div><div class="modern-diagram-cell">&quot;1&quot;</div><div class="modern-diagram-cell">&quot;2&quot;</div><div class="modern-diagram-cell">&quot;3&quot;</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">&quot;4&quot;</div><div class="modern-diagram-cell">&quot;5&quot;</div><div class="modern-diagram-cell">&quot;6&quot;</div><div class="modern-diagram-cell">&quot;7&quot;</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">&quot;8&quot;</div><div class="modern-diagram-cell">&quot;9&quot;</div><div class="modern-diagram-cell">&quot;a&quot;</div><div class="modern-diagram-cell">&quot;b&quot;</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">&quot;c&quot;</div><div class="modern-diagram-cell">&quot;d&quot;</div><div class="modern-diagram-cell">&quot;e&quot;</div><div class="modern-diagram-cell">&quot;f&quot;</div></div></div>
+</figure><pre>   The values of the opaque and algorithm fields must be those supplied
    in the WWW-Authenticate response header for the entity being
    requested.
 
@@ -735,13 +730,13 @@ Table of Contents
      that the user knows a password
 
    username
-     The user's name in the specified realm.
+     The user&#x27;s name in the specified realm.
 
 
 
 
 
-<span>Franks, et al.              Standards Track                    [Page 11]</span></pre>
+Franks, et al.              Standards Track                    [Page 11]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 12</span>

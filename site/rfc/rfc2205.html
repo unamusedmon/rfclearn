@@ -326,51 +326,31 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 5</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2205">RFC 2205</a>                          RSVP                    September 1997</span>
+  <pre>RFC 2205                          RSVP                    September 1997
 
 
 
               HOST                              ROUTER
 
- _____________________________       ____________________________
-|  _______                    |     |                            |
-| |       |   _______         |     |            _______         |
-| |Appli- |  |       |        |RSVP |           |       |        |
-| | cation|  | RSVP &lt;---------------------------&gt; RSVP  &lt;----------&gt;
-| |       &lt;--&gt;       |        |     | _______   |       |        |
-| |       |  |process|  _____ |     ||Routing|  |process|  _____ |
-| |_._____|  |       --&gt;Polcy||     ||       &lt;--&gt;       --&gt;Polcy||
-|   |        |__.__._| |Cntrl||     ||process|  |__.__._| |Cntrl||
-|   |data       |  |   |_____||     ||__.____|     |  |   |_____||
-|===|===========|==|==========|     |===|==========|==|==========|
-|   |   --------|  |    _____ |     |   |  --------|  |    _____ |
-|   |  |        |  ----&gt;Admis||     |   |  |       |  ----&gt;Admis||
-|  _V__V_    ___V____  |Cntrl||     |  _V__V_    __V_____ |Cntrl||
-| |      |  |        | |_____||     | |      |  |        ||_____||
-| |Class-|  | Packet |        |     | |Class-|  | Packet |       |
-| | ifier|==&gt;Schedulr|================&gt; ifier|==&gt;Schedulr|===========&gt;
-| |______|  |________|        |data | |______|  |________|       |data
-|                             |     |                            |
-|_____________________________|     |____________________________|
-
-
-                  Figure 1: RSVP in Hosts and Routers
+ _____________________________       ____________________________</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Appli-</div><div class="modern-diagram-cell">RSVP</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">cation</div><div class="modern-diagram-cell">RSVP &lt;---------------------------&gt; RSVP  &lt;----------&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">process</div><div class="modern-diagram-cell">_____</div><div class="modern-diagram-cell">Routing</div><div class="modern-diagram-cell">process</div><div class="modern-diagram-cell">_____</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">_._____</div><div class="modern-diagram-cell">--&gt;Polcy</div><div class="modern-diagram-cell">&lt;--&gt;       --&gt;Polcy</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">__.__._</div><div class="modern-diagram-cell">Cntrl</div><div class="modern-diagram-cell">process</div><div class="modern-diagram-cell">__.__._</div><div class="modern-diagram-cell">Cntrl</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">data</div><div class="modern-diagram-cell">_____</div><div class="modern-diagram-cell">__.____</div><div class="modern-diagram-cell">_____</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">----&gt;Admis</div><div class="modern-diagram-cell">----&gt;Admis</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">_V__V_    ___V____</div><div class="modern-diagram-cell">Cntrl</div><div class="modern-diagram-cell">_V__V_    __V_____</div><div class="modern-diagram-cell">Cntrl</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Class-</div><div class="modern-diagram-cell">Packet</div><div class="modern-diagram-cell">Class-</div><div class="modern-diagram-cell">Packet</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">ifier</div><div class="modern-diagram-cell">==&gt;Schedulr</div><div class="modern-diagram-cell">================&gt; ifier</div><div class="modern-diagram-cell">==&gt;Schedulr</div><div class="modern-diagram-cell">===========&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 6"><div class="modern-diagram-cell">______</div><div class="modern-diagram-cell">________</div><div class="modern-diagram-cell">data</div><div class="modern-diagram-cell">______</div><div class="modern-diagram-cell">________</div><div class="modern-diagram-cell">data</div></div></div>
+</figure><pre>                  Figure 1: RSVP in Hosts and Routers
 
 
    Quality of service is implemented for a particular data flow by
-   mechanisms collectively called "traffic control".  These mechanisms
+   mechanisms collectively called &quot;traffic control&quot;.  These mechanisms
    include (1) a packet classifier, (2) admission control, and (3) a
-   "packet scheduler" or some other link-layer-dependent mechanism to
-   determine when particular packets are forwarded.  The "packet
-   classifier" determines the QoS class (and perhaps the route) for each
-   packet.  For each outgoing interface, the "packet scheduler" or other
+   &quot;packet scheduler&quot; or some other link-layer-dependent mechanism to
+   determine when particular packets are forwarded.  The &quot;packet
+   classifier&quot; determines the QoS class (and perhaps the route) for each
+   packet.  For each outgoing interface, the &quot;packet scheduler&quot; or other
    link-layer-dependent mechanism achieves the promised QoS.  Traffic
    control implements QoS service models defined by the Integrated
    Services Working Group.
 
    During reservation setup, an RSVP QoS request is passed to two local
-   decision modules, "admission control" and "policy control".
+   decision modules, &quot;admission control&quot; and &quot;policy control&quot;.
    Admission control determines whether the node has sufficient
    available resources to supply the requested QoS.  Policy control
 
@@ -381,7 +361,7 @@ Table of Contents
 
 
 
-<span>Braden, Ed., et. al.        Standards Track                     [Page 5]</span></pre>
+Braden, Ed., et. al.        Standards Track                     [Page 5]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 6</span>
@@ -746,25 +726,10 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 12</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2205">RFC 2205</a>                          RSVP                    September 1997</span>
-
-
-
-           Sender   ||             Reservations:
-         Selection  ||     Distinct     |        Shared
-           _________||__________________|____________________
-                    ||                  |                    |
-          Explicit  ||  Fixed-Filter    |  Shared-Explicit   |
-                    ||  (FF) style      |  (SE) Style        |
-          __________||__________________|____________________|
-                    ||                  |                    |
-          Wildcard  ||  (None defined)  |  Wildcard-Filter   |
-                    ||                  |  (WF) Style        |
-          __________||__________________|____________________|
-
-
-                 Figure 3: Reservation Attributes and Styles
+  <pre>RFC 2205                          RSVP                    September 1997</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Sender</div><div class="modern-diagram-cell">Reservations:</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Selection</div><div class="modern-diagram-cell">Distinct</div><div class="modern-diagram-cell">Shared</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Explicit</div><div class="modern-diagram-cell">Fixed-Filter</div><div class="modern-diagram-cell">Shared-Explicit</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">(FF) style</div><div class="modern-diagram-cell">(SE) Style</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Wildcard</div><div class="modern-diagram-cell">(None defined)</div><div class="modern-diagram-cell">Wildcard-Filter</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">(WF) Style</div></div></div>
+</figure><pre>                 Figure 3: Reservation Attributes and Styles
 
 
 
@@ -772,11 +737,11 @@ Table of Contents
 
       o    Wildcard-Filter (WF) Style
 
-           The WF style implies the options: "shared" reservation and
-           "wildcard" sender selection.  Thus, a WF-style reservation
+           The WF style implies the options: &quot;shared&quot; reservation and
+           &quot;wildcard&quot; sender selection.  Thus, a WF-style reservation
            creates a single reservation shared by flows from all
            upstream senders.  This reservation may be thought of as a
-           shared "pipe", whose "size" is the largest of the resource
+           shared &quot;pipe&quot;, whose &quot;size&quot; is the largest of the resource
            requests from all receivers, independent of the number of
            senders using it.  A WF-style reservation is propagated
            upstream towards all sender hosts, and it automatically
@@ -793,15 +758,15 @@ Table of Contents
 
       o    Fixed-Filter (FF) Style
 
-           The FF style implies the options: "distinct" reservations and
-           "explicit" sender selection.  Thus, an elementary FF-style
+           The FF style implies the options: &quot;distinct&quot; reservations and
+           &quot;explicit&quot; sender selection.  Thus, an elementary FF-style
            reservation request creates a distinct reservation for data
            packets from a particular sender, not sharing them with other
-           senders' packets for the same session.
+           senders&#x27; packets for the same session.
 
 
 
-<span>Braden, Ed., et. al.        Standards Track                    [Page 12]</span></pre>
+Braden, Ed., et. al.        Standards Track                    [Page 12]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 13</span>
@@ -926,31 +891,26 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 15</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2205">RFC 2205</a>                          RSVP                    September 1997</span>
+  <pre>RFC 2205                          RSVP                    September 1997
 
 
-                         ________________
-                     (a)|                | (c)
-      ( S1 ) ----------&gt;|                |----------&gt; ( R1 )
-                        |     Router     |      |
-                     (b)|                | (d)  |---&gt; ( R2 )
-      ( S2,S3 ) -------&gt;|                |------|
-                        |________________|      |---&gt; ( R3 )
-                                                |
+                         ________________</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">(a)</div><div class="modern-diagram-cell">(c)</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">( S1 ) ----------&gt;</div><div class="modern-diagram-cell">----------&gt; ( R1 )</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Router</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">(b)</div><div class="modern-diagram-cell">(d)</div><div class="modern-diagram-cell">---&gt; ( R2 )</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">( S2,S3 ) -------&gt;</div><div class="modern-diagram-cell">------</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">________________</div><div class="modern-diagram-cell">---&gt; ( R3 )</div></div></div>
+</figure><pre>                                                |
 
                         Figure 4: Router Configuration
 
 
 
       For simplicity, these examples show flowspecs as one-dimensional
-      multiples of some base resource quantity B.  The "Receives" column
+      multiples of some base resource quantity B.  The &quot;Receives&quot; column
       shows the RSVP reservation requests received over outgoing
-      interfaces (c) and (d), and the "Reserves" column shows the
-      resulting reservation state for each interface.   The "Sends"
+      interfaces (c) and (d), and the &quot;Reserves&quot; column shows the
+      resulting reservation state for each interface.   The &quot;Sends&quot;
       column shows the reservation requests that are sent upstream to
-      previous hops (a) and (b).  In the "Reserves" column, each box
-      represents one reserved "pipe" on the outgoing link, with the
+      previous hops (a) and (b).  In the &quot;Reserves&quot; column, each box
+      represents one reserved &quot;pipe&quot; on the outgoing link, with the
       corresponding flow descriptor.
 
       Figure 5, showing the WF style, illustrates two distinct
@@ -981,29 +941,21 @@ Table of Contents
 
 
 
-<span>Braden, Ed., et. al.        Standards Track                    [Page 15]</span></pre>
+Braden, Ed., et. al.        Standards Track                    [Page 15]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 16</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2205">RFC 2205</a>                          RSVP                    September 1997</span>
+  <pre>RFC 2205                          RSVP                    September 1997
 
 
 
                              |
                Sends         |       Reserves             Receives
                              |
-                             |       _______
-         WF( *{4B} ) &lt;- (a)  |  (c) | * {4B}|    (c) &lt;- WF( *{4B} )
-                             |      |_______|
-                             |
-      -----------------------|----------------------------------------
-                             |       _______
-         WF( *{4B} ) &lt;- (b)  |  (d) | * {3B}|    (d) &lt;- WF( *{3B} )
-                             |      |_______|        &lt;- WF( *{2B} )
-
-              Figure 5: Wildcard-Filter (WF) Reservation Example
+                             |       _______</pre><pre>         WF( *{4B} ) &lt;- (a)  |  (c) | * {4B}|    (c) &lt;- WF( *{4B} )
+                             |      |_______|</pre><pre>                             |</pre><pre>      -----------------------|----------------------------------------</pre><pre>                             |       _______</pre><pre>         WF( *{4B} ) &lt;- (b)  |  (d) | * {3B}|    (d) &lt;- WF( *{3B} )
+                             |      |_______|        &lt;- WF( *{2B} )</pre><pre>              Figure 5: Wildcard-Filter (WF) Reservation Example
 
 
 
@@ -1021,19 +973,13 @@ Table of Contents
                           |
             Sends         |       Reserves             Receives
                           |
-                          |       ________
-     FF( S1{4B} ) &lt;- (a)  |  (c) | S1{4B} |  (c) &lt;- FF( S1{4B}, S2{5B} )
-                          |      |________|
-                          |      | S2{5B} |
-                          |      |________|
-     ---------------------|---------------------------------------------
-                          |       ________
-                  &lt;- (b)  |  (d) | S1{3B} |  (d) &lt;- FF( S1{3B}, S3{B} )
-     FF( S2{5B}, S3{B} )  |      |________|      &lt;- FF( S1{B} )
-                          |      | S3{B}  |
-                          |      |________|
-
-              Figure 6: Fixed-Filter (FF) Reservation Example
+                          |       ________</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">FF( S1{4B} ) &lt;- (a)</div><div class="modern-diagram-cell">(c)</div><div class="modern-diagram-cell">S1{4B}</div><div class="modern-diagram-cell">(c) &lt;- FF( S1{4B}, S2{5B} )</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">S2{5B}</div></div></div>
+</figure><pre>                          |       ________</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">&lt;- (b)</div><div class="modern-diagram-cell">(d)</div><div class="modern-diagram-cell">S1{3B}</div><div class="modern-diagram-cell">(d) &lt;- FF( S1{3B}, S3{B} )</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">FF( S2{5B}, S3{B} )</div><div class="modern-diagram-cell">________</div><div class="modern-diagram-cell">&lt;- FF( S1{B} )</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">S3{B}</div></div></div>
+</figure><pre>              Figure 6: Fixed-Filter (FF) Reservation Example
 
 
 
@@ -1041,13 +987,12 @@ Table of Contents
 
 
 
-<span>Braden, Ed., et. al.        Standards Track                    [Page 16]</span></pre>
+Braden, Ed., et. al.        Standards Track                    [Page 16]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 17</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2205">RFC 2205</a>                          RSVP                    September 1997</span>
+  <pre>RFC 2205                          RSVP                    September 1997
 
 
       Figure 7 shows an example of Shared-Explicit (SE) style
@@ -1059,17 +1004,13 @@ Table of Contents
                           |
             Sends         |       Reserves             Receives
                           |
-                          |       ________
-     SE( S1{3B} ) &lt;- (a)  |  (c) |(S1,S2) |   (c) &lt;- SE( (S1,S2){B} )
-                          |      |   {B}  |
-                          |      |________|
-     ---------------------|---------------------------------------------
-                          |      __________
-                  &lt;- (b)  | (d) |(S1,S2,S3)|  (d) &lt;- SE( (S1,S3){3B} )
-     SE( (S2,S3){3B} )    |     |   {3B}   |      &lt;- SE( S2{2B} )
-                          |     |__________|
-
-            Figure 7: Shared-Explicit (SE) Reservation Example
+                          |       ________</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">SE( S1{3B} ) &lt;- (a)</div><div class="modern-diagram-cell">(c)</div><div class="modern-diagram-cell">(S1,S2)</div><div class="modern-diagram-cell">(c) &lt;- SE( (S1,S2){B} )</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">{B}</div></div></div>
+</figure><pre>                          |      __________</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">&lt;- (b)</div><div class="modern-diagram-cell">(d)</div><div class="modern-diagram-cell">(S1,S2,S3)</div><div class="modern-diagram-cell">(d) &lt;- SE( (S1,S3){3B} )</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">SE( (S2,S3){3B} )</div><div class="modern-diagram-cell">{3B}</div><div class="modern-diagram-cell">&lt;- SE( S2{2B} )</div></div></div>
+</figure><pre>            Figure 7: Shared-Explicit (SE) Reservation Example
 
 
 
@@ -1101,40 +1042,26 @@ Table of Contents
 
 
 
-<span>Braden, Ed., et. al.        Standards Track                    [Page 17]</span></pre>
+Braden, Ed., et. al.        Standards Track                    [Page 17]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 18</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2205">RFC 2205</a>                          RSVP                    September 1997</span>
+  <pre>RFC 2205                          RSVP                    September 1997
 
 
-                         _______________
-                     (a)|               | (c)
-      ( S1 ) ----------&gt;| &gt;-----------&gt; |----------&gt; ( R1 )
-                        |    &gt;          |
-                        |      &gt;        |
-                     (b)|        &gt;      | (d)
-      ( S2,S3 ) -------&gt;| &gt;--------&gt;--&gt; |----------&gt; ( R2, R3 )
-                        |_______________|
-
-                       Router Configuration
+                         _______________</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">(a)</div><div class="modern-diagram-cell">(c)</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">( S1 ) ----------&gt;</div><div class="modern-diagram-cell">&gt;-----------&gt;</div><div class="modern-diagram-cell">----------&gt; ( R1 )</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">(b)</div><div class="modern-diagram-cell">&gt;</div><div class="modern-diagram-cell">(d)</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">( S2,S3 ) -------&gt;</div><div class="modern-diagram-cell">&gt;--------&gt;--&gt;</div><div class="modern-diagram-cell">----------&gt; ( R2, R3 )</div></div></div>
+</figure><pre>                       Router Configuration
 
 
                              |
                Sends         |       Reserves             Receives
                              |
-                             |       _______
-         WF( *{4B} ) &lt;- (a)  |  (c) | * {4B}|   (c) &lt;- WF( *{4B} )
-                             |      |_______|
-                             |
-      -----------------------|----------------------------------------
-                             |       _______
-         WF( *{3B} ) &lt;- (b)  |  (d) | * {3B}|   (d) &lt;- WF( * {3B} )
-                             |      |_______|       &lt;- WF( * {2B} )
-
-             Figure 8: WF Reservation Example -- Partial Routing
+                             |       _______</pre><pre>         WF( *{4B} ) &lt;- (a)  |  (c) | * {4B}|   (c) &lt;- WF( *{4B} )
+                             |      |_______|</pre><pre>                             |</pre><pre>      -----------------------|----------------------------------------</pre><pre>                             |       _______</pre><pre>         WF( *{3B} ) &lt;- (b)  |  (d) | * {3B}|   (d) &lt;- WF( * {3B} )
+                             |      |_______|       &lt;- WF( * {2B} )</pre><pre>             Figure 8: WF Reservation Example -- Partial Routing
 
 
 
@@ -1161,16 +1088,15 @@ Table of Contents
 
 
 
-<span>Braden, Ed., et. al.        Standards Track                    [Page 18]</span></pre>
+Braden, Ed., et. al.        Standards Track                    [Page 18]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 19</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2205">RFC 2205</a>                          RSVP                    September 1997</span>
+  <pre>RFC 2205                          RSVP                    September 1997
 
 
-<span><a href="#section-2">2</a>. RSVP Protocol Mechanisms</span>
+2. RSVP Protocol Mechanisms
 
    2.1 RSVP Messages
 
@@ -1178,33 +1104,21 @@ Table of Contents
        Previous       Incoming           Outgoing             Next
        Hops           Interfaces         Interfaces           Hops
 
-       _____             _____________________                _____
-      |     | data --&gt;  |                     |  data --&gt;    |     |
-      |  A  |-----------| a                 c |--------------|  C  |
-      |_____| Path --&gt;  |                     |  Path --&gt;    |_____|
-              &lt;-- Resv  |                     |  &lt;-- Resv     _____
-       _____            |       ROUTER        |           |  |     |
-      |     |  |        |                     |           |--|  D  |
-      |  B  |--| data--&gt;|                     |  data --&gt; |  |_____|
-      |_____|  |--------| b                 d |-----------|
-               | Path--&gt;|                     |  Path --&gt; |   _____
-       _____   | &lt;--Resv|_____________________|  &lt;-- Resv |  |     |
-      |     |  |                                          |--|  D' |
-      |  B' |--|                                          |  |_____|
-      |_____|  |                                          |
-
-                         Figure 9: Router Using RSVP
+       _____             _____________________                _____</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">data --&gt;</div><div class="modern-diagram-cell">data --&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">A</div><div class="modern-diagram-cell">-----------</div><div class="modern-diagram-cell">a                 c</div><div class="modern-diagram-cell">--------------</div><div class="modern-diagram-cell">C</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">_____</div><div class="modern-diagram-cell">Path --&gt;</div><div class="modern-diagram-cell">Path --&gt;</div><div class="modern-diagram-cell">_____</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">&lt;-- Resv</div><div class="modern-diagram-cell">&lt;-- Resv     _____</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">_____</div><div class="modern-diagram-cell">ROUTER</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">--</div><div class="modern-diagram-cell">D</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">B</div><div class="modern-diagram-cell">--</div><div class="modern-diagram-cell">data--&gt;</div><div class="modern-diagram-cell">data --&gt;</div><div class="modern-diagram-cell">_____</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">_____</div><div class="modern-diagram-cell">--------</div><div class="modern-diagram-cell">b                 d</div><div class="modern-diagram-cell">-----------</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Path--&gt;</div><div class="modern-diagram-cell">Path --&gt;</div><div class="modern-diagram-cell">_____</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">_____</div><div class="modern-diagram-cell">&lt;--Resv</div><div class="modern-diagram-cell">_____________________</div><div class="modern-diagram-cell">&lt;-- Resv</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">--</div><div class="modern-diagram-cell">D&#x27;</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">B&#x27;</div><div class="modern-diagram-cell">--</div><div class="modern-diagram-cell">_____</div></div></div>
+</figure><pre>                         Figure 9: Router Using RSVP
 
 
 
-      Figure 9 illustrates RSVP's model of a router node.  Each data
-      flow arrives from a "previous hop" through a corresponding
-      "incoming interface" and departs through one or more "outgoing
-      interface"(s).  The same interface may act in both the incoming
+      Figure 9 illustrates RSVP&#x27;s model of a router node.  Each data
+      flow arrives from a &quot;previous hop&quot; through a corresponding
+      &quot;incoming interface&quot; and departs through one or more &quot;outgoing
+      interface&quot;(s).  The same interface may act in both the incoming
       and outgoing roles for different data flows in the same session.
       Multiple previous hops and/or next hops may be reached through a
       given physical interface; for example, the figure implies that D
-      and D' are connected to (d) with a broadcast LAN.
+      and D&#x27; are connected to (d) with a broadcast LAN.
 
       There are two fundamental RSVP message types: Resv and Path.
 
@@ -1212,16 +1126,16 @@ Table of Contents
       upstream towards the senders.  These messages must follow exactly
       the reverse of the path(s) the data packets will use, upstream to
       all the sender hosts included in the sender selection.  They
-      create and maintain "reservation state" in each node along the
+      create and maintain &quot;reservation state&quot; in each node along the
       path(s).  Resv messages must finally be delivered to the sender
       hosts themselves, so that the hosts can set up appropriate traffic
       control parameters for the first hop.  The processing of Resv
-      messages was discussed previously in <a href="#section-1.2">Section 1.2</a>.
+      messages was discussed previously in Section 1.2.
 
 
 
 
-<span>Braden, Ed., et. al.        Standards Track                    [Page 19]</span></pre>
+Braden, Ed., et. al.        Standards Track                    [Page 19]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 20</span>
@@ -1466,16 +1380,13 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 24</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2205">RFC 2205</a>                          RSVP                    September 1997</span>
+  <pre>RFC 2205                          RSVP                    September 1997
 
 
-                         ________________
-                      a |                | c
-      ( R1, S1 ) &lt;-----&gt;|     Router     |&lt;-----&gt; ( R2, S2 )
-                        |________________|
-
-             Send                |        Receive
+                         ________________</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">a</div><div class="modern-diagram-cell">c</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">( R1, S1 ) &lt;-----&gt;</div><div class="modern-diagram-cell">Router</div><div class="modern-diagram-cell">&lt;-----&gt; ( R2, S2 )</div></div></div>
+</figure><pre>             Send                |        Receive
                                  |
         WF( *{3B}) &lt;-- (a)       |     (c) &lt;-- WF( *{3B})
                                  |
@@ -1484,17 +1395,15 @@ Table of Contents
         WF( *{4B}) --&gt; (a)       |     (c) --&gt; WF( *{4B})
                                  |
              Reserve on (a)      |        Reserve on (c)
-              __________         |        __________
-             |  * {4B}  |        |       |   * {3B} |
-             |__________|        |       |__________|
-                                 |
+              __________         |        __________</pre><pre>             |  * {4B}  |        |       |   * {3B} |
+             |__________|        |       |__________|</pre><pre>                                 |
 
                      Figure 10: Independent Reservations
 
 
    2.4 Teardown
 
-      RSVP "teardown" messages remove path or reservation state
+      RSVP &quot;teardown&quot; messages remove path or reservation state
       immediately.  Although it is not necessary to explicitly tear down
       an old reservation, we recommend that all end hosts send a
       teardown request as soon as an application finishes.
@@ -1521,7 +1430,7 @@ Table of Contents
 
 
 
-<span>Braden, Ed., et. al.        Standards Track                    [Page 24]</span></pre>
+Braden, Ed., et. al.        Standards Track                    [Page 24]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 25</span>
@@ -1946,17 +1855,16 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 32</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2205">RFC 2205</a>                          RSVP                    September 1997</span>
+  <pre>RFC 2205                          RSVP                    September 1997
 
 
-<span><a href="#section-3">3</a>. RSVP Functional Specification</span>
+3. RSVP Functional Specification
 
    3.1 RSVP Message Formats
 
       An RSVP message consists of a common header, followed by a body
       consisting of a variable number of variable-length, typed
-      "objects".  The following subsections define the formats of the
+      &quot;objects&quot;.  The following subsections define the formats of the
       common header, the standard object header, and each of the RSVP
       message types.
 
@@ -1971,16 +1879,10 @@ Table of Contents
 
       3.1.1 Common Header
 
-                0             1              2             3
-         +-------------+-------------+-------------+-------------+
-         | Vers | Flags|  Msg Type   |       RSVP Checksum       |
-         +-------------+-------------+-------------+-------------+
-         |  Send_TTL   | (Reserved)  |        RSVP Length        |
-         +-------------+-------------+-------------+-------------+
-
-
-
-         The fields in the common header are as follows:
+                0             1              2             3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Vers</div><div class="modern-diagram-cell">Flags</div><div class="modern-diagram-cell">Msg Type</div><div class="modern-diagram-cell">RSVP Checksum</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Send_TTL</div><div class="modern-diagram-cell">(Reserved)</div><div class="modern-diagram-cell">RSVP Length</div></div></div>
+</figure><pre>         The fields in the common header are as follows:
 
          Vers: 4 bits
 
@@ -2001,13 +1903,12 @@ Table of Contents
 
 
 
-<span>Braden, Ed., et. al.        Standards Track                    [Page 32]</span></pre>
+Braden, Ed., et. al.        Standards Track                    [Page 32]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 33</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2205">RFC 2205</a>                          RSVP                    September 1997</span>
+  <pre>RFC 2205                          RSVP                    September 1997
 
 
               3 = PathErr
@@ -2022,7 +1923,7 @@ Table of Contents
 
          RSVP Checksum: 16 bits
 
-              The one's complement of the one's complement sum of the
+              The one&#x27;s complement of the one&#x27;s complement sum of the
               message, with the checksum field replaced by zero for the
               purpose of computing the checksum.  An all-zero value
               means that no checksum was transmitted.
@@ -2030,7 +1931,7 @@ Table of Contents
          Send_TTL: 8 bits
 
               The IP TTL value with which the message was sent.  See
-              <a href="#section-3.8">Section 3.8</a>.
+              Section 3.8.
 
          RSVP Length: 16 bits
 
@@ -2043,25 +1944,11 @@ Table of Contents
          Every object consists of one or more 32-bit words with a one-
          word header, with the following format:
 
-                0             1              2             3
-         +-------------+-------------+-------------+-------------+
-         |       Length (bytes)      |  Class-Num  |   C-Type    |
-         +-------------+-------------+-------------+-------------+
-         |                                                       |
-         //                  (Object contents)                   //
-         |                                                       |
-         +-------------+-------------+-------------+-------------+
-
-
-
-
-
-
-
-
-
-
-<span>Braden, Ed., et. al.        Standards Track                    [Page 33]</span></pre>
+                0             1              2             3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Length (bytes)</div><div class="modern-diagram-cell">Class-Num</div><div class="modern-diagram-cell">C-Type</div></div></div>
+</figure><pre>         //                  (Object contents)                   //</pre><pre>         |                                                       |
+         +-------------+-------------+-------------+-------------+</pre><pre>Braden, Ed., et. al.        Standards Track                    [Page 33]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Appendix</span>
@@ -3206,20 +3093,14 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 53</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2205">RFC 2205</a>                          RSVP                    September 1997</span>
+  <pre>RFC 2205                          RSVP                    September 1997
 
 
 
-                         ________________
-                      a |                | c
-           R4, S4&lt;-----&gt;|     Router     |&lt;-----&gt; R2, S2, S3
-                        |                |
-                      b |                |
-           R1, S1&lt;-----&gt;|                |
-                        |________________|
-
-          Send on (a):           |    Receive on (c):
+                         ________________</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">a</div><div class="modern-diagram-cell">c</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">R4, S4&lt;-----&gt;</div><div class="modern-diagram-cell">Router</div><div class="modern-diagram-cell">&lt;-----&gt; R2, S2, S3</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">b</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">R1, S1&lt;-----&gt;</div></div></div>
+</figure><pre>          Send on (a):           |    Receive on (c):
                                  |
              &lt;-- WF( [S4] )      |       &lt;-- WF( [S4, S1])
                                  |
@@ -3255,13 +3136,13 @@ Table of Contents
       2.   Suppose a wildcard-style ResvErr message arrives at a node
            with a SCOPE object containing the sender host address list
            L.  The node forwards the ResvErr message using the rules of
-           <a href="#section-3.1.8">Section 3.1.8</a>.  However,
+           Section 3.1.8.  However,
 
 
 
 
 
-<span>Braden, Ed., et. al.        Standards Track                    [Page 53]</span></pre>
+Braden, Ed., et. al.        Standards Track                    [Page 53]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 54</span>
@@ -4646,8 +4527,7 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Appendix</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2205">RFC 2205</a>                          RSVP                    September 1997</span>
+  <pre>RFC 2205                          RSVP                    September 1997
 
 
 APPENDIX A. Object Definitions
@@ -4663,32 +4543,16 @@ APPENDIX A. Object Definitions
 
       SESSION Class = 1.
 
-      o    IPv4/UDP SESSION object: Class = 1, C-Type = 1
-
-           +-------------+-------------+-------------+-------------+
-           |             IPv4 DestAddress (4 bytes)                |
-           +-------------+-------------+-------------+-------------+
-           | Protocol Id |    Flags    |          DstPort          |
-           +-------------+-------------+-------------+-------------+
-
-
-      o    IPv6/UDP SESSION object: Class = 1, C-Type = 2
-
-           +-------------+-------------+-------------+-------------+
+      o    IPv4/UDP SESSION object: Class = 1, C-Type = 1</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">IPv4 DestAddress (4 bytes)</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Protocol Id</div><div class="modern-diagram-cell">Flags</div><div class="modern-diagram-cell">DstPort</div></div></div>
+</figure><pre>      o    IPv6/UDP SESSION object: Class = 1, C-Type = 2</pre><div class="modern-diagram-fallback">           +-------------+-------------+-------------+-------------+
            |                                                       |
            +                                                       +
-           |                                                       |
-           +               IPv6 DestAddress (16 bytes)             +
-           |                                                       |
-           +                                                       +
-           |                                                       |
-           +-------------+-------------+-------------+-------------+
-           | Protocol Id |     Flags   |          DstPort          |
-           +-------------+-------------+-------------+-------------+
-
-
-
-      DestAddress
+           |                                                       |</div><pre>           +               IPv6 DestAddress (16 bytes)             +</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Protocol Id</div><div class="modern-diagram-cell">Flags</div><div class="modern-diagram-cell">DstPort</div></div></div>
+</figure><pre>      DestAddress
 
            The IP unicast or multicast destination address of the
            session.  This field must be non-zero.
@@ -4701,7 +4565,7 @@ APPENDIX A. Object Definitions
 
 
 
-<span>Braden, Ed., et. al.        Standards Track                    [Page 77]</span></pre>
+Braden, Ed., et. al.        Standards Track                    [Page 77]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 78</span>
@@ -4766,41 +4630,26 @@ APPENDIX A. Object Definitions
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 79</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2205">RFC 2205</a>                          RSVP                    September 1997</span>
+  <pre>RFC 2205                          RSVP                    September 1997
 
 
    A.2 RSVP_HOP Class
 
       RSVP_HOP class = 3.
 
-      o    IPv4 RSVP_HOP object: Class = 3, C-Type = 1
-
-           +-------------+-------------+-------------+-------------+
-           |             IPv4 Next/Previous Hop Address            |
-           +-------------+-------------+-------------+-------------+
-           |                 Logical Interface Handle              |
-           +-------------+-------------+-------------+-------------+
-
-      o    IPv6 RSVP_HOP object: Class = 3, C-Type = 2
-
-           +-------------+-------------+-------------+-------------+
+      o    IPv4 RSVP_HOP object: Class = 3, C-Type = 1</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">IPv4 Next/Previous Hop Address</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Logical Interface Handle</div></div></div>
+</figure><pre>      o    IPv6 RSVP_HOP object: Class = 3, C-Type = 2</pre><div class="modern-diagram-fallback">           +-------------+-------------+-------------+-------------+
            |                                                       |
            +                                                       +
-           |                                                       |
-           +             IPv6 Next/Previous Hop Address            +
-           |                                                       |
-           +                                                       +
-           |                                                       |
-           +-------------+-------------+-------------+-------------+
-           |                Logical Interface Handle               |
-           +-------------+-------------+-------------+-------------+
-
-
-      This object carries the IP address of the interface through which
+           |                                                       |</div><pre>           +             IPv6 Next/Previous Hop Address            +</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Logical Interface Handle</div></div></div>
+</figure><pre>      This object carries the IP address of the interface through which
       the last RSVP-knowledgeable hop forwarded this message.  The
       Logical Interface Handle (LIH) is used to distinguish logical
-      outgoing interfaces, as discussed in Sections <a href="#section-3.3">3.3</a> and <a href="#section-3.9">3.9</a>.  A node
+      outgoing interfaces, as discussed in Sections 3.3 and 3.9.  A node
       receiving an LIH in a Path message saves its value and returns it
       in the HOP objects of subsequent Resv messages sent to the node
       that originated the LIH.  The LIH should be identically zero if
@@ -4821,35 +4670,28 @@ APPENDIX A. Object Definitions
 
 
 
-<span>Braden, Ed., et. al.        Standards Track                    [Page 79]</span></pre>
+Braden, Ed., et. al.        Standards Track                    [Page 79]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 80</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2205">RFC 2205</a>                          RSVP                    September 1997</span>
+  <pre>RFC 2205                          RSVP                    September 1997
 
 
    A.3 INTEGRITY Class
 
       INTEGRITY class = 4.
 
-      See [<a href="#ref-Baker96" title="&quot;RSVP Cryptographic Authentication&quot;">Baker96</a>].
+      See [Baker96].
 
    A.4 TIME_VALUES Class
 
       TIME_VALUES class = 5.
 
-      o    TIME_VALUES Object: Class = 5, C-Type = 1
-
-
-           +-------------+-------------+-------------+-------------+
-           |                   Refresh Period R                    |
-           +-------------+-------------+-------------+-------------+
-
-
-
-      Refresh Period
+      o    TIME_VALUES Object: Class = 5, C-Type = 1</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Refresh Period R</div></div></div>
+</figure><pre>      Refresh Period
 
            The refresh timeout period R used to generate this message;
            in milliseconds.
@@ -4881,47 +4723,28 @@ APPENDIX A. Object Definitions
 
 
 
-<span>Braden, Ed., et. al.        Standards Track                    [Page 80]</span></pre>
+Braden, Ed., et. al.        Standards Track                    [Page 80]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 81</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2205">RFC 2205</a>                          RSVP                    September 1997</span>
+  <pre>RFC 2205                          RSVP                    September 1997
 
 
    A.5 ERROR_SPEC Class
 
       ERROR_SPEC class = 6.
 
-      o    IPv4 ERROR_SPEC object: Class = 6, C-Type = 1
-
-
-           +-------------+-------------+-------------+-------------+
-           |            IPv4 Error Node Address (4 bytes)          |
-           +-------------+-------------+-------------+-------------+
-           |    Flags    |  Error Code |        Error Value        |
-           +-------------+-------------+-------------+-------------+
-
-
-      o    IPv6 ERROR_SPEC object: Class = 6, C-Type = 2
-
-
-           +-------------+-------------+-------------+-------------+
+      o    IPv4 ERROR_SPEC object: Class = 6, C-Type = 1</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">IPv4 Error Node Address (4 bytes)</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Flags</div><div class="modern-diagram-cell">Error Code</div><div class="modern-diagram-cell">Error Value</div></div></div>
+</figure><pre>      o    IPv6 ERROR_SPEC object: Class = 6, C-Type = 2</pre><div class="modern-diagram-fallback">           +-------------+-------------+-------------+-------------+
            |                                                       |
            +                                                       +
-           |                                                       |
-           +           IPv6 Error Node Address (16 bytes)          +
-           |                                                       |
-           +                                                       +
-           |                                                       |
-           +-------------+-------------+-------------+-------------+
-           |    Flags    |  Error Code |        Error Value        |
-           +-------------+-------------+-------------+-------------+
-
-
-
-      Error Node Address
+           |                                                       |</div><pre>           +           IPv6 Error Node Address (16 bytes)          +</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Flags</div><div class="modern-diagram-cell">Error Code</div><div class="modern-diagram-cell">Error Value</div></div></div>
+</figure><pre>      Error Node Address
 
            The IP address of the node in which the error was detected.
 
@@ -4941,7 +4764,7 @@ APPENDIX A. Object Definitions
 
 
 
-<span>Braden, Ed., et. al.        Standards Track                    [Page 81]</span></pre>
+Braden, Ed., et. al.        Standards Track                    [Page 81]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Appendix</span>
@@ -5006,8 +4829,7 @@ APPENDIX A. Object Definitions
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 83</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2205">RFC 2205</a>                          RSVP                    September 1997</span>
+  <pre>RFC 2205                          RSVP                    September 1997
 
 
    A.6 SCOPE Class
@@ -5018,37 +4840,22 @@ APPENDIX A. Object Definitions
       messages with wildcard scope without loops.  The addresses must be
       listed in ascending numerical order.
 
-      o    IPv4 SCOPE List object: Class = 7, C-Type = 1
-
-
-           +-------------+-------------+-------------+-------------+
-           |                IPv4 Src Address (4 bytes)             |
-           +-------------+-------------+-------------+-------------+
-           //                                                      //
-           +-------------+-------------+-------------+-------------+
-           |                IPv4 Src Address (4 bytes)             |
-           +-------------+-------------+-------------+-------------+
-
-
-      o    IPv6  SCOPE list object: Class = 7, C-Type = 2
-
-
-           +-------------+-------------+-------------+-------------+
+      o    IPv4 SCOPE List object: Class = 7, C-Type = 1</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">IPv4 Src Address (4 bytes)</div></div></div>
+</figure><pre>           //                                                      //</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">IPv4 Src Address (4 bytes)</div></div></div>
+</figure><pre>      o    IPv6  SCOPE list object: Class = 7, C-Type = 2</pre><div class="modern-diagram-fallback">           +-------------+-------------+-------------+-------------+
            |                                                       |
            +                                                       +
-           |                                                       |
-           +                IPv6 Src Address (16 bytes)            +
-           |                                                       |
+           |                                                       |</div><pre>           +                IPv6 Src Address (16 bytes)            +</pre><div class="modern-diagram-fallback">           |                                                       |
            +                                                       +
            |                                                       |
-           +-------------+-------------+-------------+-------------+
-           //                                                      //
-           +-------------+-------------+-------------+-------------+
+           +-------------+-------------+-------------+-------------+</div><pre>           //                                                      //</pre><div class="modern-diagram-fallback">           +-------------+-------------+-------------+-------------+
            |                                                       |
            +                                                       +
-           |                                                       |
-           +                IPv6 Src Address (16 bytes)            +
-           |                                                       |
+           |                                                       |</div><pre>           +                IPv6 Src Address (16 bytes)            +</pre><div class="modern-diagram-fallback">           |                                                       |
            +                                                       +
            |                                                       |
            +-------------+-------------+-------------+-------------+
@@ -5060,29 +4867,22 @@ APPENDIX A. Object Definitions
 
 
 
-
-<span>Braden, Ed., et. al.        Standards Track                    [Page 83]</span></pre>
+</div><pre>Braden, Ed., et. al.        Standards Track                    [Page 83]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 84</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2205">RFC 2205</a>                          RSVP                    September 1997</span>
+  <pre>RFC 2205                          RSVP                    September 1997
 
 
    A.7 STYLE Class
 
       STYLE class = 8.
 
-      o    STYLE object: Class = 8, C-Type = 1
-
-           +-------------+-------------+-------------+-------------+
-           |   Flags     |              Option Vector              |
-           +-------------+-------------+-------------+-------------+
-
-
-
-      Flags: 8 bits
+      o    STYLE object: Class = 8, C-Type = 1</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Flags</div><div class="modern-diagram-cell">Option Vector</div></div></div>
+</figure><pre>      Flags: 8 bits
 
            (None assigned yet)
 
@@ -5121,7 +4921,7 @@ APPENDIX A. Object Definitions
 
 
 
-<span>Braden, Ed., et. al.        Standards Track                    [Page 84]</span></pre>
+Braden, Ed., et. al.        Standards Track                    [Page 84]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 85</span>
@@ -5246,62 +5046,36 @@ APPENDIX A. Object Definitions
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 87</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2205">RFC 2205</a>                          RSVP                    September 1997</span>
+  <pre>RFC 2205                          RSVP                    September 1997
 
 
    A.9 FILTER_SPEC Class
 
       FILTER_SPEC class = 10.
 
-      o    IPv4 FILTER_SPEC object: Class = 10, C-Type = 1
-
-           +-------------+-------------+-------------+-------------+
-           |               IPv4 SrcAddress (4 bytes)               |
-           +-------------+-------------+-------------+-------------+
-           |    //////   |    //////   |          SrcPort          |
-           +-------------+-------------+-------------+-------------+
-
-
-      o    IPv6 FILTER_SPEC object: Class = 10, C-Type = 2
-
-           +-------------+-------------+-------------+-------------+
+      o    IPv4 FILTER_SPEC object: Class = 10, C-Type = 1</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">IPv4 SrcAddress (4 bytes)</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">//////</div><div class="modern-diagram-cell">//////</div><div class="modern-diagram-cell">SrcPort</div></div></div>
+</figure><pre>      o    IPv6 FILTER_SPEC object: Class = 10, C-Type = 2</pre><div class="modern-diagram-fallback">           +-------------+-------------+-------------+-------------+
            |                                                       |
            +                                                       +
-           |                                                       |
-           +               IPv6 SrcAddress (16 bytes)              +
-           |                                                       |
-           +                                                       +
-           |                                                       |
-           +-------------+-------------+-------------+-------------+
-           |    //////   |    //////   |          SrcPort          |
-           +-------------+-------------+-------------+-------------+
-
-
-      o    IPv6 Flow-label FILTER_SPEC object: Class = 10, C-Type = 3
-
-           +-------------+-------------+-------------+-------------+
+           |                                                       |</div><pre>           +               IPv6 SrcAddress (16 bytes)              +</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">//////</div><div class="modern-diagram-cell">//////</div><div class="modern-diagram-cell">SrcPort</div></div></div>
+</figure><pre>      o    IPv6 Flow-label FILTER_SPEC object: Class = 10, C-Type = 3</pre><div class="modern-diagram-fallback">           +-------------+-------------+-------------+-------------+
            |                                                       |
            +                                                       +
-           |                                                       |
-           +               IPv6 SrcAddress (16 bytes)              +
-           |                                                       |
-           +                                                       +
-           |                                                       |
-           +-------------+-------------+-------------+-------------+
-           |   ///////   |         Flow Label (24 bits)            |
-           +-------------+-------------+-------------+-------------+
-
-
-
-      SrcAddress
+           |                                                       |</div><pre>           +               IPv6 SrcAddress (16 bytes)              +</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">///////</div><div class="modern-diagram-cell">Flow Label (24 bits)</div></div></div>
+</figure><pre>      SrcAddress
 
            The IP source address for a sender host.  Must be non-zero.
 
 
 
 
-<span>Braden, Ed., et. al.        Standards Track                    [Page 87]</span></pre>
+Braden, Ed., et. al.        Standards Track                    [Page 87]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 88</span>
@@ -5486,29 +5260,20 @@ APPENDIX A. Object Definitions
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 91</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2205">RFC 2205</a>                          RSVP                    September 1997</span>
+  <pre>RFC 2205                          RSVP                    September 1997
 
 
    A.14 Resv_CONFIRM Class
 
       RESV_CONFIRM class = 15.
 
-      o    IPv4 RESV_CONFIRM object: Class = 15, C-Type = 1
-
-           +-------------+-------------+-------------+-------------+
-           |            IPv4 Receiver Address (4 bytes)            |
-           +-------------+-------------+-------------+-------------+
-
-
-      o    IPv6 RESV_CONFIRM object: Class = 15, C-Type = 2
-
-           +-------------+-------------+-------------+-------------+
+      o    IPv4 RESV_CONFIRM object: Class = 15, C-Type = 1</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">IPv4 Receiver Address (4 bytes)</div></div></div>
+</figure><pre>      o    IPv6 RESV_CONFIRM object: Class = 15, C-Type = 2</pre><div class="modern-diagram-fallback">           +-------------+-------------+-------------+-------------+
            |                                                       |
            +                                                       +
-           |                                                       |
-           +            IPv6 Receiver Address (16 bytes)           +
-           |                                                       |
+           |                                                       |</div><pre>           +            IPv6 Receiver Address (16 bytes)           +</pre><div class="modern-diagram-fallback">           |                                                       |
            +                                                       +
            |                                                       |
            +-------------+-------------+-------------+-------------+
@@ -5540,8 +5305,7 @@ APPENDIX A. Object Definitions
 
 
 
-
-<span>Braden, Ed., et. al.        Standards Track                    [Page 91]</span></pre>
+</div><pre>Braden, Ed., et. al.        Standards Track                    [Page 91]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Appendix</span>

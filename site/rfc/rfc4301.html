@@ -506,13 +506,12 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 8</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc4301">RFC 4301</a>              Security Architecture for IP         December 2005</span>
+  <pre>RFC 4301              Security Architecture for IP         December 2005
 
 
    IPsec security services are offered at the IP layer through selection
    of appropriate security protocols, cryptographic algorithms, and
-   cryptographic keys.  IPsec can be used to protect one or more "paths"
+   cryptographic keys.  IPsec can be used to protect one or more &quot;paths&quot;
    (a) between a pair of hosts, (b) between a pair of security gateways,
    or (c) between a security gateway and a host.  A compliant host
    implementation MUST support (a) and (c) and a compliant security
@@ -520,36 +519,24 @@ Table of Contents
    under certain circumstances a security gateway acts as a host.
 
                         Unprotected
-                         ^       ^
-                         |       |
-           +-------------|-------|-------+
-           | +-------+   |       |       |
-           | |Discard|&lt;--|       V       |
-           | +-------+   |B  +--------+  |
-         ................|y..| AH/ESP |..... IPsec Boundary
-           |   +---+     |p  +--------+  |
-           |   |IKE|&lt;----|a      ^       |
-           |   +---+     |s      |       |
-           | +-------+   |s      |       |
-           | |Discard|&lt;--|       |       |
-           | +-------+   |       |       |
-           +-------------|-------|-------+
-                         |       |
-                         V       V
+                         ^       ^</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Discard</div><div class="modern-diagram-cell">&lt;--</div><div class="modern-diagram-cell">V</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">+-------+</div><div class="modern-diagram-cell">B  +--------+</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">................</div><div class="modern-diagram-cell">y..</div><div class="modern-diagram-cell">AH/ESP</div><div class="modern-diagram-cell">..... IPsec Boundary</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">+---+</div><div class="modern-diagram-cell">p  +--------+</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">IKE</div><div class="modern-diagram-cell">&lt;----</div><div class="modern-diagram-cell">a      ^</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">+---+</div><div class="modern-diagram-cell">s</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">+-------+</div><div class="modern-diagram-cell">s</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Discard</div><div class="modern-diagram-cell">&lt;--</div></div></div>
+</figure><pre>                         V       V
                          Protected
 
             Figure 1.  Top Level IPsec Processing Model
 
-   In this diagram, "unprotected" refers to an interface that might also
-   be described as "black" or "ciphertext".  Here, "protected" refers to
-   an interface that might also be described as "red" or "plaintext".
+   In this diagram, &quot;unprotected&quot; refers to an interface that might also
+   be described as &quot;black&quot; or &quot;ciphertext&quot;.  Here, &quot;protected&quot; refers to
+   an interface that might also be described as &quot;red&quot; or &quot;plaintext&quot;.
    The protected interface noted above may be internal, e.g., in a host
    implementation of IPsec, the protected interface may link to a socket
    layer interface presented by the OS.  In this document, the term
-   "inbound" refers to traffic entering an IPsec implementation via the
+   &quot;inbound&quot; refers to traffic entering an IPsec implementation via the
    unprotected interface or emitted by the implementation on the
    unprotected side of the boundary and directed towards the protected
-   interface.  The term "outbound" refers to traffic entering the
+   interface.  The term &quot;outbound&quot; refers to traffic entering the
    implementation via the protected interface, or emitted by the
    implementation on the protected side of the boundary and directed
    toward the unprotected interface.  An IPsec implementation may
@@ -561,7 +548,7 @@ Table of Contents
 
 
 
-<span>Kent &amp; Seo                  Standards Track                     [Page 8]</span></pre>
+Kent &amp; Seo                  Standards Track                     [Page 8]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 9</span>
@@ -3146,40 +3133,23 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 52</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc4301">RFC 4301</a>              Security Architecture for IP         December 2005</span>
+  <pre>RFC 4301              Security Architecture for IP         December 2005
 
 
-<span><a href="#section-5.1">5.1</a>.  Outbound IP Traffic Processing (protected-to-unprotected)</span>
+5.1.  Outbound IP Traffic Processing (protected-to-unprotected)
 
    First consider the path for traffic entering the implementation via a
    protected interface and exiting via an unprotected interface.
 
                           Unprotected Interface
                                    ^
-                                   |
-            (nested SAs)      +----------+
-           -------------------|Forwarding|&lt;-----+
-           |                  +----------+      |
-           |                        ^           |
-           |                        | BYPASS    |
-           V                     +-----+        |
-       +-------+                 | SPD |     +--------+
-    ...| SPD-I |.................|Cache|.....|PROCESS |...IPsec
-       |  (*)  |                 | (*) |----&gt;|(AH/ESP)|   boundary
-       +-------+                 +-----+     +--------+
-           |        +-------+     /  ^
-           |        |DISCARD| &lt;--/   |
-           |        +-------+        |
-           |                         |
-           |                 +-------------+
-           |----------------&gt;|SPD Selection|
-                             +-------------+
-                                    ^
-                                    |     +------+
-                                    |  --&gt;| ICMP |
-                                    | /   +------+
-                                    |/
+                                   |</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">(nested SAs)      +----------+</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">-------------------</div><div class="modern-diagram-cell">Forwarding</div><div class="modern-diagram-cell">&lt;-----+</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">BYPASS</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">V                     +-----+</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">+-------+</div><div class="modern-diagram-cell">SPD</div><div class="modern-diagram-cell">+--------+</div></div><div class="modern-diagram-row" style="--cell-count: 7"><div class="modern-diagram-cell">...</div><div class="modern-diagram-cell">SPD-I</div><div class="modern-diagram-cell">.................</div><div class="modern-diagram-cell">Cache</div><div class="modern-diagram-cell">.....</div><div class="modern-diagram-cell">PROCESS</div><div class="modern-diagram-cell">...IPsec</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">(*)</div><div class="modern-diagram-cell">(*)</div><div class="modern-diagram-cell">----&gt;</div><div class="modern-diagram-cell">(AH/ESP)</div><div class="modern-diagram-cell">boundary</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">DISCARD</div><div class="modern-diagram-cell">&lt;--/</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">----------------&gt;</div><div class="modern-diagram-cell">SPD Selection</div></div></div>
+</figure><pre>                                    ^</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">--&gt;</div><div class="modern-diagram-cell">ICMP</div></div></div>
+</figure><pre>                                    |/
                                     |
                                     |
                             Protected Interface
@@ -3201,7 +3171,7 @@ Table of Contents
 
 
 
-<span>Kent &amp; Seo                  Standards Track                    [Page 52]</span></pre>
+Kent &amp; Seo                  Standards Track                    [Page 52]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 53</span>
@@ -3626,8 +3596,7 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 60</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc4301">RFC 4301</a>              Security Architecture for IP         December 2005</span>
+  <pre>RFC 4301              Security Architecture for IP         December 2005
 
 
    discarded traffic.  If an arriving packet appears to be an IPsec
@@ -3641,38 +3610,10 @@ Table of Contents
 
                       Unprotected Interface
                                 |
-                                V
-                             +-----+   IPsec protected
-         -------------------&gt;|Demux|-------------------+
-         |                   +-----+                   |
-         |                      |                      |
-         |            Not IPsec |                      |
-         |                      |                      |
-         |                      V                      |
-         |     +-------+    +---------+                |
-         |     |DISCARD|&lt;---|SPD-I (*)|                |
-         |     +-------+    +---------+                |
-         |                   |                         |
-         |                   |-----+                   |
-         |                   |     |                   |
-         |                   |     V                   |
-         |                   |  +------+               |
-         |                   |  | ICMP |               |
-         |                   |  +------+               |
-         |                   |                         V
-      +---------+            |                   +-----------+
-  ....|SPD-O (*)|............|...................|PROCESS(**)|...IPsec
-      +---------+            |                   | (AH/ESP)  | Boundary
-         ^                   |                   +-----------+
-         |                   |       +---+             |
-         |            BYPASS |   +--&gt;|IKE|             |
-         |                   |   |   +---+             |
-         |                   V   |                     V
-         |               +----------+          +---------+   +----+
-         |--------&lt;------|Forwarding|&lt;---------|SAD Check|--&gt;|ICMP|
-           nested SAs    +----------+          | (***)   |   +----+
-                               |               +---------+
-                               V
+                                V</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">+-----+   IPsec protected</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">-------------------&gt;</div><div class="modern-diagram-cell">Demux</div><div class="modern-diagram-cell">-------------------+</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Not IPsec</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">V</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">DISCARD</div><div class="modern-diagram-cell">&lt;---</div><div class="modern-diagram-cell">SPD-I (*)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">V</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">ICMP</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">V</div></div><div class="modern-diagram-row" style="--cell-count: 6"><div class="modern-diagram-cell">....</div><div class="modern-diagram-cell">SPD-O (*)</div><div class="modern-diagram-cell">............</div><div class="modern-diagram-cell">...................</div><div class="modern-diagram-cell">PROCESS(**)</div><div class="modern-diagram-cell">...IPsec</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">+---------+</div><div class="modern-diagram-cell">(AH/ESP)</div><div class="modern-diagram-cell">Boundary</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">BYPASS</div><div class="modern-diagram-cell">+--&gt;</div><div class="modern-diagram-cell">IKE</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">V</div><div class="modern-diagram-cell">V</div></div><div class="modern-diagram-row" style="--cell-count: 6"><div class="modern-diagram-cell">--------&lt;------</div><div class="modern-diagram-cell">Forwarding</div><div class="modern-diagram-cell">&lt;---------</div><div class="modern-diagram-cell">SAD Check</div><div class="modern-diagram-cell">--&gt;</div><div class="modern-diagram-cell">ICMP</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">nested SAs    +----------+</div><div class="modern-diagram-cell">(***)</div><div class="modern-diagram-cell">+----+</div></div></div>
+</figure><pre>                               V
                        Protected Interface
 
             Figure 3.  Processing Model for Inbound Traffic
@@ -3681,7 +3622,7 @@ Table of Contents
 
 
 
-<span>Kent &amp; Seo                  Standards Track                    [Page 60]</span></pre>
+Kent &amp; Seo                  Standards Track                    [Page 60]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 61</span>
@@ -5786,8 +5727,7 @@ Appendix D: Fragment Handling Rationale
   <div class="rfc-page-top">
     <span class="rfc-page-label">Appendix</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc4301">RFC 4301</a>              Security Architecture for IP         December 2005</span>
+  <pre>RFC 4301              Security Architecture for IP         December 2005
 
 
 Appendix E: Example of Supporting Nested SAs via SPD and Forwarding
@@ -5802,16 +5742,11 @@ Appendix E: Example of Supporting Nested SAs via SPD and Forwarding
    C, carried over a tunnel mode SA from A to B.  For example, A might
    be a laptop connected to the public Internet, B might be a firewall
    that protects a corporate network, and C might be a server on the
-   corporate network that demands end-to-end authentication of A's
-   traffic.
-
-         +---+     +---+  +---+
-         | A |=====| B |  | C |
-         |   |------------|   |
-         |   |=====|   |  |   |
-         +---+     +---+  +---+
-
-   A's SPD contains entries of the form:
+   corporate network that demands end-to-end authentication of A&#x27;s
+   traffic.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">A</div><div class="modern-diagram-cell">=====</div><div class="modern-diagram-cell">B</div><div class="modern-diagram-cell">C</div></div></div>
+</figure><pre>   A&#x27;s SPD contains entries of the form:
 
                         Next Layer
       Rule Local Remote Protocol   Action
@@ -5821,10 +5756,10 @@ Appendix E: Example of Supporting Nested SAs via SPD and Forwarding
        3     A     C     ANY       PROTECT(ESP,transport,integr-only)
        4     A     B     ICMP,IKE  BYPASS
 
-   A's unprotected-side forwarding table is set so that outbound packets
-   destined for C are looped back to the protected side.  A's
+   A&#x27;s unprotected-side forwarding table is set so that outbound packets
+   destined for C are looped back to the protected side.  A&#x27;s
    protected-side forwarding table is set so that inbound ESP packets
-   are looped back to the unprotected side.  A's forwarding tables
+   are looped back to the unprotected side.  A&#x27;s forwarding tables
    contain entries of the form:
 
       Unprotected-side forwarding table
@@ -5841,7 +5776,7 @@ Appendix E: Example of Supporting Nested SAs via SPD and Forwarding
 
 
 
-<span>Kent &amp; Seo                  Standards Track                    [Page 96]</span></pre>
+Kent &amp; Seo                  Standards Track                    [Page 96]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 97</span>

@@ -685,27 +685,13 @@ sum of the lengths of shim headers that precede the UDP header.<a href="#section
 <span></span><div>
 <figure>
         <div>
-<pre>
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|Version|  IHL  |   DSCP    |ECN|          Total Length         |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|         Identification        |Flags|      Fragment Offset    |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|  Time to Live | Proto=17 (UDP)|        Header Checksum        |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                       Source Address                          |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                    Destination Address                        |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-... zero or more IP options (using space as indicated by IHL) ...
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-...     zero or more shim headers (each indicating size)      ...
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|         UDP Source Port       |     UDP Destination Port      |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|          UDP Length           |         UDP Checksum          |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-</pre>
+<figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">Version</div><div class="modern-diagram-cell">IHL</div><div class="modern-diagram-cell">DSCP</div><div class="modern-diagram-cell">ECN</div><div class="modern-diagram-cell">Total Length</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Identification</div><div class="modern-diagram-cell">Flags</div><div class="modern-diagram-cell">Fragment Offset</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Time to Live</div><div class="modern-diagram-cell">Proto=17 (UDP)</div><div class="modern-diagram-cell">Header Checksum</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Source Address</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Destination Address</div></div></div>
+</figure><pre>... zero or more IP options (using space as indicated by IHL) ...</pre><pre>+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>...     zero or more shim headers (each indicating size)      ...</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">UDP Source Port</div><div class="modern-diagram-cell">UDP Destination Port</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">UDP Length</div><div class="modern-diagram-cell">UDP Checksum</div></div></div>
+</figure>
 </div>
 <figcaption><a href="#figure-1">Figure 1</a>:
 <a href="#name-ipv4-datagram-with-udp-head">IPv4 Datagram with UDP Header</a>
@@ -727,27 +713,13 @@ additional IP extensions are indicated within each extension
 <span></span><div>
 <figure>
         <div>
-<pre>
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|Version| Traffic Class |             Flow Label                |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|         Payload Length        |  Next Header  |   Hop Limit   |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-...
-|                       Source Address (128 bits)               |
-...
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-...
-|                    Destination Address (128 bits)             |
-...
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-... zero or more IP Extension headers (each indicating size)  ...
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|         UDP Source Port       |     UDP Destination Port      |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|          UDP Length           |         UDP Checksum          |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-</pre>
+<figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Version</div><div class="modern-diagram-cell">Traffic Class</div><div class="modern-diagram-cell">Flow Label</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Payload Length</div><div class="modern-diagram-cell">Next Header</div><div class="modern-diagram-cell">Hop Limit</div></div></div>
+</figure><pre>...</pre><pre>|                       Source Address (128 bits)               |</pre><pre>...</pre><pre>+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>...</pre><pre>|                    Destination Address (128 bits)             |</pre><pre>...</pre><pre>+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>... zero or more IP Extension headers (each indicating size)  ...</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">UDP Source Port</div><div class="modern-diagram-cell">UDP Destination Port</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">UDP Length</div><div class="modern-diagram-cell">UDP Checksum</div></div></div>
+</figure>
 </div>
 <figcaption><a href="#figure-2">Figure 2</a>:
 <a href="#name-ipv6-datagram-with-udp-head">IPv6 Datagram with UDP Header</a>
@@ -764,15 +736,12 @@ two areas -- that intended as UDP user data and an additional
 <span></span><div>
 <figure>
         <div>
-<pre>
-                         IP transport payload
-          &lt;-------------------------------------------------&gt;
-+--------+---------+----------------------+------------------+
-| IP Hdr | UDP Hdr |     UDP user data    |   surplus area   |
-+--------+---------+----------------------+------------------+
-          &lt;------------------------------&gt;
-                     UDP Length
-</pre>
+<pre>                         IP transport payload
+          &lt;-------------------------------------------------&gt;</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">IP Hdr</div><div class="modern-diagram-cell">UDP Hdr</div><div class="modern-diagram-cell">UDP user data</div><div class="modern-diagram-cell">surplus area</div></div></div>
+</figure><pre>          &lt;------------------------------&gt;
+                     UDP Length</pre>
 </div>
 <figcaption><a href="#figure-3">Figure 3</a>:
 <a href="#name-ip-transport-payload-vs-udp">IP Transport Payload vs. UDP Length</a>
@@ -833,13 +802,10 @@ earlier using the EOL Option, followed by zeroes
 <span></span><div>
 <figure>
         <div>
-<pre>
-                +--------+--------+--------+--------+
-                |         UDP data         |    0   |
-                +--------+--------+--------+--------+
-                |       OCS       |  UDP Options... |
-                +--------+--------+--------+--------+
-</pre>
+<figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">UDP data</div><div class="modern-diagram-cell">0</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">OCS</div><div class="modern-diagram-cell">UDP Options...</div></div></div>
+</figure>
 </div>
 <figcaption><a href="#figure-4">Figure 4</a>:
 <a href="#name-udp-ocs-format-here-using-o">UDP OCS Format, Here Using One Zero Byte for Alignment</a>
@@ -916,11 +882,10 @@ earlier using the EOL Option, followed by zeroes
 <span></span><div>
 <figure>
         <div>
-<pre>
-                +--------+--------+------------~~------------+
-                |  Kind  | Length | (remainder of option...) |
-                +--------+--------+------------~~------------+
-</pre>
+<figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Kind</div><div class="modern-diagram-cell">Length</div><div class="modern-diagram-cell">(remainder of option...)</div></div></div>
+</figure>
 </div>
 <figcaption><a href="#figure-5">Figure 5</a>:
 <a href="#name-udp-option-default-format">UDP Option Default Format</a>
@@ -938,13 +903,10 @@ earlier using the EOL Option, followed by zeroes
 <span></span><div>
 <figure>
         <div>
-<pre>
-                +--------+--------+--------+--------+
-                |  Kind  |  255   | Extended Length |
-                +--------+--------+--------+--------+
-                | (remainder of option...)          |
-                +--------+--------+--------+--------+
-</pre>
+<figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Kind</div><div class="modern-diagram-cell">255</div><div class="modern-diagram-cell">Extended Length</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">(remainder of option...)</div></div></div>
+</figure>
 </div>
 <figcaption><a href="#figure-6">Figure 6</a>:
 <a href="#name-udp-option-extended-format">UDP Option Extended Format</a>
@@ -1288,13 +1250,10 @@ earlier using the EOL Option, followed by zeroes
 <span></span><div>
 <figure>
           <div>
-<pre>
-                +--------+--------+--------+--------+
-                | Kind=2 | Len=6  |    CRC32c...    |
-                +--------+--------+--------+--------+
-                |  CRC32c (cont.) |
-                +--------+--------+
-</pre>
+<figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Kind=2</div><div class="modern-diagram-cell">Len=6</div><div class="modern-diagram-cell">CRC32c...</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">CRC32c (cont.)</div></div></div>
+</figure>
 </div>
 <figcaption><a href="#figure-9">Figure 9</a>:
 <a href="#name-udp-apc-option-format">UDP APC Option Format</a>
@@ -1391,15 +1350,10 @@ earlier using the EOL Option, followed by zeroes
 <span></span><div>
 <figure>
           <div>
-<pre>
-                +--------+--------+--------+--------+
-                | Kind=3 | Len=10 |   Frag. Start   |
-                +--------+--------+--------+--------+
-                |           Identification          |
-                +--------+--------+--------+--------+
-                |  Frag. Offset   |
-                +--------+--------+
-</pre>
+<figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Kind=3</div><div class="modern-diagram-cell">Len=10</div><div class="modern-diagram-cell">Frag. Start</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Identification</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Frag. Offset</div></div></div>
+</figure>
 </div>
 <figcaption><a href="#figure-10">Figure 10</a>:
 <a href="#name-udp-non-terminal-frag-optio">UDP Non-Terminal FRAG Option Format</a>
@@ -1425,15 +1379,10 @@ earlier using the EOL Option, followed by zeroes
 <span></span><div>
 <figure>
           <div>
-<pre>
-               +--------+--------+--------+--------+
-               | Kind=3 | Len=12 |   Frag. Start   |
-               +--------+--------+--------+--------+
-               |           Identification          |
-               +--------+--------+--------+--------+
-               |  Frag. Offset   |Reass DgOpt Start|
-               +--------+--------+--------+--------+
-</pre>
+<figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Kind=3</div><div class="modern-diagram-cell">Len=12</div><div class="modern-diagram-cell">Frag. Start</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Identification</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Frag. Offset</div><div class="modern-diagram-cell">Reass DgOpt Start</div></div></div>
+</figure>
 </div>
 <figcaption><a href="#figure-11">Figure 11</a>:
 <a href="#name-udp-non-terminal-frag-option">UDP Non-Terminal FRAG Option Format</a>
@@ -1456,43 +1405,10 @@ earlier using the EOL Option, followed by zeroes
 <span></span><div>
 <figure>
           <div>
-<pre>
-       Constituent UDP Fragments         Original UDP Datagram
-
-     +-------------+------------+
-     | Src Port    | Dst Port   |
-     +-------------+------------+
-     | UDP Len (8) | UDP Chksum |
-     +-------------+------------+
-     |     OCS     | K=3   L=10 |      +-------------+------------+
-     +-------------+------------+      | Src Port    | Dst Port   |
-  ,--| Frag. Start | Identifi-  ~      +-------------+------------+
-  |  +-------------+------------+      | UDP L.(RDOS)| UDP Chksum |
-  |  ~ cation      | Frag. Off. |-----&gt;+-------------+------------+
-  |  +-------------+------------+      | Frag Data from 1st Frag. |
-  |  ~ Per-Fragment Options     ~      |             .            |
-  '-&gt;+-------------+------------+      ~             .            ~
-     ~      Fragment Data       ~      |             .            |
-     +-------------+------------+  ,--&gt;+-------------+------------+
-                                   |   | Frag Data from 2nd Frag. |
-     +-------------+------------+  |   |             .            |
-     | Src Port    | Dst Port   |  |   ~             .            ~
-     +-------------+------------+  |   |             .            |
-     | UDP Len (8) | UDP Chksum |  | ,&gt;+-------------+------------+
-     +-------------+------------+  | | |     OCS     | UDP Options|
-     |     OCS     | K=3   L=12 |  | | +-------------+            +
-     +-------------+------------+  | | ~             .            ~
-  ,--| Frag. Start | Identifi-  ~  | | +-------------+------------+
-  |  +-------------+------------+  | |
-  |  ~ cation      | Frag. Off. |--' |
-  |  +-------------+------------+    |
-  |  |  RDOS       | Frag.Opts. |    |
-  '-&gt;+--|----------+------------+    |
-     ~  |   Fragment Data       ~    |
-     +--|----------+------------+    |
-        |                            |
-        '----------------------------'
-</pre>
+<pre>       Constituent UDP Fragments         Original UDP Datagram</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Src Port</div><div class="modern-diagram-cell">Dst Port</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">UDP Len (8)</div><div class="modern-diagram-cell">UDP Chksum</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">OCS</div><div class="modern-diagram-cell">K=3   L=10</div><div class="modern-diagram-cell">+-------------+------------+</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">+-------------+------------+</div><div class="modern-diagram-cell">Src Port</div><div class="modern-diagram-cell">Dst Port</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">,--</div><div class="modern-diagram-cell">Frag. Start</div><div class="modern-diagram-cell">Identifi-  ~      +-------------+------------+</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">+-------------+------------+</div><div class="modern-diagram-cell">UDP L.(RDOS)</div><div class="modern-diagram-cell">UDP Chksum</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">~ cation</div><div class="modern-diagram-cell">Frag. Off.</div><div class="modern-diagram-cell">-----&gt;+-------------+------------+</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">+-------------+------------+</div><div class="modern-diagram-cell">Frag Data from 1st Frag.</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">~ Per-Fragment Options     ~</div><div class="modern-diagram-cell">.</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">~      Fragment Data       ~</div><div class="modern-diagram-cell">.</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Frag Data from 2nd Frag.</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Src Port</div><div class="modern-diagram-cell">Dst Port</div><div class="modern-diagram-cell">~             .            ~</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">UDP Len (8)</div><div class="modern-diagram-cell">UDP Chksum</div><div class="modern-diagram-cell">,&gt;+-------------+------------+</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">+-------------+------------+</div><div class="modern-diagram-cell">OCS</div><div class="modern-diagram-cell">UDP Options</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">OCS</div><div class="modern-diagram-cell">K=3   L=12</div><div class="modern-diagram-cell">+-------------+            +</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">,--</div><div class="modern-diagram-cell">Frag. Start</div><div class="modern-diagram-cell">Identifi-  ~</div><div class="modern-diagram-cell">+-------------+------------+</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">~ cation</div><div class="modern-diagram-cell">Frag. Off.</div><div class="modern-diagram-cell">--&#x27;</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">RDOS</div><div class="modern-diagram-cell">Frag.Opts.</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">~</div><div class="modern-diagram-cell">Fragment Data       ~</div></div></div>
+</figure><pre>        &#x27;----------------------------&#x27;</pre>
 </div>
 <figcaption><a href="#figure-12">Figure 12</a>:
 <a href="#name-udp-fragments-and-original-">UDP Fragments and Original UDP Datagram</a>
@@ -1657,11 +1573,10 @@ per-fragment UDP Options for each fragment.<a href="#section-11.4-38.5.1">¶</a>
 <span></span><div>
 <figure>
           <div>
-<pre>
-                +--------+--------+--------+--------+
-                | Kind=4 | Len=4  |    MDS size     |
-                +--------+--------+--------+--------+
-</pre>
+<figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Kind=4</div><div class="modern-diagram-cell">Len=4</div><div class="modern-diagram-cell">MDS size</div></div></div>
+</figure>
 </div>
 <figcaption><a href="#figure-13">Figure 13</a>:
 <a href="#name-udp-mds-option-format">UDP MDS Option Format</a>
@@ -1703,11 +1618,10 @@ per-fragment UDP Options for each fragment.<a href="#section-11.4-38.5.1">¶</a>
 <span></span><div>
 <figure>
           <div>
-<pre>
-            +--------+--------+--------+--------+---------+
-            | Kind=5 | Len=5  |    MRDS size    |MRDS segs|
-            +--------+--------+--------+--------+---------+
-</pre>
+<figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Kind=5</div><div class="modern-diagram-cell">Len=5</div><div class="modern-diagram-cell">MRDS size</div><div class="modern-diagram-cell">MRDS segs</div></div></div>
+</figure>
 </div>
 <figcaption><a href="#figure-14">Figure 14</a>:
 <a href="#name-udp-mrds-option-format">UDP MRDS Option Format</a>
@@ -1761,12 +1675,10 @@ per-fragment UDP Options for each fragment.<a href="#section-11.4-38.5.1">¶</a>
 <span></span><div>
 <figure>
           <div>
-<pre>
-                +--------+--------+-----------------+
-                |  Kind  | Len=6  |      token      |
-                +--------+--------+-----------------+
-                  1 byte   1 byte       4 bytes
-</pre>
+<figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Kind</div><div class="modern-diagram-cell">Len=6</div><div class="modern-diagram-cell">token</div></div></div>
+</figure><pre>                  1 byte   1 byte       4 bytes</pre>
 </div>
 <figcaption><a href="#figure-15">Figure 15</a>:
 <a href="#name-udp-req-and-res-options-for">UDP REQ and RES Options Format</a>
@@ -1821,12 +1733,10 @@ per-fragment UDP Options for each fragment.<a href="#section-11.4-38.5.1">¶</a>
 <span></span><div>
 <figure>
           <div>
-<pre>
-     +--------+--------+------------------+------------------+
-     | Kind=8 | Len=10 |      TSval       |      TSecr       |
-     +--------+--------+------------------+------------------+
-       1 byte   1 byte       4 bytes            4 bytes
-</pre>
+<figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Kind=8</div><div class="modern-diagram-cell">Len=10</div><div class="modern-diagram-cell">TSval</div><div class="modern-diagram-cell">TSecr</div></div></div>
+</figure><pre>       1 byte   1 byte       4 bytes            4 bytes</pre>
 </div>
 <figcaption><a href="#figure-16">Figure 16</a>:
 <a href="#name-udp-time-option-format">UDP TIME Option Format</a>
@@ -1929,13 +1839,10 @@ per-fragment UDP Options for each fragment.<a href="#section-11.4-38.5.1">¶</a>
 <span></span><div>
 <figure>
           <div>
-<pre>
-            +----------+----------+----------+----------+
-            | Kind=127 |   Len    |      UDP ExID       |
-            +----------+----------+----------+----------+
-            |  (option contents, as defined)...         |
-            +----------+----------+----------+----------+
-</pre>
+<figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Kind=127</div><div class="modern-diagram-cell">Len</div><div class="modern-diagram-cell">UDP ExID</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">(option contents, as defined)...</div></div></div>
+</figure>
 </div>
 <figcaption><a href="#figure-17">Figure 17</a>:
 <a href="#name-udp-exp-option-format">UDP EXP Option Format</a>
@@ -1954,13 +1861,10 @@ per-fragment UDP Options for each fragment.<a href="#section-11.4-38.5.1">¶</a>
 <span></span><div>
 <figure>
           <div>
-<pre>
-            +----------+----------+----------+----------+
-            | Kind=127 |   255    |   Extended Length   |
-            +----------+----------+----------+----------+
-            |      UDP ExID       |(option contents...) |
-            +----------+----------+----------+----------+
-</pre>
+<figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Kind=127</div><div class="modern-diagram-cell">255</div><div class="modern-diagram-cell">Extended Length</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">UDP ExID</div><div class="modern-diagram-cell">(option contents...)</div></div></div>
+</figure>
 </div>
 <figcaption><a href="#figure-18">Figure 18</a>:
 <a href="#name-udp-exp-extended-option-for">UDP EXP Extended Option Format</a>
@@ -2460,17 +2364,14 @@ the UDP header minus the UDP header size)<a href="#section-22-3.1">¶</a></p>
 <span></span><div>
 <figure>
         <div>
-<pre>
-                         Outer IP Length
-    &lt;----------------------------------------------------------&gt;
-   +--------+---------+------------------------------+----------+
-   | IP Hdr | UDP Hdr | IPv6 packet/len | TE trailer | surplus  |
-   +--------+---------+------------------------------+----------+
-                       &lt;---------------&gt;
+<pre>                         Outer IP Length
+    &lt;----------------------------------------------------------&gt;</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">IP Hdr</div><div class="modern-diagram-cell">UDP Hdr</div><div class="modern-diagram-cell">IPv6 packet/len</div><div class="modern-diagram-cell">TE trailer</div><div class="modern-diagram-cell">surplus</div></div></div>
+</figure><pre>                       &lt;---------------&gt;
                        Inner IPv6 Length
              &lt;--------------------------------------&gt;
-                           UDP Length
-</pre>
+                           UDP Length</pre>
 </div>
 <figcaption><a href="#figure-19">Figure 19</a>:
 <a href="#name-te-trailers-and-udp-options">TE Trailers and UDP Options Used Concurrently</a>

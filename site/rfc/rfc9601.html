@@ -764,15 +764,10 @@ If the egress supports ECN
               has Attribute Type 103. The AVP has the following format:<a href="#section-6.1.1.2.1-1">¶</a></p>
 <span></span><div>
 <figure>
-                <div></div><pre>
- 0                   1                   2                   3
- 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|M|H|0|0|0|0|      Length       |          Vendor ID            |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|             103               |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-</pre>
+                <div></div><pre> 0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 8"><div class="modern-diagram-cell">M</div><div class="modern-diagram-cell">H</div><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">Length</div><div class="modern-diagram-cell">Vendor ID</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">103</div></div></div>
+</figure>
 </div>
 <figcaption><a href="#figure-1">Figure 1</a>:
 <a href="#name-ecn-capability-avp-for-l2tp">ECN Capability AVP for L2TP (v2 or v3)</a>
@@ -953,15 +948,10 @@ The operator of a GRE tunnel ingress <span>MUST</span> follow the configuration 
 <span></span><div>
 <figure>
               <div>
-<pre>
- 0                   1                   2                   3
- 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|  V=0  |Type=3 |  Reserved |E|P|            Reserved           |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                         Request Nonce                         |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-</pre>
+<pre> 0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 6"><div class="modern-diagram-cell">V=0</div><div class="modern-diagram-cell">Type=3</div><div class="modern-diagram-cell">Reserved</div><div class="modern-diagram-cell">E</div><div class="modern-diagram-cell">P</div><div class="modern-diagram-cell">Reserved</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Request Nonce</div></div></div>
+</figure>
 </div>
 <figcaption><a href="#figure-2">Figure 2</a>:
 <a href="#name-updated-amt-request-message">Updated AMT Request Message Format</a>

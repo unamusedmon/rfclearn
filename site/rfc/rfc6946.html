@@ -506,51 +506,22 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Appendix</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc6946">RFC 6946</a>                  IPv6 Atomic Fragments                 May 2013</span>
+  <pre>RFC 6946                  IPv6 Atomic Fragments                 May 2013
 
 
-<span><a href="#appendix-A">Appendix A</a>.  Survey of Processing of IPv6 Atomic Fragments by Different</span>
+Appendix A.  Survey of Processing of IPv6 Atomic Fragments by Different
              Operating Systems
 
    This section includes a survey of the support of IPv6 atomic
    fragments in popular operating systems, as tested on October 30,
-   2012.
+   2012.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Operating System</div><div class="modern-diagram-cell">Generates atomic</div><div class="modern-diagram-cell">Implements this</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">fragments</div><div class="modern-diagram-cell">specification</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">FreeBSD 8.0</div><div class="modern-diagram-cell">No</div><div class="modern-diagram-cell">No</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">FreeBSD 8.2</div><div class="modern-diagram-cell">Yes</div><div class="modern-diagram-cell">No</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">FreeBSD 9.0</div><div class="modern-diagram-cell">Yes</div><div class="modern-diagram-cell">No</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Linux 3.0.0-15</div><div class="modern-diagram-cell">Yes</div><div class="modern-diagram-cell">Yes</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">NetBSD 5.1</div><div class="modern-diagram-cell">No</div><div class="modern-diagram-cell">No</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">NetBSD-current</div><div class="modern-diagram-cell">No</div><div class="modern-diagram-cell">Yes</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">OpenBSD-current</div><div class="modern-diagram-cell">Yes</div><div class="modern-diagram-cell">Yes</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Solaris 11</div><div class="modern-diagram-cell">Yes</div><div class="modern-diagram-cell">Yes</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Windows XP SP2</div><div class="modern-diagram-cell">Yes</div><div class="modern-diagram-cell">No</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Windows Vista</div><div class="modern-diagram-cell">Yes</div><div class="modern-diagram-cell">No</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">(Build 6000)</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Windows 7 Home</div><div class="modern-diagram-cell">Yes</div><div class="modern-diagram-cell">No</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Premium</div></div></div>
+</figure><pre>      Table 1: Processing of IPv6 Atomic Fragments by Different OSes
 
-   +---------------------+---------------------+-----------------------+
-   |   Operating System  |   Generates atomic  |    Implements this    |
-   |                     |      fragments      |     specification     |
-   +---------------------+---------------------+-----------------------+
-   |     FreeBSD 8.0     |          No         |           No          |
-   +---------------------+---------------------+-----------------------+
-   |     FreeBSD 8.2     |         Yes         |           No          |
-   +---------------------+---------------------+-----------------------+
-   |     FreeBSD 9.0     |         Yes         |           No          |
-   +---------------------+---------------------+-----------------------+
-   |    Linux 3.0.0-15   |         Yes         |          Yes          |
-   +---------------------+---------------------+-----------------------+
-   |      NetBSD 5.1     |          No         |           No          |
-   +---------------------+---------------------+-----------------------+
-   |    NetBSD-current   |          No         |          Yes          |
-   +---------------------+---------------------+-----------------------+
-   |   OpenBSD-current   |         Yes         |          Yes          |
-   +---------------------+---------------------+-----------------------+
-   |      Solaris 11     |         Yes         |          Yes          |
-   +---------------------+---------------------+-----------------------+
-   |    Windows XP SP2   |         Yes         |           No          |
-   +---------------------+---------------------+-----------------------+
-   |    Windows Vista    |         Yes         |           No          |
-   |     (Build 6000)    |                     |                       |
-   +---------------------+---------------------+-----------------------+
-   |    Windows 7 Home   |         Yes         |           No          |
-   |       Premium       |                     |                       |
-   +---------------------+---------------------+-----------------------+
-
-      Table 1: Processing of IPv6 Atomic Fragments by Different OSes
-
-      In the table above, "generates atomic fragments" notes whether an
+      In the table above, &quot;generates atomic fragments&quot; notes whether an
       implementation generates atomic fragments in response to received
-      ICMPv6 "Packet Too Big" error messages that advertise an MTU
+      ICMPv6 &quot;Packet Too Big&quot; error messages that advertise an MTU
       smaller than 1280 bytes.
 
 
@@ -561,7 +532,7 @@ Table of Contents
 
 
 
-<span>Gont                         Standards Track                    [Page 8]</span></pre>
+Gont                         Standards Track                    [Page 8]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 9</span>

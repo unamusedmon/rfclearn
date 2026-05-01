@@ -206,37 +206,23 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 3</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc6895">RFC 6895</a>                 DNS IANA Considerations              April 2013</span>
+  <pre>RFC 6895                 DNS IANA Considerations              April 2013
 
 
-<span><a href="#section-1.1">1.1</a>.  Terminology</span>
+1.1.  Terminology
 
-   "Standards Action", "IETF Review", "Specification Required", and
-   "Private Use" are as defined in [<a href="./rfc5226" title="">RFC5226</a>].
+   &quot;Standards Action&quot;, &quot;IETF Review&quot;, &quot;Specification Required&quot;, and
+   &quot;Private Use&quot; are as defined in [RFC5226].
 
-<span><a href="#section-2">2</a>.  DNS Query/Response Headers</span>
+2.  DNS Query/Response Headers
 
    The header for DNS queries and responses contains field/bits in the
-   following diagram taken from [<a href="./rfc2136" title="&quot;Dynamic Updates in the Domain Name System (DNS UPDATE)&quot;">RFC2136</a>]:
+   following diagram taken from [RFC2136]:
 
-                                            1  1  1  1  1  1
-              0  1  2  3  4  5  6  7  8  9  0  1  2  3  4  5
-             +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-             |                      ID                       |
-             +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-             |QR|   OpCode  |AA|TC|RD|RA| Z|AD|CD|   RCODE   |
-             +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-             |                QDCOUNT/ZOCOUNT                |
-             +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-             |                ANCOUNT/PRCOUNT                |
-             +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-             |                NSCOUNT/UPCOUNT                |
-             +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-             |                    ARCOUNT                    |
-             +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-
-   The ID field identifies the query and is echoed in the response so
+                                            1  1  1  1  1  1</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0  1  2  3  4  5  6  7  8  9  0  1  2  3  4  5</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">ID</div></div><div class="modern-diagram-row" style="--cell-count: 10"><div class="modern-diagram-cell">QR</div><div class="modern-diagram-cell">OpCode</div><div class="modern-diagram-cell">AA</div><div class="modern-diagram-cell">TC</div><div class="modern-diagram-cell">RD</div><div class="modern-diagram-cell">RA</div><div class="modern-diagram-cell">Z</div><div class="modern-diagram-cell">AD</div><div class="modern-diagram-cell">CD</div><div class="modern-diagram-cell">RCODE</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">QDCOUNT/ZOCOUNT</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">ANCOUNT/PRCOUNT</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">NSCOUNT/UPCOUNT</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">ARCOUNT</div></div></div>
+</figure><pre>   The ID field identifies the query and is echoed in the response so
    they can be matched.
 
    The QR bit indicates whether the header is for a query or a response.
@@ -244,24 +230,24 @@ Table of Contents
    The AA, TC, RD, RA, and CD bits are each theoretically meaningful
    only in queries or only in responses, depending on the bit.  The AD
    bit was only meaningful in responses but is expected to have a
-   separate but related meaning in queries (see <a href="./rfc6840#section-5.7">Section&nbsp;5.7 of
-   [RFC6840]</a>).  Only the RD and CD bits are expected to be copied from
+   separate but related meaning in queries (see Section 5.7 of
+   [RFC6840]).  Only the RD and CD bits are expected to be copied from
    the query to the response; however, some DNS implementations copy all
    the query header as the initial value of the response header.  Thus,
-   any attempt to use a "query" bit with a different meaning in a
-   response or to define a query meaning for a "response" bit may be
+   any attempt to use a &quot;query&quot; bit with a different meaning in a
+   response or to define a query meaning for a &quot;response&quot; bit may be
    dangerous, given the existing implementation.  Meanings for these
    bits may only be assigned by a Standards Action.
 
    The unsigned integer fields query count (QDCOUNT), answer count
    (ANCOUNT), authority count (NSCOUNT), and additional information
    count (ARCOUNT) express the number of records in each section for all
-   OpCodes except Update [<a href="./rfc2136" title="&quot;Dynamic Updates in the Domain Name System (DNS UPDATE)&quot;">RFC2136</a>].  These fields have the same
+   OpCodes except Update [RFC2136].  These fields have the same
 
 
 
 
-<span>Eastlake                  Best Current Practice                 [Page 3]</span></pre>
+Eastlake                  Best Current Practice                 [Page 3]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 4</span>
@@ -386,62 +372,49 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 6</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc6895">RFC 6895</a>                 DNS IANA Considerations              April 2013</span>
+  <pre>RFC 6895                 DNS IANA Considerations              April 2013
 
 
       Note on error number 9 (NotAuth): This error number means either
-      "Not Authoritative" [<a href="./rfc2136" title="&quot;Dynamic Updates in the Domain Name System (DNS UPDATE)&quot;">RFC2136</a>] or "Not Authorized" [<a href="./rfc2845" title="&quot;Secret Key Transaction Authentication for DNS (TSIG)&quot;">RFC2845</a>].  If 9
+      &quot;Not Authoritative&quot; [RFC2136] or &quot;Not Authorized&quot; [RFC2845].  If 9
       appears as the RCODE in the header of a DNS response without a
       TSIG RR or with a TSIG RR having a zero error field, then it means
-      "Not Authoritative".  If 9 appears as the RCODE in the header of a
+      &quot;Not Authoritative&quot;.  If 9 appears as the RCODE in the header of a
       DNS response that includes a TSIG RR with a non-zero error field,
-      then it means "Not Authorized".
+      then it means &quot;Not Authorized&quot;.
 
    Since it is important that RCODEs be understood for interoperability,
-   assignment of a new RCODE in the ranges listed above as "Unassigned"
+   assignment of a new RCODE in the ranges listed above as &quot;Unassigned&quot;
    requires an IETF Review.
 
-<span><a href="#section-3">3</a>.  DNS Resource Records</span>
+3.  DNS Resource Records
 
    All RRs have the same top-level format, shown in the figure below
-   taken from [<a href="./rfc1035" title="&quot;Domain names - implementation and specification&quot;">RFC1035</a>].
+   taken from [RFC1035].
 
-                                          1  1  1  1  1  1
-            0  1  2  3  4  5  6  7  8  9  0  1  2  3  4  5
-          +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-          |                                               |
-          /                                               /
+                                          1  1  1  1  1  1</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0  1  2  3  4  5  6  7  8  9  0  1  2  3  4  5</div></div></div>
+</figure><pre>          /                                               /
           /                     NAME                      /
-          /                                               /
-          +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-          |                     TYPE                      |
-          +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-          |                     CLASS                     |
-          +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-          |                     TTL                       |
-          |                                               |
-          +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-          |                   RDLENGTH                    |
-          +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--|
-          /                    RDATA                      /
-          /                                               /
-          +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-
-   NAME is an owner name, i.e., the name of the node to which this
+          /                                               /</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">TYPE</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">CLASS</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">TTL</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">RDLENGTH</div></div></div>
+</figure><pre>          /                    RDATA                      /
+          /                                               /</pre><pre>          +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+</pre><pre>   NAME is an owner name, i.e., the name of the node to which this
    resource record pertains.  NAMEs are specific to a CLASS as described
-   in <a href="#section-3.2">Section 3.2</a>.  NAMEs consist of an ordered sequence of one or more
-   labels, each of which has a label type [<a href="./rfc1035" title="&quot;Domain names - implementation and specification&quot;">RFC1035</a>] [<a href="./rfc6891" title="&quot;Extension Mechanisms for DNS (EDNS(0))&quot;">RFC6891</a>].
+   in Section 3.2.  NAMEs consist of an ordered sequence of one or more
+   labels, each of which has a label type [RFC1035] [RFC6891].
 
    TYPE is a 2-octet unsigned integer containing one of the RRTYPE
-   codes.  See <a href="#section-3.1">Section 3.1</a>.
+   codes.  See Section 3.1.
 
    CLASS is a 2-octet unsigned integer containing one of the RR CLASS
-   codes.  See <a href="#section-3.2">Section 3.2</a>.
+   codes.  See Section 3.2.
 
 
 
-<span>Eastlake                  Best Current Practice                 [Page 6]</span></pre>
+Eastlake                  Best Current Practice                 [Page 6]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 7</span>

@@ -1586,8 +1586,7 @@ Summary
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 26</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1122">RFC1122</a>                        LINK LAYER                   October 1989</span>
+  <pre>RFC1122                        LINK LAYER                   October 1989
 
 
       DISCUSSION
@@ -1595,53 +1594,19 @@ Summary
            addresses (since every different network medium typically has
            a different address format), the broadcast address on a
            broadcast-capable medium is an important special case.  See
-           <a href="#section-3.2.2">Section 3.2.2</a>, especially the DISCUSSION concerning broadcast
+           Section 3.2.2, especially the DISCUSSION concerning broadcast
            storms.
 
       The packet send interface between the IP and link layers MUST
-      include the 5-bit TOS field (see <a href="#section-3.2.1.6">Section 3.2.1.6</a>).
+      include the 5-bit TOS field (see Section 3.2.1.6).
 
       The link layer MUST NOT report a Destination Unreachable error to
       IP solely because there is no ARP cache entry for a destination.
 
-   2.5  LINK LAYER REQUIREMENTS SUMMARY
-
-                                                  |       | | | |S| |
-                                                  |       | | | |H| |F
-                                                  |       | | | |O|M|o
-                                                  |       | |S| |U|U|o
-                                                  |       | |H| |L|S|t
-                                                  |       |M|O| |D|T|n
-                                                  |       |U|U|M| | |o
-                                                  |       |S|L|A|N|N|t
-                                                  |       |T|D|Y|O|O|t
-FEATURE                                           |SECTION| | | |T|T|e
---------------------------------------------------|-------|-|-|-|-|-|--
-                                                  |       | | | | | |
-Trailer encapsulation                             |2.3.1  | | |x| | |
-Send Trailers by default without negotiation      |2.3.1  | | | | |x|
-ARP                                               |2.3.2  | | | | | |
-  Flush out-of-date ARP cache entries             |2.3.2.1|x| | | | |
-  Prevent ARP floods                              |2.3.2.1|x| | | | |
-  Cache timeout configurable                      |2.3.2.1| |x| | | |
-  Save at least one (latest) unresolved pkt       |2.3.2.2| |x| | | |
-Ethernet and IEEE 802 Encapsulation               |2.3.3  | | | | | |
-  Host able to:                                   |2.3.3  | | | | | |
-    Send &amp; receive <a href="./rfc894">RFC-894</a> encapsulation          |2.3.3  |x| | | | |
-    Receive <a href="./rfc1042">RFC-1042</a> encapsulation                |2.3.3  | |x| | | |
-    Send <a href="./rfc1042">RFC-1042</a> encapsulation                   |2.3.3  | | |x| | |
-      Then config. sw. to select, <a href="./rfc894">RFC-894</a> dflt    |2.3.3  |x| | | | |
-  Send K1=6 encapsulation                         |2.3.3  | | | | |x|
-  Use ARP on Ethernet and IEEE 802 nets           |2.3.3  |x| | | | |
-Link layer report b'casts to IP layer             |2.4    |x| | | | |
-IP layer pass TOS to link layer                   |2.4    |x| | | | |
-No ARP cache entry treated as Dest. Unreach.      |2.4    | | | | |x|
-
-
-
-
-
-<span>Internet Engineering Task Force                                [Page 26]</span></pre>
+   2.5  LINK LAYER REQUIREMENTS SUMMARY</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">S</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">H</div><div class="modern-diagram-cell">F</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">O</div><div class="modern-diagram-cell">M</div><div class="modern-diagram-cell">o</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">S</div><div class="modern-diagram-cell">U</div><div class="modern-diagram-cell">U</div><div class="modern-diagram-cell">o</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">H</div><div class="modern-diagram-cell">L</div><div class="modern-diagram-cell">S</div><div class="modern-diagram-cell">t</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">M</div><div class="modern-diagram-cell">O</div><div class="modern-diagram-cell">D</div><div class="modern-diagram-cell">T</div><div class="modern-diagram-cell">n</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">U</div><div class="modern-diagram-cell">U</div><div class="modern-diagram-cell">M</div><div class="modern-diagram-cell">o</div></div><div class="modern-diagram-row" style="--cell-count: 6"><div class="modern-diagram-cell">S</div><div class="modern-diagram-cell">L</div><div class="modern-diagram-cell">A</div><div class="modern-diagram-cell">N</div><div class="modern-diagram-cell">N</div><div class="modern-diagram-cell">t</div></div><div class="modern-diagram-row" style="--cell-count: 6"><div class="modern-diagram-cell">T</div><div class="modern-diagram-cell">D</div><div class="modern-diagram-cell">Y</div><div class="modern-diagram-cell">O</div><div class="modern-diagram-cell">O</div><div class="modern-diagram-cell">t</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">FEATURE</div><div class="modern-diagram-cell">SECTION</div><div class="modern-diagram-cell">T</div><div class="modern-diagram-cell">T</div><div class="modern-diagram-cell">e</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Trailer encapsulation</div><div class="modern-diagram-cell">2.3.1</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Send Trailers by default without negotiation</div><div class="modern-diagram-cell">2.3.1</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">ARP</div><div class="modern-diagram-cell">2.3.2</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Flush out-of-date ARP cache entries</div><div class="modern-diagram-cell">2.3.2.1</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Prevent ARP floods</div><div class="modern-diagram-cell">2.3.2.1</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Cache timeout configurable</div><div class="modern-diagram-cell">2.3.2.1</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Save at least one (latest) unresolved pkt</div><div class="modern-diagram-cell">2.3.2.2</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Ethernet and IEEE 802 Encapsulation</div><div class="modern-diagram-cell">2.3.3</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Host able to:</div><div class="modern-diagram-cell">2.3.3</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Send &amp; receive RFC-894 encapsulation</div><div class="modern-diagram-cell">2.3.3</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Receive RFC-1042 encapsulation</div><div class="modern-diagram-cell">2.3.3</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Send RFC-1042 encapsulation</div><div class="modern-diagram-cell">2.3.3</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Then config. sw. to select, RFC-894 dflt</div><div class="modern-diagram-cell">2.3.3</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Send K1=6 encapsulation</div><div class="modern-diagram-cell">2.3.3</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Use ARP on Ethernet and IEEE 802 nets</div><div class="modern-diagram-cell">2.3.3</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Link layer report b&#x27;casts to IP layer</div><div class="modern-diagram-cell">2.4</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">IP layer pass TOS to link layer</div><div class="modern-diagram-cell">2.4</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">No ARP cache entry treated as Dest. Unreach.</div><div class="modern-diagram-cell">2.4</div><div class="modern-diagram-cell">x</div></div></div>
+</figure><pre>Internet Engineering Task Force                                [Page 26]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 27</span>
@@ -4346,273 +4311,51 @@ _________________________
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 72</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1122">RFC1122</a>                      INTERNET LAYER                 October 1989</span>
+  <pre>RFC1122                      INTERNET LAYER                 October 1989
 
 
-   3.5  INTERNET LAYER REQUIREMENTS SUMMARY
-
-
-                                                 |        | | | |S| |
-                                                 |        | | | |H| |F
-                                                 |        | | | |O|M|o
-                                                 |        | |S| |U|U|o
-                                                 |        | |H| |L|S|t
-                                                 |        |M|O| |D|T|n
-                                                 |        |U|U|M| | |o
-                                                 |        |S|L|A|N|N|t
-                                                 |        |T|D|Y|O|O|t
-FEATURE                                          |SECTION | | | |T|T|e
--------------------------------------------------|--------|-|-|-|-|-|--
-                                                 |        | | | | | |
-Implement IP and ICMP                            |3.1     |x| | | | |
-Handle remote multihoming in application layer   |3.1     |x| | | | |
-Support local multihoming                        |3.1     | | |x| | |
-Meet gateway specs if forward datagrams          |3.1     |x| | | | |
-Configuration switch for embedded gateway        |3.1     |x| | | | |1
-   Config switch default to non-gateway          |3.1     |x| | | | |1
-   Auto-config based on number of interfaces     |3.1     | | | | |x|1
-Able to log discarded datagrams                  |3.1     | |x| | | |
-   Record in counter                             |3.1     | |x| | | |
-                                                 |        | | | | | |
-Silently discard Version != 4                    |3.2.1.1 |x| | | | |
-Verify IP checksum, silently discard bad dgram   |3.2.1.2 |x| | | | |
-Addressing:                                      |        | | | | | |
-  Subnet addressing (<a href="./rfc950">RFC-950</a>)                    |3.2.1.3 |x| | | | |
-  Src address must be host's own IP address      |3.2.1.3 |x| | | | |
-  Silently discard datagram with bad dest addr   |3.2.1.3 |x| | | | |
-  Silently discard datagram with bad src addr    |3.2.1.3 |x| | | | |
-Support reassembly                               |3.2.1.4 |x| | | | |
-Retain same Id field in identical datagram       |3.2.1.5 | | |x| | |
-                                                 |        | | | | | |
-TOS:                                             |        | | | | | |
-  Allow transport layer to set TOS               |3.2.1.6 |x| | | | |
-  Pass received TOS up to transport layer        |3.2.1.6 | |x| | | |
-  Use <a href="./rfc795">RFC-795</a> link-layer mappings for TOS        |3.2.1.6 | | | |x| |
-TTL:                                             |        | | | | | |
-  Send packet with TTL of 0                      |3.2.1.7 | | | | |x|
-  Discard received packets with TTL &lt; 2          |3.2.1.7 | | | | |x|
-  Allow transport layer to set TTL               |3.2.1.7 |x| | | | |
-  Fixed TTL is configurable                      |3.2.1.7 |x| | | | |
-                                                 |        | | | | | |
-IP Options:                                      |        | | | | | |
-  Allow transport layer to send IP options       |3.2.1.8 |x| | | | |
-  Pass all IP options rcvd to higher layer       |3.2.1.8 |x| | | | |
-
-
-
-<span>Internet Engineering Task Force                                [Page 72]</span></pre>
+   3.5  INTERNET LAYER REQUIREMENTS SUMMARY</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">S</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">H</div><div class="modern-diagram-cell">F</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">O</div><div class="modern-diagram-cell">M</div><div class="modern-diagram-cell">o</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">S</div><div class="modern-diagram-cell">U</div><div class="modern-diagram-cell">U</div><div class="modern-diagram-cell">o</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">H</div><div class="modern-diagram-cell">L</div><div class="modern-diagram-cell">S</div><div class="modern-diagram-cell">t</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">M</div><div class="modern-diagram-cell">O</div><div class="modern-diagram-cell">D</div><div class="modern-diagram-cell">T</div><div class="modern-diagram-cell">n</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">U</div><div class="modern-diagram-cell">U</div><div class="modern-diagram-cell">M</div><div class="modern-diagram-cell">o</div></div><div class="modern-diagram-row" style="--cell-count: 6"><div class="modern-diagram-cell">S</div><div class="modern-diagram-cell">L</div><div class="modern-diagram-cell">A</div><div class="modern-diagram-cell">N</div><div class="modern-diagram-cell">N</div><div class="modern-diagram-cell">t</div></div><div class="modern-diagram-row" style="--cell-count: 6"><div class="modern-diagram-cell">T</div><div class="modern-diagram-cell">D</div><div class="modern-diagram-cell">Y</div><div class="modern-diagram-cell">O</div><div class="modern-diagram-cell">O</div><div class="modern-diagram-cell">t</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">FEATURE</div><div class="modern-diagram-cell">SECTION</div><div class="modern-diagram-cell">T</div><div class="modern-diagram-cell">T</div><div class="modern-diagram-cell">e</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Implement IP and ICMP</div><div class="modern-diagram-cell">3.1</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Handle remote multihoming in application layer</div><div class="modern-diagram-cell">3.1</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Support local multihoming</div><div class="modern-diagram-cell">3.1</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Meet gateway specs if forward datagrams</div><div class="modern-diagram-cell">3.1</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Configuration switch for embedded gateway</div><div class="modern-diagram-cell">3.1</div><div class="modern-diagram-cell">x</div><div class="modern-diagram-cell">1</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Config switch default to non-gateway</div><div class="modern-diagram-cell">3.1</div><div class="modern-diagram-cell">x</div><div class="modern-diagram-cell">1</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Auto-config based on number of interfaces</div><div class="modern-diagram-cell">3.1</div><div class="modern-diagram-cell">x</div><div class="modern-diagram-cell">1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Able to log discarded datagrams</div><div class="modern-diagram-cell">3.1</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Record in counter</div><div class="modern-diagram-cell">3.1</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Silently discard Version != 4</div><div class="modern-diagram-cell">3.2.1.1</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Verify IP checksum, silently discard bad dgram</div><div class="modern-diagram-cell">3.2.1.2</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Addressing:</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Subnet addressing (RFC-950)</div><div class="modern-diagram-cell">3.2.1.3</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Src address must be host&#x27;s own IP address</div><div class="modern-diagram-cell">3.2.1.3</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Silently discard datagram with bad dest addr</div><div class="modern-diagram-cell">3.2.1.3</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Silently discard datagram with bad src addr</div><div class="modern-diagram-cell">3.2.1.3</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Support reassembly</div><div class="modern-diagram-cell">3.2.1.4</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Retain same Id field in identical datagram</div><div class="modern-diagram-cell">3.2.1.5</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">TOS:</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Allow transport layer to set TOS</div><div class="modern-diagram-cell">3.2.1.6</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Pass received TOS up to transport layer</div><div class="modern-diagram-cell">3.2.1.6</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Use RFC-795 link-layer mappings for TOS</div><div class="modern-diagram-cell">3.2.1.6</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">TTL:</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Send packet with TTL of 0</div><div class="modern-diagram-cell">3.2.1.7</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Discard received packets with TTL &lt; 2</div><div class="modern-diagram-cell">3.2.1.7</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Allow transport layer to set TTL</div><div class="modern-diagram-cell">3.2.1.7</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Fixed TTL is configurable</div><div class="modern-diagram-cell">3.2.1.7</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">IP Options:</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Allow transport layer to send IP options</div><div class="modern-diagram-cell">3.2.1.8</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Pass all IP options rcvd to higher layer</div><div class="modern-diagram-cell">3.2.1.8</div><div class="modern-diagram-cell">x</div></div></div>
+</figure><pre>Internet Engineering Task Force                                [Page 72]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 73</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1122">RFC1122</a>                      INTERNET LAYER                 October 1989</span>
-
-
-  IP layer silently ignore unknown options       |3.2.1.8 |x| | | | |
-  Security option                                |3.2.1.8a| | |x| | |
-  Send Stream Identifier option                  |3.2.1.8b| | | |x| |
-  Silently ignore Stream Identifer option        |3.2.1.8b|x| | | | |
-  Record Route option                            |3.2.1.8d| | |x| | |
-  Timestamp option                               |3.2.1.8e| | |x| | |
-Source Route Option:                             |        | | | | | |
-  Originate &amp; terminate Source Route options     |3.2.1.8c|x| | | | |
-  Datagram with completed SR passed up to TL     |3.2.1.8c|x| | | | |
-  Build correct (non-redundant) return route     |3.2.1.8c|x| | | | |
-  Send multiple SR options in one header         |3.2.1.8c| | | | |x|
-                                                 |        | | | | | |
-ICMP:                                            |        | | | | | |
-  Silently discard ICMP msg with unknown type    |3.2.2   |x| | | | |
-  Include more than 8 octets of orig datagram    |3.2.2   | | |x| | |
-      Included octets same as received           |3.2.2   |x| | | | |
-  Demux ICMP Error to transport protocol         |3.2.2   |x| | | | |
-  Send ICMP error message with TOS=0             |3.2.2   | |x| | | |
-  Send ICMP error message for:                   |        | | | | | |
-   - ICMP error msg                              |3.2.2   | | | | |x|
-   - IP b'cast or IP m'cast                      |3.2.2   | | | | |x|
-   - Link-layer b'cast                           |3.2.2   | | | | |x|
-   - Non-initial fragment                        |3.2.2   | | | | |x|
-   - Datagram with non-unique src address        |3.2.2   | | | | |x|
-  Return ICMP error msgs (when not prohibited)   |3.3.8   |x| | | | |
-                                                 |        | | | | | |
-  Dest Unreachable:                              |        | | | | | |
-    Generate Dest Unreachable (code 2/3)         |3.2.2.1 | |x| | | |
-    Pass ICMP Dest Unreachable to higher layer   |3.2.2.1 |x| | | | |
-    Higher layer act on Dest Unreach             |3.2.2.1 | |x| | | |
-      Interpret Dest Unreach as only hint        |3.2.2.1 |x| | | | |
-  Redirect:                                      |        | | | | | |
-    Host send Redirect                           |3.2.2.2 | | | |x| |
-    Update route cache when recv Redirect        |3.2.2.2 |x| | | | |
-    Handle both Host and Net Redirects           |3.2.2.2 |x| | | | |
-    Discard illegal Redirect                     |3.2.2.2 | |x| | | |
-  Source Quench:                                 |        | | | | | |
-    Send Source Quench if buffering exceeded     |3.2.2.3 | | |x| | |
-    Pass Source Quench to higher layer           |3.2.2.3 |x| | | | |
-    Higher layer act on Source Quench            |3.2.2.3 | |x| | | |
-  Time Exceeded: pass to higher layer            |3.2.2.4 |x| | | | |
-  Parameter Problem:                             |        | | | | | |
-    Send Parameter Problem messages              |3.2.2.5 | |x| | | |
-    Pass Parameter Problem to higher layer       |3.2.2.5 |x| | | | |
-    Report Parameter Problem to user             |3.2.2.5 | | |x| | |
-                                                 |        | | | | | |
-  ICMP Echo Request or Reply:                    |        | | | | | |
-    Echo server and Echo client                  |3.2.2.6 |x| | | | |
-
-
-
-<span>Internet Engineering Task Force                                [Page 73]</span></pre>
+  <pre>RFC1122                      INTERNET LAYER                 October 1989</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">IP layer silently ignore unknown options</div><div class="modern-diagram-cell">3.2.1.8</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Security option</div><div class="modern-diagram-cell">3.2.1.8a</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Send Stream Identifier option</div><div class="modern-diagram-cell">3.2.1.8b</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Silently ignore Stream Identifer option</div><div class="modern-diagram-cell">3.2.1.8b</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Record Route option</div><div class="modern-diagram-cell">3.2.1.8d</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Timestamp option</div><div class="modern-diagram-cell">3.2.1.8e</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Source Route Option:</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Originate &amp; terminate Source Route options</div><div class="modern-diagram-cell">3.2.1.8c</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Datagram with completed SR passed up to TL</div><div class="modern-diagram-cell">3.2.1.8c</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Build correct (non-redundant) return route</div><div class="modern-diagram-cell">3.2.1.8c</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Send multiple SR options in one header</div><div class="modern-diagram-cell">3.2.1.8c</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">ICMP:</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Silently discard ICMP msg with unknown type</div><div class="modern-diagram-cell">3.2.2</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Include more than 8 octets of orig datagram</div><div class="modern-diagram-cell">3.2.2</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Included octets same as received</div><div class="modern-diagram-cell">3.2.2</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Demux ICMP Error to transport protocol</div><div class="modern-diagram-cell">3.2.2</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Send ICMP error message with TOS=0</div><div class="modern-diagram-cell">3.2.2</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Send ICMP error message for:</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">- ICMP error msg</div><div class="modern-diagram-cell">3.2.2</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">- IP b&#x27;cast or IP m&#x27;cast</div><div class="modern-diagram-cell">3.2.2</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">- Link-layer b&#x27;cast</div><div class="modern-diagram-cell">3.2.2</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">- Non-initial fragment</div><div class="modern-diagram-cell">3.2.2</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">- Datagram with non-unique src address</div><div class="modern-diagram-cell">3.2.2</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Return ICMP error msgs (when not prohibited)</div><div class="modern-diagram-cell">3.3.8</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Dest Unreachable:</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Generate Dest Unreachable (code 2/3)</div><div class="modern-diagram-cell">3.2.2.1</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Pass ICMP Dest Unreachable to higher layer</div><div class="modern-diagram-cell">3.2.2.1</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Higher layer act on Dest Unreach</div><div class="modern-diagram-cell">3.2.2.1</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Interpret Dest Unreach as only hint</div><div class="modern-diagram-cell">3.2.2.1</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Redirect:</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Host send Redirect</div><div class="modern-diagram-cell">3.2.2.2</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Update route cache when recv Redirect</div><div class="modern-diagram-cell">3.2.2.2</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Handle both Host and Net Redirects</div><div class="modern-diagram-cell">3.2.2.2</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Discard illegal Redirect</div><div class="modern-diagram-cell">3.2.2.2</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Source Quench:</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Send Source Quench if buffering exceeded</div><div class="modern-diagram-cell">3.2.2.3</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Pass Source Quench to higher layer</div><div class="modern-diagram-cell">3.2.2.3</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Higher layer act on Source Quench</div><div class="modern-diagram-cell">3.2.2.3</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Time Exceeded: pass to higher layer</div><div class="modern-diagram-cell">3.2.2.4</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Parameter Problem:</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Send Parameter Problem messages</div><div class="modern-diagram-cell">3.2.2.5</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Pass Parameter Problem to higher layer</div><div class="modern-diagram-cell">3.2.2.5</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Report Parameter Problem to user</div><div class="modern-diagram-cell">3.2.2.5</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">ICMP Echo Request or Reply:</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Echo server and Echo client</div><div class="modern-diagram-cell">3.2.2.6</div><div class="modern-diagram-cell">x</div></div></div>
+</figure><pre>Internet Engineering Task Force                                [Page 73]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 74</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1122">RFC1122</a>                      INTERNET LAYER                 October 1989</span>
-
-
-    Echo client                                  |3.2.2.6 | |x| | | |
-    Discard Echo Request to broadcast address    |3.2.2.6 | | |x| | |
-    Discard Echo Request to multicast address    |3.2.2.6 | | |x| | |
-    Use specific-dest addr as Echo Reply src     |3.2.2.6 |x| | | | |
-    Send same data in Echo Reply                 |3.2.2.6 |x| | | | |
-    Pass Echo Reply to higher layer              |3.2.2.6 |x| | | | |
-    Reflect Record Route, Time Stamp options     |3.2.2.6 | |x| | | |
-    Reverse and reflect Source Route option      |3.2.2.6 |x| | | | |
-                                                 |        | | | | | |
-  ICMP Information Request or Reply:             |3.2.2.7 | | | |x| |
-  ICMP Timestamp and Timestamp Reply:            |3.2.2.8 | | |x| | |
-    Minimize delay variability                   |3.2.2.8 | |x| | | |1
-    Silently discard b'cast Timestamp            |3.2.2.8 | | |x| | |1
-    Silently discard m'cast Timestamp            |3.2.2.8 | | |x| | |1
-    Use specific-dest addr as TS Reply src       |3.2.2.8 |x| | | | |1
-    Reflect Record Route, Time Stamp options     |3.2.2.6 | |x| | | |1
-    Reverse and reflect Source Route option      |3.2.2.8 |x| | | | |1
-    Pass Timestamp Reply to higher layer         |3.2.2.8 |x| | | | |1
-    Obey rules for "standard value"              |3.2.2.8 |x| | | | |1
-                                                 |        | | | | | |
-  ICMP Address Mask Request and Reply:           |        | | | | | |
-    Addr Mask source configurable                |3.2.2.9 |x| | | | |
-    Support static configuration of addr mask    |3.2.2.9 |x| | | | |
-    Get addr mask dynamically during booting     |3.2.2.9 | | |x| | |
-    Get addr via ICMP Addr Mask Request/Reply    |3.2.2.9 | | |x| | |
-      Retransmit Addr Mask Req if no Reply       |3.2.2.9 |x| | | | |3
-      Assume default mask if no Reply            |3.2.2.9 | |x| | | |3
-      Update address mask from first Reply only  |3.2.2.9 |x| | | | |3
-    Reasonableness check on Addr Mask            |3.2.2.9 | |x| | | |
-    Send unauthorized Addr Mask Reply msgs       |3.2.2.9 | | | | |x|
-      Explicitly configured to be agent          |3.2.2.9 |x| | | | |
-    Static config=&gt; Addr-Mask-Authoritative flag |3.2.2.9 | |x| | | |
-      Broadcast Addr Mask Reply when init.       |3.2.2.9 |x| | | | |3
-                                                 |        | | | | | |
-ROUTING OUTBOUND DATAGRAMS:                      |        | | | | | |
-  Use address mask in local/remote decision      |3.3.1.1 |x| | | | |
-  Operate with no gateways on conn network       |3.3.1.1 |x| | | | |
-  Maintain "route cache" of next-hop gateways    |3.3.1.2 |x| | | | |
-  Treat Host and Net Redirect the same           |3.3.1.2 | |x| | | |
-  If no cache entry, use default gateway         |3.3.1.2 |x| | | | |
-    Support multiple default gateways            |3.3.1.2 |x| | | | |
-  Provide table of static routes                 |3.3.1.2 | | |x| | |
-    Flag: route overridable by Redirects         |3.3.1.2 | | |x| | |
-  Key route cache on host, not net address       |3.3.1.3 | | |x| | |
-  Include TOS in route cache                     |3.3.1.3 | |x| | | |
-                                                 |        | | | | | |
-  Able to detect failure of next-hop gateway     |3.3.1.4 |x| | | | |
-  Assume route is good forever                   |3.3.1.4 | | | |x| |
-
-
-
-<span>Internet Engineering Task Force                                [Page 74]</span></pre>
+  <pre>RFC1122                      INTERNET LAYER                 October 1989</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Echo client</div><div class="modern-diagram-cell">3.2.2.6</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Discard Echo Request to broadcast address</div><div class="modern-diagram-cell">3.2.2.6</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Discard Echo Request to multicast address</div><div class="modern-diagram-cell">3.2.2.6</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Use specific-dest addr as Echo Reply src</div><div class="modern-diagram-cell">3.2.2.6</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Send same data in Echo Reply</div><div class="modern-diagram-cell">3.2.2.6</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Pass Echo Reply to higher layer</div><div class="modern-diagram-cell">3.2.2.6</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Reflect Record Route, Time Stamp options</div><div class="modern-diagram-cell">3.2.2.6</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Reverse and reflect Source Route option</div><div class="modern-diagram-cell">3.2.2.6</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">ICMP Information Request or Reply:</div><div class="modern-diagram-cell">3.2.2.7</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">ICMP Timestamp and Timestamp Reply:</div><div class="modern-diagram-cell">3.2.2.8</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Minimize delay variability</div><div class="modern-diagram-cell">3.2.2.8</div><div class="modern-diagram-cell">x</div><div class="modern-diagram-cell">1</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Silently discard b&#x27;cast Timestamp</div><div class="modern-diagram-cell">3.2.2.8</div><div class="modern-diagram-cell">x</div><div class="modern-diagram-cell">1</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Silently discard m&#x27;cast Timestamp</div><div class="modern-diagram-cell">3.2.2.8</div><div class="modern-diagram-cell">x</div><div class="modern-diagram-cell">1</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Use specific-dest addr as TS Reply src</div><div class="modern-diagram-cell">3.2.2.8</div><div class="modern-diagram-cell">x</div><div class="modern-diagram-cell">1</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Reflect Record Route, Time Stamp options</div><div class="modern-diagram-cell">3.2.2.6</div><div class="modern-diagram-cell">x</div><div class="modern-diagram-cell">1</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Reverse and reflect Source Route option</div><div class="modern-diagram-cell">3.2.2.8</div><div class="modern-diagram-cell">x</div><div class="modern-diagram-cell">1</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Pass Timestamp Reply to higher layer</div><div class="modern-diagram-cell">3.2.2.8</div><div class="modern-diagram-cell">x</div><div class="modern-diagram-cell">1</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Obey rules for &quot;standard value&quot;</div><div class="modern-diagram-cell">3.2.2.8</div><div class="modern-diagram-cell">x</div><div class="modern-diagram-cell">1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">ICMP Address Mask Request and Reply:</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Addr Mask source configurable</div><div class="modern-diagram-cell">3.2.2.9</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Support static configuration of addr mask</div><div class="modern-diagram-cell">3.2.2.9</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Get addr mask dynamically during booting</div><div class="modern-diagram-cell">3.2.2.9</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Get addr via ICMP Addr Mask Request/Reply</div><div class="modern-diagram-cell">3.2.2.9</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Retransmit Addr Mask Req if no Reply</div><div class="modern-diagram-cell">3.2.2.9</div><div class="modern-diagram-cell">x</div><div class="modern-diagram-cell">3</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Assume default mask if no Reply</div><div class="modern-diagram-cell">3.2.2.9</div><div class="modern-diagram-cell">x</div><div class="modern-diagram-cell">3</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Update address mask from first Reply only</div><div class="modern-diagram-cell">3.2.2.9</div><div class="modern-diagram-cell">x</div><div class="modern-diagram-cell">3</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Reasonableness check on Addr Mask</div><div class="modern-diagram-cell">3.2.2.9</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Send unauthorized Addr Mask Reply msgs</div><div class="modern-diagram-cell">3.2.2.9</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Explicitly configured to be agent</div><div class="modern-diagram-cell">3.2.2.9</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Static config=&gt; Addr-Mask-Authoritative flag</div><div class="modern-diagram-cell">3.2.2.9</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Broadcast Addr Mask Reply when init.</div><div class="modern-diagram-cell">3.2.2.9</div><div class="modern-diagram-cell">x</div><div class="modern-diagram-cell">3</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">ROUTING OUTBOUND DATAGRAMS:</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Use address mask in local/remote decision</div><div class="modern-diagram-cell">3.3.1.1</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Operate with no gateways on conn network</div><div class="modern-diagram-cell">3.3.1.1</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Maintain &quot;route cache&quot; of next-hop gateways</div><div class="modern-diagram-cell">3.3.1.2</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Treat Host and Net Redirect the same</div><div class="modern-diagram-cell">3.3.1.2</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">If no cache entry, use default gateway</div><div class="modern-diagram-cell">3.3.1.2</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Support multiple default gateways</div><div class="modern-diagram-cell">3.3.1.2</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Provide table of static routes</div><div class="modern-diagram-cell">3.3.1.2</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Flag: route overridable by Redirects</div><div class="modern-diagram-cell">3.3.1.2</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Key route cache on host, not net address</div><div class="modern-diagram-cell">3.3.1.3</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Include TOS in route cache</div><div class="modern-diagram-cell">3.3.1.3</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Able to detect failure of next-hop gateway</div><div class="modern-diagram-cell">3.3.1.4</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Assume route is good forever</div><div class="modern-diagram-cell">3.3.1.4</div><div class="modern-diagram-cell">x</div></div></div>
+</figure><pre>Internet Engineering Task Force                                [Page 74]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 75</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1122">RFC1122</a>                      INTERNET LAYER                 October 1989</span>
-
-
-  Ping gateways continuously                     |3.3.1.4 | | | | |x|
-  Ping only when traffic being sent              |3.3.1.4 |x| | | | |
-  Ping only when no positive indication          |3.3.1.4 |x| | | | |
-  Higher and lower layers give advice            |3.3.1.4 | |x| | | |
-  Switch from failed default g'way to another    |3.3.1.5 |x| | | | |
-  Manual method of entering config info          |3.3.1.6 |x| | | | |
-                                                 |        | | | | | |
-REASSEMBLY and FRAGMENTATION:                    |        | | | | | |
-  Able to reassemble incoming datagrams          |3.3.2   |x| | | | |
-    At least 576 byte datagrams                  |3.3.2   |x| | | | |
-    EMTU_R configurable or indefinite            |3.3.2   | |x| | | |
-  Transport layer able to learn MMS_R            |3.3.2   |x| | | | |
-  Send ICMP Time Exceeded on reassembly timeout  |3.3.2   |x| | | | |
-    Fixed reassembly timeout value               |3.3.2   | |x| | | |
-                                                 |        | | | | | |
-  Pass MMS_S to higher layers                    |3.3.3   |x| | | | |
-  Local fragmentation of outgoing packets        |3.3.3   | | |x| | |
-     Else don't send bigger than MMS_S           |3.3.3   |x| | | | |
-  Send max 576 to off-net destination            |3.3.3   | |x| | | |
-  All-Subnets-MTU configuration flag             |3.3.3   | | |x| | |
-                                                 |        | | | | | |
-MULTIHOMING:                                     |        | | | | | |
-  Reply with same addr as spec-dest addr         |3.3.4.2 | |x| | | |
-  Allow application to choose local IP addr      |3.3.4.2 |x| | | | |
-  Silently discard d'gram in "wrong" interface   |3.3.4.2 | | |x| | |
-  Only send d'gram through "right" interface     |3.3.4.2 | | |x| | |4
-                                                 |        | | | | | |
-SOURCE-ROUTE FORWARDING:                         |        | | | | | |
-  Forward datagram with Source Route option      |3.3.5   | | |x| | |1
-    Obey corresponding gateway rules             |3.3.5   |x| | | | |1
-      Update TTL by gateway rules                |3.3.5   |x| | | | |1
-      Able to generate ICMP err code 4, 5        |3.3.5   |x| | | | |1
-      IP src addr not local host                 |3.3.5   | | |x| | |1
-      Update Timestamp, Record Route options     |3.3.5   |x| | | | |1
-    Configurable switch for non-local SRing      |3.3.5   |x| | | | |1
-      Defaults to OFF                            |3.3.5   |x| | | | |1
-    Satisfy gwy access rules for non-local SRing |3.3.5   |x| | | | |1
-    If not forward, send Dest Unreach (cd 5)     |3.3.5   | |x| | | |2
-                                                 |        | | | | | |
-BROADCAST:                                       |        | | | | | |
-  Broadcast addr as IP source addr               |3.2.1.3 | | | | |x|
-  Receive 0 or -1 broadcast formats OK           |3.3.6   | |x| | | |
-  Config'ble option to send 0 or -1 b'cast       |3.3.6   | | |x| | |
-    Default to -1 broadcast                      |3.3.6   | |x| | | |
-  Recognize all broadcast address formats        |3.3.6   |x| | | | |
-  Use IP b'cast/m'cast addr in link-layer b'cast |3.3.6   |x| | | | |
-  Silently discard link-layer-only b'cast dg's   |3.3.6   | |x| | | |
-  Use Limited Broadcast addr for connected net   |3.3.6   | |x| | | |
-
-
-
-<span>Internet Engineering Task Force                                [Page 75]</span></pre>
+  <pre>RFC1122                      INTERNET LAYER                 October 1989</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Ping gateways continuously</div><div class="modern-diagram-cell">3.3.1.4</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Ping only when traffic being sent</div><div class="modern-diagram-cell">3.3.1.4</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Ping only when no positive indication</div><div class="modern-diagram-cell">3.3.1.4</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Higher and lower layers give advice</div><div class="modern-diagram-cell">3.3.1.4</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Switch from failed default g&#x27;way to another</div><div class="modern-diagram-cell">3.3.1.5</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Manual method of entering config info</div><div class="modern-diagram-cell">3.3.1.6</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">REASSEMBLY and FRAGMENTATION:</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Able to reassemble incoming datagrams</div><div class="modern-diagram-cell">3.3.2</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">At least 576 byte datagrams</div><div class="modern-diagram-cell">3.3.2</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">EMTU_R configurable or indefinite</div><div class="modern-diagram-cell">3.3.2</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Transport layer able to learn MMS_R</div><div class="modern-diagram-cell">3.3.2</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Send ICMP Time Exceeded on reassembly timeout</div><div class="modern-diagram-cell">3.3.2</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Fixed reassembly timeout value</div><div class="modern-diagram-cell">3.3.2</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Pass MMS_S to higher layers</div><div class="modern-diagram-cell">3.3.3</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Local fragmentation of outgoing packets</div><div class="modern-diagram-cell">3.3.3</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Else don&#x27;t send bigger than MMS_S</div><div class="modern-diagram-cell">3.3.3</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Send max 576 to off-net destination</div><div class="modern-diagram-cell">3.3.3</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">All-Subnets-MTU configuration flag</div><div class="modern-diagram-cell">3.3.3</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">MULTIHOMING:</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Reply with same addr as spec-dest addr</div><div class="modern-diagram-cell">3.3.4.2</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Allow application to choose local IP addr</div><div class="modern-diagram-cell">3.3.4.2</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Silently discard d&#x27;gram in &quot;wrong&quot; interface</div><div class="modern-diagram-cell">3.3.4.2</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Only send d&#x27;gram through &quot;right&quot; interface</div><div class="modern-diagram-cell">3.3.4.2</div><div class="modern-diagram-cell">x</div><div class="modern-diagram-cell">4</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">SOURCE-ROUTE FORWARDING:</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Forward datagram with Source Route option</div><div class="modern-diagram-cell">3.3.5</div><div class="modern-diagram-cell">x</div><div class="modern-diagram-cell">1</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Obey corresponding gateway rules</div><div class="modern-diagram-cell">3.3.5</div><div class="modern-diagram-cell">x</div><div class="modern-diagram-cell">1</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Update TTL by gateway rules</div><div class="modern-diagram-cell">3.3.5</div><div class="modern-diagram-cell">x</div><div class="modern-diagram-cell">1</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Able to generate ICMP err code 4, 5</div><div class="modern-diagram-cell">3.3.5</div><div class="modern-diagram-cell">x</div><div class="modern-diagram-cell">1</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">IP src addr not local host</div><div class="modern-diagram-cell">3.3.5</div><div class="modern-diagram-cell">x</div><div class="modern-diagram-cell">1</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Update Timestamp, Record Route options</div><div class="modern-diagram-cell">3.3.5</div><div class="modern-diagram-cell">x</div><div class="modern-diagram-cell">1</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Configurable switch for non-local SRing</div><div class="modern-diagram-cell">3.3.5</div><div class="modern-diagram-cell">x</div><div class="modern-diagram-cell">1</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Defaults to OFF</div><div class="modern-diagram-cell">3.3.5</div><div class="modern-diagram-cell">x</div><div class="modern-diagram-cell">1</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Satisfy gwy access rules for non-local SRing</div><div class="modern-diagram-cell">3.3.5</div><div class="modern-diagram-cell">x</div><div class="modern-diagram-cell">1</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">If not forward, send Dest Unreach (cd 5)</div><div class="modern-diagram-cell">3.3.5</div><div class="modern-diagram-cell">x</div><div class="modern-diagram-cell">2</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">BROADCAST:</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Broadcast addr as IP source addr</div><div class="modern-diagram-cell">3.2.1.3</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Receive 0 or -1 broadcast formats OK</div><div class="modern-diagram-cell">3.3.6</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Config&#x27;ble option to send 0 or -1 b&#x27;cast</div><div class="modern-diagram-cell">3.3.6</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Default to -1 broadcast</div><div class="modern-diagram-cell">3.3.6</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Recognize all broadcast address formats</div><div class="modern-diagram-cell">3.3.6</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Use IP b&#x27;cast/m&#x27;cast addr in link-layer b&#x27;cast</div><div class="modern-diagram-cell">3.3.6</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Silently discard link-layer-only b&#x27;cast dg&#x27;s</div><div class="modern-diagram-cell">3.3.6</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Use Limited Broadcast addr for connected net</div><div class="modern-diagram-cell">3.3.6</div><div class="modern-diagram-cell">x</div></div></div>
+</figure><pre>Internet Engineering Task Force                                [Page 75]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 76</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1122">RFC1122</a>                      INTERNET LAYER                 October 1989</span>
-
-
-                                                 |        | | | | | |
-MULTICAST:                                       |        | | | | | |
-  Support local IP multicasting (<a href="./rfc1112">RFC-1112</a>)       |3.3.7   | |x| | | |
-  Support IGMP (<a href="./rfc1112">RFC-1112</a>)                        |3.3.7   | | |x| | |
-  Join all-hosts group at startup                |3.3.7   | |x| | | |
-  Higher layers learn i'face m'cast capability   |3.3.7   | |x| | | |
-                                                 |        | | | | | |
-INTERFACE:                                       |        | | | | | |
-  Allow transport layer to use all IP mechanisms |3.4     |x| | | | |
-  Pass interface ident up to transport layer     |3.4     |x| | | | |
-  Pass all IP options up to transport layer      |3.4     |x| | | | |
-  Transport layer can send certain ICMP messages |3.4     |x| | | | |
-  Pass spec'd ICMP messages up to transp. layer  |3.4     |x| | | | |
-     Include IP hdr+8 octets or more from orig.  |3.4     |x| | | | |
-  Able to leap tall buildings at a single bound  |3.5     | |x| | | |
-
-Footnotes:
+  <pre>RFC1122                      INTERNET LAYER                 October 1989</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">MULTICAST:</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Support local IP multicasting (RFC-1112)</div><div class="modern-diagram-cell">3.3.7</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Support IGMP (RFC-1112)</div><div class="modern-diagram-cell">3.3.7</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Join all-hosts group at startup</div><div class="modern-diagram-cell">3.3.7</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Higher layers learn i&#x27;face m&#x27;cast capability</div><div class="modern-diagram-cell">3.3.7</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">INTERFACE:</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Allow transport layer to use all IP mechanisms</div><div class="modern-diagram-cell">3.4</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Pass interface ident up to transport layer</div><div class="modern-diagram-cell">3.4</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Pass all IP options up to transport layer</div><div class="modern-diagram-cell">3.4</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Transport layer can send certain ICMP messages</div><div class="modern-diagram-cell">3.4</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Pass spec&#x27;d ICMP messages up to transp. layer</div><div class="modern-diagram-cell">3.4</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Include IP hdr+8 octets or more from orig.</div><div class="modern-diagram-cell">3.4</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Able to leap tall buildings at a single bound</div><div class="modern-diagram-cell">3.5</div><div class="modern-diagram-cell">x</div></div></div>
+</figure><pre>Footnotes:
 
 (1)  Only if feature is implemented.
 
 (2)  This requirement is overruled if datagram is an ICMP error message.
 
-(3)  Only if feature is implemented and is configured "on".
+(3)  Only if feature is implemented and is configured &quot;on&quot;.
 
 (4)  Unless has embedded gateway functionality or is source routed.
 
@@ -4641,7 +4384,7 @@ Footnotes:
 
 
 
-<span>Internet Engineering Task Force                                [Page 76]</span></pre>
+Internet Engineering Task Force                                [Page 76]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 77</span>
@@ -4826,13 +4569,12 @@ Footnotes:
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 80</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1122">RFC1122</a>                  TRANSPORT LAYER -- UDP             October 1989</span>
+  <pre>RFC1122                  TRANSPORT LAYER -- UDP             October 1989
 
 
          document.  Thus, an application using UDP needs the functions
          of the GET_SRCADDR(), GET_MAXSIZES(), ADVISE_DELIVPROB(), and
-         RECV_ICMP() calls described in <a href="#section-3.4">Section 3.4</a>.  For example,
+         RECV_ICMP() calls described in Section 3.4.  For example,
          GET_MAXSIZES() can be used to learn the effective maximum UDP
          maximum datagram size for a particular {interface,remote
          host,TOS} triplet.
@@ -4842,106 +4584,18 @@ Footnotes:
          and these values must be passed transparently to the IP layer.
          UDP MAY pass the received TOS up to the application layer.
 
-      4.1.5  UDP REQUIREMENTS SUMMARY
-
-
-                                                 |        | | | |S| |
-                                                 |        | | | |H| |F
-                                                 |        | | | |O|M|o
-                                                 |        | |S| |U|U|o
-                                                 |        | |H| |L|S|t
-                                                 |        |M|O| |D|T|n
-                                                 |        |U|U|M| | |o
-                                                 |        |S|L|A|N|N|t
-                                                 |        |T|D|Y|O|O|t
-FEATURE                                          |SECTION | | | |T|T|e
--------------------------------------------------|--------|-|-|-|-|-|--
-                                                 |        | | | | | |
-    UDP                                          |        | | | | | |
--------------------------------------------------|--------|-|-|-|-|-|--
-                                                 |        | | | | | |
-UDP send Port Unreachable                        |4.1.3.1 | |x| | | |
-                                                 |        | | | | | |
-IP Options in UDP                                |        | | | | | |
- - Pass rcv'd IP options to applic layer         |4.1.3.2 |x| | | | |
- - Applic layer can specify IP options in Send   |4.1.3.2 |x| | | | |
- - UDP passes IP options down to IP layer        |4.1.3.2 |x| | | | |
-                                                 |        | | | | | |
-Pass ICMP msgs up to applic layer                |4.1.3.3 |x| | | | |
-                                                 |        | | | | | |
-UDP checksums:                                   |        | | | | | |
- - Able to generate/check checksum               |4.1.3.4 |x| | | | |
- - Silently discard bad checksum                 |4.1.3.4 |x| | | | |
- - Sender Option to not generate checksum        |4.1.3.4 | | |x| | |
-   - Default is to checksum                      |4.1.3.4 |x| | | | |
- - Receiver Option to require checksum           |4.1.3.4 | | |x| | |
-                                                 |        | | | | | |
-UDP Multihoming                                  |        | | | | | |
- - Pass spec-dest addr to application            |4.1.3.5 |x| | | | |
-
-
-
-<span>Internet Engineering Task Force                                [Page 80]</span></pre>
+      4.1.5  UDP REQUIREMENTS SUMMARY</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">S</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">H</div><div class="modern-diagram-cell">F</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">O</div><div class="modern-diagram-cell">M</div><div class="modern-diagram-cell">o</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">S</div><div class="modern-diagram-cell">U</div><div class="modern-diagram-cell">U</div><div class="modern-diagram-cell">o</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">H</div><div class="modern-diagram-cell">L</div><div class="modern-diagram-cell">S</div><div class="modern-diagram-cell">t</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">M</div><div class="modern-diagram-cell">O</div><div class="modern-diagram-cell">D</div><div class="modern-diagram-cell">T</div><div class="modern-diagram-cell">n</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">U</div><div class="modern-diagram-cell">U</div><div class="modern-diagram-cell">M</div><div class="modern-diagram-cell">o</div></div><div class="modern-diagram-row" style="--cell-count: 6"><div class="modern-diagram-cell">S</div><div class="modern-diagram-cell">L</div><div class="modern-diagram-cell">A</div><div class="modern-diagram-cell">N</div><div class="modern-diagram-cell">N</div><div class="modern-diagram-cell">t</div></div><div class="modern-diagram-row" style="--cell-count: 6"><div class="modern-diagram-cell">T</div><div class="modern-diagram-cell">D</div><div class="modern-diagram-cell">Y</div><div class="modern-diagram-cell">O</div><div class="modern-diagram-cell">O</div><div class="modern-diagram-cell">t</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">FEATURE</div><div class="modern-diagram-cell">SECTION</div><div class="modern-diagram-cell">T</div><div class="modern-diagram-cell">T</div><div class="modern-diagram-cell">e</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">UDP</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">UDP send Port Unreachable</div><div class="modern-diagram-cell">4.1.3.1</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">IP Options in UDP</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">- Pass rcv&#x27;d IP options to applic layer</div><div class="modern-diagram-cell">4.1.3.2</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">- Applic layer can specify IP options in Send</div><div class="modern-diagram-cell">4.1.3.2</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">- UDP passes IP options down to IP layer</div><div class="modern-diagram-cell">4.1.3.2</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Pass ICMP msgs up to applic layer</div><div class="modern-diagram-cell">4.1.3.3</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">UDP checksums:</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">- Able to generate/check checksum</div><div class="modern-diagram-cell">4.1.3.4</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">- Silently discard bad checksum</div><div class="modern-diagram-cell">4.1.3.4</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">- Sender Option to not generate checksum</div><div class="modern-diagram-cell">4.1.3.4</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">- Default is to checksum</div><div class="modern-diagram-cell">4.1.3.4</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">- Receiver Option to require checksum</div><div class="modern-diagram-cell">4.1.3.4</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">UDP Multihoming</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">- Pass spec-dest addr to application</div><div class="modern-diagram-cell">4.1.3.5</div><div class="modern-diagram-cell">x</div></div></div>
+</figure><pre>Internet Engineering Task Force                                [Page 80]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 81</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1122">RFC1122</a>                  TRANSPORT LAYER -- UDP             October 1989</span>
-
-
- - Applic layer can specify Local IP addr        |4.1.3.5 |x| | | | |
- - Applic layer specify wild Local IP addr       |4.1.3.5 |x| | | | |
- - Applic layer notified of Local IP addr used   |4.1.3.5 | |x| | | |
-                                                 |        | | | | | |
-Bad IP src addr silently discarded by UDP/IP     |4.1.3.6 |x| | | | |
-Only send valid IP source address                |4.1.3.6 |x| | | | |
-UDP Application Interface Services               |        | | | | | |
-Full IP interface of 3.4 for application         |4.1.4   |x| | | | |
- - Able to spec TTL, TOS, IP opts when send dg   |4.1.4   |x| | | | |
- - Pass received TOS up to applic layer          |4.1.4   | | |x| | |
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<span>Internet Engineering Task Force                                [Page 81]</span></pre>
+  <pre>RFC1122                  TRANSPORT LAYER -- UDP             October 1989</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">- Applic layer can specify Local IP addr</div><div class="modern-diagram-cell">4.1.3.5</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">- Applic layer specify wild Local IP addr</div><div class="modern-diagram-cell">4.1.3.5</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">- Applic layer notified of Local IP addr used</div><div class="modern-diagram-cell">4.1.3.5</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Bad IP src addr silently discarded by UDP/IP</div><div class="modern-diagram-cell">4.1.3.6</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Only send valid IP source address</div><div class="modern-diagram-cell">4.1.3.6</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">UDP Application Interface Services</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Full IP interface of 3.4 for application</div><div class="modern-diagram-cell">4.1.4</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">- Able to spec TTL, TOS, IP opts when send dg</div><div class="modern-diagram-cell">4.1.4</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">- Pass received TOS up to applic layer</div><div class="modern-diagram-cell">4.1.4</div><div class="modern-diagram-cell">x</div></div></div>
+</figure><pre>Internet Engineering Task Force                                [Page 81]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 82</span>
@@ -6506,14 +6160,13 @@ Full IP interface of 3.4 for application         |4.1.4   |x| | | | |
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 108</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1122">RFC1122</a>                  TRANSPORT LAYER -- TCP             October 1989</span>
+  <pre>RFC1122                  TRANSPORT LAYER -- TCP             October 1989
 
 
          4.2.4.4  Multihoming
 
-            The user interface outlined in sections <a href="#section-2.7">2.7</a> and <a href="#section-3.8">3.8</a> of <a href="./rfc793">RFC-</a>
-            <a href="rfc793.html" class="rfc-local">793</a> needs to be extended for multihoming.  The OPEN call
+            The user interface outlined in sections 2.7 and 3.8 of RFC-
+            793 needs to be extended for multihoming.  The OPEN call
             MUST have an optional parameter:
 
                 OPEN( ... [local IP address,] ... )
@@ -6526,7 +6179,7 @@ Full IP interface of 3.4 for application         |4.1.4   |x| | | | |
                  FTP is an example.
 
             IMPLEMENTATION:
-                 A passive OPEN call with a specified "local IP address"
+                 A passive OPEN call with a specified &quot;local IP address&quot;
                  parameter will await an incoming connection request to
                  that address.  If the parameter is unspecified, a
                  passive OPEN will await an incoming connection request
@@ -6534,203 +6187,42 @@ Full IP interface of 3.4 for application         |4.1.4   |x| | | | |
                  address of the connection to the particular address
                  that is used.
 
-                 For an active OPEN call, a specified "local IP address"
+                 For an active OPEN call, a specified &quot;local IP address&quot;
                  parameter will be used for opening the connection.  If
                  the parameter is unspecified, the networking software
                  will choose an appropriate local IP address (see
-                 <a href="#section-3.3.4.2">Section 3.3.4.2</a>) for the connection
+                 Section 3.3.4.2) for the connection
 
-      4.2.5  TCP REQUIREMENT SUMMARY
-
-                                                 |        | | | |S| |
-                                                 |        | | | |H| |F
-                                                 |        | | | |O|M|o
-                                                 |        | |S| |U|U|o
-                                                 |        | |H| |L|S|t
-                                                 |        |M|O| |D|T|n
-                                                 |        |U|U|M| | |o
-                                                 |        |S|L|A|N|N|t
-                                                 |        |T|D|Y|O|O|t
-FEATURE                                          |SECTION | | | |T|T|e
--------------------------------------------------|--------|-|-|-|-|-|--
-                                                 |        | | | | | |
-Push flag                                        |        | | | | | |
-  Aggregate or queue un-pushed data              |4.2.2.2 | | |x| | |
-  Sender collapse successive PSH flags           |4.2.2.2 | |x| | | |
-  SEND call can specify PUSH                     |4.2.2.2 | | |x| | |
-
-
-
-<span>Internet Engineering Task Force                               [Page 108]</span></pre>
+      4.2.5  TCP REQUIREMENT SUMMARY</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">S</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">H</div><div class="modern-diagram-cell">F</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">O</div><div class="modern-diagram-cell">M</div><div class="modern-diagram-cell">o</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">S</div><div class="modern-diagram-cell">U</div><div class="modern-diagram-cell">U</div><div class="modern-diagram-cell">o</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">H</div><div class="modern-diagram-cell">L</div><div class="modern-diagram-cell">S</div><div class="modern-diagram-cell">t</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">M</div><div class="modern-diagram-cell">O</div><div class="modern-diagram-cell">D</div><div class="modern-diagram-cell">T</div><div class="modern-diagram-cell">n</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">U</div><div class="modern-diagram-cell">U</div><div class="modern-diagram-cell">M</div><div class="modern-diagram-cell">o</div></div><div class="modern-diagram-row" style="--cell-count: 6"><div class="modern-diagram-cell">S</div><div class="modern-diagram-cell">L</div><div class="modern-diagram-cell">A</div><div class="modern-diagram-cell">N</div><div class="modern-diagram-cell">N</div><div class="modern-diagram-cell">t</div></div><div class="modern-diagram-row" style="--cell-count: 6"><div class="modern-diagram-cell">T</div><div class="modern-diagram-cell">D</div><div class="modern-diagram-cell">Y</div><div class="modern-diagram-cell">O</div><div class="modern-diagram-cell">O</div><div class="modern-diagram-cell">t</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">FEATURE</div><div class="modern-diagram-cell">SECTION</div><div class="modern-diagram-cell">T</div><div class="modern-diagram-cell">T</div><div class="modern-diagram-cell">e</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Push flag</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Aggregate or queue un-pushed data</div><div class="modern-diagram-cell">4.2.2.2</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Sender collapse successive PSH flags</div><div class="modern-diagram-cell">4.2.2.2</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">SEND call can specify PUSH</div><div class="modern-diagram-cell">4.2.2.2</div><div class="modern-diagram-cell">x</div></div></div>
+</figure><pre>Internet Engineering Task Force                               [Page 108]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 109</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1122">RFC1122</a>                  TRANSPORT LAYER -- TCP             October 1989</span>
-
-
-    If cannot: sender buffer indefinitely        |4.2.2.2 | | | | |x|
-    If cannot: PSH last segment                  |4.2.2.2 |x| | | | |
-  Notify receiving ALP of PSH                    |4.2.2.2 | | |x| | |1
-  Send max size segment when possible            |4.2.2.2 | |x| | | |
-                                                 |        | | | | | |
-Window                                           |        | | | | | |
-  Treat as unsigned number                       |4.2.2.3 |x| | | | |
-  Handle as 32-bit number                        |4.2.2.3 | |x| | | |
-  Shrink window from right                       |4.2.2.16| | | |x| |
-  Robust against shrinking window                |4.2.2.16|x| | | | |
-  Receiver's window closed indefinitely          |4.2.2.17| | |x| | |
-  Sender probe zero window                       |4.2.2.17|x| | | | |
-    First probe after RTO                        |4.2.2.17| |x| | | |
-    Exponential backoff                          |4.2.2.17| |x| | | |
-  Allow window stay zero indefinitely            |4.2.2.17|x| | | | |
-  Sender timeout OK conn with zero wind          |4.2.2.17| | | | |x|
-                                                 |        | | | | | |
-Urgent Data                                      |        | | | | | |
-  Pointer points to last octet                   |4.2.2.4 |x| | | | |
-  Arbitrary length urgent data sequence          |4.2.2.4 |x| | | | |
-  Inform ALP asynchronously of urgent data       |4.2.2.4 |x| | | | |1
-  ALP can learn if/how much urgent data Q'd      |4.2.2.4 |x| | | | |1
-                                                 |        | | | | | |
-TCP Options                                      |        | | | | | |
-  Receive TCP option in any segment              |4.2.2.5 |x| | | | |
-  Ignore unsupported options                     |4.2.2.5 |x| | | | |
-  Cope with illegal option length                |4.2.2.5 |x| | | | |
-  Implement sending &amp; receiving MSS option       |4.2.2.6 |x| | | | |
-  Send MSS option unless 536                     |4.2.2.6 | |x| | | |
-  Send MSS option always                         |4.2.2.6 | | |x| | |
-  Send-MSS default is 536                        |4.2.2.6 |x| | | | |
-  Calculate effective send seg size              |4.2.2.6 |x| | | | |
-                                                 |        | | | | | |
-TCP Checksums                                    |        | | | | | |
-  Sender compute checksum                        |4.2.2.7 |x| | | | |
-  Receiver check checksum                        |4.2.2.7 |x| | | | |
-                                                 |        | | | | | |
-Use clock-driven ISN selection                   |4.2.2.9 |x| | | | |
-                                                 |        | | | | | |
-Opening Connections                              |        | | | | | |
-  Support simultaneous open attempts             |4.2.2.10|x| | | | |
-  SYN-RCVD remembers last state                  |4.2.2.11|x| | | | |
-  Passive Open call interfere with others        |4.2.2.18| | | | |x|
-  Function: simultan. LISTENs for same port      |4.2.2.18|x| | | | |
-  Ask IP for src address for SYN if necc.        |4.2.3.7 |x| | | | |
-    Otherwise, use local addr of conn.           |4.2.3.7 |x| | | | |
-  OPEN to broadcast/multicast IP Address         |4.2.3.14| | | | |x|
-  Silently discard seg to bcast/mcast addr       |4.2.3.14|x| | | | |
-
-
-
-<span>Internet Engineering Task Force                               [Page 109]</span></pre>
+  <pre>RFC1122                  TRANSPORT LAYER -- TCP             October 1989</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">If cannot: sender buffer indefinitely</div><div class="modern-diagram-cell">4.2.2.2</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">If cannot: PSH last segment</div><div class="modern-diagram-cell">4.2.2.2</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Notify receiving ALP of PSH</div><div class="modern-diagram-cell">4.2.2.2</div><div class="modern-diagram-cell">x</div><div class="modern-diagram-cell">1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Send max size segment when possible</div><div class="modern-diagram-cell">4.2.2.2</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Window</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Treat as unsigned number</div><div class="modern-diagram-cell">4.2.2.3</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Handle as 32-bit number</div><div class="modern-diagram-cell">4.2.2.3</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Shrink window from right</div><div class="modern-diagram-cell">4.2.2.16</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Robust against shrinking window</div><div class="modern-diagram-cell">4.2.2.16</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Receiver&#x27;s window closed indefinitely</div><div class="modern-diagram-cell">4.2.2.17</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Sender probe zero window</div><div class="modern-diagram-cell">4.2.2.17</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">First probe after RTO</div><div class="modern-diagram-cell">4.2.2.17</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Exponential backoff</div><div class="modern-diagram-cell">4.2.2.17</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Allow window stay zero indefinitely</div><div class="modern-diagram-cell">4.2.2.17</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Sender timeout OK conn with zero wind</div><div class="modern-diagram-cell">4.2.2.17</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Urgent Data</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Pointer points to last octet</div><div class="modern-diagram-cell">4.2.2.4</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Arbitrary length urgent data sequence</div><div class="modern-diagram-cell">4.2.2.4</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Inform ALP asynchronously of urgent data</div><div class="modern-diagram-cell">4.2.2.4</div><div class="modern-diagram-cell">x</div><div class="modern-diagram-cell">1</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">ALP can learn if/how much urgent data Q&#x27;d</div><div class="modern-diagram-cell">4.2.2.4</div><div class="modern-diagram-cell">x</div><div class="modern-diagram-cell">1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">TCP Options</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Receive TCP option in any segment</div><div class="modern-diagram-cell">4.2.2.5</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Ignore unsupported options</div><div class="modern-diagram-cell">4.2.2.5</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Cope with illegal option length</div><div class="modern-diagram-cell">4.2.2.5</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Implement sending &amp; receiving MSS option</div><div class="modern-diagram-cell">4.2.2.6</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Send MSS option unless 536</div><div class="modern-diagram-cell">4.2.2.6</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Send MSS option always</div><div class="modern-diagram-cell">4.2.2.6</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Send-MSS default is 536</div><div class="modern-diagram-cell">4.2.2.6</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Calculate effective send seg size</div><div class="modern-diagram-cell">4.2.2.6</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">TCP Checksums</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Sender compute checksum</div><div class="modern-diagram-cell">4.2.2.7</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Receiver check checksum</div><div class="modern-diagram-cell">4.2.2.7</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Use clock-driven ISN selection</div><div class="modern-diagram-cell">4.2.2.9</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Opening Connections</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Support simultaneous open attempts</div><div class="modern-diagram-cell">4.2.2.10</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">SYN-RCVD remembers last state</div><div class="modern-diagram-cell">4.2.2.11</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Passive Open call interfere with others</div><div class="modern-diagram-cell">4.2.2.18</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Function: simultan. LISTENs for same port</div><div class="modern-diagram-cell">4.2.2.18</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Ask IP for src address for SYN if necc.</div><div class="modern-diagram-cell">4.2.3.7</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Otherwise, use local addr of conn.</div><div class="modern-diagram-cell">4.2.3.7</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">OPEN to broadcast/multicast IP Address</div><div class="modern-diagram-cell">4.2.3.14</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Silently discard seg to bcast/mcast addr</div><div class="modern-diagram-cell">4.2.3.14</div><div class="modern-diagram-cell">x</div></div></div>
+</figure><pre>Internet Engineering Task Force                               [Page 109]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 110</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1122">RFC1122</a>                  TRANSPORT LAYER -- TCP             October 1989</span>
-
-
-                                                 |        | | | | | |
-Closing Connections                              |        | | | | | |
-  RST can contain data                           |4.2.2.12| |x| | | |
-  Inform application of aborted conn             |4.2.2.13|x| | | | |
-  Half-duplex close connections                  |4.2.2.13| | |x| | |
-    Send RST to indicate data lost               |4.2.2.13| |x| | | |
-  In TIME-WAIT state for 2xMSL seconds           |4.2.2.13|x| | | | |
-    Accept SYN from TIME-WAIT state              |4.2.2.13| | |x| | |
-                                                 |        | | | | | |
-Retransmissions                                  |        | | | | | |
-  Jacobson Slow Start algorithm                  |4.2.2.15|x| | | | |
-  Jacobson Congestion-Avoidance algorithm        |4.2.2.15|x| | | | |
-  Retransmit with same IP ident                  |4.2.2.15| | |x| | |
-  Karn's algorithm                               |4.2.3.1 |x| | | | |
-  Jacobson's RTO estimation alg.                 |4.2.3.1 |x| | | | |
-  Exponential backoff                            |4.2.3.1 |x| | | | |
-  SYN RTO calc same as data                      |4.2.3.1 | |x| | | |
-  Recommended initial values and bounds          |4.2.3.1 | |x| | | |
-                                                 |        | | | | | |
-Generating ACK's:                                |        | | | | | |
-  Queue out-of-order segments                    |4.2.2.20| |x| | | |
-  Process all Q'd before send ACK                |4.2.2.20|x| | | | |
-  Send ACK for out-of-order segment              |4.2.2.21| | |x| | |
-  Delayed ACK's                                  |4.2.3.2 | |x| | | |
-    Delay &lt; 0.5 seconds                          |4.2.3.2 |x| | | | |
-    Every 2nd full-sized segment ACK'd           |4.2.3.2 |x| | | | |
-  Receiver SWS-Avoidance Algorithm               |4.2.3.3 |x| | | | |
-                                                 |        | | | | | |
-Sending data                                     |        | | | | | |
-  Configurable TTL                               |4.2.2.19|x| | | | |
-  Sender SWS-Avoidance Algorithm                 |4.2.3.4 |x| | | | |
-  Nagle algorithm                                |4.2.3.4 | |x| | | |
-    Application can disable Nagle algorithm      |4.2.3.4 |x| | | | |
-                                                 |        | | | | | |
-Connection Failures:                             |        | | | | | |
-  Negative advice to IP on R1 retxs              |4.2.3.5 |x| | | | |
-  Close connection on R2 retxs                   |4.2.3.5 |x| | | | |
-  ALP can set R2                                 |4.2.3.5 |x| | | | |1
-  Inform ALP of  R1&lt;=retxs&lt;R2                    |4.2.3.5 | |x| | | |1
-  Recommended values for R1, R2                  |4.2.3.5 | |x| | | |
-  Same mechanism for SYNs                        |4.2.3.5 |x| | | | |
-    R2 at least 3 minutes for SYN                |4.2.3.5 |x| | | | |
-                                                 |        | | | | | |
-Send Keep-alive Packets:                         |4.2.3.6 | | |x| | |
-  - Application can request                      |4.2.3.6 |x| | | | |
-  - Default is "off"                             |4.2.3.6 |x| | | | |
-  - Only send if idle for interval               |4.2.3.6 |x| | | | |
-  - Interval configurable                        |4.2.3.6 |x| | | | |
-
-
-
-<span>Internet Engineering Task Force                               [Page 110]</span></pre>
+  <pre>RFC1122                  TRANSPORT LAYER -- TCP             October 1989</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Closing Connections</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">RST can contain data</div><div class="modern-diagram-cell">4.2.2.12</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Inform application of aborted conn</div><div class="modern-diagram-cell">4.2.2.13</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Half-duplex close connections</div><div class="modern-diagram-cell">4.2.2.13</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Send RST to indicate data lost</div><div class="modern-diagram-cell">4.2.2.13</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">In TIME-WAIT state for 2xMSL seconds</div><div class="modern-diagram-cell">4.2.2.13</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Accept SYN from TIME-WAIT state</div><div class="modern-diagram-cell">4.2.2.13</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Retransmissions</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Jacobson Slow Start algorithm</div><div class="modern-diagram-cell">4.2.2.15</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Jacobson Congestion-Avoidance algorithm</div><div class="modern-diagram-cell">4.2.2.15</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Retransmit with same IP ident</div><div class="modern-diagram-cell">4.2.2.15</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Karn&#x27;s algorithm</div><div class="modern-diagram-cell">4.2.3.1</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Jacobson&#x27;s RTO estimation alg.</div><div class="modern-diagram-cell">4.2.3.1</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Exponential backoff</div><div class="modern-diagram-cell">4.2.3.1</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">SYN RTO calc same as data</div><div class="modern-diagram-cell">4.2.3.1</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Recommended initial values and bounds</div><div class="modern-diagram-cell">4.2.3.1</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Generating ACK&#x27;s:</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Queue out-of-order segments</div><div class="modern-diagram-cell">4.2.2.20</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Process all Q&#x27;d before send ACK</div><div class="modern-diagram-cell">4.2.2.20</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Send ACK for out-of-order segment</div><div class="modern-diagram-cell">4.2.2.21</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Delayed ACK&#x27;s</div><div class="modern-diagram-cell">4.2.3.2</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Delay &lt; 0.5 seconds</div><div class="modern-diagram-cell">4.2.3.2</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Every 2nd full-sized segment ACK&#x27;d</div><div class="modern-diagram-cell">4.2.3.2</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Receiver SWS-Avoidance Algorithm</div><div class="modern-diagram-cell">4.2.3.3</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Sending data</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Configurable TTL</div><div class="modern-diagram-cell">4.2.2.19</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Sender SWS-Avoidance Algorithm</div><div class="modern-diagram-cell">4.2.3.4</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Nagle algorithm</div><div class="modern-diagram-cell">4.2.3.4</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Application can disable Nagle algorithm</div><div class="modern-diagram-cell">4.2.3.4</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Connection Failures:</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Negative advice to IP on R1 retxs</div><div class="modern-diagram-cell">4.2.3.5</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Close connection on R2 retxs</div><div class="modern-diagram-cell">4.2.3.5</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">ALP can set R2</div><div class="modern-diagram-cell">4.2.3.5</div><div class="modern-diagram-cell">x</div><div class="modern-diagram-cell">1</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Inform ALP of  R1&lt;=retxs&lt;R2</div><div class="modern-diagram-cell">4.2.3.5</div><div class="modern-diagram-cell">x</div><div class="modern-diagram-cell">1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Recommended values for R1, R2</div><div class="modern-diagram-cell">4.2.3.5</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Same mechanism for SYNs</div><div class="modern-diagram-cell">4.2.3.5</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">R2 at least 3 minutes for SYN</div><div class="modern-diagram-cell">4.2.3.5</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Send Keep-alive Packets:</div><div class="modern-diagram-cell">4.2.3.6</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">- Application can request</div><div class="modern-diagram-cell">4.2.3.6</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">- Default is &quot;off&quot;</div><div class="modern-diagram-cell">4.2.3.6</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">- Only send if idle for interval</div><div class="modern-diagram-cell">4.2.3.6</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">- Interval configurable</div><div class="modern-diagram-cell">4.2.3.6</div><div class="modern-diagram-cell">x</div></div></div>
+</figure><pre>Internet Engineering Task Force                               [Page 110]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 111</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1122">RFC1122</a>                  TRANSPORT LAYER -- TCP             October 1989</span>
+  <pre>RFC1122                  TRANSPORT LAYER -- TCP             October 1989</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">- Default at least 2 hrs.</div><div class="modern-diagram-cell">4.2.3.6</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">- Tolerant of lost ACK&#x27;s</div><div class="modern-diagram-cell">4.2.3.6</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">IP Options</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Ignore options TCP doesn&#x27;t understand</div><div class="modern-diagram-cell">4.2.3.8</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Time Stamp support</div><div class="modern-diagram-cell">4.2.3.8</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Record Route support</div><div class="modern-diagram-cell">4.2.3.8</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Source Route:</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">ALP can specify</div><div class="modern-diagram-cell">4.2.3.8</div><div class="modern-diagram-cell">x</div><div class="modern-diagram-cell">1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Overrides src rt in datagram</div><div class="modern-diagram-cell">4.2.3.8</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Build return route from src rt</div><div class="modern-diagram-cell">4.2.3.8</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Later src route overrides</div><div class="modern-diagram-cell">4.2.3.8</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Receiving ICMP Messages from IP</div><div class="modern-diagram-cell">4.2.3.9</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Dest. Unreach (0,1,5) =&gt; inform ALP</div><div class="modern-diagram-cell">4.2.3.9</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Dest. Unreach (0,1,5) =&gt; abort conn</div><div class="modern-diagram-cell">4.2.3.9</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Dest. Unreach (2-4) =&gt; abort conn</div><div class="modern-diagram-cell">4.2.3.9</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Source Quench =&gt; slow start</div><div class="modern-diagram-cell">4.2.3.9</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Time Exceeded =&gt; tell ALP, don&#x27;t abort</div><div class="modern-diagram-cell">4.2.3.9</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Param Problem =&gt; tell ALP, don&#x27;t abort</div><div class="modern-diagram-cell">4.2.3.9</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Address Validation</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Reject OPEN call to invalid IP address</div><div class="modern-diagram-cell">4.2.3.10</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Reject SYN from invalid IP address</div><div class="modern-diagram-cell">4.2.3.10</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Silently discard SYN to bcast/mcast addr</div><div class="modern-diagram-cell">4.2.3.10</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">TCP/ALP Interface Services</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Error Report mechanism</div><div class="modern-diagram-cell">4.2.4.1</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">ALP can disable Error Report Routine</div><div class="modern-diagram-cell">4.2.4.1</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">ALP can specify TOS for sending</div><div class="modern-diagram-cell">4.2.4.2</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Passed unchanged to IP</div><div class="modern-diagram-cell">4.2.4.2</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">ALP can change TOS during connection</div><div class="modern-diagram-cell">4.2.4.2</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Pass received TOS up to ALP</div><div class="modern-diagram-cell">4.2.4.2</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">FLUSH call</div><div class="modern-diagram-cell">4.2.4.3</div><div class="modern-diagram-cell">x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Optional local IP addr parm. in OPEN</div><div class="modern-diagram-cell">4.2.4.4</div><div class="modern-diagram-cell">x</div></div></div>
+</figure><pre>FOOTNOTES:
 
-
-  - Default at least 2 hrs.                      |4.2.3.6 |x| | | | |
-  - Tolerant of lost ACK's                       |4.2.3.6 |x| | | | |
-                                                 |        | | | | | |
-IP Options                                       |        | | | | | |
-  Ignore options TCP doesn't understand          |4.2.3.8 |x| | | | |
-  Time Stamp support                             |4.2.3.8 | | |x| | |
-  Record Route support                           |4.2.3.8 | | |x| | |
-  Source Route:                                  |        | | | | | |
-    ALP can specify                              |4.2.3.8 |x| | | | |1
-      Overrides src rt in datagram               |4.2.3.8 |x| | | | |
-    Build return route from src rt               |4.2.3.8 |x| | | | |
-    Later src route overrides                    |4.2.3.8 | |x| | | |
-                                                 |        | | | | | |
-Receiving ICMP Messages from IP                  |4.2.3.9 |x| | | | |
-  Dest. Unreach (0,1,5) =&gt; inform ALP            |4.2.3.9 | |x| | | |
-  Dest. Unreach (0,1,5) =&gt; abort conn            |4.2.3.9 | | | | |x|
-  Dest. Unreach (2-4) =&gt; abort conn              |4.2.3.9 | |x| | | |
-  Source Quench =&gt; slow start                    |4.2.3.9 | |x| | | |
-  Time Exceeded =&gt; tell ALP, don't abort         |4.2.3.9 | |x| | | |
-  Param Problem =&gt; tell ALP, don't abort         |4.2.3.9 | |x| | | |
-                                                 |        | | | | | |
-Address Validation                               |        | | | | | |
-  Reject OPEN call to invalid IP address         |4.2.3.10|x| | | | |
-  Reject SYN from invalid IP address             |4.2.3.10|x| | | | |
-  Silently discard SYN to bcast/mcast addr       |4.2.3.10|x| | | | |
-                                                 |        | | | | | |
-TCP/ALP Interface Services                       |        | | | | | |
-  Error Report mechanism                         |4.2.4.1 |x| | | | |
-  ALP can disable Error Report Routine           |4.2.4.1 | |x| | | |
-  ALP can specify TOS for sending                |4.2.4.2 |x| | | | |
-    Passed unchanged to IP                       |4.2.4.2 | |x| | | |
-  ALP can change TOS during connection           |4.2.4.2 | |x| | | |
-  Pass received TOS up to ALP                    |4.2.4.2 | | |x| | |
-  FLUSH call                                     |4.2.4.3 | | |x| | |
-  Optional local IP addr parm. in OPEN           |4.2.4.4 |x| | | | |
--------------------------------------------------|--------|-|-|-|-|-|--
--------------------------------------------------|--------|-|-|-|-|-|--
-
-FOOTNOTES:
-
-(1)  "ALP" means Application-Layer program.
+(1)  &quot;ALP&quot; means Application-Layer program.
 
 
 
@@ -6741,7 +6233,7 @@ FOOTNOTES:
 
 
 
-<span>Internet Engineering Task Force                               [Page 111]</span></pre>
+Internet Engineering Task Force                               [Page 111]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 112</span>

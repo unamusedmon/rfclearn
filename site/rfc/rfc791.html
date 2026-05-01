@@ -578,46 +578,32 @@ Internet Protocol
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 9</span>
   </div>
-  <pre><span ></span>
-September 1981
+  <pre>September 1981
                                                        Internet Protocol
 
 
 
                               2.  OVERVIEW
 
-<span><a href="#section-2.1">2.1</a>.  Relation to Other Protocols</span>
+2.1.  Relation to Other Protocols
 
   The following diagram illustrates the place of the internet protocol
-  in the protocol hierarchy:
-
-
-                 +------+ +-----+ +-----+     +-----+
-                 |Telnet| | FTP | | TFTP| ... | ... |
-                 +------+ +-----+ +-----+     +-----+
-                       |   |         |           |
-                      +-----+     +-----+     +-----+
-                      | TCP |     | UDP | ... | ... |
-                      +-----+     +-----+     +-----+
-                         |           |           |
-                      +--------------------------+----+
-                      |    Internet Protocol &amp; ICMP   |
-                      +--------------------------+----+
-                                     |
-                        +---------------------------+
-                        |   Local Network Protocol  |
-                        +---------------------------+
-
-                         Protocol Relationships
+  in the protocol hierarchy:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">Telnet</div><div class="modern-diagram-cell">FTP</div><div class="modern-diagram-cell">TFTP</div><div class="modern-diagram-cell">...</div><div class="modern-diagram-cell">...</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">TCP</div><div class="modern-diagram-cell">UDP</div><div class="modern-diagram-cell">...</div><div class="modern-diagram-cell">...</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Internet Protocol &amp; ICMP</div></div></div>
+</figure><pre>                                     |</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Local Network Protocol</div></div></div>
+</figure><pre>                         Protocol Relationships
 
                                Figure 1.
 
   Internet protocol interfaces on one side to the higher level
   host-to-host protocols and on the other side to the local network
-  protocol.  In this context a "local network" may be a small network in
+  protocol.  In this context a &quot;local network&quot; may be a small network in
   a building or a large network such as the ARPANET.
 
-<span><a href="#section-2.2">2.2</a>.  Model of Operation</span>
+2.2.  Model of Operation
 
   The  model of operation for transmitting a datagram from one
   application program to another is illustrated by the following
@@ -635,7 +621,7 @@ September 1981
     this internet address, in this case it is the address of a gateway.
 
 
-<span>                                                                [Page 5]</span></pre>
+                                                                [Page 5]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 10</span>
@@ -826,8 +812,7 @@ Overview
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 13</span>
   </div>
-  <pre><span ></span>
-September 1981
+  <pre>September 1981
                                                        Internet Protocol
                                                                 Overview
 
@@ -849,31 +834,23 @@ September 1981
     internet datagrams that all have the same value for the four fields:
     identification, source, destination, and protocol.  The combination
     is done by placing the data portion of each fragment in the relative
-    position indicated by the fragment offset in that fragment's
+    position indicated by the fragment offset in that fragment&#x27;s
     internet header.  The first fragment will have the fragment offset
     zero, and the last fragment will have the more-fragments flag reset
     to zero.
 
-<span><a href="#section-2.4">2.4</a>.  Gateways</span>
+2.4.  Gateways
 
   Gateways implement internet protocol to forward datagrams between
   networks.  Gateways also implement the Gateway to Gateway Protocol
-  (GGP) [<a href="#ref-7" title="&quot;How to Build a Gateway&quot;">7</a>] to coordinate routing and other internet control
+  (GGP) [7] to coordinate routing and other internet control
   information.
 
   In a gateway the higher level protocols need not be implemented and
-  the GGP functions are added to the IP module.
-
-
-                   +-------------------------------+
-                   | Internet Protocol &amp; ICMP &amp; GGP|
-                   +-------------------------------+
-                           |                 |
-                 +---------------+   +---------------+
-                 |   Local Net   |   |   Local Net   |
-                 +---------------+   +---------------+
-
-                           Gateway Protocols
+  the GGP functions are added to the IP module.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Internet Protocol &amp; ICMP &amp; GGP</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Local Net</div><div class="modern-diagram-cell">Local Net</div></div></div>
+</figure><pre>                           Gateway Protocols
 
                                Figure 3.
 
@@ -883,7 +860,7 @@ September 1981
 
 
 
-<span>                                                                [Page 9]</span></pre>
+                                                                [Page 9]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 14</span>
@@ -950,36 +927,31 @@ Internet Protocol
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 15</span>
   </div>
-  <pre><span ></span>
-September 1981
+  <pre>September 1981
                                                        Internet Protocol
 
 
 
                            3.  SPECIFICATION
 
-<span><a href="#section-3.1">3.1</a>.  Internet Header Format</span>
+3.1.  Internet Header Format
 
-  A summary of the contents of the internet header follows:
+</pre><details class="header-reference-panel inline-header-reference" open>
+  <summary><span>Header field quick-reference</span><strong>RFC 791 IPv4 Header</strong></summary>
+  <p class="header-note">IPv4 header fields expose spoofing, fragmentation, routing, and TTL anomalies before payload parsing starts.</p>
+  <div class="bit-axis">Bit positions 0-31</div>
+  <div class="header-diagram-wrap"><svg class="header-bit-layout" viewBox="0 0 320 258" role="img" aria-label="0-31 bit layout diagram" xmlns="http://www.w3.org/2000/svg"><desc>0-31 bit positions across each row; fields are drawn as blocks spanning their bit widths.</desc><text x="0" y="14" class="bit-label">0</text><text x="40" y="14" class="bit-label">4</text><text x="80" y="14" class="bit-label">8</text><text x="120" y="14" class="bit-label">12</text><text x="160" y="14" class="bit-label">16</text><text x="200" y="14" class="bit-label">20</text><text x="240" y="14" class="bit-label">24</text><text x="280" y="14" class="bit-label">28</text><text x="320" y="14" text-anchor="end" class="bit-label">31</text><line x1="0" y1="22" x2="0" y2="250" class="bit-grid" /><line x1="40" y1="22" x2="40" y2="250" class="bit-grid" /><line x1="80" y1="22" x2="80" y2="250" class="bit-grid" /><line x1="120" y1="22" x2="120" y2="250" class="bit-grid" /><line x1="160" y1="22" x2="160" y2="250" class="bit-grid" /><line x1="200" y1="22" x2="200" y2="250" class="bit-grid" /><line x1="240" y1="22" x2="240" y2="250" class="bit-grid" /><line x1="280" y1="22" x2="280" y2="250" class="bit-grid" /><line x1="320" y1="22" x2="320" y2="250" class="bit-grid" /><g><rect x="0" y="22" width="40" height="34" rx="7" class="field-block field-0" /><text x="20.0" y="44" text-anchor="middle" class="field-label">Ver</text><title>Version: bits 0-3 in row 1</title></g><g><rect x="40" y="22" width="40" height="34" rx="7" class="field-block field-1" /><text x="60.0" y="44" text-anchor="middle" class="field-label">IHL</text><title>IHL: bits 4-7 in row 1</title></g><g><rect x="80" y="22" width="80" height="34" rx="7" class="field-block field-2" /><text x="120.0" y="44" text-anchor="middle" class="field-label">Type of Service</text><title>Type of Service: bits 8-15 in row 1</title></g><g><rect x="160" y="22" width="160" height="34" rx="7" class="field-block field-3" /><text x="240.0" y="44" text-anchor="middle" class="field-label">Total Length</text><title>Total Length: bits 16-31 in row 1</title></g><g><rect x="0" y="60" width="160" height="34" rx="7" class="field-block field-4" /><text x="80.0" y="82" text-anchor="middle" class="field-label">Identification</text><title>Identification: bits 0-15 in row 2</title></g><g><rect x="160" y="60" width="30" height="34" rx="7" class="field-block field-0" /><text x="175.0" y="82" text-anchor="middle" class="field-label">Fla</text><title>Flags: bits 16-18 in row 2</title></g><g><rect x="190" y="60" width="130" height="34" rx="7" class="field-block field-1" /><text x="255.0" y="82" text-anchor="middle" class="field-label">Fragment Offset</text><title>Fragment Offset: bits 19-31 in row 2</title></g><g><rect x="0" y="98" width="80" height="34" rx="7" class="field-block field-2" /><text x="40.0" y="120" text-anchor="middle" class="field-label">TTL</text><title>TTL: bits 0-7 in row 3</title></g><g><rect x="80" y="98" width="80" height="34" rx="7" class="field-block field-3" /><text x="120.0" y="120" text-anchor="middle" class="field-label">Protocol</text><title>Protocol: bits 8-15 in row 3</title></g><g><rect x="160" y="98" width="160" height="34" rx="7" class="field-block field-4" /><text x="240.0" y="120" text-anchor="middle" class="field-label">Header Checksum</text><title>Header Checksum: bits 16-31 in row 3</title></g><g><rect x="0" y="136" width="320" height="34" rx="7" class="field-block field-0" /><text x="160.0" y="158" text-anchor="middle" class="field-label">Source Address</text><title>Source Address: bits 0-31 in row 4</title></g><g><rect x="0" y="174" width="320" height="34" rx="7" class="field-block field-1" /><text x="160.0" y="196" text-anchor="middle" class="field-label">Destination Address</text><title>Destination Address: bits 0-31 in row 5</title></g><g><rect x="0" y="212" width="320" height="34" rx="7" class="field-block field-2" /><text x="160.0" y="234" text-anchor="middle" class="field-label">Options/Padding</text><title>Options/Padding: bits 0-31 in row 6</title></g></svg></div>
+  <table class="header-field-table">
+    <thead><tr><th>Field</th><th>Bits</th><th>Hunting meaning / abnormal</th></tr></thead>
+    <tbody><tr><td>Version</td><td>4</td><td>Should be 4 for IPv4; any other value indicates misclassification or malformed traffic.</td></tr><tr><td>IHL</td><td>4</td><td>Header length; unusually large values imply IP options, while invalid short values are malformed.</td></tr><tr><td>Type of Service</td><td>8</td><td>QoS/precedence byte; odd markings can indicate tunneling, policy abuse, or legacy stack artifacts.</td></tr><tr><td>Total Length</td><td>16</td><td>Full packet length; mismatches with capture length can indicate truncation, evasion, or malformed packets.</td></tr><tr><td>Identification</td><td>16</td><td>Fragment correlation value; predictable or repeated IDs help fingerprint hosts and spot fragmentation abuse.</td></tr><tr><td>Flags</td><td>3</td><td>DF/MF fragmentation controls; watch illegal reserved-bit use and suspicious fragmentation patterns.</td></tr><tr><td>Fragment Offset</td><td>13</td><td>Fragment position; tiny, overlapping, or excessive fragments are classic IDS evasion signals.</td></tr><tr><td>TTL</td><td>8</td><td>Decrements each hop; unusually low or inconsistent TTL can indicate spoofing or traceroute probing.</td></tr><tr><td>Protocol</td><td>8</td><td>Next-layer protocol number; unexpected values may indicate tunneling, scanning, or parser confusion.</td></tr><tr><td>Header Checksum</td><td>16</td><td>IPv4 header integrity; invalid values suggest corruption, offload artifacts, or crafted packets.</td></tr><tr><td>Source Address</td><td>32</td><td>Origin IPv4 address; private, bogon, or impossible sources on external links suggest spoofing.</td></tr><tr><td>Destination Address</td><td>32</td><td>Target IPv4 address; unexpected internal, multicast, or broadcast destinations deserve review.</td></tr><tr><td>Options/Padding</td><td>32</td><td>Optional and variable; rare on normal traffic, so source route/record route options are high-signal.</td></tr></tbody>
+  </table>
+</details><pre>  A summary of the contents of the internet header follows:
 
 
-    0                   1                   2                   3
-    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |Version|  IHL  |Type of Service|          Total Length         |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |         Identification        |Flags|      Fragment Offset    |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |  Time to Live |    Protocol   |         Header Checksum       |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                       Source Address                          |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                    Destination Address                        |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                    Options                    |    Padding    |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-                    Example Internet Datagram Header
+    0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Version</div><div class="modern-diagram-cell">IHL</div><div class="modern-diagram-cell">Type of Service</div><div class="modern-diagram-cell">Total Length</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Identification</div><div class="modern-diagram-cell">Flags</div><div class="modern-diagram-cell">Fragment Offset</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Time to Live</div><div class="modern-diagram-cell">Protocol</div><div class="modern-diagram-cell">Header Checksum</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Source Address</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Destination Address</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Options</div><div class="modern-diagram-cell">Padding</div></div></div>
+</figure><pre>                    Example Internet Datagram Header
 
                                Figure 4.
 
@@ -1007,13 +979,12 @@ September 1981
 
 
 
-<span>                                                               [Page 11]</span></pre>
+                                                               [Page 11]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 16</span>
   </div>
-  <pre><span ></span>
-<span>                                                          September 1981</span>
+  <pre>                                                          September 1981
 Internet Protocol
 Specification
 
@@ -1035,16 +1006,10 @@ Specification
       Bit    3:  0 = Normal Delay,      1 = Low Delay.
       Bits   4:  0 = Normal Throughput, 1 = High Throughput.
       Bits   5:  0 = Normal Relibility, 1 = High Relibility.
-      Bit  6-7:  Reserved for Future Use.
-
-         0     1     2     3     4     5     6     7
-      +-----+-----+-----+-----+-----+-----+-----+-----+
-      |                 |     |     |     |     |     |
-      |   PRECEDENCE    |  D  |  T  |  R  |  0  |  0  |
-      |                 |     |     |     |     |     |
-      +-----+-----+-----+-----+-----+-----+-----+-----+
-
-        Precedence
+      Bit  6-7:  Reserved for Future Use.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0     1     2     3     4     5     6     7</div></div><div class="modern-diagram-row" style="--cell-count: 6"><div class="modern-diagram-cell">PRECEDENCE</div><div class="modern-diagram-cell">D</div><div class="modern-diagram-cell">T</div><div class="modern-diagram-cell">R</div><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">0</div></div></div>
+</figure><pre>        Precedence
 
           111 - Network Control
           110 - Internetwork Control
@@ -1065,7 +1030,7 @@ Specification
     during its transmission through the internet system.  Example
     mappings of the internet type of service to the actual service
     provided on networks such as AUTODIN II, ARPANET, SATNET, and PRNET
-    is given in "Service Mappings" [<a href="#ref-8" title="&quot;Service Mappings,&quot;">8</a>].
+    is given in &quot;Service Mappings&quot; [8].
 
 
 
@@ -1074,8 +1039,7 @@ Specification
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 17</span>
   </div>
-  <pre><span ></span>
-September 1981
+  <pre>September 1981
                                                        Internet Protocol
                                                            Specification
 
@@ -1117,21 +1081,18 @@ September 1981
     Various Control Flags.
 
       Bit 0: reserved, must be zero
-      Bit 1: (DF) 0 = May Fragment,  1 = Don't Fragment.
+      Bit 1: (DF) 0 = May Fragment,  1 = Don&#x27;t Fragment.
       Bit 2: (MF) 0 = Last Fragment, 1 = More Fragments.
 
-          0   1   2
-        +---+---+---+
-        |   | D | M |
-        | 0 | F | F |
-        +---+---+---+
-
-  Fragment Offset:  13 bits
+          0   1   2</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">D</div><div class="modern-diagram-cell">M</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">F</div><div class="modern-diagram-cell">F</div></div></div>
+</figure><pre>  Fragment Offset:  13 bits
 
     This field indicates where in the datagram this fragment belongs.
 
 
-<span>                                                               [Page 13]</span></pre>
+                                                               [Page 13]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 18</span>
@@ -1322,19 +1283,13 @@ Specification
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 21</span>
   </div>
-  <pre><span ></span>
-September 1981
+  <pre>September 1981
                                                        Internet Protocol
                                                            Specification
 
 
 
-      No Operation
-
-        +--------+
-        |00000001|
-        +--------+
-          Type=1
+      No Operation</pre><pre>        +--------+</pre><pre>        |00000001|</pre><pre>        +--------+</pre><pre>          Type=1
 
         This option may be used between options, for example, to align
         the beginning of a subsequent option on a 32 bit boundary.
@@ -1346,12 +1301,10 @@ September 1981
 
         This option provides a way for hosts to send security,
         compartmentation, handling restrictions, and TCC (closed user
-        group) parameters.  The format for this option is as follows:
-
-          +--------+--------+---//---+---//---+---//---+---//---+
-          |10000010|00001011|SSS  SSS|CCC  CCC|HHH  HHH|  TCC   |
-          +--------+--------+---//---+---//---+---//---+---//---+
-           Type=130 Length=11
+        group) parameters.  The format for this option is as follows:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 6"><div class="modern-diagram-cell">10000010</div><div class="modern-diagram-cell">00001011</div><div class="modern-diagram-cell">SSS  SSS</div><div class="modern-diagram-cell">CCC  CCC</div><div class="modern-diagram-cell">HHH  HHH</div><div class="modern-diagram-cell">TCC</div></div></div>
+</figure><pre>           Type=130 Length=11
 
         Security (S field):  16 bits
 
@@ -1379,13 +1332,12 @@ September 1981
 
 
 
-<span>                                                               [Page 17]</span></pre>
+                                                               [Page 17]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 22</span>
   </div>
-  <pre><span ></span>
-<span>                                                          September 1981</span>
+  <pre>                                                          September 1981
 Internet Protocol
 Specification
 
@@ -1401,8 +1353,8 @@ Specification
 
           The values for the control and release markings are
           alphanumeric digraphs and are defined in the Defense
-          Intelligence Agency Manual DIAM 65-19, "Standard Security
-          Markings".
+          Intelligence Agency Manual DIAM 65-19, &quot;Standard Security
+          Markings&quot;.
 
         Transmission Control Code (TCC field):  24 bits
 
@@ -1413,12 +1365,10 @@ Specification
         Must be copied on fragmentation.  This option appears at most
         once in a datagram.
 
-      Loose Source and Record Route
-
-        +--------+--------+--------+---------//--------+
-        |10000011| length | pointer|     route data    |
-        +--------+--------+--------+---------//--------+
-         Type=131
+      Loose Source and Record Route</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">10000011</div><div class="modern-diagram-cell">length</div><div class="modern-diagram-cell">pointer</div><div class="modern-diagram-cell">route data</div></div></div>
+</figure><pre>         Type=131
 
         The loose source and record route (LSRR) option provides a means
         for the source of an internet datagram to supply routing
@@ -1446,8 +1396,7 @@ Specification
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 23</span>
   </div>
-  <pre><span ></span>
-September 1981
+  <pre>September 1981
                                                        Internet Protocol
                                                            Specification
 
@@ -1459,7 +1408,7 @@ September 1981
         field, and the recorded route address replaces the source
         address just used, and pointer is increased by four.
 
-        The recorded route address is the internet module's own internet
+        The recorded route address is the internet module&#x27;s own internet
         address as known in the environment into which this datagram is
         being forwarded.
 
@@ -1476,12 +1425,10 @@ September 1981
         Must be copied on fragmentation.  Appears at most once in a
         datagram.
 
-      Strict Source and Record Route
-
-        +--------+--------+--------+---------//--------+
-        |10001001| length | pointer|     route data    |
-        +--------+--------+--------+---------//--------+
-         Type=137
+      Strict Source and Record Route</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">10001001</div><div class="modern-diagram-cell">length</div><div class="modern-diagram-cell">pointer</div><div class="modern-diagram-cell">route data</div></div></div>
+</figure><pre>         Type=137
 
         The strict source and record route (SSRR) option provides a
         means for the source of an internet datagram to supply routing
@@ -1503,13 +1450,12 @@ September 1981
 
 
 
-<span>                                                               [Page 19]</span></pre>
+                                                               [Page 19]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 24</span>
   </div>
-  <pre><span ></span>
-<span>                                                          September 1981</span>
+  <pre>                                                          September 1981
 Internet Protocol
 Specification
 
@@ -1524,7 +1470,7 @@ Specification
         field, and the recorded route address replaces the source
         address just used, and pointer is increased by four.
 
-        The recorded route address is the internet module's own internet
+        The recorded route address is the internet module&#x27;s own internet
         address as known in the environment into which this datagram is
         being forwarded.
 
@@ -1543,12 +1489,10 @@ Specification
         Must be copied on fragmentation.  Appears at most once in a
         datagram.
 
-      Record Route
-
-        +--------+--------+--------+---------//--------+
-        |00000111| length | pointer|     route data    |
-        +--------+--------+--------+---------//--------+
-          Type=7
+      Record Route</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">00000111</div><div class="modern-diagram-cell">length</div><div class="modern-diagram-cell">pointer</div><div class="modern-diagram-cell">route data</div></div></div>
+</figure><pre>          Type=7
 
         The record route option provides a means to record the route of
         an internet datagram.
@@ -1570,8 +1514,7 @@ Specification
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 25</span>
   </div>
-  <pre><span ></span>
-September 1981
+  <pre>September 1981
                                                        Internet Protocol
                                                            Specification
 
@@ -1596,17 +1539,15 @@ September 1981
         room for a full address to be inserted, the original datagram is
         considered to be in error and is discarded.  In either case an
         ICMP parameter problem message may be sent to the source
-        host [<a href="#ref-3" title="&quot;Internet Control Message Protocol - DARPA Internet Program Protocol Specification,&quot;">3</a>].
+        host [3].
 
         Not copied on fragmentation, goes in first fragment only.
         Appears at most once in a datagram.
 
-      Stream Identifier
-
-        +--------+--------+--------+--------+
-        |10001000|00000010|    Stream ID    |
-        +--------+--------+--------+--------+
-         Type=136 Length=4
+      Stream Identifier</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">10001000</div><div class="modern-diagram-cell">00000010</div><div class="modern-diagram-cell">Stream ID</div></div></div>
+</figure><pre>         Type=136 Length=4
 
         This option provides a way for the 16-bit SATNET stream
         identifier to be carried through networks that do not support
@@ -1627,29 +1568,21 @@ September 1981
 
 
 
-<span>                                                               [Page 21]</span></pre>
+                                                               [Page 21]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 26</span>
   </div>
-  <pre><span ></span>
-<span>                                                          September 1981</span>
+  <pre>                                                          September 1981
 Internet Protocol
 Specification
 
 
 
-      Internet Timestamp
-
-        +--------+--------+--------+--------+
-        |01000100| length | pointer|oflw|flg|
-        +--------+--------+--------+--------+
-        |         internet address          |
-        +--------+--------+--------+--------+
-        |             timestamp             |
-        +--------+--------+--------+--------+
-        |                 .                 |
-                          .
+      Internet Timestamp</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">01000100</div><div class="modern-diagram-cell">length</div><div class="modern-diagram-cell">pointer</div><div class="modern-diagram-cell">oflw</div><div class="modern-diagram-cell">flg</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">internet address</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">timestamp</div></div></div>
+</figure><pre>                          .
                           .
         Type = 68
 
@@ -2376,8 +2309,7 @@ September 1981
   <div class="rfc-page-top">
     <span class="rfc-page-label">Appendix</span>
   </div>
-  <pre><span ></span>
-<span>                                                          September 1981</span>
+  <pre>                                                          September 1981
 Internet Protocol
 
 
@@ -2389,23 +2321,10 @@ Example 1:
   This is an example of the minimal data carrying internet datagram:
 
 
-    0                   1                   2                   3
-    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |Ver= 4 |IHL= 5 |Type of Service|        Total Length = 21      |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |      Identification = 111     |Flg=0|   Fragment Offset = 0   |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |   Time = 123  |  Protocol = 1 |        header checksum        |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                         source address                        |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                      destination address                      |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |     data      |
-   +-+-+-+-+-+-+-+-+
-
-                       Example Internet Datagram
+    0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Ver= 4</div><div class="modern-diagram-cell">IHL= 5</div><div class="modern-diagram-cell">Type of Service</div><div class="modern-diagram-cell">Total Length = 21</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Identification = 111</div><div class="modern-diagram-cell">Flg=0</div><div class="modern-diagram-cell">Fragment Offset = 0</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Time = 123</div><div class="modern-diagram-cell">Protocol = 1</div><div class="modern-diagram-cell">header checksum</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">source address</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">destination address</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">data</div></div></div>
+</figure><pre>                       Example Internet Datagram
 
                                Figure 5.
 
@@ -2438,8 +2357,7 @@ Example 1:
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 39</span>
   </div>
-  <pre><span ></span>
-September 1981
+  <pre>September 1981
                                                        Internet Protocol
 
 
@@ -2452,30 +2370,14 @@ Example 2:
   allowed were 280 octets.
 
 
-    0                   1                   2                   3
-    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |Ver= 4 |IHL= 5 |Type of Service|       Total Length = 472      |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |     Identification = 111      |Flg=0|     Fragment Offset = 0 |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |   Time = 123  | Protocol = 6  |        header checksum        |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                         source address                        |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                      destination address                      |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                             data                              |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                             data                              |
-   \                                                               \
-   \                                                               \
-   |                             data                              |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |             data              |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-                       Example Internet Datagram
+    0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Ver= 4</div><div class="modern-diagram-cell">IHL= 5</div><div class="modern-diagram-cell">Type of Service</div><div class="modern-diagram-cell">Total Length = 472</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Identification = 111</div><div class="modern-diagram-cell">Flg=0</div><div class="modern-diagram-cell">Fragment Offset = 0</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Time = 123</div><div class="modern-diagram-cell">Protocol = 6</div><div class="modern-diagram-cell">header checksum</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">source address</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">destination address</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">data</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">data</div></div></div>
+</figure><pre>   \                                                               \
+   \                                                               \</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">data</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">data</div></div></div>
+</figure><pre>                       Example Internet Datagram
 
                                Figure 6.
 
@@ -2495,13 +2397,12 @@ Example 2:
 
 
 
-<span>                                                               [Page 35]</span></pre>
+                                                               [Page 35]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 40</span>
   </div>
-  <pre><span ></span>
-<span>                                                          September 1981</span>
+  <pre>                                                          September 1981
 Internet Protocol
 
 
@@ -2510,30 +2411,14 @@ Internet Protocol
   256 data octets.
 
 
-    0                   1                   2                   3
-    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |Ver= 4 |IHL= 5 |Type of Service|       Total Length = 276      |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |     Identification = 111      |Flg=1|     Fragment Offset = 0 |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |   Time = 119  | Protocol = 6  |        Header Checksum        |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                         source address                        |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                      destination address                      |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                             data                              |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                             data                              |
-   \                                                               \
-   \                                                               \
-   |                             data                              |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                             data                              |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-                       Example Internet Fragment
+    0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Ver= 4</div><div class="modern-diagram-cell">IHL= 5</div><div class="modern-diagram-cell">Type of Service</div><div class="modern-diagram-cell">Total Length = 276</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Identification = 111</div><div class="modern-diagram-cell">Flg=1</div><div class="modern-diagram-cell">Fragment Offset = 0</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Time = 119</div><div class="modern-diagram-cell">Protocol = 6</div><div class="modern-diagram-cell">Header Checksum</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">source address</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">destination address</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">data</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">data</div></div></div>
+</figure><pre>   \                                                               \
+   \                                                               \</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">data</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">data</div></div></div>
+</figure><pre>                       Example Internet Fragment
 
                                Figure 7.
 
@@ -2562,8 +2447,7 @@ Internet Protocol
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 41</span>
   </div>
-  <pre><span ></span>
-September 1981
+  <pre>September 1981
                                                        Internet Protocol
 
 
@@ -2571,30 +2455,14 @@ September 1981
   And the second fragment.
 
 
-    0                   1                   2                   3
-    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |Ver= 4 |IHL= 5 |Type of Service|       Total Length = 216      |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |     Identification = 111      |Flg=0|  Fragment Offset  =  32 |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |   Time = 119  | Protocol = 6  |        Header Checksum        |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                         source address                        |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                      destination address                      |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                             data                              |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                             data                              |
-   \                                                               \
-   \                                                               \
-   |                             data                              |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |            data               |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-                       Example Internet Fragment
+    0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Ver= 4</div><div class="modern-diagram-cell">IHL= 5</div><div class="modern-diagram-cell">Type of Service</div><div class="modern-diagram-cell">Total Length = 216</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Identification = 111</div><div class="modern-diagram-cell">Flg=0</div><div class="modern-diagram-cell">Fragment Offset  =  32</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Time = 119</div><div class="modern-diagram-cell">Protocol = 6</div><div class="modern-diagram-cell">Header Checksum</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">source address</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">destination address</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">data</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">data</div></div></div>
+</figure><pre>   \                                                               \
+   \                                                               \</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">data</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">data</div></div></div>
+</figure><pre>                       Example Internet Fragment
 
                                Figure 8.
 
@@ -2619,13 +2487,12 @@ September 1981
 
 
 
-<span>                                                               [Page 37]</span></pre>
+                                                               [Page 37]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 42</span>
   </div>
-  <pre><span ></span>
-<span>                                                          September 1981</span>
+  <pre>                                                          September 1981
 Internet Protocol
 
 
@@ -2635,34 +2502,14 @@ Example 3:
   Here, we show an example of a datagram containing options:
 
 
-    0                   1                   2                   3
-    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |Ver= 4 |IHL= 8 |Type of Service|       Total Length = 576      |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |       Identification = 111    |Flg=0|     Fragment Offset = 0 |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |   Time = 123  |  Protocol = 6 |       Header Checksum         |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                        source address                         |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                      destination address                      |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   | Opt. Code = x | Opt.  Len.= 3 | option value  | Opt. Code = x |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   | Opt. Len. = 4 |           option value        | Opt. Code = 1 |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   | Opt. Code = y | Opt. Len. = 3 |  option value | Opt. Code = 0 |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                             data                              |
-   \                                                               \
-   \                                                               \
-   |                             data                              |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                             data                              |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-                       Example Internet Datagram
+    0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Ver= 4</div><div class="modern-diagram-cell">IHL= 8</div><div class="modern-diagram-cell">Type of Service</div><div class="modern-diagram-cell">Total Length = 576</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Identification = 111</div><div class="modern-diagram-cell">Flg=0</div><div class="modern-diagram-cell">Fragment Offset = 0</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Time = 123</div><div class="modern-diagram-cell">Protocol = 6</div><div class="modern-diagram-cell">Header Checksum</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">source address</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">destination address</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Opt. Code = x</div><div class="modern-diagram-cell">Opt.  Len.= 3</div><div class="modern-diagram-cell">option value</div><div class="modern-diagram-cell">Opt. Code = x</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Opt. Len. = 4</div><div class="modern-diagram-cell">option value</div><div class="modern-diagram-cell">Opt. Code = 1</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Opt. Code = y</div><div class="modern-diagram-cell">Opt. Len. = 3</div><div class="modern-diagram-cell">option value</div><div class="modern-diagram-cell">Opt. Code = 0</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">data</div></div></div>
+</figure><pre>   \                                                               \
+   \                                                               \</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">data</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">data</div></div></div>
+</figure><pre>                       Example Internet Datagram
 
                                Figure 9.
 
@@ -2686,8 +2533,7 @@ Example 3:
   <div class="rfc-page-top">
     <span class="rfc-page-label">Appendix</span>
   </div>
-  <pre><span ></span>
-September 1981
+  <pre>September 1981
                                                        Internet Protocol
 
 
@@ -2701,32 +2547,20 @@ order in which they are read in English.  For example, in the following
 diagram the octets are transmitted in the order they are numbered.
 
 
-    0                   1                   2                   3
-    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |       1       |       2       |       3       |       4       |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |       5       |       6       |       7       |       8       |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |       9       |      10       |      11       |      12       |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-                      Transmission Order of Bytes
+    0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">2</div><div class="modern-diagram-cell">3</div><div class="modern-diagram-cell">4</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">5</div><div class="modern-diagram-cell">6</div><div class="modern-diagram-cell">7</div><div class="modern-diagram-cell">8</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">9</div><div class="modern-diagram-cell">10</div><div class="modern-diagram-cell">11</div><div class="modern-diagram-cell">12</div></div></div>
+</figure><pre>                      Transmission Order of Bytes
 
                                Figure 10.
 
 Whenever an octet represents a numeric quantity the left most bit in the
 diagram is the high order or most significant bit.  That is, the bit
 labeled 0 is the most significant bit.  For example, the following
-diagram represents the value 170 (decimal).
-
-
-                            0 1 2 3 4 5 6 7
-                           +-+-+-+-+-+-+-+-+
-                           |1 0 1 0 1 0 1 0|
-                           +-+-+-+-+-+-+-+-+
-
-                          Significance of Bits
+diagram represents the value 170 (decimal).</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">1 0 1 0 1 0 1 0</div></div></div>
+</figure><pre>                          Significance of Bits
 
                                Figure 11.
 
@@ -2743,7 +2577,7 @@ transmitted first.
 
 
 
-<span>                                                               [Page 39]</span></pre>
+                                                               [Page 39]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 44</span>
@@ -3190,15 +3024,6 @@ September 1981
       </div>
     </div>
   </div>
-</details><details class="header-reference-panel" open>
-  <summary><span>Header field quick-reference</span><strong>RFC 791 IPv4 Header</strong></summary>
-  <p class="header-note">IPv4 header fields expose spoofing, fragmentation, routing, and TTL anomalies before payload parsing starts.</p>
-  <div class="bit-axis">Bit positions 0-31</div>
-  <div class="header-diagram-wrap"><svg class="header-bit-layout" viewBox="0 0 320 258" role="img" aria-label="0-31 bit layout diagram" xmlns="http://www.w3.org/2000/svg"><desc>0-31 bit positions across each row; fields are drawn as blocks spanning their bit widths.</desc><text x="0" y="14" class="bit-label">0</text><text x="40" y="14" class="bit-label">4</text><text x="80" y="14" class="bit-label">8</text><text x="120" y="14" class="bit-label">12</text><text x="160" y="14" class="bit-label">16</text><text x="200" y="14" class="bit-label">20</text><text x="240" y="14" class="bit-label">24</text><text x="280" y="14" class="bit-label">28</text><text x="320" y="14" text-anchor="end" class="bit-label">31</text><line x1="0" y1="22" x2="0" y2="250" class="bit-grid" /><line x1="40" y1="22" x2="40" y2="250" class="bit-grid" /><line x1="80" y1="22" x2="80" y2="250" class="bit-grid" /><line x1="120" y1="22" x2="120" y2="250" class="bit-grid" /><line x1="160" y1="22" x2="160" y2="250" class="bit-grid" /><line x1="200" y1="22" x2="200" y2="250" class="bit-grid" /><line x1="240" y1="22" x2="240" y2="250" class="bit-grid" /><line x1="280" y1="22" x2="280" y2="250" class="bit-grid" /><line x1="320" y1="22" x2="320" y2="250" class="bit-grid" /><g><rect x="0" y="22" width="40" height="34" rx="7" class="field-block field-0" /><text x="20.0" y="44" text-anchor="middle" class="field-label">Ver</text><title>Version: bits 0-3 in row 1</title></g><g><rect x="40" y="22" width="40" height="34" rx="7" class="field-block field-1" /><text x="60.0" y="44" text-anchor="middle" class="field-label">IHL</text><title>IHL: bits 4-7 in row 1</title></g><g><rect x="80" y="22" width="80" height="34" rx="7" class="field-block field-2" /><text x="120.0" y="44" text-anchor="middle" class="field-label">Type of Service</text><title>Type of Service: bits 8-15 in row 1</title></g><g><rect x="160" y="22" width="160" height="34" rx="7" class="field-block field-3" /><text x="240.0" y="44" text-anchor="middle" class="field-label">Total Length</text><title>Total Length: bits 16-31 in row 1</title></g><g><rect x="0" y="60" width="160" height="34" rx="7" class="field-block field-4" /><text x="80.0" y="82" text-anchor="middle" class="field-label">Identification</text><title>Identification: bits 0-15 in row 2</title></g><g><rect x="160" y="60" width="30" height="34" rx="7" class="field-block field-0" /><text x="175.0" y="82" text-anchor="middle" class="field-label">Fla</text><title>Flags: bits 16-18 in row 2</title></g><g><rect x="190" y="60" width="130" height="34" rx="7" class="field-block field-1" /><text x="255.0" y="82" text-anchor="middle" class="field-label">Fragment Offset</text><title>Fragment Offset: bits 19-31 in row 2</title></g><g><rect x="0" y="98" width="80" height="34" rx="7" class="field-block field-2" /><text x="40.0" y="120" text-anchor="middle" class="field-label">TTL</text><title>TTL: bits 0-7 in row 3</title></g><g><rect x="80" y="98" width="80" height="34" rx="7" class="field-block field-3" /><text x="120.0" y="120" text-anchor="middle" class="field-label">Protocol</text><title>Protocol: bits 8-15 in row 3</title></g><g><rect x="160" y="98" width="160" height="34" rx="7" class="field-block field-4" /><text x="240.0" y="120" text-anchor="middle" class="field-label">Header Checksum</text><title>Header Checksum: bits 16-31 in row 3</title></g><g><rect x="0" y="136" width="320" height="34" rx="7" class="field-block field-0" /><text x="160.0" y="158" text-anchor="middle" class="field-label">Source Address</text><title>Source Address: bits 0-31 in row 4</title></g><g><rect x="0" y="174" width="320" height="34" rx="7" class="field-block field-1" /><text x="160.0" y="196" text-anchor="middle" class="field-label">Destination Address</text><title>Destination Address: bits 0-31 in row 5</title></g><g><rect x="0" y="212" width="320" height="34" rx="7" class="field-block field-2" /><text x="160.0" y="234" text-anchor="middle" class="field-label">Options/Padding</text><title>Options/Padding: bits 0-31 in row 6</title></g></svg></div>
-  <table class="header-field-table">
-    <thead><tr><th>Field</th><th>Bits</th><th>Hunting meaning / abnormal</th></tr></thead>
-    <tbody><tr><td>Version</td><td>4</td><td>Should be 4 for IPv4; any other value indicates misclassification or malformed traffic.</td></tr><tr><td>IHL</td><td>4</td><td>Header length; unusually large values imply IP options, while invalid short values are malformed.</td></tr><tr><td>Type of Service</td><td>8</td><td>QoS/precedence byte; odd markings can indicate tunneling, policy abuse, or legacy stack artifacts.</td></tr><tr><td>Total Length</td><td>16</td><td>Full packet length; mismatches with capture length can indicate truncation, evasion, or malformed packets.</td></tr><tr><td>Identification</td><td>16</td><td>Fragment correlation value; predictable or repeated IDs help fingerprint hosts and spot fragmentation abuse.</td></tr><tr><td>Flags</td><td>3</td><td>DF/MF fragmentation controls; watch illegal reserved-bit use and suspicious fragmentation patterns.</td></tr><tr><td>Fragment Offset</td><td>13</td><td>Fragment position; tiny, overlapping, or excessive fragments are classic IDS evasion signals.</td></tr><tr><td>TTL</td><td>8</td><td>Decrements each hop; unusually low or inconsistent TTL can indicate spoofing or traceroute probing.</td></tr><tr><td>Protocol</td><td>8</td><td>Next-layer protocol number; unexpected values may indicate tunneling, scanning, or parser confusion.</td></tr><tr><td>Header Checksum</td><td>16</td><td>IPv4 header integrity; invalid values suggest corruption, offload artifacts, or crafted packets.</td></tr><tr><td>Source Address</td><td>32</td><td>Origin IPv4 address; private, bogon, or impossible sources on external links suggest spoofing.</td></tr><tr><td>Destination Address</td><td>32</td><td>Target IPv4 address; unexpected internal, multicast, or broadcast destinations deserve review.</td></tr><tr><td>Options/Padding</td><td>32</td><td>Optional and variable; rare on normal traffic, so source route/record route options are high-signal.</td></tr></tbody>
-  </table>
 </details><h2>On this RFC</h2><div id="toc-links"></div></aside></section>
 </main>
 <script src="../assets/doc.js"></script>

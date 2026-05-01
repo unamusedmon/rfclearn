@@ -266,62 +266,58 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 4</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8538">RFC 8538</a>             Notification Support for BGP GR          March 2019</span>
+  <pre>RFC 8538             Notification Support for BGP GR          March 2019
 
 
    The second most significant bit is defined in this document as the
-   Graceful Notification ("N") bit.  It is used to indicate Graceful
+   Graceful Notification (&quot;N&quot;) bit.  It is used to indicate Graceful
    Restart support for BGP NOTIFICATION messages.  A BGP speaker
    indicates support for the procedures in this document by advertising
-   a Graceful Restart Capability with its "N" bit set (value 1).
+   a Graceful Restart Capability with its &quot;N&quot; bit set (value 1).
 
    If a BGP speaker that previously advertised a given set of Graceful
    Restart parameters opens a new session with a different set of
    parameters, these new parameters apply once the session has
    transitioned into ESTABLISHED state.
 
-<span><a href="#section-3">3</a>.  BGP Hard Reset Subcode</span>
+3.  BGP Hard Reset Subcode
 
    This document defines a new subcode for BGP Cease NOTIFICATION
    messages, called the Hard Reset subcode.  The value of this subcode
-   is discussed in <a href="#section-8">Section 8</a>.  In this document, a BGP Cease
+   is discussed in Section 8.  In this document, a BGP Cease
    NOTIFICATION message with the Hard Reset subcode is referred to as a
-   "Hard Reset message" or simply as a "Hard Reset".
+   &quot;Hard Reset message&quot; or simply as a &quot;Hard Reset&quot;.
 
-   When the "N" bit has been exchanged by two peers, NOTIFICATION
+   When the &quot;N&quot; bit has been exchanged by two peers, NOTIFICATION
    messages other than Hard Reset messages are referred to as
-   "Graceful", since such messages invoke Graceful Restart semantics.
+   &quot;Graceful&quot;, since such messages invoke Graceful Restart semantics.
 
-<span><a href="#section-3.1">3.1</a>.  Sending a Hard Reset</span>
+3.1.  Sending a Hard Reset
 
-   When the "N" bit has been exchanged, a Hard Reset message is used to
+   When the &quot;N&quot; bit has been exchanged, a Hard Reset message is used to
    indicate to the peer that the session is to be fully terminated.
 
    When sending a Hard Reset, the data portion of the NOTIFICATION
-   message is encoded as follows:
-
-       +--------+--------+--------
-       | ErrCode| Subcode| Data
-       +--------+--------+--------
-
-   ErrCode is a BGP Error Code (as documented in the IANA "BGP Error
-   (Notification) Codes" registry) that indicates the reason for the
+   message is encoded as follows:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">ErrCode</div><div class="modern-diagram-cell">Subcode</div><div class="modern-diagram-cell">Data</div></div></div>
+</figure><pre>   ErrCode is a BGP Error Code (as documented in the IANA &quot;BGP Error
+   (Notification) Codes&quot; registry) that indicates the reason for the
    Hard Reset.  Subcode is a BGP Error Subcode (as documented in the
-   IANA "BGP Error Subcodes" registry) as appropriate for the ErrCode.
+   IANA &quot;BGP Error Subcodes&quot; registry) as appropriate for the ErrCode.
    Similarly, Data is as appropriate for the ErrCode and Subcode.  In
    short, the Hard Reset encapsulates another NOTIFICATION message in
    its data portion.
 
-<span><a href="#section-3.2">3.2</a>.  Receiving a Hard Reset</span>
+3.2.  Receiving a Hard Reset
 
    Whenever a BGP speaker receives a Hard Reset, the speaker MUST
    terminate the BGP session following the standard procedures in
-   [<a href="./rfc4271" title="&quot;A Border Gateway Protocol 4 (BGP-4)&quot;">RFC4271</a>].
+   [RFC4271].
 
 
 
-<span>Patel, et al.                Standards Track                    [Page 4]</span></pre>
+Patel, et al.                Standards Track                    [Page 4]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 5</span>
@@ -446,38 +442,24 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 7</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8538">RFC 8538</a>             Notification Support for BGP GR          March 2019</span>
+  <pre>RFC 8538             Notification Support for BGP GR          March 2019
 
 
-<span><a href="#section-5">5</a>.  Use of Hard Reset</span>
+5.  Use of Hard Reset
 
-<span><a href="#section-5.1">5.1</a>.  When to Send a Hard Reset</span>
+5.1.  When to Send a Hard Reset
 
    Although when to send a Hard Reset is an implementation-specific
    decision, we offer some advice.  Many Cease NOTIFICATION subcodes
    represent permanent or long-term, rather than transient, session
-   termination.  Because of this, it's appropriate to use Hard Reset
+   termination.  Because of this, it&#x27;s appropriate to use Hard Reset
    with them.  As of publication of this document, subcodes 1-9 have
    been defined for Cease.  The following table lists each of these
-   subcodes along with suggested behavior.
-
-   +-------+------------------------------------+----------------------+
-   | Value |                Name                |  Suggested Behavior  |
-   +-------+------------------------------------+----------------------+
-   |   1   | Maximum Number of Prefixes Reached |      Hard Reset      |
-   |   2   |      Administrative Shutdown       |      Hard Reset      |
-   |   3   |         Peer De-configured         |      Hard Reset      |
-   |   4   |        Administrative Reset        | Provide user control |
-   |   5   |        Connection Rejected         |    Graceful Cease    |
-   |   6   |     Other Configuration Change     |    Graceful Cease    |
-   |   7   |  Connection Collision Resolution   |    Graceful Cease    |
-   |   8   |          Out of Resources          |    Graceful Cease    |
-   |   9   |             Hard Reset             |      Hard Reset      |
-   +-------+------------------------------------+----------------------+
-
-   These suggestions are only that -- suggestions, not requirements.
-   It's the nature of BGP implementations that the mapping of internal
+   subcodes along with suggested behavior.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Value</div><div class="modern-diagram-cell">Name</div><div class="modern-diagram-cell">Suggested Behavior</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">Maximum Number of Prefixes Reached</div><div class="modern-diagram-cell">Hard Reset</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">2</div><div class="modern-diagram-cell">Administrative Shutdown</div><div class="modern-diagram-cell">Hard Reset</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">3</div><div class="modern-diagram-cell">Peer De-configured</div><div class="modern-diagram-cell">Hard Reset</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">4</div><div class="modern-diagram-cell">Administrative Reset</div><div class="modern-diagram-cell">Provide user control</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">5</div><div class="modern-diagram-cell">Connection Rejected</div><div class="modern-diagram-cell">Graceful Cease</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">6</div><div class="modern-diagram-cell">Other Configuration Change</div><div class="modern-diagram-cell">Graceful Cease</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">7</div><div class="modern-diagram-cell">Connection Collision Resolution</div><div class="modern-diagram-cell">Graceful Cease</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">8</div><div class="modern-diagram-cell">Out of Resources</div><div class="modern-diagram-cell">Graceful Cease</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">9</div><div class="modern-diagram-cell">Hard Reset</div><div class="modern-diagram-cell">Hard Reset</div></div></div>
+</figure><pre>   These suggestions are only that -- suggestions, not requirements.
+   It&#x27;s the nature of BGP implementations that the mapping of internal
    states to BGP NOTIFICATION codes and subcodes is not always perfect.
    The guiding principle for the implementor should be that if there is
    no realistic hope that forwarding can continue or that the session
@@ -487,81 +469,60 @@ Table of Contents
    For all NOTIFICATION codes other than Cease, use of Hard Reset does
    not appear to be indicated.
 
-<span><a href="#section-5.2">5.2</a>.  Interaction with Other Specifications</span>
+5.2.  Interaction with Other Specifications
 
-   "BGP Administrative Shutdown Communication" [<a href="./rfc8203" title="&quot;BGP Administrative Shutdown Communication&quot;">RFC8203</a>] specifies use
+   &quot;BGP Administrative Shutdown Communication&quot; [RFC8203] specifies use
    of the data portion of the Administrative Shutdown or Administrative
-   Reset subcodes to convey a short message.  When [<a href="./rfc8203" title="&quot;BGP Administrative Shutdown Communication&quot;">RFC8203</a>] is used in
+   Reset subcodes to convey a short message.  When [RFC8203] is used in
    conjunction with Hard Reset, the subcode of the outermost Cease MUST
    be Hard Reset, with the Administrative Shutdown or Administrative
    Reset subcodes encapsulated within.  The encapsulated message MUST
-   subsequently be processed according to [<a href="./rfc8203" title="&quot;BGP Administrative Shutdown Communication&quot;">RFC8203</a>].
+   subsequently be processed according to [RFC8203].
 
 
 
 
 
-<span>Patel, et al.                Standards Track                    [Page 7]</span></pre>
+Patel, et al.                Standards Track                    [Page 7]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 8</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8538">RFC 8538</a>             Notification Support for BGP GR          March 2019</span>
+  <pre>RFC 8538             Notification Support for BGP GR          March 2019
 
 
-<span><a href="#section-6">6</a>.  Management Considerations</span>
+6.  Management Considerations
 
    When reporting a Hard Reset to network management, the error code and
    subcode reported MUST be Cease and Hard Reset, respectively.  If the
    network management layer in use permits it, the information carried
    in the Data portion SHOULD be reported as well.
 
-<span><a href="#section-7">7</a>.  Operational Considerations</span>
+7.  Operational Considerations
 
    Note that long (or infinite) retention time may cause operational
    issues and should be enabled with care.
 
-<span><a href="#section-8">8</a>.  IANA Considerations</span>
+8.  IANA Considerations
 
-   IANA has assigned subcode 9 ("Hard Reset") in the "BGP Cease
-   NOTIFICATION message subcodes" registry.
+   IANA has assigned subcode 9 (&quot;Hard Reset&quot;) in the &quot;BGP Cease
+   NOTIFICATION message subcodes&quot; registry.
 
-   IANA has created a sub-registry called "BGP Graceful Restart Flags"
-   under the "Border Gateway Protocol (BGP) Parameters" registry.  The
-   registration procedure is Standards Action [<a href="./rfc8126" title="">RFC8126</a>]; this document
-   and [<a href="./rfc4724" title="&quot;Graceful Restart Mechanism for BGP&quot;">RFC4724</a>] are listed as references.  The initial values are as
-   follows:
-
-         +--------------+---------------+------------+-----------+
-         | Bit Position |      Name     | Short Name | Reference |
-         +--------------+---------------+------------+-----------+
-         |      0       | Restart State |     R      |  <a href="./rfc4724">RFC 4724</a> |
-         |      1       |  Notification |     N      |  <a href="./rfc8538">RFC 8538</a> |
-         |     2-3      |   Unassigned  |            |           |
-         +--------------+---------------+------------+-----------+
-
-   IANA has created a sub-registry called "BGP Graceful Restart Flags
-   for Address Family" under the "Border Gateway Protocol (BGP)
-   Parameters" registry.  The registration procedure is Standards
-   Action; this document and [<a href="./rfc4724" title="&quot;Graceful Restart Mechanism for BGP&quot;">RFC4724</a>] are listed as references.  The
-   initial values are as follows:
-
-       +--------------+------------------+------------+-----------+
-       | Bit Position |       Name       | Short Name | Reference |
-       +--------------+------------------+------------+-----------+
-       |      0       | Forwarding State |     F      |  <a href="./rfc4724">RFC 4724</a> |
-       |     1-7      |    Unassigned    |            |           |
-       +--------------+------------------+------------+-----------+
-
-
-
-
-
-
-
-
-<span>Patel, et al.                Standards Track                    [Page 8]</span></pre>
+   IANA has created a sub-registry called &quot;BGP Graceful Restart Flags&quot;
+   under the &quot;Border Gateway Protocol (BGP) Parameters&quot; registry.  The
+   registration procedure is Standards Action [RFC8126]; this document
+   and [RFC4724] are listed as references.  The initial values are as
+   follows:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Bit Position</div><div class="modern-diagram-cell">Name</div><div class="modern-diagram-cell">Short Name</div><div class="modern-diagram-cell">Reference</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">Restart State</div><div class="modern-diagram-cell">R</div><div class="modern-diagram-cell">RFC 4724</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">Notification</div><div class="modern-diagram-cell">N</div><div class="modern-diagram-cell">RFC 8538</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">2-3</div><div class="modern-diagram-cell">Unassigned</div></div></div>
+</figure><pre>   IANA has created a sub-registry called &quot;BGP Graceful Restart Flags
+   for Address Family&quot; under the &quot;Border Gateway Protocol (BGP)
+   Parameters&quot; registry.  The registration procedure is Standards
+   Action; this document and [RFC4724] are listed as references.  The
+   initial values are as follows:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Bit Position</div><div class="modern-diagram-cell">Name</div><div class="modern-diagram-cell">Short Name</div><div class="modern-diagram-cell">Reference</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">Forwarding State</div><div class="modern-diagram-cell">F</div><div class="modern-diagram-cell">RFC 4724</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">1-7</div><div class="modern-diagram-cell">Unassigned</div></div></div>
+</figure><pre>Patel, et al.                Standards Track                    [Page 8]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 9</span>

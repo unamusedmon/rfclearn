@@ -266,32 +266,25 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 4</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1788">RFC 1788</a>                    ICMP Domain Name                  April 1995</span>
+  <pre>RFC 1788                    ICMP Domain Name                  April 1995
 
 
-<span><a href="#section-1.4">1.4</a>.  Messages</span>
+1.4.  Messages
 
    The datagram format and basic facilities are already defined for ICMP
-   [<a href="./rfc792">RFC-792</a>].
+   [RFC-792].
 
    Up-to-date values of the ICMP Type field are specified in the most
-   recent "Assigned Numbers" [<a href="./rfc1700">RFC-1700</a>].  This document concerns the
+   recent &quot;Assigned Numbers&quot; [RFC-1700].  This document concerns the
    following values:
 
        37  Domain Name Request
        38  Domain Name Reply
 
-<span><a href="#section-2">2</a>.  Domain Name Request</span>
-
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |     Type      |     Code      |          Checksum             |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |           Identifier          |        Sequence Number        |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-
-   Type             37
+2.  Domain Name Request</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Type</div><div class="modern-diagram-cell">Code</div><div class="modern-diagram-cell">Checksum</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Identifier</div><div class="modern-diagram-cell">Sequence Number</div></div></div>
+</figure><pre>   Type             37
 
    Code             0
 
@@ -321,29 +314,18 @@ Table of Contents
 
 
 
-<span>Simpson                                                         [Page 4]</span></pre>
+Simpson                                                         [Page 4]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 5</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1788">RFC 1788</a>                    ICMP Domain Name                  April 1995</span>
+  <pre>RFC 1788                    ICMP Domain Name                  April 1995
 
 
-<span><a href="#section-3">3</a>.  Domain Name Reply</span>
-
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |     Type      |     Code      |          Checksum             |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |           Identifier          |        Sequence Number        |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                          Time-To-Live                         |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |   Names ...
-   +-+-+-+-+-+-+-+-
-
-
-   Type             38
+3.  Domain Name Reply</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Type</div><div class="modern-diagram-cell">Code</div><div class="modern-diagram-cell">Checksum</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Identifier</div><div class="modern-diagram-cell">Sequence Number</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Time-To-Live</div></div></div>
+</figure><pre>   |   Names ...</pre><pre>   +-+-+-+-+-+-+-+-</pre><pre>   Type             38
 
    Code             0
 
@@ -381,7 +363,7 @@ Table of Contents
 
 
 
-<span>Simpson                                                         [Page 5]</span></pre>
+Simpson                                                         [Page 5]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 6</span>

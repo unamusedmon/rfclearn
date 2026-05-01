@@ -266,8 +266,7 @@ zones are up to date, and if not, obtains a new copy of updated zones
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 4</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1035">RFC 1035</a>        Domain Implementation and Specification    November 1987</span>
+  <pre>RFC 1035        Domain Implementation and Specification    November 1987
 
 
 from master files stored locally or in another name server.  The second
@@ -280,7 +279,7 @@ This functional structure isolates the problems of user interface,
 failure recovery, and distribution in the resolvers and isolates the
 database update and refresh problems in the name servers.
 
-<span><a href="#section-2.2">2.2</a>. Common configurations</span>
+2.2. Common configurations
 
 A host can participate in the domain name system in a number of ways,
 depending on whether the host runs programs that retrieve information
@@ -289,22 +288,10 @@ hosts, or various combinations of both functions.  The simplest, and
 perhaps most typical, configuration is shown below:
 
                  Local Host                        |  Foreign
-                                                   |
-    +---------+               +----------+         |  +--------+
-    |         | user queries  |          |queries  |  |        |
-    |  User   |--------------&gt;|          |---------|-&gt;|Foreign |
-    | Program |               | Resolver |         |  |  Name  |
-    |         |&lt;--------------|          |&lt;--------|--| Server |
-    |         | user responses|          |responses|  |        |
-    +---------+               +----------+         |  +--------+
-                                |     A            |
-                cache additions |     | references |
-                                V     |            |
-                              +----------+         |
-                              |  cache   |         |
-                              +----------+         |
-
-User programs interact with the domain name space through resolvers; the
+                                                   |</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">user queries</div><div class="modern-diagram-cell">queries</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">User</div><div class="modern-diagram-cell">--------------&gt;</div><div class="modern-diagram-cell">---------</div><div class="modern-diagram-cell">-&gt;</div><div class="modern-diagram-cell">Foreign</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Program</div><div class="modern-diagram-cell">Resolver</div><div class="modern-diagram-cell">Name</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">&lt;--------------</div><div class="modern-diagram-cell">&lt;--------</div><div class="modern-diagram-cell">--</div><div class="modern-diagram-cell">Server</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">user responses</div><div class="modern-diagram-cell">responses</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">A</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">cache additions</div><div class="modern-diagram-cell">references</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">V</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">cache</div></div></div>
+</figure><pre>User programs interact with the domain name space through resolvers; the
 format of user queries and user responses is specific to the host and
 its operating system.  User queries will typically be operating system
 calls, and the resolver and its cache will be part of the host operating
@@ -321,13 +308,12 @@ servers and the corresponding responses have a standard format described
 
 
 
-<span>Mockapetris                                                     [Page 4]</span></pre>
+Mockapetris                                                     [Page 4]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 5</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1035">RFC 1035</a>        Domain Implementation and Specification    November 1987</span>
+  <pre>RFC 1035        Domain Implementation and Specification    November 1987
 
 
 in this memo, and may be datagrams.
@@ -337,18 +323,10 @@ program on a dedicated machine or a process or processes on a large
 timeshared host.  A simple configuration might be:
 
                  Local Host                        |  Foreign
-                                                   |
-      +---------+                                  |
-     /         /|                                  |
-    +---------+ |             +----------+         |  +--------+
-    |         | |             |          |responses|  |        |
-    |         | |             |   Name   |---------|-&gt;|Foreign |
-    |  Master |--------------&gt;|  Server  |         |  |Resolver|
-    |  files  | |             |          |&lt;--------|--|        |
-    |         |/              |          | queries |  +--------+
-    +---------+               +----------+         |
-
-Here a primary name server acquires information about one or more zones
+                                                   |</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">responses</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Name</div><div class="modern-diagram-cell">---------</div><div class="modern-diagram-cell">-&gt;</div><div class="modern-diagram-cell">Foreign</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Master</div><div class="modern-diagram-cell">--------------&gt;</div><div class="modern-diagram-cell">Server</div><div class="modern-diagram-cell">Resolver</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">files</div><div class="modern-diagram-cell">&lt;--------</div><div class="modern-diagram-cell">--</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">/</div><div class="modern-diagram-cell">queries</div><div class="modern-diagram-cell">+--------+</div></div></div>
+</figure><pre>Here a primary name server acquires information about one or more zones
 by reading master files from its local file system, and answers queries
 about those zones that arrive from foreign resolvers.
 
@@ -358,36 +336,21 @@ check for updates from the primary server using the zone transfer
 protocol of the DNS.  This configuration is shown below:
 
                  Local Host                        |  Foreign
-                                                   |
-      +---------+                                  |
-     /         /|                                  |
-    +---------+ |             +----------+         |  +--------+
-    |         | |             |          |responses|  |        |
-    |         | |             |   Name   |---------|-&gt;|Foreign |
-    |  Master |--------------&gt;|  Server  |         |  |Resolver|
-    |  files  | |             |          |&lt;--------|--|        |
-    |         |/              |          | queries |  +--------+
-    +---------+               +----------+         |
-                                A     |maintenance |  +--------+
-                                |     +------------|-&gt;|        |
-                                |      queries     |  |Foreign |
-                                |                  |  |  Name  |
-                                +------------------|--| Server |
-                             maintenance responses |  +--------+
-
-In this configuration, the name server periodically establishes a
+                                                   |</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">responses</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Name</div><div class="modern-diagram-cell">---------</div><div class="modern-diagram-cell">-&gt;</div><div class="modern-diagram-cell">Foreign</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Master</div><div class="modern-diagram-cell">--------------&gt;</div><div class="modern-diagram-cell">Server</div><div class="modern-diagram-cell">Resolver</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">files</div><div class="modern-diagram-cell">&lt;--------</div><div class="modern-diagram-cell">--</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">/</div><div class="modern-diagram-cell">queries</div><div class="modern-diagram-cell">+--------+</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">A</div><div class="modern-diagram-cell">maintenance</div><div class="modern-diagram-cell">+--------+</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">queries</div><div class="modern-diagram-cell">Foreign</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Name</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">+------------------</div><div class="modern-diagram-cell">--</div><div class="modern-diagram-cell">Server</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">maintenance responses</div><div class="modern-diagram-cell">+--------+</div></div></div>
+</figure><pre>In this configuration, the name server periodically establishes a
 virtual circuit to a foreign name server to acquire a copy of a zone or
 to check that an existing copy has not changed.  The messages sent for
 
 
 
-<span>Mockapetris                                                     [Page 5]</span></pre>
+Mockapetris                                                     [Page 5]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 6</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1035">RFC 1035</a>        Domain Implementation and Specification    November 1987</span>
+  <pre>RFC 1035        Domain Implementation and Specification    November 1987
 
 
 these maintenance activities follow the same form as queries and
@@ -397,39 +360,10 @@ The information flow in a host that supports all aspects of the domain
 name system is shown below:
 
                  Local Host                        |  Foreign
-                                                   |
-    +---------+               +----------+         |  +--------+
-    |         | user queries  |          |queries  |  |        |
-    |  User   |--------------&gt;|          |---------|-&gt;|Foreign |
-    | Program |               | Resolver |         |  |  Name  |
-    |         |&lt;--------------|          |&lt;--------|--| Server |
-    |         | user responses|          |responses|  |        |
-    +---------+               +----------+         |  +--------+
-                                |     A            |
-                cache additions |     | references |
-                                V     |            |
-                              +----------+         |
-                              |  Shared  |         |
-                              | database |         |
-                              +----------+         |
-                                A     |            |
-      +---------+     refreshes |     | references |
-     /         /|               |     V            |
-    +---------+ |             +----------+         |  +--------+
-    |         | |             |          |responses|  |        |
-    |         | |             |   Name   |---------|-&gt;|Foreign |
-    |  Master |--------------&gt;|  Server  |         |  |Resolver|
-    |  files  | |             |          |&lt;--------|--|        |
-    |         |/              |          | queries |  +--------+
-    +---------+               +----------+         |
-                                A     |maintenance |  +--------+
-                                |     +------------|-&gt;|        |
-                                |      queries     |  |Foreign |
-                                |                  |  |  Name  |
-                                +------------------|--| Server |
-                             maintenance responses |  +--------+
-
-The shared database holds domain space data for the local name server
+                                                   |</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">user queries</div><div class="modern-diagram-cell">queries</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">User</div><div class="modern-diagram-cell">--------------&gt;</div><div class="modern-diagram-cell">---------</div><div class="modern-diagram-cell">-&gt;</div><div class="modern-diagram-cell">Foreign</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Program</div><div class="modern-diagram-cell">Resolver</div><div class="modern-diagram-cell">Name</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">&lt;--------------</div><div class="modern-diagram-cell">&lt;--------</div><div class="modern-diagram-cell">--</div><div class="modern-diagram-cell">Server</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">user responses</div><div class="modern-diagram-cell">responses</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">A</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">cache additions</div><div class="modern-diagram-cell">references</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">V</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Shared</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">database</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">A</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">+---------+     refreshes</div><div class="modern-diagram-cell">references</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">/         /</div><div class="modern-diagram-cell">V</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">responses</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Name</div><div class="modern-diagram-cell">---------</div><div class="modern-diagram-cell">-&gt;</div><div class="modern-diagram-cell">Foreign</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Master</div><div class="modern-diagram-cell">--------------&gt;</div><div class="modern-diagram-cell">Server</div><div class="modern-diagram-cell">Resolver</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">files</div><div class="modern-diagram-cell">&lt;--------</div><div class="modern-diagram-cell">--</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">/</div><div class="modern-diagram-cell">queries</div><div class="modern-diagram-cell">+--------+</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">A</div><div class="modern-diagram-cell">maintenance</div><div class="modern-diagram-cell">+--------+</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">queries</div><div class="modern-diagram-cell">Foreign</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Name</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">+------------------</div><div class="modern-diagram-cell">--</div><div class="modern-diagram-cell">Server</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">maintenance responses</div><div class="modern-diagram-cell">+--------+</div></div></div>
+</figure><pre>The shared database holds domain space data for the local name server
 and resolver.  The contents of the shared database will typically be a
 mixture of authoritative data maintained by the periodic refresh
 operations of the name server and cached data from previous resolver
@@ -441,13 +375,12 @@ local implementor.
 
 
 
-<span>Mockapetris                                                     [Page 6]</span></pre>
+Mockapetris                                                     [Page 6]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 7</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1035">RFC 1035</a>        Domain Implementation and Specification    November 1987</span>
+  <pre>RFC 1035        Domain Implementation and Specification    November 1987
 
 
 Information flow can also be tailored so that a group of hosts act
@@ -463,37 +396,20 @@ resolvers located in a recursive server in one or more name servers
 known to perform that service:
 
                    Local Hosts                     |  Foreign
-                                                   |
-    +---------+                                    |
-    |         | responses                          |
-    | Stub    |&lt;--------------------+              |
-    | Resolver|                     |              |
-    |         |----------------+    |              |
-    +---------+ recursive      |    |              |
-                queries        |    |              |
-                               V    |              |
-    +---------+ recursive     +----------+         |  +--------+
-    |         | queries       |          |queries  |  |        |
-    | Stub    |--------------&gt;| Recursive|---------|-&gt;|Foreign |
-    | Resolver|               | Server   |         |  |  Name  |
-    |         |&lt;--------------|          |&lt;--------|--| Server |
-    +---------+ responses     |          |responses|  |        |
-                              +----------+         |  +--------+
-                              |  Central |         |
-                              |   cache  |         |
-                              +----------+         |
-
-In any case, note that domain components are always replicated for
+                                                   |</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">responses</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Stub</div><div class="modern-diagram-cell">&lt;--------------------+</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Resolver</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">+---------+ recursive</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">queries</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">V</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">+---------+ recursive     +----------+</div><div class="modern-diagram-cell">+--------+</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">queries</div><div class="modern-diagram-cell">queries</div></div><div class="modern-diagram-row" style="--cell-count: 6"><div class="modern-diagram-cell">Stub</div><div class="modern-diagram-cell">--------------&gt;</div><div class="modern-diagram-cell">Recursive</div><div class="modern-diagram-cell">---------</div><div class="modern-diagram-cell">-&gt;</div><div class="modern-diagram-cell">Foreign</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Resolver</div><div class="modern-diagram-cell">Server</div><div class="modern-diagram-cell">Name</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">&lt;--------------</div><div class="modern-diagram-cell">&lt;--------</div><div class="modern-diagram-cell">--</div><div class="modern-diagram-cell">Server</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">+---------+ responses</div><div class="modern-diagram-cell">responses</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Central</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">cache</div></div></div>
+</figure><pre>In any case, note that domain components are always replicated for
 reliability whenever possible.
 
-<span><a href="#section-2.3">2.3</a>. Conventions</span>
+2.3. Conventions
 
 The domain system has several conventions dealing with low-level, but
 fundamental, issues.  While the implementor is free to violate these
 conventions WITHIN HIS OWN SYSTEM, he must observe these conventions in
 ALL behavior observed from other hosts.
 
-<span><a href="#section-2.3.1">2.3.1</a>. Preferred name syntax</span>
+2.3.1. Preferred name syntax
 
 The DNS specifications attempt to be as general as possible in the rules
 for constructing domain names.  The idea is that the name of any
@@ -501,7 +417,7 @@ existing object can be expressed as a domain name with minimal changes.
 
 
 
-<span>Mockapetris                                                     [Page 7]</span></pre>
+Mockapetris                                                     [Page 7]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 8</span>
@@ -566,40 +482,28 @@ document is resolved to the octet level.  Whenever a diagram shows a
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 9</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1035">RFC 1035</a>        Domain Implementation and Specification    November 1987</span>
+  <pre>RFC 1035        Domain Implementation and Specification    November 1987
 
 
 group of octets, the order of transmission of those octets is the normal
 order in which they are read in English.  For example, in the following
 diagram, the octets are transmitted in the order they are numbered.
 
-     0                   1
-     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |       1       |       2       |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |       3       |       4       |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |       5       |       6       |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-Whenever an octet represents a numeric quantity, the left most bit in
+     0                   1</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">2</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">3</div><div class="modern-diagram-cell">4</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">5</div><div class="modern-diagram-cell">6</div></div></div>
+</figure><pre>Whenever an octet represents a numeric quantity, the left most bit in
 the diagram is the high order or most significant bit.  That is, the bit
 labeled 0 is the most significant bit.  For example, the following
-diagram represents the value 170 (decimal).
-
-     0 1 2 3 4 5 6 7
-    +-+-+-+-+-+-+-+-+
-    |1 0 1 0 1 0 1 0|
-    +-+-+-+-+-+-+-+-+
-
-Similarly, whenever a multi-octet field represents a numeric quantity
+diagram represents the value 170 (decimal).</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">1 0 1 0 1 0 1 0</div></div></div>
+</figure><pre>Similarly, whenever a multi-octet field represents a numeric quantity
 the left most bit of the whole field is the most significant bit.  When
 a multi-octet quantity is transmitted the most significant octet is
 transmitted first.
 
-<span><a href="#section-2.3.3">2.3.3</a>. Character Case</span>
+2.3.3. Character Case
 
 For all parts of the DNS that are part of the official protocol, all
 comparisons between character strings (e.g., labels, domain names, etc.)
@@ -621,7 +525,7 @@ insensitive manner.
 
 
 
-<span>Mockapetris                                                     [Page 9]</span></pre>
+Mockapetris                                                     [Page 9]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 10</span>
@@ -686,39 +590,24 @@ with zero parity.  Non-alphabetic codes must match exactly.
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 11</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1035">RFC 1035</a>        Domain Implementation and Specification    November 1987</span>
+  <pre>RFC 1035        Domain Implementation and Specification    November 1987
 
 
-<span><a href="#section-3.2">3.2</a>. RR definitions</span>
+3.2. RR definitions
 
-<span><a href="#section-3.2.1">3.2.1</a>. Format</span>
+3.2.1. Format
 
 All RRs have the same top level format shown below:
 
-                                    1  1  1  1  1  1
-      0  1  2  3  4  5  6  7  8  9  0  1  2  3  4  5
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    |                                               |
-    /                                               /
-    /                      NAME                     /
-    |                                               |
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    |                      TYPE                     |
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    |                     CLASS                     |
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    |                      TTL                      |
-    |                                               |
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    |                   RDLENGTH                    |
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--|
-    /                     RDATA                     /
-    /                                               /
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-
-
-where:
+                                    1  1  1  1  1  1</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0  1  2  3  4  5  6  7  8  9  0  1  2  3  4  5</div></div></div>
+</figure><pre>    /                                               /
+    /                      NAME                     /</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">TYPE</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">CLASS</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">TTL</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">RDLENGTH</div></div></div>
+</figure><pre>    /                     RDATA                     /
+    /                                               /</pre><pre>    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+</pre><pre>where:
 
 NAME            an owner name, i.e., the name of the node to which this
                 resource record pertains.
@@ -741,7 +630,7 @@ RDLENGTH        an unsigned 16 bit integer that specifies the length in
 
 
 
-<span>Mockapetris                                                    [Page 11]</span></pre>
+Mockapetris                                                    [Page 11]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 12</span>
@@ -1046,18 +935,11 @@ with a mailing list.
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 17</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1035">RFC 1035</a>        Domain Implementation and Specification    November 1987</span>
+  <pre>RFC 1035        Domain Implementation and Specification    November 1987
 
 
-<span><a href="#section-3.3.8">3.3.8</a>. MR RDATA format (EXPERIMENTAL)</span>
-
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    /                   NEWNAME                     /
-    /                                               /
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-
-where:
+3.3.8. MR RDATA format (EXPERIMENTAL)</pre><pre>    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+</pre><pre>    /                   NEWNAME                     /
+    /                                               /</pre><pre>    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+</pre><pre>where:
 
 NEWNAME         A &lt;domain-name&gt; which specifies a mailbox which is the
                 proper rename of the specified mailbox.
@@ -1066,16 +948,11 @@ MR records cause no additional section processing.  The main use for MR
 is as a forwarding entry for a user who has moved to a different
 mailbox.
 
-<span><a href="#section-3.3.9">3.3.9</a>. MX RDATA format</span>
-
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    |                  PREFERENCE                   |
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    /                   EXCHANGE                    /
-    /                                               /
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-
-where:
+3.3.9. MX RDATA format</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">PREFERENCE</div></div></div>
+</figure><pre>    /                   EXCHANGE                    /
+    /                                               /</pre><pre>    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+</pre><pre>where:
 
 PREFERENCE      A 16 bit integer which specifies the preference given to
                 this RR among others at the same owner.  Lower values
@@ -1086,22 +963,16 @@ EXCHANGE        A &lt;domain-name&gt; which specifies a host willing to act as
 
 MX records cause type A additional section processing for the host
 specified by EXCHANGE.  The use of MX RRs is explained in detail in
-[<a href="./rfc974" title="&quot;Mail routing and the domain system&quot;">RFC-974</a>].
+[RFC-974].
 
-<span><a href="#section-3.3.10">3.3.10</a>. NULL RDATA format (EXPERIMENTAL)</span>
-
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    /                  &lt;anything&gt;                   /
-    /                                               /
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-
-Anything at all may be in the RDATA field so long as it is 65535 octets
+3.3.10. NULL RDATA format (EXPERIMENTAL)</pre><pre>    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+</pre><pre>    /                  &lt;anything&gt;                   /
+    /                                               /</pre><pre>    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+</pre><pre>Anything at all may be in the RDATA field so long as it is 65535 octets
 or less.
 
 
 
 
-<span>Mockapetris                                                    [Page 17]</span></pre>
+Mockapetris                                                    [Page 17]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 18</span>
@@ -1166,35 +1037,14 @@ description of the IN-ADDR.ARPA domain for an example.
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 19</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1035">RFC 1035</a>        Domain Implementation and Specification    November 1987</span>
+  <pre>RFC 1035        Domain Implementation and Specification    November 1987
 
 
-<span><a href="#section-3.3.13">3.3.13</a>. SOA RDATA format</span>
-
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    /                     MNAME                     /
-    /                                               /
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    /                     RNAME                     /
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    |                    SERIAL                     |
-    |                                               |
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    |                    REFRESH                    |
-    |                                               |
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    |                     RETRY                     |
-    |                                               |
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    |                    EXPIRE                     |
-    |                                               |
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    |                    MINIMUM                    |
-    |                                               |
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-
-where:
+3.3.13. SOA RDATA format</pre><pre>    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+</pre><pre>    /                     MNAME                     /
+    /                                               /</pre><pre>    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+</pre><pre>    /                     RNAME                     /</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">SERIAL</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">REFRESH</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">RETRY</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">EXPIRE</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">MINIMUM</div></div></div>
+</figure><pre>where:
 
 MNAME           The &lt;domain-name&gt; of the name server that was the
                 original or primary source of data for this zone.
@@ -1221,13 +1071,12 @@ EXPIRE          A 32 bit time value that specifies the upper limit on
 
 
 
-<span>Mockapetris                                                    [Page 19]</span></pre>
+Mockapetris                                                    [Page 19]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 20</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1035">RFC 1035</a>        Domain Implementation and Specification    November 1987</span>
+  <pre>RFC 1035        Domain Implementation and Specification    November 1987
 
 
 MINIMUM         The unsigned 32 bit minimum TTL field that should be
@@ -1249,28 +1098,19 @@ reason for this provison is to allow future dynamic update facilities to
 change the SOA RR with known semantics.
 
 
-<span><a href="#section-3.3.14">3.3.14</a>. TXT RDATA format</span>
-
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    /                   TXT-DATA                    /
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-
-where:
+3.3.14. TXT RDATA format</pre><pre>    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+</pre><pre>    /                   TXT-DATA                    /</pre><pre>    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+</pre><pre>where:
 
 TXT-DATA        One or more &lt;character-string&gt;s.
 
 TXT RRs are used to hold descriptive text.  The semantics of the text
 depends on the domain where it is found.
 
-<span><a href="#section-3.4">3.4</a>. Internet specific RRs</span>
+3.4. Internet specific RRs
 
-<span><a href="#section-3.4.1">3.4.1</a>. A RDATA format</span>
-
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    |                    ADDRESS                    |
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-
-where:
+3.4.1. A RDATA format</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">ADDRESS</div></div></div>
+</figure><pre>where:
 
 ADDRESS         A 32 bit Internet address.
 
@@ -1281,33 +1121,24 @@ records.
 
 
 
-<span>Mockapetris                                                    [Page 20]</span></pre>
+Mockapetris                                                    [Page 20]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 21</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1035">RFC 1035</a>        Domain Implementation and Specification    November 1987</span>
+  <pre>RFC 1035        Domain Implementation and Specification    November 1987
 
 
 A records cause no additional section processing.  The RDATA section of
 an A line in a master file is an Internet address expressed as four
 decimal numbers separated by dots without any imbedded spaces (e.g.,
-"10.2.0.52" or "192.0.5.6").
+&quot;10.2.0.52&quot; or &quot;192.0.5.6&quot;).
 
-<span><a href="#section-3.4.2">3.4.2</a>. WKS RDATA format</span>
-
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    |                    ADDRESS                    |
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    |       PROTOCOL        |                       |
-    +--+--+--+--+--+--+--+--+                       |
-    |                                               |
-    /                   &lt;BIT MAP&gt;                   /
-    /                                               /
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-
-where:
+3.4.2. WKS RDATA format</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">ADDRESS</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">PROTOCOL</div></div></div>
+</figure><pre>    /                   &lt;BIT MAP&gt;                   /
+    /                                               /</pre><pre>    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+</pre><pre>where:
 
 ADDRESS         An 32 bit Internet address
 
@@ -1322,10 +1153,10 @@ field specifies an IP protocol number, and the bit map has one bit per
 port of the specified protocol.  The first bit corresponds to port 0,
 the second to port 1, etc.  If the bit map does not include a bit for a
 protocol of interest, that bit is assumed zero.  The appropriate values
-and mnemonics for ports and protocols are specified in [<a href="./rfc1010" title="&quot;Assigned Numbers&quot;">RFC-1010</a>].
+and mnemonics for ports and protocols are specified in [RFC-1010].
 
 For example, if PROTOCOL=TCP (6), the 26th bit corresponds to TCP port
-<span><a href="#section-25">25</a> (SMTP).  </span>If this bit is set, a SMTP server should be listening on TCP
+25 (SMTP).  If this bit is set, a SMTP server should be listening on TCP
 port 25; if zero, SMTP service is not supported on the specified
 address.
 
@@ -1341,7 +1172,7 @@ or decimal numbers.
 
 
 
-<span>Mockapetris                                                    [Page 21]</span></pre>
+Mockapetris                                                    [Page 21]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 22</span>
@@ -1526,35 +1357,23 @@ a QTYPE of MF, MD, or MAILA (which matched both).  The redesigned
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 25</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1035">RFC 1035</a>        Domain Implementation and Specification    November 1987</span>
+  <pre>RFC 1035        Domain Implementation and Specification    November 1987
 
 
-service used a single type (MX) with a "preference" value in the RDATA
+service used a single type (MX) with a &quot;preference&quot; value in the RDATA
 section which can order different RRs.  However, if any MX RRs are found
 in the cache, then all should be there.
 
-<span><a href="#section-4">4</a>. MESSAGES</span>
+4. MESSAGES
 
-<span><a href="#section-4.1">4.1</a>. Format</span>
+4.1. Format
 
 All communications inside of the domain protocol are carried in a single
 format called a message.  The top level format of message is divided
-into 5 sections (some of which are empty in certain cases) shown below:
-
-    +---------------------+
-    |        Header       |
-    +---------------------+
-    |       Question      | the question for the name server
-    +---------------------+
-    |        Answer       | RRs answering the question
-    +---------------------+
-    |      Authority      | RRs pointing toward an authority
-    +---------------------+
-    |      Additional     | RRs holding additional information
-    +---------------------+
-
-The header section is always present.  The header includes fields that
+into 5 sections (some of which are empty in certain cases) shown below:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Header</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Question</div><div class="modern-diagram-cell">the question for the name server</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Answer</div><div class="modern-diagram-cell">RRs answering the question</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Authority</div><div class="modern-diagram-cell">RRs pointing toward an authority</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Additional</div><div class="modern-diagram-cell">RRs holding additional information</div></div></div>
+</figure><pre>The header section is always present.  The header includes fields that
 specify which of the remaining sections are present, and also specify
 whether the message is a query or a response, a standard query or some
 other opcode, etc.
@@ -1581,36 +1400,31 @@ question.
 
 
 
-<span>Mockapetris                                                    [Page 25]</span></pre>
+Mockapetris                                                    [Page 25]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 26</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1035">RFC 1035</a>        Domain Implementation and Specification    November 1987</span>
+  <pre>RFC 1035        Domain Implementation and Specification    November 1987
 
 
-<span><a href="#section-4.1.1">4.1.1</a>. Header section format</span>
+4.1.1. Header section format
 
-The header contains the following fields:
+</pre><details class="header-reference-panel inline-header-reference" open>
+  <summary><span>Header field quick-reference</span><strong>RFC 1035 DNS Message Header</strong></summary>
+  <p class="header-note">DNS header bits summarize query intent and response state used in tunneling and abuse hunts.</p>
+  <div class="bit-axis">Bit positions 0-31</div>
+  <div class="header-diagram-wrap"><svg class="header-bit-layout" viewBox="0 0 320 144" role="img" aria-label="0-31 bit layout diagram" xmlns="http://www.w3.org/2000/svg"><desc>0-31 bit positions across each row; fields are drawn as blocks spanning their bit widths.</desc><text x="0" y="14" class="bit-label">0</text><text x="40" y="14" class="bit-label">4</text><text x="80" y="14" class="bit-label">8</text><text x="120" y="14" class="bit-label">12</text><text x="160" y="14" class="bit-label">16</text><text x="200" y="14" class="bit-label">20</text><text x="240" y="14" class="bit-label">24</text><text x="280" y="14" class="bit-label">28</text><text x="320" y="14" text-anchor="end" class="bit-label">31</text><line x1="0" y1="22" x2="0" y2="136" class="bit-grid" /><line x1="40" y1="22" x2="40" y2="136" class="bit-grid" /><line x1="80" y1="22" x2="80" y2="136" class="bit-grid" /><line x1="120" y1="22" x2="120" y2="136" class="bit-grid" /><line x1="160" y1="22" x2="160" y2="136" class="bit-grid" /><line x1="200" y1="22" x2="200" y2="136" class="bit-grid" /><line x1="240" y1="22" x2="240" y2="136" class="bit-grid" /><line x1="280" y1="22" x2="280" y2="136" class="bit-grid" /><line x1="320" y1="22" x2="320" y2="136" class="bit-grid" /><g><rect x="0" y="22" width="160" height="34" rx="7" class="field-block field-0" /><text x="80.0" y="44" text-anchor="middle" class="field-label">ID</text><title>ID: bits 0-15 in row 1</title></g><g><rect x="160" y="22" width="10" height="34" rx="7" class="field-block field-1" /><text x="165.0" y="44" text-anchor="middle" class="field-label">QR</text><title>QR: bits 16-16 in row 1</title></g><g><rect x="170" y="22" width="40" height="34" rx="7" class="field-block field-2" /><text x="190.0" y="44" text-anchor="middle" class="field-label">Opc</text><title>Opcode: bits 17-20 in row 1</title></g><g><rect x="210" y="22" width="10" height="34" rx="7" class="field-block field-3" /><text x="215.0" y="44" text-anchor="middle" class="field-label">AA</text><title>AA: bits 21-21 in row 1</title></g><g><rect x="220" y="22" width="10" height="34" rx="7" class="field-block field-4" /><text x="225.0" y="44" text-anchor="middle" class="field-label">TC</text><title>TC: bits 22-22 in row 1</title></g><g><rect x="230" y="22" width="10" height="34" rx="7" class="field-block field-0" /><text x="235.0" y="44" text-anchor="middle" class="field-label">RD</text><title>RD: bits 23-23 in row 1</title></g><g><rect x="240" y="22" width="10" height="34" rx="7" class="field-block field-1" /><text x="245.0" y="44" text-anchor="middle" class="field-label">RA</text><title>RA: bits 24-24 in row 1</title></g><g><rect x="250" y="22" width="30" height="34" rx="7" class="field-block field-2" /><text x="265.0" y="44" text-anchor="middle" class="field-label">Z</text><title>Z: bits 25-27 in row 1</title></g><g><rect x="280" y="22" width="40" height="34" rx="7" class="field-block field-3" /><text x="300.0" y="44" text-anchor="middle" class="field-label">RCO</text><title>RCODE: bits 28-31 in row 1</title></g><g><rect x="0" y="60" width="160" height="34" rx="7" class="field-block field-4" /><text x="80.0" y="82" text-anchor="middle" class="field-label">QDCOUNT</text><title>QDCOUNT: bits 0-15 in row 2</title></g><g><rect x="160" y="60" width="160" height="34" rx="7" class="field-block field-0" /><text x="240.0" y="82" text-anchor="middle" class="field-label">ANCOUNT</text><title>ANCOUNT: bits 16-31 in row 2</title></g><g><rect x="0" y="98" width="160" height="34" rx="7" class="field-block field-1" /><text x="80.0" y="120" text-anchor="middle" class="field-label">NSCOUNT</text><title>NSCOUNT: bits 0-15 in row 3</title></g><g><rect x="160" y="98" width="160" height="34" rx="7" class="field-block field-2" /><text x="240.0" y="120" text-anchor="middle" class="field-label">ARCOUNT</text><title>ARCOUNT: bits 16-31 in row 3</title></g></svg></div>
+  <table class="header-field-table">
+    <thead><tr><th>Field</th><th>Bits</th><th>Hunting meaning / abnormal</th></tr></thead>
+    <tbody><tr><td>ID</td><td>16</td><td>Transaction ID; repeated or predictable IDs can indicate spoofing or cache-poisoning.</td></tr><tr><td>QR</td><td>1</td><td>Query/response bit; responses without queries are highly suspicious.</td></tr><tr><td>Opcode</td><td>4</td><td>Operation code; non-standard opcodes (non-zero) are rare and high-signal.</td></tr><tr><td>AA</td><td>1</td><td>Authoritative answer; unexpected authority can indicate rogue infrastructure.</td></tr><tr><td>TC</td><td>1</td><td>Truncation flag; frequent truncation can force TCP fallback or indicate oversized abuse.</td></tr><tr><td>RD</td><td>1</td><td>Recursion desired; unexpected recursion from restricted networks can show resolver misuse.</td></tr><tr><td>RA</td><td>1</td><td>Recursion available; rogue or exposed recursive resolvers often reveal themselves here.</td></tr><tr><td>Z</td><td>3</td><td>Reserved bits; non-zero values are abnormal except negotiated extensions.</td></tr><tr><td>RCODE</td><td>4</td><td>Response code; spikes in NXDOMAIN or SERVFAIL can reveal DGA or probing.</td></tr><tr><td>QDCOUNT</td><td>16</td><td>Question count; values other than one are uncommon in standard queries.</td></tr><tr><td>ANCOUNT</td><td>16</td><td>Answer count; unusual cardinality can indicate amplification or fast-flux.</td></tr><tr><td>NSCOUNT</td><td>16</td><td>Authority count; unexpected delegations can expose suspicious infrastructure.</td></tr><tr><td>ARCOUNT</td><td>16</td><td>Additional count; EDNS and oversized additional data are useful abuse indicators.</td></tr></tbody>
+  </table>
+</details><pre>The header contains the following fields:
 
-                                    1  1  1  1  1  1
-      0  1  2  3  4  5  6  7  8  9  0  1  2  3  4  5
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    |                      ID                       |
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    |QR|   Opcode  |AA|TC|RD|RA|   Z    |   RCODE   |
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    |                    QDCOUNT                    |
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    |                    ANCOUNT                    |
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    |                    NSCOUNT                    |
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    |                    ARCOUNT                    |
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-
-where:
+                                    1  1  1  1  1  1</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0  1  2  3  4  5  6  7  8  9  0  1  2  3  4  5</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">ID</div></div><div class="modern-diagram-row" style="--cell-count: 8"><div class="modern-diagram-cell">QR</div><div class="modern-diagram-cell">Opcode</div><div class="modern-diagram-cell">AA</div><div class="modern-diagram-cell">TC</div><div class="modern-diagram-cell">RD</div><div class="modern-diagram-cell">RA</div><div class="modern-diagram-cell">Z</div><div class="modern-diagram-cell">RCODE</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">QDCOUNT</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">ANCOUNT</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">NSCOUNT</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">ARCOUNT</div></div></div>
+</figure><pre>where:
 
 ID              A 16 bit identifier assigned by the program that
                 generates any kind of query.  This identifier is copied
@@ -1641,7 +1455,7 @@ AA              Authoritative Answer - this bit is valid in responses,
 
 
 
-<span>Mockapetris                                                    [Page 26]</span></pre>
+Mockapetris                                                    [Page 26]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 27</span>
@@ -1706,8 +1520,7 @@ RCODE           Response code - this 4 bit field is set as part of
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 28</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1035">RFC 1035</a>        Domain Implementation and Specification    November 1987</span>
+  <pre>RFC 1035        Domain Implementation and Specification    November 1987
 
 
                                 transfer) for particular data.
@@ -1727,25 +1540,20 @@ NSCOUNT         an unsigned 16 bit integer specifying the number of name
 ARCOUNT         an unsigned 16 bit integer specifying the number of
                 resource records in the additional records section.
 
-<span><a href="#section-4.1.2">4.1.2</a>. Question section format</span>
+4.1.2. Question section format
 
-The question section is used to carry the "question" in most queries,
+The question section is used to carry the &quot;question&quot; in most queries,
 i.e., the parameters that define what is being asked.  The section
 contains QDCOUNT (usually 1) entries, each of the following format:
 
-                                    1  1  1  1  1  1
-      0  1  2  3  4  5  6  7  8  9  0  1  2  3  4  5
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    |                                               |
-    /                     QNAME                     /
-    /                                               /
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    |                     QTYPE                     |
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    |                     QCLASS                    |
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-
-where:
+                                    1  1  1  1  1  1</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0  1  2  3  4  5  6  7  8  9  0  1  2  3  4  5</div></div></div>
+</figure><pre>    /                     QNAME                     /
+    /                                               /</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">QTYPE</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">QCLASS</div></div></div>
+</figure><pre>where:
 
 QNAME           a domain name represented as a sequence of labels, where
                 each label consists of a length octet followed by that
@@ -1761,46 +1569,32 @@ QTYPE           a two octet code which specifies the type of the query.
 
 
 
-<span>Mockapetris                                                    [Page 28]</span></pre>
+Mockapetris                                                    [Page 28]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 29</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1035">RFC 1035</a>        Domain Implementation and Specification    November 1987</span>
+  <pre>RFC 1035        Domain Implementation and Specification    November 1987
 
 
 QCLASS          a two octet code that specifies the class of the query.
                 For example, the QCLASS field is IN for the Internet.
 
-<span><a href="#section-4.1.3">4.1.3</a>. Resource record format</span>
+4.1.3. Resource record format
 
 The answer, authority, and additional sections all share the same
 format: a variable number of resource records, where the number of
 records is specified in the corresponding count field in the header.
 Each resource record has the following format:
-                                    1  1  1  1  1  1
-      0  1  2  3  4  5  6  7  8  9  0  1  2  3  4  5
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    |                                               |
-    /                                               /
-    /                      NAME                     /
-    |                                               |
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    |                      TYPE                     |
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    |                     CLASS                     |
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    |                      TTL                      |
-    |                                               |
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    |                   RDLENGTH                    |
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--|
-    /                     RDATA                     /
-    /                                               /
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-
-where:
+                                    1  1  1  1  1  1</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0  1  2  3  4  5  6  7  8  9  0  1  2  3  4  5</div></div></div>
+</figure><pre>    /                                               /
+    /                      NAME                     /</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">TYPE</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">CLASS</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">TTL</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">RDLENGTH</div></div></div>
+</figure><pre>    /                     RDATA                     /
+    /                                               /</pre><pre>    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+</pre><pre>where:
 
 NAME            a domain name to which this resource record pertains.
 
@@ -1821,13 +1615,12 @@ TTL             a 32 bit unsigned integer that specifies the time
 
 
 
-<span>Mockapetris                                                    [Page 29]</span></pre>
+Mockapetris                                                    [Page 29]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 30</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1035">RFC 1035</a>        Domain Implementation and Specification    November 1987</span>
+  <pre>RFC 1035        Domain Implementation and Specification    November 1987
 
 
 RDLENGTH        an unsigned 16 bit integer that specifies the length in
@@ -1839,7 +1632,7 @@ RDATA           a variable length string of octets that describes the
                 For example, the if the TYPE is A and the CLASS is IN,
                 the RDATA field is a 4 octet ARPA Internet address.
 
-<span><a href="#section-4.1.4">4.1.4</a>. Message compression</span>
+4.1.4. Message compression
 
 In order to reduce the size of messages, the domain system utilizes a
 compression scheme which eliminates the repetition of domain names in a
@@ -1847,13 +1640,10 @@ message.  In this scheme, an entire domain name or a list of labels at
 the end of a domain name is replaced with a pointer to a prior occurance
 of the same name.
 
-The pointer takes the form of a two octet sequence:
-
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    | 1  1|                OFFSET                   |
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-
-The first two bits are ones.  This allows a pointer to be distinguished
+The pointer takes the form of a two octet sequence:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">1  1</div><div class="modern-diagram-cell">OFFSET</div></div></div>
+</figure><pre>The first two bits are ones.  This allows a pointer to be distinguished
 from a label, since the label must begin with two zero bits because
 labels are restricted to 63 octets or less.  (The 10 and 01 combinations
 are reserved for future use.)  The OFFSET field specifies an offset from
@@ -1881,13 +1671,12 @@ length field (such as the RDATA section of an RR), and compression is
 
 
 
-<span>Mockapetris                                                    [Page 30]</span></pre>
+Mockapetris                                                    [Page 30]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 31</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1035">RFC 1035</a>        Domain Implementation and Specification    November 1987</span>
+  <pre>RFC 1035        Domain Implementation and Specification    November 1987
 
 
 used, the length of the compressed name is used in the length
@@ -1900,39 +1689,10 @@ contain pointers.
 
 For example, a datagram might need to use the domain names F.ISI.ARPA,
 FOO.F.ISI.ARPA, ARPA, and the root.  Ignoring the other fields of the
-message, these domain names might be represented as:
-
-       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    20 |           1           |           F           |
-       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    22 |           3           |           I           |
-       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    24 |           S           |           I           |
-       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    26 |           4           |           A           |
-       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    28 |           R           |           P           |
-       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    30 |           A           |           0           |
-       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-
-       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    40 |           3           |           F           |
-       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    42 |           O           |           O           |
-       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    44 | 1  1|                20                       |
-       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-
-       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    64 | 1  1|                26                       |
-       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-
-       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    92 |           0           |                       |
-       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-
-The domain name for F.ISI.ARPA is shown at offset 20.  The domain name
+message, these domain names might be represented as:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">20</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">F</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">22</div><div class="modern-diagram-cell">3</div><div class="modern-diagram-cell">I</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">24</div><div class="modern-diagram-cell">S</div><div class="modern-diagram-cell">I</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">26</div><div class="modern-diagram-cell">4</div><div class="modern-diagram-cell">A</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">28</div><div class="modern-diagram-cell">R</div><div class="modern-diagram-cell">P</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">30</div><div class="modern-diagram-cell">A</div><div class="modern-diagram-cell">0</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">40</div><div class="modern-diagram-cell">3</div><div class="modern-diagram-cell">F</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">42</div><div class="modern-diagram-cell">O</div><div class="modern-diagram-cell">O</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">44</div><div class="modern-diagram-cell">1  1</div><div class="modern-diagram-cell">20</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">64</div><div class="modern-diagram-cell">1  1</div><div class="modern-diagram-cell">26</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">92</div><div class="modern-diagram-cell">0</div></div></div>
+</figure><pre>The domain name for F.ISI.ARPA is shown at offset 20.  The domain name
 FOO.F.ISI.ARPA is shown at offset 40; this definition uses a pointer to
 concatenate a label for FOO to the previously defined F.ISI.ARPA.  The
 domain name ARPA is defined at offset 64 using a pointer to the ARPA
@@ -1941,7 +1701,7 @@ ARPA being the last label in the string at 20.  The root domain name is
 
 
 
-<span>Mockapetris                                                    [Page 31]</span></pre>
+Mockapetris                                                    [Page 31]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 32</span>
@@ -2486,11 +2246,10 @@ When a name server processes an inverse query, it either returns:
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 41</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1035">RFC 1035</a>        Domain Implementation and Specification    November 1987</span>
+  <pre>RFC 1035        Domain Implementation and Specification    November 1987
 
 
-   2. an error code indicating that the name server doesn't support
+   2. an error code indicating that the name server doesn&#x27;t support
       inverse mapping of the specified resource type.
 
 When the response to an inverse query contains one or more QNAMEs, the
@@ -2505,23 +2264,12 @@ only one would appear.  For example, an inverse query for a single
 address of a multiply homed host might create the impression that only
 one address existed.
 
-<span><a href="#section-6.4.2">6.4.2</a>. Inverse query and response example  </span>        The overall structure
+6.4.2. Inverse query and response example          The overall structure
 of an inverse query for retrieving the domain name that corresponds to
-Internet address 10.1.0.52 is shown below:
-
-                         +-----------------------------------------+
-           Header        |          OPCODE=IQUERY, ID=997          |
-                         +-----------------------------------------+
-          Question       |                 &lt;empty&gt;                 |
-                         +-----------------------------------------+
-           Answer        |        &lt;anyname&gt; A IN 10.1.0.52         |
-                         +-----------------------------------------+
-          Authority      |                 &lt;empty&gt;                 |
-                         +-----------------------------------------+
-         Additional      |                 &lt;empty&gt;                 |
-                         +-----------------------------------------+
-
-This query asks for a question whose answer is the Internet style
+Internet address 10.1.0.52 is shown below:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Header</div><div class="modern-diagram-cell">OPCODE=IQUERY, ID=997</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Question</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Answer</div><div class="modern-diagram-cell">&lt;anyname&gt; A IN 10.1.0.52</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Authority</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Additional</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div></div>
+</figure><pre>This query asks for a question whose answer is the Internet style
 address 10.1.0.52.  Since the owner name is not known, any domain name
 can be used as a placeholder (and is ignored).  A single octet of zero,
 signifying the root, is usually used because it minimizes the length of
@@ -2541,35 +2289,22 @@ this query might be:
 
 
 
-<span>Mockapetris                                                    [Page 41]</span></pre>
+Mockapetris                                                    [Page 41]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 42</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1035">RFC 1035</a>        Domain Implementation and Specification    November 1987</span>
-
-
-                         +-----------------------------------------+
-           Header        |         OPCODE=RESPONSE, ID=997         |
-                         +-----------------------------------------+
-          Question       |QTYPE=A, QCLASS=IN, QNAME=VENERA.ISI.EDU |
-                         +-----------------------------------------+
-           Answer        |  VENERA.ISI.EDU  A IN 10.1.0.52         |
-                         +-----------------------------------------+
-          Authority      |                 &lt;empty&gt;                 |
-                         +-----------------------------------------+
-         Additional      |                 &lt;empty&gt;                 |
-                         +-----------------------------------------+
-
-Note that the QTYPE in a response to an inverse query is the same as the
+  <pre>RFC 1035        Domain Implementation and Specification    November 1987</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Header</div><div class="modern-diagram-cell">OPCODE=RESPONSE, ID=997</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Question</div><div class="modern-diagram-cell">QTYPE=A, QCLASS=IN, QNAME=VENERA.ISI.EDU</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Answer</div><div class="modern-diagram-cell">VENERA.ISI.EDU  A IN 10.1.0.52</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Authority</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Additional</div><div class="modern-diagram-cell">&lt;empty&gt;</div></div></div>
+</figure><pre>Note that the QTYPE in a response to an inverse query is the same as the
 TYPE field in the answer section of the inverse query.  Responses to
 inverse queries may contain multiple questions when the inverse is not
 unique.  If the question section in the response is not empty, then the
 RR in the answer section is modified to correspond to be an exact copy
 of an RR at the first QNAME.
 
-<span><a href="#section-6.4.3">6.4.3</a>. Inverse query processing</span>
+6.4.3. Inverse query processing
 
 Name servers that support inverse queries can support these operations
 through exhaustive searches of their databases, but this becomes
@@ -2584,9 +2319,9 @@ be redone.
 Support for transfer of this type of inversion may be included in future
 versions of the domain system, but is not supported in this version.
 
-<span><a href="#section-6.5">6.5</a>. Completion queries and responses</span>
+6.5. Completion queries and responses
 
-The optional completion services described in <a href="./rfc882">RFC-882</a> and <a href="./rfc883">RFC-883</a> have
+The optional completion services described in RFC-882 and RFC-883 have
 been deleted.  Redesigned services may become available in the future.
 
 
@@ -2601,7 +2336,7 @@ been deleted.  Redesigned services may become available in the future.
 
 
 
-<span>Mockapetris                                                    [Page 42]</span></pre>
+Mockapetris                                                    [Page 42]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 43</span>
@@ -3472,15 +3207,6 @@ Mockapetris                                                    [Page 55]
       </div>
     </div>
   </div>
-</details><details class="header-reference-panel" open>
-  <summary><span>Header field quick-reference</span><strong>RFC 1035 DNS Message Header</strong></summary>
-  <p class="header-note">DNS header bits summarize query intent and response state used in tunneling and abuse hunts.</p>
-  <div class="bit-axis">Bit positions 0-31</div>
-  <div class="header-diagram-wrap"><svg class="header-bit-layout" viewBox="0 0 320 144" role="img" aria-label="0-31 bit layout diagram" xmlns="http://www.w3.org/2000/svg"><desc>0-31 bit positions across each row; fields are drawn as blocks spanning their bit widths.</desc><text x="0" y="14" class="bit-label">0</text><text x="40" y="14" class="bit-label">4</text><text x="80" y="14" class="bit-label">8</text><text x="120" y="14" class="bit-label">12</text><text x="160" y="14" class="bit-label">16</text><text x="200" y="14" class="bit-label">20</text><text x="240" y="14" class="bit-label">24</text><text x="280" y="14" class="bit-label">28</text><text x="320" y="14" text-anchor="end" class="bit-label">31</text><line x1="0" y1="22" x2="0" y2="136" class="bit-grid" /><line x1="40" y1="22" x2="40" y2="136" class="bit-grid" /><line x1="80" y1="22" x2="80" y2="136" class="bit-grid" /><line x1="120" y1="22" x2="120" y2="136" class="bit-grid" /><line x1="160" y1="22" x2="160" y2="136" class="bit-grid" /><line x1="200" y1="22" x2="200" y2="136" class="bit-grid" /><line x1="240" y1="22" x2="240" y2="136" class="bit-grid" /><line x1="280" y1="22" x2="280" y2="136" class="bit-grid" /><line x1="320" y1="22" x2="320" y2="136" class="bit-grid" /><g><rect x="0" y="22" width="160" height="34" rx="7" class="field-block field-0" /><text x="80.0" y="44" text-anchor="middle" class="field-label">ID</text><title>ID: bits 0-15 in row 1</title></g><g><rect x="160" y="22" width="10" height="34" rx="7" class="field-block field-1" /><text x="165.0" y="44" text-anchor="middle" class="field-label">QR</text><title>QR: bits 16-16 in row 1</title></g><g><rect x="170" y="22" width="40" height="34" rx="7" class="field-block field-2" /><text x="190.0" y="44" text-anchor="middle" class="field-label">Opc</text><title>Opcode: bits 17-20 in row 1</title></g><g><rect x="210" y="22" width="10" height="34" rx="7" class="field-block field-3" /><text x="215.0" y="44" text-anchor="middle" class="field-label">AA</text><title>AA: bits 21-21 in row 1</title></g><g><rect x="220" y="22" width="10" height="34" rx="7" class="field-block field-4" /><text x="225.0" y="44" text-anchor="middle" class="field-label">TC</text><title>TC: bits 22-22 in row 1</title></g><g><rect x="230" y="22" width="10" height="34" rx="7" class="field-block field-0" /><text x="235.0" y="44" text-anchor="middle" class="field-label">RD</text><title>RD: bits 23-23 in row 1</title></g><g><rect x="240" y="22" width="10" height="34" rx="7" class="field-block field-1" /><text x="245.0" y="44" text-anchor="middle" class="field-label">RA</text><title>RA: bits 24-24 in row 1</title></g><g><rect x="250" y="22" width="30" height="34" rx="7" class="field-block field-2" /><text x="265.0" y="44" text-anchor="middle" class="field-label">Z</text><title>Z: bits 25-27 in row 1</title></g><g><rect x="280" y="22" width="40" height="34" rx="7" class="field-block field-3" /><text x="300.0" y="44" text-anchor="middle" class="field-label">RCO</text><title>RCODE: bits 28-31 in row 1</title></g><g><rect x="0" y="60" width="160" height="34" rx="7" class="field-block field-4" /><text x="80.0" y="82" text-anchor="middle" class="field-label">QDCOUNT</text><title>QDCOUNT: bits 0-15 in row 2</title></g><g><rect x="160" y="60" width="160" height="34" rx="7" class="field-block field-0" /><text x="240.0" y="82" text-anchor="middle" class="field-label">ANCOUNT</text><title>ANCOUNT: bits 16-31 in row 2</title></g><g><rect x="0" y="98" width="160" height="34" rx="7" class="field-block field-1" /><text x="80.0" y="120" text-anchor="middle" class="field-label">NSCOUNT</text><title>NSCOUNT: bits 0-15 in row 3</title></g><g><rect x="160" y="98" width="160" height="34" rx="7" class="field-block field-2" /><text x="240.0" y="120" text-anchor="middle" class="field-label">ARCOUNT</text><title>ARCOUNT: bits 16-31 in row 3</title></g></svg></div>
-  <table class="header-field-table">
-    <thead><tr><th>Field</th><th>Bits</th><th>Hunting meaning / abnormal</th></tr></thead>
-    <tbody><tr><td>ID</td><td>16</td><td>Transaction ID; repeated or predictable IDs can indicate spoofing or cache-poisoning.</td></tr><tr><td>QR</td><td>1</td><td>Query/response bit; responses without queries are highly suspicious.</td></tr><tr><td>Opcode</td><td>4</td><td>Operation code; non-standard opcodes (non-zero) are rare and high-signal.</td></tr><tr><td>AA</td><td>1</td><td>Authoritative answer; unexpected authority can indicate rogue infrastructure.</td></tr><tr><td>TC</td><td>1</td><td>Truncation flag; frequent truncation can force TCP fallback or indicate oversized abuse.</td></tr><tr><td>RD</td><td>1</td><td>Recursion desired; unexpected recursion from restricted networks can show resolver misuse.</td></tr><tr><td>RA</td><td>1</td><td>Recursion available; rogue or exposed recursive resolvers often reveal themselves here.</td></tr><tr><td>Z</td><td>3</td><td>Reserved bits; non-zero values are abnormal except negotiated extensions.</td></tr><tr><td>RCODE</td><td>4</td><td>Response code; spikes in NXDOMAIN or SERVFAIL can reveal DGA or probing.</td></tr><tr><td>QDCOUNT</td><td>16</td><td>Question count; values other than one are uncommon in standard queries.</td></tr><tr><td>ANCOUNT</td><td>16</td><td>Answer count; unusual cardinality can indicate amplification or fast-flux.</td></tr><tr><td>NSCOUNT</td><td>16</td><td>Authority count; unexpected delegations can expose suspicious infrastructure.</td></tr><tr><td>ARCOUNT</td><td>16</td><td>Additional count; EDNS and oversized additional data are useful abuse indicators.</td></tr></tbody>
-  </table>
 </details><h2>On this RFC</h2><div id="toc-links"></div></aside></section>
 </main>
 <script src="../assets/doc.js"></script>

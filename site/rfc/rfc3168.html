@@ -446,8 +446,7 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 7</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc3168">RFC 3168</a>               The Addition of ECN to IP          September 2001</span>
+  <pre>RFC 3168               The Addition of ECN to IP          September 2001
 
 
    The use of both the two codepoints for ECT, ECT(0) and ECT(1), is
@@ -463,15 +462,13 @@ Table of Contents
    Protocols and senders that only require a single ECT codepoint SHOULD
    use ECT(0).
 
-   The not-ECT codepoint '00' indicates a packet that is not using ECN.
-   The CE codepoint '11' is set by a router to indicate congestion to
+   The not-ECT codepoint &#x27;00&#x27; indicates a packet that is not using ECN.
+   The CE codepoint &#x27;11&#x27; is set by a router to indicate congestion to
    the end nodes.  Routers that have a packet arriving at a full queue
-   drop the packet, just as they do in the absence of ECN.
-
-      +-----+-----+
-      | ECN FIELD |
-      +-----+-----+
-        ECT   CE         [Obsolete] <a href="./rfc2481">RFC 2481</a> names for the ECN bits.
+   drop the packet, just as they do in the absence of ECN.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">ECN FIELD</div></div></div>
+</figure><pre>        ECT   CE         [Obsolete] RFC 2481 names for the ECN bits.
          0     0         Not-ECT
          0     1         ECT(1)
          1     0         ECT(0)
@@ -480,47 +477,42 @@ Table of Contents
       Figure 1: The ECN Field in IP.
 
    The use of two ECT codepoints essentially gives a one-bit ECN nonce
-   in packet headers, and routers necessarily "erase" the nonce when
-   they set the CE codepoint [<a href="#ref-SCWA99" title="David Wetherall">SCWA99</a>].  For example, routers that erased
+   in packet headers, and routers necessarily &quot;erase&quot; the nonce when
+   they set the CE codepoint [SCWA99].  For example, routers that erased
    the CE codepoint would face additional difficulty in reconstructing
    the original nonce, and thus repeated erasure of the CE codepoint
    would be more likely to be detected by the end-nodes.  The ECN nonce
    also can address the problem of misbehaving transport receivers lying
    to the transport sender about whether or not the CE codepoint was set
    in a packet.  The motivations for the use of two ECT codepoints is
-   discussed in more detail in <a href="#section-20">Section 20</a>, along with some discussion of
+   discussed in more detail in Section 20, along with some discussion of
    alternate possibilities for the fourth ECT codepoint (that is, the
-   codepoint '01').  Backwards compatibility with earlier ECN
+   codepoint &#x27;01&#x27;).  Backwards compatibility with earlier ECN
    implementations that do not understand the ECT(1) codepoint is
-   discussed in <a href="./rfc2481#section-11">Section&nbsp;11.
+   discussed in Section 11.
 
-   In RFC 2481</a> [<a href="./rfc2481" title="&quot;A Proposal to add Explicit Congestion Notification (ECN) to IP&quot;">RFC2481</a>], the ECN field was divided into the ECN-Capable
+   In RFC 2481 [RFC2481], the ECN field was divided into the ECN-Capable
    Transport (ECT) bit and the CE bit.  The ECN field with only the
-   ECN-Capable Transport (ECT) bit set in <a href="./rfc2481">RFC 2481</a> corresponds to the
+   ECN-Capable Transport (ECT) bit set in RFC 2481 corresponds to the
    ECT(0) codepoint in this document, and the ECN field with both the
 
 
 
-<span>Ramakrishnan, et al.        Standards Track                     [Page 7]</span></pre>
+Ramakrishnan, et al.        Standards Track                     [Page 7]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 8</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc3168">RFC 3168</a>               The Addition of ECN to IP          September 2001</span>
+  <pre>RFC 3168               The Addition of ECN to IP          September 2001
 
 
-   ECT and CE bit in <a href="./rfc2481">RFC 2481</a> corresponds to the CE codepoint in this
-   document.  The '01' codepoint was left undefined in <a href="./rfc2481">RFC 2481</a>, and
+   ECT and CE bit in RFC 2481 corresponds to the CE codepoint in this
+   document.  The &#x27;01&#x27; codepoint was left undefined in RFC 2481, and
    this is the reason for recommending the use of ECT(0) when only a
-   single ECT codepoint is needed.
-
-         0     1     2     3     4     5     6     7
-      +-----+-----+-----+-----+-----+-----+-----+-----+
-      |          DS FIELD, DSCP           | ECN FIELD |
-      +-----+-----+-----+-----+-----+-----+-----+-----+
-
-        DSCP: differentiated services codepoint
+   single ECT codepoint is needed.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0     1     2     3     4     5     6     7</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">DS FIELD, DSCP</div><div class="modern-diagram-cell">ECN FIELD</div></div></div>
+</figure><pre>        DSCP: differentiated services codepoint
         ECN:  Explicit Congestion Notification
 
       Figure 2: The Differentiated Services and ECN Fields in IP.
@@ -528,18 +520,18 @@ Table of Contents
    Bits 6 and 7 in the IPv4 TOS octet are designated as the ECN field.
    The IPv4 TOS octet corresponds to the Traffic Class octet in IPv6,
    and the ECN field is defined identically in both cases.  The
-   definitions for the IPv4 TOS octet [<a href="./rfc791" title="&quot;Internet Protocol&quot;">RFC791</a>] and the IPv6 Traffic
+   definitions for the IPv4 TOS octet [RFC791] and the IPv6 Traffic
    Class octet have been superseded by the six-bit DS (Differentiated
-   Services) Field [RFC2474, <a href="./rfc2780">RFC2780</a>].  Bits 6 and 7 are listed in
-   [<a href="./rfc2474" title="&quot;Definition of the Differentiated Services Field (DS Field) in the IPv4 and IPv6 Headers&quot;">RFC2474</a>] as Currently Unused, and are specified in <a href="./rfc2780">RFC 2780</a> as
-   approved for experimental use for ECN.  <a href="#section-22">Section 22</a> gives a brief
+   Services) Field [RFC2474, RFC2780].  Bits 6 and 7 are listed in
+   [RFC2474] as Currently Unused, and are specified in RFC 2780 as
+   approved for experimental use for ECN.  Section 22 gives a brief
    history of the TOS octet.
 
    Because of the unstable history of the TOS octet, the use of the ECN
    field as specified in this document cannot be guaranteed to be
    backwards compatible with those past uses of these two bits that
    pre-date ECN.  The potential dangers of this lack of backwards
-   compatibility are discussed in <a href="#section-22">Section 22</a>.
+   compatibility are discussed in Section 22.
 
    Upon the receipt by an ECN-Capable transport of a single CE packet,
    the congestion control algorithms followed at the end-systems MUST be
@@ -561,7 +553,7 @@ Table of Contents
 
 
 
-<span>Ramakrishnan, et al.        Standards Track                     [Page 8]</span></pre>
+Ramakrishnan, et al.        Standards Track                     [Page 8]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 9</span>
@@ -806,8 +798,7 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 13</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc3168">RFC 3168</a>               The Addition of ECN to IP          September 2001</span>
+  <pre>RFC 3168               The Addition of ECN to IP          September 2001
 
 
    negotiation between the endpoints during connection setup to
@@ -822,38 +813,32 @@ Table of Contents
    protocols are brought to the IETF for standardization.
 
    In a mild abuse of terminology, in this document we refer to `TCP
-   packets' instead of `TCP segments'.
+   packets&#x27; instead of `TCP segments&#x27;.
 
-<span><a href="#section-6.1">6.1</a>.  TCP</span>
+6.1.  TCP
 
    The following sections describe in detail the proposed use of ECN in
    TCP.  This proposal is described in essentially the same form in
-   [<a href="#ref-Floyd94" title="&quot;TCP and Explicit Congestion Notification&quot;">Floyd94</a>]. We assume that the source TCP uses the standard congestion
+   [Floyd94]. We assume that the source TCP uses the standard congestion
    control algorithms of Slow-start, Fast Retransmit and Fast Recovery
-   [<a href="./rfc2581" title="&quot;TCP Congestion Control&quot;">RFC2581</a>].
+   [RFC2581].
 
    This proposal specifies two new flags in the Reserved field of the
    TCP header.  The TCP mechanism for negotiating ECN-Capability uses
    the ECN-Echo (ECE) flag in the TCP header.  Bit 9 in the Reserved
    field of the TCP header is designated as the ECN-Echo flag.  The
    location of the 6-bit Reserved field in the TCP header is shown in
-   Figure 4 of <a href="./rfc793">RFC 793</a> [<a href="./rfc793" title="&quot;Transmission Control Protocol&quot;">RFC793</a>] (and is reproduced below for
+   Figure 4 of RFC 793 [RFC793] (and is reproduced below for
    completeness).  This specification of the ECN Field leaves the
    Reserved field as a 4-bit field using bits 4-7.
 
    To enable the TCP receiver to determine when to stop setting the
    ECN-Echo flag, we introduce a second new flag in the TCP header, the
    CWR flag.  The CWR flag is assigned to Bit 8 in the Reserved field of
-   the TCP header.
-
-        0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15
-      +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-      |               |                       | U | A | P | R | S | F |
-      | Header Length |        Reserved       | R | C | S | S | Y | I |
-      |               |                       | G | K | H | T | N | N |
-      +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-
-      Figure 3: The old definition of bytes 13 and 14 of the TCP
+   the TCP header.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15</div></div><div class="modern-diagram-row" style="--cell-count: 6"><div class="modern-diagram-cell">U</div><div class="modern-diagram-cell">A</div><div class="modern-diagram-cell">P</div><div class="modern-diagram-cell">R</div><div class="modern-diagram-cell">S</div><div class="modern-diagram-cell">F</div></div><div class="modern-diagram-row" style="--cell-count: 8"><div class="modern-diagram-cell">Header Length</div><div class="modern-diagram-cell">Reserved</div><div class="modern-diagram-cell">R</div><div class="modern-diagram-cell">C</div><div class="modern-diagram-cell">S</div><div class="modern-diagram-cell">S</div><div class="modern-diagram-cell">Y</div><div class="modern-diagram-cell">I</div></div><div class="modern-diagram-row" style="--cell-count: 6"><div class="modern-diagram-cell">G</div><div class="modern-diagram-cell">K</div><div class="modern-diagram-cell">H</div><div class="modern-diagram-cell">T</div><div class="modern-diagram-cell">N</div><div class="modern-diagram-cell">N</div></div></div>
+</figure><pre>      Figure 3: The old definition of bytes 13 and 14 of the TCP
                 header.
 
 
@@ -861,23 +846,15 @@ Table of Contents
 
 
 
-<span>Ramakrishnan, et al.        Standards Track                    [Page 13]</span></pre>
+Ramakrishnan, et al.        Standards Track                    [Page 13]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 14</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc3168">RFC 3168</a>               The Addition of ECN to IP          September 2001</span>
-
-
-        0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15
-      +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-      |               |               | C | E | U | A | P | R | S | F |
-      | Header Length |    Reserved   | W | C | R | C | S | S | Y | I |
-      |               |               | R | E | G | K | H | T | N | N |
-      +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-
-      Figure 4: The new definition of bytes 13 and 14 of the TCP
+  <pre>RFC 3168               The Addition of ECN to IP          September 2001</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15</div></div><div class="modern-diagram-row" style="--cell-count: 8"><div class="modern-diagram-cell">C</div><div class="modern-diagram-cell">E</div><div class="modern-diagram-cell">U</div><div class="modern-diagram-cell">A</div><div class="modern-diagram-cell">P</div><div class="modern-diagram-cell">R</div><div class="modern-diagram-cell">S</div><div class="modern-diagram-cell">F</div></div><div class="modern-diagram-row" style="--cell-count: 10"><div class="modern-diagram-cell">Header Length</div><div class="modern-diagram-cell">Reserved</div><div class="modern-diagram-cell">W</div><div class="modern-diagram-cell">C</div><div class="modern-diagram-cell">R</div><div class="modern-diagram-cell">C</div><div class="modern-diagram-cell">S</div><div class="modern-diagram-cell">S</div><div class="modern-diagram-cell">Y</div><div class="modern-diagram-cell">I</div></div><div class="modern-diagram-row" style="--cell-count: 8"><div class="modern-diagram-cell">R</div><div class="modern-diagram-cell">E</div><div class="modern-diagram-cell">G</div><div class="modern-diagram-cell">K</div><div class="modern-diagram-cell">H</div><div class="modern-diagram-cell">T</div><div class="modern-diagram-cell">N</div><div class="modern-diagram-cell">N</div></div></div>
+</figure><pre>      Figure 4: The new definition of bytes 13 and 14 of the TCP
                 Header.
 
    Thus, ECN uses the ECT and CE flags in the IP header (as shown in
@@ -910,7 +887,7 @@ Table of Contents
    use of the ECN-Echo and CWR flags is described in more detail in the
    sections below.
 
-<span><a href="#section-6.1.1">6.1.1</a>  TCP Initialization</span>
+6.1.1  TCP Initialization
 
    In the TCP connection setup phase, the source and destination TCPs
    exchange information about their willingness to use ECN.  Subsequent
@@ -921,7 +898,7 @@ Table of Contents
 
 
 
-<span>Ramakrishnan, et al.        Standards Track                    [Page 14]</span></pre>
+Ramakrishnan, et al.        Standards Track                    [Page 14]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 15</span>
@@ -3566,62 +3543,44 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 59</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc3168">RFC 3168</a>               The Addition of ECN to IP          September 2001</span>
-
-
-             0     1     2     3     4     5     6     7
-          +-----+-----+-----+-----+-----+-----+-----+-----+
-          |   PRECEDENCE    |       TOS       |  0  |  0  |  <a href="./rfc791">RFC 791</a>
-          +-----+-----+-----+-----+-----+-----+-----+-----+
-
-   <a href="./rfc1122">RFC 1122</a> included bits 6 and 7 in the TOS field, though it did not
-   discuss any specific use for those two bits:
-
-             0     1     2     3     4     5     6     7
-          +-----+-----+-----+-----+-----+-----+-----+-----+
-          |   PRECEDENCE    |       TOS                   |  <a href="./rfc1122">RFC 1122</a>
-          +-----+-----+-----+-----+-----+-----+-----+-----+
-
-   The IPv4 TOS octet was redefined in <a href="./rfc1349">RFC 1349</a> [<a href="./rfc1349" title="&quot;Type of Service in the Internet Protocol Suite&quot;">RFC1349</a>] as follows:
-
-             0     1     2     3     4     5     6     7
-          +-----+-----+-----+-----+-----+-----+-----+-----+
-          |   PRECEDENCE    |       TOS             | MBZ |  <a href="./rfc1349">RFC 1349</a>
-          +-----+-----+-----+-----+-----+-----+-----+-----+
-
-   Bit 6 in the TOS field was defined in <a href="./rfc1349">RFC 1349</a> for "Minimize Monetary
-   Cost".  In addition to the Precedence and Type of Service (TOS)
-   fields, the last field, MBZ (for "must be zero") was defined as
-   currently unused.  <a href="./rfc1349">RFC 1349</a> stated that "The originator of a datagram
+  <pre>RFC 3168               The Addition of ECN to IP          September 2001</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0     1     2     3     4     5     6     7</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">PRECEDENCE</div><div class="modern-diagram-cell">TOS</div><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">RFC 791</div></div></div>
+</figure><pre>   RFC 1122 included bits 6 and 7 in the TOS field, though it did not
+   discuss any specific use for those two bits:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0     1     2     3     4     5     6     7</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">PRECEDENCE</div><div class="modern-diagram-cell">TOS</div><div class="modern-diagram-cell">RFC 1122</div></div></div>
+</figure><pre>   The IPv4 TOS octet was redefined in RFC 1349 [RFC1349] as follows:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0     1     2     3     4     5     6     7</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">PRECEDENCE</div><div class="modern-diagram-cell">TOS</div><div class="modern-diagram-cell">MBZ</div><div class="modern-diagram-cell">RFC 1349</div></div></div>
+</figure><pre>   Bit 6 in the TOS field was defined in RFC 1349 for &quot;Minimize Monetary
+   Cost&quot;.  In addition to the Precedence and Type of Service (TOS)
+   fields, the last field, MBZ (for &quot;must be zero&quot;) was defined as
+   currently unused.  RFC 1349 stated that &quot;The originator of a datagram
    sets [the MBZ] field to zero (unless participating in an Internet
-   protocol experiment which makes use of that bit)."
+   protocol experiment which makes use of that bit).&quot;
 
-   <a href="./rfc1455">RFC 1455</a> [<a href="./rfc1455">RFC 1455</a>] defined an experimental standard that used all
+   RFC 1455 [RFC 1455] defined an experimental standard that used all
    four bits in the TOS field to request a guaranteed level of link
    security.
 
-   <a href="./rfc1349">RFC 1349</a> and <a href="./rfc1455">RFC 1455</a> have been obsoleted by "Definition of the
+   RFC 1349 and RFC 1455 have been obsoleted by &quot;Definition of the
    Differentiated Services Field (DS Field) in the IPv4 and IPv6
-   Headers" [<a href="./rfc2474" title="&quot;Definition of the Differentiated Services Field (DS Field) in the IPv4 and IPv6 Headers&quot;">RFC2474</a>] in which bits 6 and 7 of the DS field are listed
-   as Currently Unused (CU).  <a href="./rfc2780">RFC 2780</a> [<a href="./rfc2780" title="&quot;IANA Allocation Guidelines For Values In the Internet Protocol and Related Headers&quot;">RFC2780</a>] specified ECN as an
-   experimental use of the two-bit CU field.  <a href="./rfc2780">RFC 2780</a> updated the
+   Headers&quot; [RFC2474] in which bits 6 and 7 of the DS field are listed
+   as Currently Unused (CU).  RFC 2780 [RFC2780] specified ECN as an
+   experimental use of the two-bit CU field.  RFC 2780 updated the
    definition of the DS Field to only encompass the first six bits of
    this octet rather than all eight bits; these first six bits are
-   defined as the Differentiated Services CodePoint (DSCP):
-
-            0     1     2     3     4     5     6     7
-         +-----+-----+-----+-----+-----+-----+-----+-----+
-         |               DSCP                |    CU     |  RFCs 2474,
-         +-----+-----+-----+-----+-----+-----+-----+-----+    2780
-
-   Because of this unstable history, the definition of the ECN field in
+   defined as the Differentiated Services CodePoint (DSCP):</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0     1     2     3     4     5     6     7</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">DSCP</div><div class="modern-diagram-cell">CU</div><div class="modern-diagram-cell">RFCs 2474,</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">+-----+-----+-----+-----+-----+-----+-----+-----+    2780</div></div></div>
+</figure><pre>   Because of this unstable history, the definition of the ECN field in
    this document cannot be guaranteed to be backwards compatible with
    all past uses of these two bits.
 
 
 
-<span>Ramakrishnan, et al.        Standards Track                    [Page 59]</span></pre>
+Ramakrishnan, et al.        Standards Track                    [Page 59]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 60</span>
@@ -3686,62 +3645,40 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 61</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc3168">RFC 3168</a>               The Addition of ECN to IP          September 2001</span>
+  <pre>RFC 3168               The Addition of ECN to IP          September 2001
 
 
    Bits 6-7, ECN Field:
 
    Binary  Keyword                                  References
    ------  -------                                  ----------
-     00     Not-ECT (Not ECN-Capable Transport)     [<a href="./rfc3168">RFC 3168</a>]
-     01     ECT(1) (ECN-Capable Transport(1))       [<a href="./rfc3168">RFC 3168</a>]
-     10     ECT(0) (ECN-Capable Transport(0))       [<a href="./rfc3168">RFC 3168</a>]
-     11     CE (Congestion Experienced)             [<a href="./rfc3168">RFC 3168</a>]
+     00     Not-ECT (Not ECN-Capable Transport)     [RFC 3168]
+     01     ECT(1) (ECN-Capable Transport(1))       [RFC 3168]
+     10     ECT(0) (ECN-Capable Transport(0))       [RFC 3168]
+     11     CE (Congestion Experienced)             [RFC 3168]
 
-<span><a href="#section-23.2">23.2</a>.  TCP Header Flags</span>
+23.2.  TCP Header Flags
 
    The codepoints for the CWR and ECE flags in the TCP header are
-   specified by the Standards Action of this RFC, as is required by <a href="./rfc2780">RFC</a>
-   <a href="https://www.rfc-editor.org/rfc/rfc2780.html" class="rfc-external">2780</a>.
+   specified by the Standards Action of this RFC, as is required by RFC
+   2780.
 
    When this document is published as an RFC, IANA should create a new
-   registry, "TCP Header Flags", with the namespace as follows:
+   registry, &quot;TCP Header Flags&quot;, with the namespace as follows:
 
    TCP Header Flags
 
    The Transmission Control Protocol (TCP) included a 6-bit Reserved
-   field defined in <a href="./rfc793">RFC 793</a>, reserved for future use, in bytes 13 and 14
+   field defined in RFC 793, reserved for future use, in bytes 13 and 14
    of the TCP header, as illustrated below.  The other six Control bits
-   are defined separately by <a href="./rfc793">RFC 793</a>.
-
-     0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15
-   +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-   |               |                       | U | A | P | R | S | F |
-   | Header Length |        Reserved       | R | C | S | S | Y | I |
-   |               |                       | G | K | H | T | N | N |
-   +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-
-   <a href="./rfc3168">RFC 3168</a> defines two of the six bits from the Reserved field to be
-   used for ECN, as follows:
-
-     0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15
-   +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-   |               |               | C | E | U | A | P | R | S | F |
-   | Header Length |    Reserved   | W | C | R | C | S | S | Y | I |
-   |               |               | R | E | G | K | H | T | N | N |
-   +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-
-
-
-
-
-
-
-
-
-
-<span>Ramakrishnan, et al.        Standards Track                    [Page 61]</span></pre>
+   are defined separately by RFC 793.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15</div></div><div class="modern-diagram-row" style="--cell-count: 6"><div class="modern-diagram-cell">U</div><div class="modern-diagram-cell">A</div><div class="modern-diagram-cell">P</div><div class="modern-diagram-cell">R</div><div class="modern-diagram-cell">S</div><div class="modern-diagram-cell">F</div></div><div class="modern-diagram-row" style="--cell-count: 8"><div class="modern-diagram-cell">Header Length</div><div class="modern-diagram-cell">Reserved</div><div class="modern-diagram-cell">R</div><div class="modern-diagram-cell">C</div><div class="modern-diagram-cell">S</div><div class="modern-diagram-cell">S</div><div class="modern-diagram-cell">Y</div><div class="modern-diagram-cell">I</div></div><div class="modern-diagram-row" style="--cell-count: 6"><div class="modern-diagram-cell">G</div><div class="modern-diagram-cell">K</div><div class="modern-diagram-cell">H</div><div class="modern-diagram-cell">T</div><div class="modern-diagram-cell">N</div><div class="modern-diagram-cell">N</div></div></div>
+</figure><pre>   RFC 3168 defines two of the six bits from the Reserved field to be
+   used for ECN, as follows:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15</div></div><div class="modern-diagram-row" style="--cell-count: 8"><div class="modern-diagram-cell">C</div><div class="modern-diagram-cell">E</div><div class="modern-diagram-cell">U</div><div class="modern-diagram-cell">A</div><div class="modern-diagram-cell">P</div><div class="modern-diagram-cell">R</div><div class="modern-diagram-cell">S</div><div class="modern-diagram-cell">F</div></div><div class="modern-diagram-row" style="--cell-count: 10"><div class="modern-diagram-cell">Header Length</div><div class="modern-diagram-cell">Reserved</div><div class="modern-diagram-cell">W</div><div class="modern-diagram-cell">C</div><div class="modern-diagram-cell">R</div><div class="modern-diagram-cell">C</div><div class="modern-diagram-cell">S</div><div class="modern-diagram-cell">S</div><div class="modern-diagram-cell">Y</div><div class="modern-diagram-cell">I</div></div><div class="modern-diagram-row" style="--cell-count: 8"><div class="modern-diagram-cell">R</div><div class="modern-diagram-cell">E</div><div class="modern-diagram-cell">G</div><div class="modern-diagram-cell">K</div><div class="modern-diagram-cell">H</div><div class="modern-diagram-cell">T</div><div class="modern-diagram-cell">N</div><div class="modern-diagram-cell">N</div></div></div>
+</figure><pre>Ramakrishnan, et al.        Standards Track                    [Page 61]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 62</span>

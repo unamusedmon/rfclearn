@@ -1346,12 +1346,11 @@ Abstract
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 22</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2481">RFC 2481</a>                       ECN to IP                    January 1999</span>
+  <pre>RFC 2481                       ECN to IP                    January 1999
 
 
    one-bit implementation, this means that the single overloaded bit
-   should by default be in the "CE or not ECT" position.  This is less
+   should by default be in the &quot;CE or not ECT&quot; position.  This is less
    clear and straightforward, and possibly more open to incorrect
    implementations either in the end nodes or in the routers.
 
@@ -1371,78 +1370,59 @@ Abstract
    the extra bit in the IP header for the ECT-bit is extremely valuable
    to overcome these limitations.
 
-<span><a href="#section-19">19</a>.  Historical definitions for the IPv4 TOS octet</span>
+19.  Historical definitions for the IPv4 TOS octet
 
-   <a href="./rfc791">RFC 791</a> [<a href="./rfc791" title="&quot;Internet Protocol&quot;">RFC791</a>] defined the ToS (Type of Service) octet in the IP
-   header.  In <a href="./rfc791">RFC 791</a>, bits 6 and 7 of the ToS octet are listed as
-   "Reserved for Future Use", and are shown set to zero.  The first two
+   RFC 791 [RFC791] defined the ToS (Type of Service) octet in the IP
+   header.  In RFC 791, bits 6 and 7 of the ToS octet are listed as
+   &quot;Reserved for Future Use&quot;, and are shown set to zero.  The first two
    fields of the ToS octet were defined as the Precedence and Type of
-   Service (TOS) fields.
-
-            0     1     2     3     4     5     6     7
-         +-----+-----+-----+-----+-----+-----+-----+-----+
-         |   PRECEDENCE    |       TOS       |  0  |  0  |    <a href="./rfc791">RFC 791</a>
-         +-----+-----+-----+-----+-----+-----+-----+-----+
-
-   <a href="./rfc1122">RFC 1122</a> included bits 6 and 7 in the TOS field, though it did not
-   discuss any specific use for those two bits:
-
-            0     1     2     3     4     5     6     7
-         +-----+-----+-----+-----+-----+-----+-----+-----+
-         |   PRECEDENCE    |       TOS                   |    <a href="./rfc1122">RFC 1122</a>
-         +-----+-----+-----+-----+-----+-----+-----+-----+
-
-   The IPv4 TOS octet was redefined in <a href="./rfc1349">RFC 1349</a> [<a href="./rfc1349" title="&quot;Type of Service in the Internet Protocol Suite&quot;">RFC1349</a>] as follows:
-
-            0     1     2     3     4     5     6     7
-         +-----+-----+-----+-----+-----+-----+-----+-----+
-         |   PRECEDENCE    |       TOS             | MBZ |    <a href="./rfc1349">RFC 1349</a>
-         +-----+-----+-----+-----+-----+-----+-----+-----+
-
-
-
-<span>Ramakrishnan &amp; Floyd          Experimental                     [Page 22]</span></pre>
+   Service (TOS) fields.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0     1     2     3     4     5     6     7</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">PRECEDENCE</div><div class="modern-diagram-cell">TOS</div><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">RFC 791</div></div></div>
+</figure><pre>   RFC 1122 included bits 6 and 7 in the TOS field, though it did not
+   discuss any specific use for those two bits:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0     1     2     3     4     5     6     7</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">PRECEDENCE</div><div class="modern-diagram-cell">TOS</div><div class="modern-diagram-cell">RFC 1122</div></div></div>
+</figure><pre>   The IPv4 TOS octet was redefined in RFC 1349 [RFC1349] as follows:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0     1     2     3     4     5     6     7</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">PRECEDENCE</div><div class="modern-diagram-cell">TOS</div><div class="modern-diagram-cell">MBZ</div><div class="modern-diagram-cell">RFC 1349</div></div></div>
+</figure><pre>Ramakrishnan &amp; Floyd          Experimental                     [Page 22]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 23</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc2481">RFC 2481</a>                       ECN to IP                    January 1999</span>
+  <pre>RFC 2481                       ECN to IP                    January 1999
 
 
-   Bit 6 in the TOS field was defined in <a href="./rfc1349">RFC 1349</a> for "Minimize Monetary
-   Cost".  In addition to the Precedence and Type of Service (TOS)
-   fields, the last field, MBZ (for "must be zero") was defined as
-   currently unused.  <a href="./rfc1349">RFC 1349</a> stated that "The originator of a datagram
+   Bit 6 in the TOS field was defined in RFC 1349 for &quot;Minimize Monetary
+   Cost&quot;.  In addition to the Precedence and Type of Service (TOS)
+   fields, the last field, MBZ (for &quot;must be zero&quot;) was defined as
+   currently unused.  RFC 1349 stated that &quot;The originator of a datagram
    sets [the MBZ] field to zero (unless participating in an Internet
-   protocol experiment which makes use of that bit)."
+   protocol experiment which makes use of that bit).&quot;
 
-   <a href="./rfc1455">RFC 1455</a> [<a href="./rfc1455">RFC 1455</a>] defined an experimental standard that used all
+   RFC 1455 [RFC 1455] defined an experimental standard that used all
    four bits in the TOS field to request a guaranteed level of link
    security.
 
-   <a href="./rfc1349">RFC 1349</a> is obsoleted by "Definition of the Differentiated Services
-   Field (DS Field) in the IPv4 and IPv6 Headers" [<a href="#ref-DIFFSERV" title="&quot;Definition of the Differentiated Services Field (DS Field) in the IPv4 and IPv6 Headers&quot;">DIFFSERV</a>], in which
+   RFC 1349 is obsoleted by &quot;Definition of the Differentiated Services
+   Field (DS Field) in the IPv4 and IPv6 Headers&quot; [DIFFSERV], in which
    bits 6 and 7 of the DS field are listed as Currently Unused (CU).
    The first six bits of the DS field are defined as the Differentiated
-   Services CodePoint (DSCP):
-
-            0     1     2     3     4     5     6     7
-         +-----+-----+-----+-----+-----+-----+-----+-----+
-         |               DSCP                |    CU     |
-         +-----+-----+-----+-----+-----+-----+-----+-----+
-
-   Because of this unstable history, the definition of the ECN field in
+   Services CodePoint (DSCP):</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0     1     2     3     4     5     6     7</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">DSCP</div><div class="modern-diagram-cell">CU</div></div></div>
+</figure><pre>   Because of this unstable history, the definition of the ECN field in
    this document cannot be guaranteed to be backwards compatible with
    all past uses of these two bits.  The damage that could be done by a
-   non-ECN-capable router would be to "erase" the CE bit for an ECN-
+   non-ECN-capable router would be to &quot;erase&quot; the CE bit for an ECN-
    capable packet that arrived at the router with the CE bit set, or set
    the CE bit even in the absence of congestion.  This has been
-   discussed in <a href="#section-10">Section 10</a> on "Non-compliance in the Network".
+   discussed in Section 10 on &quot;Non-compliance in the Network&quot;.
 
    The damage that could be done in an ECN-capable environment by a
    non-ECN-capable end-node transmitting packets with the ECT bit set
-   has been discussed in <a href="#section-9">Section 9</a> on "Non-compliance by the End Nodes".
+   has been discussed in Section 9 on &quot;Non-compliance by the End Nodes&quot;.
 
 
 
@@ -1461,7 +1441,7 @@ Abstract
 
 
 
-<span>Ramakrishnan &amp; Floyd          Experimental                     [Page 23]</span></pre>
+Ramakrishnan &amp; Floyd          Experimental                     [Page 23]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 24</span>

@@ -384,8 +384,7 @@ Internet Standard Subnetting Procedure
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 6</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc950">RFC 950</a>                                                      August 1985</span>
+  <pre>RFC 950                                                      August 1985
 Internet Standard Subnetting Procedure
 
 
@@ -393,41 +392,38 @@ Internet Standard Subnetting Procedure
 
          &lt;network-number&gt;&lt;subnet-number&gt;&lt;host-number&gt;
 
-      where the &lt;network-number&gt; field is as defined by IP [<a href="#ref-3" title="&quot;Internet Protocol&quot;">3</a>], the
+      where the &lt;network-number&gt; field is as defined by IP [3], the
       &lt;host-number&gt; field is at least 1-bit wide, and the width of the
       &lt;subnet-number&gt; field is constant for a given network.  No further
       structure is required for the &lt;subnet-number&gt; or &lt;host-number&gt;
       fields.  If the width of the &lt;subnet-number&gt; field is zero, then
-      the network is not subnetted (i.e., the interpretation of [<a href="#ref-3" title="&quot;Internet Protocol&quot;">3</a>] is
+      the network is not subnetted (i.e., the interpretation of [3] is
       used).
 
       For example, on a Class B network with a 6-bit wide subnet field,
       an address would be broken down like this:
 
-                           1                   2                   3
-       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |1 0|        NETWORK            |  SUBNET   |    Host Number    |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-      Since the bits that identify the subnet are specified by a
+                           1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">1 0</div><div class="modern-diagram-cell">NETWORK</div><div class="modern-diagram-cell">SUBNET</div><div class="modern-diagram-cell">Host Number</div></div></div>
+</figure><pre>      Since the bits that identify the subnet are specified by a
       bitmask, they need not be adjacent in the address.  However, we
       recommend that the subnet bits be contiguous and located as the
       most significant bits of the local address.
 
       Special Addresses:
 
-         From the Assigned Numbers memo [<a href="#ref-9" title="&quot;Assigned Numbers&quot;">9</a>]:
+         From the Assigned Numbers memo [9]:
 
-            "In certain contexts, it is useful to have fixed addresses
+            &quot;In certain contexts, it is useful to have fixed addresses
             with functional significance rather than as identifiers of
             specific hosts.  When such usage is called for, the address
-            zero is to be interpreted as meaning "this", as in "this
-            network".  The address of all ones are to be interpreted as
-            meaning "all", as in "all hosts".  For example, the address
+            zero is to be interpreted as meaning &quot;this&quot;, as in &quot;this
+            network&quot;.  The address of all ones are to be interpreted as
+            meaning &quot;all&quot;, as in &quot;all hosts&quot;.  For example, the address
             128.9.255.255 could be interpreted as meaning all hosts on
             the network 128.9.  Or, the address 0.0.0.37 could be
-            interpreted as meaning host 37 on this network."
+            interpreted as meaning host 37 on this network.&quot;
 
          It is useful to preserve and extend the interpretation of these
          special addresses in subnetted networks.  This means the values
@@ -438,7 +434,7 @@ Internet Standard Subnetting Procedure
             any value except 0 and 63.
 
 
-<span>Mogul &amp; Postel                                                  [Page 6]</span></pre>
+Mogul &amp; Postel                                                  [Page 6]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 7</span>
@@ -620,26 +616,18 @@ Internet Standard Subnetting Procedure
   <div class="rfc-page-top">
     <span class="rfc-page-label">Appendix</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc950">RFC 950</a>                                                      August 1985</span>
+  <pre>RFC 950                                                      August 1985
 Internet Standard Subnetting Procedure
 
 
-<span><a href="#appendix-I">Appendix I</a>.  Address Mask ICMP</span>
+Appendix I.  Address Mask ICMP
 
    Address Mask Request or Address Mask Reply
 
-       0                   1                   2                   3
-       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |     Type      |      Code     |          Checksum             |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |           Identifier          |       Sequence Number         |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                        Address Mask                           |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-      IP Fields:
+       0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Type</div><div class="modern-diagram-cell">Code</div><div class="modern-diagram-cell">Checksum</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Identifier</div><div class="modern-diagram-cell">Sequence Number</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Address Mask</div></div></div>
+</figure><pre>      IP Fields:
 
          Addresses
 
@@ -647,7 +635,7 @@ Internet Standard Subnetting Procedure
             will be the destination of the address mask reply message.
             To form an address mask reply message, the source address of
             the request becomes the destination address of the reply,
-            the source address of the reply is set to the replier's
+            the source address of the reply is set to the replier&#x27;s
             address, the type code changed to AM2, the address mask
             value inserted into the Address Mask field, and the checksum
             recomputed.  However, if the source address in the request
@@ -670,11 +658,11 @@ Internet Standard Subnetting Procedure
 
          Checksum
 
-            The checksum is the 16-bit one's complement of the one's
+            The checksum is the 16-bit one&#x27;s complement of the one&#x27;s
 
 
 
-<span>Mogul &amp; Postel                                                 [Page 10]</span></pre>
+Mogul &amp; Postel                                                 [Page 10]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 11</span>

@@ -986,18 +986,17 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 16</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8490">RFC 8490</a>                 DNS Stateful Operations              March 2019</span>
+  <pre>RFC 8490                 DNS Stateful Operations              March 2019
 
 
-   describes this latter form of error condition as a "fatal error" and
+   describes this latter form of error condition as a &quot;fatal error&quot; and
    specifies that an implementation encountering a fatal error condition
-   "MUST forcibly abort the connection immediately".
+   &quot;MUST forcibly abort the connection immediately&quot;.
 
-<span><a href="#section-5.4">5.4</a>.  Message Format</span>
+5.4.  Message Format
 
    A DSO message begins with the standard twelve-byte DNS message header
-   [<a href="./rfc1035" title="&quot;Domain names - implementation and specification&quot;">RFC1035</a>] with the OPCODE field set to the DSO OPCODE (6).  However,
+   [RFC1035] with the OPCODE field set to the DSO OPCODE (6).  However,
    unlike standard DNS messages, the question section, answer section,
    authority records section, and additional records sections are not
    present.  The corresponding count fields (QDCOUNT, ANCOUNT, NSCOUNT,
@@ -1006,42 +1005,11 @@ Table of Contents
    If a DSO message is received where any of the count fields are not
    zero, then a FORMERR MUST be returned.
 
-                                                1   1   1   1   1   1
-        0   1   2   3   4   5   6   7   8   9   0   1   2   3   4   5
-      +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-      |                          MESSAGE ID                           |
-      +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-      |QR |  OPCODE (6)   |            Z              |     RCODE     |
-      +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-      |                     QDCOUNT (MUST be zero)                    |
-      +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-      |                     ANCOUNT (MUST be zero)                    |
-      +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-      |                     NSCOUNT (MUST be zero)                    |
-      +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-      |                     ARCOUNT (MUST be zero)                    |
-      +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-      |                                                               |
-      /                           DSO Data                            /
-      /                                                               /
-      +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<span>Bellis, et al.               Standards Track                   [Page 16]</span></pre>
+                                                1   1   1   1   1   1</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0   1   2   3   4   5   6   7   8   9   0   1   2   3   4   5</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">MESSAGE ID</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">QR</div><div class="modern-diagram-cell">OPCODE (6)</div><div class="modern-diagram-cell">Z</div><div class="modern-diagram-cell">RCODE</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">QDCOUNT (MUST be zero)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">ANCOUNT (MUST be zero)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">NSCOUNT (MUST be zero)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">ARCOUNT (MUST be zero)</div></div></div>
+</figure><pre>      /                           DSO Data                            /
+      /                                                               /</pre><pre>      +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+</pre><pre>Bellis, et al.               Standards Track                   [Page 16]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 17</span>
@@ -1106,34 +1074,17 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 18</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8490">RFC 8490</a>                 DNS Stateful Operations              March 2019</span>
+  <pre>RFC 8490                 DNS Stateful Operations              March 2019
 
 
    specified otherwise, the RCODE is set to zero on transmission, and
    silently ignored on reception.
 
    The RCODE value in a response message (QR=1) may be one of the
-   following values:
-
-   +------+-----------+------------------------------------------------+
-   | Code | Mnemonic  | Description                                    |
-   +------+-----------+------------------------------------------------+
-   |    0 | NOERROR   | Operation processed successfully               |
-   |      |           |                                                |
-   |    1 | FORMERR   | Format error                                   |
-   |      |           |                                                |
-   |    2 | SERVFAIL  | Server failed to process DSO request message   |
-   |      |           | due to a problem with the server               |
-   |      |           |                                                |
-   |    4 | NOTIMP    | DSO not supported                              |
-   |      |           |                                                |
-   |    5 | REFUSED   | Operation declined for policy reasons          |
-   |      |           |                                                |
-   |   11 | DSOTYPENI | Primary TLV's DSO-Type is not implemented      |
-   +------+-----------+------------------------------------------------+
-
-   Use of the above RCODEs is likely to be common in DSO but does not
+   following values:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Code</div><div class="modern-diagram-cell">Mnemonic</div><div class="modern-diagram-cell">Description</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">NOERROR</div><div class="modern-diagram-cell">Operation processed successfully</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">FORMERR</div><div class="modern-diagram-cell">Format error</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">2</div><div class="modern-diagram-cell">SERVFAIL</div><div class="modern-diagram-cell">Server failed to process DSO request message</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">due to a problem with the server</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">4</div><div class="modern-diagram-cell">NOTIMP</div><div class="modern-diagram-cell">DSO not supported</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">5</div><div class="modern-diagram-cell">REFUSED</div><div class="modern-diagram-cell">Operation declined for policy reasons</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">11</div><div class="modern-diagram-cell">DSOTYPENI</div><div class="modern-diagram-cell">Primary TLV&#x27;s DSO-Type is not implemented</div></div></div>
+</figure><pre>   Use of the above RCODEs is likely to be common in DSO but does not
    preclude the definition and use of other codes in future documents
    that make use of DSO.
 
@@ -1145,15 +1096,15 @@ Table of Contents
    The RCODE field is followed by the four zero-valued count fields,
    followed by the DSO Data.
 
-<span><a href="#section-5.4.2">5.4.2</a>.  DSO Data</span>
+5.4.2.  DSO Data
 
    The standard twelve-byte DNS message header with its zero-valued
    count fields is followed by the DSO Data, expressed using TLV syntax,
-   as described in <a href="#section-5.4.4">Section 5.4.4</a>.
+   as described in Section 5.4.4.
 
    A DSO request message or DSO unidirectional message MUST contain at
    least one TLV.  The first TLV in a DSO request message or DSO
-   unidirectional message is referred to as the "Primary TLV" and
+   unidirectional message is referred to as the &quot;Primary TLV&quot; and
    determines the nature of the operation being performed, including
    whether it is a DSO request or a DSO unidirectional operation.  In
    some cases, it may be appropriate to include other TLVs in a DSO
@@ -1161,7 +1112,7 @@ Table of Contents
 
 
 
-<span>Bellis, et al.               Standards Track                   [Page 18]</span></pre>
+Bellis, et al.               Standards Track                   [Page 18]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 19</span>
@@ -1286,14 +1237,13 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 21</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8490">RFC 8490</a>                 DNS Stateful Operations              March 2019</span>
+  <pre>RFC 8490                 DNS Stateful Operations              March 2019
 
 
-<span><a href="#section-5.4.4">5.4.4</a>.  TLV Syntax</span>
+5.4.4.  TLV Syntax
 
-   All TLVs, whether used as "Primary", "Additional", "Response
-   Primary", or "Response Additional", use the same encoding syntax.
+   All TLVs, whether used as &quot;Primary&quot;, &quot;Additional&quot;, &quot;Response
+   Primary&quot;, or &quot;Response Additional&quot;, use the same encoding syntax.
 
    A specification that defines a new TLV must specify whether the DSO-
    TYPE can be used as a Primary TLV, and whether the DSO-TYPE can be
@@ -1312,27 +1262,19 @@ Table of Contents
    allowed the specification should clearly describe how they should be
    processed.
 
-                                                1   1   1   1   1   1
-        0   1   2   3   4   5   6   7   8   9   0   1   2   3   4   5
-      +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-      |                           DSO-TYPE                            |
-      +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-      |                          DSO-LENGTH                           |
-      +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-      |                                                               |
-      /                           DSO-DATA                            /
-      /                                                               /
-      +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-
-   DSO-TYPE:  A 16-bit unsigned integer, in network (big endian) byte
+                                                1   1   1   1   1   1</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0   1   2   3   4   5   6   7   8   9   0   1   2   3   4   5</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">DSO-TYPE</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">DSO-LENGTH</div></div></div>
+</figure><pre>      /                           DSO-DATA                            /
+      /                                                               /</pre><pre>      +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+</pre><pre>   DSO-TYPE:  A 16-bit unsigned integer, in network (big endian) byte
       order, giving the DSO-TYPE of the current DSO TLV per the IANA
-      "DSO Type Codes" registry.
+      &quot;DSO Type Codes&quot; registry.
 
    DSO-LENGTH:  A 16-bit unsigned integer, in network (big endian) byte
       order, giving the size in bytes of the DSO-DATA.
 
    DSO-DATA:  Type-code specific format.  The generic DSO machinery
-      treats the DSO-DATA as an opaque "blob" without attempting to
+      treats the DSO-DATA as an opaque &quot;blob&quot; without attempting to
       interpret it.  Interpretation of the meaning of the DSO-DATA for a
       particular DSO-TYPE is the responsibility of the software that
       implements that DSO-TYPE.
@@ -1341,7 +1283,7 @@ Table of Contents
 
 
 
-<span>Bellis, et al.               Standards Track                   [Page 21]</span></pre>
+Bellis, et al.               Standards Track                   [Page 21]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 22</span>
@@ -2426,21 +2368,20 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 40</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8490">RFC 8490</a>                 DNS Stateful Operations              March 2019</span>
+  <pre>RFC 8490                 DNS Stateful Operations              March 2019
 
 
-<span><a href="#section-7">7</a>.  Base TLVs for DNS Stateful Operations</span>
+7.  Base TLVs for DNS Stateful Operations
 
    This section describes the three base TLVs for DNS Stateful
    Operations: Keepalive, Retry Delay, and Encryption Padding.
 
-<span><a href="#section-7.1">7.1</a>.  Keepalive TLV</span>
+7.1.  Keepalive TLV
 
    The Keepalive TLV (DSO-TYPE=1) performs two functions.  Primarily, it
    establishes the values for the Session Timeouts.  Incidentally, it
    also resets the keepalive timer for the DSO Session, meaning that it
-   can be used as a kind of "no-op" message for the purpose of keeping a
+   can be used as a kind of &quot;no-op&quot; message for the purpose of keeping a
    session alive.  The client will request the desired Session Timeout
    values and the server will acknowledge with the response values that
    it requires the client to use.
@@ -2448,21 +2389,14 @@ Table of Contents
    DSO messages with the Keepalive TLV as the Primary TLV may appear in
    early data.
 
-   The DSO-DATA for the Keepalive TLV is as follows:
-
-                           1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 3 3
-       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                 INACTIVITY TIMEOUT (32 bits)                  |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                 KEEPALIVE INTERVAL (32 bits)                  |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-   INACTIVITY TIMEOUT:  The inactivity timeout for the current DSO
+   The DSO-DATA for the Keepalive TLV is as follows:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 3 3</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">INACTIVITY TIMEOUT (32 bits)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">KEEPALIVE INTERVAL (32 bits)</div></div></div>
+</figure><pre>   INACTIVITY TIMEOUT:  The inactivity timeout for the current DSO
       Session, specified as a 32-bit unsigned integer, in network (big
       endian) byte order in units of milliseconds.  This is the timeout
       at which the client MUST begin closing an inactive DSO Session.
-      The inactivity timeout can be any value of the server's choosing.
+      The inactivity timeout can be any value of the server&#x27;s choosing.
       If the client does not gracefully close an inactive DSO Session,
       then after five seconds or twice this interval, whichever is
       greater, the server will forcibly abort the connection.
@@ -2481,7 +2415,7 @@ Table of Contents
 
 
 
-<span>Bellis, et al.               Standards Track                   [Page 40]</span></pre>
+Bellis, et al.               Standards Track                   [Page 40]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 41</span>
@@ -2666,32 +2600,26 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 44</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8490">RFC 8490</a>                 DNS Stateful Operations              March 2019</span>
+  <pre>RFC 8490                 DNS Stateful Operations              March 2019
 
 
-<span><a href="#section-7.2">7.2</a>.  Retry Delay TLV</span>
+7.2.  Retry Delay TLV
 
    The Retry Delay TLV (DSO-TYPE=2) can be used as a Primary TLV
    (unidirectional) in a server-to-client message, or as a Response
    Additional TLV in either direction.  DSO messages with a Relay Delay
    TLV as their Primary TLV are not permitted in early data.
 
-   The DSO-DATA for the Retry Delay TLV is as follows:
-
-                           1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 3 3
-       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                     RETRY DELAY (32 bits)                     |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-   RETRY DELAY:  A time value, specified as a 32-bit unsigned integer in
+   The DSO-DATA for the Retry Delay TLV is as follows:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 3 3</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">RETRY DELAY (32 bits)</div></div></div>
+</figure><pre>   RETRY DELAY:  A time value, specified as a 32-bit unsigned integer in
       network (big endian) byte order, in units of milliseconds, within
       which the initiator MUST NOT retry this operation or retry
       connecting to this server.  Recommendations for the RETRY DELAY
-      value are given in <a href="#section-6.6.1">Section 6.6.1</a>.
+      value are given in Section 6.6.1.
 
-<span><a href="#section-7.2.1">7.2.1</a>.  Retry Delay TLV Used as a Primary TLV</span>
+7.2.1.  Retry Delay TLV Used as a Primary TLV
 
    When used as the Primary TLV in a DSO unidirectional message, the
    Retry Delay TLV is sent from server to client.  It is used by a
@@ -2700,7 +2628,7 @@ Table of Contents
 
    In this case, it applies to the DSO Session as a whole, and the
    client MUST begin closing the DSO Session as described in
-   <a href="#section-6.6.1">Section 6.6.1</a>.  The RCODE in the message header SHOULD indicate the
+   Section 6.6.1.  The RCODE in the message header SHOULD indicate the
    principal reason for the termination:
 
    o  NOERROR indicates a routine shutdown or restart.
@@ -2721,7 +2649,7 @@ Table of Contents
 
 
 
-<span>Bellis, et al.               Standards Track                   [Page 44]</span></pre>
+Bellis, et al.               Standards Track                   [Page 44]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 45</span>
@@ -2846,16 +2774,15 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 47</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8490">RFC 8490</a>                 DNS Stateful Operations              March 2019</span>
+  <pre>RFC 8490                 DNS Stateful Operations              March 2019
 
 
-<span><a href="#section-8">8</a>.  Summary Highlights</span>
+8.  Summary Highlights
 
    This section summarizes some noteworthy highlights about various
    aspects of the DSO protocol.
 
-<span><a href="#section-8.1">8.1</a>.  QR Bit and MESSAGE ID</span>
+8.1.  QR Bit and MESSAGE ID
 
    In DSO request messages, the QR bit is 0 and the MESSAGE ID is
    nonzero.
@@ -2867,41 +2794,10 @@ Table of Contents
    zero.
 
    The table below illustrates which combinations are legal and how they
-   are interpreted:
-
-               +------------------------------+------------------------+
-               |       MESSAGE ID zero        |   MESSAGE ID nonzero   |
-      +--------+------------------------------+------------------------+
-      |  QR=0  |  DSO unidirectional message  |  DSO request message   |
-      +--------+------------------------------+------------------------+
-      |  QR=1  |    Invalid - Fatal Error     |  DSO response message  |
-      +--------+------------------------------+------------------------+
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<span>Bellis, et al.               Standards Track                   [Page 47]</span></pre>
+   are interpreted:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">MESSAGE ID zero</div><div class="modern-diagram-cell">MESSAGE ID nonzero</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">QR=0</div><div class="modern-diagram-cell">DSO unidirectional message</div><div class="modern-diagram-cell">DSO request message</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">QR=1</div><div class="modern-diagram-cell">Invalid - Fatal Error</div><div class="modern-diagram-cell">DSO response message</div></div></div>
+</figure><pre>Bellis, et al.               Standards Track                   [Page 47]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 48</span>
@@ -2966,33 +2862,23 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 49</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8490">RFC 8490</a>                 DNS Stateful Operations              March 2019</span>
+  <pre>RFC 8490                 DNS Stateful Operations              March 2019
 
 
    o  SRP - Response Primary TLV, included in response message sent back
-      to the server (in response to a server "S-P" request with nonzero
+      to the server (in response to a server &quot;S-P&quot; request with nonzero
       MESSAGE ID indicating that a response is required) where the DSO-
       TYPE of the Response TLV matches the DSO-TYPE of the Primary TLV
       in the request.
 
    o  SRA - Response Additional TLV, included in response message sent
-      back to the server (in response to a server "S-P" request with
+      back to the server (in response to a server &quot;S-P&quot; request with
       nonzero MESSAGE ID indicating that a response is required) where
       the DSO-TYPE of the Response TLV does not match the DSO-TYPE of
-      the Primary TLV in the request.
-
-                +-------------------------+-------------------------+
-                | C-P  C-U  C-A  CRP  CRA | S-P  S-U  S-A  SRP  SRA |
-   +------------+-------------------------+-------------------------+
-   | KeepAlive  |  X              X       |       X                 |
-   +------------+-------------------------+-------------------------+
-   | RetryDelay |                      X  |       X              X  |
-   +------------+-------------------------+-------------------------+
-   | Padding    |            X         X  |            X         X  |
-   +------------+-------------------------+-------------------------+
-
-   Note that some of the columns in this table are currently empty.  The
+      the Primary TLV in the request.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">C-P  C-U  C-A  CRP  CRA</div><div class="modern-diagram-cell">S-P  S-U  S-A  SRP  SRA</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">KeepAlive</div><div class="modern-diagram-cell">X              X</div><div class="modern-diagram-cell">X</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">RetryDelay</div><div class="modern-diagram-cell">X</div><div class="modern-diagram-cell">X              X</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Padding</div><div class="modern-diagram-cell">X         X</div><div class="modern-diagram-cell">X         X</div></div></div>
+</figure><pre>   Note that some of the columns in this table are currently empty.  The
    table provides a template for future TLV definitions to follow.  It
    is recommended that definitions of future TLVs include a similar
    table summarizing the contexts where the new TLV is valid.
@@ -3021,7 +2907,7 @@ Table of Contents
 
 
 
-<span>Bellis, et al.               Standards Track                   [Page 49]</span></pre>
+Bellis, et al.               Standards Track                   [Page 49]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 50</span>
@@ -3446,62 +3332,31 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 57</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc8490">RFC 8490</a>                 DNS Stateful Operations              March 2019</span>
+  <pre>RFC 8490                 DNS Stateful Operations              March 2019
 
 
-<span><a href="#section-10">10</a>.  IANA Considerations</span>
+10.  IANA Considerations
 
-<span><a href="#section-10.1">10.1</a>.  DSO OPCODE Registration</span>
+10.1.  DSO OPCODE Registration
 
    The IANA has assigned the value 6 for DNS Stateful Operations (DSO)
-   in the "DNS OpCodes" registry.
+   in the &quot;DNS OpCodes&quot; registry.
 
-<span><a href="#section-10.2">10.2</a>.  DSO RCODE Registration</span>
+10.2.  DSO RCODE Registration
 
    IANA has assigned the value 11 for the DSOTYPENI error code in the
-   "DNS RCODEs" registry.  The DSOTYPENI error code ("DSO-TYPE Not
-   Implemented") indicates that the receiver does implement DNS Stateful
+   &quot;DNS RCODEs&quot; registry.  The DSOTYPENI error code (&quot;DSO-TYPE Not
+   Implemented&quot;) indicates that the receiver does implement DNS Stateful
    Operations, but does not implement the specific DSO-TYPE of the
    Primary TLV in the DSO request message.
 
-<span><a href="#section-10.3">10.3</a>.  DSO Type Code Registry</span>
+10.3.  DSO Type Code Registry
 
-   The IANA has created the 16-bit "DSO Type Codes" registry, with
-   initial (hexadecimal) values as shown below:
-
-   +-----------+-----------------------+-------+-----------+-----------+
-   | Type      | Name                  | Early | Status    | Reference |
-   |           |                       | Data  |           |           |
-   +-----------+-----------------------+-------+-----------+-----------+
-   | 0000      | Reserved              | NO    | Standards | <a href="./rfc8490">RFC 8490</a>  |
-   |           |                       |       | Track     |           |
-   |           |                       |       |           |           |
-   | 0001      | KeepAlive             | OK    | Standards | <a href="./rfc8490">RFC 8490</a>  |
-   |           |                       |       | Track     |           |
-   |           |                       |       |           |           |
-   | 0002      | RetryDelay            | NO    | Standards | <a href="./rfc8490">RFC 8490</a>  |
-   |           |                       |       | Track     |           |
-   |           |                       |       |           |           |
-   | 0003      | EncryptionPadding     | NA    | Standards | <a href="./rfc8490">RFC 8490</a>  |
-   |           |                       |       | Track     |           |
-   |           |                       |       |           |           |
-   | 0004-003F | Unassigned, reserved  | NO    |           |           |
-   |           | for DSO session-      |       |           |           |
-   |           | management TLVs       |       |           |           |
-   |           |                       |       |           |           |
-   | 0040-F7FF | Unassigned            | NO    |           |           |
-   |           |                       |       |           |           |
-   | F800-FBFF | Experimental/local    | NO    |           |           |
-   |           | use                   |       |           |           |
-   |           |                       |       |           |           |
-   | FC00-FFFF | Reserved for future   | NO    |           |           |
-   |           | expansion             |       |           |           |
-   +-----------+-----------------------+-------+-----------+-----------+
-
-
-
-<span>Bellis, et al.               Standards Track                   [Page 57]</span></pre>
+   The IANA has created the 16-bit &quot;DSO Type Codes&quot; registry, with
+   initial (hexadecimal) values as shown below:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">Type</div><div class="modern-diagram-cell">Name</div><div class="modern-diagram-cell">Early</div><div class="modern-diagram-cell">Status</div><div class="modern-diagram-cell">Reference</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Data</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">0000</div><div class="modern-diagram-cell">Reserved</div><div class="modern-diagram-cell">NO</div><div class="modern-diagram-cell">Standards</div><div class="modern-diagram-cell">RFC 8490</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Track</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">0001</div><div class="modern-diagram-cell">KeepAlive</div><div class="modern-diagram-cell">OK</div><div class="modern-diagram-cell">Standards</div><div class="modern-diagram-cell">RFC 8490</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Track</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">0002</div><div class="modern-diagram-cell">RetryDelay</div><div class="modern-diagram-cell">NO</div><div class="modern-diagram-cell">Standards</div><div class="modern-diagram-cell">RFC 8490</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Track</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">0003</div><div class="modern-diagram-cell">EncryptionPadding</div><div class="modern-diagram-cell">NA</div><div class="modern-diagram-cell">Standards</div><div class="modern-diagram-cell">RFC 8490</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Track</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">0004-003F</div><div class="modern-diagram-cell">Unassigned, reserved</div><div class="modern-diagram-cell">NO</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">for DSO session-</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">management TLVs</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">0040-F7FF</div><div class="modern-diagram-cell">Unassigned</div><div class="modern-diagram-cell">NO</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">F800-FBFF</div><div class="modern-diagram-cell">Experimental/local</div><div class="modern-diagram-cell">NO</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">use</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">FC00-FFFF</div><div class="modern-diagram-cell">Reserved for future</div><div class="modern-diagram-cell">NO</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">expansion</div></div></div>
+</figure><pre>Bellis, et al.               Standards Track                   [Page 57]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 58</span>

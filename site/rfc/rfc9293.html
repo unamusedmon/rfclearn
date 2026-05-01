@@ -531,31 +531,11 @@ of the TCP specification.<a href="#section-2.2-8">¶</a></p>
 <p>A TCP header, followed by any user data in the segment, is formatted as follows, using the style from <span>[<a href="#I-D.mcquistin-augmented-ascii-diagrams">66</a>]</span>:<a href="#section-3.1-3">¶</a></p>
 <span></span><div>
 <figure>
-          <div></div><pre>
-    0                   1                   2                   3
-    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |          Source Port          |       Destination Port        |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                        Sequence Number                        |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                    Acknowledgment Number                      |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |  Data |       |C|E|U|A|P|R|S|F|                               |
-   | Offset| Rsrvd |W|C|R|C|S|S|Y|I|            Window             |
-   |       |       |R|E|G|K|H|T|N|N|                               |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |           Checksum            |         Urgent Pointer        |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                           [Options]                           |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                                                               :
-   :                             Data                              :
-   :                                                               |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-          Note that one tick mark represents one bit position.
-</pre>
+          <div></div><pre>    0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Source Port</div><div class="modern-diagram-cell">Destination Port</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Sequence Number</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Acknowledgment Number</div></div><div class="modern-diagram-row" style="--cell-count: 9"><div class="modern-diagram-cell">Data</div><div class="modern-diagram-cell">C</div><div class="modern-diagram-cell">E</div><div class="modern-diagram-cell">U</div><div class="modern-diagram-cell">A</div><div class="modern-diagram-cell">P</div><div class="modern-diagram-cell">R</div><div class="modern-diagram-cell">S</div><div class="modern-diagram-cell">F</div></div><div class="modern-diagram-row" style="--cell-count: 11"><div class="modern-diagram-cell">Offset</div><div class="modern-diagram-cell">Rsrvd</div><div class="modern-diagram-cell">W</div><div class="modern-diagram-cell">C</div><div class="modern-diagram-cell">R</div><div class="modern-diagram-cell">C</div><div class="modern-diagram-cell">S</div><div class="modern-diagram-cell">S</div><div class="modern-diagram-cell">Y</div><div class="modern-diagram-cell">I</div><div class="modern-diagram-cell">Window</div></div><div class="modern-diagram-row" style="--cell-count: 8"><div class="modern-diagram-cell">R</div><div class="modern-diagram-cell">E</div><div class="modern-diagram-cell">G</div><div class="modern-diagram-cell">K</div><div class="modern-diagram-cell">H</div><div class="modern-diagram-cell">T</div><div class="modern-diagram-cell">N</div><div class="modern-diagram-cell">N</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Checksum</div><div class="modern-diagram-cell">Urgent Pointer</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">[Options]</div></div></div>
+</figure><pre>   :                             Data                              :</pre><pre>   :                                                               |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>          Note that one tick mark represents one bit position.</pre>
 </div>
 <figcaption><a href="#figure-1">Figure 1</a>:
 <a href="#name-tcp-header-format">TCP Header Format</a>
@@ -729,15 +709,10 @@ where:<a href="#section-3.1-5">¶</a></p>
 <span></span><div>
 <figure>
               <div>
-<pre>
-                +--------+--------+--------+--------+
-                |           Source Address          |
-                +--------+--------+--------+--------+
-                |         Destination Address       |
-                +--------+--------+--------+--------+
-                |  zero  |  PTCL  |    TCP Length   |
-                +--------+--------+--------+--------+
-</pre>
+<figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Source Address</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Destination Address</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">zero</div><div class="modern-diagram-cell">PTCL</div><div class="modern-diagram-cell">TCP Length</div></div></div>
+</figure>
 </div>
 <figcaption><a href="#figure-2">Figure 2</a>:
 <a href="#name-ipv4-pseudo-header">IPv4 Pseudo-header</a>
@@ -887,13 +862,10 @@ where:<a href="#section-3.1-5">¶</a></p>
         A TCP Option, in the mandatory option set, is one of an End of Option List Option, a No-Operation Option, or a Maximum Segment Size Option.<a href="#section-3.2-1">¶</a></p>
 <p>An End of Option List Option is formatted as follows:<a href="#section-3.2-2">¶</a></p>
 <div>
-<pre>
-    0
-    0 1 2 3 4 5 6 7
-   +-+-+-+-+-+-+-+-+
-   |       0       |
-   +-+-+-+-+-+-+-+-+
-</pre><a href="#section-3.2-3">¶</a>
+<pre>    0</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0</div></div></div>
+</figure><a href="#section-3.2-3">¶</a>
 </div>
 <p>
 where:<a href="#section-3.2-4">¶</a></p>
@@ -914,13 +886,10 @@ where:<a href="#section-3.2-4">¶</a></p>
 </dl>
 <p>A No-Operation Option is formatted as follows:<a href="#section-3.2-6">¶</a></p>
 <div>
-<pre>
-    0
-    0 1 2 3 4 5 6 7
-   +-+-+-+-+-+-+-+-+
-   |       1       |
-   +-+-+-+-+-+-+-+-+
-</pre><a href="#section-3.2-7">¶</a>
+<pre>    0</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">1</div></div></div>
+</figure><a href="#section-3.2-7">¶</a>
 </div>
 <p>where:<a href="#section-3.2-8">¶</a></p>
 <span></span><dl>
@@ -939,13 +908,10 @@ where:<a href="#section-3.2-4">¶</a></p>
 </dl>
 <p>A Maximum Segment Size Option is formatted as follows:<a href="#section-3.2-10">¶</a></p>
 <div>
-<pre>
-    0                   1                   2                   3
-    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |       2       |     Length    |   Maximum Segment Size (MSS)  |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-</pre><a href="#section-3.2-11">¶</a>
+<pre>    0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">2</div><div class="modern-diagram-cell">Length</div><div class="modern-diagram-cell">Maximum Segment Size (MSS)</div></div></div>
+</figure><a href="#section-3.2-11">¶</a>
 </div>
 <p>where:<a href="#section-3.2-12">¶</a></p>
 <span></span><dl>
@@ -1275,52 +1241,25 @@ This section includes an overview of key terms needed to understand the detailed
 <span></span><div>
 <figure>
             <div>
-<pre>
-                            +---------+ ---------\      active OPEN
-                            |  CLOSED |            \    -----------
-                            +---------+&lt;---------\   \   create TCB
-                              |     ^              \   \  snd SYN
-                 passive OPEN |     |   CLOSE        \   \
-                 ------------ |     | ----------       \   \
-                  create TCB  |     | delete TCB         \   \
-                              V     |                      \   \
-          rcv RST (note 1)  +---------+            CLOSE    |    \
-       --------------------&gt;|  LISTEN |          ---------- |     |
-      /                     +---------+          delete TCB |     |
-     /           rcv SYN      |     |     SEND              |     |
-    /           -----------   |     |    -------            |     V
-+--------+      snd SYN,ACK  /       \   snd SYN          +--------+
-|        |&lt;-----------------           ------------------&gt;|        |
-|  SYN   |                    rcv SYN                     |  SYN   |
-|  RCVD  |&lt;-----------------------------------------------|  SENT  |
-|        |                  snd SYN,ACK                   |        |
-|        |------------------           -------------------|        |
-+--------+   rcv ACK of SYN  \       /  rcv SYN,ACK       +--------+
-   |         --------------   |     |   -----------
-   |                x         |     |     snd ACK
-   |                          V     V
-   |  CLOSE                 +---------+
-   | -------                |  ESTAB  |
-   | snd FIN                +---------+
-   |                 CLOSE    |     |    rcv FIN
-   V                -------   |     |    -------
-+---------+         snd FIN  /       \   snd ACK         +---------+
-|  FIN    |&lt;----------------          ------------------&gt;|  CLOSE  |
-| WAIT-1  |------------------                            |   WAIT  |
-+---------+          rcv FIN  \                          +---------+
-  | rcv ACK of FIN   -------   |                          CLOSE  |
-  | --------------   snd ACK   |                         ------- |
-  V        x                   V                         snd FIN V
-+---------+               +---------+                    +---------+
-|FINWAIT-2|               | CLOSING |                    | LAST-ACK|
-+---------+               +---------+                    +---------+
-  |              rcv ACK of FIN |                 rcv ACK of FIN |
-  |  rcv FIN     -------------- |    Timeout=2MSL -------------- |
-  |  -------            x       V    ------------        x       V
-   \ snd ACK              +---------+delete TCB          +---------+
-     --------------------&gt;|TIME-WAIT|-------------------&gt;| CLOSED  |
-                          +---------+                    +---------+
-</pre>
+<figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">+---------+ ---------\      active OPEN</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">CLOSED</div><div class="modern-diagram-cell">\    -----------</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">+---------+&lt;---------\   \   create TCB</div></div></div>
+</figure><pre>                              |     ^              \   \  snd SYN</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">passive OPEN</div><div class="modern-diagram-cell">CLOSE        \   \</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">create TCB</div><div class="modern-diagram-cell">delete TCB         \   \</div></div></div>
+</figure><pre>                              V     |                      \   \</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">rcv RST (note 1)  +---------+            CLOSE</div><div class="modern-diagram-cell">\</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">--------------------&gt;</div><div class="modern-diagram-cell">LISTEN</div><div class="modern-diagram-cell">----------</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">/                     +---------+          delete TCB</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">/           rcv SYN</div><div class="modern-diagram-cell">SEND</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">/           -----------</div><div class="modern-diagram-cell">-------</div><div class="modern-diagram-cell">V</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">+--------+      snd SYN,ACK  /       \   snd SYN          +--------+</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">SYN</div><div class="modern-diagram-cell">rcv SYN</div><div class="modern-diagram-cell">SYN</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">RCVD</div><div class="modern-diagram-cell">&lt;-----------------------------------------------</div><div class="modern-diagram-cell">SENT</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">snd SYN,ACK</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">+--------+   rcv ACK of SYN  \       /  rcv SYN,ACK       +--------+</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">x</div><div class="modern-diagram-cell">snd ACK</div></div></div>
+</figure><pre>   |                          V     V</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">CLOSE                 +---------+</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">-------</div><div class="modern-diagram-cell">ESTAB</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">snd FIN                +---------+</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">CLOSE</div><div class="modern-diagram-cell">rcv FIN</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">V                -------</div><div class="modern-diagram-cell">-------</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">+---------+         snd FIN  /       \   snd ACK         +---------+</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">FIN</div><div class="modern-diagram-cell">&lt;----------------          ------------------&gt;</div><div class="modern-diagram-cell">CLOSE</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">WAIT-1</div><div class="modern-diagram-cell">------------------</div><div class="modern-diagram-cell">WAIT</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">+---------+          rcv FIN  \                          +---------+</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">rcv ACK of FIN   -------</div><div class="modern-diagram-cell">CLOSE</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">--------------   snd ACK</div><div class="modern-diagram-cell">-------</div></div></div>
+</figure><pre>  V        x                   V                         snd FIN V</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">FINWAIT-2</div><div class="modern-diagram-cell">CLOSING</div><div class="modern-diagram-cell">LAST-ACK</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">rcv ACK of FIN</div><div class="modern-diagram-cell">rcv ACK of FIN</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">rcv FIN     --------------</div><div class="modern-diagram-cell">Timeout=2MSL --------------</div></div></div>
+</figure><pre>  |  -------            x       V    ------------        x       V</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">\ snd ACK              +---------+delete TCB          +---------+</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">--------------------&gt;</div><div class="modern-diagram-cell">TIME-WAIT</div><div class="modern-diagram-cell">-------------------&gt;</div><div class="modern-diagram-cell">CLOSED</div></div></div>
+</figure>
 </div>
 <figcaption><a href="#figure-5">Figure 5</a>:
 <a href="#name-tcp-connection-state-diagra">TCP Connection State Diagram</a>

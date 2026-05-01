@@ -686,62 +686,47 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 11</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc7235">RFC 7235</a>                 HTTP/1.1 Authentication               June 2014</span>
+  <pre>RFC 7235                 HTTP/1.1 Authentication               June 2014
 
 
    o  The credentials carried in an Authorization header field are
       specific to the user agent and, therefore, have the same effect on
-      HTTP caches as the "private" Cache-Control response directive
-      (<a href="./rfc7234#section-5.2.2.6">Section&nbsp;5.2.2.6 of [RFC7234]</a>), within the scope of the request in
+      HTTP caches as the &quot;private&quot; Cache-Control response directive
+      (Section 5.2.2.6 of [RFC7234]), within the scope of the request in
       which they appear.
 
       Therefore, new authentication schemes that choose not to carry
       credentials in the Authorization header field (e.g., using a newly
       defined header field) will need to explicitly disallow caching, by
       mandating the use of either Cache-Control request directives
-      (e.g., "no-store", <a href="./rfc7234#section-5.2.1.5">Section&nbsp;5.2.1.5 of [RFC7234]</a>) or response
-      directives (e.g., "private").
+      (e.g., &quot;no-store&quot;, Section 5.2.1.5 of [RFC7234]) or response
+      directives (e.g., &quot;private&quot;).
 
-<span><a href="#section-5.2">5.2</a>.  Status Code Registration</span>
+5.2.  Status Code Registration
 
-   The "Hypertext Transfer Protocol (HTTP) Status Code Registry" located
-   at &lt;<a>http://www.iana.org/assignments/http-status-codes</a>&gt; has been
-   updated with the registrations below:
+   The &quot;Hypertext Transfer Protocol (HTTP) Status Code Registry&quot; located
+   at &lt;http://www.iana.org/assignments/http-status-codes&gt; has been
+   updated with the registrations below:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Value</div><div class="modern-diagram-cell">Description</div><div class="modern-diagram-cell">Reference</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">401</div><div class="modern-diagram-cell">Unauthorized</div><div class="modern-diagram-cell">Section 3.1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">407</div><div class="modern-diagram-cell">Proxy Authentication Required</div><div class="modern-diagram-cell">Section 3.2</div></div></div>
+</figure><pre>5.3.  Header Field Registration
 
-   +-------+-------------------------------+-------------+
-   | Value | Description                   | Reference   |
-   +-------+-------------------------------+-------------+
-   | 401   | Unauthorized                  | <a href="#section-3.1">Section 3.1</a> |
-   | 407   | Proxy Authentication Required | <a href="#section-3.2">Section 3.2</a> |
-   +-------+-------------------------------+-------------+
-
-<span><a href="#section-5.3">5.3</a>.  Header Field Registration</span>
-
-   HTTP header fields are registered within the "Message Headers"
+   HTTP header fields are registered within the &quot;Message Headers&quot;
    registry maintained at
-   &lt;<a>http://www.iana.org/assignments/message-headers/</a>&gt;.
+   &lt;http://www.iana.org/assignments/message-headers/&gt;.
 
    This document defines the following HTTP header fields, so the
-   "Permanent Message Header Field Names" registry has been updated
-   accordingly (see [<a href="#ref-BCP90" title="&quot;Registration Procedures for Message Header Fields&quot;">BCP90</a>]).
-
-   +---------------------+----------+----------+-------------+
-   | Header Field Name   | Protocol | Status   | Reference   |
-   +---------------------+----------+----------+-------------+
-   | Authorization       | http     | standard | <a href="#section-4.2">Section 4.2</a> |
-   | Proxy-Authenticate  | http     | standard | <a href="#section-4.3">Section 4.3</a> |
-   | Proxy-Authorization | http     | standard | <a href="#section-4.4">Section 4.4</a> |
-   | WWW-Authenticate    | http     | standard | <a href="#section-4.1">Section 4.1</a> |
-   +---------------------+----------+----------+-------------+
-
-   The change controller is: "IETF (iesg@ietf.org) - Internet
-   Engineering Task Force".
+   &quot;Permanent Message Header Field Names&quot; registry has been updated
+   accordingly (see [BCP90]).</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Header Field Name</div><div class="modern-diagram-cell">Protocol</div><div class="modern-diagram-cell">Status</div><div class="modern-diagram-cell">Reference</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Authorization</div><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">standard</div><div class="modern-diagram-cell">Section 4.2</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Proxy-Authenticate</div><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">standard</div><div class="modern-diagram-cell">Section 4.3</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Proxy-Authorization</div><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">standard</div><div class="modern-diagram-cell">Section 4.4</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">WWW-Authenticate</div><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">standard</div><div class="modern-diagram-cell">Section 4.1</div></div></div>
+</figure><pre>   The change controller is: &quot;IETF (iesg@ietf.org) - Internet
+   Engineering Task Force&quot;.
 
 
 
 
-<span>Fielding &amp; Reschke           Standards Track                   [Page 11]</span></pre>
+Fielding &amp; Reschke           Standards Track                   [Page 11]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 12</span>

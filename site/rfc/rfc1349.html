@@ -266,8 +266,7 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Appendix</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1349">RFC 1349</a>                    Type of Service                    July 1992</span>
+  <pre>RFC 1349                    Type of Service                    July 1992
 
 
    if the host had not used the facility.  This goal was considered
@@ -297,31 +296,25 @@ Table of Contents
    new type of service correctly without having to understand its
    semantics.
 
-   <a href="#appendix-B">Appendix B</a> of this memo provides a more detailed explanation of the
+   Appendix B of this memo provides a more detailed explanation of the
    rationale behind particular aspects of this specification.
 
-<span><a href="#section-3">3</a>.  Specification of the Type of Service Octet</span>
+3.  Specification of the Type of Service Octet
 
    The TOS facility is one of the features of the Type of Service octet
    in the IP datagram header.  The Type of Service octet consists of
-   three fields:
-
-                0     1     2     3     4     5     6     7
-             +-----+-----+-----+-----+-----+-----+-----+-----+
-             |                 |                       |     |
-             |   PRECEDENCE    |          TOS          | MBZ |
-             |                 |                       |     |
-             +-----+-----+-----+-----+-----+-----+-----+-----+
-
-   The first field, labeled "PRECEDENCE" above, is intended to denote
+   three fields:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0     1     2     3     4     5     6     7</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">PRECEDENCE</div><div class="modern-diagram-cell">TOS</div><div class="modern-diagram-cell">MBZ</div></div></div>
+</figure><pre>   The first field, labeled &quot;PRECEDENCE&quot; above, is intended to denote
    the importance or priority of the datagram.  This field is not
    discussed in detail in this memo.
 
-   The second field, labeled "TOS" above, denotes how the network should
+   The second field, labeled &quot;TOS&quot; above, denotes how the network should
 
 
 
-<span>Almquist                                                        [Page 4]</span></pre>
+Almquist                                                        [Page 4]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Appendix</span>

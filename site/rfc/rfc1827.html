@@ -266,8 +266,7 @@ ABSTRACT
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 4</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc1827">RFC 1827</a>             Encapsulating Security Payload          August 1995</span>
+  <pre>RFC 1827             Encapsulating Security Payload          August 1995
 
 
    security classification level, if any) used by the communicating
@@ -278,39 +277,30 @@ ABSTRACT
    process each datagram containing an ESP (e.g., which algorithm/mode
    and key to use).
 
-<span><a href="#section-3">3</a>. ENCAPSULATING SECURITY PAYLOAD SYNTAX</span>
+3. ENCAPSULATING SECURITY PAYLOAD SYNTAX
 
    The Encapsulating Security Payload (ESP) may appear anywhere after
    the IP header and before the final transport-layer protocol.  The
    Internet Assigned Numbers Authority has assigned Protocol Number 50
-   to ESP [<a href="#ref-STD-2" title="&quot;Assigned Numbers&quot;">STD-2</a>].  The header immediately preceding an ESP header will
+   to ESP [STD-2].  The header immediately preceding an ESP header will
    always contain the value 50 in its Next Header (IPv6) or Protocol
    (IPv4) field.  ESP consists of an unencrypted header followed by
    encrypted data.  The encrypted data includes both the protected ESP
    header fields and the protected user data, which is either an entire
    IP datagram or an upper-layer protocol frame (e.g., TCP or UDP).  A
-   high-level diagram of a secure IP datagram follows.
-
-  |&lt;--        Unencrypted              --&gt;|&lt;----    Encrypted   ------&gt;|
-  +-------------+--------------------+------------+---------------------+
-  | IP Header   | Other IP Headers   | ESP Header | encrypted data      |
-  +-------------+--------------------+------------+---------------------+
-
-   A more detailed diagram of the ESP Header follows below.
-
-  +-------------+--------------------+------------+---------------------+
-  |             Security Association Identifier (SPI), 32 bits          |
-  +=============+====================+============+=====================+
-  |             Opaque Transform Data, variable length                  |
-  +-------------+--------------------+------------+---------------------+
-
-   Encryption and authentication algorithms, and the precise format of
+   high-level diagram of a secure IP datagram follows.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">&lt;--        Unencrypted              --&gt;</div><div class="modern-diagram-cell">&lt;----    Encrypted   ------&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">IP Header</div><div class="modern-diagram-cell">Other IP Headers</div><div class="modern-diagram-cell">ESP Header</div><div class="modern-diagram-cell">encrypted data</div></div></div>
+</figure><pre>   A more detailed diagram of the ESP Header follows below.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Security Association Identifier (SPI), 32 bits</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Opaque Transform Data, variable length</div></div></div>
+</figure><pre>   Encryption and authentication algorithms, and the precise format of
    the Opaque Transform Data associated with them are known as
-   "transforms".  The ESP format is designed to support new transforms
+   &quot;transforms&quot;.  The ESP format is designed to support new transforms
    in the future to support new or additional cryptographic algorithms.
    The transforms are specified by themselves rather than in the main
    body of this specification.  The mandatory transform for use with IP
-   is defined in a separate document [<a href="#ref-KMS95" title="&quot;The ESP DES-CBC Transform&quot;">KMS95</a>].  Other optional transforms
+   is defined in a separate document [KMS95].  Other optional transforms
    exist in other separate specifications and additional transforms
    might be defined in the future.
 
@@ -321,7 +311,7 @@ ABSTRACT
 
 
 
-<span>Atkinson                    Standards Track                     [Page 4]</span></pre>
+Atkinson                    Standards Track                     [Page 4]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 5</span>

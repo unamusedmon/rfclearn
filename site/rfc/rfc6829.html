@@ -266,54 +266,45 @@ Table of Contents
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 4</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc6829">RFC 6829</a>                  PW LSP Ping for IPv6              January 2013</span>
+  <pre>RFC 6829                  PW LSP Ping for IPv6              January 2013
 
 
-   Additionally, when referring to the PE addresses, Sections <a href="#section-3.2.8">3.2.8</a>
-   through 3.2.10 of [<a href="./rfc4379" title="&quot;Detecting Multi-Protocol Label Switched (MPLS) Data Plane Failures&quot;">RFC4379</a>] state:
+   Additionally, when referring to the PE addresses, Sections 3.2.8
+   through 3.2.10 of [RFC4379] state:
 
-      Sender's PE Address
+      Sender&#x27;s PE Address
 
       Remote PE Address
 
    These are now updated to say:
 
-      Sender's PE IPv4 Address
+      Sender&#x27;s PE IPv4 Address
 
       Remote PE IPv4 Address
 
-<span><a href="#section-3">3</a>.  Pseudowire IPv6 Target FEC Stack Sub-TLVs</span>
+3.  Pseudowire IPv6 Target FEC Stack Sub-TLVs
 
-<span><a href="#section-3.1">3.1</a>.  FEC 128 Pseudowire</span>
+3.1.  FEC 128 Pseudowire
 
    The FEC 128 Pseudowire IPv6 sub-TLV has a structure consistent with
-   the FEC 128 Pseudowire sub-TLV as described in <a href="./rfc4379#section-3.2.9">Section&nbsp;3.2.9 of
-   [RFC4379]</a>.  The encoding of the FEC 128 Pseudowire IPv6 sub-TLV is as
+   the FEC 128 Pseudowire sub-TLV as described in Section 3.2.9 of
+   [RFC4379].  The encoding of the FEC 128 Pseudowire IPv6 sub-TLV is as
    follows:
 
-      0                   1                   2                   3
-      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |      FEC 128 PW IPv6 Type     |            Length             |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     ~                   Sender's PE IPv6 Address                    ~
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     ~                    Remote PE IPv6 Address                     ~
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |                             PW ID                             |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |            PW Type            |          Must Be Zero         |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-                    Figure 1: FEC 128 Pseudowire - IPv6
+      0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">FEC 128 PW IPv6 Type</div><div class="modern-diagram-cell">Length</div></div></div>
+</figure><pre>     ~                   Sender&#x27;s PE IPv6 Address                    ~</pre><pre>     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>     ~                    Remote PE IPv6 Address                     ~</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">PW ID</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">PW Type</div><div class="modern-diagram-cell">Must Be Zero</div></div></div>
+</figure><pre>                    Figure 1: FEC 128 Pseudowire - IPv6
 
    FEC 128 PW IPv6 Type: 24. 2 octets.
 
    Length: Defines the length in octets of the value field of the sub-
    TLV and its value is 38. 2 octets.
 
-   Sender's PE IPv6 Address: The source IP address of the target IPv6
+   Sender&#x27;s PE IPv6 Address: The source IP address of the target IPv6
    LDP session. 16 octets.
 
    Remote PE IPv6 Address: The destination IP address of the target IPv6
@@ -321,50 +312,40 @@ Table of Contents
 
 
 
-<span>Chen, et al.                 Standards Track                    [Page 4]</span></pre>
+Chen, et al.                 Standards Track                    [Page 4]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 5</span>
   </div>
-  <pre><span ></span>
-<span><a href="./rfc6829">RFC 6829</a>                  PW LSP Ping for IPv6              January 2013</span>
+  <pre>RFC 6829                  PW LSP Ping for IPv6              January 2013
 
 
-   PW ID: Same as FEC 128 Pseudowire IPv4 [<a href="./rfc4379" title="&quot;Detecting Multi-Protocol Label Switched (MPLS) Data Plane Failures&quot;">RFC4379</a>].
+   PW ID: Same as FEC 128 Pseudowire IPv4 [RFC4379].
 
-   PW Type: Same as FEC 128 Pseudowire IPv4 [<a href="./rfc4379" title="&quot;Detecting Multi-Protocol Label Switched (MPLS) Data Plane Failures&quot;">RFC4379</a>].
+   PW Type: Same as FEC 128 Pseudowire IPv4 [RFC4379].
 
-<span><a href="#section-3.2">3.2</a>.  FEC 129 Pseudowire</span>
+3.2.  FEC 129 Pseudowire
 
    The FEC 129 Pseudowire IPv6 sub-TLV has a structure consistent with
-   the FEC 129 Pseudowire sub-TLV as described in <a href="./rfc4379#section-3.2.10">Section&nbsp;3.2.10 of
-   [RFC4379]</a>.  The encoding of FEC 129 Pseudowire IPv6 is as follows:
+   the FEC 129 Pseudowire sub-TLV as described in Section 3.2.10 of
+   [RFC4379].  The encoding of FEC 129 Pseudowire IPv6 is as follows:
 
-      0                   1                   2                   3
-      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |      FEC 129 PW IPv6 Type     |            Length             |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     ~                   Sender's PE IPv6 Address                    ~
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     ~                    Remote PE IPv6 Address                     ~
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |            PW Type            |   AGI Type    |  AGI Length   |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     ~                           AGI Value                           ~
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |   AII Type    |  SAII Length  |      SAII Value               |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     ~                    SAII Value (continued)                     ~
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |   AII Type    |  TAII Length  |      TAII Value               |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     ~                    TAII Value (continued)                     ~
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |  TAII (cont.) |  0-3 octets of zero padding                   |
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-                    Figure 2: FEC 129 Pseudowire - IPv6
+      0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">FEC 129 PW IPv6 Type</div><div class="modern-diagram-cell">Length</div></div></div>
+</figure><pre>     ~                   Sender&#x27;s PE IPv6 Address                    ~</pre><pre>     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>     ~                    Remote PE IPv6 Address                     ~</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">PW Type</div><div class="modern-diagram-cell">AGI Type</div><div class="modern-diagram-cell">AGI Length</div></div></div>
+</figure><pre>     ~                           AGI Value                           ~</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">AII Type</div><div class="modern-diagram-cell">SAII Length</div><div class="modern-diagram-cell">SAII Value</div></div></div>
+</figure><pre>     ~                    SAII Value (continued)                     ~</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">AII Type</div><div class="modern-diagram-cell">TAII Length</div><div class="modern-diagram-cell">TAII Value</div></div></div>
+</figure><pre>     ~                    TAII Value (continued)                     ~</pre><figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
+  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">TAII (cont.)</div><div class="modern-diagram-cell">0-3 octets of zero padding</div></div></div>
+</figure><pre>                    Figure 2: FEC 129 Pseudowire - IPv6
 
    FEC 129 PW IPv6 Type: 25. 2 octets.
 
@@ -381,7 +362,7 @@ Table of Contents
 
 
 
-<span>Chen, et al.                 Standards Track                    [Page 5]</span></pre>
+Chen, et al.                 Standards Track                    [Page 5]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 6</span>
