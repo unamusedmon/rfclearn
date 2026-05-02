@@ -89,6 +89,27 @@ class HeaderReferenceTests(unittest.TestCase):
         self.assertIn('width="160"', panel, "16-bit fields should span half of a 32-bit row")
         self.assertIn('width="320"', panel, "32-bit rows should be represented in the visual layout")
 
+    def test_monitoring_header_references_render(self):
+        # Test NetFlow v9
+        panel_3954 = self.builder.render_header_reference_panel(3954)
+        self.assertIn('RFC 3954 NetFlow v9 Header', panel_3954)
+        self.assertIn('sysUpTime', panel_3954)
+        self.assertIn('Sequence', panel_3954)
+        self.assertIn('telemetry gaps', panel_3954)
+
+        # Test IPFIX
+        panel_7011 = self.builder.render_header_reference_panel(7011)
+        self.assertIn('RFC 7011 IPFIX Message Header', panel_7011)
+        self.assertIn('Domain ID', panel_7011)
+        self.assertIn('Export Time', panel_7011)
+        self.assertIn('exporter spoofing', panel_7011)
+
+    def test_http2_header_reference_renders(self):
+        panel = self.builder.render_header_reference_panel(7540)
+        self.assertIn('RFC 7540 HTTP/2 Frame Header', panel)
+        self.assertIn('Stream ID', panel)
+        self.assertIn('binary framing', panel)
+
     def test_arp_inline_reference_injects_next_to_packet_format(self):
         body = "<pre>intro\nPacket format:\n--------------\nugly field prose\n</pre>"
 

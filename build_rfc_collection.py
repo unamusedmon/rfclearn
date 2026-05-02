@@ -337,6 +337,40 @@ HEADER_REFERENCES: dict[int, dict[str, object]] = {
             ("ICV", 32, "Integrity Check Value; failures indicate tampering or wrong keys."),
         ],
     },
+    3954: {
+        "title": "RFC 3954 NetFlow v9 Header",
+        "note": "NetFlow v9 headers identify the exporter and sequence state needed to detect telemetry gaps or spoofed flow data.",
+        "fields": [
+            ("Version", 16, "Should be 9; mismatches indicate wrong protocol or malformed exporter traffic."),
+            ("Count", 16, "Number of records in this packet; excessive counts or zero records can be abnormal."),
+            ("sysUpTime", 32, "Exporter uptime in ms; non-monotonic jumps reveal resets or spoofed exporters."),
+            ("UNIX Secs", 32, "Current seconds since epoch; large offsets from collector time indicate misconfiguration or replay."),
+            ("Sequence", 32, "Incremental packet counter; gaps reveal packet loss or telemetry interference."),
+            ("Source ID", 32, "Exporter sub-entity ID; unexpected IDs can indicate rogue or misconfigured exporters."),
+        ],
+    },
+    7011: {
+        "title": "RFC 7011 IPFIX Message Header",
+        "note": "IPFIX headers drive telemetry normalization and help spot exporter spoofing or sequence manipulation.",
+        "fields": [
+            ("Version", 16, "Should be 0x000a (10); mismatches indicate legacy NetFlow or malformed traffic."),
+            ("Length", 16, "Total length of IPFIX message; mismatches with L4 length indicate malformed packets."),
+            ("Export Time", 32, "Seconds since epoch; used to detect replayed telemetry or clock drift."),
+            ("Sequence", 32, "Incremental message counter; gaps signal packet loss or telemetry evasion."),
+            ("Domain ID", 32, "Observation domain; used to distinguish exporters behind a single IP."),
+        ],
+    },
+    7540: {
+        "title": "RFC 7540 HTTP/2 Frame Header",
+        "note": "HTTP/2 uses binary framing; the header identifies frame types and stream associations used in multiplexing abuse hunts.",
+        "fields": [
+            ("Length", 24, "Frame payload length; unexpected sizes can indicate fragmentation abuse or large-header attacks."),
+            ("Type", 8, "Frame type (DATA, HEADERS, SETTINGS, etc.); unusual type sequences can reveal protocol smuggling."),
+            ("Flags", 8, "Type-specific flags (END_STREAM, PADDING, etc.); watch for inconsistent or illegal flag use."),
+            ("R", 1, "Reserved bit; MUST be zero; non-zero values are abnormal."),
+            ("Stream ID", 31, "Identifies the stream; odd-numbered are client-initiated; watch for ID exhaustion or collisions."),
+        ],
+    },
 }
 
 THREAT_INDICATORS: dict[int, list[dict[str, str]]] = {
@@ -3762,7 +3796,10 @@ function renderNotes() {
     notesContainer.appendChild(rfcGroup);
   });
   if (!hasVisibleNotes) {
-    notesContainer.innerHTML = rfcNums.length === 0 ? '<div class="notes-empty">You haven\'t added any notes yet.</div>' : `<div class="notes-empty">No notes match the "${activeNoteFilter}" filter.</div>`;
+    const emptyDiv = document.createElement('div');
+    emptyDiv.className = 'notes-empty';
+    emptyDiv.textContent = rfcNums.length === 0 ? "You haven't added any notes yet." : `No notes match the "${activeNoteFilter}" filter.`;
+    notesContainer.appendChild(emptyDiv);
   }
 }
 
@@ -4699,19 +4736,28 @@ def is_ascii_diagram_line(line: str) -> bool:
     return False
 
 
+def _clean_diagram_cell(c: str) -> str:
+    """Strip leading/trailing box-drawing characters from a diagram cell."""
+    c = re.sub(r'^[^A-Za-z0-9]*(?=[A-Za-z0-9])', '', c)
+    c = re.sub(r'\s+[+\-=|]{2,}[\s+\-=|]*$', '', c).strip()
+    return c
+
+
 def render_modern_ascii_diagram(lines: list[str]) -> str:
     rows = []
     for line in lines:
-        # Split by | and filter out empty cells
-        cells = [c.strip() for c in line.split("|") if c.strip()]
+        raw_cells = [c.strip() for c in line.split("|") if c.strip()]
+        cells = [_clean_diagram_cell(c) for c in raw_cells]
+        cells = [c for c in cells if re.search(r"[A-Za-z0-9]", c)]
 
-        if cells and any(re.search(r"[A-Za-z0-9]", c) for c in cells):
+        if cells:
             rows.append(cells)
 
     if not rows:
         diagram_text = "\n".join(lines)
         return f'<div class="modern-diagram-fallback">{html.escape(diagram_text)}</div>'
 
+    label = " | ".join(c for row in rows[:2] for c in row if re.search(r"[A-Za-z]", c))[:80]
     grid_html = ['<div class="modern-diagram-grid">']
     for row_cells in rows:
         grid_html.append(f'<div class="modern-diagram-row" style="--cell-count: {len(row_cells)}">')
@@ -4720,8 +4766,8 @@ def render_modern_ascii_diagram(lines: list[str]) -> str:
         grid_html.append("</div>")
     grid_html.append("</div>")
 
-    return f"""<figure class="modern-ascii-diagram" role="img" aria-label="Modernized RFC packet diagram">
-  <figcaption class="modern-diagram-kicker">Modernized packet graphic</figcaption>
+    return f"""<figure class="modern-ascii-diagram" role="img" aria-label="{html.escape(label) if label else 'Technical diagram'}">
+  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
   {"".join(grid_html)}
 </figure>"""
 

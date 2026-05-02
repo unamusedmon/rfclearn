@@ -417,7 +417,10 @@ function renderNotes() {
     notesContainer.appendChild(rfcGroup);
   });
   if (!hasVisibleNotes) {
-    notesContainer.innerHTML = rfcNums.length === 0 ? '<div class="notes-empty">You haven\'t added any notes yet.</div>' : `<div class="notes-empty">No notes match the "${activeNoteFilter}" filter.</div>`;
+    const emptyDiv = document.createElement('div');
+    emptyDiv.className = 'notes-empty';
+    emptyDiv.textContent = rfcNums.length === 0 ? "You haven't added any notes yet." : `No notes match the "${activeNoteFilter}" filter.`;
+    notesContainer.appendChild(emptyDiv);
   }
 }
 
