@@ -475,10 +475,19 @@ Table of Contents
    expect to be so popular that it would be a waste of wire space to
    encode them as {attribute, value} pairs.
 
-   The fixed part of an OPT RR is structured as follows:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Field Name | Field Type | Description | NAME | domain name | MUST be 0 (root dom">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Field Name</div><div class="modern-diagram-cell">Field Type</div><div class="modern-diagram-cell">Description</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">NAME</div><div class="modern-diagram-cell">domain name</div><div class="modern-diagram-cell">MUST be 0 (root domain)</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">TYPE</div><div class="modern-diagram-cell">u_int16_t</div><div class="modern-diagram-cell">OPT (41)</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">CLASS</div><div class="modern-diagram-cell">u_int16_t</div><div class="modern-diagram-cell">requestor&#x27;s UDP payload size</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">TTL</div><div class="modern-diagram-cell">u_int32_t</div><div class="modern-diagram-cell">extended RCODE and flags</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">RDLEN</div><div class="modern-diagram-cell">u_int16_t</div><div class="modern-diagram-cell">length of all RDATA</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">RDATA</div><div class="modern-diagram-cell">octet stream</div><div class="modern-diagram-cell">attribute,value} pairs</div></div></div>
-</figure><pre>                               OPT RR Format
+   The fixed part of an OPT RR is structured as follows:</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">       +------------+--------------+------------------------------+
+       | Field Name | Field Type   | Description                  |
+       +------------+--------------+------------------------------+
+       | NAME       | domain name  | MUST be 0 (root domain)      |
+       | TYPE       | u_int16_t    | OPT (41)                     |
+       | CLASS      | u_int16_t    | requestor&#x27;s UDP payload size |
+       | TTL        | u_int32_t    | extended RCODE and flags     |
+       | RDLEN      | u_int16_t    | length of all RDATA          |
+       | RDATA      | octet stream | {attribute,value} pairs      |
+       +------------+--------------+------------------------------+
+</pre>
+</div><pre>                               OPT RR Format
 
 
 
@@ -502,10 +511,14 @@ Damas, et al.                Standards Track                    [Page 7]</pre>
    the RDATA.  Each option MUST be treated as a bit field.  Each option
    is encoded as:
 
-                  +0 (MSB)                            +1 (LSB)</pre><figure class="modern-ascii-diagram" role="img" aria-label="OPTION-CODE | OPTION-LENGTH">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">0:</div><div class="modern-diagram-cell">OPTION-CODE</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">2:</div><div class="modern-diagram-cell">OPTION-LENGTH</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">4:</div></div></div>
-</figure><pre>       /                          OPTION-DATA                          /
+                  +0 (MSB)                            +1 (LSB)</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">       +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+    0: |                          OPTION-CODE                          |
+       +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+    2: |                         OPTION-LENGTH                         |
+       +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+    4: |                                                               |</pre>
+</div><pre>       /                          OPTION-DATA                          /
        /                                                               /</pre><pre>       +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+</pre><pre>   OPTION-CODE
       Assigned by the Expert Review process as defined by the DNSEXT
       working group and the IESG.
@@ -555,10 +568,14 @@ Damas, et al.                Standards Track                    [Page 8]</pre>
    The extended RCODE and flags, which OPT stores in the RR Time to Live
    (TTL) field, are structured as follows:
 
-                  +0 (MSB)                            +1 (LSB)</pre><figure class="modern-ascii-diagram" role="img" aria-label="EXTENDED-RCODE | VERSION | DO | Z">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">0:</div><div class="modern-diagram-cell">EXTENDED-RCODE</div><div class="modern-diagram-cell">VERSION</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">2:</div><div class="modern-diagram-cell">DO</div><div class="modern-diagram-cell">Z</div></div></div>
-</figure><pre>   EXTENDED-RCODE
+                  +0 (MSB)                            +1 (LSB)</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">       +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+    0: |         EXTENDED-RCODE        |            VERSION            |
+       +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+    2: | DO|                           Z                               |
+       +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+</pre>
+</div><pre>   EXTENDED-RCODE
       Forms the upper 8 bits of extended 12-bit RCODE (together with the
       4 bits defined in [RFC1035].  Note that EXTENDED-RCODE value 0
       indicates that an unextended RCODE is in use (values 0 through

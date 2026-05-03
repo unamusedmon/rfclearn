@@ -523,10 +523,17 @@ ed            7.1.1. Origination Date ...................................<a href
    representation data that would have been enclosed in the payload body
    if the same request had been a GET.
 
-   The following header fields convey representation metadata:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Header Field Name | Defined in... | Content-Type | Section 3.1.1.5">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Header Field Name</div><div class="modern-diagram-cell">Defined in...</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Content-Type</div><div class="modern-diagram-cell">Section 3.1.1.5</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Content-Encoding</div><div class="modern-diagram-cell">Section 3.1.2.2</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Content-Language</div><div class="modern-diagram-cell">Section 3.1.3.2</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Content-Location</div><div class="modern-diagram-cell">Section 3.1.4.2</div></div></div>
-</figure><pre>3.1.1.  Processing Representation Data
+   The following header fields convey representation metadata:</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   +-------------------+-----------------+
+   | Header Field Name | Defined in...   |
+   +-------------------+-----------------+
+   | Content-Type      | Section 3.1.1.5 |
+   | Content-Encoding  | Section 3.1.2.2 |
+   | Content-Language  | Section 3.1.3.2 |
+   | Content-Location  | Section 3.1.4.2 |
+   +-------------------+-----------------+
+</pre>
+</div><pre>3.1.1.  Processing Representation Data
 
 3.1.1.1.  Media Type
 
@@ -1115,10 +1122,17 @@ Fielding &amp; Reschke           Standards Track                    [Page 8]</pr
    Header fields that specifically describe the payload, rather than the
    associated representation, are referred to as &quot;payload header
    fields&quot;.  Payload header fields are defined in other parts of this
-   specification, due to their impact on message parsing.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Header Field Name | Defined in... | Content-Length | Section 3.3.2 of [RFC7230]">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Header Field Name</div><div class="modern-diagram-cell">Defined in...</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Content-Length</div><div class="modern-diagram-cell">Section 3.3.2 of [RFC7230]</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Content-Range</div><div class="modern-diagram-cell">Section 4.2 of [RFC7233]</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Trailer</div><div class="modern-diagram-cell">Section 4.4 of [RFC7230]</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Transfer-Encoding</div><div class="modern-diagram-cell">Section 3.3.1 of [RFC7230]</div></div></div>
-</figure><pre>3.4.  Content Negotiation
+   specification, due to their impact on message parsing.</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   +-------------------+----------------------------+
+   | Header Field Name | Defined in...              |
+   +-------------------+----------------------------+
+   | Content-Length    | Section 3.3.2 of [RFC7230] |
+   | Content-Range     | Section 4.2 of [RFC7233]   |
+   | Trailer           | Section 4.4 of [RFC7230]   |
+   | Transfer-Encoding | Section 3.3.1 of [RFC7230] |
+   +-------------------+----------------------------+
+</pre>
+</div><pre>3.4.  Content Negotiation
 
    When responses convey payload information, whether indicating a
    success or an error, the origin server often has different ways of
@@ -1328,10 +1342,29 @@ Fielding &amp; Reschke           Standards Track                   [Page 18]</pr
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 22</span>
   </div>
-  <pre>RFC 7231             HTTP/1.1 Semantics and Content            June 2014</pre><figure class="modern-ascii-diagram" role="img" aria-label="Method | Description | Sec. | GET | Transfer a current representation of the tar">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Method</div><div class="modern-diagram-cell">Description</div><div class="modern-diagram-cell">Sec.</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">GET</div><div class="modern-diagram-cell">Transfer a current representation of the target</div><div class="modern-diagram-cell">4.3.1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">resource.</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">HEAD</div><div class="modern-diagram-cell">Same as GET, but only transfer the status line</div><div class="modern-diagram-cell">4.3.2</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">and header section.</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">POST</div><div class="modern-diagram-cell">Perform resource-specific processing on the</div><div class="modern-diagram-cell">4.3.3</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">request payload.</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">PUT</div><div class="modern-diagram-cell">Replace all current representations of the</div><div class="modern-diagram-cell">4.3.4</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">target resource with the request payload.</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">DELETE</div><div class="modern-diagram-cell">Remove all current representations of the</div><div class="modern-diagram-cell">4.3.5</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">target resource.</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">CONNECT</div><div class="modern-diagram-cell">Establish a tunnel to the server identified by</div><div class="modern-diagram-cell">4.3.6</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">the target resource.</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">OPTIONS</div><div class="modern-diagram-cell">Describe the communication options for the</div><div class="modern-diagram-cell">4.3.7</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">target resource.</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">TRACE</div><div class="modern-diagram-cell">Perform a message loop-back test along the path</div><div class="modern-diagram-cell">4.3.8</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">to the target resource.</div></div></div>
-</figure><pre>   All general-purpose servers MUST support the methods GET and HEAD.
+  <pre>RFC 7231             HTTP/1.1 Semantics and Content            June 2014</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   +---------+-------------------------------------------------+-------+
+   | Method  | Description                                     | Sec.  |
+   +---------+-------------------------------------------------+-------+
+   | GET     | Transfer a current representation of the target | 4.3.1 |
+   |         | resource.                                       |       |
+   | HEAD    | Same as GET, but only transfer the status line  | 4.3.2 |
+   |         | and header section.                             |       |
+   | POST    | Perform resource-specific processing on the     | 4.3.3 |
+   |         | request payload.                                |       |
+   | PUT     | Replace all current representations of the      | 4.3.4 |
+   |         | target resource with the request payload.       |       |
+   | DELETE  | Remove all current representations of the       | 4.3.5 |
+   |         | target resource.                                |       |
+   | CONNECT | Establish a tunnel to the server identified by  | 4.3.6 |
+   |         | the target resource.                            |       |
+   | OPTIONS | Describe the communication options for the      | 4.3.7 |
+   |         | target resource.                                |       |
+   | TRACE   | Perform a message loop-back test along the path | 4.3.8 |
+   |         | to the target resource.                         |       |
+   +---------+-------------------------------------------------+-------+
+</pre>
+</div><pre>   All general-purpose servers MUST support the methods GET and HEAD.
    All other methods are OPTIONAL.
 
    Additional methods, outside the scope of this specification, have
@@ -2001,10 +2034,25 @@ Fielding &amp; Reschke           Standards Track                   [Page 22]</pr
 5.1.  Controls
 
    Controls are request header fields that direct specific handling of
-   the request.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Header Field Name | Defined in... | Cache-Control | Section 5.2 of [RFC7234]">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Header Field Name</div><div class="modern-diagram-cell">Defined in...</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Cache-Control</div><div class="modern-diagram-cell">Section 5.2 of [RFC7234]</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Expect</div><div class="modern-diagram-cell">Section 5.1.1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Host</div><div class="modern-diagram-cell">Section 5.4 of [RFC7230]</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Max-Forwards</div><div class="modern-diagram-cell">Section 5.1.2</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Pragma</div><div class="modern-diagram-cell">Section 5.4 of [RFC7234]</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Range</div><div class="modern-diagram-cell">Section 3.1 of [RFC7233]</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">TE</div><div class="modern-diagram-cell">Section 4.3 of [RFC7230]</div></div></div>
-</figure><pre>Fielding &amp; Reschke           Standards Track                   [Page 33]</pre>
+   the request.</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   +-------------------+--------------------------+
+   | Header Field Name | Defined in...            |
+   +-------------------+--------------------------+
+   | Cache-Control     | Section 5.2 of [RFC7234] |
+   | Expect            | Section 5.1.1            |
+   | Host              | Section 5.4 of [RFC7230] |
+   | Max-Forwards      | Section 5.1.2            |
+   | Pragma            | Section 5.4 of [RFC7234] |
+   | Range             | Section 3.1 of [RFC7233] |
+   | TE                | Section 4.3 of [RFC7230] |
+   +-------------------+--------------------------+
+
+
+
+
+
+</pre>
+</div><pre>Fielding &amp; Reschke           Standards Track                   [Page 33]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 34</span>
@@ -2199,10 +2247,18 @@ Fielding &amp; Reschke           Standards Track                   [Page 22]</pr
    of the target resource has changed since a given state known by the
    client.  The effect of such an evaluation depends on the method
    semantics and choice of conditional, as defined in Section 5 of
-   [RFC7232].</pre><figure class="modern-ascii-diagram" role="img" aria-label="Header Field Name | Defined in... | If-Match | Section 3.1 of [RFC7232]">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Header Field Name</div><div class="modern-diagram-cell">Defined in...</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">If-Match</div><div class="modern-diagram-cell">Section 3.1 of [RFC7232]</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">If-None-Match</div><div class="modern-diagram-cell">Section 3.2 of [RFC7232]</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">If-Modified-Since</div><div class="modern-diagram-cell">Section 3.3 of [RFC7232]</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">If-Unmodified-Since</div><div class="modern-diagram-cell">Section 3.4 of [RFC7232]</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">If-Range</div><div class="modern-diagram-cell">Section 3.2 of [RFC7233]</div></div></div>
-</figure><pre>5.3.  Content Negotiation
+   [RFC7232].</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   +---------------------+--------------------------+
+   | Header Field Name   | Defined in...            |
+   +---------------------+--------------------------+
+   | If-Match            | Section 3.1 of [RFC7232] |
+   | If-None-Match       | Section 3.2 of [RFC7232] |
+   | If-Modified-Since   | Section 3.3 of [RFC7232] |
+   | If-Unmodified-Since | Section 3.4 of [RFC7232] |
+   | If-Range            | Section 3.2 of [RFC7233] |
+   +---------------------+--------------------------+
+</pre>
+</div><pre>5.3.  Content Negotiation
 
    The following request header fields are sent by a user agent to
    engage in proactive negotiation of the response content, as defined
@@ -2210,10 +2266,17 @@ Fielding &amp; Reschke           Standards Track                   [Page 22]</pr
    content in the response, including representations of the target
    resource, representations of error or processing status, and
    potentially even the miscellaneous text strings that might appear
-   within the protocol.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Header Field Name | Defined in... | Accept | Section 5.3.2">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Header Field Name</div><div class="modern-diagram-cell">Defined in...</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Accept</div><div class="modern-diagram-cell">Section 5.3.2</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Accept-Charset</div><div class="modern-diagram-cell">Section 5.3.3</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Accept-Encoding</div><div class="modern-diagram-cell">Section 5.3.4</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Accept-Language</div><div class="modern-diagram-cell">Section 5.3.5</div></div></div>
-</figure><pre>5.3.1.  Quality Values
+   within the protocol.</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   +-------------------+---------------+
+   | Header Field Name | Defined in... |
+   +-------------------+---------------+
+   | Accept            | Section 5.3.2 |
+   | Accept-Charset    | Section 5.3.3 |
+   | Accept-Encoding   | Section 5.3.4 |
+   | Accept-Language   | Section 5.3.5 |
+   +-------------------+---------------+
+</pre>
+</div><pre>5.3.1.  Quality Values
 
    Many of the request header fields for proactive negotiation use a
    common parameter, named &quot;q&quot; (case-insensitive), to assign a relative
@@ -2357,10 +2420,19 @@ Fielding &amp; Reschke           Standards Track                   [Page 37]</pr
      Accept: text/*;q=0.3, text/html;q=0.7, text/html;level=1,
              text/html;level=2;q=0.4, */*;q=0.5
 
-   would cause the following values to be associated:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Media Type | Quality Value | text/html;level=1">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Media Type</div><div class="modern-diagram-cell">Quality Value</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">text/html;level=1</div><div class="modern-diagram-cell">1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">text/html</div><div class="modern-diagram-cell">0.7</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">text/plain</div><div class="modern-diagram-cell">0.3</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">image/jpeg</div><div class="modern-diagram-cell">0.5</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">text/html;level=2</div><div class="modern-diagram-cell">0.4</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">text/html;level=3</div><div class="modern-diagram-cell">0.7</div></div></div>
-</figure><pre>   Note: A user agent might be provided with a default set of quality
+   would cause the following values to be associated:</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   +-------------------+---------------+
+   | Media Type        | Quality Value |
+   +-------------------+---------------+
+   | text/html;level=1 | 1             |
+   | text/html         | 0.7           |
+   | text/plain        | 0.3           |
+   | image/jpeg        | 0.5           |
+   | text/html;level=2 | 0.4           |
+   | text/html;level=3 | 0.7           |
+   +-------------------+---------------+
+</pre>
+</div><pre>   Note: A user agent might be provided with a default set of quality
    values for certain media ranges.  However, unless the user agent is a
    closed system that cannot interact with other rendering agents, this
    default set ought to be configurable by the user.
@@ -2588,17 +2660,28 @@ Fielding &amp; Reschke           Standards Track                   [Page 40]</pr
    Two header fields are used for carrying authentication credentials,
    as defined in [RFC7235].  Note that various custom mechanisms for
    user authentication use the Cookie header field for this purpose, as
-   defined in [RFC6265].</pre><figure class="modern-ascii-diagram" role="img" aria-label="Header Field Name | Defined in... | Authorization | Section 4.2 of [RFC7235]">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Header Field Name</div><div class="modern-diagram-cell">Defined in...</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Authorization</div><div class="modern-diagram-cell">Section 4.2 of [RFC7235]</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Proxy-Authorization</div><div class="modern-diagram-cell">Section 4.4 of [RFC7235]</div></div></div>
-</figure><pre>5.5.  Request Context
+   defined in [RFC6265].</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   +---------------------+--------------------------+
+   | Header Field Name   | Defined in...            |
+   +---------------------+--------------------------+
+   | Authorization       | Section 4.2 of [RFC7235] |
+   | Proxy-Authorization | Section 4.4 of [RFC7235] |
+   +---------------------+--------------------------+
+</pre>
+</div><pre>5.5.  Request Context
 
    The following request header fields provide additional information
    about the request context, including information about the user, user
-   agent, and resource behind the request.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Header Field Name | Defined in... | From | Section 5.5.1">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Header Field Name</div><div class="modern-diagram-cell">Defined in...</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">From</div><div class="modern-diagram-cell">Section 5.5.1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Referer</div><div class="modern-diagram-cell">Section 5.5.2</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">User-Agent</div><div class="modern-diagram-cell">Section 5.5.3</div></div></div>
-</figure><pre>5.5.1.  From
+   agent, and resource behind the request.</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   +-------------------+---------------+
+   | Header Field Name | Defined in... |
+   +-------------------+---------------+
+   | From              | Section 5.5.1 |
+   | Referer           | Section 5.5.2 |
+   | User-Agent        | Section 5.5.3 |
+   +-------------------+---------------+
+</pre>
+</div><pre>5.5.1.  From
 
    The &quot;From&quot; header field contains an Internet email address for a
    human user who controls the requesting user agent.  The address ought
@@ -2866,10 +2949,59 @@ Fielding &amp; Reschke           Standards Track                   [Page 44]</pr
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 49</span>
   </div>
-  <pre>RFC 7231             HTTP/1.1 Semantics and Content            June 2014</pre><figure class="modern-ascii-diagram" role="img" aria-label="Code | Reason-Phrase | Defined in... | Continue | Section 6.2.1">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Code</div><div class="modern-diagram-cell">Reason-Phrase</div><div class="modern-diagram-cell">Defined in...</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">100</div><div class="modern-diagram-cell">Continue</div><div class="modern-diagram-cell">Section 6.2.1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">101</div><div class="modern-diagram-cell">Switching Protocols</div><div class="modern-diagram-cell">Section 6.2.2</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">200</div><div class="modern-diagram-cell">OK</div><div class="modern-diagram-cell">Section 6.3.1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">201</div><div class="modern-diagram-cell">Created</div><div class="modern-diagram-cell">Section 6.3.2</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">202</div><div class="modern-diagram-cell">Accepted</div><div class="modern-diagram-cell">Section 6.3.3</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">203</div><div class="modern-diagram-cell">Non-Authoritative Information</div><div class="modern-diagram-cell">Section 6.3.4</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">204</div><div class="modern-diagram-cell">No Content</div><div class="modern-diagram-cell">Section 6.3.5</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">205</div><div class="modern-diagram-cell">Reset Content</div><div class="modern-diagram-cell">Section 6.3.6</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">206</div><div class="modern-diagram-cell">Partial Content</div><div class="modern-diagram-cell">Section 4.1 of [RFC7233]</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">300</div><div class="modern-diagram-cell">Multiple Choices</div><div class="modern-diagram-cell">Section 6.4.1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">301</div><div class="modern-diagram-cell">Moved Permanently</div><div class="modern-diagram-cell">Section 6.4.2</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">302</div><div class="modern-diagram-cell">Found</div><div class="modern-diagram-cell">Section 6.4.3</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">303</div><div class="modern-diagram-cell">See Other</div><div class="modern-diagram-cell">Section 6.4.4</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">304</div><div class="modern-diagram-cell">Not Modified</div><div class="modern-diagram-cell">Section 4.1 of [RFC7232]</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">305</div><div class="modern-diagram-cell">Use Proxy</div><div class="modern-diagram-cell">Section 6.4.5</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">307</div><div class="modern-diagram-cell">Temporary Redirect</div><div class="modern-diagram-cell">Section 6.4.7</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">400</div><div class="modern-diagram-cell">Bad Request</div><div class="modern-diagram-cell">Section 6.5.1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">401</div><div class="modern-diagram-cell">Unauthorized</div><div class="modern-diagram-cell">Section 3.1 of [RFC7235]</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">402</div><div class="modern-diagram-cell">Payment Required</div><div class="modern-diagram-cell">Section 6.5.2</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">403</div><div class="modern-diagram-cell">Forbidden</div><div class="modern-diagram-cell">Section 6.5.3</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">404</div><div class="modern-diagram-cell">Not Found</div><div class="modern-diagram-cell">Section 6.5.4</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">405</div><div class="modern-diagram-cell">Method Not Allowed</div><div class="modern-diagram-cell">Section 6.5.5</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">406</div><div class="modern-diagram-cell">Not Acceptable</div><div class="modern-diagram-cell">Section 6.5.6</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">407</div><div class="modern-diagram-cell">Proxy Authentication Required</div><div class="modern-diagram-cell">Section 3.2 of [RFC7235]</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">408</div><div class="modern-diagram-cell">Request Timeout</div><div class="modern-diagram-cell">Section 6.5.7</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">409</div><div class="modern-diagram-cell">Conflict</div><div class="modern-diagram-cell">Section 6.5.8</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">410</div><div class="modern-diagram-cell">Gone</div><div class="modern-diagram-cell">Section 6.5.9</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">411</div><div class="modern-diagram-cell">Length Required</div><div class="modern-diagram-cell">Section 6.5.10</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">412</div><div class="modern-diagram-cell">Precondition Failed</div><div class="modern-diagram-cell">Section 4.2 of [RFC7232]</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">413</div><div class="modern-diagram-cell">Payload Too Large</div><div class="modern-diagram-cell">Section 6.5.11</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">414</div><div class="modern-diagram-cell">URI Too Long</div><div class="modern-diagram-cell">Section 6.5.12</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">415</div><div class="modern-diagram-cell">Unsupported Media Type</div><div class="modern-diagram-cell">Section 6.5.13</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">416</div><div class="modern-diagram-cell">Range Not Satisfiable</div><div class="modern-diagram-cell">Section 4.4 of [RFC7233]</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">417</div><div class="modern-diagram-cell">Expectation Failed</div><div class="modern-diagram-cell">Section 6.5.14</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">426</div><div class="modern-diagram-cell">Upgrade Required</div><div class="modern-diagram-cell">Section 6.5.15</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">500</div><div class="modern-diagram-cell">Internal Server Error</div><div class="modern-diagram-cell">Section 6.6.1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">501</div><div class="modern-diagram-cell">Not Implemented</div><div class="modern-diagram-cell">Section 6.6.2</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">502</div><div class="modern-diagram-cell">Bad Gateway</div><div class="modern-diagram-cell">Section 6.6.3</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">503</div><div class="modern-diagram-cell">Service Unavailable</div><div class="modern-diagram-cell">Section 6.6.4</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">504</div><div class="modern-diagram-cell">Gateway Timeout</div><div class="modern-diagram-cell">Section 6.6.5</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">505</div><div class="modern-diagram-cell">HTTP Version Not Supported</div><div class="modern-diagram-cell">Section 6.6.6</div></div></div>
-</figure><pre>Fielding &amp; Reschke           Standards Track                   [Page 49]</pre>
+  <pre>RFC 7231             HTTP/1.1 Semantics and Content            June 2014</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   +------+-------------------------------+--------------------------+
+   | Code | Reason-Phrase                 | Defined in...            |
+   +------+-------------------------------+--------------------------+
+   | 100  | Continue                      | Section 6.2.1            |
+   | 101  | Switching Protocols           | Section 6.2.2            |
+   | 200  | OK                            | Section 6.3.1            |
+   | 201  | Created                       | Section 6.3.2            |
+   | 202  | Accepted                      | Section 6.3.3            |
+   | 203  | Non-Authoritative Information | Section 6.3.4            |
+   | 204  | No Content                    | Section 6.3.5            |
+   | 205  | Reset Content                 | Section 6.3.6            |
+   | 206  | Partial Content               | Section 4.1 of [RFC7233] |
+   | 300  | Multiple Choices              | Section 6.4.1            |
+   | 301  | Moved Permanently             | Section 6.4.2            |
+   | 302  | Found                         | Section 6.4.3            |
+   | 303  | See Other                     | Section 6.4.4            |
+   | 304  | Not Modified                  | Section 4.1 of [RFC7232] |
+   | 305  | Use Proxy                     | Section 6.4.5            |
+   | 307  | Temporary Redirect            | Section 6.4.7            |
+   | 400  | Bad Request                   | Section 6.5.1            |
+   | 401  | Unauthorized                  | Section 3.1 of [RFC7235] |
+   | 402  | Payment Required              | Section 6.5.2            |
+   | 403  | Forbidden                     | Section 6.5.3            |
+   | 404  | Not Found                     | Section 6.5.4            |
+   | 405  | Method Not Allowed            | Section 6.5.5            |
+   | 406  | Not Acceptable                | Section 6.5.6            |
+   | 407  | Proxy Authentication Required | Section 3.2 of [RFC7235] |
+   | 408  | Request Timeout               | Section 6.5.7            |
+   | 409  | Conflict                      | Section 6.5.8            |
+   | 410  | Gone                          | Section 6.5.9            |
+   | 411  | Length Required               | Section 6.5.10           |
+   | 412  | Precondition Failed           | Section 4.2 of [RFC7232] |
+   | 413  | Payload Too Large             | Section 6.5.11           |
+   | 414  | URI Too Long                  | Section 6.5.12           |
+   | 415  | Unsupported Media Type        | Section 6.5.13           |
+   | 416  | Range Not Satisfiable         | Section 4.4 of [RFC7233] |
+   | 417  | Expectation Failed            | Section 6.5.14           |
+   | 426  | Upgrade Required              | Section 6.5.15           |
+   | 500  | Internal Server Error         | Section 6.6.1            |
+   | 501  | Not Implemented               | Section 6.6.2            |
+   | 502  | Bad Gateway                   | Section 6.6.3            |
+   | 503  | Service Unavailable           | Section 6.6.4            |
+   | 504  | Gateway Timeout               | Section 6.6.5            |
+   | 505  | HTTP Version Not Supported    | Section 6.6.6            |
+   +------+-------------------------------+--------------------------+
+
+
+
+
+
+</pre>
+</div><pre>Fielding &amp; Reschke           Standards Track                   [Page 49]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 50</span>
@@ -3745,10 +3877,29 @@ Fielding &amp; Reschke           Standards Track                   [Page 44]</pr
 
    Response header fields can supply control data that supplements the
    status code, directs caching, or instructs the client where to go
-   next.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Header Field Name | Defined in... | Age | Section 5.1 of [RFC7234]">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Header Field Name</div><div class="modern-diagram-cell">Defined in...</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Age</div><div class="modern-diagram-cell">Section 5.1 of [RFC7234]</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Cache-Control</div><div class="modern-diagram-cell">Section 5.2 of [RFC7234]</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Expires</div><div class="modern-diagram-cell">Section 5.3 of [RFC7234]</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Date</div><div class="modern-diagram-cell">Section 7.1.1.2</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Location</div><div class="modern-diagram-cell">Section 7.1.2</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Retry-After</div><div class="modern-diagram-cell">Section 7.1.3</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Vary</div><div class="modern-diagram-cell">Section 7.1.4</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Warning</div><div class="modern-diagram-cell">Section 5.5 of [RFC7234]</div></div></div>
-</figure><pre>Fielding &amp; Reschke           Standards Track                   [Page 64]</pre>
+   next.</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   +-------------------+--------------------------+
+   | Header Field Name | Defined in...            |
+   +-------------------+--------------------------+
+   | Age               | Section 5.1 of [RFC7234] |
+   | Cache-Control     | Section 5.2 of [RFC7234] |
+   | Expires           | Section 5.3 of [RFC7234] |
+   | Date              | Section 7.1.1.2          |
+   | Location          | Section 7.1.2            |
+   | Retry-After       | Section 7.1.3            |
+   | Vary              | Section 7.1.4            |
+   | Warning           | Section 5.5 of [RFC7234] |
+   +-------------------+--------------------------+
+
+
+
+
+
+
+
+
+</pre>
+</div><pre>Fielding &amp; Reschke           Standards Track                   [Page 64]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 65</span>
@@ -4151,10 +4302,22 @@ Fielding &amp; Reschke           Standards Track                   [Page 44]</pr
    For example, an ETag header field in a 201 (Created) response
    communicates the entity-tag of the newly created resource&#x27;s
    representation, so that it can be used in later conditional requests
-   to prevent the &quot;lost update&quot; problem [RFC7232].</pre><figure class="modern-ascii-diagram" role="img" aria-label="Header Field Name | Defined in... | ETag | Section 2.3 of [RFC7232]">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Header Field Name</div><div class="modern-diagram-cell">Defined in...</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">ETag</div><div class="modern-diagram-cell">Section 2.3 of [RFC7232]</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Last-Modified</div><div class="modern-diagram-cell">Section 2.2 of [RFC7232]</div></div></div>
-</figure><pre>Fielding &amp; Reschke           Standards Track                   [Page 71]</pre>
+   to prevent the &quot;lost update&quot; problem [RFC7232].</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   +-------------------+--------------------------+
+   | Header Field Name | Defined in...            |
+   +-------------------+--------------------------+
+   | ETag              | Section 2.3 of [RFC7232] |
+   | Last-Modified     | Section 2.2 of [RFC7232] |
+   +-------------------+--------------------------+
+
+
+
+
+
+
+
+</pre>
+</div><pre>Fielding &amp; Reschke           Standards Track                   [Page 71]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 72</span>
@@ -4165,16 +4328,27 @@ Fielding &amp; Reschke           Standards Track                   [Page 44]</pr
 7.3.  Authentication Challenges
 
    Authentication challenges indicate what mechanisms are available for
-   the client to provide authentication credentials in future requests.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Header Field Name | Defined in... | WWW-Authenticate | Section 4.1 of [RFC7235]">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Header Field Name</div><div class="modern-diagram-cell">Defined in...</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">WWW-Authenticate</div><div class="modern-diagram-cell">Section 4.1 of [RFC7235]</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Proxy-Authenticate</div><div class="modern-diagram-cell">Section 4.3 of [RFC7235]</div></div></div>
-</figure><pre>7.4.  Response Context
+   the client to provide authentication credentials in future requests.</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   +--------------------+--------------------------+
+   | Header Field Name  | Defined in...            |
+   +--------------------+--------------------------+
+   | WWW-Authenticate   | Section 4.1 of [RFC7235] |
+   | Proxy-Authenticate | Section 4.3 of [RFC7235] |
+   +--------------------+--------------------------+
+</pre>
+</div><pre>7.4.  Response Context
 
    The remaining response header fields provide more information about
-   the target resource for potential use in later requests.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Header Field Name | Defined in... | Accept-Ranges | Section 2.3 of [RFC7233]">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Header Field Name</div><div class="modern-diagram-cell">Defined in...</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Accept-Ranges</div><div class="modern-diagram-cell">Section 2.3 of [RFC7233]</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Allow</div><div class="modern-diagram-cell">Section 7.4.1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Server</div><div class="modern-diagram-cell">Section 7.4.2</div></div></div>
-</figure><pre>7.4.1.  Allow
+   the target resource for potential use in later requests.</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   +-------------------+--------------------------+
+   | Header Field Name | Defined in...            |
+   +-------------------+--------------------------+
+   | Accept-Ranges     | Section 2.3 of [RFC7233] |
+   | Allow             | Section 7.4.1            |
+   | Server            | Section 7.4.2            |
+   +-------------------+--------------------------+
+</pre>
+</div><pre>7.4.1.  Allow
 
    The &quot;Allow&quot; header field lists the set of methods advertised as
    supported by the target resource.  The purpose of this field is
@@ -4331,10 +4505,21 @@ Fielding &amp; Reschke           Standards Track                   [Page 72]</pr
 8.1.3.  Registrations
 
    The &quot;Hypertext Transfer Protocol (HTTP) Method Registry&quot; has been
-   populated with the registrations below:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Method | Safe | Idempotent | Reference | CONNECT | no | no | Section 4.3.6">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Method</div><div class="modern-diagram-cell">Safe</div><div class="modern-diagram-cell">Idempotent</div><div class="modern-diagram-cell">Reference</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">CONNECT</div><div class="modern-diagram-cell">no</div><div class="modern-diagram-cell">no</div><div class="modern-diagram-cell">Section 4.3.6</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">DELETE</div><div class="modern-diagram-cell">no</div><div class="modern-diagram-cell">yes</div><div class="modern-diagram-cell">Section 4.3.5</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">GET</div><div class="modern-diagram-cell">yes</div><div class="modern-diagram-cell">yes</div><div class="modern-diagram-cell">Section 4.3.1</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">HEAD</div><div class="modern-diagram-cell">yes</div><div class="modern-diagram-cell">yes</div><div class="modern-diagram-cell">Section 4.3.2</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">OPTIONS</div><div class="modern-diagram-cell">yes</div><div class="modern-diagram-cell">yes</div><div class="modern-diagram-cell">Section 4.3.7</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">POST</div><div class="modern-diagram-cell">no</div><div class="modern-diagram-cell">no</div><div class="modern-diagram-cell">Section 4.3.3</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">PUT</div><div class="modern-diagram-cell">no</div><div class="modern-diagram-cell">yes</div><div class="modern-diagram-cell">Section 4.3.4</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">TRACE</div><div class="modern-diagram-cell">yes</div><div class="modern-diagram-cell">yes</div><div class="modern-diagram-cell">Section 4.3.8</div></div></div>
-</figure><pre>8.2.  Status Code Registry
+   populated with the registrations below:</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   +---------+------+------------+---------------+
+   | Method  | Safe | Idempotent | Reference     |
+   +---------+------+------------+---------------+
+   | CONNECT | no   | no         | Section 4.3.6 |
+   | DELETE  | no   | yes        | Section 4.3.5 |
+   | GET     | yes  | yes        | Section 4.3.1 |
+   | HEAD    | yes  | yes        | Section 4.3.2 |
+   | OPTIONS | yes  | yes        | Section 4.3.7 |
+   | POST    | no   | no         | Section 4.3.3 |
+   | PUT     | no   | yes        | Section 4.3.4 |
+   | TRACE   | yes  | yes        | Section 4.3.8 |
+   +---------+------+------------+---------------+
+</pre>
+</div><pre>8.2.  Status Code Registry
 
    The &quot;Hypertext Transfer Protocol (HTTP) Status Code Registry&quot; defines
    the namespace for the response status-code token (Section 6).  The
@@ -4432,10 +4617,49 @@ Fielding &amp; Reschke           Standards Track                   [Page 75]</pr
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 77</span>
   </div>
-  <pre>RFC 7231             HTTP/1.1 Semantics and Content            June 2014</pre><figure class="modern-ascii-diagram" role="img" aria-label="Value | Description | Reference | Continue | Section 6.2.1">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Value</div><div class="modern-diagram-cell">Description</div><div class="modern-diagram-cell">Reference</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">100</div><div class="modern-diagram-cell">Continue</div><div class="modern-diagram-cell">Section 6.2.1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">101</div><div class="modern-diagram-cell">Switching Protocols</div><div class="modern-diagram-cell">Section 6.2.2</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">200</div><div class="modern-diagram-cell">OK</div><div class="modern-diagram-cell">Section 6.3.1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">201</div><div class="modern-diagram-cell">Created</div><div class="modern-diagram-cell">Section 6.3.2</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">202</div><div class="modern-diagram-cell">Accepted</div><div class="modern-diagram-cell">Section 6.3.3</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">203</div><div class="modern-diagram-cell">Non-Authoritative Information</div><div class="modern-diagram-cell">Section 6.3.4</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">204</div><div class="modern-diagram-cell">No Content</div><div class="modern-diagram-cell">Section 6.3.5</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">205</div><div class="modern-diagram-cell">Reset Content</div><div class="modern-diagram-cell">Section 6.3.6</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">300</div><div class="modern-diagram-cell">Multiple Choices</div><div class="modern-diagram-cell">Section 6.4.1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">301</div><div class="modern-diagram-cell">Moved Permanently</div><div class="modern-diagram-cell">Section 6.4.2</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">302</div><div class="modern-diagram-cell">Found</div><div class="modern-diagram-cell">Section 6.4.3</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">303</div><div class="modern-diagram-cell">See Other</div><div class="modern-diagram-cell">Section 6.4.4</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">305</div><div class="modern-diagram-cell">Use Proxy</div><div class="modern-diagram-cell">Section 6.4.5</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">306</div><div class="modern-diagram-cell">Unused)</div><div class="modern-diagram-cell">Section 6.4.6</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">307</div><div class="modern-diagram-cell">Temporary Redirect</div><div class="modern-diagram-cell">Section 6.4.7</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">400</div><div class="modern-diagram-cell">Bad Request</div><div class="modern-diagram-cell">Section 6.5.1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">402</div><div class="modern-diagram-cell">Payment Required</div><div class="modern-diagram-cell">Section 6.5.2</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">403</div><div class="modern-diagram-cell">Forbidden</div><div class="modern-diagram-cell">Section 6.5.3</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">404</div><div class="modern-diagram-cell">Not Found</div><div class="modern-diagram-cell">Section 6.5.4</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">405</div><div class="modern-diagram-cell">Method Not Allowed</div><div class="modern-diagram-cell">Section 6.5.5</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">406</div><div class="modern-diagram-cell">Not Acceptable</div><div class="modern-diagram-cell">Section 6.5.6</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">408</div><div class="modern-diagram-cell">Request Timeout</div><div class="modern-diagram-cell">Section 6.5.7</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">409</div><div class="modern-diagram-cell">Conflict</div><div class="modern-diagram-cell">Section 6.5.8</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">410</div><div class="modern-diagram-cell">Gone</div><div class="modern-diagram-cell">Section 6.5.9</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">411</div><div class="modern-diagram-cell">Length Required</div><div class="modern-diagram-cell">Section 6.5.10</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">413</div><div class="modern-diagram-cell">Payload Too Large</div><div class="modern-diagram-cell">Section 6.5.11</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">414</div><div class="modern-diagram-cell">URI Too Long</div><div class="modern-diagram-cell">Section 6.5.12</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">415</div><div class="modern-diagram-cell">Unsupported Media Type</div><div class="modern-diagram-cell">Section 6.5.13</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">417</div><div class="modern-diagram-cell">Expectation Failed</div><div class="modern-diagram-cell">Section 6.5.14</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">426</div><div class="modern-diagram-cell">Upgrade Required</div><div class="modern-diagram-cell">Section 6.5.15</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">500</div><div class="modern-diagram-cell">Internal Server Error</div><div class="modern-diagram-cell">Section 6.6.1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">501</div><div class="modern-diagram-cell">Not Implemented</div><div class="modern-diagram-cell">Section 6.6.2</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">502</div><div class="modern-diagram-cell">Bad Gateway</div><div class="modern-diagram-cell">Section 6.6.3</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">503</div><div class="modern-diagram-cell">Service Unavailable</div><div class="modern-diagram-cell">Section 6.6.4</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">504</div><div class="modern-diagram-cell">Gateway Timeout</div><div class="modern-diagram-cell">Section 6.6.5</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">505</div><div class="modern-diagram-cell">HTTP Version Not Supported</div><div class="modern-diagram-cell">Section 6.6.6</div></div></div>
-</figure><pre>8.3.  Header Field Registry
+  <pre>RFC 7231             HTTP/1.1 Semantics and Content            June 2014</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   +-------+-------------------------------+----------------+
+   | Value | Description                   | Reference      |
+   +-------+-------------------------------+----------------+
+   | 100   | Continue                      | Section 6.2.1  |
+   | 101   | Switching Protocols           | Section 6.2.2  |
+   | 200   | OK                            | Section 6.3.1  |
+   | 201   | Created                       | Section 6.3.2  |
+   | 202   | Accepted                      | Section 6.3.3  |
+   | 203   | Non-Authoritative Information | Section 6.3.4  |
+   | 204   | No Content                    | Section 6.3.5  |
+   | 205   | Reset Content                 | Section 6.3.6  |
+   | 300   | Multiple Choices              | Section 6.4.1  |
+   | 301   | Moved Permanently             | Section 6.4.2  |
+   | 302   | Found                         | Section 6.4.3  |
+   | 303   | See Other                     | Section 6.4.4  |
+   | 305   | Use Proxy                     | Section 6.4.5  |
+   | 306   | (Unused)                      | Section 6.4.6  |
+   | 307   | Temporary Redirect            | Section 6.4.7  |
+   | 400   | Bad Request                   | Section 6.5.1  |
+   | 402   | Payment Required              | Section 6.5.2  |
+   | 403   | Forbidden                     | Section 6.5.3  |
+   | 404   | Not Found                     | Section 6.5.4  |
+   | 405   | Method Not Allowed            | Section 6.5.5  |
+   | 406   | Not Acceptable                | Section 6.5.6  |
+   | 408   | Request Timeout               | Section 6.5.7  |
+   | 409   | Conflict                      | Section 6.5.8  |
+   | 410   | Gone                          | Section 6.5.9  |
+   | 411   | Length Required               | Section 6.5.10 |
+   | 413   | Payload Too Large             | Section 6.5.11 |
+   | 414   | URI Too Long                  | Section 6.5.12 |
+   | 415   | Unsupported Media Type        | Section 6.5.13 |
+   | 417   | Expectation Failed            | Section 6.5.14 |
+   | 426   | Upgrade Required              | Section 6.5.15 |
+   | 500   | Internal Server Error         | Section 6.6.1  |
+   | 501   | Not Implemented               | Section 6.6.2  |
+   | 502   | Bad Gateway                   | Section 6.6.3  |
+   | 503   | Service Unavailable           | Section 6.6.4  |
+   | 504   | Gateway Timeout               | Section 6.6.5  |
+   | 505   | HTTP Version Not Supported    | Section 6.6.6  |
+   +-------+-------------------------------+----------------+
+</pre>
+</div><pre>8.3.  Header Field Registry
 
    HTTP header fields are registered within the &quot;Message Headers&quot;
    registry located at
@@ -4589,10 +4813,33 @@ Fielding &amp; Reschke           Standards Track                   [Page 77]</pr
 8.3.2.  Registrations
 
    The &quot;Message Headers&quot; registry has been updated with the following
-   permanent registrations:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Header Field Name | Protocol | Status | Reference | Accept | http | standard | S">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Header Field Name</div><div class="modern-diagram-cell">Protocol</div><div class="modern-diagram-cell">Status</div><div class="modern-diagram-cell">Reference</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Accept</div><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">standard</div><div class="modern-diagram-cell">Section 5.3.2</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Accept-Charset</div><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">standard</div><div class="modern-diagram-cell">Section 5.3.3</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Accept-Encoding</div><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">standard</div><div class="modern-diagram-cell">Section 5.3.4</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Accept-Language</div><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">standard</div><div class="modern-diagram-cell">Section 5.3.5</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Allow</div><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">standard</div><div class="modern-diagram-cell">Section 7.4.1</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Content-Encoding</div><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">standard</div><div class="modern-diagram-cell">Section 3.1.2.2</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Content-Language</div><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">standard</div><div class="modern-diagram-cell">Section 3.1.3.2</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Content-Location</div><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">standard</div><div class="modern-diagram-cell">Section 3.1.4.2</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Content-Type</div><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">standard</div><div class="modern-diagram-cell">Section 3.1.1.5</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Date</div><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">standard</div><div class="modern-diagram-cell">Section 7.1.1.2</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Expect</div><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">standard</div><div class="modern-diagram-cell">Section 5.1.1</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">From</div><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">standard</div><div class="modern-diagram-cell">Section 5.5.1</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Location</div><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">standard</div><div class="modern-diagram-cell">Section 7.1.2</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Max-Forwards</div><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">standard</div><div class="modern-diagram-cell">Section 5.1.2</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">MIME-Version</div><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">standard</div><div class="modern-diagram-cell">Appendix A.1</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Referer</div><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">standard</div><div class="modern-diagram-cell">Section 5.5.2</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Retry-After</div><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">standard</div><div class="modern-diagram-cell">Section 7.1.3</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Server</div><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">standard</div><div class="modern-diagram-cell">Section 7.4.2</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">User-Agent</div><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">standard</div><div class="modern-diagram-cell">Section 5.5.3</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Vary</div><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">standard</div><div class="modern-diagram-cell">Section 7.1.4</div></div></div>
-</figure><pre>   The change controller for the above registrations is: &quot;IETF
+   permanent registrations:</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   +-------------------+----------+----------+-----------------+
+   | Header Field Name | Protocol | Status   | Reference       |
+   +-------------------+----------+----------+-----------------+
+   | Accept            | http     | standard | Section 5.3.2   |
+   | Accept-Charset    | http     | standard | Section 5.3.3   |
+   | Accept-Encoding   | http     | standard | Section 5.3.4   |
+   | Accept-Language   | http     | standard | Section 5.3.5   |
+   | Allow             | http     | standard | Section 7.4.1   |
+   | Content-Encoding  | http     | standard | Section 3.1.2.2 |
+   | Content-Language  | http     | standard | Section 3.1.3.2 |
+   | Content-Location  | http     | standard | Section 3.1.4.2 |
+   | Content-Type      | http     | standard | Section 3.1.1.5 |
+   | Date              | http     | standard | Section 7.1.1.2 |
+   | Expect            | http     | standard | Section 5.1.1   |
+   | From              | http     | standard | Section 5.5.1   |
+   | Location          | http     | standard | Section 7.1.2   |
+   | Max-Forwards      | http     | standard | Section 5.1.2   |
+   | MIME-Version      | http     | standard | Appendix A.1    |
+   | Referer           | http     | standard | Section 5.5.2   |
+   | Retry-After       | http     | standard | Section 7.1.3   |
+   | Server            | http     | standard | Section 7.4.2   |
+   | User-Agent        | http     | standard | Section 5.5.3   |
+   | Vary              | http     | standard | Section 7.1.4   |
+   +-------------------+----------+----------+-----------------+
+</pre>
+</div><pre>   The change controller for the above registrations is: &quot;IETF
    (iesg@ietf.org) - Internet Engineering Task Force&quot;.
 
 
@@ -4636,10 +4883,15 @@ Fielding &amp; Reschke           Standards Track                   [Page 80]</pr
 8.4.2.  Registrations
 
    The &quot;HTTP Content Coding Registry&quot; has been updated with the
-   registrations below:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Name | Description | Reference | identity | Reserved (synonym for &quot;no encoding&quot; ">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Name</div><div class="modern-diagram-cell">Description</div><div class="modern-diagram-cell">Reference</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">identity</div><div class="modern-diagram-cell">Reserved (synonym for &quot;no encoding&quot; in</div><div class="modern-diagram-cell">Section 5.3.4</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Accept-Encoding)</div></div></div>
-</figure><pre>9.  Security Considerations
+   registrations below:</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   +----------+----------------------------------------+---------------+
+   | Name     | Description                            | Reference     |
+   +----------+----------------------------------------+---------------+
+   | identity | Reserved (synonym for &quot;no encoding&quot; in | Section 5.3.4 |
+   |          | Accept-Encoding)                       |               |
+   +----------+----------------------------------------+---------------+
+</pre>
+</div><pre>9.  Security Considerations
 
    This section is meant to inform developers, information providers,
    and users of known security concerns relevant to HTTP semantics and

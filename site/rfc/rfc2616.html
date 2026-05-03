@@ -1054,10 +1054,13 @@ Table of Contents
    string to be used within a parameter value (as defined in section
    3.6).
 
-       token          = 1*&lt;any CHAR except CTLs or separators&gt;</pre><figure class="modern-ascii-diagram" role="img" aria-label="separators     = &quot;(&quot; | SP | HT">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">separators     = &quot;(&quot;</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">SP</div><div class="modern-diagram-cell">HT</div></div></div>
-</figure><pre>   Comments can be included in some HTTP header fields by surrounding
+       token          = 1*&lt;any CHAR except CTLs or separators&gt;</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">       separators     = &quot;(&quot; | &quot;)&quot; | &quot;&lt;&quot; | &quot;&gt;&quot; | &quot;@&quot;
+                      | &quot;,&quot; | &quot;;&quot; | &quot;:&quot; | &quot;\&quot; | &lt;&quot;&gt;
+                      | &quot;/&quot; | &quot;[&quot; | &quot;]&quot; | &quot;?&quot; | &quot;=&quot;
+                      | &quot;{&quot; | &quot;}&quot; | SP | HT
+</pre>
+</div><pre>   Comments can be included in some HTTP header fields by surrounding
    the comment text with parentheses. Comments are only allowed in
    fields containing &quot;comment&quot; as part of their field value definition.
    In all other fields, parentheses are considered part of the field
@@ -1299,10 +1302,16 @@ Fielding, et al.            Standards Track                    [Page 17]</pre>
        date3        = month SP ( 2DIGIT | ( SP 1DIGIT ))
                       ; month day (e.g., Jun  2)
        time         = 2DIGIT &quot;:&quot; 2DIGIT &quot;:&quot; 2DIGIT
-                      ; 00:00:00 - 23:59:59</pre><figure class="modern-ascii-diagram" role="img" aria-label="wkday        = &quot;Mon&quot; | Tue&quot; | Wed&quot; | Thu&quot; | Fri&quot; | Sat&quot; | Sun&quot;">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">wkday        = &quot;Mon&quot;</div><div class="modern-diagram-cell">Tue&quot;</div><div class="modern-diagram-cell">Wed&quot;</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Thu&quot;</div><div class="modern-diagram-cell">Fri&quot;</div><div class="modern-diagram-cell">Sat&quot;</div><div class="modern-diagram-cell">Sun&quot;</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">weekday      = &quot;Monday&quot;</div><div class="modern-diagram-cell">Tuesday&quot;</div><div class="modern-diagram-cell">Wednesday&quot;</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Thursday&quot;</div><div class="modern-diagram-cell">Friday&quot;</div><div class="modern-diagram-cell">Saturday&quot;</div><div class="modern-diagram-cell">Sunday&quot;</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">month        = &quot;Jan&quot;</div><div class="modern-diagram-cell">Feb&quot;</div><div class="modern-diagram-cell">Mar&quot;</div><div class="modern-diagram-cell">Apr&quot;</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">May&quot;</div><div class="modern-diagram-cell">Jun&quot;</div><div class="modern-diagram-cell">Jul&quot;</div><div class="modern-diagram-cell">Aug&quot;</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Sep&quot;</div><div class="modern-diagram-cell">Oct&quot;</div><div class="modern-diagram-cell">Nov&quot;</div><div class="modern-diagram-cell">Dec&quot;</div></div></div>
-</figure><pre>      Note: HTTP requirements for the date/time stamp format apply only
+                      ; 00:00:00 - 23:59:59</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">       wkday        = &quot;Mon&quot; | &quot;Tue&quot; | &quot;Wed&quot;
+                    | &quot;Thu&quot; | &quot;Fri&quot; | &quot;Sat&quot; | &quot;Sun&quot;
+       weekday      = &quot;Monday&quot; | &quot;Tuesday&quot; | &quot;Wednesday&quot;
+                    | &quot;Thursday&quot; | &quot;Friday&quot; | &quot;Saturday&quot; | &quot;Sunday&quot;
+       month        = &quot;Jan&quot; | &quot;Feb&quot; | &quot;Mar&quot; | &quot;Apr&quot;
+                    | &quot;May&quot; | &quot;Jun&quot; | &quot;Jul&quot; | &quot;Aug&quot;
+                    | &quot;Sep&quot; | &quot;Oct&quot; | &quot;Nov&quot; | &quot;Dec&quot;
+</pre>
+</div><pre>      Note: HTTP requirements for the date/time stamp format apply only
       to their usage within the protocol stream. Clients and servers are
       not required to use these formats for user presentation, request
       logging, etc.

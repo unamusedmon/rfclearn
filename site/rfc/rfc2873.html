@@ -189,10 +189,7 @@ Abstract
 
    MBZ field: Must Be Zero
 
-   The structure of the TOS octet is depicted below:</pre><figure class="modern-ascii-diagram" role="img" aria-label="PRECEDENCE | TOS | MBZ">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0     1     2     3     4     5     6     7</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">PRECEDENCE</div><div class="modern-diagram-cell">TOS</div><div class="modern-diagram-cell">MBZ</div></div></div>
-</figure><pre>Xiao, et al.                Standards Track                     [Page 2]</pre>
+   The structure of the TOS octet is depicted below:</pre><svg class="rfc-bit-diagram" viewBox="0 0 424 190" role="img" aria-label="Bit field diagram" xmlns="http://www.w3.org/2000/svg"><desc>Protocol header bit field layout showing field names and positions</desc><defs>  <style>    .bit-grid { stroke: #94a3b8; stroke-width: 0.5; fill: none; }    .field-block { fill: #3b82f6; opacity: 0.9; rx: 4; }    .field-label { fill: white; font-size: 11px; font-weight: 600; font-family: Inter, sans-serif; text-anchor: middle; }    .bit-label { fill: #64748b; font-size: 9px; font-family: "IBM Plex Mono", monospace; text-anchor: middle; }    .row-label { fill: #475569; font-size: 10px; font-family: Inter, sans-serif; }  </style></defs><text class="bit-label" x="20" y="32">0</text><text class="bit-label" x="116" y="32">8</text><text class="bit-label" x="212" y="32">16</text><text class="bit-label" x="308" y="32">24</text><text class="bit-label" x="404" y="32">31</text><rect class="field-block" x="20" y="50" width="204" height="50" /><text class="field-label" x="122.0" y="79.0">PRECEDENCE</text><rect class="bit-grid" x="20" y="50" width="384" height="50" /><rect class="field-block" x="20" y="110" width="276" height="50" /><text class="field-label" x="158.0" y="139.0">TOS</text><rect class="field-block" x="296" y="110" width="96" height="50" /><text class="field-label" x="344.0" y="139.0">MBZ</text><rect class="bit-grid" x="20" y="110" width="384" height="50" /></svg><pre>Xiao, et al.                Standards Track                     [Page 2]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 3</span>
@@ -203,10 +200,7 @@ Abstract
    DS Field: the TOS octet of an IPv4 header is renamed the
    Differentiated Services (DS) Field by DiffServ.
 
-   The structure of the DS field is depicted below:</pre><figure class="modern-ascii-diagram" role="img" aria-label="DSCP | CU">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0   1   2   3   4   5   6   7</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">DSCP</div><div class="modern-diagram-cell">CU</div></div></div>
-</figure><pre>   DSCP: Differentiated Service Code Point, the leftmost 6 bits in the
+   The structure of the DS field is depicted below:</pre><svg class="rfc-bit-diagram" viewBox="0 0 424 130" role="img" aria-label="Bit field diagram" xmlns="http://www.w3.org/2000/svg"><desc>Protocol header bit field layout showing field names and positions</desc><defs>  <style>    .bit-grid { stroke: #94a3b8; stroke-width: 0.5; fill: none; }    .field-block { fill: #3b82f6; opacity: 0.9; rx: 4; }    .field-label { fill: white; font-size: 11px; font-weight: 600; font-family: Inter, sans-serif; text-anchor: middle; }    .bit-label { fill: #64748b; font-size: 9px; font-family: "IBM Plex Mono", monospace; text-anchor: middle; }    .row-label { fill: #475569; font-size: 10px; font-family: Inter, sans-serif; }  </style></defs><text class="bit-label" x="20" y="32">0</text><text class="bit-label" x="116" y="32">8</text><text class="bit-label" x="212" y="32">16</text><text class="bit-label" x="308" y="32">24</text><text class="bit-label" x="404" y="32">31</text><rect class="field-block" x="20" y="50" width="276" height="50" /><text class="field-label" x="158.0" y="79.0">DSCP</text><rect class="field-block" x="296" y="50" width="96" height="50" /><text class="field-label" x="344.0" y="79.0">CU</text><rect class="bit-grid" x="20" y="50" width="384" height="50" /></svg><pre>   DSCP: Differentiated Service Code Point, the leftmost 6 bits in the
    DS field.
 
    CU:   currently unused.

@@ -298,10 +298,12 @@ Table of Contents
    indicate to the peer that the session is to be fully terminated.
 
    When sending a Hard Reset, the data portion of the NOTIFICATION
-   message is encoded as follows:</pre><figure class="modern-ascii-diagram" role="img" aria-label="ErrCode | Subcode | Data">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">ErrCode</div><div class="modern-diagram-cell">Subcode</div><div class="modern-diagram-cell">Data</div></div></div>
-</figure><pre>   ErrCode is a BGP Error Code (as documented in the IANA &quot;BGP Error
+   message is encoded as follows:</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">       +--------+--------+--------
+       | ErrCode| Subcode| Data
+       +--------+--------+--------
+</pre>
+</div><pre>   ErrCode is a BGP Error Code (as documented in the IANA &quot;BGP Error
    (Notification) Codes&quot; registry) that indicates the reason for the
    Hard Reset.  Subcode is a BGP Error Subcode (as documented in the
    IANA &quot;BGP Error Subcodes&quot; registry) as appropriate for the ErrCode.
@@ -455,10 +457,22 @@ Patel, et al.                Standards Track                    [Page 4]</pre>
    termination.  Because of this, it&#x27;s appropriate to use Hard Reset
    with them.  As of publication of this document, subcodes 1-9 have
    been defined for Cease.  The following table lists each of these
-   subcodes along with suggested behavior.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Value | Name | Suggested Behavior | Maximum Number of Prefixes Reached | Hard Re">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Value</div><div class="modern-diagram-cell">Name</div><div class="modern-diagram-cell">Suggested Behavior</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">Maximum Number of Prefixes Reached</div><div class="modern-diagram-cell">Hard Reset</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">2</div><div class="modern-diagram-cell">Administrative Shutdown</div><div class="modern-diagram-cell">Hard Reset</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">3</div><div class="modern-diagram-cell">Peer De-configured</div><div class="modern-diagram-cell">Hard Reset</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">4</div><div class="modern-diagram-cell">Administrative Reset</div><div class="modern-diagram-cell">Provide user control</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">5</div><div class="modern-diagram-cell">Connection Rejected</div><div class="modern-diagram-cell">Graceful Cease</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">6</div><div class="modern-diagram-cell">Other Configuration Change</div><div class="modern-diagram-cell">Graceful Cease</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">7</div><div class="modern-diagram-cell">Connection Collision Resolution</div><div class="modern-diagram-cell">Graceful Cease</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">8</div><div class="modern-diagram-cell">Out of Resources</div><div class="modern-diagram-cell">Graceful Cease</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">9</div><div class="modern-diagram-cell">Hard Reset</div><div class="modern-diagram-cell">Hard Reset</div></div></div>
-</figure><pre>   These suggestions are only that -- suggestions, not requirements.
+   subcodes along with suggested behavior.</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   +-------+------------------------------------+----------------------+
+   | Value |                Name                |  Suggested Behavior  |
+   +-------+------------------------------------+----------------------+
+   |   1   | Maximum Number of Prefixes Reached |      Hard Reset      |
+   |   2   |      Administrative Shutdown       |      Hard Reset      |
+   |   3   |         Peer De-configured         |      Hard Reset      |
+   |   4   |        Administrative Reset        | Provide user control |
+   |   5   |        Connection Rejected         |    Graceful Cease    |
+   |   6   |     Other Configuration Change     |    Graceful Cease    |
+   |   7   |  Connection Collision Resolution   |    Graceful Cease    |
+   |   8   |          Out of Resources          |    Graceful Cease    |
+   |   9   |             Hard Reset             |      Hard Reset      |
+   +-------+------------------------------------+----------------------+
+</pre>
+</div><pre>   These suggestions are only that -- suggestions, not requirements.
    It&#x27;s the nature of BGP implementations that the mapping of internal
    states to BGP NOTIFICATION codes and subcodes is not always perfect.
    The guiding principle for the implementor should be that if there is
@@ -512,17 +526,35 @@ Patel, et al.                Standards Track                    [Page 7]</pre>
    under the &quot;Border Gateway Protocol (BGP) Parameters&quot; registry.  The
    registration procedure is Standards Action [RFC8126]; this document
    and [RFC4724] are listed as references.  The initial values are as
-   follows:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Bit Position | Name | Short Name | Reference | Restart State | R | RFC 4724">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Bit Position</div><div class="modern-diagram-cell">Name</div><div class="modern-diagram-cell">Short Name</div><div class="modern-diagram-cell">Reference</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">Restart State</div><div class="modern-diagram-cell">R</div><div class="modern-diagram-cell">RFC 4724</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">Notification</div><div class="modern-diagram-cell">N</div><div class="modern-diagram-cell">RFC 8538</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">2-3</div><div class="modern-diagram-cell">Unassigned</div></div></div>
-</figure><pre>   IANA has created a sub-registry called &quot;BGP Graceful Restart Flags
+   follows:</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">         +--------------+---------------+------------+-----------+
+         | Bit Position |      Name     | Short Name | Reference |
+         +--------------+---------------+------------+-----------+
+         |      0       | Restart State |     R      |  RFC 4724 |
+         |      1       |  Notification |     N      |  RFC 8538 |
+         |     2-3      |   Unassigned  |            |           |
+         +--------------+---------------+------------+-----------+
+</pre>
+</div><pre>   IANA has created a sub-registry called &quot;BGP Graceful Restart Flags
    for Address Family&quot; under the &quot;Border Gateway Protocol (BGP)
    Parameters&quot; registry.  The registration procedure is Standards
    Action; this document and [RFC4724] are listed as references.  The
-   initial values are as follows:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Bit Position | Name | Short Name | Reference | Forwarding State | F | RFC 4724">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Bit Position</div><div class="modern-diagram-cell">Name</div><div class="modern-diagram-cell">Short Name</div><div class="modern-diagram-cell">Reference</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">Forwarding State</div><div class="modern-diagram-cell">F</div><div class="modern-diagram-cell">RFC 4724</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">1-7</div><div class="modern-diagram-cell">Unassigned</div></div></div>
-</figure><pre>Patel, et al.                Standards Track                    [Page 8]</pre>
+   initial values are as follows:</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">       +--------------+------------------+------------+-----------+
+       | Bit Position |       Name       | Short Name | Reference |
+       +--------------+------------------+------------+-----------+
+       |      0       | Forwarding State |     F      |  RFC 4724 |
+       |     1-7      |    Unassigned    |            |           |
+       +--------------+------------------+------------+-----------+
+
+
+
+
+
+
+
+</pre>
+</div><pre>Patel, et al.                Standards Track                    [Page 8]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 9</span>

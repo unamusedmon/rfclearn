@@ -151,10 +151,25 @@ Status of this Memo
 
 2. RDATA Format
 
-       MSB                                           LSB</pre><figure class="modern-ascii-diagram" role="img" aria-label="VERSION | SIZE | HORIZ PRE | VERT PRE">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">VERSION</div><div class="modern-diagram-cell">SIZE</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">2</div><div class="modern-diagram-cell">HORIZ PRE</div><div class="modern-diagram-cell">VERT PRE</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">4</div><div class="modern-diagram-cell">LATITUDE</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">6</div><div class="modern-diagram-cell">LATITUDE</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">8</div><div class="modern-diagram-cell">LONGITUDE</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">10</div><div class="modern-diagram-cell">LONGITUDE</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">12</div><div class="modern-diagram-cell">ALTITUDE</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">14</div><div class="modern-diagram-cell">ALTITUDE</div></div></div>
-</figure><pre>   (octet)
+       MSB                                           LSB</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+      0|        VERSION        |         SIZE          |
+       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+      2|       HORIZ PRE       |       VERT PRE        |
+       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+      4|                   LATITUDE                    |
+       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+      6|                   LATITUDE                    |
+       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+      8|                   LONGITUDE                   |
+       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+     10|                   LONGITUDE                   |
+       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+     12|                   ALTITUDE                    |
+       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+     14|                   ALTITUDE                    |
+       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+</pre>
+</div><pre>   (octet)
 
 where:
 

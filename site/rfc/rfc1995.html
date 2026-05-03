@@ -338,13 +338,47 @@ Abstract
       JAIN-BB.JAIN.AD.JP. IN A   133.69.136.3
                           IN A   192.41.197.2
 
-   The following IXFR query</pre><figure class="modern-ascii-diagram" role="img" aria-label="Header | OPCODE=SQUERY | Question | QNAME=JAIN.AD.JP., QCLASS=IN, QTYPE=IXFR">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Header</div><div class="modern-diagram-cell">OPCODE=SQUERY</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Question</div><div class="modern-diagram-cell">QNAME=JAIN.AD.JP., QCLASS=IN, QTYPE=IXFR</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Answer</div><div class="modern-diagram-cell">empty&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Authority</div><div class="modern-diagram-cell">JAIN.AD.JP.         IN SOA serial=1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Additional</div><div class="modern-diagram-cell">empty&gt;</div></div></div>
-</figure><pre>   could be replied to with the following full zone transfer message:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Header | OPCODE=SQUERY, RESPONSE | Question | QNAME=JAIN.AD.JP., QCLASS=IN, QTYP">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Header</div><div class="modern-diagram-cell">OPCODE=SQUERY, RESPONSE</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Question</div><div class="modern-diagram-cell">QNAME=JAIN.AD.JP., QCLASS=IN, QTYPE=IXFR</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Answer</div><div class="modern-diagram-cell">JAIN.AD.JP.         IN SOA serial=3</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">JAIN.AD.JP.         IN NS  NS.JAIN.AD.JP.</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">NS.JAIN.AD.JP.      IN A   133.69.136.1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">JAIN-BB.JAIN.AD.JP. IN A   133.69.136.3</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">JAIN-BB.JAIN.AD.JP. IN A   192.41.197.2</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">JAIN.AD.JP.         IN SOA serial=3</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Authority</div><div class="modern-diagram-cell">empty&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Additional</div><div class="modern-diagram-cell">empty&gt;</div></div></div>
-</figure><pre>Ohta                        Standards Track                     [Page 5]</pre>
+   The following IXFR query</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">                 +---------------------------------------------------+
+      Header     | OPCODE=SQUERY                                     |
+                 +---------------------------------------------------+
+      Question   | QNAME=JAIN.AD.JP., QCLASS=IN, QTYPE=IXFR          |
+                 +---------------------------------------------------+
+      Answer     | &lt;empty&gt;                                           |
+                 +---------------------------------------------------+
+      Authority  | JAIN.AD.JP.         IN SOA serial=1               |
+                 +---------------------------------------------------+
+      Additional | &lt;empty&gt;                                           |
+                 +---------------------------------------------------+
+</pre>
+</div><pre>   could be replied to with the following full zone transfer message:</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">                 +---------------------------------------------------+
+      Header     | OPCODE=SQUERY, RESPONSE                           |
+                 +---------------------------------------------------+
+      Question   | QNAME=JAIN.AD.JP., QCLASS=IN, QTYPE=IXFR          |
+                 +---------------------------------------------------+
+      Answer     | JAIN.AD.JP.         IN SOA serial=3               |
+                 | JAIN.AD.JP.         IN NS  NS.JAIN.AD.JP.         |
+                 | NS.JAIN.AD.JP.      IN A   133.69.136.1           |
+                 | JAIN-BB.JAIN.AD.JP. IN A   133.69.136.3           |
+                 | JAIN-BB.JAIN.AD.JP. IN A   192.41.197.2           |
+                 | JAIN.AD.JP.         IN SOA serial=3               |
+                 +---------------------------------------------------+
+      Authority  | &lt;empty&gt;                                           |
+                 +---------------------------------------------------+
+      Additional | &lt;empty&gt;                                           |
+                 +---------------------------------------------------+
+
+
+
+
+
+
+
+
+
+</pre>
+</div><pre>Ohta                        Standards Track                     [Page 5]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 6</span>
@@ -352,13 +386,56 @@ Abstract
   <pre>RFC 1995            Incremental Zone Transfer in DNS         August 1996
 
 
-   or with the following incremental message:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Header | OPCODE=SQUERY, RESPONSE | Question | QNAME=JAIN.AD.JP., QCLASS=IN, QTYP">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Header</div><div class="modern-diagram-cell">OPCODE=SQUERY, RESPONSE</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Question</div><div class="modern-diagram-cell">QNAME=JAIN.AD.JP., QCLASS=IN, QTYPE=IXFR</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Answer</div><div class="modern-diagram-cell">JAIN.AD.JP.         IN SOA serial=3</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">JAIN.AD.JP.         IN SOA serial=1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">NEZU.JAIN.AD.JP.    IN A   133.69.136.5</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">JAIN.AD.JP.         IN SOA serial=2</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">JAIN-BB.JAIN.AD.JP. IN A   133.69.136.4</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">JAIN-BB.JAIN.AD.JP. IN A   192.41.197.2</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">JAIN.AD.JP.         IN SOA serial=2</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">JAIN-BB.JAIN.AD.JP. IN A   133.69.136.4</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">JAIN.AD.JP.         IN SOA serial=3</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">JAIN-BB.JAIN.AD.JP. IN A   133.69.136.3</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">JAIN.AD.JP.         IN SOA serial=3</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Authority</div><div class="modern-diagram-cell">empty&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Additional</div><div class="modern-diagram-cell">empty&gt;</div></div></div>
-</figure><pre>   or with the following condensed incremental message:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Header | OPCODE=SQUERY, RESPONSE | Question | QNAME=JAIN.AD.JP., QCLASS=IN, QTYP">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Header</div><div class="modern-diagram-cell">OPCODE=SQUERY, RESPONSE</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Question</div><div class="modern-diagram-cell">QNAME=JAIN.AD.JP., QCLASS=IN, QTYPE=IXFR</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Answer</div><div class="modern-diagram-cell">JAIN.AD.JP.         IN SOA serial=3</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">JAIN.AD.JP.         IN SOA serial=1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">NEZU.JAIN.AD.JP.    IN A   133.69.136.5</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">JAIN.AD.JP.         IN SOA serial=3</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">JAIN-BB.JAIN.AD.JP. IN A   133.69.136.3</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">JAIN-BB.JAIN.AD.JP. IN A   192.41.197.2</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">JAIN.AD.JP.         IN SOA serial=3</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Authority</div><div class="modern-diagram-cell">empty&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Additional</div><div class="modern-diagram-cell">empty&gt;</div></div></div>
-</figure><pre>Ohta                        Standards Track                     [Page 6]</pre>
+   or with the following incremental message:</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">                 +---------------------------------------------------+
+      Header     | OPCODE=SQUERY, RESPONSE                           |
+                 +---------------------------------------------------+
+      Question   | QNAME=JAIN.AD.JP., QCLASS=IN, QTYPE=IXFR          |
+                 +---------------------------------------------------+
+      Answer     | JAIN.AD.JP.         IN SOA serial=3               |
+                 | JAIN.AD.JP.         IN SOA serial=1               |
+                 | NEZU.JAIN.AD.JP.    IN A   133.69.136.5           |
+                 | JAIN.AD.JP.         IN SOA serial=2               |
+                 | JAIN-BB.JAIN.AD.JP. IN A   133.69.136.4           |
+                 | JAIN-BB.JAIN.AD.JP. IN A   192.41.197.2           |
+                 | JAIN.AD.JP.         IN SOA serial=2               |
+                 | JAIN-BB.JAIN.AD.JP. IN A   133.69.136.4           |
+                 | JAIN.AD.JP.         IN SOA serial=3               |
+                 | JAIN-BB.JAIN.AD.JP. IN A   133.69.136.3           |
+                 | JAIN.AD.JP.         IN SOA serial=3               |
+                 +---------------------------------------------------+
+      Authority  | &lt;empty&gt;                                           |
+                 +---------------------------------------------------+
+      Additional | &lt;empty&gt;                                           |
+                 +---------------------------------------------------+
+</pre>
+</div><pre>   or with the following condensed incremental message:</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">                 +---------------------------------------------------+
+      Header     | OPCODE=SQUERY, RESPONSE                           |
+                 +---------------------------------------------------+
+      Question   | QNAME=JAIN.AD.JP., QCLASS=IN, QTYPE=IXFR          |
+                 +---------------------------------------------------+
+      Answer     | JAIN.AD.JP.         IN SOA serial=3               |
+                 | JAIN.AD.JP.         IN SOA serial=1               |
+                 | NEZU.JAIN.AD.JP.    IN A   133.69.136.5           |
+                 | JAIN.AD.JP.         IN SOA serial=3               |
+                 | JAIN-BB.JAIN.AD.JP. IN A   133.69.136.3           |
+                 | JAIN-BB.JAIN.AD.JP. IN A   192.41.197.2           |
+                 | JAIN.AD.JP.         IN SOA serial=3               |
+                 +---------------------------------------------------+
+      Authority  | &lt;empty&gt;                                           |
+                 +---------------------------------------------------+
+      Additional | &lt;empty&gt;                                           |
+                 +---------------------------------------------------+
+
+
+
+
+
+
+
+</pre>
+</div><pre>Ohta                        Standards Track                     [Page 6]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 7</span>
@@ -366,10 +443,20 @@ Abstract
   <pre>RFC 1995            Incremental Zone Transfer in DNS         August 1996
 
 
-   or, if UDP packet overflow occurs, with the following message:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Header | OPCODE=SQUERY, RESPONSE | Question | QNAME=JAIN.AD.JP., QCLASS=IN, QTYP">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Header</div><div class="modern-diagram-cell">OPCODE=SQUERY, RESPONSE</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Question</div><div class="modern-diagram-cell">QNAME=JAIN.AD.JP., QCLASS=IN, QTYPE=IXFR</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Answer</div><div class="modern-diagram-cell">JAIN.AD.JP.         IN SOA serial=3</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Authority</div><div class="modern-diagram-cell">empty&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Additional</div><div class="modern-diagram-cell">empty&gt;</div></div></div>
-</figure><pre>8. Acknowledgements
+   or, if UDP packet overflow occurs, with the following message:</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">                 +---------------------------------------------------+
+      Header     | OPCODE=SQUERY, RESPONSE                           |
+                 +---------------------------------------------------+
+      Question   | QNAME=JAIN.AD.JP., QCLASS=IN, QTYPE=IXFR          |
+                 +---------------------------------------------------+
+      Answer     | JAIN.AD.JP.         IN SOA serial=3               |
+                 +---------------------------------------------------+
+      Authority  | &lt;empty&gt;                                           |
+                 +---------------------------------------------------+
+      Additional | &lt;empty&gt;                                           |
+                 +---------------------------------------------------+
+</pre>
+</div><pre>8. Acknowledgements
 
    The original idea of IXFR was conceived by Anant Kumar, Steve Hotz
    and Jon Postel.

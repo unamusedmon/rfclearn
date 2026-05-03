@@ -773,10 +773,15 @@ Table of Contents
 4.1.  Frame Format
 
    All frames begin with a fixed 9-octet header followed by a variable-
-   length payload.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Length (24) | Type (8) | Flags (8)">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Length (24)</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Type (8)</div><div class="modern-diagram-cell">Flags (8)</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">R</div><div class="modern-diagram-cell">Stream Identifier (31)</div></div></div>
-</figure><pre>    |                   Frame Payload (0...)                      ...</pre><pre>    +---------------------------------------------------------------+</pre><pre>                          Figure 1: Frame Layout
+   length payload.</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">    +-----------------------------------------------+
+    |                 Length (24)                   |
+    +---------------+---------------+---------------+
+    |   Type (8)    |   Flags (8)   |
+    +-+-------------+---------------+-------------------------------+
+    |R|                 Stream Identifier (31)                      |
+    +=+=============================================================+</pre>
+</div><pre>    |                   Frame Payload (0...)                      ...</pre><pre>    +---------------------------------------------------------------+</pre><pre>                          Figure 1: Frame Layout
 
    The fields of the frame header are defined as:
 
@@ -981,10 +986,7 @@ Belshe, et al.               Standards Track                   [Page 12]</pre>
 
 5.1.  Stream States
 
-   The lifecycle of a stream is shown in Figure 2.</pre><figure class="modern-ascii-diagram" role="img" aria-label="send PP | recv PP | idle">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">send PP</div><div class="modern-diagram-cell">recv PP</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">idle</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">v          +--------+          v</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">send H /</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">reserved</div><div class="modern-diagram-cell">recv H</div><div class="modern-diagram-cell">reserved</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">local)</div><div class="modern-diagram-cell">remote)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">v</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">recv ES</div><div class="modern-diagram-cell">send ES</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">send H</div><div class="modern-diagram-cell">open</div><div class="modern-diagram-cell">recv H</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">v   v         +--------+         v   v</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">half</div><div class="modern-diagram-cell">half</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">closed</div><div class="modern-diagram-cell">send R /</div><div class="modern-diagram-cell">closed</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">remote)</div><div class="modern-diagram-cell">recv R</div><div class="modern-diagram-cell">local)</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">send ES /</div><div class="modern-diagram-cell">recv ES /</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">send R /       v        send R /</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">recv R     +--------+   recv R</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">send R /  `-----------&gt;</div><div class="modern-diagram-cell">send R /</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">recv R</div><div class="modern-diagram-cell">closed</div><div class="modern-diagram-cell">recv R</div></div></div>
-</figure><pre>          send:   endpoint sends this frame
+   The lifecycle of a stream is shown in Figure 2.</pre><svg class="rfc-flow-diagram" viewBox="0 0 500 440" role="img" aria-label="Flow diagram" xmlns="http://www.w3.org/2000/svg"><desc>System architecture or data flow diagram</desc><defs>  <style>    .flow-box { fill: #1e293b; stroke: #3b82f6; stroke-width: 2; rx: 12; }    .flow-label { fill: #e2e8f0; font-size: 13px; font-weight: 600; font-family: Inter, sans-serif; text-anchor: middle; }    .flow-arrow { stroke: #64748b; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }    .arrow-label { fill: #94a3b8; font-size: 10px; font-family: "IBM Plex Mono", monospace; text-anchor: middle; }  </style>  <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">    <polygon points="0 0, 10 3.5, 0 7" fill="#64748b" />  </marker></defs><rect class="flow-box" x="30" y="30" width="120" height="60" /><text class="flow-label" x="90.0" y="65.0">idle</text><rect class="flow-box" x="190" y="30" width="120" height="60" /><text class="flow-label" x="250.0" y="65.0"></text><rect class="flow-box" x="350" y="30" width="120" height="60" /><text class="flow-label" x="410.0" y="65.0">send H /reserved rec</text><rect class="flow-box" x="30" y="170" width="120" height="60" /><text class="flow-label" x="90.0" y="205.0">send H open recv H</text><rect class="flow-box" x="190" y="170" width="120" height="60" /><text class="flow-label" x="250.0" y="205.0"></text><rect class="flow-box" x="350" y="170" width="120" height="60" /><text class="flow-label" x="410.0" y="205.0">halfclosed(local)</text><rect class="flow-box" x="30" y="310" width="120" height="60" /><text class="flow-label" x="90.0" y="345.0">send R /  `---------</text><line class="flow-arrow" x1="150" y1="60.0" x2="190" y2="60.0" /><line class="flow-arrow" x1="310" y1="60.0" x2="350" y2="60.0" /><line class="flow-arrow" x1="470" y1="60.0" x2="30" y2="200.0" /><line class="flow-arrow" x1="150" y1="200.0" x2="190" y2="200.0" /><line class="flow-arrow" x1="310" y1="200.0" x2="350" y2="200.0" /><line class="flow-arrow" x1="470" y1="200.0" x2="30" y2="340.0" /></svg><pre>          send:   endpoint sends this frame
           recv:   endpoint receives this frame
 
           H:  HEADERS frame (with implied CONTINUATIONs)
@@ -1876,10 +1878,11 @@ Belshe, et al.               Standards Track                   [Page 16]</pre>
 
    DATA frames MAY also contain padding.  Padding can be added to DATA
    frames to obscure the size of messages.  Padding is a security
-   feature; see Section 10.7.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Pad Length? (8)">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Pad Length? (8)</div></div></div>
-</figure><pre>    |                            Data (*)                         ...</pre><pre>    +---------------------------------------------------------------+</pre><pre>    |                           Padding (*)                       ...</pre><pre>    +---------------------------------------------------------------+</pre><pre>                       Figure 6: DATA Frame Payload
+   feature; see Section 10.7.</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">    +---------------+
+    |Pad Length? (8)|
+    +---------------+-----------------------------------------------+</pre>
+</div><pre>    |                            Data (*)                         ...</pre><pre>    +---------------------------------------------------------------+</pre><pre>    |                           Padding (*)                       ...</pre><pre>    +---------------------------------------------------------------+</pre><pre>                       Figure 6: DATA Frame Payload
 
    The DATA frame contains the following fields:
 
@@ -1959,10 +1962,7 @@ Belshe, et al.               Standards Track                   [Page 31]</pre>
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 33</span>
   </div>
-  <pre>RFC 7540                         HTTP/2                         May 2015</pre><figure class="modern-ascii-diagram" role="img" aria-label="Pad Length? (8) | E | Stream Dependency? (31)">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Pad Length? (8)</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">E</div><div class="modern-diagram-cell">Stream Dependency? (31)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Weight? (8)</div></div></div>
-</figure><pre>    |                   Header Block Fragment (*)                 ...</pre><pre>    +---------------------------------------------------------------+</pre><pre>    |                           Padding (*)                       ...</pre><pre>    +---------------------------------------------------------------+</pre><pre>                      Figure 7: HEADERS Frame Payload
+  <pre>RFC 7540                         HTTP/2                         May 2015</pre><svg class="rfc-bit-diagram" viewBox="0 0 424 250" role="img" aria-label="Bit field diagram" xmlns="http://www.w3.org/2000/svg"><desc>Protocol header bit field layout showing field names and positions</desc><defs>  <style>    .bit-grid { stroke: #94a3b8; stroke-width: 0.5; fill: none; }    .field-block { fill: #3b82f6; opacity: 0.9; rx: 4; }    .field-label { fill: white; font-size: 11px; font-weight: 600; font-family: Inter, sans-serif; text-anchor: middle; }    .bit-label { fill: #64748b; font-size: 9px; font-family: "IBM Plex Mono", monospace; text-anchor: middle; }    .row-label { fill: #475569; font-size: 10px; font-family: Inter, sans-serif; }  </style></defs><text class="bit-label" x="20" y="32">0</text><text class="bit-label" x="116" y="32">8</text><text class="bit-label" x="212" y="32">16</text><text class="bit-label" x="308" y="32">24</text><text class="bit-label" x="404" y="32">31</text><rect class="field-block" x="20" y="50" width="180" height="50" /><text class="field-label" x="110.0" y="79.0">Pad Length? </text><rect class="field-block" x="200" y="50" width="96" height="50" /><text class="field-label" x="248.0" y="79.0">E</text><rect class="bit-grid" x="20" y="50" width="384" height="50" /><rect class="field-block" x="20" y="110" width="384" height="50" /><text class="field-label" x="212.0" y="139.0">Stream Depen</text><rect class="bit-grid" x="20" y="110" width="384" height="50" /><rect class="field-block" x="20" y="170" width="180" height="50" /><text class="field-label" x="110.0" y="199.0">Weight? (8)</text><rect class="bit-grid" x="20" y="170" width="384" height="50" /></svg><pre>    |                   Header Block Fragment (*)                 ...</pre><pre>    +---------------------------------------------------------------+</pre><pre>    |                           Padding (*)                       ...</pre><pre>    +---------------------------------------------------------------+</pre><pre>                      Figure 7: HEADERS Frame Payload
 
    The HEADERS frame payload has the following fields:
 
@@ -2066,10 +2066,7 @@ Belshe, et al.               Standards Track                   [Page 33]</pre>
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 35</span>
   </div>
-  <pre>RFC 7540                         HTTP/2                         May 2015</pre><figure class="modern-ascii-diagram" role="img" aria-label="E | Stream Dependency (31) | Weight (8)">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">E</div><div class="modern-diagram-cell">Stream Dependency (31)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Weight (8)</div></div></div>
-</figure><pre>                     Figure 8: PRIORITY Frame Payload
+  <pre>RFC 7540                         HTTP/2                         May 2015</pre><svg class="rfc-bit-diagram" viewBox="0 0 424 250" role="img" aria-label="Bit field diagram" xmlns="http://www.w3.org/2000/svg"><desc>Protocol header bit field layout showing field names and positions</desc><defs>  <style>    .bit-grid { stroke: #94a3b8; stroke-width: 0.5; fill: none; }    .field-block { fill: #3b82f6; opacity: 0.9; rx: 4; }    .field-label { fill: white; font-size: 11px; font-weight: 600; font-family: Inter, sans-serif; text-anchor: middle; }    .bit-label { fill: #64748b; font-size: 9px; font-family: "IBM Plex Mono", monospace; text-anchor: middle; }    .row-label { fill: #475569; font-size: 10px; font-family: Inter, sans-serif; }  </style></defs><text class="bit-label" x="20" y="32">0</text><text class="bit-label" x="116" y="32">8</text><text class="bit-label" x="212" y="32">16</text><text class="bit-label" x="308" y="32">24</text><text class="bit-label" x="404" y="32">31</text><rect class="field-block" x="20" y="50" width="96" height="50" /><text class="field-label" x="68.0" y="79.0">E</text><rect class="bit-grid" x="20" y="50" width="384" height="50" /><rect class="field-block" x="20" y="110" width="384" height="50" /><text class="field-label" x="212.0" y="139.0">Stream Depen</text><rect class="bit-grid" x="20" y="110" width="384" height="50" /><rect class="field-block" x="20" y="170" width="180" height="50" /><text class="field-label" x="110.0" y="199.0">Weight (8)</text><rect class="bit-grid" x="20" y="170" width="384" height="50" /></svg><pre>                     Figure 8: PRIORITY Frame Payload
 
    The payload of a PRIORITY frame contains the following fields:
 
@@ -2126,10 +2123,12 @@ Belshe, et al.               Standards Track                   [Page 35]</pre>
 
    The RST_STREAM frame (type=0x3) allows for immediate termination of a
    stream.  RST_STREAM is sent to request cancellation of a stream or to
-   indicate that an error condition has occurred.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Error Code (32)">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Error Code (32)</div></div></div>
-</figure><pre>                    Figure 9: RST_STREAM Frame Payload
+   indicate that an error condition has occurred.</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">    +---------------------------------------------------------------+
+    |                        Error Code (32)                        |
+    +---------------------------------------------------------------+
+</pre>
+</div><pre>                    Figure 9: RST_STREAM Frame Payload
 
    The RST_STREAM frame contains a single unsigned, 32-bit integer
    identifying the error code (Section 7).  The error code indicates why
@@ -2242,10 +2241,14 @@ Belshe, et al.               Standards Track                   [Page 36]</pre>
 
    The payload of a SETTINGS frame consists of zero or more parameters,
    each consisting of an unsigned 16-bit setting identifier and an
-   unsigned 32-bit value.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Identifier (16) | Value (32)">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Identifier (16)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Value (32)</div></div></div>
-</figure><pre>                         Figure 10: Setting Format
+   unsigned 32-bit value.</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">    +-------------------------------+
+    |       Identifier (16)         |
+    +-------------------------------+-------------------------------+
+    |                        Value (32)                             |
+    +---------------------------------------------------------------+
+</pre>
+</div><pre>                         Figure 10: Setting Format
 
 6.5.2.  Defined SETTINGS Parameters
 
@@ -2368,10 +2371,7 @@ Belshe, et al.               Standards Track                   [Page 38]</pre>
    PUSH_PROMISE frame includes the unsigned 31-bit identifier of the
    stream the endpoint plans to create along with a set of headers that
    provide additional context for the stream.  Section 8.2 contains a
-   thorough description of the use of PUSH_PROMISE frames.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Pad Length? (8) | R | Promised Stream ID (31)">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Pad Length? (8)</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">R</div><div class="modern-diagram-cell">Promised Stream ID (31)</div></div></div>
-</figure><pre>    |                   Header Block Fragment (*)                 ...</pre><pre>    +---------------------------------------------------------------+</pre><pre>    |                           Padding (*)                       ...</pre><pre>    +---------------------------------------------------------------+</pre><pre>                  Figure 11: PUSH_PROMISE Payload Format
+   thorough description of the use of PUSH_PROMISE frames.</pre><svg class="rfc-bit-diagram" viewBox="0 0 424 190" role="img" aria-label="Bit field diagram" xmlns="http://www.w3.org/2000/svg"><desc>Protocol header bit field layout showing field names and positions</desc><defs>  <style>    .bit-grid { stroke: #94a3b8; stroke-width: 0.5; fill: none; }    .field-block { fill: #3b82f6; opacity: 0.9; rx: 4; }    .field-label { fill: white; font-size: 11px; font-weight: 600; font-family: Inter, sans-serif; text-anchor: middle; }    .bit-label { fill: #64748b; font-size: 9px; font-family: "IBM Plex Mono", monospace; text-anchor: middle; }    .row-label { fill: #475569; font-size: 10px; font-family: Inter, sans-serif; }  </style></defs><text class="bit-label" x="20" y="32">0</text><text class="bit-label" x="116" y="32">8</text><text class="bit-label" x="212" y="32">16</text><text class="bit-label" x="308" y="32">24</text><text class="bit-label" x="404" y="32">31</text><rect class="field-block" x="20" y="50" width="180" height="50" /><text class="field-label" x="110.0" y="79.0">Pad Length? </text><rect class="field-block" x="200" y="50" width="96" height="50" /><text class="field-label" x="248.0" y="79.0">R</text><rect class="bit-grid" x="20" y="50" width="384" height="50" /><rect class="field-block" x="20" y="110" width="384" height="50" /><text class="field-label" x="212.0" y="139.0">Promised Str</text><rect class="bit-grid" x="20" y="110" width="384" height="50" /></svg><pre>    |                   Header Block Fragment (*)                 ...</pre><pre>    +---------------------------------------------------------------+</pre><pre>    |                           Padding (*)                       ...</pre><pre>    +---------------------------------------------------------------+</pre><pre>                  Figure 11: PUSH_PROMISE Payload Format
 
    The PUSH_PROMISE frame payload has the following fields:
 
@@ -2485,10 +2485,14 @@ Belshe, et al.               Standards Track                   [Page 40]</pre>
    The PING frame (type=0x6) is a mechanism for measuring a minimal
    round-trip time from the sender, as well as determining whether an
    idle connection is still functional.  PING frames can be sent from
-   any endpoint.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Opaque Data (64)">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Opaque Data (64)</div></div></div>
-</figure><pre>                      Figure 12: PING Payload Format
+   any endpoint.</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">    +---------------------------------------------------------------+
+    |                                                               |
+    |                      Opaque Data (64)                         |
+    |                                                               |
+    +---------------------------------------------------------------+
+</pre>
+</div><pre>                      Figure 12: PING Payload Format
 
    In addition to the frame header, PING frames MUST contain 8 octets of
    opaque data in the payload.  A sender can include any value it
@@ -2579,10 +2583,7 @@ Belshe, et al.               Standards Track                   [Page 42]</pre>
    A GOAWAY frame might not immediately precede closing of the
    connection; a receiver of a GOAWAY that has no more use for the
    connection SHOULD still send a GOAWAY frame before terminating the
-   connection.</pre><figure class="modern-ascii-diagram" role="img" aria-label="R | Last-Stream-ID (31) | Error Code (32)">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">R</div><div class="modern-diagram-cell">Last-Stream-ID (31)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Error Code (32)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Additional Debug Data (*)</div></div></div>
-</figure><pre>                     Figure 13: GOAWAY Payload Format
+   connection.</pre><svg class="rfc-bit-diagram" viewBox="0 0 424 310" role="img" aria-label="Bit field diagram" xmlns="http://www.w3.org/2000/svg"><desc>Protocol header bit field layout showing field names and positions</desc><defs>  <style>    .bit-grid { stroke: #94a3b8; stroke-width: 0.5; fill: none; }    .field-block { fill: #3b82f6; opacity: 0.9; rx: 4; }    .field-label { fill: white; font-size: 11px; font-weight: 600; font-family: Inter, sans-serif; text-anchor: middle; }    .bit-label { fill: #64748b; font-size: 9px; font-family: "IBM Plex Mono", monospace; text-anchor: middle; }    .row-label { fill: #475569; font-size: 10px; font-family: Inter, sans-serif; }  </style></defs><text class="bit-label" x="20" y="32">0</text><text class="bit-label" x="116" y="32">8</text><text class="bit-label" x="212" y="32">16</text><text class="bit-label" x="308" y="32">24</text><text class="bit-label" x="404" y="32">31</text><rect class="field-block" x="20" y="50" width="96" height="50" /><text class="field-label" x="68.0" y="79.0">R</text><rect class="bit-grid" x="20" y="50" width="384" height="50" /><rect class="field-block" x="20" y="110" width="384" height="50" /><text class="field-label" x="212.0" y="139.0">Last-Stream-</text><rect class="bit-grid" x="20" y="110" width="384" height="50" /><rect class="field-block" x="20" y="170" width="384" height="50" /><text class="field-label" x="212.0" y="199.0">Error Code (</text><rect class="bit-grid" x="20" y="170" width="384" height="50" /><rect class="field-block" x="20" y="230" width="384" height="50" /><text class="field-label" x="212.0" y="259.0">Additional D</text><rect class="bit-grid" x="20" y="230" width="384" height="50" /></svg><pre>                     Figure 13: GOAWAY Payload Format
 
    The GOAWAY frame does not define any flags.
 
@@ -2709,10 +2710,7 @@ Belshe, et al.               Standards Track                   [Page 44]</pre>
    is unable to assign resources to handling the frame.  A receiver MAY
    respond with a stream error (Section 5.4.2) or connection error
    (Section 5.4.1) of type FLOW_CONTROL_ERROR if it is unable to accept
-   a frame.</pre><figure class="modern-ascii-diagram" role="img" aria-label="R | Window Size Increment (31)">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">R</div><div class="modern-diagram-cell">Window Size Increment (31)</div></div></div>
-</figure><pre>                  Figure 14: WINDOW_UPDATE Payload Format
+   a frame.</pre><svg class="rfc-bit-diagram" viewBox="0 0 424 190" role="img" aria-label="Bit field diagram" xmlns="http://www.w3.org/2000/svg"><desc>Protocol header bit field layout showing field names and positions</desc><defs>  <style>    .bit-grid { stroke: #94a3b8; stroke-width: 0.5; fill: none; }    .field-block { fill: #3b82f6; opacity: 0.9; rx: 4; }    .field-label { fill: white; font-size: 11px; font-weight: 600; font-family: Inter, sans-serif; text-anchor: middle; }    .bit-label { fill: #64748b; font-size: 9px; font-family: "IBM Plex Mono", monospace; text-anchor: middle; }    .row-label { fill: #475569; font-size: 10px; font-family: Inter, sans-serif; }  </style></defs><text class="bit-label" x="20" y="32">0</text><text class="bit-label" x="116" y="32">8</text><text class="bit-label" x="212" y="32">16</text><text class="bit-label" x="308" y="32">24</text><text class="bit-label" x="404" y="32">31</text><rect class="field-block" x="20" y="50" width="96" height="50" /><text class="field-label" x="68.0" y="79.0">R</text><rect class="bit-grid" x="20" y="50" width="384" height="50" /><rect class="field-block" x="20" y="110" width="384" height="50" /><text class="field-label" x="212.0" y="139.0">Window Size </text><rect class="bit-grid" x="20" y="110" width="384" height="50" /></svg><pre>                  Figure 14: WINDOW_UPDATE Payload Format
 
    The payload of a WINDOW_UPDATE frame is one reserved bit plus an
    unsigned 31-bit integer indicating the number of octets that the
@@ -4448,10 +4446,23 @@ Belshe, et al.               Standards Track                   [Page 46]</pre>
       frame type uses, including any parts of the frame that are
       conditionally present based on the value of flags.
 
-   The entries in the following table are registered by this document.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Frame Type | Code | Section | DATA | 0x0 | Section 6.1">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Frame Type</div><div class="modern-diagram-cell">Code</div><div class="modern-diagram-cell">Section</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">DATA</div><div class="modern-diagram-cell">0x0</div><div class="modern-diagram-cell">Section 6.1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">HEADERS</div><div class="modern-diagram-cell">0x1</div><div class="modern-diagram-cell">Section 6.2</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">PRIORITY</div><div class="modern-diagram-cell">0x2</div><div class="modern-diagram-cell">Section 6.3</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">RST_STREAM</div><div class="modern-diagram-cell">0x3</div><div class="modern-diagram-cell">Section 6.4</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">SETTINGS</div><div class="modern-diagram-cell">0x4</div><div class="modern-diagram-cell">Section 6.5</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">PUSH_PROMISE</div><div class="modern-diagram-cell">0x5</div><div class="modern-diagram-cell">Section 6.6</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">PING</div><div class="modern-diagram-cell">0x6</div><div class="modern-diagram-cell">Section 6.7</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">GOAWAY</div><div class="modern-diagram-cell">0x7</div><div class="modern-diagram-cell">Section 6.8</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">WINDOW_UPDATE</div><div class="modern-diagram-cell">0x8</div><div class="modern-diagram-cell">Section 6.9</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">CONTINUATION</div><div class="modern-diagram-cell">0x9</div><div class="modern-diagram-cell">Section 6.10</div></div></div>
-</figure><pre>11.3.  Settings Registry
+   The entries in the following table are registered by this document.</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   +---------------+------+--------------+
+   | Frame Type    | Code | Section      |
+   +---------------+------+--------------+
+   | DATA          | 0x0  | Section 6.1  |
+   | HEADERS       | 0x1  | Section 6.2  |
+   | PRIORITY      | 0x2  | Section 6.3  |
+   | RST_STREAM    | 0x3  | Section 6.4  |
+   | SETTINGS      | 0x4  | Section 6.5  |
+   | PUSH_PROMISE  | 0x5  | Section 6.6  |
+   | PING          | 0x6  | Section 6.7  |
+   | GOAWAY        | 0x7  | Section 6.8  |
+   | WINDOW_UPDATE | 0x8  | Section 6.9  |
+   | CONTINUATION  | 0x9  | Section 6.10 |
+   +---------------+------+--------------+
+</pre>
+</div><pre>11.3.  Settings Registry
 
    This document establishes a registry for HTTP/2 settings.  The
    &quot;HTTP/2 Settings&quot; registry manages a 16-bit space.  The &quot;HTTP/2
@@ -4481,10 +4492,19 @@ Belshe, et al.               Standards Track                   [Page 75]</pre>
    Specification:  An optional reference to a specification that
       describes the use of the setting.
 
-   The entries in the following table are registered by this document.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Name | Code | Initial Value | Specification | HEADER_TABLE_SIZE | 0x1 | Section ">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Name</div><div class="modern-diagram-cell">Code</div><div class="modern-diagram-cell">Initial Value</div><div class="modern-diagram-cell">Specification</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">HEADER_TABLE_SIZE</div><div class="modern-diagram-cell">0x1</div><div class="modern-diagram-cell">4096</div><div class="modern-diagram-cell">Section 6.5.2</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">ENABLE_PUSH</div><div class="modern-diagram-cell">0x2</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">Section 6.5.2</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">MAX_CONCURRENT_STREAMS</div><div class="modern-diagram-cell">0x3</div><div class="modern-diagram-cell">infinite)</div><div class="modern-diagram-cell">Section 6.5.2</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">INITIAL_WINDOW_SIZE</div><div class="modern-diagram-cell">0x4</div><div class="modern-diagram-cell">65535</div><div class="modern-diagram-cell">Section 6.5.2</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">MAX_FRAME_SIZE</div><div class="modern-diagram-cell">0x5</div><div class="modern-diagram-cell">16384</div><div class="modern-diagram-cell">Section 6.5.2</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">MAX_HEADER_LIST_SIZE</div><div class="modern-diagram-cell">0x6</div><div class="modern-diagram-cell">infinite)</div><div class="modern-diagram-cell">Section 6.5.2</div></div></div>
-</figure><pre>11.4.  Error Code Registry
+   The entries in the following table are registered by this document.</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   +------------------------+------+---------------+---------------+
+   | Name                   | Code | Initial Value | Specification |
+   +------------------------+------+---------------+---------------+
+   | HEADER_TABLE_SIZE      | 0x1  | 4096          | Section 6.5.2 |
+   | ENABLE_PUSH            | 0x2  | 1             | Section 6.5.2 |
+   | MAX_CONCURRENT_STREAMS | 0x3  | (infinite)    | Section 6.5.2 |
+   | INITIAL_WINDOW_SIZE    | 0x4  | 65535         | Section 6.5.2 |
+   | MAX_FRAME_SIZE         | 0x5  | 16384         | Section 6.5.2 |
+   | MAX_HEADER_LIST_SIZE   | 0x6  | (infinite)    | Section 6.5.2 |
+   +------------------------+------+---------------+---------------+
+</pre>
+</div><pre>11.4.  Error Code Registry
 
    This document establishes a registry for HTTP/2 error codes.  The
    &quot;HTTP/2 Error Code&quot; registry manages a 32-bit space.  The &quot;HTTP/2
@@ -4521,10 +4541,37 @@ Belshe, et al.               Standards Track                   [Page 76]</pre>
    Specification:  An optional reference for a specification that
       defines the error code.
 
-   The entries in the following table are registered by this document.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Name | Code | Description | Specification | NO_ERROR | 0x0 | Graceful shutdown |">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Name</div><div class="modern-diagram-cell">Code</div><div class="modern-diagram-cell">Description</div><div class="modern-diagram-cell">Specification</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">NO_ERROR</div><div class="modern-diagram-cell">0x0</div><div class="modern-diagram-cell">Graceful shutdown</div><div class="modern-diagram-cell">Section 7</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">PROTOCOL_ERROR</div><div class="modern-diagram-cell">0x1</div><div class="modern-diagram-cell">Protocol error</div><div class="modern-diagram-cell">Section 7</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">detected</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">INTERNAL_ERROR</div><div class="modern-diagram-cell">0x2</div><div class="modern-diagram-cell">Implementation fault</div><div class="modern-diagram-cell">Section 7</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">FLOW_CONTROL_ERROR</div><div class="modern-diagram-cell">0x3</div><div class="modern-diagram-cell">Flow-control limits</div><div class="modern-diagram-cell">Section 7</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">exceeded</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">SETTINGS_TIMEOUT</div><div class="modern-diagram-cell">0x4</div><div class="modern-diagram-cell">Settings not</div><div class="modern-diagram-cell">Section 7</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">acknowledged</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">STREAM_CLOSED</div><div class="modern-diagram-cell">0x5</div><div class="modern-diagram-cell">Frame received for</div><div class="modern-diagram-cell">Section 7</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">closed stream</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">FRAME_SIZE_ERROR</div><div class="modern-diagram-cell">0x6</div><div class="modern-diagram-cell">Frame size incorrect</div><div class="modern-diagram-cell">Section 7</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">REFUSED_STREAM</div><div class="modern-diagram-cell">0x7</div><div class="modern-diagram-cell">Stream not processed</div><div class="modern-diagram-cell">Section 7</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">CANCEL</div><div class="modern-diagram-cell">0x8</div><div class="modern-diagram-cell">Stream cancelled</div><div class="modern-diagram-cell">Section 7</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">COMPRESSION_ERROR</div><div class="modern-diagram-cell">0x9</div><div class="modern-diagram-cell">Compression state</div><div class="modern-diagram-cell">Section 7</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">not updated</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">CONNECT_ERROR</div><div class="modern-diagram-cell">0xa</div><div class="modern-diagram-cell">TCP connection error</div><div class="modern-diagram-cell">Section 7</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">for CONNECT method</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">ENHANCE_YOUR_CALM</div><div class="modern-diagram-cell">0xb</div><div class="modern-diagram-cell">Processing capacity</div><div class="modern-diagram-cell">Section 7</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">exceeded</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">INADEQUATE_SECURITY</div><div class="modern-diagram-cell">0xc</div><div class="modern-diagram-cell">Negotiated TLS</div><div class="modern-diagram-cell">Section 7</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">parameters not</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">acceptable</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">HTTP_1_1_REQUIRED</div><div class="modern-diagram-cell">0xd</div><div class="modern-diagram-cell">Use HTTP/1.1 for the</div><div class="modern-diagram-cell">Section 7</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">request</div></div></div>
-</figure><pre>11.5.  HTTP2-Settings Header Field Registration
+   The entries in the following table are registered by this document.</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   +---------------------+------+----------------------+---------------+
+   | Name                | Code | Description          | Specification |
+   +---------------------+------+----------------------+---------------+
+   | NO_ERROR            | 0x0  | Graceful shutdown    | Section 7     |
+   | PROTOCOL_ERROR      | 0x1  | Protocol error       | Section 7     |
+   |                     |      | detected             |               |
+   | INTERNAL_ERROR      | 0x2  | Implementation fault | Section 7     |
+   | FLOW_CONTROL_ERROR  | 0x3  | Flow-control limits  | Section 7     |
+   |                     |      | exceeded             |               |
+   | SETTINGS_TIMEOUT    | 0x4  | Settings not         | Section 7     |
+   |                     |      | acknowledged         |               |
+   | STREAM_CLOSED       | 0x5  | Frame received for   | Section 7     |
+   |                     |      | closed stream        |               |
+   | FRAME_SIZE_ERROR    | 0x6  | Frame size incorrect | Section 7     |
+   | REFUSED_STREAM      | 0x7  | Stream not processed | Section 7     |
+   | CANCEL              | 0x8  | Stream cancelled     | Section 7     |
+   | COMPRESSION_ERROR   | 0x9  | Compression state    | Section 7     |
+   |                     |      | not updated          |               |
+   | CONNECT_ERROR       | 0xa  | TCP connection error | Section 7     |
+   |                     |      | for CONNECT method   |               |
+   | ENHANCE_YOUR_CALM   | 0xb  | Processing capacity  | Section 7     |
+   |                     |      | exceeded             |               |
+   | INADEQUATE_SECURITY | 0xc  | Negotiated TLS       | Section 7     |
+   |                     |      | parameters not       |               |
+   |                     |      | acceptable           |               |
+   | HTTP_1_1_REQUIRED   | 0xd  | Use HTTP/1.1 for the | Section 7     |
+   |                     |      | request              |               |
+   +---------------------+------+----------------------+---------------+
+</pre>
+</div><pre>11.5.  HTTP2-Settings Header Field Registration
 
    This section registers the HTTP2-Settings header field in the
    &quot;Permanent Message Header Field Names&quot; registry [BCP90].

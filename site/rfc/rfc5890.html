@@ -630,10 +630,41 @@ Table of Contents
 
 
                                     ASCII Label
-      __________________________________________________________________</pre><figure class="modern-ascii-diagram" role="img" aria-label="LDH Label (1) (4) ________________ | IDN Reserved LDH Labels">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">LDH Label (1) (4) ________________</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">IDN Reserved LDH Labels</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">or R-LDH Labels</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">NON-RESERVED</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">XN-labels</div><div class="modern-diagram-cell">LDH Labels</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">NR-LDH</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">A-labels</div><div class="modern-diagram-cell">Fake (3)</div><div class="modern-diagram-cell">labels)</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">xn--&quot;(2)</div><div class="modern-diagram-cell">A-labels</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">NON-LDH label________</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Underscore labels</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">e.g., _tcp</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Labels with leading</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">or trailing</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">hyphens &quot;-abcd&quot;</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">or &quot;xyz-&quot;</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">or &quot;-uvw-&quot;</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Labels with other</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">non-LDH ASCII chars</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">e.g., #$%_</div></div></div>
-</figure><pre>             (1) ASCII letters (uppercase and lowercase), digits,
+      __________________________________________________________________</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">      |                                                                |
+      |     ____________________ LDH Label (1) (4) ________________    |
+      |    |  ___________________________________                  |   |
+      |    |  |IDN Reserved LDH Labels          |                  |   |
+      |    |  | (&quot;??--&quot;) or R-LDH Labels        | _______________  |   |
+      |    |  | _______________________________ | |NON-RESERVED |  |   |
+      |    |  | |       XN-labels             | | | LDH Labels  |  |   |
+      |    |  | | _____________   ___________ | | | (NR-LDH     |  |   |
+      |    |  | | | A-labels  |   | Fake (3) || | |   labels)   |  |   |
+      |    |  | | | &quot;xn--&quot;(2) |   | A-labels || | |_____________|  |   |
+      |    |  | | |___________|   |__________|| |                  |   |
+      |    |  | |_____________________________| |                  |   |
+      |    |  |_________________________________|                  |   |
+      |    |_______________________________________________________|   |
+      |                                                                |
+      |       _____________NON-LDH label________                       |
+      |       |      ______________________    |                       |
+      |       |      | Underscore labels  |    |                       |
+      |       |      |  e.g., _tcp        |    |                       |
+      |       |      |____________________|    |                       |
+      |       |      | Labels with leading|    |                       |
+      |       |      | or trailing        |    |                       |
+      |       |      | hyphens &quot;-abcd&quot;    |    |                       |
+      |       |      | or &quot;xyz-&quot;          |    |                       |
+      |       |      | or &quot;-uvw-&quot;         |    |                       |
+      |       |      |____________________|    |                       |
+      |       |      | Labels with other  |    |                       |
+      |       |      | non-LDH ASCII chars|    |                       |
+      |       |      | e.g., #$%_         |    |                       |
+      |       |      |____________________|    |                       |
+      |       |________________________________|                       |
+      |________________________________________________________________|
+</pre>
+</div><pre>             (1) ASCII letters (uppercase and lowercase), digits,
                     hyphen.  Hyphen may not appear in first or last
                     position.  No more than 63 octets.
              (2) Note that the string following &quot;xn--&quot; must
@@ -657,10 +688,24 @@ Klensin                      Standards Track                   [Page 10]</pre>
   <pre>RFC 5890                    IDNA Definitions                 August 2010
 
 
-                        __________________________</pre><figure class="modern-ascii-diagram" role="img" aria-label="Non-ASCII | U-label (5)">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Non-ASCII</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">U-label (5)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Binary Label</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">including</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">high bit on)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Bit String</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Label</div></div></div>
-</figure><pre>             (5) To applications that are not IDNA-aware, U-labels
+                        __________________________</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">                        |  Non-ASCII             |
+                        |                        |
+                        |    ___________________ |
+                        |    | U-label (5)     | |
+                        |    |_________________| |
+                        |    |                 | |
+                        |    |  Binary Label   | |
+                        |    | (including      | |
+                        |    |  high bit on)   | |
+                        |    |_________________| |
+                        |    |                 | |
+                        |    | Bit String      | |
+                        |    |   Label         | |
+                        |    |_________________| |
+                        |________________________|
+</pre>
+</div><pre>             (5) To applications that are not IDNA-aware, U-labels
                     are indistinguishable from Binary ones.
 
                         Figure 2: Non-ASCII Labels

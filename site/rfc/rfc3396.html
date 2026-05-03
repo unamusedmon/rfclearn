@@ -410,16 +410,24 @@ Abstract
 
    Consider an option, Bootfile name (option code 67), with a value of
    &quot;/diskless/foo&quot;.  Normally, this would be encoded as a single option,
-   as follows:</pre><figure class="modern-ascii-diagram" role="img" aria-label="d | i | s | k | l | e | s | s | f | o | o">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 13"><div class="modern-diagram-cell">67</div><div class="modern-diagram-cell">13</div><div class="modern-diagram-cell">d</div><div class="modern-diagram-cell">i</div><div class="modern-diagram-cell">s</div><div class="modern-diagram-cell">k</div><div class="modern-diagram-cell">l</div><div class="modern-diagram-cell">e</div><div class="modern-diagram-cell">s</div><div class="modern-diagram-cell">s</div><div class="modern-diagram-cell">f</div><div class="modern-diagram-cell">o</div><div class="modern-diagram-cell">o</div></div></div>
-</figure><pre>   If an encoding agent needed to split the option in order to fit it
+   as follows:</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">      +----+----+---+---+---+---+---+---+---+---+---+---+---+---+---+
+      | 67 | 13 | / | d | i | s | k | l | e | s | s | / | f | o | o |
+      +----+----+---+---+---+---+---+---+---+---+---+---+---+---+---+
+</pre>
+</div><pre>   If an encoding agent needed to split the option in order to fit it
    into the option buffer, it could encode it as two separate options,
    as follows, and store it in the aggregate option buffer in the
-   following sequence:</pre><figure class="modern-ascii-diagram" role="img" aria-label="d | i | s | k | l | e | s | s | f | o | o">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 8"><div class="modern-diagram-cell">67</div><div class="modern-diagram-cell">7</div><div class="modern-diagram-cell">d</div><div class="modern-diagram-cell">i</div><div class="modern-diagram-cell">s</div><div class="modern-diagram-cell">k</div><div class="modern-diagram-cell">l</div><div class="modern-diagram-cell">e</div></div><div class="modern-diagram-row" style="--cell-count: 7"><div class="modern-diagram-cell">67</div><div class="modern-diagram-cell">6</div><div class="modern-diagram-cell">s</div><div class="modern-diagram-cell">s</div><div class="modern-diagram-cell">f</div><div class="modern-diagram-cell">o</div><div class="modern-diagram-cell">o</div></div></div>
-</figure><pre>9. Security Considerations
+   following sequence:</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">      +----+---+---+---+---+---+---+---+---+
+      | 67 | 7 | / | d | i | s | k | l | e |
+      +----+---+---+---+---+---+---+---+---+
+
+      +----+---+---+---+---+---+---+---+
+      | 67 | 6 | s | s | / | f | o | o |
+      +----+---+---+---+---+---+---+---+
+</pre>
+</div><pre>9. Security Considerations
 
    This document raises no new security issues.  Potential exposures to
    attack in the DHCP protocol are discussed in section 7 of the DHCP

@@ -1565,10 +1565,21 @@ Table of Contents
       modifier to describe a name server whose name is not subordinate
       to or the same as the zone origin.  Glue records for out-of-
       bailiwick name servers are useless.  The following table shows
-      examples of delegation types.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Delegation | Parent | Name Server Name | Type | com | a.gtld-servers.net | in-ba">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Delegation</div><div class="modern-diagram-cell">Parent</div><div class="modern-diagram-cell">Name Server Name</div><div class="modern-diagram-cell">Type</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">com</div><div class="modern-diagram-cell">a.gtld-servers.net</div><div class="modern-diagram-cell">in-bailiwick / sibling domain</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">net</div><div class="modern-diagram-cell">a.gtld-servers.net</div><div class="modern-diagram-cell">in-bailiwick / in-domain</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">example.org</div><div class="modern-diagram-cell">org</div><div class="modern-diagram-cell">ns.example.org</div><div class="modern-diagram-cell">in-bailiwick / in-domain</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">example.org</div><div class="modern-diagram-cell">org</div><div class="modern-diagram-cell">ns.ietf.org</div><div class="modern-diagram-cell">in-bailiwick / sibling domain</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">example.org</div><div class="modern-diagram-cell">org</div><div class="modern-diagram-cell">ns.example.com</div><div class="modern-diagram-cell">out-of-bailiwick</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">example.jp</div><div class="modern-diagram-cell">jp</div><div class="modern-diagram-cell">ns.example.jp</div><div class="modern-diagram-cell">in-bailiwick / in-domain</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">example.jp</div><div class="modern-diagram-cell">jp</div><div class="modern-diagram-cell">ns.example.ne.jp</div><div class="modern-diagram-cell">in-bailiwick / sibling domain</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">example.jp</div><div class="modern-diagram-cell">jp</div><div class="modern-diagram-cell">ns.example.com</div><div class="modern-diagram-cell">out-of-bailiwick</div></div></div>
-</figure><pre>Hoffman, et al.           Best Current Practice                [Page 25]</pre>
+      examples of delegation types.</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   Delegation |Parent|Name Server Name  | Type
+   -----------+------+------------------+-----------------------------
+   com        | .    |a.gtld-servers.net|in-bailiwick / sibling domain
+   net        | .    |a.gtld-servers.net|in-bailiwick / in-domain
+   example.org| org  |ns.example.org    |in-bailiwick / in-domain
+   example.org| org  |ns.ietf.org       |in-bailiwick / sibling domain
+   example.org| org  |ns.example.com    |out-of-bailiwick
+   example.jp | jp   |ns.example.jp     |in-bailiwick / in-domain
+   example.jp | jp   |ns.example.ne.jp  |in-bailiwick / sibling domain
+   example.jp | jp   |ns.example.com    |out-of-bailiwick
+
+
+</pre>
+</div><pre>Hoffman, et al.           Best Current Practice                [Page 25]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 26</span>

@@ -24,6 +24,7 @@ from .config import (
     KNOWN_RFC_TAG_GROUPS, KNOWN_RFC_TAGS, RELATION_RE, RFC_NUM_RE,
 )
 from .templates import SITE_CSS, INDEX_JS, DOC_JS
+from . import diagram_renderer
 
 def slug(meta: RFCMeta) -> str:
     return f"rfc{meta.num}.html"
@@ -607,32 +608,14 @@ def _clean_diagram_cell(c: str) -> str:
 
 
 def render_modern_ascii_diagram(lines: list[str]) -> str:
-    rows = []
-    for line in lines:
-        raw_cells = [c.strip() for c in line.split("|") if c.strip()]
-        cells = [_clean_diagram_cell(c) for c in raw_cells]
-        cells = [c for c in cells if re.search(r"[A-Za-z0-9]", c)]
-
-        if cells:
-            rows.append(cells)
-
-    if not rows:
-        diagram_text = "\n".join(lines)
-        return f'<div class="modern-diagram-fallback">{html.escape(diagram_text)}</div>'
-
-    label = " | ".join(c for row in rows[:2] for c in row if re.search(r"[A-Za-z]", c))[:80]
-    grid_html = ['<div class="modern-diagram-grid">']
-    for row_cells in rows:
-        grid_html.append(f'<div class="modern-diagram-row" style="--cell-count: {len(row_cells)}">')
-        for cell in row_cells:
-            grid_html.append(f'<div class="modern-diagram-cell">{html.escape(cell)}</div>')
-        grid_html.append("</div>")
-    grid_html.append("</div>")
-
-    return f"""<figure class="modern-ascii-diagram" role="img" aria-label="{html.escape(label) if label else 'Technical diagram'}">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  {"".join(grid_html)}
-</figure>"""
+    """Render ASCII diagrams using the enhanced diagram renderer.
+    
+    This function delegates to the diagram_renderer module which provides
+    high-quality SVG-based visualizations for bit field diagrams, flow diagrams,
+    and other technical ASCII art found in RFCs.
+    """
+    # Use the enhanced renderer from diagram_renderer module
+    return diagram_renderer.render_modern_ascii_diagram_v2(lines)
 
 
 def modernize_ascii_html(html_content: str) -> str:

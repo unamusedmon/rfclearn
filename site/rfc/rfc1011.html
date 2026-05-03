@@ -2550,18 +2550,27 @@ APPENDICES
          bits specify the Ethertype code (where IP = 2048 (0800 hex),
          see RFC-1010  section on Ethernet Numbers of Interest).
 
-                                                                  Header</pre><figure class="modern-ascii-diagram" role="img" aria-label="MAC Header | Length | 802.{3/4/5} MAC | Dsap=K1 | Ssap=K1 | control | 802.2 SAP">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">MAC Header</div><div class="modern-diagram-cell">Length</div><div class="modern-diagram-cell">802.{3/4/5} MAC</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Dsap=K1</div><div class="modern-diagram-cell">Ssap=K1</div><div class="modern-diagram-cell">control</div><div class="modern-diagram-cell">802.2 SAP</div></div></div>
-</figure><pre>Reynolds &amp; Postel                                              [Page 42]</pre>
+                                                                  Header</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">            ...--------+--------+--------+
+             MAC Header|      Length     |               802.{3/4/5} MAC
+            ...--------+--------+--------+
+
+            +--------+--------+--------+
+            | Dsap=K1| Ssap=K1| control|                       802.2 SAP
+            +--------+--------+--------+
+
+</pre>
+</div><pre>Reynolds &amp; Postel                                              [Page 42]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 43</span>
   </div>
-  <pre>RFC 1011 - Official Internet Protocols                          May 1987</pre><figure class="modern-ascii-diagram" role="img" aria-label="protocol id or org code =K2 | Ether Type | 802.2 SNAP">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">protocol id or org code =K2</div><div class="modern-diagram-cell">Ether Type</div><div class="modern-diagram-cell">802.2 SNAP</div></div></div>
-</figure><pre>         The total length of the SAP Header and the SNAP header is
+  <pre>RFC 1011 - Official Internet Protocols                          May 1987</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">            +--------+--------+---------+--------+--------+
+            |protocol id or org code =K2|    Ether Type   |   802.2 SNAP
+            +--------+--------+---------+--------+--------+
+</pre>
+</div><pre>         The total length of the SAP Header and the SNAP header is
          8-octets, making the 802.2 protocol overhead come out on a nice
          boundary.
 

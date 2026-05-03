@@ -279,10 +279,21 @@ Copyright Notice
    IP and TCP options when calculating the value for the MSS option, if
    there are any IP or TCP options to be sent in a packet, then the
    sender must decrease the size of the TCP data accordingly.  The
-   reason for this can be seen in the following table:</pre><figure class="modern-ascii-diagram" role="img" aria-label="MSS is adjusted | MSS isn&#x27;t adjusted | to include options | to include options">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">MSS is adjusted</div><div class="modern-diagram-cell">MSS isn&#x27;t adjusted</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">to include options</div><div class="modern-diagram-cell">to include options</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Sender adjusts</div><div class="modern-diagram-cell">Packets are too</div><div class="modern-diagram-cell">Packets are the</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">packet length</div><div class="modern-diagram-cell">short</div><div class="modern-diagram-cell">correct length</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">for options</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Sender doesn&#x27;t</div><div class="modern-diagram-cell">Packets are the</div><div class="modern-diagram-cell">Packets are too</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">adjust packet</div><div class="modern-diagram-cell">correct length</div><div class="modern-diagram-cell">long</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">length for options</div></div></div>
-</figure><pre>   The goal is to not send IP datagrams that have to be fragmented, and
+   reason for this can be seen in the following table:</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">                          +--------------------+--------------------+
+                          | MSS is adjusted    | MSS isn&#x27;t adjusted |
+                          | to include options | to include options |
+     +--------------------+--------------------+--------------------+
+     | Sender adjusts     | Packets are too    | Packets are the    |
+     | packet length      | short              | correct length     |
+     | for options        |                    |                    |
+     +--------------------+--------------------+--------------------+
+     | Sender doesn&#x27;t     | Packets are the    | Packets are too    |
+     | adjust packet      | correct length     | long               |
+     | length for options |                    |                    |
+     +--------------------+--------------------+--------------------+
+</pre>
+</div><pre>   The goal is to not send IP datagrams that have to be fragmented, and
    packets sent with the constraints in the lower right of this grid
    will cause IP fragmentation.  Since the sender doesn&#x27;t know if the
    received MSS option was adjusted to include options, the only way to

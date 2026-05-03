@@ -329,19 +329,29 @@ Table of Contents
   <pre>RFC 1883                   IPv6 Specification              December 1995
 
 
-3.  IPv6 Header Format</pre><figure class="modern-ascii-diagram" role="img" aria-label="Version | Prio. | Flow Label | Payload Length | Next Header | Hop Limit">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Version</div><div class="modern-diagram-cell">Prio.</div><div class="modern-diagram-cell">Flow Label</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Payload Length</div><div class="modern-diagram-cell">Next Header</div><div class="modern-diagram-cell">Hop Limit</div></div></div>
-</figure><pre>   +                         Source Address                        +</pre><div class="modern-diagram-fallback">   |                                                               |
+3.  IPv6 Header Format</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |Version| Prio. |                   Flow Label                  |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |         Payload Length        |  Next Header  |   Hop Limit   |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                                                               |
+   +                                                               +
+   |                                                               |</pre>
+</div><pre>   +                         Source Address                        +</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   |                                                               |
    +                                                               +
    |                                                               |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |                                                               |
    +                                                               +
-   |                                                               |</div><pre>   +                      Destination Address                      +</pre><div class="modern-diagram-fallback">   |                                                               |
+   |                                                               |</pre>
+</div><pre>   +                      Destination Address                      +</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   |                                                               |
    +                                                               +
    |                                                               |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+</pre>
 </div><pre>   Version              4-bit Internet Protocol version number = 6.
 
    Prio.                4-bit priority value.  See section 7.
@@ -392,10 +402,7 @@ Deering &amp; Hinden            Standards Track                     [Page 5]</pr
    headers, each identified by a distinct Next Header value.  As
    illustrated in these examples, an IPv6 packet may carry zero, one, or
    more extension headers, each identified by the Next Header field of
-   the preceding header:</pre><figure class="modern-ascii-diagram" role="img" aria-label="IPv6 header | TCP header + data | Next Header =">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">IPv6 header</div><div class="modern-diagram-cell">TCP header + data</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Next Header =</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">TCP</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">IPv6 header</div><div class="modern-diagram-cell">Routing header</div><div class="modern-diagram-cell">TCP header + data</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Next Header =</div><div class="modern-diagram-cell">Next Header =</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Routing</div><div class="modern-diagram-cell">TCP</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">IPv6 header</div><div class="modern-diagram-cell">Routing header</div><div class="modern-diagram-cell">Fragment header</div><div class="modern-diagram-cell">fragment of TCP</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">header + data</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Next Header =</div><div class="modern-diagram-cell">Next Header =</div><div class="modern-diagram-cell">Next Header =</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Routing</div><div class="modern-diagram-cell">Fragment</div><div class="modern-diagram-cell">TCP</div></div></div>
-</figure><pre>   With one exception, extension headers are not examined or processed
+   the preceding header:</pre><svg class="rfc-flow-diagram" viewBox="0 0 500 300" role="img" aria-label="Flow diagram" xmlns="http://www.w3.org/2000/svg"><desc>System architecture or data flow diagram</desc><defs>  <style>    .flow-box { fill: #1e293b; stroke: #3b82f6; stroke-width: 2; rx: 12; }    .flow-label { fill: #e2e8f0; font-size: 13px; font-weight: 600; font-family: Inter, sans-serif; text-anchor: middle; }    .flow-arrow { stroke: #64748b; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }    .arrow-label { fill: #94a3b8; font-size: 10px; font-family: "IBM Plex Mono", monospace; text-anchor: middle; }  </style>  <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">    <polygon points="0 0, 10 3.5, 0 7" fill="#64748b" />  </marker></defs><rect class="flow-box" x="30" y="30" width="120" height="60" /><text class="flow-label" x="90.0" y="65.0">IPv6 headerNext Head</text><rect class="flow-box" x="190" y="30" width="120" height="60" /><text class="flow-label" x="250.0" y="65.0">IPv6 headerNext Head</text><rect class="flow-box" x="350" y="30" width="120" height="60" /><text class="flow-label" x="410.0" y="65.0"></text><rect class="flow-box" x="30" y="170" width="120" height="60" /><text class="flow-label" x="90.0" y="205.0">IPv6 header Fragment</text><line class="flow-arrow" x1="150" y1="60.0" x2="190" y2="60.0" /><line class="flow-arrow" x1="310" y1="60.0" x2="350" y2="60.0" /><line class="flow-arrow" x1="470" y1="60.0" x2="30" y2="200.0" /></svg><pre>   With one exception, extension headers are not examined or processed
    by any node along a packet&#x27;s delivery path, until the packet reaches
    the node (or each of the set of nodes, in the case of multicast)
    identified in the Destination Address field of the IPv6 header.
@@ -538,10 +545,7 @@ Deering &amp; Hinden            Standards Track                     [Page 6]</pr
    Two of the currently-defined extension headers -- the Hop-by-Hop
    Options header and the Destination Options header -- carry a variable
    number of type-length-value (TLV) encoded &quot;options&quot;, of the following
-   format:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Option Type | Opt Data Len | Option Data">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Option Type</div><div class="modern-diagram-cell">Opt Data Len</div><div class="modern-diagram-cell">Option Data</div></div></div>
-</figure><pre>      Option Type          8-bit identifier of the type of option.
+   format:</pre><svg class="rfc-bit-diagram" viewBox="0 0 424 190" role="img" aria-label="Bit field diagram" xmlns="http://www.w3.org/2000/svg"><desc>Protocol header bit field layout showing field names and positions</desc><defs>  <style>    .bit-grid { stroke: #94a3b8; stroke-width: 0.5; fill: none; }    .field-block { fill: #3b82f6; opacity: 0.9; rx: 4; }    .field-label { fill: white; font-size: 11px; font-weight: 600; font-family: Inter, sans-serif; text-anchor: middle; }    .bit-label { fill: #64748b; font-size: 9px; font-family: "IBM Plex Mono", monospace; text-anchor: middle; }    .row-label { fill: #475569; font-size: 10px; font-family: Inter, sans-serif; }  </style></defs><text class="bit-label" x="20" y="32">0</text><text class="bit-label" x="116" y="32">8</text><text class="bit-label" x="212" y="32">16</text><text class="bit-label" x="308" y="32">24</text><text class="bit-label" x="404" y="32">31</text><rect class="field-block" x="20" y="50" width="180" height="50" /><text class="field-label" x="110.0" y="79.0">Option Type</text><rect class="field-block" x="200" y="50" width="180" height="50" /><text class="field-label" x="290.0" y="79.0">Opt Data Len</text><rect class="bit-grid" x="20" y="50" width="384" height="50" /><rect class="field-block" x="20" y="110" width="156" height="50" /><text class="field-label" x="98.0" y="139.0">Option Data</text><rect class="bit-grid" x="20" y="110" width="384" height="50" /></svg><pre>      Option Type          8-bit identifier of the type of option.
 
       Opt Data Len         8-bit unsigned integer.  Length of the Option
                            Data field of this option, in octets.
@@ -610,10 +614,7 @@ Deering &amp; Hinden            Standards Track                     [Page 9]</pr
    all IPv6 implementations:
 
 
-   Pad1 option  (alignment requirement: none)</pre><figure class="modern-ascii-diagram" role="img" aria-label="Technical diagram">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0</div></div></div>
-</figure><pre>       NOTE! the format of the Pad1 option is a special case -- it does
+   Pad1 option  (alignment requirement: none)</pre><svg class="rfc-bit-diagram" viewBox="0 0 424 130" role="img" aria-label="Bit field diagram" xmlns="http://www.w3.org/2000/svg"><desc>Protocol header bit field layout showing field names and positions</desc><defs>  <style>    .bit-grid { stroke: #94a3b8; stroke-width: 0.5; fill: none; }    .field-block { fill: #3b82f6; opacity: 0.9; rx: 4; }    .field-label { fill: white; font-size: 11px; font-weight: 600; font-family: Inter, sans-serif; text-anchor: middle; }    .bit-label { fill: #64748b; font-size: 9px; font-family: "IBM Plex Mono", monospace; text-anchor: middle; }    .row-label { fill: #475569; font-size: 10px; font-family: Inter, sans-serif; }  </style></defs><text class="bit-label" x="20" y="32">0</text><text class="bit-label" x="116" y="32">8</text><text class="bit-label" x="212" y="32">16</text><text class="bit-label" x="308" y="32">24</text><text class="bit-label" x="404" y="32">31</text><rect class="field-block" x="20" y="50" width="180" height="50" /><text class="field-label" x="110.0" y="79.0">0</text><rect class="bit-grid" x="20" y="50" width="384" height="50" /></svg><pre>       NOTE! the format of the Pad1 option is a special case -- it does
              not have length and value fields.
 
        The Pad1 option is used to insert one octet of padding into the
@@ -622,10 +623,7 @@ Deering &amp; Hinden            Standards Track                     [Page 9]</pr
        rather than multiple Pad1 options.
 
 
-   PadN option  (alignment requirement: none)</pre><figure class="modern-ascii-diagram" role="img" aria-label="Opt Data Len | Option Data">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">Opt Data Len</div><div class="modern-diagram-cell">Option Data</div></div></div>
-</figure><pre>       The PadN option is used to insert two or more octets of padding
+   PadN option  (alignment requirement: none)</pre><svg class="rfc-bit-diagram" viewBox="0 0 424 190" role="img" aria-label="Bit field diagram" xmlns="http://www.w3.org/2000/svg"><desc>Protocol header bit field layout showing field names and positions</desc><defs>  <style>    .bit-grid { stroke: #94a3b8; stroke-width: 0.5; fill: none; }    .field-block { fill: #3b82f6; opacity: 0.9; rx: 4; }    .field-label { fill: white; font-size: 11px; font-weight: 600; font-family: Inter, sans-serif; text-anchor: middle; }    .bit-label { fill: #64748b; font-size: 9px; font-family: "IBM Plex Mono", monospace; text-anchor: middle; }    .row-label { fill: #475569; font-size: 10px; font-family: Inter, sans-serif; }  </style></defs><text class="bit-label" x="20" y="32">0</text><text class="bit-label" x="116" y="32">8</text><text class="bit-label" x="212" y="32">16</text><text class="bit-label" x="308" y="32">24</text><text class="bit-label" x="404" y="32">31</text><rect class="field-block" x="20" y="50" width="180" height="50" /><text class="field-label" x="110.0" y="79.0">1</text><rect class="field-block" x="200" y="50" width="180" height="50" /><text class="field-label" x="290.0" y="79.0">Opt Data Len</text><rect class="bit-grid" x="20" y="50" width="384" height="50" /><rect class="field-block" x="20" y="110" width="156" height="50" /><text class="field-label" x="98.0" y="139.0">Option Data</text><rect class="bit-grid" x="20" y="110" width="384" height="50" /></svg><pre>       The PadN option is used to insert two or more octets of padding
        into the Options area of a header.  For N octets of padding,
        the Opt Data Len field contains the value N-2, and the Option
        Data consists of N-2 zero-valued octets.
@@ -647,10 +645,7 @@ Deering &amp; Hinden            Standards Track                    [Page 10]</pr
    The Hop-by-Hop Options header is used to carry optional information
    that must be examined by every node along a packet&#x27;s delivery path.
    The Hop-by-Hop Options header is identified by a Next Header value of
-   0 in the IPv6 header, and has the following format:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Next Header | Hdr Ext Len">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Next Header</div><div class="modern-diagram-cell">Hdr Ext Len</div></div></div>
-</figure><pre>   .                                                               .
+   0 in the IPv6 header, and has the following format:</pre><svg class="rfc-bit-diagram" viewBox="0 0 424 130" role="img" aria-label="Bit field diagram" xmlns="http://www.w3.org/2000/svg"><desc>Protocol header bit field layout showing field names and positions</desc><defs>  <style>    .bit-grid { stroke: #94a3b8; stroke-width: 0.5; fill: none; }    .field-block { fill: #3b82f6; opacity: 0.9; rx: 4; }    .field-label { fill: white; font-size: 11px; font-weight: 600; font-family: Inter, sans-serif; text-anchor: middle; }    .bit-label { fill: #64748b; font-size: 9px; font-family: "IBM Plex Mono", monospace; text-anchor: middle; }    .row-label { fill: #475569; font-size: 10px; font-family: Inter, sans-serif; }  </style></defs><text class="bit-label" x="20" y="32">0</text><text class="bit-label" x="116" y="32">8</text><text class="bit-label" x="212" y="32">16</text><text class="bit-label" x="308" y="32">24</text><text class="bit-label" x="404" y="32">31</text><rect class="field-block" x="20" y="50" width="180" height="50" /><text class="field-label" x="110.0" y="79.0">Next Header</text><rect class="field-block" x="200" y="50" width="180" height="50" /><text class="field-label" x="290.0" y="79.0">Hdr Ext Len</text><rect class="bit-grid" x="20" y="50" width="384" height="50" /></svg><pre>   .                                                               .
    .                            Options                            .
    .                                                               .</pre><pre>   |                                                               |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>   Next Header          8-bit selector.  Identifies the type of header
@@ -671,10 +666,7 @@ Deering &amp; Hinden            Standards Track                    [Page 10]</pr
    In addition to the Pad1 and PadN options specified in section 4.2,
    the following hop-by-hop option is defined:
 
-   Jumbo Payload option  (alignment requirement: 4n + 2)</pre><figure class="modern-ascii-diagram" role="img" aria-label="Opt Data Len=4 | Jumbo Payload Length">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">194</div><div class="modern-diagram-cell">Opt Data Len=4</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Jumbo Payload Length</div></div></div>
-</figure><pre>       The Jumbo Payload option is used to send IPv6 packets with
+   Jumbo Payload option  (alignment requirement: 4n + 2)</pre><svg class="rfc-bit-diagram" viewBox="0 0 424 190" role="img" aria-label="Bit field diagram" xmlns="http://www.w3.org/2000/svg"><desc>Protocol header bit field layout showing field names and positions</desc><defs>  <style>    .bit-grid { stroke: #94a3b8; stroke-width: 0.5; fill: none; }    .field-block { fill: #3b82f6; opacity: 0.9; rx: 4; }    .field-label { fill: white; font-size: 11px; font-weight: 600; font-family: Inter, sans-serif; text-anchor: middle; }    .bit-label { fill: #64748b; font-size: 9px; font-family: "IBM Plex Mono", monospace; text-anchor: middle; }    .row-label { fill: #475569; font-size: 10px; font-family: Inter, sans-serif; }  </style></defs><text class="bit-label" x="20" y="32">0</text><text class="bit-label" x="116" y="32">8</text><text class="bit-label" x="212" y="32">16</text><text class="bit-label" x="308" y="32">24</text><text class="bit-label" x="404" y="32">31</text><rect class="field-block" x="20" y="50" width="180" height="50" /><text class="field-label" x="110.0" y="79.0">194</text><rect class="field-block" x="200" y="50" width="180" height="50" /><text class="field-label" x="290.0" y="79.0">Opt Data Len</text><rect class="bit-grid" x="20" y="50" width="384" height="50" /><rect class="field-block" x="20" y="110" width="384" height="50" /><text class="field-label" x="212.0" y="139.0">Jumbo Payloa</text><rect class="bit-grid" x="20" y="110" width="384" height="50" /></svg><pre>       The Jumbo Payload option is used to send IPv6 packets with
        payloads longer than 65,535 octets.  The Jumbo Payload Length is
        the length of the packet in octets, excluding the IPv6 header but
        including the Hop-by-Hop Options header; it must be greater than
@@ -756,10 +748,7 @@ Deering &amp; Hinden            Standards Track                    [Page 11]</pr
    intermediate nodes to be &quot;visited&quot; on the way to a packet&#x27;s
    destination.  This function is very similar to IPv4&#x27;s Source Route
    options.  The Routing header is identified by a Next Header value of
-   43 in the immediately preceding header, and has the following format:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Next Header | Hdr Ext Len | Routing Type | Segments Left">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Next Header</div><div class="modern-diagram-cell">Hdr Ext Len</div><div class="modern-diagram-cell">Routing Type</div><div class="modern-diagram-cell">Segments Left</div></div></div>
-</figure><pre>   .                                                               .
+   43 in the immediately preceding header, and has the following format:</pre><svg class="rfc-bit-diagram" viewBox="0 0 424 190" role="img" aria-label="Bit field diagram" xmlns="http://www.w3.org/2000/svg"><desc>Protocol header bit field layout showing field names and positions</desc><defs>  <style>    .bit-grid { stroke: #94a3b8; stroke-width: 0.5; fill: none; }    .field-block { fill: #3b82f6; opacity: 0.9; rx: 4; }    .field-label { fill: white; font-size: 11px; font-weight: 600; font-family: Inter, sans-serif; text-anchor: middle; }    .bit-label { fill: #64748b; font-size: 9px; font-family: "IBM Plex Mono", monospace; text-anchor: middle; }    .row-label { fill: #475569; font-size: 10px; font-family: Inter, sans-serif; }  </style></defs><text class="bit-label" x="20" y="32">0</text><text class="bit-label" x="116" y="32">8</text><text class="bit-label" x="212" y="32">16</text><text class="bit-label" x="308" y="32">24</text><text class="bit-label" x="404" y="32">31</text><rect class="field-block" x="20" y="50" width="180" height="50" /><text class="field-label" x="110.0" y="79.0">Next Header</text><rect class="field-block" x="200" y="50" width="180" height="50" /><text class="field-label" x="290.0" y="79.0">Hdr Ext Len</text><rect class="bit-grid" x="20" y="50" width="384" height="50" /><rect class="field-block" x="20" y="110" width="180" height="50" /><text class="field-label" x="110.0" y="139.0">Routing Type</text><rect class="field-block" x="200" y="110" width="180" height="50" /><text class="field-label" x="290.0" y="139.0">Segments Lef</text><rect class="bit-grid" x="20" y="110" width="384" height="50" /></svg><pre>   .                                                               .
    .                       type-specific data                      .
    .                                                               .</pre><pre>   |                                                               |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>   Next Header          8-bit selector.  Identifies the type of header
@@ -863,27 +852,41 @@ Deering &amp; Hinden            Standards Track                    [Page 13]</pr
   <pre>RFC 1883                   IPv6 Specification              December 1995
 
 
-   The Type 0 Routing header has the following format:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Next Header | Hdr Ext Len | Routing Type=0 | Segments Left | Reserved | Strict/L">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Next Header</div><div class="modern-diagram-cell">Hdr Ext Len</div><div class="modern-diagram-cell">Routing Type=0</div><div class="modern-diagram-cell">Segments Left</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Reserved</div><div class="modern-diagram-cell">Strict/Loose Bit Map</div></div></div>
-</figure><pre>   +                           Address[1]                          +</pre><div class="modern-diagram-fallback">   |                                                               |
+   The Type 0 Routing header has the following format:</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |  Next Header  |  Hdr Ext Len  | Routing Type=0| Segments Left |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |   Reserved    |             Strict/Loose Bit Map              |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                                                               |
+   +                                                               +
+   |                                                               |</pre>
+</div><pre>   +                           Address[1]                          +</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   |                                                               |
    +                                                               +
    |                                                               |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |                                                               |
    +                                                               +
-   |                                                               |</div><pre>   +                           Address[2]                          +</pre><div class="modern-diagram-fallback">   |                                                               |
+   |                                                               |</pre>
+</div><pre>   +                           Address[2]                          +</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   |                                                               |
    +                                                               +
    |                                                               |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</div><pre>   .                               .                               .
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre>
+</div><pre>   .                               .                               .
    .                               .                               .
-   .                               .                               .</pre><div class="modern-diagram-fallback">   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   .                               .                               .</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |                                                               |
    +                                                               +
-   |                                                               |</div><pre>   +                           Address[n]                          +</pre><div class="modern-diagram-fallback">   |                                                               |
+   |                                                               |</pre>
+</div><pre>   +                           Address[n]                          +</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   |                                                               |
    +                                                               +
    |                                                               |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+</pre>
 </div><pre>   Next Header          8-bit selector.  Identifies the type of header
                         immediately following the Routing header.
                         Uses the same values as the IPv4 Protocol field
@@ -1094,10 +1097,7 @@ Deering &amp; Hinden            Standards Track                    [Page 15]</pr
    IPv4, fragmentation in IPv6 is performed only by source nodes, not by
    routers along a packet&#x27;s delivery path -- see section 5.)  The
    Fragment header is identified by a Next Header value of 44 in the
-   immediately preceding header, and has the following format:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Next Header | Reserved | Fragment Offset | Res | M | Identification">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">Next Header</div><div class="modern-diagram-cell">Reserved</div><div class="modern-diagram-cell">Fragment Offset</div><div class="modern-diagram-cell">Res</div><div class="modern-diagram-cell">M</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Identification</div></div></div>
-</figure><pre>   Next Header          8-bit selector.  Identifies the initial header
+   immediately preceding header, and has the following format:</pre><svg class="rfc-bit-diagram" viewBox="0 0 424 310" role="img" aria-label="Bit field diagram" xmlns="http://www.w3.org/2000/svg"><desc>Protocol header bit field layout showing field names and positions</desc><defs>  <style>    .bit-grid { stroke: #94a3b8; stroke-width: 0.5; fill: none; }    .field-block { fill: #3b82f6; opacity: 0.9; rx: 4; }    .field-label { fill: white; font-size: 11px; font-weight: 600; font-family: Inter, sans-serif; text-anchor: middle; }    .bit-label { fill: #64748b; font-size: 9px; font-family: "IBM Plex Mono", monospace; text-anchor: middle; }    .row-label { fill: #475569; font-size: 10px; font-family: Inter, sans-serif; }  </style></defs><text class="bit-label" x="20" y="32">0</text><text class="bit-label" x="116" y="32">8</text><text class="bit-label" x="212" y="32">16</text><text class="bit-label" x="308" y="32">24</text><text class="bit-label" x="404" y="32">31</text><rect class="field-block" x="20" y="50" width="180" height="50" /><text class="field-label" x="110.0" y="79.0">Next Header</text><rect class="field-block" x="200" y="50" width="180" height="50" /><text class="field-label" x="290.0" y="79.0">Reserved</text><rect class="bit-grid" x="20" y="50" width="384" height="50" /><rect class="field-block" x="20" y="110" width="300" height="50" /><text class="field-label" x="170.0" y="139.0">Fragment Off</text><rect class="bit-grid" x="20" y="110" width="384" height="50" /><rect class="field-block" x="20" y="170" width="96" height="50" /><text class="field-label" x="68.0" y="199.0">Res</text><rect class="field-block" x="116" y="170" width="96" height="50" /><text class="field-label" x="164.0" y="199.0">M</text><rect class="bit-grid" x="20" y="170" width="384" height="50" /><rect class="field-block" x="20" y="230" width="384" height="50" /><text class="field-label" x="212.0" y="259.0">Identificati</text><rect class="bit-grid" x="20" y="230" width="384" height="50" /></svg><pre>   Next Header          8-bit selector.  Identifies the initial header
                         type of the Fragmentable Part of the original
                         packet (defined below).  Uses the same values
                         as the IPv4 Protocol field [RFC-1700 et seq.].
@@ -1156,10 +1156,13 @@ Deering &amp; Hinden            Standards Track                    [Page 19]</pr
    &quot;original packet&quot;, and it is considered to consist of two parts, as
    illustrated:
 
-   original packet:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Unfragmentable | Fragmentable | Part | Part">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Unfragmentable</div><div class="modern-diagram-cell">Fragmentable</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Part</div><div class="modern-diagram-cell">Part</div></div></div>
-</figure><pre>      The Unfragmentable Part consists of the IPv6 header plus any
+   original packet:</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   +------------------+----------------------//-----------------------+
+   |  Unfragmentable  |                 Fragmentable                  |
+   |       Part       |                     Part                      |
+   +------------------+----------------------//-----------------------+
+</pre>
+</div><pre>      The Unfragmentable Part consists of the IPv6 header plus any
       extension headers that must be processed by nodes en route to the
       destination, that is, all headers up to and including the Routing
       header if present, else the Hop-by-Hop Options header if present,
@@ -1174,10 +1177,20 @@ Deering &amp; Hinden            Standards Track                    [Page 19]</pr
    integer multiple of 8 octets long.  The fragments are transmitted in
    separate &quot;fragment packets&quot; as illustrated:
 
-   original packet:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Unfragmentable | first | second | last | Part | fragment | fragment | fragment">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Unfragmentable</div><div class="modern-diagram-cell">first</div><div class="modern-diagram-cell">second</div><div class="modern-diagram-cell">last</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Part</div><div class="modern-diagram-cell">fragment</div><div class="modern-diagram-cell">fragment</div><div class="modern-diagram-cell">fragment</div></div></div>
-</figure><pre>Deering &amp; Hinden            Standards Track                    [Page 20]</pre>
+   original packet:</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   +------------------+--------------+--------------+--//--+----------+
+   |  Unfragmentable  |    first     |    second    |      |   last   |
+   |       Part       |   fragment   |   fragment   | .... | fragment |
+   +------------------+--------------+--------------+--//--+----------+
+
+
+
+
+
+
+
+</pre>
+</div><pre>Deering &amp; Hinden            Standards Track                    [Page 20]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 21</span>
@@ -1185,15 +1198,25 @@ Deering &amp; Hinden            Standards Track                    [Page 19]</pr
   <pre>RFC 1883                   IPv6 Specification              December 1995
 
 
-   fragment packets:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Unfragmentable | Fragment | first | Part | Header | fragment">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Unfragmentable</div><div class="modern-diagram-cell">Fragment</div><div class="modern-diagram-cell">first</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Part</div><div class="modern-diagram-cell">Header</div><div class="modern-diagram-cell">fragment</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Unfragmentable</div><div class="modern-diagram-cell">Fragment</div><div class="modern-diagram-cell">second</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Part</div><div class="modern-diagram-cell">Header</div><div class="modern-diagram-cell">fragment</div></div></div>
-</figure><pre>                         o
+   fragment packets:</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   +------------------+--------+--------------+
+   |  Unfragmentable  |Fragment|    first     |
+   |       Part       | Header |   fragment   |
+   +------------------+--------+--------------+
+
+   +------------------+--------+--------------+
+   |  Unfragmentable  |Fragment|    second    |
+   |       Part       | Header |   fragment   |
+   +------------------+--------+--------------+</pre>
+</div><pre>                         o
                          o
-                         o</pre><figure class="modern-ascii-diagram" role="img" aria-label="Unfragmentable | Fragment | last | Part | Header | fragment">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Unfragmentable</div><div class="modern-diagram-cell">Fragment</div><div class="modern-diagram-cell">last</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Part</div><div class="modern-diagram-cell">Header</div><div class="modern-diagram-cell">fragment</div></div></div>
-</figure><pre>   Each fragment packet is composed of:
+                         o</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   +------------------+--------+----------+
+   |  Unfragmentable  |Fragment|   last   |
+   |       Part       | Header | fragment |
+   +------------------+--------+----------+
+</pre>
+</div><pre>   Each fragment packet is composed of:
 
       (1) The Unfragmentable Part of the original packet, with the
           Payload Length of the original IPv6 header changed to contain
@@ -1236,10 +1259,13 @@ Deering &amp; Hinden            Standards Track                    [Page 21]</pr
    At the destination, fragment packets are reassembled into their
    original, unfragmented form, as illustrated:
 
-   reassembled original packet:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Unfragmentable | Fragmentable | Part | Part">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Unfragmentable</div><div class="modern-diagram-cell">Fragmentable</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Part</div><div class="modern-diagram-cell">Part</div></div></div>
-</figure><pre>   The following rules govern reassembly:
+   reassembled original packet:</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   +------------------+----------------------//------------------------+
+   |  Unfragmentable  |                 Fragmentable                   |
+   |       Part       |                     Part                       |
+   +------------------+----------------------//------------------------+
+</pre>
+</div><pre>   The following rules govern reassembly:
 
       An original packet is reassembled only from fragment packets that
       have the same Source Address, Destination Address, and Fragment
@@ -1353,10 +1379,7 @@ Deering &amp; Hinden            Standards Track                    [Page 22]</pr
    The Destination Options header is used to carry optional information
    that need be examined only by a packet&#x27;s destination node(s).  The
    Destination Options header is identified by a Next Header value of 60
-   in the immediately preceding header, and has the following format:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Next Header | Hdr Ext Len">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Next Header</div><div class="modern-diagram-cell">Hdr Ext Len</div></div></div>
-</figure><pre>   .                                                               .
+   in the immediately preceding header, and has the following format:</pre><svg class="rfc-bit-diagram" viewBox="0 0 424 130" role="img" aria-label="Bit field diagram" xmlns="http://www.w3.org/2000/svg"><desc>Protocol header bit field layout showing field names and positions</desc><defs>  <style>    .bit-grid { stroke: #94a3b8; stroke-width: 0.5; fill: none; }    .field-block { fill: #3b82f6; opacity: 0.9; rx: 4; }    .field-label { fill: white; font-size: 11px; font-weight: 600; font-family: Inter, sans-serif; text-anchor: middle; }    .bit-label { fill: #64748b; font-size: 9px; font-family: "IBM Plex Mono", monospace; text-anchor: middle; }    .row-label { fill: #475569; font-size: 10px; font-family: Inter, sans-serif; }  </style></defs><text class="bit-label" x="20" y="32">0</text><text class="bit-label" x="116" y="32">8</text><text class="bit-label" x="212" y="32">16</text><text class="bit-label" x="308" y="32">24</text><text class="bit-label" x="404" y="32">31</text><rect class="field-block" x="20" y="50" width="180" height="50" /><text class="field-label" x="110.0" y="79.0">Next Header</text><rect class="field-block" x="200" y="50" width="180" height="50" /><text class="field-label" x="290.0" y="79.0">Hdr Ext Len</text><rect class="bit-grid" x="20" y="50" width="384" height="50" /></svg><pre>   .                                                               .
    .                            Options                            .
    .                                                               .</pre><pre>   |                                                               |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>   Next Header          8-bit selector.  Identifies the type of header
@@ -1769,19 +1792,31 @@ Deering &amp; Hinden            Standards Track                    [Page 24]</pr
    addresses from the IP header in its checksum computation must be
    modified for use over IPv6, to include the 128-bit IPv6 addresses
    instead of 32-bit IPv4 addresses.  In particular, the following
-   illustration shows the TCP and UDP &quot;pseudo-header&quot; for IPv6:</pre><div class="modern-diagram-fallback">   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   illustration shows the TCP and UDP &quot;pseudo-header&quot; for IPv6:</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |                                                               |
    +                                                               +
-   |                                                               |</div><pre>   +                         Source Address                        +</pre><div class="modern-diagram-fallback">   |                                                               |
+   |                                                               |</pre>
+</div><pre>   +                         Source Address                        +</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   |                                                               |
    +                                                               +
    |                                                               |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |                                                               |
    +                                                               +
-   |                                                               |</div><pre>   +                      Destination Address                      +</pre><figure class="modern-ascii-diagram" role="img" aria-label="Payload Length | zero | Next Header">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Payload Length</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">zero</div><div class="modern-diagram-cell">Next Header</div></div></div>
-</figure><pre>      o  If the packet contains a Routing header, the Destination
+   |                                                               |</pre>
+</div><pre>   +                      Destination Address                      +</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   |                                                               |
+   +                                                               +
+   |                                                               |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                         Payload Length                        |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                      zero                     |  Next Header  |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+</pre>
+</div><pre>      o  If the packet contains a Routing header, the Destination
          Address used in the pseudo-header is that of the final
          destination.  At the originating node, that address will be in
          the last element of the Routing header; at the recipient(s),
@@ -1900,10 +1935,7 @@ Appendix A. Formatting Guidelines for Options
    Example 1
 
    If an option X required two data fields, one of length 8 octets and
-   one of length 4 octets, it would be laid out as follows:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Option Type=X | Opt Data Len=12 | 4-octet field">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Option Type=X</div><div class="modern-diagram-cell">Opt Data Len=12</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">4-octet field</div></div></div>
-</figure><pre>   +                         8-octet field                         +</pre><pre>   |                                                               |
+   one of length 4 octets, it would be laid out as follows:</pre><svg class="rfc-bit-diagram" viewBox="0 0 424 190" role="img" aria-label="Bit field diagram" xmlns="http://www.w3.org/2000/svg"><desc>Protocol header bit field layout showing field names and positions</desc><defs>  <style>    .bit-grid { stroke: #94a3b8; stroke-width: 0.5; fill: none; }    .field-block { fill: #3b82f6; opacity: 0.9; rx: 4; }    .field-label { fill: white; font-size: 11px; font-weight: 600; font-family: Inter, sans-serif; text-anchor: middle; }    .bit-label { fill: #64748b; font-size: 9px; font-family: "IBM Plex Mono", monospace; text-anchor: middle; }    .row-label { fill: #475569; font-size: 10px; font-family: Inter, sans-serif; }  </style></defs><text class="bit-label" x="20" y="32">0</text><text class="bit-label" x="116" y="32">8</text><text class="bit-label" x="212" y="32">16</text><text class="bit-label" x="308" y="32">24</text><text class="bit-label" x="404" y="32">31</text><rect class="field-block" x="20" y="50" width="180" height="50" /><text class="field-label" x="110.0" y="79.0">Option Type=</text><rect class="field-block" x="200" y="50" width="180" height="50" /><text class="field-label" x="290.0" y="79.0">Opt Data Len</text><rect class="bit-grid" x="20" y="50" width="384" height="50" /><rect class="field-block" x="20" y="110" width="384" height="50" /><text class="field-label" x="212.0" y="139.0">4-octet fiel</text><rect class="bit-grid" x="20" y="110" width="384" height="50" /></svg><pre>   +                         8-octet field                         +</pre><pre>   |                                                               |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>   Its alignment requirement is 8n+2, to ensure that the 8-octet field
    starts at a multiple-of-8 offset from the start of the enclosing
 
@@ -1917,24 +1949,15 @@ Deering &amp; Hinden            Standards Track                    [Page 33]</pr
 
 
    header.  A complete Hop-by-Hop or Destination Options header
-   containing this one option would look as follows:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Next Header | Hdr Ext Len=1 | Option Type=X | Opt Data Len=12 | 4-octet field">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Next Header</div><div class="modern-diagram-cell">Hdr Ext Len=1</div><div class="modern-diagram-cell">Option Type=X</div><div class="modern-diagram-cell">Opt Data Len=12</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">4-octet field</div></div></div>
-</figure><pre>   +                         8-octet field                         +</pre><pre>   |                                                               |
+   containing this one option would look as follows:</pre><svg class="rfc-bit-diagram" viewBox="0 0 424 250" role="img" aria-label="Bit field diagram" xmlns="http://www.w3.org/2000/svg"><desc>Protocol header bit field layout showing field names and positions</desc><defs>  <style>    .bit-grid { stroke: #94a3b8; stroke-width: 0.5; fill: none; }    .field-block { fill: #3b82f6; opacity: 0.9; rx: 4; }    .field-label { fill: white; font-size: 11px; font-weight: 600; font-family: Inter, sans-serif; text-anchor: middle; }    .bit-label { fill: #64748b; font-size: 9px; font-family: "IBM Plex Mono", monospace; text-anchor: middle; }    .row-label { fill: #475569; font-size: 10px; font-family: Inter, sans-serif; }  </style></defs><text class="bit-label" x="20" y="32">0</text><text class="bit-label" x="116" y="32">8</text><text class="bit-label" x="212" y="32">16</text><text class="bit-label" x="308" y="32">24</text><text class="bit-label" x="404" y="32">31</text><rect class="field-block" x="20" y="50" width="180" height="50" /><text class="field-label" x="110.0" y="79.0">Next Header</text><rect class="field-block" x="200" y="50" width="180" height="50" /><text class="field-label" x="290.0" y="79.0">Hdr Ext Len=</text><rect class="bit-grid" x="20" y="50" width="384" height="50" /><rect class="field-block" x="20" y="110" width="180" height="50" /><text class="field-label" x="110.0" y="139.0">Option Type=</text><rect class="field-block" x="200" y="110" width="180" height="50" /><text class="field-label" x="290.0" y="139.0">Opt Data Len</text><rect class="bit-grid" x="20" y="110" width="384" height="50" /><rect class="field-block" x="20" y="170" width="384" height="50" /><text class="field-label" x="212.0" y="199.0">4-octet fiel</text><rect class="bit-grid" x="20" y="170" width="384" height="50" /></svg><pre>   +                         8-octet field                         +</pre><pre>   |                                                               |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>   Example 2
 
    If an option Y required three data fields, one of length 4 octets,
    one of length 2 octets, and one of length 1 octet, it would be laid
-   out as follows:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Option Type=Y | Opt Data Len=7 | 1-octet field | 2-octet field">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Option Type=Y</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Opt Data Len=7</div><div class="modern-diagram-cell">1-octet field</div><div class="modern-diagram-cell">2-octet field</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">4-octet field</div></div></div>
-</figure><pre>   Its alignment requirement is 4n+3, to ensure that the 4-octet field
+   out as follows:</pre><svg class="rfc-bit-diagram" viewBox="0 0 424 310" role="img" aria-label="Bit field diagram" xmlns="http://www.w3.org/2000/svg"><desc>Protocol header bit field layout showing field names and positions</desc><defs>  <style>    .bit-grid { stroke: #94a3b8; stroke-width: 0.5; fill: none; }    .field-block { fill: #3b82f6; opacity: 0.9; rx: 4; }    .field-label { fill: white; font-size: 11px; font-weight: 600; font-family: Inter, sans-serif; text-anchor: middle; }    .bit-label { fill: #64748b; font-size: 9px; font-family: "IBM Plex Mono", monospace; text-anchor: middle; }    .row-label { fill: #475569; font-size: 10px; font-family: Inter, sans-serif; }  </style></defs><text class="bit-label" x="20" y="32">0</text><text class="bit-label" x="116" y="32">8</text><text class="bit-label" x="212" y="32">16</text><text class="bit-label" x="308" y="32">24</text><text class="bit-label" x="404" y="32">31</text><rect class="field-block" x="20" y="50" width="180" height="50" /><text class="field-label" x="110.0" y="79.0">Option Type=</text><rect class="field-block" x="200" y="50" width="180" height="50" /><text class="field-label" x="290.0" y="79.0">Opt Data Len</text><rect class="bit-grid" x="20" y="50" width="384" height="50" /><rect class="field-block" x="20" y="110" width="180" height="50" /><text class="field-label" x="110.0" y="139.0">1-octet fiel</text><rect class="bit-grid" x="20" y="110" width="384" height="50" /><rect class="field-block" x="20" y="170" width="372" height="50" /><text class="field-label" x="206.0" y="199.0">2-octet fiel</text><rect class="bit-grid" x="20" y="170" width="384" height="50" /><rect class="field-block" x="20" y="230" width="384" height="50" /><text class="field-label" x="212.0" y="259.0">4-octet fiel</text><rect class="bit-grid" x="20" y="230" width="384" height="50" /></svg><pre>   Its alignment requirement is 4n+3, to ensure that the 4-octet field
    starts at a multiple-of-4 offset from the start of the enclosing
    header.  A complete Hop-by-Hop or Destination Options header
-   containing this one option would look as follows:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Next Header | Hdr Ext Len=1 | Pad1 Option=0 | Option Type=Y | Opt Data Len=7 | 1">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Next Header</div><div class="modern-diagram-cell">Hdr Ext Len=1</div><div class="modern-diagram-cell">Pad1 Option=0</div><div class="modern-diagram-cell">Option Type=Y</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Opt Data Len=7</div><div class="modern-diagram-cell">1-octet field</div><div class="modern-diagram-cell">2-octet field</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">4-octet field</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">PadN Option=1</div><div class="modern-diagram-cell">Opt Data Len=2</div><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">0</div></div></div>
-</figure><pre>Deering &amp; Hinden            Standards Track                    [Page 34]</pre>
+   containing this one option would look as follows:</pre><svg class="rfc-bit-diagram" viewBox="0 0 424 490" role="img" aria-label="Bit field diagram" xmlns="http://www.w3.org/2000/svg"><desc>Protocol header bit field layout showing field names and positions</desc><defs>  <style>    .bit-grid { stroke: #94a3b8; stroke-width: 0.5; fill: none; }    .field-block { fill: #3b82f6; opacity: 0.9; rx: 4; }    .field-label { fill: white; font-size: 11px; font-weight: 600; font-family: Inter, sans-serif; text-anchor: middle; }    .bit-label { fill: #64748b; font-size: 9px; font-family: "IBM Plex Mono", monospace; text-anchor: middle; }    .row-label { fill: #475569; font-size: 10px; font-family: Inter, sans-serif; }  </style></defs><text class="bit-label" x="20" y="32">0</text><text class="bit-label" x="116" y="32">8</text><text class="bit-label" x="212" y="32">16</text><text class="bit-label" x="308" y="32">24</text><text class="bit-label" x="404" y="32">31</text><rect class="field-block" x="20" y="50" width="180" height="50" /><text class="field-label" x="110.0" y="79.0">Next Header</text><rect class="field-block" x="200" y="50" width="180" height="50" /><text class="field-label" x="290.0" y="79.0">Hdr Ext Len=</text><rect class="bit-grid" x="20" y="50" width="384" height="50" /><rect class="field-block" x="20" y="110" width="180" height="50" /><text class="field-label" x="110.0" y="139.0">Pad1 Option=</text><rect class="field-block" x="200" y="110" width="180" height="50" /><text class="field-label" x="290.0" y="139.0">Option Type=</text><rect class="bit-grid" x="20" y="110" width="384" height="50" /><rect class="field-block" x="20" y="170" width="180" height="50" /><text class="field-label" x="110.0" y="199.0">Opt Data Len</text><rect class="field-block" x="200" y="170" width="180" height="50" /><text class="field-label" x="290.0" y="199.0">1-octet fiel</text><rect class="bit-grid" x="20" y="170" width="384" height="50" /><rect class="field-block" x="20" y="230" width="372" height="50" /><text class="field-label" x="206.0" y="259.0">2-octet fiel</text><rect class="bit-grid" x="20" y="230" width="384" height="50" /><rect class="field-block" x="20" y="290" width="384" height="50" /><text class="field-label" x="212.0" y="319.0">4-octet fiel</text><rect class="bit-grid" x="20" y="290" width="384" height="50" /><rect class="field-block" x="20" y="350" width="180" height="50" /><text class="field-label" x="110.0" y="379.0">PadN Option=</text><rect class="field-block" x="200" y="350" width="180" height="50" /><text class="field-label" x="290.0" y="379.0">Opt Data Len</text><rect class="bit-grid" x="20" y="350" width="384" height="50" /><rect class="field-block" x="20" y="410" width="180" height="50" /><text class="field-label" x="110.0" y="439.0">0</text><rect class="field-block" x="200" y="410" width="180" height="50" /><text class="field-label" x="290.0" y="439.0">0</text><rect class="bit-grid" x="20" y="410" width="384" height="50" /></svg><pre>Deering &amp; Hinden            Standards Track                    [Page 34]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 35</span>
@@ -1946,13 +1969,7 @@ Deering &amp; Hinden            Standards Track                    [Page 33]</pr
 
    A Hop-by-Hop or Destination Options header containing both options X
    and Y from Examples 1 and 2 would have one of the two following
-   formats, depending on which option appeared first:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Next Header | Hdr Ext Len=3 | Option Type=X | Opt Data Len=12 | 4-octet field">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Next Header</div><div class="modern-diagram-cell">Hdr Ext Len=3</div><div class="modern-diagram-cell">Option Type=X</div><div class="modern-diagram-cell">Opt Data Len=12</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">4-octet field</div></div></div>
-</figure><pre>   +                         8-octet field                         +</pre><figure class="modern-ascii-diagram" role="img" aria-label="PadN Option=1 | Opt Data Len=1 | Option Type=Y | Opt Data Len=7 | 1-octet field ">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">PadN Option=1</div><div class="modern-diagram-cell">Opt Data Len=1</div><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">Option Type=Y</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Opt Data Len=7</div><div class="modern-diagram-cell">1-octet field</div><div class="modern-diagram-cell">2-octet field</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">4-octet field</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">PadN Option=1</div><div class="modern-diagram-cell">Opt Data Len=2</div><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">0</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Next Header</div><div class="modern-diagram-cell">Hdr Ext Len=3</div><div class="modern-diagram-cell">Pad1 Option=0</div><div class="modern-diagram-cell">Option Type=Y</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Opt Data Len=7</div><div class="modern-diagram-cell">1-octet field</div><div class="modern-diagram-cell">2-octet field</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">4-octet field</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">PadN Option=1</div><div class="modern-diagram-cell">Opt Data Len=4</div><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">0</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">Option Type=X</div><div class="modern-diagram-cell">Opt Data Len=12</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">4-octet field</div></div></div>
-</figure><pre>   +                         8-octet field                         +</pre><pre>   |                                                               |
+   formats, depending on which option appeared first:</pre><svg class="rfc-bit-diagram" viewBox="0 0 424 250" role="img" aria-label="Bit field diagram" xmlns="http://www.w3.org/2000/svg"><desc>Protocol header bit field layout showing field names and positions</desc><defs>  <style>    .bit-grid { stroke: #94a3b8; stroke-width: 0.5; fill: none; }    .field-block { fill: #3b82f6; opacity: 0.9; rx: 4; }    .field-label { fill: white; font-size: 11px; font-weight: 600; font-family: Inter, sans-serif; text-anchor: middle; }    .bit-label { fill: #64748b; font-size: 9px; font-family: "IBM Plex Mono", monospace; text-anchor: middle; }    .row-label { fill: #475569; font-size: 10px; font-family: Inter, sans-serif; }  </style></defs><text class="bit-label" x="20" y="32">0</text><text class="bit-label" x="116" y="32">8</text><text class="bit-label" x="212" y="32">16</text><text class="bit-label" x="308" y="32">24</text><text class="bit-label" x="404" y="32">31</text><rect class="field-block" x="20" y="50" width="180" height="50" /><text class="field-label" x="110.0" y="79.0">Next Header</text><rect class="field-block" x="200" y="50" width="180" height="50" /><text class="field-label" x="290.0" y="79.0">Hdr Ext Len=</text><rect class="bit-grid" x="20" y="50" width="384" height="50" /><rect class="field-block" x="20" y="110" width="180" height="50" /><text class="field-label" x="110.0" y="139.0">Option Type=</text><rect class="field-block" x="200" y="110" width="180" height="50" /><text class="field-label" x="290.0" y="139.0">Opt Data Len</text><rect class="bit-grid" x="20" y="110" width="384" height="50" /><rect class="field-block" x="20" y="170" width="384" height="50" /><text class="field-label" x="212.0" y="199.0">4-octet fiel</text><rect class="bit-grid" x="20" y="170" width="384" height="50" /></svg><pre>   +                         8-octet field                         +</pre><svg class="rfc-bit-diagram" viewBox="0 0 424 1090" role="img" aria-label="Bit field diagram" xmlns="http://www.w3.org/2000/svg"><desc>Protocol header bit field layout showing field names and positions</desc><defs>  <style>    .bit-grid { stroke: #94a3b8; stroke-width: 0.5; fill: none; }    .field-block { fill: #3b82f6; opacity: 0.9; rx: 4; }    .field-label { fill: white; font-size: 11px; font-weight: 600; font-family: Inter, sans-serif; text-anchor: middle; }    .bit-label { fill: #64748b; font-size: 9px; font-family: "IBM Plex Mono", monospace; text-anchor: middle; }    .row-label { fill: #475569; font-size: 10px; font-family: Inter, sans-serif; }  </style></defs><text class="bit-label" x="20" y="32">0</text><text class="bit-label" x="116" y="32">8</text><text class="bit-label" x="212" y="32">16</text><text class="bit-label" x="308" y="32">24</text><text class="bit-label" x="404" y="32">31</text><rect class="field-block" x="20" y="50" width="180" height="50" /><text class="field-label" x="110.0" y="79.0">PadN Option=</text><rect class="field-block" x="200" y="50" width="180" height="50" /><text class="field-label" x="290.0" y="79.0">Opt Data Len</text><rect class="bit-grid" x="20" y="50" width="384" height="50" /><rect class="field-block" x="20" y="110" width="180" height="50" /><text class="field-label" x="110.0" y="139.0">0</text><rect class="field-block" x="200" y="110" width="180" height="50" /><text class="field-label" x="290.0" y="139.0">Option Type=</text><rect class="bit-grid" x="20" y="110" width="384" height="50" /><rect class="field-block" x="20" y="170" width="180" height="50" /><text class="field-label" x="110.0" y="199.0">Opt Data Len</text><rect class="field-block" x="200" y="170" width="180" height="50" /><text class="field-label" x="290.0" y="199.0">1-octet fiel</text><rect class="bit-grid" x="20" y="170" width="384" height="50" /><rect class="field-block" x="20" y="230" width="372" height="50" /><text class="field-label" x="206.0" y="259.0">2-octet fiel</text><rect class="bit-grid" x="20" y="230" width="384" height="50" /><rect class="field-block" x="20" y="290" width="384" height="50" /><text class="field-label" x="212.0" y="319.0">4-octet fiel</text><rect class="bit-grid" x="20" y="290" width="384" height="50" /><rect class="field-block" x="20" y="350" width="180" height="50" /><text class="field-label" x="110.0" y="379.0">PadN Option=</text><rect class="field-block" x="200" y="350" width="180" height="50" /><text class="field-label" x="290.0" y="379.0">Opt Data Len</text><rect class="bit-grid" x="20" y="350" width="384" height="50" /><rect class="field-block" x="20" y="410" width="180" height="50" /><text class="field-label" x="110.0" y="439.0">0</text><rect class="field-block" x="200" y="410" width="180" height="50" /><text class="field-label" x="290.0" y="439.0">0</text><rect class="bit-grid" x="20" y="410" width="384" height="50" /><rect class="field-block" x="20" y="470" width="180" height="50" /><text class="field-label" x="110.0" y="499.0">Next Header</text><rect class="field-block" x="200" y="470" width="180" height="50" /><text class="field-label" x="290.0" y="499.0">Hdr Ext Len=</text><rect class="bit-grid" x="20" y="470" width="384" height="50" /><rect class="field-block" x="20" y="530" width="180" height="50" /><text class="field-label" x="110.0" y="559.0">Pad1 Option=</text><rect class="field-block" x="200" y="530" width="180" height="50" /><text class="field-label" x="290.0" y="559.0">Option Type=</text><rect class="bit-grid" x="20" y="530" width="384" height="50" /><rect class="field-block" x="20" y="590" width="180" height="50" /><text class="field-label" x="110.0" y="619.0">Opt Data Len</text><rect class="field-block" x="200" y="590" width="180" height="50" /><text class="field-label" x="290.0" y="619.0">1-octet fiel</text><rect class="bit-grid" x="20" y="590" width="384" height="50" /><rect class="field-block" x="20" y="650" width="372" height="50" /><text class="field-label" x="206.0" y="679.0">2-octet fiel</text><rect class="bit-grid" x="20" y="650" width="384" height="50" /><rect class="field-block" x="20" y="710" width="384" height="50" /><text class="field-label" x="212.0" y="739.0">4-octet fiel</text><rect class="bit-grid" x="20" y="710" width="384" height="50" /><rect class="field-block" x="20" y="770" width="180" height="50" /><text class="field-label" x="110.0" y="799.0">PadN Option=</text><rect class="field-block" x="200" y="770" width="180" height="50" /><text class="field-label" x="290.0" y="799.0">Opt Data Len</text><rect class="bit-grid" x="20" y="770" width="384" height="50" /><rect class="field-block" x="20" y="830" width="180" height="50" /><text class="field-label" x="110.0" y="859.0">0</text><rect class="field-block" x="200" y="830" width="180" height="50" /><text class="field-label" x="290.0" y="859.0">0</text><rect class="bit-grid" x="20" y="830" width="384" height="50" /><rect class="field-block" x="20" y="890" width="180" height="50" /><text class="field-label" x="110.0" y="919.0">0</text><rect class="field-block" x="200" y="890" width="180" height="50" /><text class="field-label" x="290.0" y="919.0">0</text><rect class="bit-grid" x="20" y="890" width="384" height="50" /><rect class="field-block" x="20" y="950" width="180" height="50" /><text class="field-label" x="110.0" y="979.0">Option Type=</text><rect class="field-block" x="200" y="950" width="180" height="50" /><text class="field-label" x="290.0" y="979.0">Opt Data Len</text><rect class="bit-grid" x="20" y="950" width="384" height="50" /><rect class="field-block" x="20" y="1010" width="384" height="50" /><text class="field-label" x="212.0" y="1039.0">4-octet fiel</text><rect class="bit-grid" x="20" y="1010" width="384" height="50" /></svg><pre>   +                         8-octet field                         +</pre><pre>   |                                                               |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>Deering &amp; Hinden            Standards Track                    [Page 35]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">

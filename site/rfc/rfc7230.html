@@ -3699,16 +3699,31 @@ Table of Contents
 
    This document defines the following HTTP header fields, so the
    &quot;Permanent Message Header Field Names&quot; registry has been updated
-   accordingly (see [BCP90]).</pre><figure class="modern-ascii-diagram" role="img" aria-label="Header Field Name | Protocol | Status | Reference | Connection | http | standard">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Header Field Name</div><div class="modern-diagram-cell">Protocol</div><div class="modern-diagram-cell">Status</div><div class="modern-diagram-cell">Reference</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Connection</div><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">standard</div><div class="modern-diagram-cell">Section 6.1</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Content-Length</div><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">standard</div><div class="modern-diagram-cell">Section 3.3.2</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Host</div><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">standard</div><div class="modern-diagram-cell">Section 5.4</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">TE</div><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">standard</div><div class="modern-diagram-cell">Section 4.3</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Trailer</div><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">standard</div><div class="modern-diagram-cell">Section 4.4</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Transfer-Encoding</div><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">standard</div><div class="modern-diagram-cell">Section 3.3.1</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Upgrade</div><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">standard</div><div class="modern-diagram-cell">Section 6.7</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Via</div><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">standard</div><div class="modern-diagram-cell">Section 5.7.1</div></div></div>
-</figure><pre>   Furthermore, the header field-name &quot;Close&quot; has been registered as
+   accordingly (see [BCP90]).</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   +-------------------+----------+----------+---------------+
+   | Header Field Name | Protocol | Status   | Reference     |
+   +-------------------+----------+----------+---------------+
+   | Connection        | http     | standard | Section 6.1   |
+   | Content-Length    | http     | standard | Section 3.3.2 |
+   | Host              | http     | standard | Section 5.4   |
+   | TE                | http     | standard | Section 4.3   |
+   | Trailer           | http     | standard | Section 4.4   |
+   | Transfer-Encoding | http     | standard | Section 3.3.1 |
+   | Upgrade           | http     | standard | Section 6.7   |
+   | Via               | http     | standard | Section 5.7.1 |
+   +-------------------+----------+----------+---------------+
+</pre>
+</div><pre>   Furthermore, the header field-name &quot;Close&quot; has been registered as
    &quot;reserved&quot;, since using that name as an HTTP header field might
    conflict with the &quot;close&quot; connection option of the Connection header
-   field (Section 6.1).</pre><figure class="modern-ascii-diagram" role="img" aria-label="Header Field Name | Protocol | Status | Reference | Close | http | reserved | Se">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Header Field Name</div><div class="modern-diagram-cell">Protocol</div><div class="modern-diagram-cell">Status</div><div class="modern-diagram-cell">Reference</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Close</div><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">reserved</div><div class="modern-diagram-cell">Section 8.1</div></div></div>
-</figure><pre>   The change controller is: &quot;IETF (iesg@ietf.org) - Internet
+   field (Section 6.1).</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   +-------------------+----------+----------+-------------+
+   | Header Field Name | Protocol | Status   | Reference   |
+   +-------------------+----------+----------+-------------+
+   | Close             | http     | reserved | Section 8.1 |
+   +-------------------+----------+----------+-------------+
+</pre>
+</div><pre>   The change controller is: &quot;IETF (iesg@ietf.org) - Internet
    Engineering Task Force&quot;.
 
 
@@ -3737,10 +3752,15 @@ Fielding &amp; Reschke           Standards Track                   [Page 61]</pr
    &lt;http://www.iana.org/assignments/uri-schemes/&gt;.
 
    This document defines the following URI schemes, so the &quot;Permanent
-   URI Schemes&quot; registry has been updated accordingly.</pre><figure class="modern-ascii-diagram" role="img" aria-label="URI Scheme | Description | Reference | http | Hypertext Transfer Protocol | Sect">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">URI Scheme</div><div class="modern-diagram-cell">Description</div><div class="modern-diagram-cell">Reference</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">Hypertext Transfer Protocol</div><div class="modern-diagram-cell">Section 2.7.1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">https</div><div class="modern-diagram-cell">Hypertext Transfer Protocol Secure</div><div class="modern-diagram-cell">Section 2.7.2</div></div></div>
-</figure><pre>8.3.  Internet Media Type Registration
+   URI Schemes&quot; registry has been updated accordingly.</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   +------------+------------------------------------+---------------+
+   | URI Scheme | Description                        | Reference     |
+   +------------+------------------------------------+---------------+
+   | http       | Hypertext Transfer Protocol        | Section 2.7.1 |
+   | https      | Hypertext Transfer Protocol Secure | Section 2.7.2 |
+   +------------+------------------------------------+---------------+
+</pre>
+</div><pre>8.3.  Internet Media Type Registration
 
    IANA maintains the registry of Internet media types [BCP13] at
    &lt;http://www.iana.org/assignments/media-types&gt;.
@@ -3929,10 +3949,32 @@ Fielding &amp; Reschke           Standards Track                   [Page 62]</pr
 8.4.2.  Registration
 
    The &quot;HTTP Transfer Coding Registry&quot; has been updated with the
-   registrations below:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Name | Description | Reference | chunked | Transfer in a series of chunks | Sect">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Name</div><div class="modern-diagram-cell">Description</div><div class="modern-diagram-cell">Reference</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">chunked</div><div class="modern-diagram-cell">Transfer in a series of chunks</div><div class="modern-diagram-cell">Section 4.1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">compress</div><div class="modern-diagram-cell">UNIX &quot;compress&quot; data format [Welch]</div><div class="modern-diagram-cell">Section 4.2.1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">deflate</div><div class="modern-diagram-cell">deflate&quot; compressed data</div><div class="modern-diagram-cell">Section 4.2.2</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">RFC1951]) inside the &quot;zlib&quot; data</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">format ([RFC1950])</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">gzip</div><div class="modern-diagram-cell">GZIP file format [RFC1952]</div><div class="modern-diagram-cell">Section 4.2.3</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">x-compress</div><div class="modern-diagram-cell">Deprecated (alias for compress)</div><div class="modern-diagram-cell">Section 4.2.1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">x-gzip</div><div class="modern-diagram-cell">Deprecated (alias for gzip)</div><div class="modern-diagram-cell">Section 4.2.3</div></div></div>
-</figure><pre>Fielding &amp; Reschke           Standards Track                   [Page 65]</pre>
+   registrations below:</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   +------------+--------------------------------------+---------------+
+   | Name       | Description                          | Reference     |
+   +------------+--------------------------------------+---------------+
+   | chunked    | Transfer in a series of chunks       | Section 4.1   |
+   | compress   | UNIX &quot;compress&quot; data format [Welch]  | Section 4.2.1 |
+   | deflate    | &quot;deflate&quot; compressed data            | Section 4.2.2 |
+   |            | ([RFC1951]) inside the &quot;zlib&quot; data   |               |
+   |            | format ([RFC1950])                   |               |
+   | gzip       | GZIP file format [RFC1952]           | Section 4.2.3 |
+   | x-compress | Deprecated (alias for compress)      | Section 4.2.1 |
+   | x-gzip     | Deprecated (alias for gzip)          | Section 4.2.3 |
+   +------------+--------------------------------------+---------------+
+
+
+
+
+
+
+
+
+
+
+
+</pre>
+</div><pre>Fielding &amp; Reschke           Standards Track                   [Page 65]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 66</span>
@@ -3946,10 +3988,20 @@ Fielding &amp; Reschke           Standards Track                   [Page 62]</pr
    &lt;http://www.iana.org/assignments/http-parameters&gt;.
 
    The &quot;HTTP Content Coding Registry&quot; has been updated with the
-   registrations below:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Name | Description | Reference | compress | UNIX &quot;compress&quot; data format [Welch] ">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Name</div><div class="modern-diagram-cell">Description</div><div class="modern-diagram-cell">Reference</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">compress</div><div class="modern-diagram-cell">UNIX &quot;compress&quot; data format [Welch]</div><div class="modern-diagram-cell">Section 4.2.1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">deflate</div><div class="modern-diagram-cell">deflate&quot; compressed data</div><div class="modern-diagram-cell">Section 4.2.2</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">RFC1951]) inside the &quot;zlib&quot; data</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">format ([RFC1950])</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">gzip</div><div class="modern-diagram-cell">GZIP file format [RFC1952]</div><div class="modern-diagram-cell">Section 4.2.3</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">x-compress</div><div class="modern-diagram-cell">Deprecated (alias for compress)</div><div class="modern-diagram-cell">Section 4.2.1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">x-gzip</div><div class="modern-diagram-cell">Deprecated (alias for gzip)</div><div class="modern-diagram-cell">Section 4.2.3</div></div></div>
-</figure><pre>8.6.  Upgrade Token Registry
+   registrations below:</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   +------------+--------------------------------------+---------------+
+   | Name       | Description                          | Reference     |
+   +------------+--------------------------------------+---------------+
+   | compress   | UNIX &quot;compress&quot; data format [Welch]  | Section 4.2.1 |
+   | deflate    | &quot;deflate&quot; compressed data            | Section 4.2.2 |
+   |            | ([RFC1951]) inside the &quot;zlib&quot; data   |               |
+   |            | format ([RFC1950])                   |               |
+   | gzip       | GZIP file format [RFC1952]           | Section 4.2.3 |
+   | x-compress | Deprecated (alias for compress)      | Section 4.2.1 |
+   | x-gzip     | Deprecated (alias for gzip)          | Section 4.2.3 |
+   +------------+--------------------------------------+---------------+
+</pre>
+</div><pre>8.6.  Upgrade Token Registry
 
    The &quot;Hypertext Transfer Protocol (HTTP) Upgrade Token Registry&quot;
    defines the namespace for protocol-name tokens used to identify
@@ -4002,10 +4054,16 @@ Fielding &amp; Reschke           Standards Track                   [Page 66]</pr
 8.6.2.  Upgrade Token Registration
 
    The &quot;HTTP&quot; entry in the upgrade token registry has been updated with
-   the registration below:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Value | Description | Expected Version | Reference | Tokens">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Value</div><div class="modern-diagram-cell">Description</div><div class="modern-diagram-cell">Expected Version</div><div class="modern-diagram-cell">Reference</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Tokens</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">HTTP</div><div class="modern-diagram-cell">Hypertext Transfer</div><div class="modern-diagram-cell">any DIGIT.DIGIT</div><div class="modern-diagram-cell">Section 2.6</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Protocol</div><div class="modern-diagram-cell">e.g, &quot;2.0&quot;)</div></div></div>
-</figure><pre>   The responsible party is: &quot;IETF (iesg@ietf.org) - Internet
+   the registration below:</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   +-------+----------------------+----------------------+-------------+
+   | Value | Description          | Expected Version     | Reference   |
+   |       |                      | Tokens               |             |
+   +-------+----------------------+----------------------+-------------+
+   | HTTP  | Hypertext Transfer   | any DIGIT.DIGIT      | Section 2.6 |
+   |       | Protocol             | (e.g, &quot;2.0&quot;)         |             |
+   +-------+----------------------+----------------------+-------------+
+</pre>
+</div><pre>   The responsible party is: &quot;IETF (iesg@ietf.org) - Internet
    Engineering Task Force&quot;.
 
 9.  Security Considerations

@@ -410,10 +410,18 @@ Introduction
   and compartmentation of the TCP segments, so this information can be
   communicated end-to-end across multiple networks.
 
-                           Protocol Layering</pre><figure class="modern-ascii-diagram" role="img" aria-label="higher-level | TCP">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">higher-level</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">TCP</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">internet protocol</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">communication network</div></div></div>
-</figure><pre>                                Figure 1
+                           Protocol Layering</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">                        +---------------------+
+                        |     higher-level    |
+                        +---------------------+
+                        |        TCP          |
+                        +---------------------+
+                        |  internet protocol  |
+                        +---------------------+
+                        |communication network|
+                        +---------------------+
+</pre>
+</div><pre>                                Figure 1
 
   Much of this document is written in the context of TCP implementations
   which are co-resident with higher level protocols in the host
@@ -837,13 +845,24 @@ Philosophy
 2.5.  Relation to Other Protocols
 
   The following diagram illustrates the place of the TCP in the protocol
-  hierarchy:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Telnet | FTP | Voice | Application Level | TCP | RTP | Host Level">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Telnet</div><div class="modern-diagram-cell">FTP</div><div class="modern-diagram-cell">Voice</div><div class="modern-diagram-cell">Application Level</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">TCP</div><div class="modern-diagram-cell">RTP</div><div class="modern-diagram-cell">Host Level</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Internet Protocol &amp; ICMP</div><div class="modern-diagram-cell">Gateway Level</div></div></div>
-</figure><pre>                           |</pre><figure class="modern-ascii-diagram" role="img" aria-label="Local Network Protocol | Network Level">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Local Network Protocol</div><div class="modern-diagram-cell">Network Level</div></div></div>
-</figure><pre>                         Protocol Relationships
+  hierarchy:</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">       +------+ +-----+ +-----+       +-----+
+       |Telnet| | FTP | |Voice|  ...  |     |  Application Level
+       +------+ +-----+ +-----+       +-----+
+             |   |         |             |
+            +-----+     +-----+       +-----+
+            | TCP |     | RTP |  ...  |     |  Host Level
+            +-----+     +-----+       +-----+
+               |           |             |
+            +-------------------------------+
+            |    Internet Protocol &amp; ICMP   |  Gateway Level
+            +-------------------------------+</pre>
+</div><pre>                           |</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">              +---------------------------+
+              |   Local Network Protocol  |    Network Level
+              +---------------------------+
+</pre>
+</div><pre>                         Protocol Relationships
 
                                Figure 2.
 
@@ -1201,10 +1220,7 @@ Transmission Control Protocol
     <tbody><tr><td>Source Port</td><td>16</td><td>Client or service port; suspicious reuse or odd pairings can reveal scans or spoofing.</td></tr><tr><td>Destination Port</td><td>16</td><td>Target service; hunt for unauthorized services, fan-out scans, or policy bypass.</td></tr><tr><td>Sequence Number</td><td>32</td><td>Byte-stream position; repeated or out-of-window values may indicate injection or spoofing.</td></tr><tr><td>Acknowledgment Number</td><td>32</td><td>Next expected byte; impossible ACKs reveal scans, desync, or spoofed packets.</td></tr><tr><td>Data Offset</td><td>4</td><td>Header length; large values mean options, while invalid small values are malformed.</td></tr><tr><td>Reserved</td><td>6</td><td>Should be zero; non-zero reserved bits often indicate crafted or evasive traffic.</td></tr><tr><td>TCP Flags</td><td>6</td><td>SYN/ACK/RST/FIN combinations; watch for illegal flag combos, floods, and RST injection.</td></tr><tr><td>Window</td><td>16</td><td>Advertised receive window; zero-window abuse or odd scaling can stand out.</td></tr><tr><td>Checksum</td><td>16</td><td>Integrity check; invalid values can be offload artifacts or crafted packet evidence.</td></tr><tr><td>Urgent Pointer</td><td>16</td><td>Only meaningful with URG; unexpected use can indicate evasion or legacy attacks.</td></tr><tr><td>Options/Padding</td><td>32</td><td>MSS, SACK, timestamps; odd combinations can fingerprint tools or evasions.</td></tr></tbody>
   </table>
 </details><pre>
-    0                   1                   2                   3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Source Port | Destination Port">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Source Port</div><div class="modern-diagram-cell">Destination Port</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Sequence Number</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Acknowledgment Number</div></div><div class="modern-diagram-row" style="--cell-count: 7"><div class="modern-diagram-cell">Data</div><div class="modern-diagram-cell">U</div><div class="modern-diagram-cell">A</div><div class="modern-diagram-cell">P</div><div class="modern-diagram-cell">R</div><div class="modern-diagram-cell">S</div><div class="modern-diagram-cell">F</div></div><div class="modern-diagram-row" style="--cell-count: 9"><div class="modern-diagram-cell">Offset</div><div class="modern-diagram-cell">Reserved</div><div class="modern-diagram-cell">R</div><div class="modern-diagram-cell">C</div><div class="modern-diagram-cell">S</div><div class="modern-diagram-cell">S</div><div class="modern-diagram-cell">Y</div><div class="modern-diagram-cell">I</div><div class="modern-diagram-cell">Window</div></div><div class="modern-diagram-row" style="--cell-count: 6"><div class="modern-diagram-cell">G</div><div class="modern-diagram-cell">K</div><div class="modern-diagram-cell">H</div><div class="modern-diagram-cell">T</div><div class="modern-diagram-cell">N</div><div class="modern-diagram-cell">N</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Checksum</div><div class="modern-diagram-cell">Urgent Pointer</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Options</div><div class="modern-diagram-cell">Padding</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">data</div></div></div>
-</figure><pre>                            TCP Header Format
+    0                   1                   2                   3</pre><svg class="rfc-bit-diagram" viewBox="0 0 424 1030" role="img" aria-label="Bit field diagram" xmlns="http://www.w3.org/2000/svg"><desc>Protocol header bit field layout showing field names and positions</desc><defs>  <style>    .bit-grid { stroke: #94a3b8; stroke-width: 0.5; fill: none; }    .field-block { fill: #3b82f6; opacity: 0.9; rx: 4; }    .field-label { fill: white; font-size: 11px; font-weight: 600; font-family: Inter, sans-serif; text-anchor: middle; }    .bit-label { fill: #64748b; font-size: 9px; font-family: "IBM Plex Mono", monospace; text-anchor: middle; }    .row-label { fill: #475569; font-size: 10px; font-family: Inter, sans-serif; }  </style></defs><text class="bit-label" x="20" y="32">0</text><text class="bit-label" x="116" y="32">8</text><text class="bit-label" x="212" y="32">16</text><text class="bit-label" x="308" y="32">24</text><text class="bit-label" x="404" y="32">31</text><rect class="field-block" x="20" y="50" width="372" height="50" /><text class="field-label" x="206.0" y="79.0">Source Port</text><rect class="bit-grid" x="20" y="50" width="384" height="50" /><rect class="field-block" x="20" y="110" width="372" height="50" /><text class="field-label" x="206.0" y="139.0">Destination </text><rect class="bit-grid" x="20" y="110" width="384" height="50" /><rect class="field-block" x="20" y="170" width="384" height="50" /><text class="field-label" x="212.0" y="199.0">Sequence Num</text><rect class="bit-grid" x="20" y="170" width="384" height="50" /><rect class="field-block" x="20" y="230" width="384" height="50" /><text class="field-label" x="212.0" y="259.0">Acknowledgme</text><rect class="bit-grid" x="20" y="230" width="384" height="50" /><rect class="field-block" x="20" y="290" width="96" height="50" /><text class="field-label" x="68.0" y="319.0">Data</text><rect class="field-block" x="116" y="290" width="96" height="50" /><text class="field-label" x="164.0" y="319.0">U</text><rect class="field-block" x="212" y="290" width="96" height="50" /><text class="field-label" x="260.0" y="319.0">A</text><rect class="field-block" x="308" y="290" width="96" height="50" /><text class="field-label" x="356.0" y="319.0">P</text><rect class="bit-grid" x="20" y="290" width="384" height="50" /><rect class="field-block" x="20" y="350" width="96" height="50" /><text class="field-label" x="68.0" y="379.0">R</text><rect class="field-block" x="116" y="350" width="96" height="50" /><text class="field-label" x="164.0" y="379.0">S</text><rect class="field-block" x="212" y="350" width="96" height="50" /><text class="field-label" x="260.0" y="379.0">F</text><rect class="field-block" x="308" y="350" width="96" height="50" /><text class="field-label" x="356.0" y="379.0">Offset</text><rect class="bit-grid" x="20" y="350" width="384" height="50" /><rect class="field-block" x="20" y="410" width="132" height="50" /><text class="field-label" x="86.0" y="439.0">Reserved</text><rect class="field-block" x="152" y="410" width="96" height="50" /><text class="field-label" x="200.0" y="439.0">R</text><rect class="field-block" x="248" y="410" width="96" height="50" /><text class="field-label" x="296.0" y="439.0">C</text><rect class="bit-grid" x="20" y="410" width="384" height="50" /><rect class="field-block" x="20" y="470" width="96" height="50" /><text class="field-label" x="68.0" y="499.0">S</text><rect class="field-block" x="116" y="470" width="96" height="50" /><text class="field-label" x="164.0" y="499.0">S</text><rect class="field-block" x="212" y="470" width="96" height="50" /><text class="field-label" x="260.0" y="499.0">Y</text><rect class="field-block" x="308" y="470" width="96" height="50" /><text class="field-label" x="356.0" y="499.0">I</text><rect class="bit-grid" x="20" y="470" width="384" height="50" /><rect class="field-block" x="20" y="530" width="372" height="50" /><text class="field-label" x="206.0" y="559.0">Window</text><rect class="bit-grid" x="20" y="530" width="384" height="50" /><rect class="field-block" x="20" y="590" width="96" height="50" /><text class="field-label" x="68.0" y="619.0">G</text><rect class="field-block" x="116" y="590" width="96" height="50" /><text class="field-label" x="164.0" y="619.0">K</text><rect class="field-block" x="212" y="590" width="96" height="50" /><text class="field-label" x="260.0" y="619.0">H</text><rect class="field-block" x="308" y="590" width="96" height="50" /><text class="field-label" x="356.0" y="619.0">T</text><rect class="bit-grid" x="20" y="590" width="384" height="50" /><rect class="field-block" x="20" y="650" width="96" height="50" /><text class="field-label" x="68.0" y="679.0">N</text><rect class="field-block" x="116" y="650" width="96" height="50" /><text class="field-label" x="164.0" y="679.0">N</text><rect class="bit-grid" x="20" y="650" width="384" height="50" /><rect class="field-block" x="20" y="710" width="372" height="50" /><text class="field-label" x="206.0" y="739.0">Checksum</text><rect class="bit-grid" x="20" y="710" width="384" height="50" /><rect class="field-block" x="20" y="770" width="372" height="50" /><text class="field-label" x="206.0" y="799.0">Urgent Point</text><rect class="bit-grid" x="20" y="770" width="384" height="50" /><rect class="field-block" x="20" y="830" width="384" height="50" /><text class="field-label" x="212.0" y="859.0">Options</text><rect class="bit-grid" x="20" y="830" width="384" height="50" /><rect class="field-block" x="20" y="890" width="180" height="50" /><text class="field-label" x="110.0" y="919.0">Padding</text><rect class="bit-grid" x="20" y="890" width="384" height="50" /><rect class="field-block" x="20" y="950" width="384" height="50" /><text class="field-label" x="212.0" y="979.0">data</text><rect class="bit-grid" x="20" y="950" width="384" height="50" /></svg><pre>                            TCP Header Format
 
           Note that one tick mark represents one bit position.
 
@@ -1299,10 +1315,16 @@ Functional Specification
     This gives the TCP protection against misrouted segments.  This
     information is carried in the Internet Protocol and is transferred
     across the TCP/Network interface in the arguments or results of
-    calls by the TCP on the IP.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Source Address | Destination Address">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Source Address</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Destination Address</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">zero</div><div class="modern-diagram-cell">PTCL</div><div class="modern-diagram-cell">TCP Length</div></div></div>
-</figure><pre>      The TCP Length is the TCP header length plus the data length in
+    calls by the TCP on the IP.</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">                     +--------+--------+--------+--------+
+                     |           Source Address          |
+                     +--------+--------+--------+--------+
+                     |         Destination Address       |
+                     +--------+--------+--------+--------+
+                     |  zero  |  PTCL  |    TCP Length   |
+                     +--------+--------+--------+--------+
+</pre>
+</div><pre>      The TCP Length is the TCP header length plus the data length in
       octets (this is not an explicitly transmitted quantity, but is
       computed), and it does not count the 12 octets of the pseudo
       header.
@@ -1376,10 +1398,11 @@ Functional Specification
         receivers must be prepared to process options even if they do
         not begin on a word boundary.
 
-      Maximum Segment Size</pre><figure class="modern-ascii-diagram" role="img" aria-label="max seg size">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">00000010</div><div class="modern-diagram-cell">00000100</div><div class="modern-diagram-cell">max seg size</div></div></div>
-</figure><pre>         Kind=2   Length=4
+      Maximum Segment Size</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">        +--------+--------+---------+--------+
+        |00000010|00000100|   max seg size   |
+        +--------+--------+---------+--------+</pre>
+</div><pre>         Kind=2   Length=4
 
 
 
@@ -1641,25 +1664,26 @@ Functional Specification
   </div>
   <pre>September 1981
                                            Transmission Control Protocol
-                                                Functional Specification</pre><figure class="modern-ascii-diagram" role="img" aria-label="active OPEN | CLOSED">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">active OPEN</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">CLOSED</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">create TCB</div></div></div>
-</figure><pre>                                |     ^              \   \  snd SYN</pre><figure class="modern-ascii-diagram" role="img" aria-label="passive OPEN | CLOSE        \   \ | create TCB | delete TCB         \   \">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">passive OPEN</div><div class="modern-diagram-cell">CLOSE        \   \</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">create TCB</div><div class="modern-diagram-cell">delete TCB         \   \</div></div></div>
-</figure><pre>                                V     |                      \   \</pre><figure class="modern-ascii-diagram" role="img" aria-label="CLOSE | LISTEN">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">CLOSE</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">LISTEN</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">delete TCB</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">rcv SYN</div><div class="modern-diagram-cell">SEND</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">V</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">snd SYN,ACK  /       \   snd SYN</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">SYN</div><div class="modern-diagram-cell">rcv SYN</div><div class="modern-diagram-cell">SYN</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">RCVD</div><div class="modern-diagram-cell">SENT</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">snd ACK</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">rcv ACK of SYN  \       /  rcv SYN,ACK</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">x</div><div class="modern-diagram-cell">snd ACK</div></div></div>
-</figure><pre>   |                            V     V</pre><figure class="modern-ascii-diagram" role="img" aria-label="CLOSE | ESTAB">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">CLOSE</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">ESTAB</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">snd FIN</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">CLOSE</div><div class="modern-diagram-cell">rcv FIN</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">V</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">snd FIN  /       \   snd ACK</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">FIN</div><div class="modern-diagram-cell">CLOSE</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">WAIT-1</div><div class="modern-diagram-cell">WAIT</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">rcv FIN  \</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">rcv ACK of FIN</div><div class="modern-diagram-cell">CLOSE</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">snd ACK</div></div></div>
-</figure><pre>   V        x                   V                           snd FIN V</pre><figure class="modern-ascii-diagram" role="img" aria-label="FINWAIT-2 | CLOSING | LAST-ACK | rcv ACK of FIN | rcv ACK of FIN">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">FINWAIT-2</div><div class="modern-diagram-cell">CLOSING</div><div class="modern-diagram-cell">LAST-ACK</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">rcv ACK of FIN</div><div class="modern-diagram-cell">rcv ACK of FIN</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">rcv FIN</div><div class="modern-diagram-cell">Timeout=2MSL</div></div></div>
-</figure><pre>   |  -------              x       V    ------------        x       V</pre><figure class="modern-ascii-diagram" role="img" aria-label="snd ACK                 +---------+delete TCB | TIME WAIT | CLOSED">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">snd ACK                 +---------+delete TCB</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">TIME WAIT</div><div class="modern-diagram-cell">CLOSED</div></div></div>
-</figure><pre>                      TCP Connection State Diagram
+                                                Functional Specification</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">                              +---------+ ---------\      active OPEN
+                              |  CLOSED |            \    -----------
+                              +---------+&lt;---------\   \   create TCB</pre>
+</div><pre>                                |     ^              \   \  snd SYN</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">                   passive OPEN |     |   CLOSE        \   \
+                   ------------ |     | ----------       \   \
+                    create TCB  |     | delete TCB         \   \</pre>
+</div><pre>                                V     |                      \   \</pre><svg class="rfc-flow-diagram" viewBox="0 0 500 160" role="img" aria-label="Flow diagram" xmlns="http://www.w3.org/2000/svg"><desc>System architecture or data flow diagram</desc><defs>  <style>    .flow-box { fill: #1e293b; stroke: #3b82f6; stroke-width: 2; rx: 12; }    .flow-label { fill: #e2e8f0; font-size: 13px; font-weight: 600; font-family: Inter, sans-serif; text-anchor: middle; }    .flow-arrow { stroke: #64748b; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }    .arrow-label { fill: #94a3b8; font-size: 10px; font-family: "IBM Plex Mono", monospace; text-anchor: middle; }  </style>  <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">    <polygon points="0 0, 10 3.5, 0 7" fill="#64748b" />  </marker></defs><rect class="flow-box" x="30" y="30" width="120" height="60" /><text class="flow-label" x="90.0" y="65.0">LISTEN</text><rect class="flow-box" x="190" y="30" width="120" height="60" /><text class="flow-label" x="250.0" y="65.0"></text><rect class="flow-box" x="350" y="30" width="120" height="60" /><text class="flow-label" x="410.0" y="65.0">SYN SYNRCVD SENT</text><line class="flow-arrow" x1="150" y1="60.0" x2="190" y2="60.0" /><line class="flow-arrow" x1="310" y1="60.0" x2="350" y2="60.0" /></svg><pre>   |                            V     V</pre><svg class="rfc-flow-diagram" viewBox="0 0 500 160" role="img" aria-label="Flow diagram" xmlns="http://www.w3.org/2000/svg"><desc>System architecture or data flow diagram</desc><defs>  <style>    .flow-box { fill: #1e293b; stroke: #3b82f6; stroke-width: 2; rx: 12; }    .flow-label { fill: #e2e8f0; font-size: 13px; font-weight: 600; font-family: Inter, sans-serif; text-anchor: middle; }    .flow-arrow { stroke: #64748b; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }    .arrow-label { fill: #94a3b8; font-size: 10px; font-family: "IBM Plex Mono", monospace; text-anchor: middle; }  </style>  <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">    <polygon points="0 0, 10 3.5, 0 7" fill="#64748b" />  </marker></defs><rect class="flow-box" x="30" y="30" width="120" height="60" /><text class="flow-label" x="90.0" y="65.0">-------</text><rect class="flow-box" x="190" y="30" width="120" height="60" /><text class="flow-label" x="250.0" y="65.0"></text><rect class="flow-box" x="350" y="30" width="120" height="60" /><text class="flow-label" x="410.0" y="65.0">FIN CLOSEWAIT-1 WAIT</text><line class="flow-arrow" x1="150" y1="60.0" x2="190" y2="60.0" /><line class="flow-arrow" x1="310" y1="60.0" x2="350" y2="60.0" /></svg><pre>   V        x                   V                           snd FIN V</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;"> +---------+                  +---------+                   +---------+
+ |FINWAIT-2|                  | CLOSING |                   | LAST-ACK|
+ +---------+                  +---------+                   +---------+
+   |                rcv ACK of FIN |                 rcv ACK of FIN |
+   |  rcv FIN       -------------- |    Timeout=2MSL -------------- |</pre>
+</div><pre>   |  -------              x       V    ------------        x       V</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">    \ snd ACK                 +---------+delete TCB         +---------+
+     ------------------------&gt;|TIME WAIT|------------------&gt;| CLOSED  |
+                              +---------+                   +---------+
+</pre>
+</div><pre>                      TCP Connection State Diagram
                                Figure 6.
 
 

@@ -219,10 +219,14 @@ Abstract
    the third and fourth bytes of the &quot;extended RCODE and flags&quot; portion
    of the EDNS0 OPT meta-RR, structured as follows:
 
-                +0 (MSB)                +1 (LSB)</pre><figure class="modern-ascii-diagram" role="img" aria-label="EXTENDED-RCODE | VERSION | DO | Z">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">0:</div><div class="modern-diagram-cell">EXTENDED-RCODE</div><div class="modern-diagram-cell">VERSION</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">2:</div><div class="modern-diagram-cell">DO</div><div class="modern-diagram-cell">Z</div></div></div>
-</figure><pre>   Setting the DO bit to one in a query indicates to the server that the
+                +0 (MSB)                +1 (LSB)</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">         +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+      0: |   EXTENDED-RCODE      |       VERSION         |
+         +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+      2: |DO|                    Z                       |
+         +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+</pre>
+</div><pre>   Setting the DO bit to one in a query indicates to the server that the
    resolver is able to accept DNSSEC security RRs.  The DO bit cleared
    (set to zero) indicates the resolver is unprepared to handle DNSSEC
    security RRs and those RRs MUST NOT be returned in the response
@@ -281,10 +285,14 @@ IANA Considerations
    requested that the left most bit be allocated.  Thus the USE of the
    OPT record TTL field would look like
 
-                +0 (MSB)                +1 (LSB)</pre><figure class="modern-ascii-diagram" role="img" aria-label="EXTENDED-RCODE | VERSION | DO | Z">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">0:</div><div class="modern-diagram-cell">EXTENDED-RCODE</div><div class="modern-diagram-cell">VERSION</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">2:</div><div class="modern-diagram-cell">DO</div><div class="modern-diagram-cell">Z</div></div></div>
-</figure><pre>Acknowledgements
+                +0 (MSB)                +1 (LSB)</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">         +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+      0: |   EXTENDED-RCODE      |       VERSION         |
+         +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+      2: |DO|                    Z                       |
+         +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+</pre>
+</div><pre>Acknowledgements
 
    This document is based on a rough draft by Bob Halley with input from
    Olafur Gudmundsson, Andreas Gustafsson, Brian Wellington, Randy Bush,

@@ -299,10 +299,27 @@ Table of Contents
 
    The DNSSEC algorithm implementation status table is listed below.
    Only the algorithms already specified for use with DNSSEC at the time
-   of writing are listed.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Must | Must Not | Recommended | Optional | Implement | Implement | to Implement">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Must</div><div class="modern-diagram-cell">Must Not</div><div class="modern-diagram-cell">Recommended</div><div class="modern-diagram-cell">Optional</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Implement</div><div class="modern-diagram-cell">Implement</div><div class="modern-diagram-cell">to Implement</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">RSASHA1</div><div class="modern-diagram-cell">RSAMD5</div><div class="modern-diagram-cell">RSASHA256</div><div class="modern-diagram-cell">Any</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">RSASHA1-NSEC3</div><div class="modern-diagram-cell">registered</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">SHA1</div><div class="modern-diagram-cell">algorithm</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">RSASHA512</div><div class="modern-diagram-cell">not listed in</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">ECDSAP256SHA256</div><div class="modern-diagram-cell">this table</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">ECDSAP384SHA384</div></div></div>
-</figure><pre>Rose                         Standards Track                    [Page 4]</pre>
+   of writing are listed.</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">    +------------+------------+-------------------+-------------------+
+    |    Must    |  Must Not  |    Recommended    |      Optional     |
+    |  Implement | Implement  |   to Implement    |                   |
+    +------------+------------+-------------------+-------------------+
+    |            |            |                   |                   |
+    |   RSASHA1  |   RSAMD5   |   RSASHA256       |   Any             |
+    |            |            |   RSASHA1-NSEC3   |   registered      |
+    |            |            |    -SHA1          |   algorithm       |
+    |            |            |   RSASHA512       |   not listed in   |
+    |            |            |   ECDSAP256SHA256 |   this table      |
+    |            |            |   ECDSAP384SHA384 |                   |
+    +------------+------------+-------------------+-------------------+
+
+
+
+
+
+
+</pre>
+</div><pre>Rose                         Standards Track                    [Page 4]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 5</span>

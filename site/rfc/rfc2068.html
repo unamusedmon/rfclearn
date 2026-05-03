@@ -1016,10 +1016,13 @@ implied *LWS
    or special characters. These special characters MUST be in a quoted
    string to be used within a parameter value.
 
-          token          = 1*&lt;any CHAR except CTLs or tspecials&gt;</pre><figure class="modern-ascii-diagram" role="img" aria-label="tspecials      = &quot;(&quot; | SP | HT">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">tspecials      = &quot;(&quot;</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">SP</div><div class="modern-diagram-cell">HT</div></div></div>
-</figure><pre>   Comments can be included in some HTTP header fields by surrounding
+          token          = 1*&lt;any CHAR except CTLs or tspecials&gt;</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">          tspecials      = &quot;(&quot; | &quot;)&quot; | &quot;&lt;&quot; | &quot;&gt;&quot; | &quot;@&quot;
+                         | &quot;,&quot; | &quot;;&quot; | &quot;:&quot; | &quot;\&quot; | &lt;&quot;&gt;
+                         | &quot;/&quot; | &quot;[&quot; | &quot;]&quot; | &quot;?&quot; | &quot;=&quot;
+                         | &quot;{&quot; | &quot;}&quot; | SP | HT
+</pre>
+</div><pre>   Comments can be included in some HTTP header fields by surrounding
    the comment text with parentheses. Comments are only allowed in
    fields containing &quot;comment&quot; as part of their field value definition.
    In all other fields, parentheses are considered part of the field
@@ -1159,10 +1162,12 @@ Fielding, et. al.           Standards Track                    [Page 16]</pre>
   </div>
   <pre>RFC 2068                        HTTP/1.1                    January 1997</pre><pre>          scheme         = 1*( ALPHA | DIGIT | &quot;+&quot; | &quot;-&quot; | &quot;.&quot; )
           net_loc        = *( pchar | &quot;;&quot; | &quot;?&quot; )</pre><pre>          query          = *( uchar | reserved )
-          fragment       = *( uchar | reserved )</pre><pre>          pchar          = uchar | &quot;:&quot; | &quot;@&quot; | &quot;&amp;&quot; | &quot;=&quot; | &quot;+&quot;</pre><pre>          uchar          = unreserved | escape</pre><pre>          unreserved     = ALPHA | DIGIT | safe | extra | national</pre><pre>          escape         = &quot;%&quot; HEX HEX</pre><figure class="modern-ascii-diagram" role="img" aria-label="reserved       = &quot;;&quot; | extra          = &quot;!&quot;">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">reserved       = &quot;;&quot;</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">extra          = &quot;!&quot;</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">safe           = &quot;$&quot;</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">unsafe         = CTL</div><div class="modern-diagram-cell">SP</div></div></div>
-</figure><pre>          national       = &lt;any OCTET excluding ALPHA, DIGIT,
+          fragment       = *( uchar | reserved )</pre><pre>          pchar          = uchar | &quot;:&quot; | &quot;@&quot; | &quot;&amp;&quot; | &quot;=&quot; | &quot;+&quot;</pre><pre>          uchar          = unreserved | escape</pre><pre>          unreserved     = ALPHA | DIGIT | safe | extra | national</pre><pre>          escape         = &quot;%&quot; HEX HEX</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">          reserved       = &quot;;&quot; | &quot;/&quot; | &quot;?&quot; | &quot;:&quot; | &quot;@&quot; | &quot;&amp;&quot; | &quot;=&quot; | &quot;+&quot;
+          extra          = &quot;!&quot; | &quot;*&quot; | &quot;&#x27;&quot; | &quot;(&quot; | &quot;)&quot; | &quot;,&quot;
+          safe           = &quot;$&quot; | &quot;-&quot; | &quot;_&quot; | &quot;.&quot;
+          unsafe         = CTL | SP | &lt;&quot;&gt; | &quot;#&quot; | &quot;%&quot; | &quot;&lt;&quot; | &quot;&gt;&quot;</pre>
+</div><pre>          national       = &lt;any OCTET excluding ALPHA, DIGIT,
                            reserved, extra, safe, and unsafe&gt;
 
    For definitive information on URL syntax and semantics, see RFC 1738
@@ -1323,10 +1328,15 @@ Fielding, et. al.           Standards Track                    [Page 19]</pre>
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 22</span>
   </div>
-  <pre>RFC 2068                        HTTP/1.1                    January 1997</pre><figure class="modern-ascii-diagram" role="img" aria-label="weekday      = &quot;Monday&quot; | Tuesday&quot; | Wednesday&quot; | Thursday&quot; | Friday&quot; | Saturday">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">weekday      = &quot;Monday&quot;</div><div class="modern-diagram-cell">Tuesday&quot;</div><div class="modern-diagram-cell">Wednesday&quot;</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Thursday&quot;</div><div class="modern-diagram-cell">Friday&quot;</div><div class="modern-diagram-cell">Saturday&quot;</div><div class="modern-diagram-cell">Sunday&quot;</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">month        = &quot;Jan&quot;</div><div class="modern-diagram-cell">Feb&quot;</div><div class="modern-diagram-cell">Mar&quot;</div><div class="modern-diagram-cell">Apr&quot;</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">May&quot;</div><div class="modern-diagram-cell">Jun&quot;</div><div class="modern-diagram-cell">Jul&quot;</div><div class="modern-diagram-cell">Aug&quot;</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Sep&quot;</div><div class="modern-diagram-cell">Oct&quot;</div><div class="modern-diagram-cell">Nov&quot;</div><div class="modern-diagram-cell">Dec&quot;</div></div></div>
-</figure><pre>     Note: HTTP requirements for the date/time stamp format apply only
+  <pre>RFC 2068                        HTTP/1.1                    January 1997</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">          weekday      = &quot;Monday&quot; | &quot;Tuesday&quot; | &quot;Wednesday&quot;
+                       | &quot;Thursday&quot; | &quot;Friday&quot; | &quot;Saturday&quot; | &quot;Sunday&quot;
+
+          month        = &quot;Jan&quot; | &quot;Feb&quot; | &quot;Mar&quot; | &quot;Apr&quot;
+                       | &quot;May&quot; | &quot;Jun&quot; | &quot;Jul&quot; | &quot;Aug&quot;
+                       | &quot;Sep&quot; | &quot;Oct&quot; | &quot;Nov&quot; | &quot;Dec&quot;
+</pre>
+</div><pre>     Note: HTTP requirements for the date/time stamp format apply only
      to their usage within the protocol stream. Clients and servers are
      not required to use these formats for user presentation, request
      logging, etc.
