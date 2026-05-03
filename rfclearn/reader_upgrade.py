@@ -3,7 +3,8 @@
 This module deliberately avoids parsing RFC plaintext into new document
 structure. Earlier semantic conversion was too aggressive for historical RFC
 formatting. The stable approach is: preserve source structure, hide obvious page
-artifacts, improve typography, and keep the layout simple.
+artifacts, improve typography, remove noisy inline note controls, and sanitize
+bogus navigation entries generated from old RFC front matter and diagrams.
 """
 
 from __future__ import annotations
@@ -152,10 +153,91 @@ def _add_reader_palette(document: str) -> str:
 
 
 def _hide_inline_note_widgets(document: str) -> str:
-    document = re.sub(r'<textarea[^>]*placeholder="Add your notes for this section\.\.\.".*?</textarea>', '', document, flags=re.I | re.S)
-    document = re.sub(r'<button[^>]*>\s*Note\s*</button>', '', document, flags=re.I)
-    document = re.sub(r'<div[^>]*>\s*Saved\s*</div>', '', document, flags=re.I)
+    # Remove explicit form controls first.
+    document = re.sub(r'<textarea\b[^>]*>.*?</textarea>', '', document, flags=re.I | re.S)
+    document = re.sub(r'<button\b[^>]*>\s*Note\s*</button>', '', document, flags=re.I | re.S)
+    document = re.sub(r'<[^>]+\b(?:class|id)="[^"]*(?:note|saved)[^"]*"[^>]*>\s*(?:Saved)?\s*</[^>]+>', '', document, flags=re.I | re.S)
+
+    # Remove naked Saved lines left after controls were stripped.
+    document = re.sub(r'(?im)^\s*Saved\s*$', '', document)
+
+    # Remove any tiny leftover note button fragments in heading lines.
+    document = re.sub(r'\s*<[^>]+>\s*Note\s*</[^>]+>', '', document, flags=re.I)
     return document
+
+
+def _toc_label_is_junk(label: str) -> bool:
+    clean = html.unescape(label).replace("#", "").strip()
+    clean = re.sub(r"\s+", " ", clean)
+    if not clean:
+        return True
+    if len(clean) <= 2:
+        return True
+    if re.fullmatch(r"[\\/|+\-_=\s]+", clean):
+        return True
+    if re.fullmatch(r"(?:[A-Za-z]\s*){1,4}", clean) and len(clean.replace(" ", "")) <= 4:
+        return True
+    junk_patterns = (
+        r"^Session Complete$",
+        r"^Prepared For$",
+        r"^By$",
+        r"^Editor$",
+        r"^Table Of Contents$",
+        r"^Preface$",
+        r"^Information Processing Techniques Office$",
+        r"^Defense Advanced Research Projects Agency$",
+        r"^Information Sciences Institute$",
+        r"^University Of Southern California$",
+        r"^\d+\s+.*(?:Boulevard|Way)$",
+        r"^(?:Arlington|Marina Del Rey),",
+        r"^Application Application Program Program$",
+        r"^Internet Module Internet Module Internet Module$",
+        r"^Lni-?\d+",
+        r"^Local Network \d+ Local Network \d+$",
+        r"^Protocol Relationships$",
+        r"^Model Of Operation$",
+    )
+    return any(re.search(pattern, clean, flags=re.I) for pattern in junk_patterns)
+
+
+def _sanitize_existing_toc(document: str) -> str:
+    def replace_link(match: re.Match[str]) -> str:
+        body = match.group("body")
+        label = _strip_tags(body)
+        if _toc_label_is_junk(label):
+            return ""
+        # Remove literal trailing # from TOC labels; the href already communicates linkability.
+        cleaned_body = re.sub(r"\s*#\s*$", "", body)
+        return match.group(0).replace(body, cleaned_body)
+
+    document = re.sub(
+        r'<a(?P<attrs>[^>]*class="[^"]*reader-toc-link[^"]*"[^>]*)>(?P<body>.*?)</a>',
+        replace_link,
+        document,
+        flags=re.I | re.S,
+    )
+    return document
+
+
+def _demote_junk_headings(document: str) -> str:
+    def replace_heading(match: re.Match[str]) -> str:
+        level = match.group("level")
+        attrs = match.group("attrs") or ""
+        body = match.group("body")
+        label = _strip_tags(body)
+        if not _toc_label_is_junk(label):
+            return match.group(0)
+        # Slash-art and accidental diagram headings should not be headings.
+        if re.search(r"[\\/|+\-_=]", label):
+            return f'<pre class="rfc-readable-pre possible-diagram">{html.escape(label)}</pre>'
+        return f'<p class="rfc-muted-artifact">{html.escape(label)}</p>'
+
+    return re.sub(
+        r'<h(?P<level>[1-6])(?P<attrs>[^>]*)>(?P<body>.*?)</h(?P=level)>',
+        replace_heading,
+        document,
+        flags=re.I | re.S,
+    )
 
 
 def upgrade_document(document: str) -> str:
@@ -163,6 +245,8 @@ def upgrade_document(document: str) -> str:
     document = _ensure_head_asset(document, SCRIPT_HREF, f'<script defer src="{SCRIPT_HREF}"></script>')
     document = _add_body_class(document, "reader-upgraded")
     document = _hide_inline_note_widgets(document)
+    document = _demote_junk_headings(document)
+    document = _sanitize_existing_toc(document)
     document = _upgrade_pre_blocks(document)
     document = _add_reader_palette(document)
     return document
@@ -316,6 +400,10 @@ body.reader-mode-wide .rfc-readable-pre {
   overflow-wrap: normal;
 }
 
+.rfc-muted-artifact {
+  display: none !important;
+}
+
 .normative-keyword {
   display: inline-block;
   padding: .02rem .28rem;
@@ -327,11 +415,16 @@ body.reader-mode-wide .rfc-readable-pre {
 }
 
 /* Kill old inline notes that interrupt RFC text. */
-textarea[placeholder="Add your notes for this section..."] { display: none !important; }
+textarea,
+button:has-text("Note"),
 button.note-btn,
 .note-status,
 .section-note,
-.inline-note { display: none !important; }
+.inline-note,
+[class*="note"],
+[id*="note"] {
+  display: none !important;
+}
 
 @media (max-width: 780px) {
   .reader-palette { position: static; border-radius: 0 0 1rem 1rem; }
@@ -365,6 +458,16 @@ READER_JS = r"""
     const button = event.target.closest("[data-reader-mode]");
     if (!button) return;
     setMode(button.dataset.readerMode);
+  });
+
+  // Remove any note widgets that escaped server-side cleanup. Browser CSS cannot
+  // select by text reliably, so do it here.
+  document.querySelectorAll("button").forEach((button) => {
+    if (button.textContent.trim().toLowerCase() === "note") button.remove();
+  });
+  document.querySelectorAll("textarea").forEach((textarea) => textarea.remove());
+  document.querySelectorAll("body *").forEach((node) => {
+    if (node.childNodes.length === 1 && node.textContent.trim() === "Saved") node.remove();
   });
 
   setMode(localStorage.getItem(storageKey) || "comfortable");
