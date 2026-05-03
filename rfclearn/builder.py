@@ -1,7 +1,10 @@
 """Main builder functions for RFC Learn."""
 
+import hashlib
 import html
+import json
 import re
+
 import shutil
 import time
 import urllib.error
@@ -23,7 +26,15 @@ from .config import (
     HEADER_REFERENCES, THREAT_INDICATORS, DETECTION_QUESTIONS,
     KNOWN_RFC_TAG_GROUPS, KNOWN_RFC_TAGS, RELATION_RE, RFC_NUM_RE,
 )
+
+try:
+    with open(ROOT / "diagram_cache.json", "r") as f:
+        DIAGRAM_CACHE = json.load(f)
+except FileNotFoundError:
+    DIAGRAM_CACHE = {}
+
 from .templates import SITE_CSS, INDEX_JS, DOC_JS
+
 from . import diagram_renderer
 
 def slug(meta: RFCMeta) -> str:
@@ -618,7 +629,7 @@ def render_modern_ascii_diagram(lines: list[str]) -> str:
     return diagram_renderer.render_modern_ascii_diagram_v2(lines)
 
 
-def modernize_ascii_html(html_content: str) -> str:
+def modernize_ascii_html(html_content: str, is_epub: bool = False) -> str:
     def pre_repl(match: re.Match[str]) -> str:
         pre_tag = match.group(1)
         pre_body = match.group(2)
@@ -662,7 +673,16 @@ def modernize_ascii_html(html_content: str) -> str:
         result = []
         for part in parts:
             if part["type"] == "diagram":
-                result.append(render_modern_ascii_diagram(part["lines"]))
+                if is_epub:
+                    result.append(render_modern_ascii_diagram(part["lines"]))
+                else:
+                    raw_ascii = "\n".join(part["lines"])
+                    h = hashlib.sha256(raw_ascii.encode("utf-8")).hexdigest()
+                    if h in DIAGRAM_CACHE:
+                        mermaid_code = DIAGRAM_CACHE[h]
+                        result.append(f'<div class="mermaid">\n{mermaid_code}\n</div>')
+                    else:
+                        result.append(render_modern_ascii_diagram(part["lines"]))
             else:
                 content = part["content"].strip("\n")
                 if content:
@@ -671,6 +691,7 @@ def modernize_ascii_html(html_content: str) -> str:
         return "".join(result)
 
     return re.sub(r"(<pre[^>]*>)(.*?)(</pre>)", pre_repl, html_content, flags=re.S | re.I)
+
 
 
 def extract_body(raw: str) -> str:
@@ -745,7 +766,8 @@ def render_header_reference_panel(rfc_num: int) -> str:
         return ""
     fields = spec["fields"]
     assert isinstance(fields, list)
-    svg = render_header_layout_svg(fields)
+    svg = render_header_layout_svg(spec)
+
     rows = "".join(
         "<tr>"
         f"<td>{html.escape(name)}</td>"
@@ -945,6 +967,7 @@ def page(title: str, content: str, extra_head: str = "") -> str:
   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
   <title>{html.escape(title)}</title>
   <link rel=\"stylesheet\" href=\"{extra_head}assets/style.css\">
+  <script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs'; mermaid.initialize({{ startOnLoad: true, theme: 'dark' }});</script>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -952,6 +975,7 @@ def page(title: str, content: str, extra_head: str = "") -> str:
 </body>
 </html>
 """
+
 
 
 def rfc_href(num: int, local_nums: set[int], local_prefix: str = "", local_ext: str = ".html") -> tuple[str, str]:
@@ -1429,12 +1453,13 @@ def chapter_content(build: RFCBuild, local_nums: set[int], include_category: boo
     meta = build.meta
     if build.html_ok and build.html_path:
         source = localize_rfc_links(html_to_epub_xhtml(read_text(build.html_path)), local_nums, local_ext=".xhtml")
-        source = modernize_ascii_html(source)
+        source = modernize_ascii_html(source, is_epub=True)
     elif build.text_ok and build.text_path:
         linked_text = link_plain_metadata_refs(html.escape(read_text(build.text_path)), local_nums, local_ext=".xhtml")
-        source = modernize_ascii_html(f"<pre>{linked_text}</pre>")
+        source = modernize_ascii_html(f"<pre>{linked_text}</pre>", is_epub=True)
     else:
         source = "<p>RFC source could not be fetched.</p>"
+
     category = f"<p><strong>Categories:</strong> {html.escape(', '.join(meta.tags))}</p>" if include_category else ""
     keywords = f"<p><strong>Keywords:</strong> {html.escape(', '.join(meta.keywords))}</p>" if meta.keywords else ""
     seed_note = "Update-chain context" if meta.update_chain else "Seed RFC"

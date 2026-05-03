@@ -7,11 +7,15 @@ promoted into fake diagram cards.
 
 from __future__ import annotations
 
+import hashlib
 import html
 import re
 import textwrap
 from pathlib import Path
 from typing import Any, Iterable
+
+_DIAGRAM_CACHE: dict[str, str] = {}
+
 
 from .config import SITE_DIR, HEADER_REFERENCES
 
@@ -100,8 +104,15 @@ def render_modern_ascii_diagram(*args: Any, **kwargs: Any) -> str:
     if not raw:
         raw = str(kwargs.get("diagram") or kwargs.get("text") or "")
     
+    # Check the diagram cache first
+    h = hashlib.sha256(raw.encode("utf-8")).hexdigest()
+    if h in _DIAGRAM_CACHE:
+        mermaid_code = _DIAGRAM_CACHE[h]
+        return f'<div class="mermaid">\n{mermaid_code}\n</div>'
+
     # Use the enhanced SVG renderer from diagram_renderer
     from . import diagram_renderer
+
     
     if not _looks_like_diagram(raw):
         return f'<pre class="rfc-readable-pre">{html.escape(_strip_html(raw))}</pre>'
@@ -129,8 +140,12 @@ def _field_class(bits: int) -> str:
     return "huge"
 
 
-def render_header_layout_svg(fields: list[tuple[str, int, str]]) -> str:
+def render_header_layout_svg(header_ref: dict[str, Any]) -> str:
     """Render fields into 32-bit SVG rows with proportional blocks."""
+    fields = header_ref.get("fields", [])
+    title = str(header_ref.get("title", "Protocol header"))
+    note = str(header_ref.get("note", ""))
+
     bit_px = 10
     label_h = 22
     row_h = 38
@@ -170,12 +185,26 @@ def render_header_layout_svg(fields: list[tuple[str, int, str]]) -> str:
             f'<text x="{x + block_w / 2:.1f}" y="{y + 22}" text-anchor="middle" class="field-label">{label}</text>'
             f'<title>{html.escape(name)}: bits {start}-{start + span - 1} in row {seg_row + 1}{continued}</title></g>'
         )
-    return (
+    
+    svg_markup = (
         f'<svg class="header-bit-layout" viewBox="0 0 {width} {height}" role="img" '
         f'aria-label="0-31 bit layout diagram" xmlns="http://www.w3.org/2000/svg">'
         f'<desc>0-31 bit positions across each row; fields are drawn as blocks spanning their bit widths.</desc>'
         f'{top_labels}{grid_lines}{"".join(blocks)}</svg>'
     )
+
+    return (
+        '<figure class="rfc-header-panel" data-rfclearn-diagram="header-panel">'
+        '<div class="header-panel-title">'
+        f'<h3>{html.escape(title)}</h3>'
+        + (f'<p>{html.escape(note)}</p>' if note else '')
+        + '</div>'
+        '<div class="rfc-header-svg-container">'
+        + svg_markup
+        + '</div>'
+        '</figure>'
+    )
+
 
 
 def flow_figure(title: str, steps: list[tuple[str, str]], *, ident: str) -> str:
@@ -448,7 +477,10 @@ def postprocess_site(site_dir: Path = SITE_DIR) -> int:
 
 
 def install_diagram_upgrade(builder_module: Any) -> None:
+    global _DIAGRAM_CACHE
+    _DIAGRAM_CACHE = getattr(builder_module, "DIAGRAM_CACHE", {})
     builder_module.render_modern_ascii_diagram = render_modern_ascii_diagram
+
     builder_module.render_header_layout_svg = render_header_layout_svg
     original_main = builder_module.main
 

@@ -14,7 +14,8 @@ from pathlib import Path
 from typing import Any
 
 from .config import DATA_DIR, SITE_DIR, RFCS, HEADER_REFERENCES
-from .diagram_upgrade import KNOWN_FLOW_FIGURES, flow_figure, render_ascii_diagram_panel, render_header_layout_svg
+from .diagram_upgrade import KNOWN_FLOW_FIGURES, flow_figure, render_modern_ascii_diagram, render_header_layout_svg
+
 
 NORMATIVE_RE = re.compile(r"\b(MUST NOT|SHOULD NOT|MUST|SHOULD|MAY|REQUIRED|RECOMMENDED|OPTIONAL)\b")
 RFC_FILE_RE = re.compile(r"rfc(?P<num>\d+)\.html$", re.I)
@@ -158,8 +159,9 @@ def _render_body(lines: list[str]) -> tuple[str, list[tuple[int, str, str]]]:
         block_lines = block.splitlines()
         if _looks_like_real_diagram(block):
             _flush_para(para, output)
-            output.append(render_ascii_diagram_panel(block, title="Original RFC diagram"))
+            output.append(render_modern_ascii_diagram(block, title="Original RFC diagram"))
             continue
+
 
         heading = _heading_from_line(block_lines[0]) if block_lines else None
         if heading:
@@ -215,10 +217,12 @@ def _render_page(rfc_num: int, title: str, body_html: str, toc: list[tuple[int, 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>RFC {rfc_num}: {html.escape(title)}</title>
-  <link rel="stylesheet" href="../assets/site.css">
+  <link rel="stylesheet" href="../assets/style.css">
   <link rel="stylesheet" href="../assets/diagram-upgrades.css">
   <link rel="stylesheet" href="../assets/reader-upgrades.css">
+  <script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs'; mermaid.initialize({{ startOnLoad: true, theme: 'dark' }});</script>
   <script defer src="../assets/reader-upgrades.js"></script>
+
 </head>
 <body class="reader-upgraded reader-mode-comfortable">
   <div class="reader-palette" aria-label="Reader display controls">
