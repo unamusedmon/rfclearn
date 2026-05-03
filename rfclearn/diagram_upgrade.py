@@ -88,6 +88,7 @@ def render_ascii_diagram_panel(raw: str, *, title: str = "RFC diagram") -> str:
 
 
 def render_modern_ascii_diagram(*args: Any, **kwargs: Any) -> str:
+    """Render ASCII diagrams as SVG using the enhanced diagram renderer."""
     raw = ""
     title = kwargs.get("title") or kwargs.get("caption") or "RFC diagram"
     if args:
@@ -98,9 +99,22 @@ def render_modern_ascii_diagram(*args: Any, **kwargs: Any) -> str:
             raw = "\n".join(str(item) for item in first)
     if not raw:
         raw = str(kwargs.get("diagram") or kwargs.get("text") or "")
+    
+    # Use the enhanced SVG renderer from diagram_renderer
+    from . import diagram_renderer
+    
     if not _looks_like_diagram(raw):
         return f'<pre class="rfc-readable-pre">{html.escape(_strip_html(raw))}</pre>'
-    return render_ascii_diagram_panel(raw, title=str(title))
+    
+    # Convert ASCII diagram to SVG
+    lines = raw.split('\n')
+    svg_output = diagram_renderer.render_modern_ascii_diagram_v2(lines, title)
+    
+    # If the renderer returned a fallback with ASCII, wrap it properly
+    if '<pre' in svg_output and 'modern-diagram-fallback' in svg_output:
+        return render_ascii_diagram_panel(raw, title=str(title))
+    
+    return svg_output
 
 
 def _field_class(bits: int) -> str:
@@ -115,61 +129,52 @@ def _field_class(bits: int) -> str:
     return "huge"
 
 
-def render_header_layout_svg(*args: Any, **kwargs: Any) -> str:
-    """Render known header-reference field lists as responsive HTML cards."""
-    title = str(kwargs.get("title") or "Protocol header")
-    fields = kwargs.get("fields")
-    note = ""
-
-    for value in args:
-        if isinstance(value, str) and title == "Protocol header":
-            title = value
-        elif isinstance(value, dict):
-            title = str(value.get("title", title))
-            fields = value.get("fields", fields)
-            note = str(value.get("note", note) or note)
-        elif isinstance(value, (list, tuple)) and value and all(isinstance(item, (list, tuple)) for item in value):
-            fields = value
-
-    rows: list[tuple[str, int, str]] = []
-    for field in fields or []:
-        try:
-            name = str(field[0])
-            bits = max(int(field[1]), 1)
-            field_note = str(field[2]) if len(field) > 2 else ""
-        except Exception:
-            continue
-        rows.append((name, bits, field_note))
-
-    if not rows:
-        return ""
-
-    total_bits = max(sum(bits for _name, bits, _note in rows), 32)
-    field_cards = []
-    for name, bits, field_note in rows:
-        pct = max(9, min(100, (bits / total_bits) * 100))
-        field_cards.append(
-            '<article class="packet-field '
-            + _field_class(bits)
-            + f'" style="--field-width:{pct:.3f}%">'
-            + '<div class="packet-field-top">'
-            + f'<strong>{html.escape(name)}</strong>'
-            + f'<span>{bits} bit{"s" if bits != 1 else ""}</span>'
-            + '</div>'
-            + (f'<p>{html.escape(field_note)}</p>' if field_note else '')
-            + '</article>'
+def render_header_layout_svg(fields: list[tuple[str, int, str]]) -> str:
+    """Render fields into 32-bit SVG rows with proportional blocks."""
+    bit_px = 10
+    label_h = 22
+    row_h = 38
+    width = 32 * bit_px
+    segments: list[tuple[str, int, int, int]] = []
+    row = 0
+    cursor = 0
+    for name, bit_width, _description in fields:
+        remaining = bit_width
+        while remaining > 0:
+            take = min(remaining, 32 - cursor)
+            segments.append((name, row, cursor, take))
+            cursor += take
+            remaining -= take
+            if cursor == 32:
+                row += 1
+                cursor = 0
+    rows = row + (1 if cursor else 0)
+    height = label_h + max(rows, 1) * row_h + 8
+    top_labels = "".join(
+        f'<text x="{bit * bit_px}" y="14" class="bit-label">{bit}</text>'
+        for bit in range(0, 32, 4)
+    ) + f'<text x="{width}" y="14" text-anchor="end" class="bit-label">31</text>'
+    grid_lines = "".join(
+        f'<line x1="{bit * bit_px}" y1="{label_h}" x2="{bit * bit_px}" y2="{height - 8}" class="bit-grid" />'
+        for bit in range(0, 33, 4)
+    )
+    blocks = []
+    for index, (name, seg_row, start, span) in enumerate(segments):
+        x = start * bit_px
+        y = label_h + seg_row * row_h
+        block_w = span * bit_px
+        label = html.escape(name if span >= 8 else name[:3])
+        continued = "" if sum(1 for seg in segments if seg[0] == name) == 1 else " segment"
+        blocks.append(
+            f'<g><rect x="{x}" y="{y}" width="{block_w}" height="{row_h - 4}" rx="7" class="field-block field-{index % 5}" />'
+            f'<text x="{x + block_w / 2:.1f}" y="{y + 22}" text-anchor="middle" class="field-label">{label}</text>'
+            f'<title>{html.escape(name)}: bits {start}-{start + span - 1} in row {seg_row + 1}{continued}</title></g>'
         )
-
     return (
-        '<figure class="rfc-header-panel" data-rfclearn-diagram="header-panel">'
-        '<div class="header-panel-title">'
-        f'<h3>{html.escape(title)}</h3>'
-        + (f'<p>{html.escape(note)}</p>' if note else '')
-        + '</div>'
-        '<div class="packet-field-grid">'
-        + "".join(field_cards)
-        + '</div>'
-        '</figure>'
+        f'<svg class="header-bit-layout" viewBox="0 0 {width} {height}" role="img" '
+        f'aria-label="0-31 bit layout diagram" xmlns="http://www.w3.org/2000/svg">'
+        f'<desc>0-31 bit positions across each row; fields are drawn as blocks spanning their bit widths.</desc>'
+        f'{top_labels}{grid_lines}{"".join(blocks)}</svg>'
     )
 
 
