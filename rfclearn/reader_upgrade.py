@@ -3,8 +3,9 @@
 This module deliberately avoids parsing RFC plaintext into new document
 structure. Earlier semantic conversion was too aggressive for historical RFC
 formatting. The stable approach is: preserve source structure, hide obvious page
-artifacts, improve typography, remove noisy inline note controls, and sanitize
-bogus navigation entries generated from old RFC front matter and diagrams.
+artifacts, improve typography, remove noisy inline note controls, remove old
+source-page scaffolding, and sanitize bogus navigation entries generated from
+old RFC front matter and diagrams.
 """
 
 from __future__ import annotations
@@ -166,6 +167,47 @@ def _hide_inline_note_widgets(document: str) -> str:
     return document
 
 
+def _remove_legacy_source_scaffolding(document: str) -> str:
+    """Remove obsolete cards/pills from the original source-page layout."""
+    # Remove the old Contents card that only announced where jump links live.
+    document = re.sub(
+        r'<(?:section|article|div)\b(?=[^>]*class="[^"]*(?:card|panel|source|contents)[^"]*")[^>]*>'
+        r'(?:(?!</(?:section|article|div)>).)*?'
+        r'(?:JUMP\s+LINKS\s+LIVE\s+HERE|Jump\s+links\s+live\s+here)'
+        r'.*?</(?:section|article|div)>',
+        '',
+        document,
+        flags=re.I | re.S,
+    )
+    # More conservative fallback when the card class is unknown: remove a block
+    # beginning with a Contents heading and containing the jump-link badge.
+    document = re.sub(
+        r'<(?:section|article|div)\b[^>]*>\s*'
+        r'(?:(?!</(?:section|article|div)>).)*?\bCONTENTS\b'
+        r'(?:(?!</(?:section|article|div)>).)*?\bJUMP\s+LINKS\s+LIVE\s+HERE\b'
+        r'.*?</(?:section|article|div)>',
+        '',
+        document,
+        flags=re.I | re.S,
+    )
+    # Remove implementation-detail metadata pills/cards.
+    noisy_pill_terms = (
+        r'\d+\s+page\s+cards?',
+        r'RFC\s+Editor\s+HTML',
+        r'Page\s+breaks\s+preserved',
+    )
+    for term in noisy_pill_terms:
+        document = re.sub(
+            r'<(?:span|li|p|div|a|button)\b[^>]*>\s*(?:<[^>]+>\s*)*'
+            + term +
+            r'\s*(?:</[^>]+>\s*)*</(?:span|li|p|div|a|button)>',
+            '',
+            document,
+            flags=re.I | re.S,
+        )
+    return document
+
+
 def _toc_label_is_junk(label: str) -> bool:
     clean = html.unescape(label).replace("#", "").strip()
     clean = re.sub(r"\s+", " ", clean)
@@ -182,6 +224,8 @@ def _toc_label_is_junk(label: str) -> bool:
         r"^Prepared For$",
         r"^By$",
         r"^Editor$",
+        r"^Contents$",
+        r"^Jump Links Live Here$",
         r"^Table Of Contents$",
         r"^Preface$",
         r"^Information Processing Techniques Office$",
@@ -221,8 +265,6 @@ def _sanitize_existing_toc(document: str) -> str:
 
 def _demote_junk_headings(document: str) -> str:
     def replace_heading(match: re.Match[str]) -> str:
-        level = match.group("level")
-        attrs = match.group("attrs") or ""
         body = match.group("body")
         label = _strip_tags(body)
         if not _toc_label_is_junk(label):
@@ -245,6 +287,7 @@ def upgrade_document(document: str) -> str:
     document = _ensure_head_asset(document, SCRIPT_HREF, f'<script defer src="{SCRIPT_HREF}"></script>')
     document = _add_body_class(document, "reader-upgraded")
     document = _hide_inline_note_widgets(document)
+    document = _remove_legacy_source_scaffolding(document)
     document = _demote_junk_headings(document)
     document = _sanitize_existing_toc(document)
     document = _upgrade_pre_blocks(document)
@@ -414,15 +457,18 @@ body.reader-mode-wide .rfc-readable-pre {
   letter-spacing: .02em;
 }
 
-/* Kill old inline notes that interrupt RFC text. */
+/* Kill old inline notes and source-page scaffolding that interrupt RFC text. */
 textarea,
-button:has-text("Note"),
 button.note-btn,
 .note-status,
 .section-note,
 .inline-note,
 [class*="note"],
-[id*="note"] {
+[id*="note"],
+.legacy-source-scaffold,
+.source-scaffold,
+.source-meta,
+.page-card-meta {
   display: none !important;
 }
 
@@ -450,8 +496,13 @@ READER_JS = r"""
     document.body.classList.add(`reader-mode-${mode}`);
     localStorage.setItem(storageKey, mode);
     document.querySelectorAll("[data-reader-mode]").forEach((button) => {
-      button.classList.toggle("active", button.dataset.readerMode === mode);
+      button.classList.toggle("active", button.datasetReaderMode === mode || button.dataset.readerMode === mode);
     });
+  }
+
+  function removeNearestCard(node) {
+    const card = node.closest("section, article, aside, .card, .panel, .source-card, .source-panel, div");
+    if (card) card.remove();
   }
 
   document.addEventListener("click", (event) => {
@@ -467,7 +518,14 @@ READER_JS = r"""
   });
   document.querySelectorAll("textarea").forEach((textarea) => textarea.remove());
   document.querySelectorAll("body *").forEach((node) => {
-    if (node.childNodes.length === 1 && node.textContent.trim() === "Saved") node.remove();
+    const text = node.textContent.trim();
+    if (node.childNodes.length === 1 && text === "Saved") node.remove();
+    if (/^\d+\s+page\s+cards?$/i.test(text) || /^RFC\s+Editor\s+HTML$/i.test(text) || /^Page\s+breaks\s+preserved$/i.test(text)) {
+      node.remove();
+    }
+    if (/JUMP\s+LINKS\s+LIVE\s+HERE/i.test(text) && /CONTENTS/i.test(text)) {
+      removeNearestCard(node);
+    }
   });
 
   setMode(localStorage.getItem(storageKey) || "comfortable");
