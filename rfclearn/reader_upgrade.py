@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import html
 import re
+import textwrap
 from pathlib import Path
 from typing import Any
 
