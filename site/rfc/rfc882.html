@@ -94,10 +94,26 @@
 Request for Comments:  882                                           ISI
                                                            November 1983
 
-                 DOMAIN NAMES - CONCEPTS and FACILITIES</pre><figure class="modern-ascii-diagram" role="img" aria-label="This RFC introduces domain style names, their use | for ARPA Internet mail and h">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">This RFC introduces domain style names, their use</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">for ARPA Internet mail and host address support,</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">and the protocols and servers used to implement</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">domain name facilities.</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">This memo describes the conceptual framework of the</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">domain system and some uses, but it omits many</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">uses, fields, and implementation details.  A</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">complete specification of formats, timeouts, etc.</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">is presented in RFC 883, &quot;Domain Names -</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Implementation and Specification&quot;.  That RFC</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">assumes that the reader is familiar with the</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">concepts discussed in this memo.</div></div></div>
-</figure><pre>INTRODUCTION
+                 DOMAIN NAMES - CONCEPTS and FACILITIES</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">        +-----------------------------------------------------+
+        |                                                     |
+        | This RFC introduces domain style names, their use   |
+        | for ARPA Internet mail and host address support,    |
+        | and the protocols and servers used to implement     |
+        | domain name facilities.                             |
+        |                                                     |
+        | This memo describes the conceptual framework of the |
+        | domain system and some uses, but it omits many      |
+        | uses, fields, and implementation details.  A        |
+        | complete specification of formats, timeouts, etc.   |
+        | is presented in RFC 883, &quot;Domain Names -            |
+        | Implementation and Specification&quot;.  That RFC        |
+        | assumes that the reader is familiar with the        |
+        | concepts discussed in this memo.                    |
+        |                                                     |
+        +-----------------------------------------------------+
+</pre>
+</div><pre>INTRODUCTION
 
    The need for domain names
 
@@ -476,10 +492,7 @@ DOMAIN NAME SPACE
       The following figure shows an example of a domain name space.
 
                                    |</pre><pre>                +------------------+------------------+
-                |                  |                  |</pre><pre>              COLORS            FLAVORS             TRUTH</pre><figure class="modern-ascii-diagram" role="img" aria-label="NATURAL">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">NATURAL</div></div></div>
-</figure><pre>         RED  BLUE  GREEN          |
+                |                  |                  |</pre><pre>              COLORS            FLAVORS             TRUTH</pre><svg class="rfc-flow-diagram" viewBox="0 0 180 160" role="img" aria-label="Flow diagram" xmlns="http://www.w3.org/2000/svg"><desc>System architecture or data flow diagram</desc><defs>  <style>    .flow-box { fill: #1e293b; stroke: #3b82f6; stroke-width: 2; rx: 12; }    .flow-label { fill: #e2e8f0; font-size: 13px; font-weight: 600; font-family: Inter, sans-serif; text-anchor: middle; }    .flow-arrow { stroke: #64748b; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }    .arrow-label { fill: #94a3b8; font-size: 10px; font-family: "IBM Plex Mono", monospace; text-anchor: middle; }  </style>  <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">    <polygon points="0 0, 10 3.5, 0 7" fill="#64748b" />  </marker></defs><rect class="flow-box" x="30" y="30" width="120" height="60" /><text class="flow-label" x="90.0" y="65.0"></text></svg><pre>         RED  BLUE  GREEN          |
                                    |</pre><pre>                   +---------------+---------------+
                    |               |               |</pre><pre>               CHOCOLATE        VANILLA        STRAWBERRY
 
@@ -599,10 +612,16 @@ Mockapetris                                                     [Page 7]</pre>
          CS - the CSNET system
 
       The first type of resource record holds a host name to host
-      address binding.  Its fields are:</pre><figure class="modern-ascii-diagram" role="img" aria-label="owner&gt; | A | class&gt; | class specific address&gt;information">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">owner&gt;</div><div class="modern-diagram-cell">A</div><div class="modern-diagram-cell">class&gt;</div><div class="modern-diagram-cell">class specific address&gt;information</div></div></div>
-</figure><pre>Mockapetris                                                     [Page 9]</pre>
+      address binding.  Its fields are:</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">  +--------+--------+--------+--------------//----------------------+
+  |&lt;owner&gt; |   A    | &lt;class&gt;| &lt;class specific address&gt;information  |
+  +--------+--------+--------+--------------//----------------------+
+
+
+
+
+</pre>
+</div><pre>Mockapetris                                                     [Page 9]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 10</span>
@@ -615,13 +634,16 @@ Mockapetris                                                     [Page 7]</pre>
       the value in the CLASS field; for the ARPA Internet, it is the 32
       bit ARPA Internet address of the host, for the CSNET it might be
       the phone number of the host.  For example, F.ISI.ARPA might have
-      two A records of the form:</pre><figure class="modern-ascii-diagram" role="img" aria-label="F.ISI.ARPA | A | IN">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">F.ISI.ARPA</div><div class="modern-diagram-cell">A</div><div class="modern-diagram-cell">IN</div><div class="modern-diagram-cell">10.2.0.52</div></div></div>
-</figure><pre>                                  and</pre><figure class="modern-ascii-diagram" role="img" aria-label="F.ISI.ARPA | A | CS">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">F.ISI.ARPA</div><div class="modern-diagram-cell">A</div><div class="modern-diagram-cell">CS</div><div class="modern-diagram-cell">213-822-2112</div></div></div>
-</figure><pre>      Note that the data formats for the A type are class dependent, and
+      two A records of the form:</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">       +----------+--------+--------+----------------------------+
+       |F.ISI.ARPA|   A    |   IN   |          10.2.0.52         |
+       +----------+--------+--------+----------------------------+</pre>
+</div><pre>                                  and</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">       +----------+--------+--------+----------------------------+
+       |F.ISI.ARPA|   A    |   CS   |         213-822-2112       |
+       +----------+--------+--------+----------------------------+
+</pre>
+</div><pre>      Note that the data formats for the A type are class dependent, and
       the Internet address and phone number formats shown above are for
       purposes of illustration only.  The actual data formats are
       specified in [14].  For example, CS class data for type A records
@@ -629,19 +651,24 @@ Mockapetris                                                     [Page 7]</pre>
       TELENET addresses.
 
       The mail forwarder (MF) and mail delivery (MD) records have the
-      following format:</pre><figure class="modern-ascii-diagram" role="img" aria-label="owner&gt; | MD/MF | class&gt; | domain name&gt;">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">owner&gt;</div><div class="modern-diagram-cell">MD/MF</div><div class="modern-diagram-cell">class&gt;</div><div class="modern-diagram-cell">domain name&gt;</div></div></div>
-</figure><pre>      The &lt;domain name&gt; field is a domain name of the host that will
+      following format:</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">        +--------+--------+--------+----------------------------+
+        |&lt;owner&gt; | MD/MF  | &lt;class&gt;|       &lt;domain name&gt;        |
+        +--------+--------+--------+----------------------------+
+</pre>
+</div><pre>      The &lt;domain name&gt; field is a domain name of the host that will
       handle mail; note that this domain name may be completely
       different from the domain name which names the resource record.
-      For example, F.ISI.ARPA might have two records of the form:</pre><figure class="modern-ascii-diagram" role="img" aria-label="F.ISI.ARPA | MD | IN | F.ISI.ARPA">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">F.ISI.ARPA</div><div class="modern-diagram-cell">MD</div><div class="modern-diagram-cell">IN</div><div class="modern-diagram-cell">F.ISI.ARPA</div></div></div>
-</figure><pre>                                  and</pre><figure class="modern-ascii-diagram" role="img" aria-label="F.ISI.ARPA | MF | IN | B.ISI.ARPA">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">F.ISI.ARPA</div><div class="modern-diagram-cell">MF</div><div class="modern-diagram-cell">IN</div><div class="modern-diagram-cell">B.ISI.ARPA</div></div></div>
-</figure><pre>      These records mean that mail for F.ISI.ARPA can either be
+      For example, F.ISI.ARPA might have two records of the form:</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">       +----------+--------+--------+----------------------------+
+       |F.ISI.ARPA|  MD    |   IN   |         F.ISI.ARPA         |
+       +----------+--------+--------+----------------------------+</pre>
+</div><pre>                                  and</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">       +----------+--------+--------+----------------------------+
+       |F.ISI.ARPA|  MF    |   IN   |         B.ISI.ARPA         |
+       +----------+--------+--------+----------------------------+
+</pre>
+</div><pre>      These records mean that mail for F.ISI.ARPA can either be
       delivered to the host F.ISI.ARPA or forwarded to B.ISI.ARPA, which
       will accept responsibility for its eventual delivery.  In
       principle, an additional name lookup is required to map the domain
@@ -667,10 +694,16 @@ Mockapetris                                                    [Page 10]</pre>
       Except in the case where a name server delegates authority to
       itself, the SOA identifies the top limit of authority, and NS
       records define the first name outside of a zone.  These resource
-      records have a standard format for all of the name space:</pre><figure class="modern-ascii-diagram" role="img" aria-label="owner&gt; | SOA | class&gt; | domain name, etc&gt; | owner&gt; | NS | class&gt; | domain name&gt;">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">owner&gt;</div><div class="modern-diagram-cell">SOA</div><div class="modern-diagram-cell">class&gt;</div><div class="modern-diagram-cell">domain name, etc&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">owner&gt;</div><div class="modern-diagram-cell">NS</div><div class="modern-diagram-cell">class&gt;</div><div class="modern-diagram-cell">domain name&gt;</div></div></div>
-</figure><pre>      The SOA record marks the start of a zone when it is present in a
+      records have a standard format for all of the name space:</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">      +----------+--------+--------+-----------------------------+
+      | &lt;owner&gt;  |   SOA  | &lt;class&gt;|       &lt;domain name, etc&gt;    |
+      +----------+--------+--------+-----------------------------+
+
+      +----------+--------+--------+-----------------------------+
+      | &lt;owner&gt;  |   NS   | &lt;class&gt;|       &lt;domain name&gt;         |
+      +----------+--------+--------+-----------------------------+
+</pre>
+</div><pre>      The SOA record marks the start of a zone when it is present in a
       database; the NS record both marks the end of a zone started by an
       SOA (if a higher SOA is present) and also points to a name server
       that has a copy of the zone specified by the &lt;owner. field of the
@@ -738,13 +771,13 @@ Mockapetris                                                    [Page 11]</pre>
       the remainder of this memo:
 
                                     |</pre><pre>                 +------------------+------------------+
-                 |                  |                  |</pre><pre>                DDN               ARPA               CSNET</pre><div class="modern-diagram-fallback">                 |                  |                  |
-           +-----+-----+            |            +-----+-----+
-           |     |     |            |            |           |</div><pre>          JCS  ARMY  NAVY           |           UDEL        UCI
+                 |                  |                  |</pre><pre>                DDN               ARPA               CSNET</pre><svg class="rfc-flow-diagram" viewBox="0 0 340 160" role="img" aria-label="Flow diagram" xmlns="http://www.w3.org/2000/svg"><desc>System architecture or data flow diagram</desc><defs>  <style>    .flow-box { fill: #1e293b; stroke: #3b82f6; stroke-width: 2; rx: 12; }    .flow-label { fill: #e2e8f0; font-size: 13px; font-weight: 600; font-family: Inter, sans-serif; text-anchor: middle; }    .flow-arrow { stroke: #64748b; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }    .arrow-label { fill: #94a3b8; font-size: 10px; font-family: "IBM Plex Mono", monospace; text-anchor: middle; }  </style>  <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">    <polygon points="0 0, 10 3.5, 0 7" fill="#64748b" />  </marker></defs><rect class="flow-box" x="30" y="30" width="120" height="60" /><text class="flow-label" x="90.0" y="65.0"></text><rect class="flow-box" x="190" y="30" width="120" height="60" /><text class="flow-label" x="250.0" y="65.0"></text><line class="flow-arrow" x1="150" y1="60.0" x2="190" y2="60.0" /></svg><pre>          JCS  ARMY  NAVY           |           UDEL        UCI
                                     |</pre><pre>           +--------+---------------+---------------+--------+
-           |        |               |               |        |</pre><pre>          DTI      MIT             ISI             UDEL     NBS</pre><div class="modern-diagram-fallback">                    |               |
+           |        |               |               |        |</pre><pre>          DTI      MIT             ISI             UDEL     NBS</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">                    |               |
                 +---+---+       +---+---+
-                |       |       |   |   |</div><pre>               DMS     AI       A   B   F
+                |       |       |   |   |</pre>
+</div><pre>               DMS     AI       A   B   F
 
 
 
@@ -1200,15 +1233,13 @@ NAME SERVERS
 
                                    |(B.ISI.ARPA)
                                    |(UDEL.CSNET)</pre><pre>                +------------------+------------------+
-                |                  |                  |</pre><pre>               DDN               ARPA               CSNET</pre><figure class="modern-ascii-diagram" role="img" aria-label="JCS.DDN) | F.ISI.ARPA) | UDEL.ARPA) | A.ISI.ARPA)+-----+-----+">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">JCS.DDN)</div><div class="modern-diagram-cell">F.ISI.ARPA)</div><div class="modern-diagram-cell">UDEL.ARPA)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">A.ISI.ARPA)+-----+-----+</div></div></div>
-</figure><pre>         JCS  ARMY  NAVY           |           UDEL        UCI
+                |                  |                  |</pre><pre>               DDN               ARPA               CSNET</pre><svg class="rfc-flow-diagram" viewBox="0 0 340 160" role="img" aria-label="Flow diagram" xmlns="http://www.w3.org/2000/svg"><desc>System architecture or data flow diagram</desc><defs>  <style>    .flow-box { fill: #1e293b; stroke: #3b82f6; stroke-width: 2; rx: 12; }    .flow-label { fill: #e2e8f0; font-size: 13px; font-weight: 600; font-family: Inter, sans-serif; text-anchor: middle; }    .flow-arrow { stroke: #64748b; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }    .arrow-label { fill: #94a3b8; font-size: 10px; font-family: "IBM Plex Mono", monospace; text-anchor: middle; }  </style>  <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">    <polygon points="0 0, 10 3.5, 0 7" fill="#64748b" />  </marker></defs><rect class="flow-box" x="30" y="30" width="120" height="60" /><text class="flow-label" x="90.0" y="65.0"></text><rect class="flow-box" x="190" y="30" width="120" height="60" /><text class="flow-label" x="250.0" y="65.0"></text><line class="flow-arrow" x1="150" y1="60.0" x2="190" y2="60.0" /></svg><pre>         JCS  ARMY  NAVY           |           UDEL        UCI
                                    |</pre><pre>          +--------+---------------+---------------+--------+
-          |        |               |               |        |</pre><pre>         DTI      MIT             ISI             UDEL     NBS</pre><figure class="modern-ascii-diagram" role="img" aria-label="AI.MIT.ARPA) | F.ISI.ARPA)">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">AI.MIT.ARPA)</div><div class="modern-diagram-cell">F.ISI.ARPA)</div></div></div>
-</figure><pre>              DMS     AI       A   B   F
+          |        |               |               |        |</pre><pre>         DTI      MIT             ISI             UDEL     NBS</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">                   |(AI.MIT.ARPA)  |(F.ISI.ARPA)
+               +---+---+       +---+---+
+               |       |       |   |   |</pre>
+</div><pre>              DMS     AI       A   B   F
 
       In this example the authoritative name server is shown in
       parentheses at the point in the domain tree at which is assumes

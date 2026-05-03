@@ -946,10 +946,14 @@ Table of Contents
 
    IANA has added a new value &quot;UTF8SMTP&quot; to the SMTP Service Extension
    subregistry of the Mail Parameters registry, according to the
-   following data:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Keywords | Description | Reference | UTF8SMTP | Internationalized email address ">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Keywords</div><div class="modern-diagram-cell">Description</div><div class="modern-diagram-cell">Reference</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">UTF8SMTP</div><div class="modern-diagram-cell">Internationalized email address</div><div class="modern-diagram-cell">RFC5336]</div></div></div>
-</figure><pre>   This document adds new values to the SMTP Enhanced Status Code
+   following data:</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">        +----------+---------------------------------+-----------+
+        | Keywords | Description                     | Reference |
+        +----------+---------------------------------+-----------+
+        | UTF8SMTP | Internationalized email address | [RFC5336] |
+        +----------+---------------------------------+-----------+
+</pre>
+</div><pre>   This document adds new values to the SMTP Enhanced Status Code
    subregistry of the Mail Parameters registry, following the guidance
    in Sections 3.5 and 3.7.4.2 of this document, and being based on
    [RFC5248].  The registration data is as follows:
@@ -1045,10 +1049,20 @@ Yao &amp; Mao                     Experimental                     [Page 15]</pr
 
    The &quot;Mail Transmission Types&quot; registry under the Mail Parameters
    registry is requested to be updated to include the following new
-   entries:</pre><figure class="modern-ascii-diagram" role="img" aria-label="WITH protocol | Description | Reference | types">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">WITH protocol</div><div class="modern-diagram-cell">Description</div><div class="modern-diagram-cell">Reference</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">types</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">UTF8SMTP</div><div class="modern-diagram-cell">UTF8SMTP with Service</div><div class="modern-diagram-cell">RFC5336]</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Extensions</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">UTF8SMTPA</div><div class="modern-diagram-cell">UTF8SMTP with SMTP AUTH</div><div class="modern-diagram-cell">RFC4954] [RFC5336]</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">UTF8SMTPS</div><div class="modern-diagram-cell">UTF8SMTP with STARTTLS</div><div class="modern-diagram-cell">RFC3207] [RFC5336]</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">UTF8SMTPSA</div><div class="modern-diagram-cell">UTF8SMTP with both</div><div class="modern-diagram-cell">RFC3207] [RFC4954]</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">STARTTLS and SMTP AUTH</div><div class="modern-diagram-cell">RFC5336]</div></div></div>
-</figure><pre>5.  Security Considerations
+   entries:</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   +---------------+----------------------------+----------------------+
+   | WITH protocol | Description                | Reference            |
+   | types         |                            |                      |
+   +---------------+----------------------------+----------------------+
+   | UTF8SMTP      | UTF8SMTP with Service      | [RFC5336]            |
+   |               | Extensions                 |                      |
+   | UTF8SMTPA     | UTF8SMTP with SMTP AUTH    | [RFC4954] [RFC5336]  |
+   | UTF8SMTPS     | UTF8SMTP with STARTTLS     | [RFC3207] [RFC5336]  |
+   | UTF8SMTPSA    | UTF8SMTP with both         | [RFC3207] [RFC4954]  |
+   |               | STARTTLS and SMTP AUTH     | [RFC5336]            |
+   +---------------+----------------------------+----------------------+
+</pre>
+</div><pre>5.  Security Considerations
 
    See the extended security considerations discussion in the framework
    document [RFC4952].

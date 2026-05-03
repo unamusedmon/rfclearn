@@ -237,10 +237,29 @@ Abstract
    UPDATE than under QUERY) and some fields must be overloaded (see
    description of CLASS fields below).
 
-   The overall format of an UPDATE message is, following [ibid]:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Header | Zone | specifies the zone to be updated">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Header</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Zone</div><div class="modern-diagram-cell">specifies the zone to be updated</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Prerequisite</div><div class="modern-diagram-cell">RRs or RRsets which must (not) preexist</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Update</div><div class="modern-diagram-cell">RRs or RRsets to be added or deleted</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Additional Data</div><div class="modern-diagram-cell">additional data</div></div></div>
-</figure><pre>Vixie, et. al.              Standards Track                     [Page 3]</pre>
+   The overall format of an UPDATE message is, following [ibid]:</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">      +---------------------+
+      |        Header       |
+      +---------------------+
+      |         Zone        | specifies the zone to be updated
+      +---------------------+
+      |     Prerequisite    | RRs or RRsets which must (not) preexist
+      +---------------------+
+      |        Update       | RRs or RRsets to be added or deleted
+      +---------------------+
+      |   Additional Data   | additional data
+      +---------------------+
+
+
+
+
+
+
+
+
+
+</pre>
+</div><pre>Vixie, et. al.              Standards Track                     [Page 3]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 4</span>
@@ -277,10 +296,7 @@ Abstract
    sections differs as shown in the following modified header, after
    [RFC1035 4.1.1]:
 
-                                      1  1  1  1  1  1</pre><figure class="modern-ascii-diagram" role="img" aria-label="ID">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0  1  2  3  4  5  6  7  8  9  0  1  2  3  4  5</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">ID</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">QR</div><div class="modern-diagram-cell">Opcode</div><div class="modern-diagram-cell">Z</div><div class="modern-diagram-cell">RCODE</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">ZOCOUNT</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">PRCOUNT</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">UPCOUNT</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">ADCOUNT</div></div></div>
-</figure><pre>Vixie, et. al.              Standards Track                     [Page 4]</pre>
+                                      1  1  1  1  1  1</pre><svg class="rfc-bit-diagram" viewBox="0 0 424 490" role="img" aria-label="Bit field diagram" xmlns="http://www.w3.org/2000/svg"><desc>Protocol header bit field layout showing field names and positions</desc><defs>  <style>    .bit-grid { stroke: #94a3b8; stroke-width: 0.5; fill: none; }    .field-block { fill: #3b82f6; opacity: 0.9; rx: 4; }    .field-label { fill: white; font-size: 11px; font-weight: 600; font-family: Inter, sans-serif; text-anchor: middle; }    .bit-label { fill: #64748b; font-size: 9px; font-family: "IBM Plex Mono", monospace; text-anchor: middle; }    .row-label { fill: #475569; font-size: 10px; font-family: Inter, sans-serif; }  </style></defs><text class="bit-label" x="20" y="32">0</text><text class="bit-label" x="116" y="32">8</text><text class="bit-label" x="212" y="32">16</text><text class="bit-label" x="308" y="32">24</text><text class="bit-label" x="404" y="32">31</text><rect class="field-block" x="20" y="50" width="384" height="50" /><text class="field-label" x="212.0" y="79.0">ID</text><rect class="bit-grid" x="20" y="50" width="384" height="50" /><rect class="field-block" x="20" y="110" width="96" height="50" /><text class="field-label" x="68.0" y="139.0">QR</text><rect class="field-block" x="116" y="110" width="132" height="50" /><text class="field-label" x="182.0" y="139.0">Opcode</text><rect class="bit-grid" x="20" y="110" width="384" height="50" /><rect class="field-block" x="20" y="170" width="240" height="50" /><text class="field-label" x="140.0" y="199.0">Z</text><rect class="field-block" x="260" y="170" width="132" height="50" /><text class="field-label" x="326.0" y="199.0">RCODE</text><rect class="bit-grid" x="20" y="170" width="384" height="50" /><rect class="field-block" x="20" y="230" width="384" height="50" /><text class="field-label" x="212.0" y="259.0">ZOCOUNT</text><rect class="bit-grid" x="20" y="230" width="384" height="50" /><rect class="field-block" x="20" y="290" width="384" height="50" /><text class="field-label" x="212.0" y="319.0">PRCOUNT</text><rect class="bit-grid" x="20" y="290" width="384" height="50" /><rect class="field-block" x="20" y="350" width="384" height="50" /><text class="field-label" x="212.0" y="379.0">UPCOUNT</text><rect class="bit-grid" x="20" y="350" width="384" height="50" /><rect class="field-block" x="20" y="410" width="384" height="50" /><text class="field-label" x="212.0" y="439.0">ADCOUNT</text><rect class="bit-grid" x="20" y="410" width="384" height="50" /></svg><pre>Vixie, et. al.              Standards Track                     [Page 4]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 5</span>
@@ -367,14 +383,19 @@ Abstract
    The Zone Section has the same format as that specified in [RFC1035
    4.1.2], with the fields redefined as follows:
 
-                                      1  1  1  1  1  1</pre><figure class="modern-ascii-diagram" role="img" aria-label="Technical diagram">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0  1  2  3  4  5  6  7  8  9  0  1  2  3  4  5</div></div></div>
-</figure><pre>      /                     ZNAME                     /
-      /                                               /</pre><figure class="modern-ascii-diagram" role="img" aria-label="ZTYPE | ZCLASS">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">ZTYPE</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">ZCLASS</div></div></div>
-</figure><pre>   UPDATE uses this section to denote the zone of the records being
+                                      1  1  1  1  1  1</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">        0  1  2  3  4  5  6  7  8  9  0  1  2  3  4  5
+      +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+      |                                               |</pre>
+</div><pre>      /                     ZNAME                     /
+      /                                               /</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">      +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+      |                     ZTYPE                     |
+      +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+      |                     ZCLASS                    |
+      +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+</pre>
+</div><pre>   UPDATE uses this section to denote the zone of the records being
    updated.  All records to be updated must be in the same zone, and
    therefore the Zone Section is allowed to contain exactly one record.
    The ZNAME is the zone name, the ZTYPE must be SOA, and the ZCLASS is

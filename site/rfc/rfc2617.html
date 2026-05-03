@@ -703,10 +703,11 @@ Table of Contents
    header line, which is defined according to the framework above,
    utilized as follows.
 
-       credentials      = &quot;Digest&quot; digest-response</pre><figure class="modern-ascii-diagram" role="img" aria-label="digest-response  = 1#( username | realm | nonce | digest-uri | response | algori">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">digest-response  = 1#( username</div><div class="modern-diagram-cell">realm</div><div class="modern-diagram-cell">nonce</div><div class="modern-diagram-cell">digest-uri</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">response</div><div class="modern-diagram-cell">algorithm ]</div><div class="modern-diagram-cell">cnonce]</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">opaque]</div><div class="modern-diagram-cell">message-qop]</div></div></div>
-</figure><pre>                           [nonce-count]  | [auth-param] )
+       credentials      = &quot;Digest&quot; digest-response</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">       digest-response  = 1#( username | realm | nonce | digest-uri
+                       | response | [ algorithm ] | [cnonce] |
+                       [opaque] | [message-qop] |</pre>
+</div><pre>                           [nonce-count]  | [auth-param] )
 
        username         = &quot;username&quot; &quot;=&quot; username-value
        username-value   = quoted-string
@@ -718,10 +719,13 @@ Table of Contents
        nonce-count      = &quot;nc&quot; &quot;=&quot; nc-value
        nc-value         = 8LHEX
        response         = &quot;response&quot; &quot;=&quot; request-digest
-       request-digest = &lt;&quot;&gt; 32LHEX &lt;&quot;&gt;</pre><figure class="modern-ascii-diagram" role="img" aria-label="LHEX             =  &quot;0&quot;">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">LHEX             =  &quot;0&quot;</div><div class="modern-diagram-cell">1&quot;</div><div class="modern-diagram-cell">2&quot;</div><div class="modern-diagram-cell">3&quot;</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">4&quot;</div><div class="modern-diagram-cell">5&quot;</div><div class="modern-diagram-cell">6&quot;</div><div class="modern-diagram-cell">7&quot;</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">8&quot;</div><div class="modern-diagram-cell">9&quot;</div><div class="modern-diagram-cell">a&quot;</div><div class="modern-diagram-cell">b&quot;</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">c&quot;</div><div class="modern-diagram-cell">d&quot;</div><div class="modern-diagram-cell">e&quot;</div><div class="modern-diagram-cell">f&quot;</div></div></div>
-</figure><pre>   The values of the opaque and algorithm fields must be those supplied
+       request-digest = &lt;&quot;&gt; 32LHEX &lt;&quot;&gt;</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">       LHEX             =  &quot;0&quot; | &quot;1&quot; | &quot;2&quot; | &quot;3&quot; |
+                           &quot;4&quot; | &quot;5&quot; | &quot;6&quot; | &quot;7&quot; |
+                           &quot;8&quot; | &quot;9&quot; | &quot;a&quot; | &quot;b&quot; |
+                           &quot;c&quot; | &quot;d&quot; | &quot;e&quot; | &quot;f&quot;
+</pre>
+</div><pre>   The values of the opaque and algorithm fields must be those supplied
    in the WWW-Authenticate response header for the entity being
    requested.
 

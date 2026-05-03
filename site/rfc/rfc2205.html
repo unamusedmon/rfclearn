@@ -332,10 +332,29 @@ Table of Contents
 
               HOST                              ROUTER
 
- _____________________________       ____________________________</pre><figure class="modern-ascii-diagram" role="img" aria-label="Appli- | RSVP | cation | RSVP &lt;---------------------------&gt; RSVP  &lt;----------&gt;">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Appli-</div><div class="modern-diagram-cell">RSVP</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">cation</div><div class="modern-diagram-cell">RSVP &lt;---------------------------&gt; RSVP  &lt;----------&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">process</div><div class="modern-diagram-cell">Routing</div><div class="modern-diagram-cell">process</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Polcy</div><div class="modern-diagram-cell">Polcy</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Cntrl</div><div class="modern-diagram-cell">process</div><div class="modern-diagram-cell">Cntrl</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">data</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Admis</div><div class="modern-diagram-cell">Admis</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">V__V_    ___V____</div><div class="modern-diagram-cell">Cntrl</div><div class="modern-diagram-cell">V__V_    __V_____</div><div class="modern-diagram-cell">Cntrl</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Class-</div><div class="modern-diagram-cell">Packet</div><div class="modern-diagram-cell">Class-</div><div class="modern-diagram-cell">Packet</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">ifier</div><div class="modern-diagram-cell">Schedulr</div><div class="modern-diagram-cell">ifier</div><div class="modern-diagram-cell">Schedulr</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">data</div><div class="modern-diagram-cell">data</div></div></div>
-</figure><pre>                  Figure 1: RSVP in Hosts and Routers
+ _____________________________       ____________________________</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">|  _______                    |     |                            |
+| |       |   _______         |     |            _______         |
+| |Appli- |  |       |        |RSVP |           |       |        |
+| | cation|  | RSVP &lt;---------------------------&gt; RSVP  &lt;----------&gt;
+| |       &lt;--&gt;       |        |     | _______   |       |        |
+| |       |  |process|  _____ |     ||Routing|  |process|  _____ |
+| |_._____|  |       --&gt;Polcy||     ||       &lt;--&gt;       --&gt;Polcy||
+|   |        |__.__._| |Cntrl||     ||process|  |__.__._| |Cntrl||
+|   |data       |  |   |_____||     ||__.____|     |  |   |_____||
+|===|===========|==|==========|     |===|==========|==|==========|
+|   |   --------|  |    _____ |     |   |  --------|  |    _____ |
+|   |  |        |  ----&gt;Admis||     |   |  |       |  ----&gt;Admis||
+|  _V__V_    ___V____  |Cntrl||     |  _V__V_    __V_____ |Cntrl||
+| |      |  |        | |_____||     | |      |  |        ||_____||
+| |Class-|  | Packet |        |     | |Class-|  | Packet |       |
+| | ifier|==&gt;Schedulr|================&gt; ifier|==&gt;Schedulr|===========&gt;
+| |______|  |________|        |data | |______|  |________|       |data
+|                             |     |                            |
+|_____________________________|     |____________________________|
+
+</pre>
+</div><pre>                  Figure 1: RSVP in Hosts and Routers
 
 
    Quality of service is implemented for a particular data flow by
@@ -726,10 +745,21 @@ Braden, Ed., et. al.        Standards Track                     [Page 5]</pre>
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 12</span>
   </div>
-  <pre>RFC 2205                          RSVP                    September 1997</pre><figure class="modern-ascii-diagram" role="img" aria-label="Sender | Reservations: | Selection | Distinct | Shared">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Sender</div><div class="modern-diagram-cell">Reservations:</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Selection</div><div class="modern-diagram-cell">Distinct</div><div class="modern-diagram-cell">Shared</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Explicit</div><div class="modern-diagram-cell">Fixed-Filter</div><div class="modern-diagram-cell">Shared-Explicit</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">FF) style</div><div class="modern-diagram-cell">SE) Style</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Wildcard</div><div class="modern-diagram-cell">None defined)</div><div class="modern-diagram-cell">Wildcard-Filter</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">WF) Style</div></div></div>
-</figure><pre>                 Figure 3: Reservation Attributes and Styles
+  <pre>RFC 2205                          RSVP                    September 1997</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">           Sender   ||             Reservations:
+         Selection  ||     Distinct     |        Shared
+           _________||__________________|____________________
+                    ||                  |                    |
+          Explicit  ||  Fixed-Filter    |  Shared-Explicit   |
+                    ||  (FF) style      |  (SE) Style        |
+          __________||__________________|____________________|
+                    ||                  |                    |
+          Wildcard  ||  (None defined)  |  Wildcard-Filter   |
+                    ||                  |  (WF) Style        |
+          __________||__________________|____________________|
+
+</pre>
+</div><pre>                 Figure 3: Reservation Attributes and Styles
 
 
 
@@ -894,10 +924,14 @@ Braden, Ed., et. al.        Standards Track                    [Page 12]</pre>
   <pre>RFC 2205                          RSVP                    September 1997
 
 
-                         ________________</pre><figure class="modern-ascii-diagram" role="img" aria-label="a) | c) | S1 ) ----------&gt; | R1 )">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">a)</div><div class="modern-diagram-cell">c)</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">S1 ) ----------&gt;</div><div class="modern-diagram-cell">R1 )</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Router</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">b)</div><div class="modern-diagram-cell">d)</div><div class="modern-diagram-cell">R2 )</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">S2,S3 ) -------&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">R3 )</div></div></div>
-</figure><pre>                                                |
+                         ________________</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">                     (a)|                | (c)
+      ( S1 ) ----------&gt;|                |----------&gt; ( R1 )
+                        |     Router     |      |
+                     (b)|                | (d)  |---&gt; ( R2 )
+      ( S2,S3 ) -------&gt;|                |------|
+                        |________________|      |---&gt; ( R3 )</pre>
+</div><pre>                                                |
 
                         Figure 4: Router Configuration
 
@@ -973,13 +1007,19 @@ Braden, Ed., et. al.        Standards Track                    [Page 15]</pre>
                           |
             Sends         |       Reserves             Receives
                           |
-                          |       ________</pre><figure class="modern-ascii-diagram" role="img" aria-label="FF( S1{4B} ) &lt;- (a) | c) | S1{4B} | c) &lt;- FF( S1{4B}, S2{5B} ) | S2{5B}">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">FF( S1{4B} ) &lt;- (a)</div><div class="modern-diagram-cell">c)</div><div class="modern-diagram-cell">S1{4B}</div><div class="modern-diagram-cell">c) &lt;- FF( S1{4B}, S2{5B} )</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">S2{5B}</div></div></div>
-</figure><pre>                          |       ________</pre><figure class="modern-ascii-diagram" role="img" aria-label="b) | d) | S1{3B} | d) &lt;- FF( S1{3B}, S3{B} ) | FF( S2{5B}, S3{B} ) | FF( S1{B} )">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">b)</div><div class="modern-diagram-cell">d)</div><div class="modern-diagram-cell">S1{3B}</div><div class="modern-diagram-cell">d) &lt;- FF( S1{3B}, S3{B} )</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">FF( S2{5B}, S3{B} )</div><div class="modern-diagram-cell">FF( S1{B} )</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">S3{B}</div></div></div>
-</figure><pre>              Figure 6: Fixed-Filter (FF) Reservation Example
+                          |       ________</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">     FF( S1{4B} ) &lt;- (a)  |  (c) | S1{4B} |  (c) &lt;- FF( S1{4B}, S2{5B} )
+                          |      |________|
+                          |      | S2{5B} |
+                          |      |________|
+     ---------------------|---------------------------------------------</pre>
+</div><pre>                          |       ________</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">                  &lt;- (b)  |  (d) | S1{3B} |  (d) &lt;- FF( S1{3B}, S3{B} )
+     FF( S2{5B}, S3{B} )  |      |________|      &lt;- FF( S1{B} )
+                          |      | S3{B}  |
+                          |      |________|
+</pre>
+</div><pre>              Figure 6: Fixed-Filter (FF) Reservation Example
 
 
 
@@ -1004,13 +1044,17 @@ Braden, Ed., et. al.        Standards Track                    [Page 16]</pre>
                           |
             Sends         |       Reserves             Receives
                           |
-                          |       ________</pre><figure class="modern-ascii-diagram" role="img" aria-label="SE( S1{3B} ) &lt;- (a) | c) | S1,S2) | c) &lt;- SE( (S1,S2){B} ) | B}">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">SE( S1{3B} ) &lt;- (a)</div><div class="modern-diagram-cell">c)</div><div class="modern-diagram-cell">S1,S2)</div><div class="modern-diagram-cell">c) &lt;- SE( (S1,S2){B} )</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">B}</div></div></div>
-</figure><pre>                          |      __________</pre><figure class="modern-ascii-diagram" role="img" aria-label="b) | d) | S1,S2,S3) | d) &lt;- SE( (S1,S3){3B} ) | SE( (S2,S3){3B} ) | 3B} | SE( S2">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">b)</div><div class="modern-diagram-cell">d)</div><div class="modern-diagram-cell">S1,S2,S3)</div><div class="modern-diagram-cell">d) &lt;- SE( (S1,S3){3B} )</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">SE( (S2,S3){3B} )</div><div class="modern-diagram-cell">3B}</div><div class="modern-diagram-cell">SE( S2{2B} )</div></div></div>
-</figure><pre>            Figure 7: Shared-Explicit (SE) Reservation Example
+                          |       ________</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">     SE( S1{3B} ) &lt;- (a)  |  (c) |(S1,S2) |   (c) &lt;- SE( (S1,S2){B} )
+                          |      |   {B}  |
+                          |      |________|
+     ---------------------|---------------------------------------------</pre>
+</div><pre>                          |      __________</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">                  &lt;- (b)  | (d) |(S1,S2,S3)|  (d) &lt;- SE( (S1,S3){3B} )
+     SE( (S2,S3){3B} )    |     |   {3B}   |      &lt;- SE( S2{2B} )
+                          |     |__________|
+</pre>
+</div><pre>            Figure 7: Shared-Explicit (SE) Reservation Example
 
 
 
@@ -1050,10 +1094,16 @@ Braden, Ed., et. al.        Standards Track                    [Page 17]</pre>
   <pre>RFC 2205                          RSVP                    September 1997
 
 
-                         _______________</pre><figure class="modern-ascii-diagram" role="img" aria-label="a) | c) | S1 ) ----------&gt; | R1 )">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">a)</div><div class="modern-diagram-cell">c)</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">S1 ) ----------&gt;</div><div class="modern-diagram-cell">R1 )</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">b)</div><div class="modern-diagram-cell">d)</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">S2,S3 ) -------&gt;</div><div class="modern-diagram-cell">R2, R3 )</div></div></div>
-</figure><pre>                       Router Configuration
+                         _______________</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">                     (a)|               | (c)
+      ( S1 ) ----------&gt;| &gt;-----------&gt; |----------&gt; ( R1 )
+                        |    &gt;          |
+                        |      &gt;        |
+                     (b)|        &gt;      | (d)
+      ( S2,S3 ) -------&gt;| &gt;--------&gt;--&gt; |----------&gt; ( R2, R3 )
+                        |_______________|
+</pre>
+</div><pre>                       Router Configuration
 
 
                              |
@@ -1104,10 +1154,22 @@ Braden, Ed., et. al.        Standards Track                    [Page 18]</pre>
        Previous       Incoming           Outgoing             Next
        Hops           Interfaces         Interfaces           Hops
 
-       _____             _____________________                _____</pre><figure class="modern-ascii-diagram" role="img" aria-label="data --&gt; | data --&gt; | A | a                 c | C">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">data --&gt;</div><div class="modern-diagram-cell">data --&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">A</div><div class="modern-diagram-cell">a                 c</div><div class="modern-diagram-cell">C</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Path --&gt;</div><div class="modern-diagram-cell">Path --&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Resv</div><div class="modern-diagram-cell">Resv     _____</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">ROUTER</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">D</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">B</div><div class="modern-diagram-cell">data--&gt;</div><div class="modern-diagram-cell">data --&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">b                 d</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Path--&gt;</div><div class="modern-diagram-cell">Path --&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Resv</div><div class="modern-diagram-cell">Resv</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">D&#x27;</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">B&#x27;</div></div></div>
-</figure><pre>                         Figure 9: Router Using RSVP
+       _____             _____________________                _____</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">      |     | data --&gt;  |                     |  data --&gt;    |     |
+      |  A  |-----------| a                 c |--------------|  C  |
+      |_____| Path --&gt;  |                     |  Path --&gt;    |_____|
+              &lt;-- Resv  |                     |  &lt;-- Resv     _____
+       _____            |       ROUTER        |           |  |     |
+      |     |  |        |                     |           |--|  D  |
+      |  B  |--| data--&gt;|                     |  data --&gt; |  |_____|
+      |_____|  |--------| b                 d |-----------|
+               | Path--&gt;|                     |  Path --&gt; |   _____
+       _____   | &lt;--Resv|_____________________|  &lt;-- Resv |  |     |
+      |     |  |                                          |--|  D&#x27; |
+      |  B&#x27; |--|                                          |  |_____|
+      |_____|  |                                          |
+</pre>
+</div><pre>                         Figure 9: Router Using RSVP
 
 
 
@@ -1383,10 +1445,12 @@ Braden, Ed., et. al.        Standards Track                    [Page 19]</pre>
   <pre>RFC 2205                          RSVP                    September 1997
 
 
-                         ________________</pre><figure class="modern-ascii-diagram" role="img" aria-label="a | c | R1, S1 ) &lt;-----&gt; | Router | R2, S2 )">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">a</div><div class="modern-diagram-cell">c</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">R1, S1 ) &lt;-----&gt;</div><div class="modern-diagram-cell">Router</div><div class="modern-diagram-cell">R2, S2 )</div></div></div>
-</figure><pre>             Send                |        Receive
+                         ________________</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">                      a |                | c
+      ( R1, S1 ) &lt;-----&gt;|     Router     |&lt;-----&gt; ( R2, S2 )
+                        |________________|
+</pre>
+</div><pre>             Send                |        Receive
                                  |
         WF( *{3B}) &lt;-- (a)       |     (c) &lt;-- WF( *{3B})
                                  |
@@ -1879,10 +1943,16 @@ Braden, Ed., et. al.        Standards Track                    [Page 24]</pre>
 
       3.1.1 Common Header
 
-                0             1              2             3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Vers | Flags | Msg Type | RSVP Checksum | Send_TTL | Reserved) | RSVP Length">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Vers</div><div class="modern-diagram-cell">Flags</div><div class="modern-diagram-cell">Msg Type</div><div class="modern-diagram-cell">RSVP Checksum</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Send_TTL</div><div class="modern-diagram-cell">Reserved)</div><div class="modern-diagram-cell">RSVP Length</div></div></div>
-</figure><pre>         The fields in the common header are as follows:
+                0             1              2             3</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">         +-------------+-------------+-------------+-------------+
+         | Vers | Flags|  Msg Type   |       RSVP Checksum       |
+         +-------------+-------------+-------------+-------------+
+         |  Send_TTL   | (Reserved)  |        RSVP Length        |
+         +-------------+-------------+-------------+-------------+
+
+
+</pre>
+</div><pre>         The fields in the common header are as follows:
 
          Vers: 4 bits
 
@@ -1944,10 +2014,12 @@ Braden, Ed., et. al.        Standards Track                    [Page 32]</pre>
          Every object consists of one or more 32-bit words with a one-
          word header, with the following format:
 
-                0             1              2             3</pre><figure class="modern-ascii-diagram" role="img" aria-label="Length (bytes) | Class-Num | C-Type">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Length (bytes)</div><div class="modern-diagram-cell">Class-Num</div><div class="modern-diagram-cell">C-Type</div></div></div>
-</figure><pre>         //                  (Object contents)                   //</pre><pre>         |                                                       |
+                0             1              2             3</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">         +-------------+-------------+-------------+-------------+
+         |       Length (bytes)      |  Class-Num  |   C-Type    |
+         +-------------+-------------+-------------+-------------+
+         |                                                       |</pre>
+</div><pre>         //                  (Object contents)                   //</pre><pre>         |                                                       |
          +-------------+-------------+-------------+-------------+</pre><pre>Braden, Ed., et. al.        Standards Track                    [Page 33]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
@@ -3097,10 +3169,15 @@ Braden, Ed., et. al.        Standards Track                    [Page 32]</pre>
 
 
 
-                         ________________</pre><figure class="modern-ascii-diagram" role="img" aria-label="a | c | R4, S4&lt;-----&gt; | Router | R2, S2, S3">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">a</div><div class="modern-diagram-cell">c</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">R4, S4&lt;-----&gt;</div><div class="modern-diagram-cell">Router</div><div class="modern-diagram-cell">R2, S2, S3</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">b</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">R1, S1&lt;-----&gt;</div></div></div>
-</figure><pre>          Send on (a):           |    Receive on (c):
+                         ________________</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">                      a |                | c
+           R4, S4&lt;-----&gt;|     Router     |&lt;-----&gt; R2, S2, S3
+                        |                |
+                      b |                |
+           R1, S1&lt;-----&gt;|                |
+                        |________________|
+</pre>
+</div><pre>          Send on (a):           |    Receive on (c):
                                  |
              &lt;-- WF( [S4] )      |       &lt;-- WF( [S4, S1])
                                  |
@@ -4543,16 +4620,30 @@ APPENDIX A. Object Definitions
 
       SESSION Class = 1.
 
-      o    IPv4/UDP SESSION object: Class = 1, C-Type = 1</pre><figure class="modern-ascii-diagram" role="img" aria-label="IPv4 DestAddress (4 bytes) | Protocol Id | Flags | DstPort">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">IPv4 DestAddress (4 bytes)</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Protocol Id</div><div class="modern-diagram-cell">Flags</div><div class="modern-diagram-cell">DstPort</div></div></div>
-</figure><pre>      o    IPv6/UDP SESSION object: Class = 1, C-Type = 2</pre><div class="modern-diagram-fallback">           +-------------+-------------+-------------+-------------+
+      o    IPv4/UDP SESSION object: Class = 1, C-Type = 1</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">           +-------------+-------------+-------------+-------------+
+           |             IPv4 DestAddress (4 bytes)                |
+           +-------------+-------------+-------------+-------------+
+           | Protocol Id |    Flags    |          DstPort          |
+           +-------------+-------------+-------------+-------------+
+
+</pre>
+</div><pre>      o    IPv6/UDP SESSION object: Class = 1, C-Type = 2</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">           +-------------+-------------+-------------+-------------+
            |                                                       |
            +                                                       +
-           |                                                       |</div><pre>           +               IPv6 DestAddress (16 bytes)             +</pre><figure class="modern-ascii-diagram" role="img" aria-label="Protocol Id | Flags | DstPort">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Protocol Id</div><div class="modern-diagram-cell">Flags</div><div class="modern-diagram-cell">DstPort</div></div></div>
-</figure><pre>      DestAddress
+           |                                                       |</pre>
+</div><pre>           +               IPv6 DestAddress (16 bytes)             +</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">           |                                                       |
+           +                                                       +
+           |                                                       |
+           +-------------+-------------+-------------+-------------+
+           | Protocol Id |     Flags   |          DstPort          |
+           +-------------+-------------+-------------+-------------+
+
+
+</pre>
+</div><pre>      DestAddress
 
            The IP unicast or multicast destination address of the
            session.  This field must be non-zero.
@@ -4637,16 +4728,28 @@ Braden, Ed., et. al.        Standards Track                    [Page 77]</pre>
 
       RSVP_HOP class = 3.
 
-      o    IPv4 RSVP_HOP object: Class = 3, C-Type = 1</pre><figure class="modern-ascii-diagram" role="img" aria-label="IPv4 Next/Previous Hop Address | Logical Interface Handle">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">IPv4 Next/Previous Hop Address</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Logical Interface Handle</div></div></div>
-</figure><pre>      o    IPv6 RSVP_HOP object: Class = 3, C-Type = 2</pre><div class="modern-diagram-fallback">           +-------------+-------------+-------------+-------------+
+      o    IPv4 RSVP_HOP object: Class = 3, C-Type = 1</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">           +-------------+-------------+-------------+-------------+
+           |             IPv4 Next/Previous Hop Address            |
+           +-------------+-------------+-------------+-------------+
+           |                 Logical Interface Handle              |
+           +-------------+-------------+-------------+-------------+
+</pre>
+</div><pre>      o    IPv6 RSVP_HOP object: Class = 3, C-Type = 2</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">           +-------------+-------------+-------------+-------------+
            |                                                       |
            +                                                       +
-           |                                                       |</div><pre>           +             IPv6 Next/Previous Hop Address            +</pre><figure class="modern-ascii-diagram" role="img" aria-label="Logical Interface Handle">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Logical Interface Handle</div></div></div>
-</figure><pre>      This object carries the IP address of the interface through which
+           |                                                       |</pre>
+</div><pre>           +             IPv6 Next/Previous Hop Address            +</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">           |                                                       |
+           +                                                       +
+           |                                                       |
+           +-------------+-------------+-------------+-------------+
+           |                Logical Interface Handle               |
+           +-------------+-------------+-------------+-------------+
+
+</pre>
+</div><pre>      This object carries the IP address of the interface through which
       the last RSVP-knowledgeable hop forwarded this message.  The
       Logical Interface Handle (LIH) is used to distinguish logical
       outgoing interfaces, as discussed in Sections 3.3 and 3.9.  A node
@@ -4688,10 +4791,14 @@ Braden, Ed., et. al.        Standards Track                    [Page 79]</pre>
 
       TIME_VALUES class = 5.
 
-      o    TIME_VALUES Object: Class = 5, C-Type = 1</pre><figure class="modern-ascii-diagram" role="img" aria-label="Refresh Period R">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Refresh Period R</div></div></div>
-</figure><pre>      Refresh Period
+      o    TIME_VALUES Object: Class = 5, C-Type = 1</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">           +-------------+-------------+-------------+-------------+
+           |                   Refresh Period R                    |
+           +-------------+-------------+-------------+-------------+
+
+
+</pre>
+</div><pre>      Refresh Period
 
            The refresh timeout period R used to generate this message;
            in milliseconds.
@@ -4735,16 +4842,30 @@ Braden, Ed., et. al.        Standards Track                    [Page 80]</pre>
 
       ERROR_SPEC class = 6.
 
-      o    IPv4 ERROR_SPEC object: Class = 6, C-Type = 1</pre><figure class="modern-ascii-diagram" role="img" aria-label="IPv4 Error Node Address (4 bytes) | Flags | Error Code | Error Value">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">IPv4 Error Node Address (4 bytes)</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Flags</div><div class="modern-diagram-cell">Error Code</div><div class="modern-diagram-cell">Error Value</div></div></div>
-</figure><pre>      o    IPv6 ERROR_SPEC object: Class = 6, C-Type = 2</pre><div class="modern-diagram-fallback">           +-------------+-------------+-------------+-------------+
+      o    IPv4 ERROR_SPEC object: Class = 6, C-Type = 1</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">           +-------------+-------------+-------------+-------------+
+           |            IPv4 Error Node Address (4 bytes)          |
+           +-------------+-------------+-------------+-------------+
+           |    Flags    |  Error Code |        Error Value        |
+           +-------------+-------------+-------------+-------------+
+
+</pre>
+</div><pre>      o    IPv6 ERROR_SPEC object: Class = 6, C-Type = 2</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">           +-------------+-------------+-------------+-------------+
            |                                                       |
            +                                                       +
-           |                                                       |</div><pre>           +           IPv6 Error Node Address (16 bytes)          +</pre><figure class="modern-ascii-diagram" role="img" aria-label="Flags | Error Code | Error Value">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Flags</div><div class="modern-diagram-cell">Error Code</div><div class="modern-diagram-cell">Error Value</div></div></div>
-</figure><pre>      Error Node Address
+           |                                                       |</pre>
+</div><pre>           +           IPv6 Error Node Address (16 bytes)          +</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">           |                                                       |
+           +                                                       +
+           |                                                       |
+           +-------------+-------------+-------------+-------------+
+           |    Flags    |  Error Code |        Error Value        |
+           +-------------+-------------+-------------+-------------+
+
+
+</pre>
+</div><pre>      Error Node Address
 
            The IP address of the node in which the error was detected.
 
@@ -4840,22 +4961,33 @@ Braden, Ed., et. al.        Standards Track                    [Page 81]</pre>
       messages with wildcard scope without loops.  The addresses must be
       listed in ascending numerical order.
 
-      o    IPv4 SCOPE List object: Class = 7, C-Type = 1</pre><figure class="modern-ascii-diagram" role="img" aria-label="IPv4 Src Address (4 bytes)">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">IPv4 Src Address (4 bytes)</div></div></div>
-</figure><pre>           //                                                      //</pre><figure class="modern-ascii-diagram" role="img" aria-label="IPv4 Src Address (4 bytes)">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">IPv4 Src Address (4 bytes)</div></div></div>
-</figure><pre>      o    IPv6  SCOPE list object: Class = 7, C-Type = 2</pre><div class="modern-diagram-fallback">           +-------------+-------------+-------------+-------------+
+      o    IPv4 SCOPE List object: Class = 7, C-Type = 1</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">           +-------------+-------------+-------------+-------------+
+           |                IPv4 Src Address (4 bytes)             |
+           +-------------+-------------+-------------+-------------+</pre>
+</div><pre>           //                                                      //</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">           +-------------+-------------+-------------+-------------+
+           |                IPv4 Src Address (4 bytes)             |
+           +-------------+-------------+-------------+-------------+
+
+</pre>
+</div><pre>      o    IPv6  SCOPE list object: Class = 7, C-Type = 2</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">           +-------------+-------------+-------------+-------------+
            |                                                       |
            +                                                       +
-           |                                                       |</div><pre>           +                IPv6 Src Address (16 bytes)            +</pre><div class="modern-diagram-fallback">           |                                                       |
+           |                                                       |</pre>
+</div><pre>           +                IPv6 Src Address (16 bytes)            +</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">           |                                                       |
            +                                                       +
            |                                                       |
-           +-------------+-------------+-------------+-------------+</div><pre>           //                                                      //</pre><div class="modern-diagram-fallback">           +-------------+-------------+-------------+-------------+
+           +-------------+-------------+-------------+-------------+</pre>
+</div><pre>           //                                                      //</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">           +-------------+-------------+-------------+-------------+
            |                                                       |
            +                                                       +
-           |                                                       |</div><pre>           +                IPv6 Src Address (16 bytes)            +</pre><div class="modern-diagram-fallback">           |                                                       |
+           |                                                       |</pre>
+</div><pre>           +                IPv6 Src Address (16 bytes)            +</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">           |                                                       |
            +                                                       +
            |                                                       |
            +-------------+-------------+-------------+-------------+
@@ -4867,6 +4999,7 @@ Braden, Ed., et. al.        Standards Track                    [Page 81]</pre>
 
 
 
+</pre>
 </div><pre>Braden, Ed., et. al.        Standards Track                    [Page 83]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
@@ -4879,10 +5012,14 @@ Braden, Ed., et. al.        Standards Track                    [Page 81]</pre>
 
       STYLE class = 8.
 
-      o    STYLE object: Class = 8, C-Type = 1</pre><figure class="modern-ascii-diagram" role="img" aria-label="Flags | Option Vector">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Flags</div><div class="modern-diagram-cell">Option Vector</div></div></div>
-</figure><pre>      Flags: 8 bits
+      o    STYLE object: Class = 8, C-Type = 1</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">           +-------------+-------------+-------------+-------------+
+           |   Flags     |              Option Vector              |
+           +-------------+-------------+-------------+-------------+
+
+
+</pre>
+</div><pre>      Flags: 8 bits
 
            (None assigned yet)
 
@@ -5053,22 +5190,44 @@ Braden, Ed., et. al.        Standards Track                    [Page 84]</pre>
 
       FILTER_SPEC class = 10.
 
-      o    IPv4 FILTER_SPEC object: Class = 10, C-Type = 1</pre><figure class="modern-ascii-diagram" role="img" aria-label="IPv4 SrcAddress (4 bytes) | SrcPort">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">IPv4 SrcAddress (4 bytes)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">SrcPort</div></div></div>
-</figure><pre>      o    IPv6 FILTER_SPEC object: Class = 10, C-Type = 2</pre><div class="modern-diagram-fallback">           +-------------+-------------+-------------+-------------+
+      o    IPv4 FILTER_SPEC object: Class = 10, C-Type = 1</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">           +-------------+-------------+-------------+-------------+
+           |               IPv4 SrcAddress (4 bytes)               |
+           +-------------+-------------+-------------+-------------+
+           |    //////   |    //////   |          SrcPort          |
+           +-------------+-------------+-------------+-------------+
+
+</pre>
+</div><pre>      o    IPv6 FILTER_SPEC object: Class = 10, C-Type = 2</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">           +-------------+-------------+-------------+-------------+
            |                                                       |
            +                                                       +
-           |                                                       |</div><pre>           +               IPv6 SrcAddress (16 bytes)              +</pre><figure class="modern-ascii-diagram" role="img" aria-label="SrcPort">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">SrcPort</div></div></div>
-</figure><pre>      o    IPv6 Flow-label FILTER_SPEC object: Class = 10, C-Type = 3</pre><div class="modern-diagram-fallback">           +-------------+-------------+-------------+-------------+
+           |                                                       |</pre>
+</div><pre>           +               IPv6 SrcAddress (16 bytes)              +</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">           |                                                       |
+           +                                                       +
+           |                                                       |
+           +-------------+-------------+-------------+-------------+
+           |    //////   |    //////   |          SrcPort          |
+           +-------------+-------------+-------------+-------------+
+
+</pre>
+</div><pre>      o    IPv6 Flow-label FILTER_SPEC object: Class = 10, C-Type = 3</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">           +-------------+-------------+-------------+-------------+
            |                                                       |
            +                                                       +
-           |                                                       |</div><pre>           +               IPv6 SrcAddress (16 bytes)              +</pre><figure class="modern-ascii-diagram" role="img" aria-label="Flow Label (24 bits)">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Flow Label (24 bits)</div></div></div>
-</figure><pre>      SrcAddress
+           |                                                       |</pre>
+</div><pre>           +               IPv6 SrcAddress (16 bytes)              +</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">           |                                                       |
+           +                                                       +
+           |                                                       |
+           +-------------+-------------+-------------+-------------+
+           |   ///////   |         Flow Label (24 bits)            |
+           +-------------+-------------+-------------+-------------+
+
+
+</pre>
+</div><pre>      SrcAddress
 
            The IP source address for a sender host.  Must be non-zero.
 
@@ -5267,13 +5426,19 @@ Braden, Ed., et. al.        Standards Track                    [Page 87]</pre>
 
       RESV_CONFIRM class = 15.
 
-      o    IPv4 RESV_CONFIRM object: Class = 15, C-Type = 1</pre><figure class="modern-ascii-diagram" role="img" aria-label="IPv4 Receiver Address (4 bytes)">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">IPv4 Receiver Address (4 bytes)</div></div></div>
-</figure><pre>      o    IPv6 RESV_CONFIRM object: Class = 15, C-Type = 2</pre><div class="modern-diagram-fallback">           +-------------+-------------+-------------+-------------+
+      o    IPv4 RESV_CONFIRM object: Class = 15, C-Type = 1</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">           +-------------+-------------+-------------+-------------+
+           |            IPv4 Receiver Address (4 bytes)            |
+           +-------------+-------------+-------------+-------------+
+
+</pre>
+</div><pre>      o    IPv6 RESV_CONFIRM object: Class = 15, C-Type = 2</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">           +-------------+-------------+-------------+-------------+
            |                                                       |
            +                                                       +
-           |                                                       |</div><pre>           +            IPv6 Receiver Address (16 bytes)           +</pre><div class="modern-diagram-fallback">           |                                                       |
+           |                                                       |</pre>
+</div><pre>           +            IPv6 Receiver Address (16 bytes)           +</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">           |                                                       |
            +                                                       +
            |                                                       |
            +-------------+-------------+-------------+-------------+
@@ -5305,6 +5470,7 @@ Braden, Ed., et. al.        Standards Track                    [Page 87]</pre>
 
 
 
+</pre>
 </div><pre>Braden, Ed., et. al.        Standards Track                    [Page 91]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">

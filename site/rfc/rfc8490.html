@@ -1005,10 +1005,7 @@ Table of Contents
    If a DSO message is received where any of the count fields are not
    zero, then a FORMERR MUST be returned.
 
-                                                1   1   1   1   1   1</pre><figure class="modern-ascii-diagram" role="img" aria-label="MESSAGE ID">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0   1   2   3   4   5   6   7   8   9   0   1   2   3   4   5</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">MESSAGE ID</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">QR</div><div class="modern-diagram-cell">OPCODE (6)</div><div class="modern-diagram-cell">Z</div><div class="modern-diagram-cell">RCODE</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">QDCOUNT (MUST be zero)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">ANCOUNT (MUST be zero)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">NSCOUNT (MUST be zero)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">ARCOUNT (MUST be zero)</div></div></div>
-</figure><pre>      /                           DSO Data                            /
+                                                1   1   1   1   1   1</pre><svg class="rfc-bit-diagram" viewBox="0 0 424 550" role="img" aria-label="Bit field diagram" xmlns="http://www.w3.org/2000/svg"><desc>Protocol header bit field layout showing field names and positions</desc><defs>  <style>    .bit-grid { stroke: #94a3b8; stroke-width: 0.5; fill: none; }    .field-block { fill: #3b82f6; opacity: 0.9; rx: 4; }    .field-label { fill: white; font-size: 11px; font-weight: 600; font-family: Inter, sans-serif; text-anchor: middle; }    .bit-label { fill: #64748b; font-size: 9px; font-family: "IBM Plex Mono", monospace; text-anchor: middle; }    .row-label { fill: #475569; font-size: 10px; font-family: Inter, sans-serif; }  </style></defs><text class="bit-label" x="20" y="32">0</text><text class="bit-label" x="116" y="32">8</text><text class="bit-label" x="212" y="32">16</text><text class="bit-label" x="308" y="32">24</text><text class="bit-label" x="404" y="32">31</text><rect class="field-block" x="20" y="50" width="384" height="50" /><text class="field-label" x="212.0" y="79.0">MESSAGE ID</text><rect class="bit-grid" x="20" y="50" width="384" height="50" /><rect class="field-block" x="20" y="110" width="96" height="50" /><text class="field-label" x="68.0" y="139.0">QR</text><rect class="field-block" x="116" y="110" width="180" height="50" /><text class="field-label" x="206.0" y="139.0">OPCODE (6)</text><rect class="bit-grid" x="20" y="110" width="384" height="50" /><rect class="field-block" x="20" y="170" width="324" height="50" /><text class="field-label" x="182.0" y="199.0">Z</text><rect class="bit-grid" x="20" y="170" width="384" height="50" /><rect class="field-block" x="20" y="230" width="180" height="50" /><text class="field-label" x="110.0" y="259.0">RCODE</text><rect class="bit-grid" x="20" y="230" width="384" height="50" /><rect class="field-block" x="20" y="290" width="384" height="50" /><text class="field-label" x="212.0" y="319.0">QDCOUNT (MUS</text><rect class="bit-grid" x="20" y="290" width="384" height="50" /><rect class="field-block" x="20" y="350" width="384" height="50" /><text class="field-label" x="212.0" y="379.0">ANCOUNT (MUS</text><rect class="bit-grid" x="20" y="350" width="384" height="50" /><rect class="field-block" x="20" y="410" width="384" height="50" /><text class="field-label" x="212.0" y="439.0">NSCOUNT (MUS</text><rect class="bit-grid" x="20" y="410" width="384" height="50" /><rect class="field-block" x="20" y="470" width="384" height="50" /><text class="field-label" x="212.0" y="499.0">ARCOUNT (MUS</text><rect class="bit-grid" x="20" y="470" width="384" height="50" /></svg><pre>      /                           DSO Data                            /
       /                                                               /</pre><pre>      +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+</pre><pre>Bellis, et al.               Standards Track                   [Page 16]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
@@ -1081,10 +1078,25 @@ Table of Contents
    silently ignored on reception.
 
    The RCODE value in a response message (QR=1) may be one of the
-   following values:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Code | Mnemonic | Description | NOERROR | Operation processed successfully">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Code</div><div class="modern-diagram-cell">Mnemonic</div><div class="modern-diagram-cell">Description</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">0</div><div class="modern-diagram-cell">NOERROR</div><div class="modern-diagram-cell">Operation processed successfully</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">FORMERR</div><div class="modern-diagram-cell">Format error</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">2</div><div class="modern-diagram-cell">SERVFAIL</div><div class="modern-diagram-cell">Server failed to process DSO request message</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">due to a problem with the server</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">4</div><div class="modern-diagram-cell">NOTIMP</div><div class="modern-diagram-cell">DSO not supported</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">5</div><div class="modern-diagram-cell">REFUSED</div><div class="modern-diagram-cell">Operation declined for policy reasons</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">11</div><div class="modern-diagram-cell">DSOTYPENI</div><div class="modern-diagram-cell">Primary TLV&#x27;s DSO-Type is not implemented</div></div></div>
-</figure><pre>   Use of the above RCODEs is likely to be common in DSO but does not
+   following values:</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   +------+-----------+------------------------------------------------+
+   | Code | Mnemonic  | Description                                    |
+   +------+-----------+------------------------------------------------+
+   |    0 | NOERROR   | Operation processed successfully               |
+   |      |           |                                                |
+   |    1 | FORMERR   | Format error                                   |
+   |      |           |                                                |
+   |    2 | SERVFAIL  | Server failed to process DSO request message   |
+   |      |           | due to a problem with the server               |
+   |      |           |                                                |
+   |    4 | NOTIMP    | DSO not supported                              |
+   |      |           |                                                |
+   |    5 | REFUSED   | Operation declined for policy reasons          |
+   |      |           |                                                |
+   |   11 | DSOTYPENI | Primary TLV&#x27;s DSO-Type is not implemented      |
+   +------+-----------+------------------------------------------------+
+</pre>
+</div><pre>   Use of the above RCODEs is likely to be common in DSO but does not
    preclude the definition and use of other codes in future documents
    that make use of DSO.
 
@@ -1262,10 +1274,7 @@ Bellis, et al.               Standards Track                   [Page 18]</pre>
    allowed the specification should clearly describe how they should be
    processed.
 
-                                                1   1   1   1   1   1</pre><figure class="modern-ascii-diagram" role="img" aria-label="DSO-TYPE">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0   1   2   3   4   5   6   7   8   9   0   1   2   3   4   5</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">DSO-TYPE</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">DSO-LENGTH</div></div></div>
-</figure><pre>      /                           DSO-DATA                            /
+                                                1   1   1   1   1   1</pre><svg class="rfc-bit-diagram" viewBox="0 0 424 190" role="img" aria-label="Bit field diagram" xmlns="http://www.w3.org/2000/svg"><desc>Protocol header bit field layout showing field names and positions</desc><defs>  <style>    .bit-grid { stroke: #94a3b8; stroke-width: 0.5; fill: none; }    .field-block { fill: #3b82f6; opacity: 0.9; rx: 4; }    .field-label { fill: white; font-size: 11px; font-weight: 600; font-family: Inter, sans-serif; text-anchor: middle; }    .bit-label { fill: #64748b; font-size: 9px; font-family: "IBM Plex Mono", monospace; text-anchor: middle; }    .row-label { fill: #475569; font-size: 10px; font-family: Inter, sans-serif; }  </style></defs><text class="bit-label" x="20" y="32">0</text><text class="bit-label" x="116" y="32">8</text><text class="bit-label" x="212" y="32">16</text><text class="bit-label" x="308" y="32">24</text><text class="bit-label" x="404" y="32">31</text><rect class="field-block" x="20" y="50" width="384" height="50" /><text class="field-label" x="212.0" y="79.0">DSO-TYPE</text><rect class="bit-grid" x="20" y="50" width="384" height="50" /><rect class="field-block" x="20" y="110" width="384" height="50" /><text class="field-label" x="212.0" y="139.0">DSO-LENGTH</text><rect class="bit-grid" x="20" y="110" width="384" height="50" /></svg><pre>      /                           DSO-DATA                            /
       /                                                               /</pre><pre>      +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+</pre><pre>   DSO-TYPE:  A 16-bit unsigned integer, in network (big endian) byte
       order, giving the DSO-TYPE of the current DSO TLV per the IANA
       &quot;DSO Type Codes&quot; registry.
@@ -2389,10 +2398,7 @@ Bellis, et al.               Standards Track                   [Page 21]</pre>
    DSO messages with the Keepalive TLV as the Primary TLV may appear in
    early data.
 
-   The DSO-DATA for the Keepalive TLV is as follows:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Technical diagram">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 3 3</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">INACTIVITY TIMEOUT (32 bits)</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">KEEPALIVE INTERVAL (32 bits)</div></div></div>
-</figure><pre>   INACTIVITY TIMEOUT:  The inactivity timeout for the current DSO
+   The DSO-DATA for the Keepalive TLV is as follows:</pre><svg class="rfc-bit-diagram" viewBox="0 0 424 190" role="img" aria-label="Bit field diagram" xmlns="http://www.w3.org/2000/svg"><desc>Protocol header bit field layout showing field names and positions</desc><defs>  <style>    .bit-grid { stroke: #94a3b8; stroke-width: 0.5; fill: none; }    .field-block { fill: #3b82f6; opacity: 0.9; rx: 4; }    .field-label { fill: white; font-size: 11px; font-weight: 600; font-family: Inter, sans-serif; text-anchor: middle; }    .bit-label { fill: #64748b; font-size: 9px; font-family: "IBM Plex Mono", monospace; text-anchor: middle; }    .row-label { fill: #475569; font-size: 10px; font-family: Inter, sans-serif; }  </style></defs><text class="bit-label" x="20" y="32">0</text><text class="bit-label" x="116" y="32">8</text><text class="bit-label" x="212" y="32">16</text><text class="bit-label" x="308" y="32">24</text><text class="bit-label" x="404" y="32">31</text><rect class="field-block" x="20" y="50" width="384" height="50" /><text class="field-label" x="212.0" y="79.0">INACTIVITY T</text><rect class="bit-grid" x="20" y="50" width="384" height="50" /><rect class="field-block" x="20" y="110" width="384" height="50" /><text class="field-label" x="212.0" y="139.0">KEEPALIVE IN</text><rect class="bit-grid" x="20" y="110" width="384" height="50" /></svg><pre>   INACTIVITY TIMEOUT:  The inactivity timeout for the current DSO
       Session, specified as a 32-bit unsigned integer, in network (big
       endian) byte order in units of milliseconds.  This is the timeout
       at which the client MUST begin closing an inactive DSO Session.
@@ -2610,10 +2616,7 @@ Bellis, et al.               Standards Track                   [Page 40]</pre>
    Additional TLV in either direction.  DSO messages with a Relay Delay
    TLV as their Primary TLV are not permitted in early data.
 
-   The DSO-DATA for the Retry Delay TLV is as follows:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Technical diagram">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 3 3</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">RETRY DELAY (32 bits)</div></div></div>
-</figure><pre>   RETRY DELAY:  A time value, specified as a 32-bit unsigned integer in
+   The DSO-DATA for the Retry Delay TLV is as follows:</pre><svg class="rfc-bit-diagram" viewBox="0 0 424 130" role="img" aria-label="Bit field diagram" xmlns="http://www.w3.org/2000/svg"><desc>Protocol header bit field layout showing field names and positions</desc><defs>  <style>    .bit-grid { stroke: #94a3b8; stroke-width: 0.5; fill: none; }    .field-block { fill: #3b82f6; opacity: 0.9; rx: 4; }    .field-label { fill: white; font-size: 11px; font-weight: 600; font-family: Inter, sans-serif; text-anchor: middle; }    .bit-label { fill: #64748b; font-size: 9px; font-family: "IBM Plex Mono", monospace; text-anchor: middle; }    .row-label { fill: #475569; font-size: 10px; font-family: Inter, sans-serif; }  </style></defs><text class="bit-label" x="20" y="32">0</text><text class="bit-label" x="116" y="32">8</text><text class="bit-label" x="212" y="32">16</text><text class="bit-label" x="308" y="32">24</text><text class="bit-label" x="404" y="32">31</text><rect class="field-block" x="20" y="50" width="384" height="50" /><text class="field-label" x="212.0" y="79.0">RETRY DELAY </text><rect class="bit-grid" x="20" y="50" width="384" height="50" /></svg><pre>   RETRY DELAY:  A time value, specified as a 32-bit unsigned integer in
       network (big endian) byte order, in units of milliseconds, within
       which the initiator MUST NOT retry this operation or retry
       connecting to this server.  Recommendations for the RETRY DELAY
@@ -2794,10 +2797,40 @@ Bellis, et al.               Standards Track                   [Page 44]</pre>
    zero.
 
    The table below illustrates which combinations are legal and how they
-   are interpreted:</pre><figure class="modern-ascii-diagram" role="img" aria-label="MESSAGE ID zero | MESSAGE ID nonzero | QR=0 | DSO unidirectional message | DSO r">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">MESSAGE ID zero</div><div class="modern-diagram-cell">MESSAGE ID nonzero</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">QR=0</div><div class="modern-diagram-cell">DSO unidirectional message</div><div class="modern-diagram-cell">DSO request message</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">QR=1</div><div class="modern-diagram-cell">Invalid - Fatal Error</div><div class="modern-diagram-cell">DSO response message</div></div></div>
-</figure><pre>Bellis, et al.               Standards Track                   [Page 47]</pre>
+   are interpreted:</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">               +------------------------------+------------------------+
+               |       MESSAGE ID zero        |   MESSAGE ID nonzero   |
+      +--------+------------------------------+------------------------+
+      |  QR=0  |  DSO unidirectional message  |  DSO request message   |
+      +--------+------------------------------+------------------------+
+      |  QR=1  |    Invalid - Fatal Error     |  DSO response message  |
+      +--------+------------------------------+------------------------+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</pre>
+</div><pre>Bellis, et al.               Standards Track                   [Page 47]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 48</span>
@@ -2875,10 +2908,18 @@ Bellis, et al.               Standards Track                   [Page 44]</pre>
       back to the server (in response to a server &quot;S-P&quot; request with
       nonzero MESSAGE ID indicating that a response is required) where
       the DSO-TYPE of the Response TLV does not match the DSO-TYPE of
-      the Primary TLV in the request.</pre><figure class="modern-ascii-diagram" role="img" aria-label="C-P  C-U  C-A  CRP  CRA | S-P  S-U  S-A  SRP  SRA | KeepAlive | X              X">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">C-P  C-U  C-A  CRP  CRA</div><div class="modern-diagram-cell">S-P  S-U  S-A  SRP  SRA</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">KeepAlive</div><div class="modern-diagram-cell">X              X</div><div class="modern-diagram-cell">X</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">RetryDelay</div><div class="modern-diagram-cell">X</div><div class="modern-diagram-cell">X              X</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Padding</div><div class="modern-diagram-cell">X         X</div><div class="modern-diagram-cell">X         X</div></div></div>
-</figure><pre>   Note that some of the columns in this table are currently empty.  The
+      the Primary TLV in the request.</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">                +-------------------------+-------------------------+
+                | C-P  C-U  C-A  CRP  CRA | S-P  S-U  S-A  SRP  SRA |
+   +------------+-------------------------+-------------------------+
+   | KeepAlive  |  X              X       |       X                 |
+   +------------+-------------------------+-------------------------+
+   | RetryDelay |                      X  |       X              X  |
+   +------------+-------------------------+-------------------------+
+   | Padding    |            X         X  |            X         X  |
+   +------------+-------------------------+-------------------------+
+</pre>
+</div><pre>   Note that some of the columns in this table are currently empty.  The
    table provides a template for future TLV definitions to follow.  It
    is recommended that definitions of future TLVs include a similar
    table summarizing the contexts where the new TLV is valid.
@@ -3353,10 +3394,39 @@ Bellis, et al.               Standards Track                   [Page 49]</pre>
 10.3.  DSO Type Code Registry
 
    The IANA has created the 16-bit &quot;DSO Type Codes&quot; registry, with
-   initial (hexadecimal) values as shown below:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Type | Name | Early | Status | Reference | Data">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">Type</div><div class="modern-diagram-cell">Name</div><div class="modern-diagram-cell">Early</div><div class="modern-diagram-cell">Status</div><div class="modern-diagram-cell">Reference</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Data</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">0000</div><div class="modern-diagram-cell">Reserved</div><div class="modern-diagram-cell">NO</div><div class="modern-diagram-cell">Standards</div><div class="modern-diagram-cell">RFC 8490</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Track</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">0001</div><div class="modern-diagram-cell">KeepAlive</div><div class="modern-diagram-cell">OK</div><div class="modern-diagram-cell">Standards</div><div class="modern-diagram-cell">RFC 8490</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Track</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">0002</div><div class="modern-diagram-cell">RetryDelay</div><div class="modern-diagram-cell">NO</div><div class="modern-diagram-cell">Standards</div><div class="modern-diagram-cell">RFC 8490</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Track</div></div><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">0003</div><div class="modern-diagram-cell">EncryptionPadding</div><div class="modern-diagram-cell">NA</div><div class="modern-diagram-cell">Standards</div><div class="modern-diagram-cell">RFC 8490</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Track</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">0004-003F</div><div class="modern-diagram-cell">Unassigned, reserved</div><div class="modern-diagram-cell">NO</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">for DSO session-</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">management TLVs</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">0040-F7FF</div><div class="modern-diagram-cell">Unassigned</div><div class="modern-diagram-cell">NO</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">F800-FBFF</div><div class="modern-diagram-cell">Experimental/local</div><div class="modern-diagram-cell">NO</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">use</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">FC00-FFFF</div><div class="modern-diagram-cell">Reserved for future</div><div class="modern-diagram-cell">NO</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">expansion</div></div></div>
-</figure><pre>Bellis, et al.               Standards Track                   [Page 57]</pre>
+   initial (hexadecimal) values as shown below:</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   +-----------+-----------------------+-------+-----------+-----------+
+   | Type      | Name                  | Early | Status    | Reference |
+   |           |                       | Data  |           |           |
+   +-----------+-----------------------+-------+-----------+-----------+
+   | 0000      | Reserved              | NO    | Standards | RFC 8490  |
+   |           |                       |       | Track     |           |
+   |           |                       |       |           |           |
+   | 0001      | KeepAlive             | OK    | Standards | RFC 8490  |
+   |           |                       |       | Track     |           |
+   |           |                       |       |           |           |
+   | 0002      | RetryDelay            | NO    | Standards | RFC 8490  |
+   |           |                       |       | Track     |           |
+   |           |                       |       |           |           |
+   | 0003      | EncryptionPadding     | NA    | Standards | RFC 8490  |
+   |           |                       |       | Track     |           |
+   |           |                       |       |           |           |
+   | 0004-003F | Unassigned, reserved  | NO    |           |           |
+   |           | for DSO session-      |       |           |           |
+   |           | management TLVs       |       |           |           |
+   |           |                       |       |           |           |
+   | 0040-F7FF | Unassigned            | NO    |           |           |
+   |           |                       |       |           |           |
+   | F800-FBFF | Experimental/local    | NO    |           |           |
+   |           | use                   |       |           |           |
+   |           |                       |       |           |           |
+   | FC00-FFFF | Reserved for future   | NO    |           |           |
+   |           | expansion             |       |           |           |
+   +-----------+-----------------------+-------+-----------+-----------+
+
+
+</pre>
+</div><pre>Bellis, et al.               Standards Track                   [Page 57]</pre>
 </section><section class="rfc-page">
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 58</span>

@@ -172,10 +172,17 @@ Table of Contents
 
    The first of these categories contains the status codes 301 (Moved
    Permanently), 302 (Found), and 307 (Temporary Redirect), which can be
-   classified as below:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Permanent | Temporary | Allows changing the request method from">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Permanent</div><div class="modern-diagram-cell">Temporary</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Allows changing the request method from</div><div class="modern-diagram-cell">301</div><div class="modern-diagram-cell">302</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">POST to GET</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Does not allow changing the request</div><div class="modern-diagram-cell">307</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">method from POST to GET</div></div></div>
-</figure><pre>   Section 6.4.7 of [RFC7231] states that it does not define a permanent
+   classified as below:</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   +-------------------------------------------+-----------+-----------+
+   |                                           | Permanent | Temporary |
+   +-------------------------------------------+-----------+-----------+
+   | Allows changing the request method from   | 301       | 302       |
+   | POST to GET                               |           |           |
+   | Does not allow changing the request       | -         | 307       |
+   | method from POST to GET                   |           |           |
+   +-------------------------------------------+-----------+-----------+
+</pre>
+</div><pre>   Section 6.4.7 of [RFC7231] states that it does not define a permanent
    variant of status code 307; this specification adds the status code
    308, defining this missing variant (Section 3).
 
@@ -325,10 +332,14 @@ Reschke                      Standards Track                    [Page 2]</pre>
    The &quot;Hypertext Transfer Protocol (HTTP) Status Code Registry&quot;
    (defined in Section 8.2 of [RFC7231] and located at
    &lt;http://www.iana.org/assignments/http-status-codes&gt;) has been updated
-   to reference this specification.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Value | Description | Reference | Permanent Redirect | Section 3 of this specifi">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Value</div><div class="modern-diagram-cell">Description</div><div class="modern-diagram-cell">Reference</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">308</div><div class="modern-diagram-cell">Permanent Redirect</div><div class="modern-diagram-cell">Section 3 of this specification</div></div></div>
-</figure><pre>7.  References
+   to reference this specification.</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   +-------+--------------------+----------------------------------+
+   | Value | Description        | Reference                        |
+   +-------+--------------------+----------------------------------+
+   | 308   | Permanent Redirect | Section 3 of this specification  |
+   +-------+--------------------+----------------------------------+
+</pre>
+</div><pre>7.  References
 
 7.1.  Normative References
 

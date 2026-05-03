@@ -1013,10 +1013,17 @@ Table of Contents
 
 5.1.2.  Registrations
 
-   The initial range unit registry contains the registrations below:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Range Unit | Description | Reference | Name">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Range Unit</div><div class="modern-diagram-cell">Description</div><div class="modern-diagram-cell">Reference</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Name</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">bytes</div><div class="modern-diagram-cell">a range of octets</div><div class="modern-diagram-cell">Section 2.1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">none</div><div class="modern-diagram-cell">reserved as keyword, indicating no</div><div class="modern-diagram-cell">Section 2.3</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">ranges are supported</div></div></div>
-</figure><pre>   The change controller is: &quot;IETF (iesg@ietf.org) - Internet
+   The initial range unit registry contains the registrations below:</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   +-------------+---------------------------------------+-------------+
+   | Range Unit  | Description                           | Reference   |
+   | Name        |                                       |             |
+   +-------------+---------------------------------------+-------------+
+   | bytes       | a range of octets                     | Section 2.1 |
+   | none        | reserved as keyword, indicating no    | Section 2.3 |
+   |             | ranges are supported                  |             |
+   +-------------+---------------------------------------+-------------+
+</pre>
+</div><pre>   The change controller is: &quot;IETF (iesg@ietf.org) - Internet
    Engineering Task Force&quot;.
 
 
@@ -1044,10 +1051,15 @@ Fielding, et al.             Standards Track                   [Page 16]</pre>
 
    The &quot;Hypertext Transfer Protocol (HTTP) Status Code Registry&quot; located
    at &lt;http://www.iana.org/assignments/http-status-codes&gt; has been
-   updated to include the registrations below:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Value | Description | Reference | Partial Content | Section 4.1">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Value</div><div class="modern-diagram-cell">Description</div><div class="modern-diagram-cell">Reference</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">206</div><div class="modern-diagram-cell">Partial Content</div><div class="modern-diagram-cell">Section 4.1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">416</div><div class="modern-diagram-cell">Range Not Satisfiable</div><div class="modern-diagram-cell">Section 4.4</div></div></div>
-</figure><pre>5.3.  Header Field Registration
+   updated to include the registrations below:</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   +-------+-----------------------+-------------+
+   | Value | Description           | Reference   |
+   +-------+-----------------------+-------------+
+   | 206   | Partial Content       | Section 4.1 |
+   | 416   | Range Not Satisfiable | Section 4.4 |
+   +-------+-----------------------+-------------+
+</pre>
+</div><pre>5.3.  Header Field Registration
 
    HTTP header fields are registered within the &quot;Message Headers&quot;
    registry maintained at
@@ -1055,10 +1067,17 @@ Fielding, et al.             Standards Track                   [Page 16]</pre>
 
    This document defines the following HTTP header fields, so their
    associated registry entries have been updated according to the
-   permanent registrations below (see [BCP90]):</pre><figure class="modern-ascii-diagram" role="img" aria-label="Header Field Name | Protocol | Status | Reference | Accept-Ranges | http | stand">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Header Field Name</div><div class="modern-diagram-cell">Protocol</div><div class="modern-diagram-cell">Status</div><div class="modern-diagram-cell">Reference</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Accept-Ranges</div><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">standard</div><div class="modern-diagram-cell">Section 2.3</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Content-Range</div><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">standard</div><div class="modern-diagram-cell">Section 4.2</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">If-Range</div><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">standard</div><div class="modern-diagram-cell">Section 3.2</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Range</div><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">standard</div><div class="modern-diagram-cell">Section 3.1</div></div></div>
-</figure><pre>   The change controller is: &quot;IETF (iesg@ietf.org) - Internet
+   permanent registrations below (see [BCP90]):</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   +-------------------+----------+----------+-------------+
+   | Header Field Name | Protocol | Status   | Reference   |
+   +-------------------+----------+----------+-------------+
+   | Accept-Ranges     | http     | standard | Section 2.3 |
+   | Content-Range     | http     | standard | Section 4.2 |
+   | If-Range          | http     | standard | Section 3.2 |
+   | Range             | http     | standard | Section 3.1 |
+   +-------------------+----------+----------+-------------+
+</pre>
+</div><pre>   The change controller is: &quot;IETF (iesg@ietf.org) - Internet
    Engineering Task Force&quot;.
 
 5.4.  Internet Media Type Registration

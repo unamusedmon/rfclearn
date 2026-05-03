@@ -622,10 +622,14 @@ H64KFA4P1ACER2EBPS9QSDK6DNP8B3JQ.example.com. IN NSEC3 1 0 0 - (
           OPT header. This flag is referred to as the
           Compact Answers OK (CO) flag.<a href="#section-5.1-1">¶</a></p>
 <div>
-<pre>          +0 (MSB)                +1 (LSB)</pre><figure class="modern-ascii-diagram" role="img" aria-label="EXTENDED-RCODE | VERSION | DO | CO | Z">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">0:</div><div class="modern-diagram-cell">EXTENDED-RCODE</div><div class="modern-diagram-cell">VERSION</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">2:</div><div class="modern-diagram-cell">DO</div><div class="modern-diagram-cell">CO</div><div class="modern-diagram-cell">Z</div></div></div>
-</figure><a href="#section-5.1-2">¶</a>
+<pre>          +0 (MSB)                +1 (LSB)</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+0: |   EXTENDED-RCODE      |       VERSION         |
+   +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+2: |DO|CO|                 Z                       |
+   +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+</pre>
+</div><a href="#section-5.1-2">¶</a>
 </div>
 <p>
           When this flag is sent in a query by a resolver, it indicates

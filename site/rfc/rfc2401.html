@@ -726,10 +726,12 @@ Full Copyright Statement..............................................<a href="#
              performed at one IPsec instance at the (ultimate)
              destination.
 
-             Host 1 --- Security ---- Internet -- Security --- Host 2</pre><figure class="modern-ascii-diagram" role="img" aria-label="Gwy 1                      Gwy 2 | Security Association 1 (ESP transport)-------">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Gwy 1                      Gwy 2</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Security Association 1 (ESP transport)-------</div></div></div>
-</figure><pre>              -------Security Association 2 (AH transport)----------
+             Host 1 --- Security ---- Internet -- Security --- Host 2</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">              | |        Gwy 1                      Gwy 2        | |
+              | |                                                | |
+              | -----Security Association 1 (ESP transport)------- |
+              |                                                    |</pre>
+</div><pre>              -------Security Association 2 (AH transport)----------
 
            o Iterated tunneling refers to the application of multiple
              layers of security protocols effected through IP tunneling.
@@ -759,26 +761,32 @@ Kent &amp; Atkinson             Standards Track                    [Page 11]</pr
                 is unlikely that Host 1 would specify both to be the
                 same, i.e., AH inside of AH or ESP inside of ESP.
 
-                Host 1 --- Security ---- Internet -- Security --- Host 2</pre><figure class="modern-ascii-diagram" role="img" aria-label="Gwy 1                      Gwy 2 | Security Association 1 (tunnel)----------">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Gwy 1                      Gwy 2</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Security Association 1 (tunnel)----------</div></div></div>
-</figure><pre>                 ---------Security Association 2 (tunnel)--------------
+                Host 1 --- Security ---- Internet -- Security --- Host 2</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">                 | |        Gwy 1                      Gwy 2        | |
+                 | |                                                | |
+                 | -------Security Association 1 (tunnel)---------- | |
+                 |                                                    |</pre>
+</div><pre>                 ---------Security Association 2 (tunnel)--------------
 
              2. one endpoint of the SAs is the same -- The inner and
                 uter tunnels could each be either AH or ESP.
 
-                Host 1 --- Security ---- Internet -- Security --- Host 2</pre><figure class="modern-ascii-diagram" role="img" aria-label="Gwy 1                      Gwy 2 | Security Association 1 (tunnel)----">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Gwy 1                      Gwy 2</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Security Association 1 (tunnel)----</div></div></div>
-</figure><pre>                 ---------Security Association 2 (tunnel)-------------
+                Host 1 --- Security ---- Internet -- Security --- Host 2</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">                 | |        Gwy 1                      Gwy 2         |
+                 | |                                     |           |
+                 | ----Security Association 1 (tunnel)----           |
+                 |                                                   |</pre>
+</div><pre>                 ---------Security Association 2 (tunnel)-------------
 
              3. neither endpoint is the same -- The inner and outer
                 tunnels could each be either AH or ESP.
 
-                Host 1 --- Security ---- Internet -- Security --- Host 2</pre><figure class="modern-ascii-diagram" role="img" aria-label="Gwy 1                      Gwy 2 | Security Assoc 1 (tunnel)-">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Gwy 1                      Gwy 2</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Security Assoc 1 (tunnel)-</div></div></div>
-</figure><pre>                 -----------Security Association 2 (tunnel)-----------
+                Host 1 --- Security ---- Internet -- Security --- Host 2</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">                 |          Gwy 1                      Gwy 2         |
+                 |            |                          |           |
+                 |            --Security Assoc 1 (tunnel)-           |
+                 |                                                   |</pre>
+</div><pre>                 -----------Security Association 2 (tunnel)-----------
 
    These two approaches also can be combined, e.g., an SA bundle could
    be constructed from one tunnel mode SA and one or two transport mode
@@ -1527,10 +1535,13 @@ Kent &amp; Atkinson             Standards Track                    [Page 12]</pr
    Case 2.  This case illustrates simple virtual private networks
         support.
 
-                       ===========================</pre><figure class="modern-ascii-diagram" role="img" aria-label="H1 -- (Local --- SG1* | Internet) | SG2* --- (Local --- H2 | Intranet) | Intrane">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">H1 -- (Local --- SG1*</div><div class="modern-diagram-cell">Internet)</div><div class="modern-diagram-cell">SG2* --- (Local --- H2</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Intranet)</div><div class="modern-diagram-cell">Intranet)</div></div></div>
-</figure><pre>  --------------------------                  ---------------------------
+                       ===========================</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">                       |                         |
+  ---------------------|----                  ---|-----------------------
+  |                    |   |                  |  |                      |
+  |  H1 -- (Local --- SG1* |--- (Internet) ---| SG2* --- (Local --- H2  |
+  |        Intranet)       |                  |          Intranet)      |</pre>
+</div><pre>  --------------------------                  ---------------------------
       admin. boundary                               admin. boundary
 
         Only tunnel mode is required here.  So the headers in a packet
@@ -1547,10 +1558,15 @@ Kent &amp; Atkinson             Standards Track                    [Page 12]</pr
         requirement for a security gateway to be configurable to pass
         IPsec traffic (including ISAKMP traffic) for hosts behind it.
 
-     ===============================================================</pre><figure class="modern-ascii-diagram" role="img" aria-label="H1* -- (Local --- SG1* | Internet) | SG2* --- (Local --- H2* | Intranet) | Intra">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">H1* -- (Local --- SG1*</div><div class="modern-diagram-cell">Internet)</div><div class="modern-diagram-cell">SG2* --- (Local --- H2*</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Intranet)</div><div class="modern-diagram-cell">Intranet)</div></div></div>
-</figure><pre>  --------------------------                ---------------------------
+     ===============================================================</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">     |                                                             |
+     |                 =========================                   |
+     |                 |                       |                   |
+  ---|-----------------|----                ---|-------------------|---
+  |  |                 |   |                |  |                   |  |
+  | H1* -- (Local --- SG1* |-- (Internet) --| SG2* --- (Local --- H2* |
+  |        Intranet)       |                |          Intranet)      |</pre>
+</div><pre>  --------------------------                ---------------------------
        admin. boundary                            admin. boundary
 
    Case 4.  This covers the situation where a remote host (H1) uses the
@@ -1575,10 +1591,16 @@ Kent &amp; Atkinson             Standards Track                    [Page 25]</pr
         H2) are discussed in Section 4.6.3, &quot;Locating a Security
         Gateway&quot;.
 
-        ======================================================</pre><figure class="modern-ascii-diagram" role="img" aria-label="H1* ----- (Internet) | SG2* ---- (Local ----- H2* | Intranet)">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">H1* ----- (Internet)</div><div class="modern-diagram-cell">SG2* ---- (Local ----- H2*</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Intranet)</div></div></div>
-</figure><pre>        could be dialup              admin. boundary (optional)
+        ======================================================</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">        |                                                    |
+        |==============================                      |
+        ||                            |                      |
+        ||                         ---|----------------------|---
+        ||                         |  |                      |  |
+        H1* ----- (Internet) ------| SG2* ---- (Local ----- H2* |
+              ^                    |           Intranet)        |
+              |                    ------------------------------</pre>
+</div><pre>        could be dialup              admin. boundary (optional)
         to PPP/ARA server
 
         Only tunnel mode is required between H1 and SG2.  So the choices

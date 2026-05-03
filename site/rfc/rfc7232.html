@@ -690,10 +690,17 @@ Table of Contents
 
 
    The example below shows the results for a set of entity-tag pairs and
-   both the weak and strong comparison function results:</pre><figure class="modern-ascii-diagram" role="img" aria-label="ETag 1 | ETag 2 | Strong Comparison | Weak Comparison | W/&quot;1&quot; | W/&quot;1&quot; | no match">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">ETag 1</div><div class="modern-diagram-cell">ETag 2</div><div class="modern-diagram-cell">Strong Comparison</div><div class="modern-diagram-cell">Weak Comparison</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">W/&quot;1&quot;</div><div class="modern-diagram-cell">W/&quot;1&quot;</div><div class="modern-diagram-cell">no match</div><div class="modern-diagram-cell">match</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">W/&quot;1&quot;</div><div class="modern-diagram-cell">W/&quot;2&quot;</div><div class="modern-diagram-cell">no match</div><div class="modern-diagram-cell">no match</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">W/&quot;1&quot;</div><div class="modern-diagram-cell">1&quot;</div><div class="modern-diagram-cell">no match</div><div class="modern-diagram-cell">match</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">1&quot;</div><div class="modern-diagram-cell">1&quot;</div><div class="modern-diagram-cell">match</div><div class="modern-diagram-cell">match</div></div></div>
-</figure><pre>2.3.3.  Example: Entity-Tags Varying on Content-Negotiated Resources
+   both the weak and strong comparison function results:</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   +--------+--------+-------------------+-----------------+
+   | ETag 1 | ETag 2 | Strong Comparison | Weak Comparison |
+   +--------+--------+-------------------+-----------------+
+   | W/&quot;1&quot;  | W/&quot;1&quot;  | no match          | match           |
+   | W/&quot;1&quot;  | W/&quot;2&quot;  | no match          | no match        |
+   | W/&quot;1&quot;  | &quot;1&quot;    | no match          | match           |
+   | &quot;1&quot;    | &quot;1&quot;    | match             | match           |
+   +--------+--------+-------------------+-----------------+
+</pre>
+</div><pre>2.3.3.  Example: Entity-Tags Varying on Content-Negotiated Resources
 
    Consider a resource that is subject to content negotiation (Section
    3.4 of [RFC7231]), and where the representations sent in response to
@@ -1346,10 +1353,15 @@ Fielding &amp; Reschke           Standards Track                   [Page 11]</pr
 
    The &quot;Hypertext Transfer Protocol (HTTP) Status Code Registry&quot; located
    at &lt;http://www.iana.org/assignments/http-status-codes&gt; has been
-   updated with the registrations below:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Value | Description | Reference | Not Modified | Section 4.1">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Value</div><div class="modern-diagram-cell">Description</div><div class="modern-diagram-cell">Reference</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">304</div><div class="modern-diagram-cell">Not Modified</div><div class="modern-diagram-cell">Section 4.1</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">412</div><div class="modern-diagram-cell">Precondition Failed</div><div class="modern-diagram-cell">Section 4.2</div></div></div>
-</figure><pre>7.2.  Header Field Registration
+   updated with the registrations below:</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   +-------+---------------------+-------------+
+   | Value | Description         | Reference   |
+   +-------+---------------------+-------------+
+   | 304   | Not Modified        | Section 4.1 |
+   | 412   | Precondition Failed | Section 4.2 |
+   +-------+---------------------+-------------+
+</pre>
+</div><pre>7.2.  Header Field Registration
 
    HTTP header fields are registered within the &quot;Message Headers&quot;
    registry maintained at
@@ -1357,10 +1369,19 @@ Fielding &amp; Reschke           Standards Track                   [Page 11]</pr
 
    This document defines the following HTTP header fields, so their
    associated registry entries have been updated according to the
-   permanent registrations below (see [BCP90]):</pre><figure class="modern-ascii-diagram" role="img" aria-label="Header Field Name | Protocol | Status | Reference | ETag | http | standard | Sec">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Header Field Name</div><div class="modern-diagram-cell">Protocol</div><div class="modern-diagram-cell">Status</div><div class="modern-diagram-cell">Reference</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">ETag</div><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">standard</div><div class="modern-diagram-cell">Section 2.3</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">If-Match</div><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">standard</div><div class="modern-diagram-cell">Section 3.1</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">If-Modified-Since</div><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">standard</div><div class="modern-diagram-cell">Section 3.3</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">If-None-Match</div><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">standard</div><div class="modern-diagram-cell">Section 3.2</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">If-Unmodified-Since</div><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">standard</div><div class="modern-diagram-cell">Section 3.4</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Last-Modified</div><div class="modern-diagram-cell">http</div><div class="modern-diagram-cell">standard</div><div class="modern-diagram-cell">Section 2.2</div></div></div>
-</figure><pre>   The change controller is: &quot;IETF (iesg@ietf.org) - Internet
+   permanent registrations below (see [BCP90]):</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   +---------------------+----------+----------+-------------+
+   | Header Field Name   | Protocol | Status   | Reference   |
+   +---------------------+----------+----------+-------------+
+   | ETag                | http     | standard | Section 2.3 |
+   | If-Match            | http     | standard | Section 3.1 |
+   | If-Modified-Since   | http     | standard | Section 3.3 |
+   | If-None-Match       | http     | standard | Section 3.2 |
+   | If-Unmodified-Since | http     | standard | Section 3.4 |
+   | Last-Modified       | http     | standard | Section 2.2 |
+   +---------------------+----------+----------+-------------+
+</pre>
+</div><pre>   The change controller is: &quot;IETF (iesg@ietf.org) - Internet
    Engineering Task Force&quot;.
 
 8.  Security Considerations

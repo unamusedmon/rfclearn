@@ -685,13 +685,7 @@ sum of the lengths of shim headers that precede the UDP header.<a href="#section
 <span></span><div>
 <figure>
         <div>
-<figure class="modern-ascii-diagram" role="img" aria-label="Version | IHL | DSCP | ECN | Total Length | Identification | Flags | Fragment Of">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">Version</div><div class="modern-diagram-cell">IHL</div><div class="modern-diagram-cell">DSCP</div><div class="modern-diagram-cell">ECN</div><div class="modern-diagram-cell">Total Length</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Identification</div><div class="modern-diagram-cell">Flags</div><div class="modern-diagram-cell">Fragment Offset</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Time to Live</div><div class="modern-diagram-cell">Proto=17 (UDP)</div><div class="modern-diagram-cell">Header Checksum</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Source Address</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Destination Address</div></div></div>
-</figure><pre>... zero or more IP options (using space as indicated by IHL) ...</pre><pre>+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>...     zero or more shim headers (each indicating size)      ...</pre><figure class="modern-ascii-diagram" role="img" aria-label="UDP Source Port | UDP Destination Port | UDP Length | UDP Checksum">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">UDP Source Port</div><div class="modern-diagram-cell">UDP Destination Port</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">UDP Length</div><div class="modern-diagram-cell">UDP Checksum</div></div></div>
-</figure>
+<svg class="rfc-bit-diagram" viewBox="0 0 424 670" role="img" aria-label="Bit field diagram" xmlns="http://www.w3.org/2000/svg"><desc>Protocol header bit field layout showing field names and positions</desc><defs>  <style>    .bit-grid { stroke: #94a3b8; stroke-width: 0.5; fill: none; }    .field-block { fill: #3b82f6; opacity: 0.9; rx: 4; }    .field-label { fill: white; font-size: 11px; font-weight: 600; font-family: Inter, sans-serif; text-anchor: middle; }    .bit-label { fill: #64748b; font-size: 9px; font-family: "IBM Plex Mono", monospace; text-anchor: middle; }    .row-label { fill: #475569; font-size: 10px; font-family: Inter, sans-serif; }  </style></defs><text class="bit-label" x="20" y="32">0</text><text class="bit-label" x="116" y="32">8</text><text class="bit-label" x="212" y="32">16</text><text class="bit-label" x="308" y="32">24</text><text class="bit-label" x="404" y="32">31</text><rect class="field-block" x="20" y="50" width="96" height="50" /><text class="field-label" x="68.0" y="79.0">Version</text><rect class="field-block" x="116" y="50" width="96" height="50" /><text class="field-label" x="164.0" y="79.0">IHL</text><rect class="field-block" x="212" y="50" width="132" height="50" /><text class="field-label" x="278.0" y="79.0">DSCP</text><rect class="bit-grid" x="20" y="50" width="384" height="50" /><rect class="field-block" x="20" y="110" width="96" height="50" /><text class="field-label" x="68.0" y="139.0">ECN</text><rect class="bit-grid" x="20" y="110" width="384" height="50" /><rect class="field-block" x="20" y="170" width="372" height="50" /><text class="field-label" x="206.0" y="199.0">Total Length</text><rect class="bit-grid" x="20" y="170" width="384" height="50" /><rect class="field-block" x="20" y="230" width="372" height="50" /><text class="field-label" x="206.0" y="259.0">Identificati</text><rect class="bit-grid" x="20" y="230" width="384" height="50" /><rect class="field-block" x="20" y="290" width="96" height="50" /><text class="field-label" x="68.0" y="319.0">Flags</text><rect class="bit-grid" x="20" y="290" width="384" height="50" /><rect class="field-block" x="20" y="350" width="300" height="50" /><text class="field-label" x="170.0" y="379.0">Fragment Off</text><rect class="bit-grid" x="20" y="350" width="384" height="50" /><rect class="field-block" x="20" y="410" width="180" height="50" /><text class="field-label" x="110.0" y="439.0">Time to Live</text><rect class="field-block" x="200" y="410" width="180" height="50" /><text class="field-label" x="290.0" y="439.0">Proto=17 (UD</text><rect class="bit-grid" x="20" y="410" width="384" height="50" /><rect class="field-block" x="20" y="470" width="372" height="50" /><text class="field-label" x="206.0" y="499.0">Header Check</text><rect class="bit-grid" x="20" y="470" width="384" height="50" /><rect class="field-block" x="20" y="530" width="384" height="50" /><text class="field-label" x="212.0" y="559.0">Source Addre</text><rect class="bit-grid" x="20" y="530" width="384" height="50" /><rect class="field-block" x="20" y="590" width="384" height="50" /><text class="field-label" x="212.0" y="619.0">Destination </text><rect class="bit-grid" x="20" y="590" width="384" height="50" /></svg><pre>... zero or more IP options (using space as indicated by IHL) ...</pre><pre>+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>...     zero or more shim headers (each indicating size)      ...</pre><svg class="rfc-bit-diagram" viewBox="0 0 424 310" role="img" aria-label="Bit field diagram" xmlns="http://www.w3.org/2000/svg"><desc>Protocol header bit field layout showing field names and positions</desc><defs>  <style>    .bit-grid { stroke: #94a3b8; stroke-width: 0.5; fill: none; }    .field-block { fill: #3b82f6; opacity: 0.9; rx: 4; }    .field-label { fill: white; font-size: 11px; font-weight: 600; font-family: Inter, sans-serif; text-anchor: middle; }    .bit-label { fill: #64748b; font-size: 9px; font-family: "IBM Plex Mono", monospace; text-anchor: middle; }    .row-label { fill: #475569; font-size: 10px; font-family: Inter, sans-serif; }  </style></defs><text class="bit-label" x="20" y="32">0</text><text class="bit-label" x="116" y="32">8</text><text class="bit-label" x="212" y="32">16</text><text class="bit-label" x="308" y="32">24</text><text class="bit-label" x="404" y="32">31</text><rect class="field-block" x="20" y="50" width="372" height="50" /><text class="field-label" x="206.0" y="79.0">UDP Source P</text><rect class="bit-grid" x="20" y="50" width="384" height="50" /><rect class="field-block" x="20" y="110" width="372" height="50" /><text class="field-label" x="206.0" y="139.0">UDP Destinat</text><rect class="bit-grid" x="20" y="110" width="384" height="50" /><rect class="field-block" x="20" y="170" width="372" height="50" /><text class="field-label" x="206.0" y="199.0">UDP Length</text><rect class="bit-grid" x="20" y="170" width="384" height="50" /><rect class="field-block" x="20" y="230" width="372" height="50" /><text class="field-label" x="206.0" y="259.0">UDP Checksum</text><rect class="bit-grid" x="20" y="230" width="384" height="50" /></svg>
 </div>
 <figcaption><a href="#figure-1">Figure 1</a>:
 <a href="#name-ipv4-datagram-with-udp-head">IPv4 Datagram with UDP Header</a>
@@ -713,13 +707,7 @@ additional IP extensions are indicated within each extension
 <span></span><div>
 <figure>
         <div>
-<figure class="modern-ascii-diagram" role="img" aria-label="Version | Traffic Class | Flow Label | Payload Length | Next Header | Hop Limit">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Version</div><div class="modern-diagram-cell">Traffic Class</div><div class="modern-diagram-cell">Flow Label</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Payload Length</div><div class="modern-diagram-cell">Next Header</div><div class="modern-diagram-cell">Hop Limit</div></div></div>
-</figure><pre>...</pre><pre>|                       Source Address (128 bits)               |</pre><pre>...</pre><pre>+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>...</pre><pre>|                    Destination Address (128 bits)             |</pre><pre>...</pre><pre>+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>... zero or more IP Extension headers (each indicating size)  ...</pre><figure class="modern-ascii-diagram" role="img" aria-label="UDP Source Port | UDP Destination Port | UDP Length | UDP Checksum">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">UDP Source Port</div><div class="modern-diagram-cell">UDP Destination Port</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">UDP Length</div><div class="modern-diagram-cell">UDP Checksum</div></div></div>
-</figure>
+<svg class="rfc-bit-diagram" viewBox="0 0 424 310" role="img" aria-label="Bit field diagram" xmlns="http://www.w3.org/2000/svg"><desc>Protocol header bit field layout showing field names and positions</desc><defs>  <style>    .bit-grid { stroke: #94a3b8; stroke-width: 0.5; fill: none; }    .field-block { fill: #3b82f6; opacity: 0.9; rx: 4; }    .field-label { fill: white; font-size: 11px; font-weight: 600; font-family: Inter, sans-serif; text-anchor: middle; }    .bit-label { fill: #64748b; font-size: 9px; font-family: "IBM Plex Mono", monospace; text-anchor: middle; }    .row-label { fill: #475569; font-size: 10px; font-family: Inter, sans-serif; }  </style></defs><text class="bit-label" x="20" y="32">0</text><text class="bit-label" x="116" y="32">8</text><text class="bit-label" x="212" y="32">16</text><text class="bit-label" x="308" y="32">24</text><text class="bit-label" x="404" y="32">31</text><rect class="field-block" x="20" y="50" width="96" height="50" /><text class="field-label" x="68.0" y="79.0">Version</text><rect class="field-block" x="116" y="50" width="180" height="50" /><text class="field-label" x="206.0" y="79.0">Traffic Clas</text><rect class="bit-grid" x="20" y="50" width="384" height="50" /><rect class="field-block" x="20" y="110" width="384" height="50" /><text class="field-label" x="212.0" y="139.0">Flow Label</text><rect class="bit-grid" x="20" y="110" width="384" height="50" /><rect class="field-block" x="20" y="170" width="372" height="50" /><text class="field-label" x="206.0" y="199.0">Payload Leng</text><rect class="bit-grid" x="20" y="170" width="384" height="50" /><rect class="field-block" x="20" y="230" width="180" height="50" /><text class="field-label" x="110.0" y="259.0">Next Header</text><rect class="field-block" x="200" y="230" width="180" height="50" /><text class="field-label" x="290.0" y="259.0">Hop Limit</text><rect class="bit-grid" x="20" y="230" width="384" height="50" /></svg><pre>...</pre><pre>|                       Source Address (128 bits)               |</pre><pre>...</pre><pre>+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>...</pre><pre>|                    Destination Address (128 bits)             |</pre><pre>...</pre><pre>+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre><pre>... zero or more IP Extension headers (each indicating size)  ...</pre><svg class="rfc-bit-diagram" viewBox="0 0 424 310" role="img" aria-label="Bit field diagram" xmlns="http://www.w3.org/2000/svg"><desc>Protocol header bit field layout showing field names and positions</desc><defs>  <style>    .bit-grid { stroke: #94a3b8; stroke-width: 0.5; fill: none; }    .field-block { fill: #3b82f6; opacity: 0.9; rx: 4; }    .field-label { fill: white; font-size: 11px; font-weight: 600; font-family: Inter, sans-serif; text-anchor: middle; }    .bit-label { fill: #64748b; font-size: 9px; font-family: "IBM Plex Mono", monospace; text-anchor: middle; }    .row-label { fill: #475569; font-size: 10px; font-family: Inter, sans-serif; }  </style></defs><text class="bit-label" x="20" y="32">0</text><text class="bit-label" x="116" y="32">8</text><text class="bit-label" x="212" y="32">16</text><text class="bit-label" x="308" y="32">24</text><text class="bit-label" x="404" y="32">31</text><rect class="field-block" x="20" y="50" width="372" height="50" /><text class="field-label" x="206.0" y="79.0">UDP Source P</text><rect class="bit-grid" x="20" y="50" width="384" height="50" /><rect class="field-block" x="20" y="110" width="372" height="50" /><text class="field-label" x="206.0" y="139.0">UDP Destinat</text><rect class="bit-grid" x="20" y="110" width="384" height="50" /><rect class="field-block" x="20" y="170" width="372" height="50" /><text class="field-label" x="206.0" y="199.0">UDP Length</text><rect class="bit-grid" x="20" y="170" width="384" height="50" /><rect class="field-block" x="20" y="230" width="372" height="50" /><text class="field-label" x="206.0" y="259.0">UDP Checksum</text><rect class="bit-grid" x="20" y="230" width="384" height="50" /></svg>
 </div>
 <figcaption><a href="#figure-2">Figure 2</a>:
 <a href="#name-ipv6-datagram-with-udp-head">IPv6 Datagram with UDP Header</a>
@@ -737,10 +725,11 @@ two areas -- that intended as UDP user data and an additional
 <figure>
         <div>
 <pre>                         IP transport payload
-          &lt;-------------------------------------------------&gt;</pre><figure class="modern-ascii-diagram" role="img" aria-label="IP Hdr | UDP Hdr | UDP user data | surplus area">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">IP Hdr</div><div class="modern-diagram-cell">UDP Hdr</div><div class="modern-diagram-cell">UDP user data</div><div class="modern-diagram-cell">surplus area</div></div></div>
-</figure><pre>          &lt;------------------------------&gt;
+          &lt;-------------------------------------------------&gt;</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">+--------+---------+----------------------+------------------+
+| IP Hdr | UDP Hdr |     UDP user data    |   surplus area   |
++--------+---------+----------------------+------------------+</pre>
+</div><pre>          &lt;------------------------------&gt;
                      UDP Length</pre>
 </div>
 <figcaption><a href="#figure-3">Figure 3</a>:
@@ -802,10 +791,14 @@ earlier using the EOL Option, followed by zeroes
 <span></span><div>
 <figure>
         <div>
-<figure class="modern-ascii-diagram" role="img" aria-label="UDP data | OCS | UDP Options...">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">UDP data</div><div class="modern-diagram-cell">0</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">OCS</div><div class="modern-diagram-cell">UDP Options...</div></div></div>
-</figure>
+<div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">                +--------+--------+--------+--------+
+                |         UDP data         |    0   |
+                +--------+--------+--------+--------+
+                |       OCS       |  UDP Options... |
+                +--------+--------+--------+--------+
+</pre>
+</div>
 </div>
 <figcaption><a href="#figure-4">Figure 4</a>:
 <a href="#name-udp-ocs-format-here-using-o">UDP OCS Format, Here Using One Zero Byte for Alignment</a>
@@ -882,10 +875,12 @@ earlier using the EOL Option, followed by zeroes
 <span></span><div>
 <figure>
         <div>
-<figure class="modern-ascii-diagram" role="img" aria-label="Kind | Length | remainder of option...)">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Kind</div><div class="modern-diagram-cell">Length</div><div class="modern-diagram-cell">remainder of option...)</div></div></div>
-</figure>
+<div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">                +--------+--------+------------~~------------+
+                |  Kind  | Length | (remainder of option...) |
+                +--------+--------+------------~~------------+
+</pre>
+</div>
 </div>
 <figcaption><a href="#figure-5">Figure 5</a>:
 <a href="#name-udp-option-default-format">UDP Option Default Format</a>
@@ -903,10 +898,14 @@ earlier using the EOL Option, followed by zeroes
 <span></span><div>
 <figure>
         <div>
-<figure class="modern-ascii-diagram" role="img" aria-label="Kind | Extended Length | remainder of option...)">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Kind</div><div class="modern-diagram-cell">255</div><div class="modern-diagram-cell">Extended Length</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">remainder of option...)</div></div></div>
-</figure>
+<div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">                +--------+--------+--------+--------+
+                |  Kind  |  255   | Extended Length |
+                +--------+--------+--------+--------+
+                | (remainder of option...)          |
+                +--------+--------+--------+--------+
+</pre>
+</div>
 </div>
 <figcaption><a href="#figure-6">Figure 6</a>:
 <a href="#name-udp-option-extended-format">UDP Option Extended Format</a>
@@ -1250,10 +1249,14 @@ earlier using the EOL Option, followed by zeroes
 <span></span><div>
 <figure>
           <div>
-<figure class="modern-ascii-diagram" role="img" aria-label="Kind=2 | Len=6 | CRC32c... | CRC32c (cont.)">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Kind=2</div><div class="modern-diagram-cell">Len=6</div><div class="modern-diagram-cell">CRC32c...</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">CRC32c (cont.)</div></div></div>
-</figure>
+<div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">                +--------+--------+--------+--------+
+                | Kind=2 | Len=6  |    CRC32c...    |
+                +--------+--------+--------+--------+
+                |  CRC32c (cont.) |
+                +--------+--------+
+</pre>
+</div>
 </div>
 <figcaption><a href="#figure-9">Figure 9</a>:
 <a href="#name-udp-apc-option-format">UDP APC Option Format</a>
@@ -1350,10 +1353,16 @@ earlier using the EOL Option, followed by zeroes
 <span></span><div>
 <figure>
           <div>
-<figure class="modern-ascii-diagram" role="img" aria-label="Kind=3 | Len=10 | Frag. Start | Identification">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Kind=3</div><div class="modern-diagram-cell">Len=10</div><div class="modern-diagram-cell">Frag. Start</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Identification</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Frag. Offset</div></div></div>
-</figure>
+<div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">                +--------+--------+--------+--------+
+                | Kind=3 | Len=10 |   Frag. Start   |
+                +--------+--------+--------+--------+
+                |           Identification          |
+                +--------+--------+--------+--------+
+                |  Frag. Offset   |
+                +--------+--------+
+</pre>
+</div>
 </div>
 <figcaption><a href="#figure-10">Figure 10</a>:
 <a href="#name-udp-non-terminal-frag-optio">UDP Non-Terminal FRAG Option Format</a>
@@ -1379,10 +1388,16 @@ earlier using the EOL Option, followed by zeroes
 <span></span><div>
 <figure>
           <div>
-<figure class="modern-ascii-diagram" role="img" aria-label="Kind=3 | Len=12 | Frag. Start | Identification">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Kind=3</div><div class="modern-diagram-cell">Len=12</div><div class="modern-diagram-cell">Frag. Start</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Identification</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Frag. Offset</div><div class="modern-diagram-cell">Reass DgOpt Start</div></div></div>
-</figure>
+<div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">               +--------+--------+--------+--------+
+               | Kind=3 | Len=12 |   Frag. Start   |
+               +--------+--------+--------+--------+
+               |           Identification          |
+               +--------+--------+--------+--------+
+               |  Frag. Offset   |Reass DgOpt Start|
+               +--------+--------+--------+--------+
+</pre>
+</div>
 </div>
 <figcaption><a href="#figure-11">Figure 11</a>:
 <a href="#name-udp-non-terminal-frag-option">UDP Non-Terminal FRAG Option Format</a>
@@ -1405,10 +1420,7 @@ earlier using the EOL Option, followed by zeroes
 <span></span><div>
 <figure>
           <div>
-<pre>       Constituent UDP Fragments         Original UDP Datagram</pre><figure class="modern-ascii-diagram" role="img" aria-label="Src Port | Dst Port | UDP Len (8) | UDP Chksum">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Src Port</div><div class="modern-diagram-cell">Dst Port</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">UDP Len (8)</div><div class="modern-diagram-cell">UDP Chksum</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">OCS</div><div class="modern-diagram-cell">K=3   L=10</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Src Port</div><div class="modern-diagram-cell">Dst Port</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Frag. Start</div><div class="modern-diagram-cell">Identifi-  ~</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">UDP L.(RDOS)</div><div class="modern-diagram-cell">UDP Chksum</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">cation</div><div class="modern-diagram-cell">Frag. Off.</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Frag Data from 1st Frag.</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Per-Fragment Options     ~</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Fragment Data       ~</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Frag Data from 2nd Frag.</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Src Port</div><div class="modern-diagram-cell">Dst Port</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">UDP Len (8)</div><div class="modern-diagram-cell">UDP Chksum</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">OCS</div><div class="modern-diagram-cell">UDP Options</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">OCS</div><div class="modern-diagram-cell">K=3   L=12</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Frag. Start</div><div class="modern-diagram-cell">Identifi-  ~</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">cation</div><div class="modern-diagram-cell">Frag. Off.</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">RDOS</div><div class="modern-diagram-cell">Frag.Opts.</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Fragment Data       ~</div></div></div>
-</figure><pre>        &#x27;----------------------------&#x27;</pre>
+<pre>       Constituent UDP Fragments         Original UDP Datagram</pre><svg class="rfc-flow-diagram" viewBox="0 0 500 580" role="img" aria-label="Flow diagram" xmlns="http://www.w3.org/2000/svg"><desc>System architecture or data flow diagram</desc><defs>  <style>    .flow-box { fill: #1e293b; stroke: #3b82f6; stroke-width: 2; rx: 12; }    .flow-label { fill: #e2e8f0; font-size: 13px; font-weight: 600; font-family: Inter, sans-serif; text-anchor: middle; }    .flow-arrow { stroke: #64748b; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }    .arrow-label { fill: #94a3b8; font-size: 10px; font-family: "IBM Plex Mono", monospace; text-anchor: middle; }  </style>  <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">    <polygon points="0 0, 10 3.5, 0 7" fill="#64748b" />  </marker></defs><rect class="flow-box" x="30" y="30" width="120" height="60" /><text class="flow-label" x="90.0" y="65.0">Src Port</text><rect class="flow-box" x="190" y="30" width="120" height="60" /><text class="flow-label" x="250.0" y="65.0"></text><rect class="flow-box" x="350" y="30" width="120" height="60" /><text class="flow-label" x="410.0" y="65.0"></text><rect class="flow-box" x="30" y="170" width="120" height="60" /><text class="flow-label" x="90.0" y="205.0"></text><rect class="flow-box" x="190" y="170" width="120" height="60" /><text class="flow-label" x="250.0" y="205.0">~ Per-Fragment Optio</text><rect class="flow-box" x="350" y="170" width="120" height="60" /><text class="flow-label" x="410.0" y="205.0"></text><rect class="flow-box" x="30" y="310" width="120" height="60" /><text class="flow-label" x="90.0" y="345.0"></text><rect class="flow-box" x="190" y="310" width="120" height="60" /><text class="flow-label" x="250.0" y="345.0"></text><rect class="flow-box" x="350" y="310" width="120" height="60" /><text class="flow-label" x="410.0" y="345.0"></text><rect class="flow-box" x="30" y="450" width="120" height="60" /><text class="flow-label" x="90.0" y="485.0"></text><rect class="flow-box" x="190" y="450" width="120" height="60" /><text class="flow-label" x="250.0" y="485.0">~ cation --&#x27;</text><rect class="flow-box" x="350" y="450" width="120" height="60" /><text class="flow-label" x="410.0" y="485.0">Fragment Data       </text><line class="flow-arrow" x1="150" y1="60.0" x2="190" y2="60.0" /><line class="flow-arrow" x1="310" y1="60.0" x2="350" y2="60.0" /><line class="flow-arrow" x1="470" y1="60.0" x2="30" y2="200.0" /><line class="flow-arrow" x1="150" y1="200.0" x2="190" y2="200.0" /><line class="flow-arrow" x1="310" y1="200.0" x2="350" y2="200.0" /><line class="flow-arrow" x1="470" y1="200.0" x2="30" y2="340.0" /><line class="flow-arrow" x1="150" y1="340.0" x2="190" y2="340.0" /><line class="flow-arrow" x1="310" y1="340.0" x2="350" y2="340.0" /><line class="flow-arrow" x1="470" y1="340.0" x2="30" y2="480.0" /><line class="flow-arrow" x1="150" y1="480.0" x2="190" y2="480.0" /><line class="flow-arrow" x1="310" y1="480.0" x2="350" y2="480.0" /></svg><pre>        &#x27;----------------------------&#x27;</pre>
 </div>
 <figcaption><a href="#figure-12">Figure 12</a>:
 <a href="#name-udp-fragments-and-original-">UDP Fragments and Original UDP Datagram</a>
@@ -1573,10 +1585,12 @@ per-fragment UDP Options for each fragment.<a href="#section-11.4-38.5.1">¶</a>
 <span></span><div>
 <figure>
           <div>
-<figure class="modern-ascii-diagram" role="img" aria-label="Kind=4 | Len=4 | MDS size">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Kind=4</div><div class="modern-diagram-cell">Len=4</div><div class="modern-diagram-cell">MDS size</div></div></div>
-</figure>
+<div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">                +--------+--------+--------+--------+
+                | Kind=4 | Len=4  |    MDS size     |
+                +--------+--------+--------+--------+
+</pre>
+</div>
 </div>
 <figcaption><a href="#figure-13">Figure 13</a>:
 <a href="#name-udp-mds-option-format">UDP MDS Option Format</a>
@@ -1618,10 +1632,12 @@ per-fragment UDP Options for each fragment.<a href="#section-11.4-38.5.1">¶</a>
 <span></span><div>
 <figure>
           <div>
-<figure class="modern-ascii-diagram" role="img" aria-label="Kind=5 | Len=5 | MRDS size | MRDS segs">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Kind=5</div><div class="modern-diagram-cell">Len=5</div><div class="modern-diagram-cell">MRDS size</div><div class="modern-diagram-cell">MRDS segs</div></div></div>
-</figure>
+<div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">            +--------+--------+--------+--------+---------+
+            | Kind=5 | Len=5  |    MRDS size    |MRDS segs|
+            +--------+--------+--------+--------+---------+
+</pre>
+</div>
 </div>
 <figcaption><a href="#figure-14">Figure 14</a>:
 <a href="#name-udp-mrds-option-format">UDP MRDS Option Format</a>
@@ -1675,10 +1691,11 @@ per-fragment UDP Options for each fragment.<a href="#section-11.4-38.5.1">¶</a>
 <span></span><div>
 <figure>
           <div>
-<figure class="modern-ascii-diagram" role="img" aria-label="Kind | Len=6 | token">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Kind</div><div class="modern-diagram-cell">Len=6</div><div class="modern-diagram-cell">token</div></div></div>
-</figure><pre>                  1 byte   1 byte       4 bytes</pre>
+<div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">                +--------+--------+-----------------+
+                |  Kind  | Len=6  |      token      |
+                +--------+--------+-----------------+</pre>
+</div><pre>                  1 byte   1 byte       4 bytes</pre>
 </div>
 <figcaption><a href="#figure-15">Figure 15</a>:
 <a href="#name-udp-req-and-res-options-for">UDP REQ and RES Options Format</a>
@@ -1733,10 +1750,11 @@ per-fragment UDP Options for each fragment.<a href="#section-11.4-38.5.1">¶</a>
 <span></span><div>
 <figure>
           <div>
-<figure class="modern-ascii-diagram" role="img" aria-label="Kind=8 | Len=10 | TSval | TSecr">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">Kind=8</div><div class="modern-diagram-cell">Len=10</div><div class="modern-diagram-cell">TSval</div><div class="modern-diagram-cell">TSecr</div></div></div>
-</figure><pre>       1 byte   1 byte       4 bytes            4 bytes</pre>
+<div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">     +--------+--------+------------------+------------------+
+     | Kind=8 | Len=10 |      TSval       |      TSecr       |
+     +--------+--------+------------------+------------------+</pre>
+</div><pre>       1 byte   1 byte       4 bytes            4 bytes</pre>
 </div>
 <figcaption><a href="#figure-16">Figure 16</a>:
 <a href="#name-udp-time-option-format">UDP TIME Option Format</a>
@@ -1839,10 +1857,14 @@ per-fragment UDP Options for each fragment.<a href="#section-11.4-38.5.1">¶</a>
 <span></span><div>
 <figure>
           <div>
-<figure class="modern-ascii-diagram" role="img" aria-label="Kind=127 | Len | UDP ExID | option contents, as defined)...">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Kind=127</div><div class="modern-diagram-cell">Len</div><div class="modern-diagram-cell">UDP ExID</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">option contents, as defined)...</div></div></div>
-</figure>
+<div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">            +----------+----------+----------+----------+
+            | Kind=127 |   Len    |      UDP ExID       |
+            +----------+----------+----------+----------+
+            |  (option contents, as defined)...         |
+            +----------+----------+----------+----------+
+</pre>
+</div>
 </div>
 <figcaption><a href="#figure-17">Figure 17</a>:
 <a href="#name-udp-exp-option-format">UDP EXP Option Format</a>
@@ -1861,10 +1883,14 @@ per-fragment UDP Options for each fragment.<a href="#section-11.4-38.5.1">¶</a>
 <span></span><div>
 <figure>
           <div>
-<figure class="modern-ascii-diagram" role="img" aria-label="Kind=127 | Extended Length | UDP ExID | option contents...)">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Kind=127</div><div class="modern-diagram-cell">255</div><div class="modern-diagram-cell">Extended Length</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">UDP ExID</div><div class="modern-diagram-cell">option contents...)</div></div></div>
-</figure>
+<div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">            +----------+----------+----------+----------+
+            | Kind=127 |   255    |   Extended Length   |
+            +----------+----------+----------+----------+
+            |      UDP ExID       |(option contents...) |
+            +----------+----------+----------+----------+
+</pre>
+</div>
 </div>
 <figcaption><a href="#figure-18">Figure 18</a>:
 <a href="#name-udp-exp-extended-option-for">UDP EXP Extended Option Format</a>
@@ -2365,10 +2391,11 @@ the UDP header minus the UDP header size)<a href="#section-22-3.1">¶</a></p>
 <figure>
         <div>
 <pre>                         Outer IP Length
-    &lt;----------------------------------------------------------&gt;</pre><figure class="modern-ascii-diagram" role="img" aria-label="IP Hdr | UDP Hdr | IPv6 packet/len | TE trailer | surplus">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 5"><div class="modern-diagram-cell">IP Hdr</div><div class="modern-diagram-cell">UDP Hdr</div><div class="modern-diagram-cell">IPv6 packet/len</div><div class="modern-diagram-cell">TE trailer</div><div class="modern-diagram-cell">surplus</div></div></div>
-</figure><pre>                       &lt;---------------&gt;
+    &lt;----------------------------------------------------------&gt;</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   +--------+---------+------------------------------+----------+
+   | IP Hdr | UDP Hdr | IPv6 packet/len | TE trailer | surplus  |
+   +--------+---------+------------------------------+----------+</pre>
+</div><pre>                       &lt;---------------&gt;
                        Inner IPv6 Length
              &lt;--------------------------------------&gt;
                            UDP Length</pre>

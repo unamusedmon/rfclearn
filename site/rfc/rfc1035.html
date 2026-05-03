@@ -288,10 +288,7 @@ hosts, or various combinations of both functions.  The simplest, and
 perhaps most typical, configuration is shown below:
 
                  Local Host                        |  Foreign
-                                                   |</pre><figure class="modern-ascii-diagram" role="img" aria-label="user queries | queries | User | Foreign">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">user queries</div><div class="modern-diagram-cell">queries</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">User</div><div class="modern-diagram-cell">Foreign</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Program</div><div class="modern-diagram-cell">Resolver</div><div class="modern-diagram-cell">Name</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Server</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">user responses</div><div class="modern-diagram-cell">responses</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">A</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">cache additions</div><div class="modern-diagram-cell">references</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">V</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">cache</div></div></div>
-</figure><pre>User programs interact with the domain name space through resolvers; the
+                                                   |</pre><svg class="rfc-flow-diagram" viewBox="0 0 500 300" role="img" aria-label="Flow diagram" xmlns="http://www.w3.org/2000/svg"><desc>System architecture or data flow diagram</desc><defs>  <style>    .flow-box { fill: #1e293b; stroke: #3b82f6; stroke-width: 2; rx: 12; }    .flow-label { fill: #e2e8f0; font-size: 13px; font-weight: 600; font-family: Inter, sans-serif; text-anchor: middle; }    .flow-arrow { stroke: #64748b; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }    .arrow-label { fill: #94a3b8; font-size: 10px; font-family: "IBM Plex Mono", monospace; text-anchor: middle; }  </style>  <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">    <polygon points="0 0, 10 3.5, 0 7" fill="#64748b" />  </marker></defs><rect class="flow-box" x="30" y="30" width="120" height="60" /><text class="flow-label" x="90.0" y="65.0"></text><rect class="flow-box" x="190" y="30" width="120" height="60" /><text class="flow-label" x="250.0" y="65.0"></text><rect class="flow-box" x="350" y="30" width="120" height="60" /><text class="flow-label" x="410.0" y="65.0">User -&gt;Program Resol</text><rect class="flow-box" x="30" y="170" width="120" height="60" /><text class="flow-label" x="90.0" y="205.0">cache</text><line class="flow-arrow" x1="150" y1="60.0" x2="190" y2="60.0" /><line class="flow-arrow" x1="310" y1="60.0" x2="350" y2="60.0" /><line class="flow-arrow" x1="470" y1="60.0" x2="30" y2="200.0" /></svg><pre>User programs interact with the domain name space through resolvers; the
 format of user queries and user responses is specific to the host and
 its operating system.  User queries will typically be operating system
 calls, and the resolver and its cache will be part of the host operating
@@ -323,10 +320,7 @@ program on a dedicated machine or a process or processes on a large
 timeshared host.  A simple configuration might be:
 
                  Local Host                        |  Foreign
-                                                   |</pre><figure class="modern-ascii-diagram" role="img" aria-label="responses | Name | Foreign">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">responses</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Name</div><div class="modern-diagram-cell">Foreign</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Master</div><div class="modern-diagram-cell">Server</div><div class="modern-diagram-cell">Resolver</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">files</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">queries</div></div></div>
-</figure><pre>Here a primary name server acquires information about one or more zones
+                                                   |</pre><svg class="rfc-flow-diagram" viewBox="0 0 340 160" role="img" aria-label="Flow diagram" xmlns="http://www.w3.org/2000/svg"><desc>System architecture or data flow diagram</desc><defs>  <style>    .flow-box { fill: #1e293b; stroke: #3b82f6; stroke-width: 2; rx: 12; }    .flow-label { fill: #e2e8f0; font-size: 13px; font-weight: 600; font-family: Inter, sans-serif; text-anchor: middle; }    .flow-arrow { stroke: #64748b; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }    .arrow-label { fill: #94a3b8; font-size: 10px; font-family: "IBM Plex Mono", monospace; text-anchor: middle; }  </style>  <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">    <polygon points="0 0, 10 3.5, 0 7" fill="#64748b" />  </marker></defs><rect class="flow-box" x="30" y="30" width="120" height="60" /><text class="flow-label" x="90.0" y="65.0"></text><rect class="flow-box" x="190" y="30" width="120" height="60" /><text class="flow-label" x="250.0" y="65.0"></text><line class="flow-arrow" x1="150" y1="60.0" x2="190" y2="60.0" /></svg><pre>Here a primary name server acquires information about one or more zones
 by reading master files from its local file system, and answers queries
 about those zones that arrive from foreign resolvers.
 
@@ -336,10 +330,7 @@ check for updates from the primary server using the zone transfer
 protocol of the DNS.  This configuration is shown below:
 
                  Local Host                        |  Foreign
-                                                   |</pre><figure class="modern-ascii-diagram" role="img" aria-label="responses | Name | Foreign">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">responses</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Name</div><div class="modern-diagram-cell">Foreign</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Master</div><div class="modern-diagram-cell">Server</div><div class="modern-diagram-cell">Resolver</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">files</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">queries</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">A</div><div class="modern-diagram-cell">maintenance</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">queries</div><div class="modern-diagram-cell">Foreign</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Name</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Server</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">maintenance responses</div></div></div>
-</figure><pre>In this configuration, the name server periodically establishes a
+                                                   |</pre><svg class="rfc-flow-diagram" viewBox="0 0 500 160" role="img" aria-label="Flow diagram" xmlns="http://www.w3.org/2000/svg"><desc>System architecture or data flow diagram</desc><defs>  <style>    .flow-box { fill: #1e293b; stroke: #3b82f6; stroke-width: 2; rx: 12; }    .flow-label { fill: #e2e8f0; font-size: 13px; font-weight: 600; font-family: Inter, sans-serif; text-anchor: middle; }    .flow-arrow { stroke: #64748b; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }    .arrow-label { fill: #94a3b8; font-size: 10px; font-family: "IBM Plex Mono", monospace; text-anchor: middle; }  </style>  <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">    <polygon points="0 0, 10 3.5, 0 7" fill="#64748b" />  </marker></defs><rect class="flow-box" x="30" y="30" width="120" height="60" /><text class="flow-label" x="90.0" y="65.0"></text><rect class="flow-box" x="190" y="30" width="120" height="60" /><text class="flow-label" x="250.0" y="65.0"></text><rect class="flow-box" x="350" y="30" width="120" height="60" /><text class="flow-label" x="410.0" y="65.0">+------------queries</text><line class="flow-arrow" x1="150" y1="60.0" x2="190" y2="60.0" /><line class="flow-arrow" x1="310" y1="60.0" x2="350" y2="60.0" /></svg><pre>In this configuration, the name server periodically establishes a
 virtual circuit to a foreign name server to acquire a copy of a zone or
 to check that an existing copy has not changed.  The messages sent for
 
@@ -360,10 +351,7 @@ The information flow in a host that supports all aspects of the domain
 name system is shown below:
 
                  Local Host                        |  Foreign
-                                                   |</pre><figure class="modern-ascii-diagram" role="img" aria-label="user queries | queries | User | Foreign">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">user queries</div><div class="modern-diagram-cell">queries</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">User</div><div class="modern-diagram-cell">Foreign</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Program</div><div class="modern-diagram-cell">Resolver</div><div class="modern-diagram-cell">Name</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Server</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">user responses</div><div class="modern-diagram-cell">responses</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">A</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">cache additions</div><div class="modern-diagram-cell">references</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">V</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Shared</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">database</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">A</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">refreshes</div><div class="modern-diagram-cell">references</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">V</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">responses</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Name</div><div class="modern-diagram-cell">Foreign</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Master</div><div class="modern-diagram-cell">Server</div><div class="modern-diagram-cell">Resolver</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">files</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">queries</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">A</div><div class="modern-diagram-cell">maintenance</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">queries</div><div class="modern-diagram-cell">Foreign</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Name</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Server</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">maintenance responses</div></div></div>
-</figure><pre>The shared database holds domain space data for the local name server
+                                                   |</pre><svg class="rfc-flow-diagram" viewBox="0 0 500 440" role="img" aria-label="Flow diagram" xmlns="http://www.w3.org/2000/svg"><desc>System architecture or data flow diagram</desc><defs>  <style>    .flow-box { fill: #1e293b; stroke: #3b82f6; stroke-width: 2; rx: 12; }    .flow-label { fill: #e2e8f0; font-size: 13px; font-weight: 600; font-family: Inter, sans-serif; text-anchor: middle; }    .flow-arrow { stroke: #64748b; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }    .arrow-label { fill: #94a3b8; font-size: 10px; font-family: "IBM Plex Mono", monospace; text-anchor: middle; }  </style>  <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">    <polygon points="0 0, 10 3.5, 0 7" fill="#64748b" />  </marker></defs><rect class="flow-box" x="30" y="30" width="120" height="60" /><text class="flow-label" x="90.0" y="65.0"></text><rect class="flow-box" x="190" y="30" width="120" height="60" /><text class="flow-label" x="250.0" y="65.0"></text><rect class="flow-box" x="350" y="30" width="120" height="60" /><text class="flow-label" x="410.0" y="65.0">User -&gt;Program Resol</text><rect class="flow-box" x="30" y="170" width="120" height="60" /><text class="flow-label" x="90.0" y="205.0">Shareddatabase</text><rect class="flow-box" x="190" y="170" width="120" height="60" /><text class="flow-label" x="250.0" y="205.0"></text><rect class="flow-box" x="350" y="170" width="120" height="60" /><text class="flow-label" x="410.0" y="205.0"></text><rect class="flow-box" x="30" y="310" width="120" height="60" /><text class="flow-label" x="90.0" y="345.0">+------------queries</text><line class="flow-arrow" x1="150" y1="60.0" x2="190" y2="60.0" /><line class="flow-arrow" x1="310" y1="60.0" x2="350" y2="60.0" /><line class="flow-arrow" x1="470" y1="60.0" x2="30" y2="200.0" /><line class="flow-arrow" x1="150" y1="200.0" x2="190" y2="200.0" /><line class="flow-arrow" x1="310" y1="200.0" x2="350" y2="200.0" /><line class="flow-arrow" x1="470" y1="200.0" x2="30" y2="340.0" /></svg><pre>The shared database holds domain space data for the local name server
 and resolver.  The contents of the shared database will typically be a
 mixture of authoritative data maintained by the periodic refresh
 operations of the name server and cached data from previous resolver
@@ -396,10 +384,7 @@ resolvers located in a recursive server in one or more name servers
 known to perform that service:
 
                    Local Hosts                     |  Foreign
-                                                   |</pre><figure class="modern-ascii-diagram" role="img" aria-label="responses | Stub">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">responses</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Stub</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Resolver</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">recursive</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">queries</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">V</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">recursive</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">queries</div><div class="modern-diagram-cell">queries</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Stub</div><div class="modern-diagram-cell">Recursive</div><div class="modern-diagram-cell">Foreign</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Resolver</div><div class="modern-diagram-cell">Server</div><div class="modern-diagram-cell">Name</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Server</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">responses</div><div class="modern-diagram-cell">responses</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Central</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">cache</div></div></div>
-</figure><pre>In any case, note that domain components are always replicated for
+                                                   |</pre><svg class="rfc-flow-diagram" viewBox="0 0 500 300" role="img" aria-label="Flow diagram" xmlns="http://www.w3.org/2000/svg"><desc>System architecture or data flow diagram</desc><defs>  <style>    .flow-box { fill: #1e293b; stroke: #3b82f6; stroke-width: 2; rx: 12; }    .flow-label { fill: #e2e8f0; font-size: 13px; font-weight: 600; font-family: Inter, sans-serif; text-anchor: middle; }    .flow-arrow { stroke: #64748b; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }    .arrow-label { fill: #94a3b8; font-size: 10px; font-family: "IBM Plex Mono", monospace; text-anchor: middle; }  </style>  <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">    <polygon points="0 0, 10 3.5, 0 7" fill="#64748b" />  </marker></defs><rect class="flow-box" x="30" y="30" width="120" height="60" /><text class="flow-label" x="90.0" y="65.0">StubResolver</text><rect class="flow-box" x="190" y="30" width="120" height="60" /><text class="flow-label" x="250.0" y="65.0"></text><rect class="flow-box" x="350" y="30" width="120" height="60" /><text class="flow-label" x="410.0" y="65.0"></text><rect class="flow-box" x="30" y="170" width="120" height="60" /><text class="flow-label" x="90.0" y="205.0">Stub Recursive -&gt;Res</text><rect class="flow-box" x="190" y="170" width="120" height="60" /><text class="flow-label" x="250.0" y="205.0"></text><rect class="flow-box" x="350" y="170" width="120" height="60" /><text class="flow-label" x="410.0" y="205.0">Centralcache</text><line class="flow-arrow" x1="150" y1="60.0" x2="190" y2="60.0" /><line class="flow-arrow" x1="310" y1="60.0" x2="350" y2="60.0" /><line class="flow-arrow" x1="470" y1="60.0" x2="30" y2="200.0" /><line class="flow-arrow" x1="150" y1="200.0" x2="190" y2="200.0" /><line class="flow-arrow" x1="310" y1="200.0" x2="350" y2="200.0" /></svg><pre>In any case, note that domain components are always replicated for
 reliability whenever possible.
 
 2.3. Conventions
@@ -489,16 +474,10 @@ group of octets, the order of transmission of those octets is the normal
 order in which they are read in English.  For example, in the following
 diagram, the octets are transmitted in the order they are numbered.
 
-     0                   1</pre><figure class="modern-ascii-diagram" role="img" aria-label="Technical diagram">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">2</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">3</div><div class="modern-diagram-cell">4</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">5</div><div class="modern-diagram-cell">6</div></div></div>
-</figure><pre>Whenever an octet represents a numeric quantity, the left most bit in
+     0                   1</pre><svg class="rfc-bit-diagram" viewBox="0 0 424 250" role="img" aria-label="Bit field diagram" xmlns="http://www.w3.org/2000/svg"><desc>Protocol header bit field layout showing field names and positions</desc><defs>  <style>    .bit-grid { stroke: #94a3b8; stroke-width: 0.5; fill: none; }    .field-block { fill: #3b82f6; opacity: 0.9; rx: 4; }    .field-label { fill: white; font-size: 11px; font-weight: 600; font-family: Inter, sans-serif; text-anchor: middle; }    .bit-label { fill: #64748b; font-size: 9px; font-family: "IBM Plex Mono", monospace; text-anchor: middle; }    .row-label { fill: #475569; font-size: 10px; font-family: Inter, sans-serif; }  </style></defs><text class="bit-label" x="20" y="32">0</text><text class="bit-label" x="116" y="32">8</text><text class="bit-label" x="212" y="32">16</text><text class="bit-label" x="308" y="32">24</text><text class="bit-label" x="404" y="32">31</text><rect class="field-block" x="20" y="50" width="180" height="50" /><text class="field-label" x="110.0" y="79.0">1</text><rect class="field-block" x="200" y="50" width="180" height="50" /><text class="field-label" x="290.0" y="79.0">2</text><rect class="bit-grid" x="20" y="50" width="384" height="50" /><rect class="field-block" x="20" y="110" width="180" height="50" /><text class="field-label" x="110.0" y="139.0">3</text><rect class="field-block" x="200" y="110" width="180" height="50" /><text class="field-label" x="290.0" y="139.0">4</text><rect class="bit-grid" x="20" y="110" width="384" height="50" /><rect class="field-block" x="20" y="170" width="180" height="50" /><text class="field-label" x="110.0" y="199.0">5</text><rect class="field-block" x="200" y="170" width="180" height="50" /><text class="field-label" x="290.0" y="199.0">6</text><rect class="bit-grid" x="20" y="170" width="384" height="50" /></svg><pre>Whenever an octet represents a numeric quantity, the left most bit in
 the diagram is the high order or most significant bit.  That is, the bit
 labeled 0 is the most significant bit.  For example, the following
-diagram represents the value 170 (decimal).</pre><figure class="modern-ascii-diagram" role="img" aria-label="Technical diagram">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0 1 2 3 4 5 6 7</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">1 0 1 0 1 0 1 0</div></div></div>
-</figure><pre>Similarly, whenever a multi-octet field represents a numeric quantity
+diagram represents the value 170 (decimal).</pre><svg class="rfc-bit-diagram" viewBox="0 0 424 130" role="img" aria-label="Bit field diagram" xmlns="http://www.w3.org/2000/svg"><desc>Protocol header bit field layout showing field names and positions</desc><defs>  <style>    .bit-grid { stroke: #94a3b8; stroke-width: 0.5; fill: none; }    .field-block { fill: #3b82f6; opacity: 0.9; rx: 4; }    .field-label { fill: white; font-size: 11px; font-weight: 600; font-family: Inter, sans-serif; text-anchor: middle; }    .bit-label { fill: #64748b; font-size: 9px; font-family: "IBM Plex Mono", monospace; text-anchor: middle; }    .row-label { fill: #475569; font-size: 10px; font-family: Inter, sans-serif; }  </style></defs><text class="bit-label" x="20" y="32">0</text><text class="bit-label" x="116" y="32">8</text><text class="bit-label" x="212" y="32">16</text><text class="bit-label" x="308" y="32">24</text><text class="bit-label" x="404" y="32">31</text><rect class="field-block" x="20" y="50" width="180" height="50" /><text class="field-label" x="110.0" y="79.0">1 0 1 0 1 0 </text><rect class="bit-grid" x="20" y="50" width="384" height="50" /></svg><pre>Similarly, whenever a multi-octet field represents a numeric quantity
 the left most bit of the whole field is the most significant bit.  When
 a multi-octet quantity is transmitted the most significant octet is
 transmitted first.
@@ -599,14 +578,12 @@ with zero parity.  Non-alphabetic codes must match exactly.
 
 All RRs have the same top level format shown below:
 
-                                    1  1  1  1  1  1</pre><figure class="modern-ascii-diagram" role="img" aria-label="Technical diagram">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0  1  2  3  4  5  6  7  8  9  0  1  2  3  4  5</div></div></div>
-</figure><pre>    /                                               /
-    /                      NAME                     /</pre><figure class="modern-ascii-diagram" role="img" aria-label="TYPE | CLASS">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">TYPE</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">CLASS</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">TTL</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">RDLENGTH</div></div></div>
-</figure><pre>    /                     RDATA                     /
+                                    1  1  1  1  1  1</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">      0  1  2  3  4  5  6  7  8  9  0  1  2  3  4  5
+    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    |                                               |</pre>
+</div><pre>    /                                               /
+    /                      NAME                     /</pre><svg class="rfc-flow-diagram" viewBox="0 0 500 1140" role="img" aria-label="Flow diagram" xmlns="http://www.w3.org/2000/svg"><desc>System architecture or data flow diagram</desc><defs>  <style>    .flow-box { fill: #1e293b; stroke: #3b82f6; stroke-width: 2; rx: 12; }    .flow-label { fill: #e2e8f0; font-size: 13px; font-weight: 600; font-family: Inter, sans-serif; text-anchor: middle; }    .flow-arrow { stroke: #64748b; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }    .arrow-label { fill: #94a3b8; font-size: 10px; font-family: "IBM Plex Mono", monospace; text-anchor: middle; }  </style>  <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">    <polygon points="0 0, 10 3.5, 0 7" fill="#64748b" />  </marker></defs><rect class="flow-box" x="30" y="30" width="120" height="60" /><text class="flow-label" x="90.0" y="65.0"></text><rect class="flow-box" x="190" y="30" width="120" height="60" /><text class="flow-label" x="250.0" y="65.0"></text><rect class="flow-box" x="350" y="30" width="120" height="60" /><text class="flow-label" x="410.0" y="65.0"></text><rect class="flow-box" x="30" y="170" width="120" height="60" /><text class="flow-label" x="90.0" y="205.0"></text><rect class="flow-box" x="190" y="170" width="120" height="60" /><text class="flow-label" x="250.0" y="205.0"></text><rect class="flow-box" x="350" y="170" width="120" height="60" /><text class="flow-label" x="410.0" y="205.0"></text><rect class="flow-box" x="30" y="310" width="120" height="60" /><text class="flow-label" x="90.0" y="345.0"></text><rect class="flow-box" x="190" y="310" width="120" height="60" /><text class="flow-label" x="250.0" y="345.0">TYPE</text><rect class="flow-box" x="350" y="310" width="120" height="60" /><text class="flow-label" x="410.0" y="345.0"></text><rect class="flow-box" x="30" y="450" width="120" height="60" /><text class="flow-label" x="90.0" y="485.0"></text><rect class="flow-box" x="190" y="450" width="120" height="60" /><text class="flow-label" x="250.0" y="485.0"></text><rect class="flow-box" x="350" y="450" width="120" height="60" /><text class="flow-label" x="410.0" y="485.0"></text><rect class="flow-box" x="30" y="590" width="120" height="60" /><text class="flow-label" x="90.0" y="625.0"></text><rect class="flow-box" x="190" y="590" width="120" height="60" /><text class="flow-label" x="250.0" y="625.0"></text><rect class="flow-box" x="350" y="590" width="120" height="60" /><text class="flow-label" x="410.0" y="625.0"></text><rect class="flow-box" x="30" y="730" width="120" height="60" /><text class="flow-label" x="90.0" y="765.0">TTL</text><rect class="flow-box" x="190" y="730" width="120" height="60" /><text class="flow-label" x="250.0" y="765.0"></text><rect class="flow-box" x="350" y="730" width="120" height="60" /><text class="flow-label" x="410.0" y="765.0"></text><rect class="flow-box" x="30" y="870" width="120" height="60" /><text class="flow-label" x="90.0" y="905.0"></text><rect class="flow-box" x="190" y="870" width="120" height="60" /><text class="flow-label" x="250.0" y="905.0"></text><rect class="flow-box" x="350" y="870" width="120" height="60" /><text class="flow-label" x="410.0" y="905.0"></text><rect class="flow-box" x="30" y="1010" width="120" height="60" /><text class="flow-label" x="90.0" y="1045.0"></text><rect class="flow-box" x="190" y="1010" width="120" height="60" /><text class="flow-label" x="250.0" y="1045.0"></text><rect class="flow-box" x="350" y="1010" width="120" height="60" /><text class="flow-label" x="410.0" y="1045.0"></text><line class="flow-arrow" x1="150" y1="60.0" x2="190" y2="60.0" /><line class="flow-arrow" x1="310" y1="60.0" x2="350" y2="60.0" /><line class="flow-arrow" x1="470" y1="60.0" x2="30" y2="200.0" /><line class="flow-arrow" x1="150" y1="200.0" x2="190" y2="200.0" /><line class="flow-arrow" x1="310" y1="200.0" x2="350" y2="200.0" /><line class="flow-arrow" x1="470" y1="200.0" x2="30" y2="340.0" /><line class="flow-arrow" x1="150" y1="340.0" x2="190" y2="340.0" /><line class="flow-arrow" x1="310" y1="340.0" x2="350" y2="340.0" /><line class="flow-arrow" x1="470" y1="340.0" x2="30" y2="480.0" /><line class="flow-arrow" x1="150" y1="480.0" x2="190" y2="480.0" /><line class="flow-arrow" x1="310" y1="480.0" x2="350" y2="480.0" /><line class="flow-arrow" x1="470" y1="480.0" x2="30" y2="620.0" /><line class="flow-arrow" x1="150" y1="620.0" x2="190" y2="620.0" /><line class="flow-arrow" x1="310" y1="620.0" x2="350" y2="620.0" /><line class="flow-arrow" x1="470" y1="620.0" x2="30" y2="760.0" /><line class="flow-arrow" x1="150" y1="760.0" x2="190" y2="760.0" /><line class="flow-arrow" x1="310" y1="760.0" x2="350" y2="760.0" /><line class="flow-arrow" x1="470" y1="760.0" x2="30" y2="900.0" /><line class="flow-arrow" x1="150" y1="900.0" x2="190" y2="900.0" /><line class="flow-arrow" x1="310" y1="900.0" x2="350" y2="900.0" /><line class="flow-arrow" x1="470" y1="900.0" x2="30" y2="1040.0" /><line class="flow-arrow" x1="150" y1="1040.0" x2="190" y2="1040.0" /><line class="flow-arrow" x1="310" y1="1040.0" x2="350" y2="1040.0" /></svg><pre>    /                     RDATA                     /
     /                                               /</pre><pre>    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+</pre><pre>where:
 
 NAME            an owner name, i.e., the name of the node to which this
@@ -948,10 +925,11 @@ MR records cause no additional section processing.  The main use for MR
 is as a forwarding entry for a user who has moved to a different
 mailbox.
 
-3.3.9. MX RDATA format</pre><figure class="modern-ascii-diagram" role="img" aria-label="PREFERENCE">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">PREFERENCE</div></div></div>
-</figure><pre>    /                   EXCHANGE                    /
+3.3.9. MX RDATA format</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    |                  PREFERENCE                   |
+    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+</pre>
+</div><pre>    /                   EXCHANGE                    /
     /                                               /</pre><pre>    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+</pre><pre>where:
 
 PREFERENCE      A 16 bit integer which specifies the preference given to
@@ -1041,10 +1019,25 @@ description of the IN-ADDR.ARPA domain for an example.
 
 
 3.3.13. SOA RDATA format</pre><pre>    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+</pre><pre>    /                     MNAME                     /
-    /                                               /</pre><pre>    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+</pre><pre>    /                     RNAME                     /</pre><figure class="modern-ascii-diagram" role="img" aria-label="SERIAL | REFRESH">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">SERIAL</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">REFRESH</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">RETRY</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">EXPIRE</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">MINIMUM</div></div></div>
-</figure><pre>where:
+    /                                               /</pre><pre>    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+</pre><pre>    /                     RNAME                     /</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    |                    SERIAL                     |
+    |                                               |
+    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    |                    REFRESH                    |
+    |                                               |
+    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    |                     RETRY                     |
+    |                                               |
+    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    |                    EXPIRE                     |
+    |                                               |
+    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    |                    MINIMUM                    |
+    |                                               |
+    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+</pre>
+</div><pre>where:
 
 MNAME           The &lt;domain-name&gt; of the name server that was the
                 original or primary source of data for this zone.
@@ -1107,10 +1100,12 @@ depends on the domain where it is found.
 
 3.4. Internet specific RRs
 
-3.4.1. A RDATA format</pre><figure class="modern-ascii-diagram" role="img" aria-label="ADDRESS">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">ADDRESS</div></div></div>
-</figure><pre>where:
+3.4.1. A RDATA format</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    |                    ADDRESS                    |
+    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+</pre>
+</div><pre>where:
 
 ADDRESS         A 32 bit Internet address.
 
@@ -1134,10 +1129,7 @@ an A line in a master file is an Internet address expressed as four
 decimal numbers separated by dots without any imbedded spaces (e.g.,
 &quot;10.2.0.52&quot; or &quot;192.0.5.6&quot;).
 
-3.4.2. WKS RDATA format</pre><figure class="modern-ascii-diagram" role="img" aria-label="ADDRESS | PROTOCOL">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">ADDRESS</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">PROTOCOL</div></div></div>
-</figure><pre>    /                   &lt;BIT MAP&gt;                   /
+3.4.2. WKS RDATA format</pre><svg class="rfc-flow-diagram" viewBox="0 0 500 580" role="img" aria-label="Flow diagram" xmlns="http://www.w3.org/2000/svg"><desc>System architecture or data flow diagram</desc><defs>  <style>    .flow-box { fill: #1e293b; stroke: #3b82f6; stroke-width: 2; rx: 12; }    .flow-label { fill: #e2e8f0; font-size: 13px; font-weight: 600; font-family: Inter, sans-serif; text-anchor: middle; }    .flow-arrow { stroke: #64748b; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }    .arrow-label { fill: #94a3b8; font-size: 10px; font-family: "IBM Plex Mono", monospace; text-anchor: middle; }  </style>  <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">    <polygon points="0 0, 10 3.5, 0 7" fill="#64748b" />  </marker></defs><rect class="flow-box" x="30" y="30" width="120" height="60" /><text class="flow-label" x="90.0" y="65.0"></text><rect class="flow-box" x="190" y="30" width="120" height="60" /><text class="flow-label" x="250.0" y="65.0"></text><rect class="flow-box" x="350" y="30" width="120" height="60" /><text class="flow-label" x="410.0" y="65.0"></text><rect class="flow-box" x="30" y="170" width="120" height="60" /><text class="flow-label" x="90.0" y="205.0"></text><rect class="flow-box" x="190" y="170" width="120" height="60" /><text class="flow-label" x="250.0" y="205.0"></text><rect class="flow-box" x="350" y="170" width="120" height="60" /><text class="flow-label" x="410.0" y="205.0"></text><rect class="flow-box" x="30" y="310" width="120" height="60" /><text class="flow-label" x="90.0" y="345.0"></text><rect class="flow-box" x="190" y="310" width="120" height="60" /><text class="flow-label" x="250.0" y="345.0">ADDRESS</text><rect class="flow-box" x="350" y="310" width="120" height="60" /><text class="flow-label" x="410.0" y="345.0"></text><rect class="flow-box" x="30" y="450" width="120" height="60" /><text class="flow-label" x="90.0" y="485.0"></text><rect class="flow-box" x="190" y="450" width="120" height="60" /><text class="flow-label" x="250.0" y="485.0"></text><rect class="flow-box" x="350" y="450" width="120" height="60" /><text class="flow-label" x="410.0" y="485.0"></text><line class="flow-arrow" x1="150" y1="60.0" x2="190" y2="60.0" /><line class="flow-arrow" x1="310" y1="60.0" x2="350" y2="60.0" /><line class="flow-arrow" x1="470" y1="60.0" x2="30" y2="200.0" /><line class="flow-arrow" x1="150" y1="200.0" x2="190" y2="200.0" /><line class="flow-arrow" x1="310" y1="200.0" x2="350" y2="200.0" /><line class="flow-arrow" x1="470" y1="200.0" x2="30" y2="340.0" /><line class="flow-arrow" x1="150" y1="340.0" x2="190" y2="340.0" /><line class="flow-arrow" x1="310" y1="340.0" x2="350" y2="340.0" /><line class="flow-arrow" x1="470" y1="340.0" x2="30" y2="480.0" /><line class="flow-arrow" x1="150" y1="480.0" x2="190" y2="480.0" /><line class="flow-arrow" x1="310" y1="480.0" x2="350" y2="480.0" /></svg><pre>    /                   &lt;BIT MAP&gt;                   /
     /                                               /</pre><pre>    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+</pre><pre>where:
 
 ADDRESS         An 32 bit Internet address
@@ -1370,10 +1362,20 @@ in the cache, then all should be there.
 
 All communications inside of the domain protocol are carried in a single
 format called a message.  The top level format of message is divided
-into 5 sections (some of which are empty in certain cases) shown below:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Header | Question | the question for the name server">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Header</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Question</div><div class="modern-diagram-cell">the question for the name server</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Answer</div><div class="modern-diagram-cell">RRs answering the question</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Authority</div><div class="modern-diagram-cell">RRs pointing toward an authority</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Additional</div><div class="modern-diagram-cell">RRs holding additional information</div></div></div>
-</figure><pre>The header section is always present.  The header includes fields that
+into 5 sections (some of which are empty in certain cases) shown below:</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">    +---------------------+
+    |        Header       |
+    +---------------------+
+    |       Question      | the question for the name server
+    +---------------------+
+    |        Answer       | RRs answering the question
+    +---------------------+
+    |      Authority      | RRs pointing toward an authority
+    +---------------------+
+    |      Additional     | RRs holding additional information
+    +---------------------+
+</pre>
+</div><pre>The header section is always present.  The header includes fields that
 specify which of the remaining sections are present, and also specify
 whether the message is a query or a response, a standard query or some
 other opcode, etc.
@@ -1421,10 +1423,7 @@ Mockapetris                                                    [Page 25]</pre>
   </table>
 </details><pre>The header contains the following fields:
 
-                                    1  1  1  1  1  1</pre><figure class="modern-ascii-diagram" role="img" aria-label="ID">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0  1  2  3  4  5  6  7  8  9  0  1  2  3  4  5</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">ID</div></div><div class="modern-diagram-row" style="--cell-count: 8"><div class="modern-diagram-cell">QR</div><div class="modern-diagram-cell">Opcode</div><div class="modern-diagram-cell">AA</div><div class="modern-diagram-cell">TC</div><div class="modern-diagram-cell">RD</div><div class="modern-diagram-cell">RA</div><div class="modern-diagram-cell">Z</div><div class="modern-diagram-cell">RCODE</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">QDCOUNT</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">ANCOUNT</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">NSCOUNT</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">ARCOUNT</div></div></div>
-</figure><pre>where:
+                                    1  1  1  1  1  1</pre><svg class="rfc-bit-diagram" viewBox="0 0 424 550" role="img" aria-label="Bit field diagram" xmlns="http://www.w3.org/2000/svg"><desc>Protocol header bit field layout showing field names and positions</desc><defs>  <style>    .bit-grid { stroke: #94a3b8; stroke-width: 0.5; fill: none; }    .field-block { fill: #3b82f6; opacity: 0.9; rx: 4; }    .field-label { fill: white; font-size: 11px; font-weight: 600; font-family: Inter, sans-serif; text-anchor: middle; }    .bit-label { fill: #64748b; font-size: 9px; font-family: "IBM Plex Mono", monospace; text-anchor: middle; }    .row-label { fill: #475569; font-size: 10px; font-family: Inter, sans-serif; }  </style></defs><text class="bit-label" x="20" y="32">0</text><text class="bit-label" x="116" y="32">8</text><text class="bit-label" x="212" y="32">16</text><text class="bit-label" x="308" y="32">24</text><text class="bit-label" x="404" y="32">31</text><rect class="field-block" x="20" y="50" width="384" height="50" /><text class="field-label" x="212.0" y="79.0">ID</text><rect class="bit-grid" x="20" y="50" width="384" height="50" /><rect class="field-block" x="20" y="110" width="96" height="50" /><text class="field-label" x="68.0" y="139.0">QR</text><rect class="field-block" x="116" y="110" width="132" height="50" /><text class="field-label" x="182.0" y="139.0">Opcode</text><rect class="field-block" x="248" y="110" width="96" height="50" /><text class="field-label" x="296.0" y="139.0">AA</text><rect class="bit-grid" x="20" y="110" width="384" height="50" /><rect class="field-block" x="20" y="170" width="96" height="50" /><text class="field-label" x="68.0" y="199.0">TC</text><rect class="field-block" x="116" y="170" width="96" height="50" /><text class="field-label" x="164.0" y="199.0">RD</text><rect class="field-block" x="212" y="170" width="96" height="50" /><text class="field-label" x="260.0" y="199.0">RA</text><rect class="field-block" x="308" y="170" width="96" height="50" /><text class="field-label" x="356.0" y="199.0">Z</text><rect class="bit-grid" x="20" y="170" width="384" height="50" /><rect class="field-block" x="20" y="230" width="132" height="50" /><text class="field-label" x="86.0" y="259.0">RCODE</text><rect class="bit-grid" x="20" y="230" width="384" height="50" /><rect class="field-block" x="20" y="290" width="384" height="50" /><text class="field-label" x="212.0" y="319.0">QDCOUNT</text><rect class="bit-grid" x="20" y="290" width="384" height="50" /><rect class="field-block" x="20" y="350" width="384" height="50" /><text class="field-label" x="212.0" y="379.0">ANCOUNT</text><rect class="bit-grid" x="20" y="350" width="384" height="50" /><rect class="field-block" x="20" y="410" width="384" height="50" /><text class="field-label" x="212.0" y="439.0">NSCOUNT</text><rect class="bit-grid" x="20" y="410" width="384" height="50" /><rect class="field-block" x="20" y="470" width="384" height="50" /><text class="field-label" x="212.0" y="499.0">ARCOUNT</text><rect class="bit-grid" x="20" y="470" width="384" height="50" /></svg><pre>where:
 
 ID              A 16 bit identifier assigned by the program that
                 generates any kind of query.  This identifier is copied
@@ -1546,14 +1545,19 @@ The question section is used to carry the &quot;question&quot; in most queries,
 i.e., the parameters that define what is being asked.  The section
 contains QDCOUNT (usually 1) entries, each of the following format:
 
-                                    1  1  1  1  1  1</pre><figure class="modern-ascii-diagram" role="img" aria-label="Technical diagram">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0  1  2  3  4  5  6  7  8  9  0  1  2  3  4  5</div></div></div>
-</figure><pre>    /                     QNAME                     /
-    /                                               /</pre><figure class="modern-ascii-diagram" role="img" aria-label="QTYPE | QCLASS">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">QTYPE</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">QCLASS</div></div></div>
-</figure><pre>where:
+                                    1  1  1  1  1  1</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">      0  1  2  3  4  5  6  7  8  9  0  1  2  3  4  5
+    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    |                                               |</pre>
+</div><pre>    /                     QNAME                     /
+    /                                               /</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    |                     QTYPE                     |
+    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    |                     QCLASS                    |
+    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+</pre>
+</div><pre>where:
 
 QNAME           a domain name represented as a sequence of labels, where
                 each label consists of a length octet followed by that
@@ -1586,14 +1590,12 @@ The answer, authority, and additional sections all share the same
 format: a variable number of resource records, where the number of
 records is specified in the corresponding count field in the header.
 Each resource record has the following format:
-                                    1  1  1  1  1  1</pre><figure class="modern-ascii-diagram" role="img" aria-label="Technical diagram">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">0  1  2  3  4  5  6  7  8  9  0  1  2  3  4  5</div></div></div>
-</figure><pre>    /                                               /
-    /                      NAME                     /</pre><figure class="modern-ascii-diagram" role="img" aria-label="TYPE | CLASS">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">TYPE</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">CLASS</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">TTL</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">RDLENGTH</div></div></div>
-</figure><pre>    /                     RDATA                     /
+                                    1  1  1  1  1  1</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">      0  1  2  3  4  5  6  7  8  9  0  1  2  3  4  5
+    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    |                                               |</pre>
+</div><pre>    /                                               /
+    /                      NAME                     /</pre><svg class="rfc-flow-diagram" viewBox="0 0 500 1140" role="img" aria-label="Flow diagram" xmlns="http://www.w3.org/2000/svg"><desc>System architecture or data flow diagram</desc><defs>  <style>    .flow-box { fill: #1e293b; stroke: #3b82f6; stroke-width: 2; rx: 12; }    .flow-label { fill: #e2e8f0; font-size: 13px; font-weight: 600; font-family: Inter, sans-serif; text-anchor: middle; }    .flow-arrow { stroke: #64748b; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }    .arrow-label { fill: #94a3b8; font-size: 10px; font-family: "IBM Plex Mono", monospace; text-anchor: middle; }  </style>  <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">    <polygon points="0 0, 10 3.5, 0 7" fill="#64748b" />  </marker></defs><rect class="flow-box" x="30" y="30" width="120" height="60" /><text class="flow-label" x="90.0" y="65.0"></text><rect class="flow-box" x="190" y="30" width="120" height="60" /><text class="flow-label" x="250.0" y="65.0"></text><rect class="flow-box" x="350" y="30" width="120" height="60" /><text class="flow-label" x="410.0" y="65.0"></text><rect class="flow-box" x="30" y="170" width="120" height="60" /><text class="flow-label" x="90.0" y="205.0"></text><rect class="flow-box" x="190" y="170" width="120" height="60" /><text class="flow-label" x="250.0" y="205.0"></text><rect class="flow-box" x="350" y="170" width="120" height="60" /><text class="flow-label" x="410.0" y="205.0"></text><rect class="flow-box" x="30" y="310" width="120" height="60" /><text class="flow-label" x="90.0" y="345.0"></text><rect class="flow-box" x="190" y="310" width="120" height="60" /><text class="flow-label" x="250.0" y="345.0">TYPE</text><rect class="flow-box" x="350" y="310" width="120" height="60" /><text class="flow-label" x="410.0" y="345.0"></text><rect class="flow-box" x="30" y="450" width="120" height="60" /><text class="flow-label" x="90.0" y="485.0"></text><rect class="flow-box" x="190" y="450" width="120" height="60" /><text class="flow-label" x="250.0" y="485.0"></text><rect class="flow-box" x="350" y="450" width="120" height="60" /><text class="flow-label" x="410.0" y="485.0"></text><rect class="flow-box" x="30" y="590" width="120" height="60" /><text class="flow-label" x="90.0" y="625.0"></text><rect class="flow-box" x="190" y="590" width="120" height="60" /><text class="flow-label" x="250.0" y="625.0"></text><rect class="flow-box" x="350" y="590" width="120" height="60" /><text class="flow-label" x="410.0" y="625.0"></text><rect class="flow-box" x="30" y="730" width="120" height="60" /><text class="flow-label" x="90.0" y="765.0">TTL</text><rect class="flow-box" x="190" y="730" width="120" height="60" /><text class="flow-label" x="250.0" y="765.0"></text><rect class="flow-box" x="350" y="730" width="120" height="60" /><text class="flow-label" x="410.0" y="765.0"></text><rect class="flow-box" x="30" y="870" width="120" height="60" /><text class="flow-label" x="90.0" y="905.0"></text><rect class="flow-box" x="190" y="870" width="120" height="60" /><text class="flow-label" x="250.0" y="905.0"></text><rect class="flow-box" x="350" y="870" width="120" height="60" /><text class="flow-label" x="410.0" y="905.0"></text><rect class="flow-box" x="30" y="1010" width="120" height="60" /><text class="flow-label" x="90.0" y="1045.0"></text><rect class="flow-box" x="190" y="1010" width="120" height="60" /><text class="flow-label" x="250.0" y="1045.0"></text><rect class="flow-box" x="350" y="1010" width="120" height="60" /><text class="flow-label" x="410.0" y="1045.0"></text><line class="flow-arrow" x1="150" y1="60.0" x2="190" y2="60.0" /><line class="flow-arrow" x1="310" y1="60.0" x2="350" y2="60.0" /><line class="flow-arrow" x1="470" y1="60.0" x2="30" y2="200.0" /><line class="flow-arrow" x1="150" y1="200.0" x2="190" y2="200.0" /><line class="flow-arrow" x1="310" y1="200.0" x2="350" y2="200.0" /><line class="flow-arrow" x1="470" y1="200.0" x2="30" y2="340.0" /><line class="flow-arrow" x1="150" y1="340.0" x2="190" y2="340.0" /><line class="flow-arrow" x1="310" y1="340.0" x2="350" y2="340.0" /><line class="flow-arrow" x1="470" y1="340.0" x2="30" y2="480.0" /><line class="flow-arrow" x1="150" y1="480.0" x2="190" y2="480.0" /><line class="flow-arrow" x1="310" y1="480.0" x2="350" y2="480.0" /><line class="flow-arrow" x1="470" y1="480.0" x2="30" y2="620.0" /><line class="flow-arrow" x1="150" y1="620.0" x2="190" y2="620.0" /><line class="flow-arrow" x1="310" y1="620.0" x2="350" y2="620.0" /><line class="flow-arrow" x1="470" y1="620.0" x2="30" y2="760.0" /><line class="flow-arrow" x1="150" y1="760.0" x2="190" y2="760.0" /><line class="flow-arrow" x1="310" y1="760.0" x2="350" y2="760.0" /><line class="flow-arrow" x1="470" y1="760.0" x2="30" y2="900.0" /><line class="flow-arrow" x1="150" y1="900.0" x2="190" y2="900.0" /><line class="flow-arrow" x1="310" y1="900.0" x2="350" y2="900.0" /><line class="flow-arrow" x1="470" y1="900.0" x2="30" y2="1040.0" /><line class="flow-arrow" x1="150" y1="1040.0" x2="190" y2="1040.0" /><line class="flow-arrow" x1="310" y1="1040.0" x2="350" y2="1040.0" /></svg><pre>    /                     RDATA                     /
     /                                               /</pre><pre>    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+</pre><pre>where:
 
 NAME            a domain name to which this resource record pertains.
@@ -1640,10 +1642,12 @@ message.  In this scheme, an entire domain name or a list of labels at
 the end of a domain name is replaced with a pointer to a prior occurance
 of the same name.
 
-The pointer takes the form of a two octet sequence:</pre><figure class="modern-ascii-diagram" role="img" aria-label="OFFSET">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">1  1</div><div class="modern-diagram-cell">OFFSET</div></div></div>
-</figure><pre>The first two bits are ones.  This allows a pointer to be distinguished
+The pointer takes the form of a two octet sequence:</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    | 1  1|                OFFSET                   |
+    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+</pre>
+</div><pre>The first two bits are ones.  This allows a pointer to be distinguished
 from a label, since the label must begin with two zero bits because
 labels are restricted to 63 octets or less.  (The 10 and 01 combinations
 are reserved for future use.)  The OFFSET field specifies an offset from
@@ -1689,10 +1693,38 @@ contain pointers.
 
 For example, a datagram might need to use the domain names F.ISI.ARPA,
 FOO.F.ISI.ARPA, ARPA, and the root.  Ignoring the other fields of the
-message, these domain names might be represented as:</pre><figure class="modern-ascii-diagram" role="img" aria-label="F | I">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">20</div><div class="modern-diagram-cell">1</div><div class="modern-diagram-cell">F</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">22</div><div class="modern-diagram-cell">3</div><div class="modern-diagram-cell">I</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">24</div><div class="modern-diagram-cell">S</div><div class="modern-diagram-cell">I</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">26</div><div class="modern-diagram-cell">4</div><div class="modern-diagram-cell">A</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">28</div><div class="modern-diagram-cell">R</div><div class="modern-diagram-cell">P</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">30</div><div class="modern-diagram-cell">A</div><div class="modern-diagram-cell">0</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">40</div><div class="modern-diagram-cell">3</div><div class="modern-diagram-cell">F</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">42</div><div class="modern-diagram-cell">O</div><div class="modern-diagram-cell">O</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">44</div><div class="modern-diagram-cell">1  1</div><div class="modern-diagram-cell">20</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">64</div><div class="modern-diagram-cell">1  1</div><div class="modern-diagram-cell">26</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">92</div><div class="modern-diagram-cell">0</div></div></div>
-</figure><pre>The domain name for F.ISI.ARPA is shown at offset 20.  The domain name
+message, these domain names might be represented as:</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    20 |           1           |           F           |
+       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    22 |           3           |           I           |
+       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    24 |           S           |           I           |
+       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    26 |           4           |           A           |
+       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    28 |           R           |           P           |
+       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    30 |           A           |           0           |
+       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+
+       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    40 |           3           |           F           |
+       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    42 |           O           |           O           |
+       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    44 | 1  1|                20                       |
+       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+
+       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    64 | 1  1|                26                       |
+       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+
+       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    92 |           0           |                       |
+       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+</pre>
+</div><pre>The domain name for F.ISI.ARPA is shown at offset 20.  The domain name
 FOO.F.ISI.ARPA is shown at offset 40; this definition uses a pointer to
 concatenate a label for FOO to the previously defined F.ISI.ARPA.  The
 domain name ARPA is defined at offset 64 using a pointer to the ARPA
@@ -2266,10 +2298,20 @@ one address existed.
 
 6.4.2. Inverse query and response example          The overall structure
 of an inverse query for retrieving the domain name that corresponds to
-Internet address 10.1.0.52 is shown below:</pre><figure class="modern-ascii-diagram" role="img" aria-label="Header | OPCODE=IQUERY, ID=997 | Question | empty&gt;">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Header</div><div class="modern-diagram-cell">OPCODE=IQUERY, ID=997</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Question</div><div class="modern-diagram-cell">empty&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Answer</div><div class="modern-diagram-cell">anyname&gt; A IN 10.1.0.52</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Authority</div><div class="modern-diagram-cell">empty&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Additional</div><div class="modern-diagram-cell">empty&gt;</div></div></div>
-</figure><pre>This query asks for a question whose answer is the Internet style
+Internet address 10.1.0.52 is shown below:</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">                         +-----------------------------------------+
+           Header        |          OPCODE=IQUERY, ID=997          |
+                         +-----------------------------------------+
+          Question       |                 &lt;empty&gt;                 |
+                         +-----------------------------------------+
+           Answer        |        &lt;anyname&gt; A IN 10.1.0.52         |
+                         +-----------------------------------------+
+          Authority      |                 &lt;empty&gt;                 |
+                         +-----------------------------------------+
+         Additional      |                 &lt;empty&gt;                 |
+                         +-----------------------------------------+
+</pre>
+</div><pre>This query asks for a question whose answer is the Internet style
 address 10.1.0.52.  Since the owner name is not known, any domain name
 can be used as a placeholder (and is ignored).  A single octet of zero,
 signifying the root, is usually used because it minimizes the length of
@@ -2294,10 +2336,20 @@ Mockapetris                                                    [Page 41]</pre>
   <div class="rfc-page-top">
     <span class="rfc-page-label">Source page 42</span>
   </div>
-  <pre>RFC 1035        Domain Implementation and Specification    November 1987</pre><figure class="modern-ascii-diagram" role="img" aria-label="Header | OPCODE=RESPONSE, ID=997 | Question | QTYPE=A, QCLASS=IN, QNAME=VENERA.I">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Header</div><div class="modern-diagram-cell">OPCODE=RESPONSE, ID=997</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Question</div><div class="modern-diagram-cell">QTYPE=A, QCLASS=IN, QNAME=VENERA.ISI.EDU</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Answer</div><div class="modern-diagram-cell">VENERA.ISI.EDU  A IN 10.1.0.52</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Authority</div><div class="modern-diagram-cell">empty&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Additional</div><div class="modern-diagram-cell">empty&gt;</div></div></div>
-</figure><pre>Note that the QTYPE in a response to an inverse query is the same as the
+  <pre>RFC 1035        Domain Implementation and Specification    November 1987</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">                         +-----------------------------------------+
+           Header        |         OPCODE=RESPONSE, ID=997         |
+                         +-----------------------------------------+
+          Question       |QTYPE=A, QCLASS=IN, QNAME=VENERA.ISI.EDU |
+                         +-----------------------------------------+
+           Answer        |  VENERA.ISI.EDU  A IN 10.1.0.52         |
+                         +-----------------------------------------+
+          Authority      |                 &lt;empty&gt;                 |
+                         +-----------------------------------------+
+         Additional      |                 &lt;empty&gt;                 |
+                         +-----------------------------------------+
+</pre>
+</div><pre>Note that the QTYPE in a response to an inverse query is the same as the
 TYPE field in the answer section of the inverse query.  Responses to
 inverse queries may contain multiple questions when the inverse is not
 unique.  If the question section in the response is not empty, then the

@@ -288,13 +288,20 @@ ABSTRACT
    encrypted data.  The encrypted data includes both the protected ESP
    header fields and the protected user data, which is either an entire
    IP datagram or an upper-layer protocol frame (e.g., TCP or UDP).  A
-   high-level diagram of a secure IP datagram follows.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Unencrypted              --&gt; | Encrypted   ------&gt; | IP Header | Other IP Header">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">Unencrypted              --&gt;</div><div class="modern-diagram-cell">Encrypted   ------&gt;</div></div><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">IP Header</div><div class="modern-diagram-cell">Other IP Headers</div><div class="modern-diagram-cell">ESP Header</div><div class="modern-diagram-cell">encrypted data</div></div></div>
-</figure><pre>   A more detailed diagram of the ESP Header follows below.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Security Association Identifier (SPI), 32 bits | Opaque Transform Data, variable">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Security Association Identifier (SPI), 32 bits</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Opaque Transform Data, variable length</div></div></div>
-</figure><pre>   Encryption and authentication algorithms, and the precise format of
+   high-level diagram of a secure IP datagram follows.</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">  |&lt;--        Unencrypted              --&gt;|&lt;----    Encrypted   ------&gt;|
+  +-------------+--------------------+------------+---------------------+
+  | IP Header   | Other IP Headers   | ESP Header | encrypted data      |
+  +-------------+--------------------+------------+---------------------+
+</pre>
+</div><pre>   A more detailed diagram of the ESP Header follows below.</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">  +-------------+--------------------+------------+---------------------+
+  |             Security Association Identifier (SPI), 32 bits          |
+  +=============+====================+============+=====================+
+  |             Opaque Transform Data, variable length                  |
+  +-------------+--------------------+------------+---------------------+
+</pre>
+</div><pre>   Encryption and authentication algorithms, and the precise format of
    the Opaque Transform Data associated with them are known as
    &quot;transforms&quot;.  The ESP format is designed to support new transforms
    in the future to support new or additional cryptographic algorithms.

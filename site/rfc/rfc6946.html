@@ -514,10 +514,37 @@ Appendix A.  Survey of Processing of IPv6 Atomic Fragments by Different
 
    This section includes a survey of the support of IPv6 atomic
    fragments in popular operating systems, as tested on October 30,
-   2012.</pre><figure class="modern-ascii-diagram" role="img" aria-label="Operating System | Generates atomic | Implements this | fragments | specificatio">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Operating System</div><div class="modern-diagram-cell">Generates atomic</div><div class="modern-diagram-cell">Implements this</div></div><div class="modern-diagram-row" style="--cell-count: 2"><div class="modern-diagram-cell">fragments</div><div class="modern-diagram-cell">specification</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">FreeBSD 8.0</div><div class="modern-diagram-cell">No</div><div class="modern-diagram-cell">No</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">FreeBSD 8.2</div><div class="modern-diagram-cell">Yes</div><div class="modern-diagram-cell">No</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">FreeBSD 9.0</div><div class="modern-diagram-cell">Yes</div><div class="modern-diagram-cell">No</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Linux 3.0.0-15</div><div class="modern-diagram-cell">Yes</div><div class="modern-diagram-cell">Yes</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">NetBSD 5.1</div><div class="modern-diagram-cell">No</div><div class="modern-diagram-cell">No</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">NetBSD-current</div><div class="modern-diagram-cell">No</div><div class="modern-diagram-cell">Yes</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">OpenBSD-current</div><div class="modern-diagram-cell">Yes</div><div class="modern-diagram-cell">Yes</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Solaris 11</div><div class="modern-diagram-cell">Yes</div><div class="modern-diagram-cell">Yes</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Windows XP SP2</div><div class="modern-diagram-cell">Yes</div><div class="modern-diagram-cell">No</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Windows Vista</div><div class="modern-diagram-cell">Yes</div><div class="modern-diagram-cell">No</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Build 6000)</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Windows 7 Home</div><div class="modern-diagram-cell">Yes</div><div class="modern-diagram-cell">No</div></div><div class="modern-diagram-row" style="--cell-count: 1"><div class="modern-diagram-cell">Premium</div></div></div>
-</figure><pre>      Table 1: Processing of IPv6 Atomic Fragments by Different OSes
+   2012.</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   +---------------------+---------------------+-----------------------+
+   |   Operating System  |   Generates atomic  |    Implements this    |
+   |                     |      fragments      |     specification     |
+   +---------------------+---------------------+-----------------------+
+   |     FreeBSD 8.0     |          No         |           No          |
+   +---------------------+---------------------+-----------------------+
+   |     FreeBSD 8.2     |         Yes         |           No          |
+   +---------------------+---------------------+-----------------------+
+   |     FreeBSD 9.0     |         Yes         |           No          |
+   +---------------------+---------------------+-----------------------+
+   |    Linux 3.0.0-15   |         Yes         |          Yes          |
+   +---------------------+---------------------+-----------------------+
+   |      NetBSD 5.1     |          No         |           No          |
+   +---------------------+---------------------+-----------------------+
+   |    NetBSD-current   |          No         |          Yes          |
+   +---------------------+---------------------+-----------------------+
+   |   OpenBSD-current   |         Yes         |          Yes          |
+   +---------------------+---------------------+-----------------------+
+   |      Solaris 11     |         Yes         |          Yes          |
+   +---------------------+---------------------+-----------------------+
+   |    Windows XP SP2   |         Yes         |           No          |
+   +---------------------+---------------------+-----------------------+
+   |    Windows Vista    |         Yes         |           No          |
+   |     (Build 6000)    |                     |                       |
+   +---------------------+---------------------+-----------------------+
+   |    Windows 7 Home   |         Yes         |           No          |
+   |       Premium       |                     |                       |
+   +---------------------+---------------------+-----------------------+
+</pre>
+</div><pre>      Table 1: Processing of IPv6 Atomic Fragments by Different OSes
 
       In the table above, &quot;generates atomic fragments&quot; notes whether an
       implementation generates atomic fragments in response to received

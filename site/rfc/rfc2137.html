@@ -269,10 +269,25 @@ Table of Contents
   <pre>RFC 2137                         SDNSDU                       April 1997
 
 
-                   SUMMARY OF DYNAMIC SECURE ZONE MODES</pre><figure class="modern-ascii-diagram" role="img" aria-label="CRITERIA: | MODE A | MODE B | Definition: | Zone Key Off line | Zone Key On line">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">CRITERIA:</div><div class="modern-diagram-cell">MODE A</div><div class="modern-diagram-cell">MODE B</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Definition:</div><div class="modern-diagram-cell">Zone Key Off line</div><div class="modern-diagram-cell">Zone Key On line</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Server Workload</div><div class="modern-diagram-cell">Low</div><div class="modern-diagram-cell">High</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Static Data Security</div><div class="modern-diagram-cell">Very High</div><div class="modern-diagram-cell">Medium-High</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Dynamic Data Security</div><div class="modern-diagram-cell">Medium</div><div class="modern-diagram-cell">Medium-High</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Key Restrictions</div><div class="modern-diagram-cell">Fine grain</div><div class="modern-diagram-cell">Coarse grain</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Dynamic Data Temporality</div><div class="modern-diagram-cell">Transient</div><div class="modern-diagram-cell">Permanent</div></div><div class="modern-diagram-row" style="--cell-count: 3"><div class="modern-diagram-cell">Dynamic Key Rollover</div><div class="modern-diagram-cell">No</div><div class="modern-diagram-cell">Yes</div></div></div>
-</figure><pre>   For mode A, the zone owner key and static zone master file are always
+                   SUMMARY OF DYNAMIC SECURE ZONE MODES</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   CRITERIA:                |   MODE A           |   MODE B
+   =========================+====================+===================
+   Definition:              | Zone Key Off line  | Zone Key On line
+   =========================+====================+===================
+   Server Workload          |   Low              |   High
+   -------------------------+--------------------+-------------------
+   Static Data Security     |   Very High        |   Medium-High
+   -------------------------+--------------------+-------------------
+   Dynamic Data Security    |   Medium           |   Medium-High
+   -------------------------+--------------------+-------------------
+   Key Restrictions         |   Fine grain       |   Coarse grain
+   -------------------------+--------------------+-------------------
+   Dynamic Data Temporality |   Transient        |   Permanent
+   -------------------------+--------------------+-------------------
+   Dynamic Key Rollover     |   No               |   Yes
+   -------------------------+--------------------+-------------------
+</pre>
+</div><pre>   For mode A, the zone owner key and static zone master file are always
    kept off-line for maximum security of the static zone contents.
 
    As a consequence, any dynamicly added or changed RRs are signed in
@@ -409,10 +424,12 @@ Eastlake                    Standards Track                     [Page 4]</pre>
 
                     UPDATE KEY RR SIGNATORY FIELD BITS
 
-         0           1           2           3</pre><figure class="modern-ascii-diagram" role="img" aria-label="zone | strong | unique | general">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">zone</div><div class="modern-diagram-cell">strong</div><div class="modern-diagram-cell">unique</div><div class="modern-diagram-cell">general</div></div></div>
-</figure><pre>   Bit 0, zone control - If nonzero, this key is authorized to attach,
+         0           1           2           3</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">   +-----------+-----------+-----------+-----------+
+   |   zone    |  strong   |  unique   |  general  |
+   +-----------+-----------+-----------+-----------+
+</pre>
+</div><pre>   Bit 0, zone control - If nonzero, this key is authorized to attach,
         detach, and move zones by creating and deleting NS, glue A, and
         zone KEY RR(s).  If zero, the key can not authorize any update
         that would effect such RRs.  This bit is meaningful for both
@@ -500,10 +517,12 @@ Eastlake                    Standards Track                     [Page 6]</pre>
 
                      ZONE KEY RR SIGNATORY FIELD BITS
 
-                  0           1           2           3</pre><figure class="modern-ascii-diagram" role="img" aria-label="mode | strong | unique | general">
-  <figcaption class="modern-diagram-kicker">Modernized technical diagram</figcaption>
-  <div class="modern-diagram-grid"><div class="modern-diagram-row" style="--cell-count: 4"><div class="modern-diagram-cell">mode</div><div class="modern-diagram-cell">strong</div><div class="modern-diagram-cell">unique</div><div class="modern-diagram-cell">general</div></div></div>
-</figure><pre>   Bit 0, mode - This bit indicates the update mode for this zone.  Zero
+                  0           1           2           3</pre><div class="modern-diagram-fallback">
+<pre style="font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; line-height: 1.5; color: #e2e8f0;">            +-----------+-----------+-----------+-----------+
+            |   mode    |  strong   |  unique   |  general  |
+            +-----------+-----------+-----------+-----------+
+</pre>
+</div><pre>   Bit 0, mode - This bit indicates the update mode for this zone.  Zero
         indicates mode A while a one indicates mode B.
 
    Bit 1, strong update - If nonzero, this indicates that the &quot;strong&quot;
